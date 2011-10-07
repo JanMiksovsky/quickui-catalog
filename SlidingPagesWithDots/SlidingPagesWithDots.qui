@@ -1,0 +1,96 @@
+<Control name="SlidingPagesWithDots">
+
+<content>
+    <SlidingPages id="pages"/>
+    <Repeater id="pageButtons"/>
+</content>
+
+<style>
+{
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#pageButtons {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Generic appearance */
+.SlidingPagesWithDots.generic #pageButtons > .ButtonBase {
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 9px;
+    margin: 1px;
+    padding: 5px;
+    width: 9px;
+}
+
+.SlidingPagesWithDots.generic #pageButtons > .ButtonBase:hover {
+    background: #ccc;
+}
+
+.SlidingPagesWithDots.generic #pageButtons > .ButtonBase.selected {
+    background: gray;
+    height: 11px;
+    margin: 0;
+    width: 11px;
+}
+</style>
+
+<script>
+SlidingPagesWithDots.prototype.extend({
+    
+    content: Control.chain( "$pages", "content" ),
+    pageButtons: Control.chain( "$pageButtons", "children" ),
+    pageButtonClass: Control.chain( "$pageButtons", "itemClass" ),
+    pages: Control.chain( "$pages", "pages" ),
+    
+    initialize: function() {
+        
+        this.genericIfClassIs( SlidingPagesWithDots );
+        if ( !this.pageButtonClass() ) {
+            this.pageButtonClass( ButtonBase );
+        }
+
+        // TODO: Use $.on() when that becomes available.
+        var self = this;
+        this.$pageButtons().click( function( event ) {
+            var buttonClassName = self.pageButtonClass().prototype.className;
+            var buttonCssClassName = "." + buttonClassName;
+            var pageButton = $( event.target ).closest( buttonCssClassName ).control();
+            if ( pageButton ) {
+                var index = self.pageButtons().index( pageButton );
+                if ( index >= 0 ) {
+                    self.activeIndex( index );
+                }
+            }
+        });
+    },
+    
+    activeIndex: Control.property( function( activeIndex ) {
+        
+        this.$pages().activeIndex( activeIndex );
+        
+        this.pageButtons()
+            .removeClass( "selected" )
+            .eq( activeIndex )
+                .addClass( "selected" );
+        
+        return this;
+    }),
+    
+    content: Control.chain( "$pages", "content", function() {
+        this.$pageButtons().count( this.pages().length );
+    })
+
+});
+</script>
+
+</Control>

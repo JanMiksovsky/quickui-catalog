@@ -1,0 +1,22 @@
+<Control name="SlidingPagesWithDotsDemo">
+
+<content>
+    <SlidingPagesWithDots>
+        <div class="page">Bird</div>
+        <div class="page">Cat</div>
+        <div class="page">Dog</div>
+    </SlidingPagesWithDots>
+</content>
+
+<style>
+.page {
+    border: 1px solid gray;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 200px;
+    width: 300px;
+}
+</style>
+
+</Control>

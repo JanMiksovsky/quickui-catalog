@@ -75,6 +75,22 @@ AutoSizeTextBoxDemo = Control.subclass( "AutoSizeTextBoxDemo", function renderAu
 });
 
 //
+// DotButton
+//
+DotButton = Control.subclass( "DotButton", function renderDotButton() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$button", ButtonBase.create({
+				"id": "button",
+				"generic": "false"
+			}) ),
+			" "
+		]
+	}, Control );
+});
+
+//
 // BrowserSpecificDemo
 //
 BrowserSpecificDemo = Control.subclass( "BrowserSpecificDemo", function renderBrowserSpecificDemo() {
@@ -731,22 +747,6 @@ DialogDemo.prototype.extend({
             self.close();
         });
     }
-});
-
-//
-// DotButton
-//
-DotButton = Control.subclass( "DotButton", function renderDotButton() {
-	this.properties({
-		"content": [
-			" ",
-			this._define( "$button", ButtonBase.create({
-				"id": "button",
-				"generic": "false"
-			}) ),
-			" "
-		]
-	}, Control );
 });
 
 //
@@ -1635,18 +1635,20 @@ SearchBoxAbout = CatalogPage.subclass( "SearchBoxAbout", function renderSearchBo
 });
 
 //
-// SlidingStrip
+// SlidingPages
 //
-SlidingStrip = Control.subclass( "SlidingStrip", function renderSlidingStrip() {
+SlidingPages = Control.subclass( "SlidingPages", function renderSlidingPages() {
 	this.properties({
 		"content": [
 			" ",
-			this._define( "$SlidingStrip_content", Control( "<div id=\"SlidingStrip_content\" />" ) ),
+			this._define( "$SlidingPages_content", Control( "<div id=\"SlidingPages_content\" />" ) ),
 			" "
 		]
 	}, Control );
 });
-SlidingStrip.prototype.extend({
+SlidingPages.prototype.extend({
+    
+    pages: Control.chain( "$SlidingPages_content", "children" ),
     
     initialize: function() {
         var self = this;
@@ -1656,65 +1658,84 @@ SlidingStrip.prototype.extend({
         this.activeIndex(0);
     },
 
-    content: Control.chain( "$SlidingStrip_content", "content", function() {
+    content: Control.chain( "$SlidingPages_content", "content", function() {
         this._adjustWidths();
     }),
     
-    activeIndex: Control.iterator( function( activeIndex ) {
-        var child = this.children().eq( activeIndex );
-        var left = child.position().left;
-        this.$SlidingStrip_content().animate({
-            "left": -left
-        }, "fast" );
+    activeIndex: Control.property.integer( function( activeIndex ) {
+        var page = this.pages().eq( activeIndex );
+        if ( page.length > 0 ) {
+            var left = page.position().left;
+            this.$SlidingPages_content().animate({
+                "left": -left
+            }, "fast" );
+        }
     }),
     
     _adjustWidths: function() {
-        var children = this.children();
-        children.width( "auto" );
-        var childWidths = tabs.map( function( index, child ) {
+        var pages = this.pages();
+        //pages.width( "auto" );
+        var pageWidths = pages.map( function( index, child ) {
             return $( child ).outerWidth();
         }).get();
-        var maxChildWidth = Math.max.apply( this, childWidths );
-        this.width( maxChildWidth );
+        var maxPageWidth = Math.max.apply( this, pageWidths );
+        this.width( maxPageWidth );
     }
     
 });
 
 //
-// SlidingTabs
+// SlidingPagesWithDots
 //
-SlidingTabs = Control.subclass( "SlidingTabs", function renderSlidingTabs() {
+SlidingPagesWithDots = Control.subclass( "SlidingPagesWithDots", function renderSlidingPagesWithDots() {
 	this.properties({
 		"content": [
 			" ",
-			this._define( "$strip", SlidingStrip.create({
-				"id": "strip"
+			this._define( "$pages", SlidingPages.create({
+				"id": "pages"
 			}) ),
 			" ",
-			this._define( "$tabButtons", Repeater.create({
-				"id": "tabButtons"
+			this._define( "$pageButtons", Repeater.create({
+				"id": "pageButtons"
 			}) ),
 			" "
 		]
 	}, Control );
 });
-SlidingTabs.prototype.extend({
+SlidingPagesWithDots.prototype.extend({
     
-    tabs: Control.chain( "$SlidingTabs_content", "children" ),
-    tabButtons: Control.chain( "$tabButtons", "children" ),
-    tabButtonClass: Control.chain( "$tabButtons", "itemClass" ),
+    content: Control.chain( "$pages", "content" ),
+    pageButtons: Control.chain( "$pageButtons", "children" ),
+    pageButtonClass: Control.chain( "$pageButtons", "itemClass" ),
+    pages: Control.chain( "$pages", "pages" ),
     
     initialize: function() {
-        if ( this.tabButtonClass() == null ) {
-            this.tabButtonClass( DotButton );
+        
+        this.genericIfClassIs( SlidingPagesWithDots );
+        if ( !this.pageButtonClass() ) {
+            this.pageButtonClass( ButtonBase );
         }
+
+        // TODO: Use $.on() when that becomes available.
+        var self = this;
+        this.$pageButtons().click( function( event ) {
+            var buttonClassName = self.pageButtonClass().prototype.className;
+            var buttonCssClassName = "." + buttonClassName;
+            var pageButton = $( event.target ).closest( buttonCssClassName ).control();
+            if ( pageButton ) {
+                var index = self.pageButtons().index( pageButton );
+                if ( index >= 0 ) {
+                    self.activeIndex( index );
+                }
+            }
+        });
     },
     
     activeIndex: Control.property( function( activeIndex ) {
         
-        this.$strip().activeIndex( activeIndex );
+        this.$pages().activeIndex( activeIndex );
         
-        this.tabButtons()
+        this.pageButtons()
             .removeClass( "selected" )
             .eq( activeIndex )
                 .addClass( "selected" );
@@ -1722,21 +1743,21 @@ SlidingTabs.prototype.extend({
         return this;
     }),
     
-    content: Control.chain( "$strip", "content", function() {
-        this.$tabButtons().count( this.tabs().length );
+    content: Control.chain( "$pages", "content", function() {
+        this.$pageButtons().count( this.pages().length );
     })
-    
+
 });
 
 //
-// SlidingTabsDemo
+// SlidingPagesWithDotsDemo
 //
-SlidingTabsDemo = Control.subclass( "SlidingTabsDemo", function renderSlidingTabsDemo() {
+SlidingPagesWithDotsDemo = Control.subclass( "SlidingPagesWithDotsDemo", function renderSlidingPagesWithDotsDemo() {
 	this.properties({
 		"content": [
 			" ",
-			SlidingTabs.create({
-				"content": " <div class=\"page\">Hello</div> <div class=\"page\">There</div> <div class=\"page\">World</div> "
+			SlidingPagesWithDots.create({
+				"content": " <div class=\"page\">Bird</div> <div class=\"page\">Cat</div> <div class=\"page\">Dog</div> "
 			}),
 			" "
 		]

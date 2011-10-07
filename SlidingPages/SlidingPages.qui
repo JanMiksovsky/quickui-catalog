@@ -1,0 +1,69 @@
+<!--
+Display children on a (horizontal) strip such that only one child is completely visible.
+The strip can be programmatically slid left and right to make a given child visible.
+-->
+<Control name="SlidingPages">
+
+<content>
+    <div id="SlidingPages_content"/>
+</content>
+
+<style>
+{
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#SlidingPages_content {
+    position: relative; /* So we can shift it over */
+    white-space: nowrap;
+}
+#SlidingPages_content > * {
+    display: inline-block;
+}
+</style>
+
+<script>
+SlidingPages.prototype.extend({
+    
+    pages: Control.chain( "$SlidingPages_content", "children" ),
+    
+    initialize: function() {
+        var self = this;
+        this.insertedIntoDocument( function() {
+            self._adjustWidths();
+        });
+        this.activeIndex(0);
+    },
+
+    content: Control.chain( "$SlidingPages_content", "content", function() {
+        this._adjustWidths();
+    }),
+    
+    activeIndex: Control.property.integer( function( activeIndex ) {
+        var page = this.pages().eq( activeIndex );
+        if ( page.length > 0 ) {
+            var left = page.position().left;
+            this.$SlidingPages_content().animate({
+                "left": -left
+            }, "fast" );
+        }
+    }),
+    
+    _adjustWidths: function() {
+        var pages = this.pages();
+        //pages.width( "auto" );
+        var pageWidths = pages.map( function( index, child ) {
+            return $( child ).outerWidth();
+        }).get();
+        var maxPageWidth = Math.max.apply( this, pageWidths );
+        this.width( maxPageWidth );
+    }
+    
+});
+</script>
+
+</Control>
