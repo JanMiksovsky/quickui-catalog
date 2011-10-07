@@ -1,6 +1,6 @@
 <Control name="SearchBoxAbout">
 <prototype>
-	<GalleryPage
+	<CatalogPage
         title="SearchBox"
         sourceFileExample="SearchBox/GoogleSearchBox.qui"
         sourceFileControl="SearchBox/SearchBox.qui">
@@ -15,6 +15,6 @@
             <GoogleSearchBox/>
 		</demo>
         
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

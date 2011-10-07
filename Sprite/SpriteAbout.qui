@@ -1,6 +1,6 @@
 <Control name="SpriteAbout">
 <prototype>
-	<GalleryPage title="Sprite" sourceFileExample="Sprite/SpriteDemo.qui" sourceFileControl="../quicommon/Sprite.qui">
+	<CatalogPage title="Sprite" sourceFileExample="Sprite/SpriteDemo.qui" sourceFileControl="../quicommon/Sprite.qui">
 		<summary>
 			A very basic CSS sprite: shows a single image at a time
 			from a strip of images.
@@ -8,6 +8,6 @@
 		<demo>
 			<SpriteDemo/>
 		</demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

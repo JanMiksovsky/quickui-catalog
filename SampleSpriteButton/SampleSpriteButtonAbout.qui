@@ -1,6 +1,6 @@
 <Control name="SampleSpriteButtonAbout">
 <prototype>
-	<GalleryPage title="SampleSpriteButton" sourceFileExample="SampleSpriteButton/SampleSpriteButtonDemo.qui" sourceFileControl="SampleSpriteButton/SampleSpriteButton.qui">
+	<CatalogPage title="SampleSpriteButton" sourceFileExample="SampleSpriteButton/SampleSpriteButtonDemo.qui" sourceFileControl="SampleSpriteButton/SampleSpriteButton.qui">
 		<summary>
 			A sample of how to create a new
 			<CatalogLink>SpriteButton</CatalogLink>
@@ -11,6 +11,6 @@
 		<demo>
 			<SampleSpriteButtonDemo/>
 		</demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

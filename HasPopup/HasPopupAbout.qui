@@ -1,6 +1,6 @@
 <Control name="HasPopupAbout">
 <prototype>
-	<GalleryPage title="HasPopup" sourceFileExample="HasPopup/HasPopupDemo.qui" sourceFileControl="../quicommon/HasPopup.qui">
+	<CatalogPage title="HasPopup" sourceFileExample="HasPopup/HasPopupDemo.qui" sourceFileControl="../quicommon/HasPopup.qui">
 		<summary>
 			A control that has an associated <CatalogLink>Popup</CatalogLink>
 			which will appear above or below the control.
@@ -14,6 +14,6 @@
 		    E.g., if the control is near the bottom of the viewport, and there is room to show the
 		    popup above the control, the popup will appear above the control.
 		</notes>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

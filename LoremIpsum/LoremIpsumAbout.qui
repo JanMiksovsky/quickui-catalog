@@ -1,6 +1,6 @@
 <Control name="LoremIpsumAbout">
 <prototype>
-	<GalleryPage title="LoremIpsum" sourceFileExample="LoremIpsum/LoremIpsumDemo.qui" sourceFileControl="LoremIpsum/LoremIpsum.qui">
+	<CatalogPage title="LoremIpsum" sourceFileExample="LoremIpsum/LoremIpsumDemo.qui" sourceFileControl="LoremIpsum/LoremIpsum.qui">
 		<summary>
             Generates paragraphs of placeholder
             <a href="http://en.wikipedia.org/wiki/Lorem_ipsum">lorem ipsum</a>
@@ -10,6 +10,6 @@
 		<demo>
 			<LoremIpsumDemo/>
 		</demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

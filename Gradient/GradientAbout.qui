@@ -1,6 +1,6 @@
 <Control name="GradientAbout">
 <prototype>
-	<GalleryPage title="Gradient" sourceFileExample="Gradient/GradientDemo.qui" sourceFileControl="Gradient/Gradient.qui">
+	<CatalogPage title="Gradient" sourceFileExample="Gradient/GradientDemo.qui" sourceFileControl="Gradient/Gradient.qui">
 		<summary>
 		    The modern mainstream browsers all support CSS gradients—albeit with
             slightly different CSS syntax. The Gradient control presents an
@@ -11,6 +11,6 @@
 		<demo>
 			<GradientDemo/>
 		</demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

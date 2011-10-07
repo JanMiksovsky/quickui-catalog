@@ -1,10 +1,10 @@
-<Control name="GalleryMainPage">
+<Control name="CatalogIndexPage">
 
 <prototype>
 	<SitePage title="Gallery" area="Gallery">
 
 		<navigationLinks>
-			<GalleryNavigationLinks/>
+			<CatalogNavigationLinks/>
 		</navigationLinks>
 
 		<p>
@@ -57,7 +57,7 @@
                 <div>Fades out content on the right or bottom instead of clipping it.</div>
             </div>
             <div>
-                <div><CatalogLink>GalleryPage</CatalogLink></div>
+                <div><CatalogLink>CatalogPage</CatalogLink></div>
                 <div>The template for all pages in this gallery.</div>
             </div>
             <div>

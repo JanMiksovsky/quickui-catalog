@@ -1,6 +1,6 @@
 <Control name="ListAbout">
 <prototype>
-	<GalleryPage title="List" sourceFileExample="List/ListDemo.qui" sourceFileControl="../quicommon/List.qui">
+	<CatalogPage title="List" sourceFileExample="List/ListDemo.qui" sourceFileControl="../quicommon/List.qui">
 		<summary>
 			Renders each element of a JavaScript array as a QuickUI control.
 		</summary>
@@ -13,6 +13,6 @@
             property directly. Alternatively, you can define a mapping function
             that will be invoked once for each array element.
         </notes>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

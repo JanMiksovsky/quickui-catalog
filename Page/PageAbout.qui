@@ -1,6 +1,6 @@
 <Control name="PageAbout">
 <prototype>
-	<GalleryPage title="Page" sourceFileExample="Page/PageDemo.qui" sourceFileControl="../quicommon/Page.qui">
+	<CatalogPage title="Page" sourceFileExample="Page/PageDemo.qui" sourceFileControl="../quicommon/Page.qui">
 		<summary>
 			Base class for creating top-level pages.
 			The Page class offers some simple page-level facilities: getting/setting
@@ -9,8 +9,8 @@
             and creating pages that fill the viewport. 
 		</summary>
 		<demo>
-			See <CatalogLink>GalleryPage</CatalogLink> for a demo of a Page subclass.
+			See <CatalogLink>CatalogPage</CatalogLink> for a demo of a Page subclass.
 		</demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

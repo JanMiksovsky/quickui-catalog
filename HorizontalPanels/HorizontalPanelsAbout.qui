@@ -1,6 +1,6 @@
 <Control name="HorizontalPanelsAbout">
 <prototype>
-	<GalleryPage title="HorizontalPanels" sourceFileExample="HorizontalPanels/HorizontalPanelsDemo.qui" sourceFileControl="../quicommon/HorizontalPanels.qui">
+	<CatalogPage title="HorizontalPanels" sourceFileExample="HorizontalPanels/HorizontalPanelsDemo.qui" sourceFileControl="../quicommon/HorizontalPanels.qui">
 		<summary>
 			Layout for a main content area with panels on the left and/or right
 			<i>of an unknown size</i> (i.e., which size to their content), and
@@ -25,6 +25,6 @@
 		    of the panels when the control is resized. 
 		    </p>
 		</notes>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

@@ -113,183 +113,15 @@ ButtonBaseDemo = Control.subclass( "ButtonBaseDemo", function renderButtonBaseDe
 });
 
 //
-// ComboBoxDemo
+// CatalogIndexPage
 //
-ComboBoxDemo = Control.subclass( "ComboBoxDemo", function renderComboBoxDemo() {
-	this.properties({
-		"content": [
-			" ",
-			this._define( "$comboBox", ListComboBox.create({
-				"id": "comboBox",
-				"itemClass": "ButtonBase"
-			}) ),
-			" "
-		]
-	}, Control );
-});
-ComboBoxDemo.prototype.extend({
-    initialize: function() {
-        this.$comboBox().items([
-            "Bird",
-            "Cat",
-            "Dog",
-            "Hamster"
-        ]);
-    }
-});
-
-//
-// DeviceSpecificDemo
-//
-DeviceSpecificDemo = Control.subclass( "DeviceSpecificDemo", function renderDeviceSpecificDemo() {
-	this.properties({
-		"content": [
-			" ",
-			DeviceSpecific.create({
-				"mobileClass": "Link",
-				"defaultClass": "SampleSpriteButton",
-				"mobile": "You are mobile",
-				"default": "You are not mobile"
-			}),
-			" "
-		]
-	}, Control );
-});
-
-//
-// DialogDemo
-//
-DialogDemo = Dialog.subclass( "DialogDemo", function renderDialogDemo() {
-	this.properties({
-		"content": [
-			" ",
-			"<h1>Sample dialog</h1>",
-			" ",
-			LoremIpsum.create({
-				"paragraphs": "1"
-			}),
-			" ",
-			this._define( "$buttonClose", SampleSpriteButton.create({
-				"content": "Close",
-				"id": "buttonClose"
-			}) ),
-			" "
-		]
-	}, Dialog );
-});
-DialogDemo.prototype.extend({
-    initialize: function() {
-        var self = this;
-        this.$buttonClose().click(function() {
-            self.close();
-        });
-    }
-});
-
-//
-// Fader
-//
-Fader = Control.subclass( "Fader", function renderFader() {
-	this.properties({
-		"content": [
-			" ",
-			this._define( "$Fader_content", Control( "<div id=\"Fader_content\" />" ) ),
-			" ",
-			this._define( "$gradient", Gradient.create({
-				"id": "gradient",
-				"direction": "horizontal"
-			}) ),
-			" "
-		]
-	}, Control );
-});
-Control.prototype.extend({
-    
-});
-
-Fader.prototype.extend({
-    
-    content: Control.chain("$Fader_content", "content"),
-    
-    initialize: function() {
-        var self = this;
-        this.insertedIntoDocument(function() {
-            self.redraw();
-        });
-    },
-    
-    direction: Control.property(function(direction) {
-        this
-            .toggleClass("vertical", direction !== "horizontal")
-            .redraw()
-            .$gradient()
-                .direction(direction);
-    }),
-    
-    redraw: function() {
-        var self = this;
-        return this.eachControl(function(index, $control) {
-            var backgroundColor = $control.css("background-color");
-            var backgroundHex = (backgroundColor.substr(0, 3).toLowerCase() == "rgb")
-                                    ? self._rgbStringToHexColor(backgroundColor)
-                                    : backgroundColor;
-            $control.$gradient()
-                .start(backgroundHex + "00")
-                .end(backgroundHex);
-        });
-    },
-    
-    _rgbStringToHexColor: function(rgbString) {
-        rgb = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-        return "#" + this._hexByte(rgb[1]) + this._hexByte(rgb[2]) + this._hexByte(rgb[3]);
-    },
-
-    _hexByte: function(n) {
-        var s = (new Number(n & 0xFF)).toString(16);
-        if (s.length == 1)
-        {
-            s = "0" + s;
-        }
-        return s;
-    }
-    
-});
-
-//
-// FaderDemo
-//
-FaderDemo = Control.subclass( "FaderDemo", function renderFaderDemo() {
-	this.properties({
-		"content": [
-			" ",
-			Fader.create({
-				"content": " The glass is neither half-full nor half-empty: it's twice as big as it needs to be. ",
-				"style": "max-width: 175px;"
-			}),
-			" ",
-			Fader.create({
-				"content": " The glass is neither half-full nor half-empty: it's twice as big as it needs to be. ",
-				"style": "max-width: 350px;"
-			}),
-			" ",
-			Fader.create({
-				"content": " The glass is neither half-full nor half-empty: it's twice as big as it needs to be. "
-			}),
-			" "
-		]
-	}, Control );
-});
-
-//
-// GalleryMainPage
-//
-GalleryMainPage = SitePage.subclass( "GalleryMainPage", function renderGalleryMainPage() {
+CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalogIndexPage() {
 	this.properties({
 		"title": "Gallery",
 		"area": "Gallery",
 		"navigationLinks": [
 			" ",
-			GalleryNavigationLinks.create(),
+			CatalogNavigationLinks.create(),
 			" "
 		],
 		"content": [
@@ -389,7 +221,7 @@ GalleryMainPage = SitePage.subclass( "GalleryMainPage", function renderGalleryMa
 					" ",
 					Control( "<div />" ).content(
 						CatalogLink.create({
-							"content": "GalleryPage"
+							"content": "CatalogPage"
 						})
 					),
 					" ",
@@ -629,9 +461,9 @@ GalleryMainPage = SitePage.subclass( "GalleryMainPage", function renderGalleryMa
 });
 
 //
-// GalleryNavigationLinks
+// CatalogNavigationLinks
 //
-GalleryNavigationLinks = Control.subclass( "GalleryNavigationLinks", function renderGalleryNavigationLinks() {
+CatalogNavigationLinks = Control.subclass( "CatalogNavigationLinks", function renderCatalogNavigationLinks() {
 	this.properties({
 		"content": [
 			" ",
@@ -649,7 +481,7 @@ GalleryNavigationLinks = Control.subclass( "GalleryNavigationLinks", function re
 		]
 	}, Control );
 });
-GalleryNavigationLinks.prototype.extend({
+CatalogNavigationLinks.prototype.extend({
     initialize: function() {
         this.$listClass().items([
             "AutoSizeTextBox",
@@ -659,7 +491,7 @@ GalleryNavigationLinks.prototype.extend({
             "DeviceSpecific",
             "Dialog",
             "Fader",
-            "GalleryPage",
+            "CatalogPage",
             "Gradient",
             "HasPopup",
             "HintTextBox",
@@ -683,26 +515,26 @@ GalleryNavigationLinks.prototype.extend({
 });
 
 //
-// GalleryPage
+// CatalogPage
 //
-GalleryPage = SitePage.subclass( "GalleryPage", function renderGalleryPage() {
+CatalogPage = SitePage.subclass( "CatalogPage", function renderCatalogPage() {
 	this.properties({
 		"area": "Gallery",
 		"navigationLinks": [
 			" ",
-			GalleryNavigationLinks.create(),
+			CatalogNavigationLinks.create(),
 			" "
 		],
 		"content": [
 			" ",
-			this._define( "$GalleryPage_summary", Control( "<div id=\"GalleryPage_summary\" />" ) ),
+			this._define( "$CatalogPage_summary", Control( "<div id=\"CatalogPage_summary\" />" ) ),
 			" ",
 			"<h2>Live demo</h2>",
 			" ",
 			CodeOutput.create({
 				"content": [
 					" ",
-					this._define( "$GalleryPage_demo", Control( "<div id=\"GalleryPage_demo\" />" ) ),
+					this._define( "$CatalogPage_demo", Control( "<div id=\"CatalogPage_demo\" />" ) ),
 					" "
 				]
 			}),
@@ -725,39 +557,299 @@ GalleryPage = SitePage.subclass( "GalleryPage", function renderGalleryPage() {
 			" ",
 			"<h2>Notes</h2>",
 			" ",
-			this._define( "$GalleryPage_notes", Control( "<div id=\"GalleryPage_notes\" />" ) ),
+			this._define( "$CatalogPage_notes", Control( "<div id=\"CatalogPage_notes\" />" ) ),
 			" "
 		]
 	}, SitePage );
 });
-GalleryPage.prototype.extend({
-	demo: Control.chain("$GalleryPage_demo", "content"),
-	notes: Control.chain("$GalleryPage_notes", "content"),
+CatalogPage.prototype.extend({
+	demo: Control.chain("$CatalogPage_demo", "content"),
+	notes: Control.chain("$CatalogPage_notes", "content"),
 	sourceFileControl: Control.chain("$sourceCodeControl", "sourceFile"),
 	sourceFileExample: Control.chain("$sourceCodeExample", "sourceFile", function( sourceFileExample ) {
 	    this.$usage().toggle( sourceFileExample != null );
 	}),
-	summary: Control.chain("$GalleryPage_summary", "content")
+	summary: Control.chain("$CatalogPage_summary", "content")
 });
 
 //
-// GalleryPageAbout
+// CatalogPageAbout
 //
-GalleryPageAbout = GalleryPage.subclass( "GalleryPageAbout", function renderGalleryPageAbout() {
+CatalogPageAbout = CatalogPage.subclass( "CatalogPageAbout", function renderCatalogPageAbout() {
 	this.properties({
-		"title": "GalleryPage",
-		"sourceFileExample": "GalleryPage/GalleryPageAbout.qui",
-		"sourceFileControl": "GalleryPage.qui",
-		"summary": " The GalleryPage control is the basic template for all controls in the QuickUI gallery. It defines the main content area of the type of page you are looking at right now. ",
+		"title": "CatalogPage",
+		"sourceFileExample": "CatalogPage/CatalogPageAbout.qui",
+		"sourceFileControl": "CatalogPage.qui",
+		"summary": " The CatalogPage control is the basic template for all controls in the QuickUI gallery. It defines the main content area of the type of page you are looking at right now. ",
 		"demo": " This page is its own demo of the control’s behavior! The Sample Usage section shows the entire source code of the elements unique to the specific page you’re looking at now. All pages on this site are constructed similarly. ",
 		"notes": [
-			" This control is a good example of a page template with numerous slots which can be filled in by setting properties on the control. For the control properties that point to source code, the GalleryPage control delegates responsibility for showing the source code to the separate SourceCode control. GalleryPage is a subclass of another control called SitePage (which adds the site’s standard top and left navigation) and ultimately from the ",
+			" This control is a good example of a page template with numerous slots which can be filled in by setting properties on the control. For the control properties that point to source code, the CatalogPage control delegates responsibility for showing the source code to the separate SourceCode control. CatalogPage is a subclass of another control called SitePage (which adds the site’s standard top and left navigation) and ultimately from the ",
 			CatalogLink.create({
 				"content": "Page"
 			}),
 			" base class. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
+});
+
+//
+// ComboBoxAbout
+//
+ComboBoxAbout = CatalogPage.subclass( "ComboBoxAbout", function renderComboBoxAbout() {
+	this.properties({
+		"title": "ComboBox",
+		"sourceFileExample": "ComboBox/ComboBoxDemo.qui",
+		"sourceFileControl": "../quicommon/ComboBox.qui",
+		"summary": " A text input area with a dropdown set of choices. The user can make selections from the list to populate input area, or they can type arbitrary text strings which don't necessarily appear in the list. ",
+		"demo": [
+			" ",
+			ComboBoxDemo.create(),
+			" "
+		],
+		"notes": [
+			" The HTML5 specification calls for a ",
+			Tag.create({
+				"content": "datagrid"
+			}),
+			" element which can be used to create combo boxes, but even once that is broadly supported, the ComboBox class still has a role to play as a base class for custom combo boxes. "
+		]
+	}, CatalogPage );
+});
+
+//
+// ComboBoxDemo
+//
+ComboBoxDemo = Control.subclass( "ComboBoxDemo", function renderComboBoxDemo() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$comboBox", ListComboBox.create({
+				"id": "comboBox",
+				"itemClass": "ButtonBase"
+			}) ),
+			" "
+		]
+	}, Control );
+});
+ComboBoxDemo.prototype.extend({
+    initialize: function() {
+        this.$comboBox().items([
+            "Bird",
+            "Cat",
+            "Dog",
+            "Hamster"
+        ]);
+    }
+});
+
+//
+// DeviceSpecificAbout
+//
+DeviceSpecificAbout = CatalogPage.subclass( "DeviceSpecificAbout", function renderDeviceSpecificAbout() {
+	this.properties({
+		"title": "DeviceSpecific",
+		"sourceFileExample": "DeviceSpecific/DeviceSpecificDemo.qui",
+		"sourceFileControl": "../quicommon/DeviceSpecific.qui",
+		"summary": " Conditionally loads different content, control class, or styles depending on the type of device. ",
+		"demo": [
+			" ",
+			DeviceSpecificDemo.create(),
+			" "
+		],
+		"notes": " This class can form one part of a strategy for building a web site with a full version and a mobile-optimized version. "
+	}, CatalogPage );
+});
+
+//
+// DeviceSpecificDemo
+//
+DeviceSpecificDemo = Control.subclass( "DeviceSpecificDemo", function renderDeviceSpecificDemo() {
+	this.properties({
+		"content": [
+			" ",
+			DeviceSpecific.create({
+				"mobileClass": "Link",
+				"defaultClass": "SampleSpriteButton",
+				"mobile": "You are mobile",
+				"default": "You are not mobile"
+			}),
+			" "
+		]
+	}, Control );
+});
+
+//
+// DialogAbout
+//
+DialogAbout = CatalogPage.subclass( "DialogAbout", function renderDialogAbout() {
+	this.properties({
+		"title": "Dialog",
+		"sourceFileExample": "Dialog/DialogDemo.qui",
+		"sourceFileControl": "../quicommon/Dialog.qui",
+		"summary": " A modal dialog; must be dismissed before the user can interact with the UI behind it. ",
+		"demo": [
+			" ",
+			this._define( "$dialogLink", Link.create({
+				"content": "Show dialog",
+				"id": "dialogLink"
+			}) ),
+			" "
+		]
+	}, CatalogPage );
+});
+DialogAbout.prototype.extend({
+    initialize: function() {
+        this.$dialogLink().click(function() {
+            Dialog.showDialog(DialogDemo);
+        });
+    }
+});
+
+//
+// DialogDemo
+//
+DialogDemo = Dialog.subclass( "DialogDemo", function renderDialogDemo() {
+	this.properties({
+		"content": [
+			" ",
+			"<h1>Sample dialog</h1>",
+			" ",
+			LoremIpsum.create({
+				"paragraphs": "1"
+			}),
+			" ",
+			this._define( "$buttonClose", SampleSpriteButton.create({
+				"content": "Close",
+				"id": "buttonClose"
+			}) ),
+			" "
+		]
+	}, Dialog );
+});
+DialogDemo.prototype.extend({
+    initialize: function() {
+        var self = this;
+        this.$buttonClose().click(function() {
+            self.close();
+        });
+    }
+});
+
+//
+// Fader
+//
+Fader = Control.subclass( "Fader", function renderFader() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$Fader_content", Control( "<div id=\"Fader_content\" />" ) ),
+			" ",
+			this._define( "$gradient", Gradient.create({
+				"id": "gradient",
+				"direction": "horizontal"
+			}) ),
+			" "
+		]
+	}, Control );
+});
+Control.prototype.extend({
+    
+});
+
+Fader.prototype.extend({
+    
+    content: Control.chain("$Fader_content", "content"),
+    
+    initialize: function() {
+        var self = this;
+        this.insertedIntoDocument(function() {
+            self.redraw();
+        });
+    },
+    
+    direction: Control.property(function(direction) {
+        this
+            .toggleClass("vertical", direction !== "horizontal")
+            .redraw()
+            .$gradient()
+                .direction(direction);
+    }),
+    
+    redraw: function() {
+        var self = this;
+        return this.eachControl(function(index, $control) {
+            var backgroundColor = $control.css("background-color");
+            var backgroundHex = (backgroundColor.substr(0, 3).toLowerCase() == "rgb")
+                                    ? self._rgbStringToHexColor(backgroundColor)
+                                    : backgroundColor;
+            $control.$gradient()
+                .start(backgroundHex + "00")
+                .end(backgroundHex);
+        });
+    },
+    
+    _rgbStringToHexColor: function(rgbString) {
+        rgb = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        return "#" + this._hexByte(rgb[1]) + this._hexByte(rgb[2]) + this._hexByte(rgb[3]);
+    },
+
+    _hexByte: function(n) {
+        var s = (new Number(n & 0xFF)).toString(16);
+        if (s.length == 1)
+        {
+            s = "0" + s;
+        }
+        return s;
+    }
+    
+});
+
+//
+// FaderAbout
+//
+FaderAbout = CatalogPage.subclass( "FaderAbout", function renderFaderAbout() {
+	this.properties({
+		"title": "Fader",
+		"sourceFileExample": "Fader/FaderDemo.qui",
+		"sourceFileControl": "Fader/Fader.qui",
+		"summary": [
+			" Fades out content on the right or bottom instead of clipping it by using an alpha-blended ",
+			CatalogLink.create({
+				"content": "Gradient"
+			}),
+			". "
+		],
+		"demo": [
+			" ",
+			FaderDemo.create(),
+			" "
+		]
+	}, CatalogPage );
+});
+
+//
+// FaderDemo
+//
+FaderDemo = Control.subclass( "FaderDemo", function renderFaderDemo() {
+	this.properties({
+		"content": [
+			" ",
+			Fader.create({
+				"content": " The glass is neither half-full nor half-empty: it's twice as big as it needs to be. ",
+				"style": "max-width: 175px;"
+			}),
+			" ",
+			Fader.create({
+				"content": " The glass is neither half-full nor half-empty: it's twice as big as it needs to be. ",
+				"style": "max-width: 350px;"
+			}),
+			" ",
+			Fader.create({
+				"content": " The glass is neither half-full nor half-empty: it's twice as big as it needs to be. "
+			}),
+			" "
+		]
+	}, Control );
 });
 
 //
@@ -877,7 +969,7 @@ Gradient.prototype.extend({
 //
 // GradientAbout
 //
-GradientAbout = GalleryPage.subclass( "GradientAbout", function renderGradientAbout() {
+GradientAbout = CatalogPage.subclass( "GradientAbout", function renderGradientAbout() {
 	this.properties({
 		"title": "Gradient",
 		"sourceFileExample": "Gradient/GradientDemo.qui",
@@ -888,7 +980,7 @@ GradientAbout = GalleryPage.subclass( "GradientAbout", function renderGradientAb
 			GradientDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -910,7 +1002,7 @@ GradientDemo = Control.subclass( "GradientDemo", function renderGradientDemo() {
 //
 // HasPopupAbout
 //
-HasPopupAbout = GalleryPage.subclass( "HasPopupAbout", function renderHasPopupAbout() {
+HasPopupAbout = CatalogPage.subclass( "HasPopupAbout", function renderHasPopupAbout() {
 	this.properties({
 		"title": "HasPopup",
 		"sourceFileExample": "HasPopup/HasPopupDemo.qui",
@@ -932,7 +1024,7 @@ HasPopupAbout = GalleryPage.subclass( "HasPopupAbout", function renderHasPopupAb
 			" "
 		],
 		"notes": " The control attempts to position the popup such that it doesn't cover up the control. E.g., if the control is near the bottom of the viewport, and there is room to show the popup above the control, the popup will appear above the control. "
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1015,7 +1107,7 @@ HintTextBox.prototype.extend({
 //
 // HintTextBoxAbout
 //
-HintTextBoxAbout = GalleryPage.subclass( "HintTextBoxAbout", function renderHintTextBoxAbout() {
+HintTextBoxAbout = CatalogPage.subclass( "HintTextBoxAbout", function renderHintTextBoxAbout() {
 	this.properties({
 		"title": "HintTextBox",
 		"sourceFileExample": "HintTextBox/HintTextBoxDemo.qui",
@@ -1027,7 +1119,7 @@ HintTextBoxAbout = GalleryPage.subclass( "HintTextBoxAbout", function renderHint
 			" "
 		],
 		"notes": " The standard approach to hint text is to display the hint as text in the text box itself, then remove it when the text box receives the focus. The problem is that there are occasions when the hint should still be visible after the control receives the focus. First, a user tabbing into a field may still want to have the hint visible until they begin typing. Second, there are times when it’s desirable to place the default focus for a page into a text box with a hint. Third, if the user erases what they have typed, it’s helpful to show the hint again. "
-	}, GalleryPage );
+	}, CatalogPage );
 });
 HintTextBoxAbout.prototype.extend({
 	initialize: function() {
@@ -1058,7 +1150,7 @@ HintTextBoxDemo = Control.subclass( "HintTextBoxDemo", function renderHintTextBo
 //
 // HorizontalPanelsAbout
 //
-HorizontalPanelsAbout = GalleryPage.subclass( "HorizontalPanelsAbout", function renderHorizontalPanelsAbout() {
+HorizontalPanelsAbout = CatalogPage.subclass( "HorizontalPanelsAbout", function renderHorizontalPanelsAbout() {
 	this.properties({
 		"title": "HorizontalPanels",
 		"sourceFileExample": "HorizontalPanels/HorizontalPanelsDemo.qui",
@@ -1070,7 +1162,7 @@ HorizontalPanelsAbout = GalleryPage.subclass( "HorizontalPanelsAbout", function 
 			" "
 		],
 		"notes": " <p>\n            There are many strategies for laying out left/right side panels when the\n            width of the panel(s) is fixed, or (using tables) when the height of the\n            layout area does <i>not</i> need to be fixed. These constraints are often\n            problematic in user interfaces; e.g., when it is desirable to fix the\n            height of the layout area to the height of the viewport, and when the width\n            of the side panels is unknown. \n\t\t    </p> <p>\n\t\t    The HorizontalPanels control is similar to the horizontal uses of\n\t\t    the XAML (Silverlight) DockPanel control. The layout engine which\n\t\t    HorizontalPanels relies on uses JavaScript to recalculate the width\n\t\t    of the panels when the control is resized. \n\t\t    </p> "
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1093,7 +1185,7 @@ HorizontalPanelsDemo = Control.subclass( "HorizontalPanelsDemo", function render
 //
 // ListAbout
 //
-ListAbout = GalleryPage.subclass( "ListAbout", function renderListAbout() {
+ListAbout = CatalogPage.subclass( "ListAbout", function renderListAbout() {
 	this.properties({
 		"title": "List",
 		"sourceFileExample": "List/ListDemo.qui",
@@ -1105,7 +1197,7 @@ ListAbout = GalleryPage.subclass( "ListAbout", function renderListAbout() {
 			" "
 		],
 		"notes": " If the properties of the array elements map directly to control properties (as in the demo above), you can set the List's items property directly. Alternatively, you can define a mapping function that will be invoked once for each array element. "
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1207,7 +1299,7 @@ LoremIpsum.prototype.extend({
 //
 // LoremIpsumAbout
 //
-LoremIpsumAbout = GalleryPage.subclass( "LoremIpsumAbout", function renderLoremIpsumAbout() {
+LoremIpsumAbout = CatalogPage.subclass( "LoremIpsumAbout", function renderLoremIpsumAbout() {
 	this.properties({
 		"title": "LoremIpsum",
 		"sourceFileExample": "LoremIpsum/LoremIpsumDemo.qui",
@@ -1218,7 +1310,7 @@ LoremIpsumAbout = GalleryPage.subclass( "LoremIpsumAbout", function renderLoremI
 			LoremIpsumDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1263,7 +1355,7 @@ MultiLineText.prototype.extend({
 //
 // MultiLineTextAbout
 //
-MultiLineTextAbout = GalleryPage.subclass( "MultiLineTextAbout", function renderMultiLineTextAbout() {
+MultiLineTextAbout = CatalogPage.subclass( "MultiLineTextAbout", function renderMultiLineTextAbout() {
 	this.properties({
 		"title": "MultiLineText",
 		"sourceFileExample": "MultiLineText/MultiLineTextDemo.qui",
@@ -1281,7 +1373,7 @@ MultiLineTextAbout = GalleryPage.subclass( "MultiLineTextAbout", function render
 			}),
 			" to handle line breaks. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1309,7 +1401,7 @@ MultiLineTextDemo.prototype.extend({
 //
 // PageAbout
 //
-PageAbout = GalleryPage.subclass( "PageAbout", function renderPageAbout() {
+PageAbout = CatalogPage.subclass( "PageAbout", function renderPageAbout() {
 	this.properties({
 		"title": "Page",
 		"sourceFileExample": "Page/PageDemo.qui",
@@ -1318,11 +1410,11 @@ PageAbout = GalleryPage.subclass( "PageAbout", function renderPageAbout() {
 		"demo": [
 			" See ",
 			CatalogLink.create({
-				"content": "GalleryPage"
+				"content": "CatalogPage"
 			}),
 			" for a demo of a Page subclass. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1345,7 +1437,7 @@ HorizontalPanelsDemo = Control.subclass( "HorizontalPanelsDemo", function render
 //
 // PopupAbout
 //
-PopupAbout = GalleryPage.subclass( "PopupAbout", function renderPopupAbout() {
+PopupAbout = CatalogPage.subclass( "PopupAbout", function renderPopupAbout() {
 	this.properties({
 		"title": "Popup",
 		"sourceFileControl": "../quicommon/Popup.qui",
@@ -1361,13 +1453,13 @@ PopupAbout = GalleryPage.subclass( "PopupAbout", function renderPopupAbout() {
 			}),
 			" for an example. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
 // SampleSpriteButtonAbout
 //
-SampleSpriteButtonAbout = GalleryPage.subclass( "SampleSpriteButtonAbout", function renderSampleSpriteButtonAbout() {
+SampleSpriteButtonAbout = CatalogPage.subclass( "SampleSpriteButtonAbout", function renderSampleSpriteButtonAbout() {
 	this.properties({
 		"title": "SampleSpriteButton",
 		"sourceFileExample": "SampleSpriteButton/SampleSpriteButtonDemo.qui",
@@ -1388,7 +1480,7 @@ SampleSpriteButtonAbout = GalleryPage.subclass( "SampleSpriteButtonAbout", funct
 			SampleSpriteButtonDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1471,7 +1563,7 @@ SearchBox.prototype.extend({
 //
 // SearchBoxAbout
 //
-SearchBoxAbout = GalleryPage.subclass( "SearchBoxAbout", function renderSearchBoxAbout() {
+SearchBoxAbout = CatalogPage.subclass( "SearchBoxAbout", function renderSearchBoxAbout() {
 	this.properties({
 		"title": "SearchBox",
 		"sourceFileExample": "SearchBox/GoogleSearchBox.qui",
@@ -1496,13 +1588,13 @@ SearchBoxAbout = GalleryPage.subclass( "SearchBoxAbout", function renderSearchBo
 			GoogleSearchBox.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
 // SpriteAbout
 //
-SpriteAbout = GalleryPage.subclass( "SpriteAbout", function renderSpriteAbout() {
+SpriteAbout = CatalogPage.subclass( "SpriteAbout", function renderSpriteAbout() {
 	this.properties({
 		"title": "Sprite",
 		"sourceFileExample": "Sprite/SpriteDemo.qui",
@@ -1513,7 +1605,7 @@ SpriteAbout = GalleryPage.subclass( "SpriteAbout", function renderSpriteAbout() 
 			SpriteDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1575,7 +1667,7 @@ SpriteButton.prototype.extend({
 //
 // SpriteButtonAbout
 //
-SpriteButtonAbout = GalleryPage.subclass( "SpriteButtonAbout", function renderSpriteButtonAbout() {
+SpriteButtonAbout = CatalogPage.subclass( "SpriteButtonAbout", function renderSpriteButtonAbout() {
 	this.properties({
 		"title": "SpriteButton",
 		"sourceFileExample": "SampleSpriteButton/SampleSpriteButton.qui",
@@ -1600,7 +1692,7 @@ SpriteButtonAbout = GalleryPage.subclass( "SpriteButtonAbout", function renderSp
 			}),
 			" for a demo. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1686,7 +1778,7 @@ Switch.prototype.extend({
 //
 // SwitchAbout
 //
-SwitchAbout = GalleryPage.subclass( "SwitchAbout", function renderSwitchAbout() {
+SwitchAbout = CatalogPage.subclass( "SwitchAbout", function renderSwitchAbout() {
 	this.properties({
 		"title": "Switch",
 		"sourceFileExample": "Switch/SwitchDemo.qui",
@@ -1697,7 +1789,7 @@ SwitchAbout = GalleryPage.subclass( "SwitchAbout", function renderSwitchAbout() 
 			SwitchDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1745,7 +1837,7 @@ SwitchDemo.prototype.extend({
 //
 // TagAbout
 //
-TagAbout = GalleryPage.subclass( "TagAbout", function renderTagAbout() {
+TagAbout = CatalogPage.subclass( "TagAbout", function renderTagAbout() {
 	this.properties({
 		"title": "Tag",
 		"sourceFileExample": "Tag/TagDemo.qui",
@@ -1773,7 +1865,7 @@ TagAbout = GalleryPage.subclass( "TagAbout", function renderTagAbout() {
 			"<p>\n\t\t\tThe behavior of the Tag control is simple enough that it could be replicated purely\n\t\t\tin CSS 3 by making use of the “content” attribute. The content attribute allows one\n\t\t\tto specify text that should appear before and after a matching HTML element.\n\t\t\tThe QuickUI approach is more flexible in that it allows arbitrary elements to be\n\t\t\tplaced before and after the control’s content.\n\t\t\t</p>",
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1875,7 +1967,7 @@ TextBoxWithButton.prototype.extend({
 //
 // TextBoxWithButtonAbout
 //
-TextBoxWithButtonAbout = GalleryPage.subclass( "TextBoxWithButtonAbout", function renderTextBoxWithButtonAbout() {
+TextBoxWithButtonAbout = CatalogPage.subclass( "TextBoxWithButtonAbout", function renderTextBoxWithButtonAbout() {
 	this.properties({
 		"title": "TextBoxWithButton",
 		"sourceFileControl": "TextBoxWithButton/TextBoxWithButton.qui",
@@ -1887,7 +1979,7 @@ TextBoxWithButtonAbout = GalleryPage.subclass( "TextBoxWithButtonAbout", functio
 			}),
 			" for a demo. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -1924,7 +2016,7 @@ TextCondenser.prototype.extend({
 //
 // TextCondenserAbout
 //
-TextCondenserAbout = GalleryPage.subclass( "TextCondenserAbout", function renderTextCondenserAbout() {
+TextCondenserAbout = CatalogPage.subclass( "TextCondenserAbout", function renderTextCondenserAbout() {
 	this.properties({
 		"title": "TextCondenser",
 		"sourceFileExample": "TextCondenser/TextCondenserDemo.qui",
@@ -1941,7 +2033,7 @@ TextCondenserAbout = GalleryPage.subclass( "TextCondenserAbout", function render
 			TextCondenserDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -2001,7 +2093,7 @@ TextCondenserDemo.prototype.extend({
 //
 // VerticalPanelsAbout
 //
-VerticalPanelsAbout = GalleryPage.subclass( "VerticalPanelsAbout", function renderVerticalPanelsAbout() {
+VerticalPanelsAbout = CatalogPage.subclass( "VerticalPanelsAbout", function renderVerticalPanelsAbout() {
 	this.properties({
 		"title": "VerticalPanels",
 		"sourceFileExample": "VerticalPanels/VerticalPanelsDemo.qui",
@@ -2013,7 +2105,7 @@ VerticalPanelsAbout = GalleryPage.subclass( "VerticalPanelsAbout", function rend
 			" "
 		],
 		"notes": " <p>\n            There are many strategies for laying out top/bottom panels, but these\n            all have various constraints, e.g., requiring that the top/bottom panels\n            have a known, fixed height.\n\t\t    </p> <p>\n\t\t    The VerticalPanels control is similar to the vertical uses of\n\t\t    the XAML (Silverlight) DockPanel control. The layout engine which\n\t\t    VerticalPanels relies on uses JavaScript to recalculate the height\n\t\t    of the panels when the control is resized. \n\t\t    </p> "
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
@@ -2036,7 +2128,7 @@ VerticalPanelsDemo = Control.subclass( "VerticalPanelsDemo", function renderVert
 //
 // AutoSizeTextBoxAbout
 //
-AutoSizeTextBoxAbout = GalleryPage.subclass( "AutoSizeTextBoxAbout", function renderAutoSizeTextBoxAbout() {
+AutoSizeTextBoxAbout = CatalogPage.subclass( "AutoSizeTextBoxAbout", function renderAutoSizeTextBoxAbout() {
 	this.properties({
 		"title": "AutoSizeTextBox",
 		"sourceFileExample": "AutoSizeTextBox/AutoSizeTextBoxDemo.qui",
@@ -2054,13 +2146,13 @@ AutoSizeTextBoxAbout = GalleryPage.subclass( "AutoSizeTextBoxAbout", function re
 			}),
 			" to map JavaScript line breaks to HTML line breaks, and vice versa. "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
 // BrowserSpecificAbout
 //
-BrowserSpecificAbout = GalleryPage.subclass( "BrowserSpecificAbout", function renderBrowserSpecificAbout() {
+BrowserSpecificAbout = CatalogPage.subclass( "BrowserSpecificAbout", function renderBrowserSpecificAbout() {
 	this.properties({
 		"title": "BrowserSpecific",
 		"sourceFileExample": "BrowserSpecific/BrowserSpecificDemo.qui",
@@ -2078,13 +2170,13 @@ BrowserSpecificAbout = GalleryPage.subclass( "BrowserSpecificAbout", function re
 			BrowserSpecificDemo.create(),
 			" "
 		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //
 // ButtonBaseAbout
 //
-ButtonBaseAbout = GalleryPage.subclass( "ButtonBaseAbout", function renderButtonBaseAbout() {
+ButtonBaseAbout = CatalogPage.subclass( "ButtonBaseAbout", function renderButtonBaseAbout() {
 	this.properties({
 		"title": "ButtonBase",
 		"sourceFileExample": "ButtonBase/ButtonBaseDemo.qui",
@@ -2105,99 +2197,7 @@ ButtonBaseAbout = GalleryPage.subclass( "ButtonBaseAbout", function renderButton
 			ButtonBaseDemo.create(),
 			" "
 		]
-	}, GalleryPage );
-});
-
-//
-// ComboBoxAbout
-//
-ComboBoxAbout = GalleryPage.subclass( "ComboBoxAbout", function renderComboBoxAbout() {
-	this.properties({
-		"title": "ComboBox",
-		"sourceFileExample": "ComboBox/ComboBoxDemo.qui",
-		"sourceFileControl": "../quicommon/ComboBox.qui",
-		"summary": " A text input area with a dropdown set of choices. The user can make selections from the list to populate input area, or they can type arbitrary text strings which don't necessarily appear in the list. ",
-		"demo": [
-			" ",
-			ComboBoxDemo.create(),
-			" "
-		],
-		"notes": [
-			" The HTML5 specification calls for a ",
-			Tag.create({
-				"content": "datagrid"
-			}),
-			" element which can be used to create combo boxes, but even once that is broadly supported, the ComboBox class still has a role to play as a base class for custom combo boxes. "
-		]
-	}, GalleryPage );
-});
-
-//
-// DeviceSpecificAbout
-//
-DeviceSpecificAbout = GalleryPage.subclass( "DeviceSpecificAbout", function renderDeviceSpecificAbout() {
-	this.properties({
-		"title": "DeviceSpecific",
-		"sourceFileExample": "DeviceSpecific/DeviceSpecificDemo.qui",
-		"sourceFileControl": "../quicommon/DeviceSpecific.qui",
-		"summary": " Conditionally loads different content, control class, or styles depending on the type of device. ",
-		"demo": [
-			" ",
-			DeviceSpecificDemo.create(),
-			" "
-		],
-		"notes": " This class can form one part of a strategy for building a web site with a full version and a mobile-optimized version. "
-	}, GalleryPage );
-});
-
-//
-// DialogAbout
-//
-DialogAbout = GalleryPage.subclass( "DialogAbout", function renderDialogAbout() {
-	this.properties({
-		"title": "Dialog",
-		"sourceFileExample": "Dialog/DialogDemo.qui",
-		"sourceFileControl": "../quicommon/Dialog.qui",
-		"summary": " A modal dialog; must be dismissed before the user can interact with the UI behind it. ",
-		"demo": [
-			" ",
-			this._define( "$dialogLink", Link.create({
-				"content": "Show dialog",
-				"id": "dialogLink"
-			}) ),
-			" "
-		]
-	}, GalleryPage );
-});
-DialogAbout.prototype.extend({
-    initialize: function() {
-        this.$dialogLink().click(function() {
-            Dialog.showDialog(DialogDemo);
-        });
-    }
-});
-
-//
-// FaderAbout
-//
-FaderAbout = GalleryPage.subclass( "FaderAbout", function renderFaderAbout() {
-	this.properties({
-		"title": "Fader",
-		"sourceFileExample": "Fader/FaderDemo.qui",
-		"sourceFileControl": "Fader/Fader.qui",
-		"summary": [
-			" Fades out content on the right or bottom instead of clipping it by using an alpha-blended ",
-			CatalogLink.create({
-				"content": "Gradient"
-			}),
-			". "
-		],
-		"demo": [
-			" ",
-			FaderDemo.create(),
-			" "
-		]
-	}, GalleryPage );
+	}, CatalogPage );
 });
 
 //

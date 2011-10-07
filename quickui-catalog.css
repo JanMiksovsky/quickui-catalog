@@ -32,6 +32,34 @@
     font-size: 18px;
 }
 
+/*** CatalogIndexPage ***/
+
+.CatalogIndexPage #table {
+    display: table;
+}
+.CatalogIndexPage #table > * {
+    display: table-row;
+}
+.CatalogIndexPage #table > * > * {
+    display: table-cell;
+    padding-bottom: .5em;
+}
+.CatalogIndexPage #table > * > *:not(:last-child) {
+    padding-right: 1em;
+}
+
+/*** CatalogNavigationLinks ***/
+
+.CatalogNavigationLinks #linkIndex {
+    margin-bottom: 15px;
+}
+
+/*** CatalogPage ***/
+
+.CatalogPage #usage {
+    display: none;
+}
+
 /*** DialogDemo ***/
 
 .DialogDemo {
@@ -78,34 +106,6 @@
     font-size: 1.5em;
     margin: .5em 0;
     padding: 2px;
-}
-
-/*** GalleryMainPage ***/
-
-.GalleryMainPage #table {
-    display: table;
-}
-.GalleryMainPage #table > * {
-    display: table-row;
-}
-.GalleryMainPage #table > * > * {
-    display: table-cell;
-    padding-bottom: .5em;
-}
-.GalleryMainPage #table > * > *:not(:last-child) {
-    padding-right: 1em;
-}
-
-/*** GalleryNavigationLinks ***/
-
-.GalleryNavigationLinks #linkIndex {
-    margin-bottom: 15px;
-}
-
-/*** GalleryPage ***/
-
-.GalleryPage #usage {
-    display: none;
 }
 
 /*** GradientDemo ***/

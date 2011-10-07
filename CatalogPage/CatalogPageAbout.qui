@@ -1,11 +1,11 @@
-<Control name="GalleryPageAbout">
+<Control name="CatalogPageAbout">
 <prototype>
-	<GalleryPage
-		title="GalleryPage"
-		sourceFileExample="GalleryPage/GalleryPageAbout.qui"
-		sourceFileControl="GalleryPage.qui">
+	<CatalogPage
+		title="CatalogPage"
+		sourceFileExample="CatalogPage/CatalogPageAbout.qui"
+		sourceFileControl="CatalogPage.qui">
 		<summary>
-			The GalleryPage control is the basic template for all controls
+			The CatalogPage control is the basic template for all controls
 			in the QuickUI gallery. It defines the main content area of the
 			type of page you are looking at right now.
 		</summary>
@@ -19,12 +19,12 @@
 			This control is a good example of a page template with numerous
 			slots which can be filled in by setting properties on the
 			control. For the control properties that point to source code,
-			the GalleryPage control delegates responsibility for showing the
-			source code to the separate SourceCode control. GalleryPage is a
+			the CatalogPage control delegates responsibility for showing the
+			source code to the separate SourceCode control. CatalogPage is a
 			subclass of another control called SitePage (which adds the
 			site’s standard top and left navigation) and ultimately from
 			the <CatalogLink>Page</CatalogLink> base class.
 		</notes>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

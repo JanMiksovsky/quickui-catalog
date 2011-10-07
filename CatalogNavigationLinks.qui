@@ -1,4 +1,4 @@
-<Control name="GalleryNavigationLinks">
+<Control name="CatalogNavigationLinks">
 
 <content>
     <Link id="linkIndex" href="/catalog/default.html">Index</Link>
@@ -12,7 +12,7 @@
 </style>
 
 <script>
-GalleryNavigationLinks.prototype.extend({
+CatalogNavigationLinks.prototype.extend({
     initialize: function() {
         this.$listClass().items([
             "AutoSizeTextBox",
@@ -22,7 +22,7 @@ GalleryNavigationLinks.prototype.extend({
             "DeviceSpecific",
             "Dialog",
             "Fader",
-            "GalleryPage",
+            "CatalogPage",
             "Gradient",
             "HasPopup",
             "HintTextBox",

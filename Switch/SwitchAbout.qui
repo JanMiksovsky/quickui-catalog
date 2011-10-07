@@ -1,6 +1,6 @@
 <Control name="SwitchAbout">
 <prototype>
-	<GalleryPage title="Switch" sourceFileExample="Switch/SwitchDemo.qui" sourceFileControl="Switch/Switch.qui">
+	<CatalogPage title="Switch" sourceFileExample="Switch/SwitchDemo.qui" sourceFileControl="Switch/Switch.qui">
 		<summary>
 		    Shows exactly one child. This can be useful, for example,
 		    if a given UI element has multiple modes that present substantially
@@ -9,6 +9,6 @@
 		<demo>
 			<SwitchDemo/>
 		</demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>

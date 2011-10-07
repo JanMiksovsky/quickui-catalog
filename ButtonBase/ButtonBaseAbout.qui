@@ -1,6 +1,6 @@
 <Control name="ButtonBaseAbout">
 <prototype>
-	<GalleryPage title="ButtonBase" sourceFileExample="ButtonBase/ButtonBaseDemo.qui" sourceFileControl="../quicommon/ButtonBase.qui">
+	<CatalogPage title="ButtonBase" sourceFileExample="ButtonBase/ButtonBaseDemo.qui" sourceFileControl="../quicommon/ButtonBase.qui">
 		<summary>
 			This is a useful base class for buttons, as it handles basic tracking
 			of the mouse/pointer states and a disabled state. See
@@ -10,6 +10,6 @@
         <demo>
             <ButtonBaseDemo/>
         </demo>
-	</GalleryPage>
+	</CatalogPage>
 </prototype>
 </Control>
