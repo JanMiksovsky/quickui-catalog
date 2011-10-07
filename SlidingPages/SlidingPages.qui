@@ -32,9 +32,8 @@ SlidingPages.prototype.extend({
     pages: Control.chain( "$SlidingPages_content", "children" ),
     
     initialize: function() {
-        var self = this;
         this.insertedIntoDocument( function() {
-            self._adjustWidths();
+            this._adjustWidths();
         });
         if ( !this.activeIndex() ) {
             this.activeIndex(0);

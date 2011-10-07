@@ -33,12 +33,15 @@
 <script>
 RotatingPages.prototype.extend({
     
+    // Interval between rotation animations (does not include animation duration).
+    rotationInterval: Control.property.integer( null, 1000 ),
+    
     initialize: function() {
         var self = this;
         this
             .click( function() { self.rotate(); })
             .insertedIntoDocument( function() {
-                self.rotate();
+                this._queueRotation();
             });
     },
     
@@ -53,15 +56,17 @@ RotatingPages.prototype.extend({
             var index = this.$pages().activeIndex();
             index = ( index + 1 ) % count;
             this.$pages().activeIndex( index );
-            
             if ( index > 0 ) {
-                var self = this;
-                setTimeout( function() {
-                    self.rotate();
-                }, 500 );
+                this._queueRotation();
             }
         }
-    }
+    },
+    
+    _queueRotation: function() {
+        var rotationInterval = this.rotationInterval();
+        var self = this;
+        setTimeout( function() { self.rotate(); }, rotationInterval );
+    } 
 });
 </script>
 

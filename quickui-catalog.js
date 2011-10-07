@@ -27,7 +27,7 @@ AutoSizeTextBox.prototype.extend({
         // For the following, we need to wait until the control's in the DOM.    
         this.insertedIntoDocument(function() {
             // Apply control's font to the textarea.
-            var $textBox = self.$textBox();
+            var $textBox = this.$textBox();
             $textBox.css({
                 "font-family": self.css("font-family"),
                 "font-size": self.css("font-size"),
@@ -39,7 +39,7 @@ AutoSizeTextBox.prototype.extend({
             // For this we use an estimate, as line-height can return useless "normal" value.
             var paddingBottom = parseInt($textBox.css("padding-bottom"));
             var lineHeight = Math.floor(parseInt($textBox.css("font-size")) * 1.5);
-            self.$textCopy().css({
+            this.$textCopy().css({
                 "padding-bottom": (paddingBottom + lineHeight) + "px",  
                 "padding-left": $textBox.css("padding-left"),
                 "padding-right": $textBox.css("padding-right"),
@@ -777,7 +777,7 @@ Fader.prototype.extend({
     initialize: function() {
         var self = this;
         this.insertedIntoDocument(function() {
-            self.redraw();
+            this.redraw();
         });
     },
     
@@ -1516,12 +1516,15 @@ RotatingPages = Control.subclass( "RotatingPages", function renderRotatingPages(
 });
 RotatingPages.prototype.extend({
     
+    // Interval between rotation animations (does not include animation duration).
+    rotationInterval: Control.property.integer( null, 1000 ),
+    
     initialize: function() {
         var self = this;
         this
             .click( function() { self.rotate(); })
             .insertedIntoDocument( function() {
-                self.rotate();
+                this._queueRotation();
             });
     },
     
@@ -1536,15 +1539,17 @@ RotatingPages.prototype.extend({
             var index = this.$pages().activeIndex();
             index = ( index + 1 ) % count;
             this.$pages().activeIndex( index );
-            
             if ( index > 0 ) {
-                var self = this;
-                setTimeout( function() {
-                    self.rotate();
-                }, 500 );
+                this._queueRotation();
             }
         }
-    }
+    },
+    
+    _queueRotation: function() {
+        var rotationInterval = this.rotationInterval();
+        var self = this;
+        setTimeout( function() { self.rotate(); }, rotationInterval );
+    } 
 });
 
 //
@@ -1699,9 +1704,8 @@ SlidingPages.prototype.extend({
     pages: Control.chain( "$SlidingPages_content", "children" ),
     
     initialize: function() {
-        var self = this;
         this.insertedIntoDocument( function() {
-            self._adjustWidths();
+            this._adjustWidths();
         });
         if ( !this.activeIndex() ) {
             this.activeIndex(0);
