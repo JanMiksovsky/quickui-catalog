@@ -1,0 +1,50 @@
+<!-- A page in the QuickUI gallery. -->
+
+<Control name="GalleryPage">
+
+<prototype>
+	<SitePage area="Gallery">
+		<navigationLinks>
+			<GalleryNavigationLinks/>
+		</navigationLinks>
+		<content>
+			<div id="GalleryPage_summary" />
+
+			<h2>Live demo</h2>
+			<CodeOutput>
+				<div id="GalleryPage_demo" />
+			</CodeOutput>
+
+            <div id="usage">
+                <h2>Sample usage</h2>
+                <SourceCode id="sourceCodeExample" />
+            </div>
+
+			<h2>Full control source code</h2>
+			<SourceCode id="sourceCodeControl" />
+
+			<h2>Notes</h2>
+			<div id="GalleryPage_notes" />
+		</content>
+	</SitePage>
+</prototype>
+
+<style>
+#usage {
+    display: none;
+}
+</style>
+
+<script>
+GalleryPage.prototype.extend({
+	demo: Control.chain("$GalleryPage_demo", "content"),
+	notes: Control.chain("$GalleryPage_notes", "content"),
+	sourceFileControl: Control.chain("$sourceCodeControl", "sourceFile"),
+	sourceFileExample: Control.chain("$sourceCodeExample", "sourceFile", function( sourceFileExample ) {
+	    this.$usage().toggle( sourceFileExample != null );
+	}),
+	summary: Control.chain("$GalleryPage_summary", "content")
+});
+</script>
+
+</Control>
