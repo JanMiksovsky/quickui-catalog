@@ -2,45 +2,49 @@
 
 <content>
     <SlidingPages id="pages"/>
-    <Repeater id="pageButtons"/>
+    <div id="buttonPanel">
+        <Repeater id="pageButtons"/>
+    </div>
 </content>
 
 <style>
 {
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
+    display: inline-block; /* Size to content */ 
     overflow: hidden;
 }
 
+#buttonPanel {
+    text-align: center;
+}
 #pageButtons {
     display: inline-block;
     margin: 0 auto;
 }
 
 /* Generic appearance */
+.SlidingPagesWithDots.generic #buttonPanel {
+    padding: 5px;
+}
+
 .SlidingPagesWithDots.generic #pageButtons > .ButtonBase {
     background: white;
-    border: 1px solid lightgray;
+    border: 1px solid #888;
     border-radius: 5px;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
-    height: 9px;
-    margin: 1px;
+    height: 10px;
+    margin: 2px;
     padding: 5px;
-    width: 9px;
+    width: 10px;
 }
 
 .SlidingPagesWithDots.generic #pageButtons > .ButtonBase:hover {
-    background: #ccc;
+    background: #ddd;
 }
 
 .SlidingPagesWithDots.generic #pageButtons > .ButtonBase.selected {
-    background: gray;
-    height: 11px;
-    margin: 0;
-    width: 11px;
+    background: #bbb;
 }
 </style>
 
@@ -72,6 +76,8 @@ SlidingPagesWithDots.prototype.extend({
                 }
             }
         });
+        
+        this.activeIndex(0);
     },
     
     activeIndex: Control.property( function( activeIndex ) {

@@ -75,9 +75,9 @@ AutoSizeTextBoxDemo = Control.subclass( "AutoSizeTextBoxDemo", function renderAu
 });
 
 //
-// DotButton
+// BlueDotButton
 //
-DotButton = Control.subclass( "DotButton", function renderDotButton() {
+BlueDotButton = Control.subclass( "BlueDotButton", function renderBlueDotButton() {
 	this.properties({
 		"content": [
 			" ",
@@ -1672,13 +1672,15 @@ SlidingPages.prototype.extend({
         }
     }),
     
+    // Force all pages and the control itself to the maximium width of the pages.
     _adjustWidths: function() {
         var pages = this.pages();
-        //pages.width( "auto" );
+        pages.width( "auto" );
         var pageWidths = pages.map( function( index, child ) {
             return $( child ).outerWidth();
         }).get();
         var maxPageWidth = Math.max.apply( this, pageWidths );
+        pages.width( maxPageWidth );
         this.width( maxPageWidth );
     }
     
@@ -1695,9 +1697,13 @@ SlidingPagesWithDots = Control.subclass( "SlidingPagesWithDots", function render
 				"id": "pages"
 			}) ),
 			" ",
-			this._define( "$pageButtons", Repeater.create({
-				"id": "pageButtons"
-			}) ),
+			this._define( "$buttonPanel", Control( "<div id=\"buttonPanel\" />" ).content(
+				" ",
+				this._define( "$pageButtons", Repeater.create({
+					"id": "pageButtons"
+				}) ),
+				" "
+			) ),
 			" "
 		]
 	}, Control );
@@ -1729,6 +1735,8 @@ SlidingPagesWithDots.prototype.extend({
                 }
             }
         });
+        
+        this.activeIndex(0);
     },
     
     activeIndex: Control.property( function( activeIndex ) {
@@ -1757,7 +1765,8 @@ SlidingPagesWithDotsDemo = Control.subclass( "SlidingPagesWithDotsDemo", functio
 		"content": [
 			" ",
 			SlidingPagesWithDots.create({
-				"content": " <div class=\"page\">Bird</div> <div class=\"page\">Cat</div> <div class=\"page\">Dog</div> "
+				"content": " <div class=\"page\">Bird</div> <div class=\"page\">Cat</div> <div class=\"page\">Dog</div> <div class=\"page\">Fish</div> ",
+				"pageButtonClass": "BlueDotButton"
 			}),
 			" "
 		]
