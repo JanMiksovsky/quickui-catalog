@@ -1,0 +1,65 @@
+<!--
+Display children on a (horizontal) strip such that only one child is completely visible.
+The strip can be programmatically slid left and right to make a given child visible.
+-->
+<Control name="SlidingStrip">
+
+<content>
+    <div id="SlidingStrip_content"/>
+</content>
+
+<style>
+{
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#Strip_content {
+    position: relative;
+    white-space: nowrap;
+}
+#Strip_content > * {
+    display: inline-block;
+}
+</style>
+
+<script>
+SlidingStrip.prototype.extend({
+    
+    initialize: function() {
+        var self = this;
+        this.insertedIntoDocument( function() {
+            self._adjustWidths();
+        });
+        this.activeIndex(0);
+    },
+
+    content: Control.chain( "$SlidingStrip_content", "content", function() {
+        this._adjustWidths();
+    }),
+    
+    activeIndex: Control.iterator( function( activeIndex ) {
+        var child = this.children().eq( activeIndex );
+        var left = child.position().left;
+        this.$SlidingStrip_content().animate({
+            "left": -left
+        }, "fast" );
+    }),
+    
+    _adjustWidths: function() {
+        var children = this.children();
+        children.width( "auto" );
+        var childWidths = tabs.map( function( index, child ) {
+            return $( child ).outerWidth();
+        }).get();
+        var maxChildWidth = Math.max.apply( this, childWidths );
+        this.width( maxChildWidth );
+    }
+    
+});
+</script>
+
+</Control>

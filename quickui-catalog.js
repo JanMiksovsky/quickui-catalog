@@ -117,8 +117,8 @@ ButtonBaseDemo = Control.subclass( "ButtonBaseDemo", function renderButtonBaseDe
 //
 CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalogIndexPage() {
 	this.properties({
-		"title": "Gallery",
-		"area": "Gallery",
+		"title": "QuickUI Catalog",
+		"area": "Catalog",
 		"navigationLinks": [
 			" ",
 			CatalogNavigationLinks.create(),
@@ -127,9 +127,16 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 		"content": [
 			" ",
 			" ",
-			"<p>\n\t\tThis gallery shows live examples and the full source for a handful of\n\t\tsimple QuickUI controls, representing a small range of what’s possible\n\t\tin QuickUI. While many UI frameworks come with a library of controls,\n        the intent here is not (yet) to present a comprehensive library. Focus\n        rather on the general range of expression: abstract controls, layout\n        controls, controls that abstract away browser inconsistencies, controls\n        that aggregate other controls, controls meant to be used as base classes\n        for other controls, etc.\n        </p>",
+			"<p>\n\tThe QuickUI Catalog shows live examples of QuickUI controls, many\n\tdesigned to be ready-to-use base classes for new controls.\n\t(Note: Many controls depend on other controls, either for base classes,\n\tor as contained elements within a given control. Because QuickUI does\n\tnot yet offer a dependency-management, for now it's necessary to download\n\tall dependencies by hand. Automating this process is on the QuickUI\n\troadmap.\n\t</p>",
 			" ",
-			"<p>\n        Since a key goal of QuickUI is to produce easily readable\n\t\tcode, as you look at each control, ask yourself: Is it easy to\n\t\tunderstand the usage of the control by looking at the source code\n\t\tfor the demo?\n\t\t</p>",
+			Control( "<p />" ).content(
+				" The source code for these controls is available in the ",
+				Link.create({
+					"content": " quickui-catalog repository ",
+					"href": "https://github.com/JanMiksovsky/quickui-catalog"
+				}),
+				" on GitHub. "
+			),
 			" ",
 			this._define( "$table", Control( "<div id=\"table\" />" ).content(
 				" ",
@@ -189,7 +196,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    Conditionally loads different content, control class, or styles\n                    depending on the type of device.\n                </div>",
+					"<div>\n                Conditionally loads different content, control class, or styles\n                depending on the type of device.\n            </div>",
 					" "
 				),
 				" ",
@@ -273,7 +280,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    A layout control that arranges left and/or right side panels.\n                </div>",
+					"<div>\n                A layout control that arranges left and/or right side panels.\n            </div>",
 					" "
 				),
 				" ",
@@ -285,7 +292,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    An abstract control that represents each element of a JavaScript\n                    array as a QuickUI control.\n                </div>",
+					"<div>\n                An abstract control that represents each element of a JavaScript\n                array as a QuickUI control.\n            </div>",
 					" "
 				),
 				" ",
@@ -321,7 +328,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    Base class for creating top-level pages.\n                </div>",
+					"<div>\n                Base class for creating top-level pages.\n            </div>",
 					" "
 				),
 				" ",
@@ -333,7 +340,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    Base class for popups, menus, dialogs — things that temporarily appear over other things.\n                </div>",
+					"<div>\n                Base class for popups, menus, dialogs — things that temporarily appear over other things.\n            </div>",
 					" "
 				),
 				" ",
@@ -393,7 +400,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    Something like a JavaScript switch statement, this shows exactly\n                    one child at any given time (e.g., to reflect an UI mode).\n                </div>",
+					"<div>\n                Something like a JavaScript switch statement, this shows exactly\n                one child at any given time (e.g., to reflect an UI mode).\n            </div>",
 					" "
 				),
 				" ",
@@ -417,7 +424,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    A control with a text box and an associated button, where clicking\n                    the button does something with the text box's content.\n                </div>",
+					"<div>\n                A control with a text box and an associated button, where clicking\n                the button does something with the text box's content.\n            </div>",
 					" "
 				),
 				" ",
@@ -429,7 +436,7 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    Switches to a condensed font when necessary to squeeze in more text.\n                </div>",
+					"<div>\n                Switches to a condensed font when necessary to squeeze in more text.\n            </div>",
 					" "
 				),
 				" ",
@@ -441,20 +448,11 @@ CatalogIndexPage = SitePage.subclass( "CatalogIndexPage", function renderCatalog
 						})
 					),
 					" ",
-					"<div>\n                    A layout control that arranges top and/or bottom panels.\n                </div>",
+					"<div>\n                A layout control that arranges top and/or bottom panels.\n            </div>",
 					" "
 				),
 				" "
 			) ),
-			" ",
-			Control( "<p />" ).content(
-				" Some of these controls are subclasses of controls defined elsewhere. The source code for all referenced classes is available in the ",
-				Link.create({
-					"content": "QuickUI source code",
-					"href": "https://github.com/JanMiksovsky/quickui"
-				}),
-				". "
-			),
 			" "
 		]
 	}, SitePage );
@@ -733,6 +731,22 @@ DialogDemo.prototype.extend({
             self.close();
         });
     }
+});
+
+//
+// DotButton
+//
+DotButton = Control.subclass( "DotButton", function renderDotButton() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$button", ButtonBase.create({
+				"id": "button",
+				"generic": "false"
+			}) ),
+			" "
+		]
+	}, Control );
 });
 
 //
@@ -1457,6 +1471,35 @@ PopupAbout = CatalogPage.subclass( "PopupAbout", function renderPopupAbout() {
 });
 
 //
+// Repeater
+//
+Repeater = Control.subclass( "Repeater" );
+Repeater.prototype.extend({
+
+	itemClass: Control.property[ "class" ]( function() { this._refresh(); }),
+	count: Control.property.integer( function() { this._refresh(); }, 0 ),
+    expansion: Control.chain( "$Repeater_expansion", "content" ),
+    
+	initialize: function() {
+		this._refresh();
+	},
+
+	_refresh: function() {
+		var itemClass = this.itemClass();
+		var count = this.count();
+		var controls = [];
+		if ( itemClass && count > 0 ) {
+			for ( var i = 0; i < count; i++ ) {
+				var $control = itemClass.create();
+				controls.push( $control );
+			}
+		}
+		this.content( controls );
+	}
+	
+});
+
+//
 // SampleSpriteButtonAbout
 //
 SampleSpriteButtonAbout = CatalogPage.subclass( "SampleSpriteButtonAbout", function renderSampleSpriteButtonAbout() {
@@ -1589,6 +1632,115 @@ SearchBoxAbout = CatalogPage.subclass( "SearchBoxAbout", function renderSearchBo
 			" "
 		]
 	}, CatalogPage );
+});
+
+//
+// SlidingStrip
+//
+SlidingStrip = Control.subclass( "SlidingStrip", function renderSlidingStrip() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$SlidingStrip_content", Control( "<div id=\"SlidingStrip_content\" />" ) ),
+			" "
+		]
+	}, Control );
+});
+SlidingStrip.prototype.extend({
+    
+    initialize: function() {
+        var self = this;
+        this.insertedIntoDocument( function() {
+            self._adjustWidths();
+        });
+        this.activeIndex(0);
+    },
+
+    content: Control.chain( "$SlidingStrip_content", "content", function() {
+        this._adjustWidths();
+    }),
+    
+    activeIndex: Control.iterator( function( activeIndex ) {
+        var child = this.children().eq( activeIndex );
+        var left = child.position().left;
+        this.$SlidingStrip_content().animate({
+            "left": -left
+        }, "fast" );
+    }),
+    
+    _adjustWidths: function() {
+        var children = this.children();
+        children.width( "auto" );
+        var childWidths = tabs.map( function( index, child ) {
+            return $( child ).outerWidth();
+        }).get();
+        var maxChildWidth = Math.max.apply( this, childWidths );
+        this.width( maxChildWidth );
+    }
+    
+});
+
+//
+// SlidingTabs
+//
+SlidingTabs = Control.subclass( "SlidingTabs", function renderSlidingTabs() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$strip", SlidingStrip.create({
+				"id": "strip"
+			}) ),
+			" ",
+			this._define( "$tabButtons", Repeater.create({
+				"id": "tabButtons"
+			}) ),
+			" "
+		]
+	}, Control );
+});
+SlidingTabs.prototype.extend({
+    
+    tabs: Control.chain( "$SlidingTabs_content", "children" ),
+    tabButtons: Control.chain( "$tabButtons", "children" ),
+    tabButtonClass: Control.chain( "$tabButtons", "itemClass" ),
+    
+    initialize: function() {
+        if ( this.tabButtonClass() == null ) {
+            this.tabButtonClass( DotButton );
+        }
+    },
+    
+    activeIndex: Control.property( function( activeIndex ) {
+        
+        this.$strip().activeIndex( activeIndex );
+        
+        this.tabButtons()
+            .removeClass( "selected" )
+            .eq( activeIndex )
+                .addClass( "selected" );
+        
+        return this;
+    }),
+    
+    content: Control.chain( "$strip", "content", function() {
+        this.$tabButtons().count( this.tabs().length );
+    })
+    
+});
+
+//
+// SlidingTabsDemo
+//
+SlidingTabsDemo = Control.subclass( "SlidingTabsDemo", function renderSlidingTabsDemo() {
+	this.properties({
+		"content": [
+			" ",
+			SlidingTabs.create({
+				"content": " <div class=\"page\">Hello</div> <div class=\"page\">There</div> <div class=\"page\">World</div> "
+			}),
+			" "
+		]
+	}, Control );
 });
 
 //

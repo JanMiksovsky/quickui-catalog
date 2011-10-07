@@ -1,0 +1,49 @@
+<!-- Dot buttons, inspired by Apple's -->
+
+<Control name="DotButton">
+
+<content>
+    <ButtonBase id="button" generic="false"/>
+</content>
+
+<style>
+{
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px;
+}
+
+#button {
+    background: #e0e1e3;
+    border-bottom-color: #e0e1e3;
+    border-left-color: #c8c9cb;
+    border-right-color: #c8c9cb;
+    border-style: solid;
+    border-top-color: #969696;
+    border-width: 1px;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 9px;
+    margin: 1px;
+    width: 9px;
+}
+
+.DotButton:hover #button {
+    background: #c7c7c7;
+}
+
+.DotButton.selected #button {
+    background: #32a7e1;
+    background: -moz-linear-gradient(top, #6cc0eb, #068ccf); /* Firefox */
+    background: -ms-linear-gradient(top, #6cc0eb, #068ccf); /* IE10 */
+    background: -webkit-linear-gradient(top, #6cc0eb, #068ccf); /* Webkit (Chrome 11+) */
+    border: 1px solid #068bcd;
+    height: 11px;
+    margin: 0;
+    width: 11px;
+}
+</style>
+
+</Control>
