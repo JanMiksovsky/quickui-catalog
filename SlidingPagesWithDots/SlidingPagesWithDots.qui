@@ -1,3 +1,8 @@
+<!--
+Show its children as sliding pages which can be navigated by clicking buttons below.
+(The conventional button representation is a dot.)
+-->
+
 <Control name="SlidingPagesWithDots">
 
 <content>
@@ -77,18 +82,17 @@ SlidingPagesWithDots.prototype.extend({
             }
         });
         
-        this.activeIndex(0);
+        if ( !this.activeIndex() ) {
+            this.activeIndex(0);
+        }
     },
     
     activeIndex: Control.property( function( activeIndex ) {
-        
         this.$pages().activeIndex( activeIndex );
-        
         this.pageButtons()
             .removeClass( "selected" )
             .eq( activeIndex )
                 .addClass( "selected" );
-        
         return this;
     }),
     

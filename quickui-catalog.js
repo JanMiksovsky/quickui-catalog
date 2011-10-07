@@ -1500,6 +1500,54 @@ Repeater.prototype.extend({
 });
 
 //
+// RotatingPages
+//
+RotatingPages = Control.subclass( "RotatingPages", function renderRotatingPages() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$pages", SlidingPages.create({
+				"content": " <div class=\"letter\">A</div> <div class=\"letter\">B</div> <div class=\"letter\">C</div> <div class=\"letter\">D</div> <div class=\"letter\">E</div> ",
+				"id": "pages"
+			}) ),
+			" "
+		]
+	}, Control );
+});
+RotatingPages.prototype.extend({
+    
+    initialize: function() {
+        var self = this;
+        this
+            .click( function() { self.rotate(); })
+            .insertedIntoDocument( function() {
+                self.rotate();
+            });
+    },
+    
+    /*
+     * Rotates to the next page. When it hits the last one, it rotates
+     * back to the first page and stops.
+     */
+    rotate: function () {
+        var count = this.$pages().pages().length;
+        if ( count > 0 ) {
+            
+            var index = this.$pages().activeIndex();
+            index = ( index + 1 ) % count;
+            this.$pages().activeIndex( index );
+            
+            if ( index > 0 ) {
+                var self = this;
+                setTimeout( function() {
+                    self.rotate();
+                }, 500 );
+            }
+        }
+    }
+});
+
+//
 // SampleSpriteButtonAbout
 //
 SampleSpriteButtonAbout = CatalogPage.subclass( "SampleSpriteButtonAbout", function renderSampleSpriteButtonAbout() {
@@ -1655,7 +1703,9 @@ SlidingPages.prototype.extend({
         this.insertedIntoDocument( function() {
             self._adjustWidths();
         });
-        this.activeIndex(0);
+        if ( !this.activeIndex() ) {
+            this.activeIndex(0);
+        }
     },
 
     content: Control.chain( "$SlidingPages_content", "content", function() {
@@ -1736,18 +1786,17 @@ SlidingPagesWithDots.prototype.extend({
             }
         });
         
-        this.activeIndex(0);
+        if ( !this.activeIndex() ) {
+            this.activeIndex(0);
+        }
     },
     
     activeIndex: Control.property( function( activeIndex ) {
-        
         this.$pages().activeIndex( activeIndex );
-        
         this.pageButtons()
             .removeClass( "selected" )
             .eq( activeIndex )
                 .addClass( "selected" );
-        
         return this;
     }),
     

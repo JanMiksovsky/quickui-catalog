@@ -1,6 +1,6 @@
 <!--
-Display children on a (horizontal) strip such that only one child is completely visible.
-The strip can be programmatically slid left and right to make a given child visible.
+Display children as pages on a sliding horizontal strip; only one page
+is visible at a time. The strip can be programmatically slid left and right.
 -->
 <Control name="SlidingPages">
 
@@ -36,7 +36,9 @@ SlidingPages.prototype.extend({
         this.insertedIntoDocument( function() {
             self._adjustWidths();
         });
-        this.activeIndex(0);
+        if ( !this.activeIndex() ) {
+            this.activeIndex(0);
+        }
     },
 
     content: Control.chain( "$SlidingPages_content", "content", function() {

@@ -1,0 +1,68 @@
+<!-- Rotate through a set of pages -->
+
+<Control name="RotatingPages">
+
+<content>
+    <SlidingPages id="pages">
+        <div class="letter">A</div>
+        <div class="letter">B</div>
+        <div class="letter">C</div>
+        <div class="letter">D</div>
+        <div class="letter">E</div>
+    </SlidingPages>
+</content>
+
+<style>
+{
+    cursor: pointer;
+}
+
+.letter {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 96px;
+    font-weight: bold;
+    padding: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
+<script>
+RotatingPages.prototype.extend({
+    
+    initialize: function() {
+        var self = this;
+        this
+            .click( function() { self.rotate(); })
+            .insertedIntoDocument( function() {
+                self.rotate();
+            });
+    },
+    
+    /*
+     * Rotates to the next page. When it hits the last one, it rotates
+     * back to the first page and stops.
+     */
+    rotate: function () {
+        var count = this.$pages().pages().length;
+        if ( count > 0 ) {
+            
+            var index = this.$pages().activeIndex();
+            index = ( index + 1 ) % count;
+            this.$pages().activeIndex( index );
+            
+            if ( index > 0 ) {
+                var self = this;
+                setTimeout( function() {
+                    self.rotate();
+                }, 500 );
+            }
+        }
+    }
+});
+</script>
+
+</Control>
