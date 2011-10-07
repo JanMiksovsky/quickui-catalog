@@ -577,7 +577,7 @@ CatalogPageAbout = CatalogPage.subclass( "CatalogPageAbout", function renderCata
 	this.properties({
 		"title": "CatalogPage",
 		"sourceFileExample": "CatalogPage/CatalogPageAbout.qui",
-		"sourceFileControl": "CatalogPage.qui",
+		"sourceFileControl": "controls/CatalogPage.qui",
 		"summary": " The CatalogPage control is the basic template for all controls in the QuickUI gallery. It defines the main content area of the type of page you are looking at right now. ",
 		"demo": " This page is its own demo of the control’s behavior! The Sample Usage section shows the entire source code of the elements unique to the specific page you’re looking at now. All pages on this site are constructed similarly. ",
 		"notes": [
