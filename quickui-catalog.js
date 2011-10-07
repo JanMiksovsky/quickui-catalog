@@ -75,6 +75,22 @@ AutoSizeTextBoxDemo = Control.subclass( "AutoSizeTextBoxDemo", function renderAu
 });
 
 //
+// DotButton
+//
+DotButton = Control.subclass( "DotButton", function renderDotButton() {
+	this.properties({
+		"content": [
+			" ",
+			this._define( "$button", ButtonBase.create({
+				"id": "button",
+				"generic": "false"
+			}) ),
+			" "
+		]
+	}, Control );
+});
+
+//
 // BrowserSpecificDemo
 //
 BrowserSpecificDemo = Control.subclass( "BrowserSpecificDemo", function renderBrowserSpecificDemo() {
@@ -731,22 +747,6 @@ DialogDemo.prototype.extend({
             self.close();
         });
     }
-});
-
-//
-// DotButton
-//
-DotButton = Control.subclass( "DotButton", function renderDotButton() {
-	this.properties({
-		"content": [
-			" ",
-			this._define( "$button", ButtonBase.create({
-				"id": "button",
-				"generic": "false"
-			}) ),
-			" "
-		]
-	}, Control );
 });
 
 //
