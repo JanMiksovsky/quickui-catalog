@@ -9,7 +9,7 @@
             and creating pages that fill the viewport. 
 		</summary>
 		<demo>
-			See <GalleryLink>GalleryPage</GalleryLink> for a demo of a Page subclass.
+			See <CatalogLink>GalleryPage</CatalogLink> for a demo of a Page subclass.
 		</demo>
 	</GalleryPage>
 </prototype>

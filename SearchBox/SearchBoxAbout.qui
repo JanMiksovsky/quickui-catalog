@@ -7,9 +7,9 @@
             
 		<summary>
             A typical web search box, constructed from a
-            <GalleryLink>TextBoxWithButton</GalleryLink> hosting a
-            <GalleryLink>HintTextBox</GalleryLink> and
-            <GalleryLink>SampleSpriteButton</GalleryLink>.
+            <CatalogLink>TextBoxWithButton</CatalogLink> hosting a
+            <CatalogLink>HintTextBox</CatalogLink> and
+            <CatalogLink>SampleSpriteButton</CatalogLink>.
 		</summary>
 		<demo>
             <GoogleSearchBox/>

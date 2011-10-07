@@ -3,9 +3,9 @@
 	<GalleryPage title="SampleSpriteButton" sourceFileExample="SampleSpriteButton/SampleSpriteButtonDemo.qui" sourceFileControl="SampleSpriteButton/SampleSpriteButton.qui">
 		<summary>
 			A sample of how to create a new
-			<GalleryLink>SpriteButton</GalleryLink>
+			<CatalogLink>SpriteButton</CatalogLink>
 			class through subclassing. The subclass simply defines a
-            <GalleryLink>Sprite</GalleryLink>
+            <CatalogLink>Sprite</CatalogLink>
 			(image strip) for the button’s various states.
 		</summary>
 		<demo>

@@ -23,7 +23,7 @@
 			source code to the separate SourceCode control. GalleryPage is a
 			subclass of another control called SitePage (which adds the
 			site’s standard top and left navigation) and ultimately from
-			the <GalleryLink>Page</GalleryLink> base class.
+			the <CatalogLink>Page</CatalogLink> base class.
 		</notes>
 	</GalleryPage>
 </prototype>

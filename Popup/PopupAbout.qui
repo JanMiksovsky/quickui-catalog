@@ -5,7 +5,7 @@
 			Popup serves as a base class for popups, menus, dialogs — things that appear temporarily over other things.
 		</summary>
 		<demo>
-			See <GalleryLink>Dialog</GalleryLink> or <GalleryLink>HasPopup</GalleryLink> for an example.
+			See <CatalogLink>Dialog</CatalogLink> or <CatalogLink>HasPopup</CatalogLink> for an example.
 		</demo>
 	</GalleryPage>
 </prototype>

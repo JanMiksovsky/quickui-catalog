@@ -4,7 +4,7 @@
 		<summary>
 			A button that uses a
 			<Link href="/gallery/default.html?page=SpriteAbout">Sprite</Link>
-			for its background. This subclasses <GalleryLink>ButtonBase</GalleryLink>
+			for its background. This subclasses <CatalogLink>ButtonBase</CatalogLink>
 			to obtain its mouse/pointer tracking behavior.
 		</summary>
 		<demo>

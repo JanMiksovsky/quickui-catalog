@@ -6,7 +6,7 @@
             (labeled something like "Search"), where clicking the button does something with the content.
 		</summary>
 		<demo>
-            See <GalleryLink>SearchBox</GalleryLink> for a demo.
+            See <CatalogLink>SearchBox</CatalogLink> for a demo.
 		</demo>
 	</GalleryPage>
 </prototype>
