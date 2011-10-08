@@ -8,6 +8,7 @@
 			<CatalogNavigationLinks/>
 		</navigationLinks>
 		<content>
+		    
 			<div id="CatalogPage_summary" />
 
 			<h2>Live demo</h2>
@@ -19,12 +20,16 @@
                 <h2>Sample usage</h2>
                 <SourceCode id="sourceCodeExample" />
             </div>
+		    
+		    <h2>Class hierarchy</h2>
+		    <ControlClassHierarchy id="controlClassHierarchy"/>
+
+			<h2>Notes</h2>
+			<div id="CatalogPage_notes" />
 
 			<h2>Full control source code</h2>
 			<SourceCode id="sourceCodeControl" />
 
-			<h2>Notes</h2>
-			<div id="CatalogPage_notes" />
 		</content>
 	</SitePage>
 </prototype>
@@ -37,13 +42,23 @@
 
 <script>
 CatalogPage.prototype.extend({
+    
 	demo: Control.chain("$CatalogPage_demo", "content"),
 	notes: Control.chain("$CatalogPage_notes", "content"),
 	sourceFileControl: Control.chain("$sourceCodeControl", "sourceFile"),
 	sourceFileExample: Control.chain("$sourceCodeExample", "sourceFile", function( sourceFileExample ) {
 	    this.$usage().toggle( sourceFileExample != null );
 	}),
-	summary: Control.chain("$CatalogPage_summary", "content")
+	summary: Control.chain("$CatalogPage_summary", "content"),
+	
+	title: function( title ) {
+	    var result = CatalogPage.superclass.prototype.title.call( this );
+	    if ( title !== undefined ) {
+	        this.$controlClassHierarchy().controlClass( title );
+	    }
+	    return result;
+	}
+	
 });
 </script>
 
