@@ -106,12 +106,24 @@
             </div>
         </div>
         <div>
+            <div><CatalogLink>RotatingPagesWithDots</CatalogLink></div>
+            <div>Rotates once through a sequence of horizontally-arranged pages, and also allows navigation to an individual page.</div>
+        </div>
+        <div>
             <div><CatalogLink>SampleSpriteButton</CatalogLink></div>
             <div>An example of creating a sprite button through subclassing.</div>
         </div>
         <div>
             <div><CatalogLink>SearchBox</CatalogLink></div>
             <div>A typical web search box.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SlidingPages</CatalogLink></div>
+            <div>Arranges its children as page on a horizontally sliding strip; only one child can be seen at a time.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SlidingPagesWithDots</CatalogLink></div>
+            <div>Lets the user navigate a horizontally sliding strip of pages</div>
         </div>
         <div>
             <div><CatalogLink>Sprite</CatalogLink></div>
