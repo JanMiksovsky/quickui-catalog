@@ -3,12 +3,12 @@
 	<CatalogPage title="SpriteButton" sourceFileExample="SampleSpriteButton/SampleSpriteButton.qui" sourceFileControl="SpriteButton/SpriteButton.qui">
 		<summary>
 			A button that uses a
-			<Link href="/gallery/default.html?page=SpriteAbout">Sprite</Link>
+			<CatalogLink>Sprite</CatalogLink>
 			for its background. This subclasses <CatalogLink>ButtonBase</CatalogLink>
 			to obtain its mouse/pointer tracking behavior.
 		</summary>
 		<demo>
-			See <Link href="/gallery/default.html?page=SampleSpriteButtonAbout">SampleSpriteButton</Link> for a demo.
+			See <CatalogLink>SampleSpriteButton</CatalogLink> for a demo.
 		</demo>
 	</CatalogPage>
 </prototype>

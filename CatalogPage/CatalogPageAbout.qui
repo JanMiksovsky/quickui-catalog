@@ -6,7 +6,7 @@
 		sourceFileControl="controls/CatalogPage.qui">
 		<summary>
 			The CatalogPage control is the basic template for all controls
-			in the QuickUI gallery. It defines the main content area of the
+			in the QuickUI QuickUI Catalog. It defines the main content area of the
 			type of page you are looking at right now.
 		</summary>
 		<demo>

@@ -13,8 +13,8 @@
 	(Note: Many controls depend on other controls, either for base classes,
 	or as contained elements within a given control. Because QuickUI does
 	not yet offer a dependency-management, for now it's necessary to download
-	all dependencies by hand. Automating this process is on the QuickUI
-	roadmap.
+	all dependencies by hand; automating that process is a task on the QuickUI
+	roadmap.)
 	</p>
 
     <p>
@@ -58,7 +58,7 @@
         </div>
         <div>
             <div><CatalogLink>CatalogPage</CatalogLink></div>
-            <div>The template for all pages in this gallery.</div>
+            <div>The template for all pages in this QuickUI Catalog.</div>
         </div>
         <div>
             <div><CatalogLink>Gradient</CatalogLink></div>
