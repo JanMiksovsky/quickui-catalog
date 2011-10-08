@@ -13,8 +13,8 @@
 	(Note: Many controls depend on other controls, either for base classes,
 	or as contained elements within a given control. Because QuickUI does
 	not yet offer a dependency-management, for now it's necessary to download
-	all dependencies by hand. Automating this process is on the QuickUI
-	roadmap.
+	all dependencies by hand; automating that process is a task on the QuickUI
+	roadmap.)
 	</p>
 
     <p>
@@ -58,7 +58,7 @@
         </div>
         <div>
             <div><CatalogLink>CatalogPage</CatalogLink></div>
-            <div>The template for all pages in this gallery.</div>
+            <div>The template for all pages in this QuickUI Catalog.</div>
         </div>
         <div>
             <div><CatalogLink>Gradient</CatalogLink></div>
@@ -106,12 +106,24 @@
             </div>
         </div>
         <div>
+            <div><CatalogLink>RotatingPagesWithDots</CatalogLink></div>
+            <div>Rotates once through a sequence of horizontally-arranged pages, and also allows navigation to an individual page.</div>
+        </div>
+        <div>
             <div><CatalogLink>SampleSpriteButton</CatalogLink></div>
             <div>An example of creating a sprite button through subclassing.</div>
         </div>
         <div>
             <div><CatalogLink>SearchBox</CatalogLink></div>
             <div>A typical web search box.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SlidingPages</CatalogLink></div>
+            <div>Arranges its children as page on a horizontally sliding strip; only one child can be seen at a time.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SlidingPagesWithDots</CatalogLink></div>
+            <div>Lets the user navigate a horizontally sliding strip of pages</div>
         </div>
         <div>
             <div><CatalogLink>Sprite</CatalogLink></div>

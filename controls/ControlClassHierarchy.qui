@@ -1,0 +1,24 @@
+<Control name="ControlClassHierarchy">
+
+<content>
+    <List id="classList" itemClass="CatalogLink"/>
+</content>
+
+<style>
+.CatalogLink:not(:first-child) {
+    margin-left: 1em;
+}
+</style>
+
+<script>
+ControlClassHierarchy.prototype.extend({
+    
+    controlClass: Control.property[ "class" ]( function( controlClass ) {
+        var classes = controlClass.classHierarchy().split( " " );
+        this.$classList().items( classes );
+    })
+
+});
+</script>
+
+</Control>
