@@ -1,7 +1,7 @@
 <Control name="RotatingPagesWithDotsDemo">
 
 <content>
-    <RotatingPagesWithDots pageButtonClass="BlueDotButton">
+    <RotatingPagesWithDots pageButtonClass="BlueDotButton" rotationInterval="1500">
         <div class="sample" style="font-family: Helvetica">Helvetica</div>
         <div class="sample" style="font-family: Times New Roman">Times</div>
         <div class="sample" style="font-family: Tahoma">Tahoma</div>

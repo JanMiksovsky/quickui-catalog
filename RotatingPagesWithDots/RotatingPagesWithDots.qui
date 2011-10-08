@@ -1,4 +1,7 @@
-<!-- Rotate through a set of pages automatically when control is loaded. -->
+<!--
+Rotates once through a set of pages automatically when control is loaded.
+The rotation stops if the user clicks to navigate to a specific page.
+-->
 
 <Control name="RotatingPagesWithDots">
 
@@ -7,10 +10,6 @@
 </prototype>
 
 <style>
-{
-    cursor: pointer;
-}
-
 .letter {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -28,7 +27,7 @@
 RotatingPagesWithDots.prototype.extend({
     
     // Interval between rotation animations (does not include animation duration).
-    rotationInterval: Control.property.integer( null, 2000 ),
+    rotationInterval: Control.property.integer( null, 1000 ),
     _timeout: Control.property(),
     
     initialize: function() {

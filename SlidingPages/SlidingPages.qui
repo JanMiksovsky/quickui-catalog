@@ -15,6 +15,7 @@ is visible at a time. The strip can be programmatically slid left and right.
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden;
+    width: 0; /* Prevent anything from appearing until we've set width. */
 }
 
 #SlidingPages_content {
@@ -58,19 +59,25 @@ SlidingPages.prototype.extend({
     _adjustWidths: function() {
 
         var pages = this.pages();
-        pages.width( "auto" );
-
+        if ( pages.length === 0 ) {
+            return;
+        }
+        
         var pageWidths = pages.map( function( index, page ) {
             return $( page ).width();
         }).get();
         var maxPageWidth = Math.max.apply( this, pageWidths );
-        pages.width( maxPageWidth );
+        if ( maxPageWidth > 0 ) {
+            pages.width( maxPageWidth );
+        }
 
         var pageOuterWidths = pages.map( function( index, page ) {
             return $( page ).outerWidth( true );
         }).get();
         var maxPageOuterWidth = Math.max.apply( this, pageOuterWidths );
-        this.width( maxPageOuterWidth );
+        if ( maxPageOuterWidth > 0 ) {
+            this.width( maxPageOuterWidth );
+        }
     }
     
 });
