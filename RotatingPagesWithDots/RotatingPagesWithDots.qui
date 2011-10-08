@@ -1,0 +1,77 @@
+<!-- Rotate through a set of pages automatically when control is loaded. -->
+
+<Control name="RotatingPagesWithDots">
+
+<prototype>
+    <SlidingPagesWithDots/>
+</prototype>
+
+<style>
+{
+    cursor: pointer;
+}
+
+.letter {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 96px;
+    font-weight: bold;
+    padding: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+
+<script>
+RotatingPagesWithDots.prototype.extend({
+    
+    // Interval between rotation animations (does not include animation duration).
+    rotationInterval: Control.property.integer( null, 2000 ),
+    _timeout: Control.property(),
+    
+    initialize: function() {
+        
+        RotatingPagesWithDots.superclass.prototype.initialize.call( this );
+        this.genericIfClassIs( RotatingPagesWithDots );
+        
+        var self = this;
+        this
+            .click( function() { self.stop(); })
+            .insertedIntoDocument( function() { this._queueRotation(); });
+    },
+    
+    /*
+     * Rotates to the next page. When it hits the last one, it rotates
+     * back to the first page and stops.
+     */
+    rotate: Control.iterator( function () {
+        var count = this.pages().length;
+        if ( count > 0 ) {
+            
+            var index = this.activeIndex();
+            index = ( index + 1 ) % count;
+            this.activeIndex( index );
+            if ( index > 0 ) {
+                this._queueRotation();
+            }
+        }
+    }),
+
+    // Stop the rotation    
+    stop: Control.iterator( function() {
+        clearTimeout( this._timeout() );
+        this._timeout( null );
+        return this;
+    }),
+    
+    _queueRotation: function() {
+        var rotationInterval = this.rotationInterval();
+        var self = this;
+        this._timeout( setTimeout( function() { self.rotate(); }, rotationInterval ) );
+    } 
+});
+</script>
+
+</Control>

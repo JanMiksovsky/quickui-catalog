@@ -56,14 +56,21 @@ SlidingPages.prototype.extend({
     
     // Force all pages and the control itself to the maximium width of the pages.
     _adjustWidths: function() {
+
         var pages = this.pages();
         pages.width( "auto" );
-        var pageWidths = pages.map( function( index, child ) {
-            return $( child ).outerWidth();
+
+        var pageWidths = pages.map( function( index, page ) {
+            return $( page ).width();
         }).get();
         var maxPageWidth = Math.max.apply( this, pageWidths );
         pages.width( maxPageWidth );
-        this.width( maxPageWidth );
+
+        var pageOuterWidths = pages.map( function( index, page ) {
+            return $( page ).outerWidth( true );
+        }).get();
+        var maxPageOuterWidth = Math.max.apply( this, pageOuterWidths );
+        this.width( maxPageOuterWidth );
     }
     
 });
