@@ -49,9 +49,9 @@ AutoSizeTextBox.prototype.extend({
         });
     
         // For the following, we need to wait until the control's in the DOM.    
-        this.insertedIntoDocument(function() {
+        this.inDocument(function( $control ) {
             // Apply control's font to the textarea.
-            var $textBox = this.$textBox();
+            var $textBox = $control.$textBox();
             $textBox.css({
                 "font-family": self.css("font-family"),
                 "font-size": self.css("font-size"),
@@ -63,7 +63,7 @@ AutoSizeTextBox.prototype.extend({
             // For this we use an estimate, as line-height can return useless "normal" value.
             var paddingBottom = parseInt($textBox.css("padding-bottom"));
             var lineHeight = Math.floor(parseInt($textBox.css("font-size")) * 1.5);
-            this.$textCopy().css({
+            $control.$textCopy().css({
                 "padding-bottom": (paddingBottom + lineHeight) + "px",  
                 "padding-left": $textBox.css("padding-left"),
                 "padding-right": $textBox.css("padding-right"),

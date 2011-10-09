@@ -47,8 +47,8 @@ Fader.prototype.extend({
     
     initialize: function() {
         var self = this;
-        this.insertedIntoDocument(function() {
-            this.redraw();
+        this.inDocument(function( $control ) {
+            $control.redraw();
         });
     },
     
