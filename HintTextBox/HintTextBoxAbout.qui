@@ -24,7 +24,7 @@
 <script>
 HintTextBoxAbout.prototype.extend({
 	initialize: function() {
-		HintTextBoxAbout.superclass.prototype.initialize.call(this);
+		this._super();
 		this.find("input").focus();
 	}
 });

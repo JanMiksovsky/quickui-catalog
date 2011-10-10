@@ -52,7 +52,7 @@ CatalogPage.prototype.extend({
 	summary: Control.chain("$CatalogPage_summary", "content"),
 	
 	title: function( title ) {
-	    var result = CatalogPage.superclass.prototype.title.call( this );
+	    var result = this._super( title );
 	    if ( title !== undefined ) {
 	        this.$controlClassHierarchy().controlClass( title );
 	    }

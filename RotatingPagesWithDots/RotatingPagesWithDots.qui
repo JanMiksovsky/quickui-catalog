@@ -32,7 +32,7 @@ RotatingPagesWithDots.prototype.extend({
     
     initialize: function() {
         
-        RotatingPagesWithDots.superclass.prototype.initialize.call( this );
+        this._super();
         this.genericIfClassIs( RotatingPagesWithDots );
         
         var self = this;
