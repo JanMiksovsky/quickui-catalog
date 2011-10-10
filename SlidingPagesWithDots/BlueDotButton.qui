@@ -20,7 +20,6 @@
 
 #button {
     background: #e0e1e3;
-    behavior: url(resources/border-radius.htc);
     border-bottom-color: #e0e1e3;
     border-left-color: #c8c9cb;
     border-right-color: #c8c9cb;
