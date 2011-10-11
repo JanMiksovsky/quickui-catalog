@@ -1,15 +1,25 @@
 <Control name="TestPage">
     
 <content>
-    <CodeColorizer>
-        &lt;html&gt;
-        &lt;body class="Greet Control"&gt;
-            Hello, 
-            &lt;i&gt;world&lt;/i&gt;
-            !
-        &lt;/body&gt;
-        &lt;/html&gt;
-    </CodeColorizer>
+
+<pre id="test">
+&lt;html&gt;
+&lt;body class="Greet Control"&gt;
+    Hello, 
+    &lt;i&gt;world&lt;/i&gt;
+    !
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
 </content>
+
+<script>
+TestPage.prototype.extend({
+    initialize: function() {
+        this.$test().control( CodeColorizer );
+    }
+});
+</script>
 
 </Control>
