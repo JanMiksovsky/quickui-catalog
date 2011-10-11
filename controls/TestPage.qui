@@ -1,14 +1,15 @@
 <Control name="TestPage">
     
 <content>
-    <div id="test">Test</div>
-    <SampleSpriteButton>Hello</SampleSpriteButton>
+    <CodeColorizer>
+        &lt;html&gt;
+        &lt;body class="Greet Control"&gt;
+            Hello, 
+            &lt;i&gt;world&lt;/i&gt;
+            !
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </CodeColorizer>
 </content>
-
-<style>
-#test {
-    background-position: 100% 0;
-}
-</style>
 
 </Control>
