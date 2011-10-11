@@ -12,13 +12,11 @@
 			<div id="CatalogPage_summary" />
 
 			<h2>Live demo</h2>
-			<CodeOutput>
-				<div id="CatalogPage_demo" />
-			</CodeOutput>
+            <div id="CatalogPage_demo" />
 
             <div id="usage">
                 <h2>Sample usage</h2>
-                <SourceCode id="sourceCodeExample" />
+                <CodeColorizer id="sourceCodeExample"/>
             </div>
 		    
 		    <h2>Class hierarchy</h2>
