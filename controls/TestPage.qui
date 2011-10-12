@@ -1,14 +1,25 @@
 <Control name="TestPage">
     
 <content>
-    <div id="test">Test</div>
-    <SampleSpriteButton>Hello</SampleSpriteButton>
+
+<pre id="test">
+&lt;html&gt;
+&lt;body class="Greet Control"&gt;
+    Hello, 
+    &lt;i&gt;world&lt;/i&gt;
+    !
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
 </content>
 
-<style>
-#test {
-    background-position: 100% 0;
-}
-</style>
+<script>
+TestPage.prototype.extend({
+    initialize: function() {
+        this.$test().control( CodeColorizer );
+    }
+});
+</script>
 
 </Control>
