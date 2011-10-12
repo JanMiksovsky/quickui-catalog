@@ -16,7 +16,7 @@
 
             <div id="usage">
                 <h2>Sample usage</h2>
-                <CodeColorizer id="sourceCodeExample"/>
+                <SourceCode id="sourceCodeExample"/>
             </div>
 		    
 		    <h2>Class hierarchy</h2>
