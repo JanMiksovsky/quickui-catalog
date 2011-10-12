@@ -1,11 +1,11 @@
 <Control name="AutoSizeTextBoxDemo">
 
 <content>
-    <AutoSizeTextBox/>
+    <AutoSizeTextBox minimumLines="2"/>
 </content>
 
 <style>
-{
+.AutoSizeTextBox {
     font-family: "Times New Roman", sans-serif;
     font-size: 18px;
 }

@@ -6,21 +6,22 @@ Displays a chunk of text that may have line breaks and/or HTML entities.
 
 <script>
 MultiLineText.prototype.extend({
-    content: function(value) {
-        if (value !== undefined)
+    content: function( content ) {
+        if ( content === undefined )
         {
-            var html = value.replace(/\n/g, '<br/>');
-            return this.html(html);
-        }
-        else
-        {
-            var original = this.html()
-                            .replace(/&lt;/g, "<")
-                            .replace(/&gt;/g, ">")
-                            .replace(/&amp;/g, "&")
-                            .replace(/<br>/g, "\n")
-                            .replace(/<br\/>/g, "\n");
-            return original;
+            // Map HTML entities to readable equivalents,
+            // and break tags to line breaks.
+            return this.html()
+                .replace( /&lt;/g, "<" )
+                .replace( /&gt;/g, ">" )
+                .replace( /&amp;/g, "&" )
+                .replace( /<br>/g, "\n" )
+                .replace( /<br\/>/g, "\n" );
+        } else {
+            // Map line breaks to break tags.
+            // Other mappings to entities will happen automatically.
+            var html = content.replace( /\n/g, "<br/>" );
+            return this.html( html );
         }
     }
 });
