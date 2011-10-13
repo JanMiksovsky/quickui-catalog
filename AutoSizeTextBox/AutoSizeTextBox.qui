@@ -76,10 +76,12 @@ AutoSizeTextBox.prototype.extend({
     
     // For the following, we need to wait until the control's in the DOM.    
     _refresh: Control.iterator( function() {
+
+        var $textBox = this.$textBox();
+        var $textCopy = this.$textCopy();
         
         // Copy the control's font to the textarea. The text copy will 
         // automatically pick up the control's font, but the textarea won't.
-        var $textBox = this.$textBox();
         $textBox.css({
             "font-family": this.css( "font-family" ),
             "font-size": this.css( "font-size" ),
@@ -90,14 +92,21 @@ AutoSizeTextBox.prototype.extend({
         // Try to get the text box's line height. Unfortunately some browsers
         // return the useful value "normal", in which case we have to make
         // an estimate based on font size.
-        var lineHeight = $textBox.css( "line-height" ) !== "normal"
-            ? parseInt( $textBox.css( "line-height" ) )
-            : Math.floor( parseInt( $textBox.css( "font-size" ) ) * 1.25 );        
+        var lineHeight = parseInt( $textBox.css( "line-height" ) );
+        if ( isNaN( lineHeight ) ) {
+            // line-height values like "normal" don't give us a measurement
+            // we can use. We fall back to estimating a line height
+            // based on font size. We then apply this to both the text box
+            // and the copy so they both have the same font-size.
+            lineHeight = Math.floor( parseInt( $textBox.css( "font-size" ) ) * 1.25 );
+            $textBox.css( "line-height", lineHeight + "px" );
+        } 
+        $textCopy.css( "line-height", lineHeight + "px" );
         
         // Mirror the textarea's padding on the text copy.
         // Also add an extra line on the bottom so user sees they have more room.
         var paddingBottom = parseInt( $textBox.css( "padding-bottom" ) );
-        this.$textCopy().css({
+        $textCopy.css({
             "padding-bottom": ( paddingBottom + lineHeight ) + "px",  
             "padding-left": $textBox.css( "padding-left" ),
             "padding-right": $textBox.css( "padding-right" ),
