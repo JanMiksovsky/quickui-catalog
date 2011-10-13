@@ -41,77 +41,78 @@ This works by copying the text to a hidden div whose height can be measured.
 <script>
 AutoSizeTextBox.prototype.extend({
     
+    initialize: function() {
+        var self = this;
+        this.$textBox().bind( "change keydown keyup", function() {
+            self.autoSize();
+        });
+        this.inDocument( function( $control  ) {
+            $control._refresh();
+        });
+    },
+
+    // Resize the text box to exactly contain its content.
+    autoSize: Control.iterator( function() {        
+        // Copy text box contents; browser will calculate correct height of copy,
+        // which will make overall control taller, which will make text box taller.
+        this.$textCopy().content( this.$textBox().content() );
+    }),
+    
+    content: Control.chain( "$textBox", "content", function() {
+        this.autoSize();
+    }),
+    
     /*
      * The minimum number of lines that should be shown.
      * The default value of 2 creates a textarea at least two lines
      * tall, which helps the user intuit the ability to type multiple
      * lines of text.
      */
-    minimumLines: Control.property.integer( null, 2 ),
+    minimumLines: Control.property.integer( function( minimumLines ) {
+        if ( this.inDocument() ) {
+            this._refresh();
+        }
+    }, 2 ),
     
-    initialize: function() {
-        var self = this;
-        this.$textBox().bind( "change keydown keyup", function() {
-            self.autoSize();
-        });
-    
-        // For the following, we need to wait until the control's in the DOM.    
-        this.inDocument( function( $control  ) {
-            
-            // Copy the control's font to the textarea. The text copy will 
-            // automatically pick up the control's font, but the textarea won't.
-            var $textBox = $control.$textBox();
-            $textBox.css({
-                "font-family": self.css( "font-family" ),
-                "font-size": self.css( "font-size" ),
-                "font-style": self.css( "font-style" ),
-                "font-weight": self.css( "font-weight" )
-            });
-            
-            // Mirror the textarea's padding on the text copy.
-            // Also add an extra line on the bottom so user sees they have more room.
-            var paddingBottom = parseInt( $textBox.css( "padding-bottom" ) );
-            var lineHeight = this._lineHeight();
-            $control.$textCopy().css({
-                "padding-bottom": ( paddingBottom + lineHeight ) + "px",  
-                "padding-left": $textBox.css( "padding-left" ),
-                "padding-right": $textBox.css( "padding-right" ),
-                "padding-top": $textBox.css( "padding-top" )
-            });
-
-            var minimumLines = this.minimumLines();
-            if ( minimumLines ) {
-                // Convert the number of lines into a minimum height;
-                // If anyone knows a more accurate way to do this without
-                // using a magic constant, please fix!
-                var height = Math.round( 1.15 * minimumLines * this._lineHeight() );
-                this.css( "min-height", height + "px" );
-            }
-        });
-    },
-
-    // Resize the text box to exactly contain its content.
-    autoSize: function() {        
-        // Copy text box contents; browser will calculate correct height of copy,
-        // which will make overall control taller, which will make text box taller.
-        this.$textCopy().content( this.$textBox().content() );
-    },
-    
-    content: Control.chain( "$textBox", "content", function() {
-        this.autoSize();
-    }),
-
-    /*
-     * Try to get the text box's line height. Unfortunately some browsers
-     * return the useful value "normal", in which case we have to make
-     * an estimate based on font size.
-     */    
-    _lineHeight: function() {
+    // For the following, we need to wait until the control's in the DOM.    
+    _refresh: Control.iterator( function() {
+        
+        // Copy the control's font to the textarea. The text copy will 
+        // automatically pick up the control's font, but the textarea won't.
         var $textBox = this.$textBox();
-        return $textBox.css( "line-height" ) !== "normal"
+        $textBox.css({
+            "font-family": this.css( "font-family" ),
+            "font-size": this.css( "font-size" ),
+            "font-style": this.css( "font-style" ),
+            "font-weight": this.css( "font-weight" )
+        });
+
+        // Try to get the text box's line height. Unfortunately some browsers
+        // return the useful value "normal", in which case we have to make
+        // an estimate based on font size.
+        var lineHeight = $textBox.css( "line-height" ) !== "normal"
             ? parseInt( $textBox.css( "line-height" ) )
             : Math.floor( parseInt( $textBox.css( "font-size" ) ) * 1.25 );        
-    }
+        
+        // Mirror the textarea's padding on the text copy.
+        // Also add an extra line on the bottom so user sees they have more room.
+        var paddingBottom = parseInt( $textBox.css( "padding-bottom" ) );
+        this.$textCopy().css({
+            "padding-bottom": ( paddingBottom + lineHeight ) + "px",  
+            "padding-left": $textBox.css( "padding-left" ),
+            "padding-right": $textBox.css( "padding-right" ),
+            "padding-top": $textBox.css( "padding-top" )
+        });
+
+        var minimumLines = this.minimumLines();
+        if ( minimumLines ) {
+            // Convert the number of lines into a minimum height;
+            // If anyone knows a more accurate way to do this without
+            // using a magic constant, please fix!
+            var height = Math.round( 1.15 * minimumLines * lineHeight );
+            this.css( "min-height", height + "px" );
+        }
+    })
     
 });
 </script>

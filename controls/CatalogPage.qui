@@ -50,6 +50,16 @@ CatalogPage.prototype.extend({
 	notes: Control.chain( "$CatalogPage_notes", "content" ),
 	sourceFileControl: Control.chain( "$sourceCodeControl", "sourceFile" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
+    
+    initialize: function() {
+        this.inDocument( function( $control ) {
+            // Give the input to any text box or text area in the demo. 
+            $control.$CatalogPage_demo()
+                .find( "input[type='text']" )
+                .add( "textarea" )
+                .focus();
+        });
+    },
 
 	sourceFileExample: Control.chain( "$sourceCodeExample", "sourceFile",
 	   function( sourceFileExample ) {

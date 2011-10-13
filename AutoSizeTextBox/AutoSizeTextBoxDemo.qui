@@ -1,6 +1,7 @@
 <Control name="AutoSizeTextBoxDemo">
 
 <content>
+    <div>Type as much text as you want:</div>
     <AutoSizeTextBox/>
 </content>
 
