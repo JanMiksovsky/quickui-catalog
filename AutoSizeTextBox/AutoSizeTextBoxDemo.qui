@@ -1,7 +1,7 @@
 <Control name="AutoSizeTextBoxDemo">
 
 <content>
-    <AutoSizeTextBox minimumLines="2"/>
+    <AutoSizeTextBox/>
 </content>
 
 <style>

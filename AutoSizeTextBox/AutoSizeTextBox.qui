@@ -23,6 +23,7 @@ This works by copying the text to a hidden div whose height can be measured.
     height: 100%;
     overflow: hidden;
     position: absolute;
+    resize: none;
     top: 0;
     width: 100%;
 }
@@ -40,8 +41,13 @@ This works by copying the text to a hidden div whose height can be measured.
 <script>
 AutoSizeTextBox.prototype.extend({
     
-    // The minimum number of lines that should be shown.
-    minimumLines: Control.property.integer(),
+    /*
+     * The minimum number of lines that should be shown.
+     * The default value of 2 creates a textarea at least two lines
+     * tall, which helps the user intuit the ability to type multiple
+     * lines of text.
+     */
+    minimumLines: Control.property.integer( null, 2 ),
     
     initialize: function() {
         var self = this;
