@@ -14,9 +14,14 @@
 			<h2>Live demo</h2>
             <div id="CatalogPage_demo" />
 
-            <div id="usage">
-                <h2>Sample usage</h2>
+            <div id="demoMarkup">
+                <h2>QuickUI Markup for the demo above</h2>
                 <SourceCode id="sourceCodeExample"/>
+            </div>
+            
+            <div id="demoJavaScript">
+                <h2>JavaScript for the demo above</h2>
+                <SourceCode id="sourceCodeJavaScript"/>
             </div>
 		    
 		    <h2>Class hierarchy</h2>
@@ -33,7 +38,7 @@
 </prototype>
 
 <style>
-#usage {
+#demoMarkup, #demoJavaScript {
     display: none;
 }
 </style>
@@ -41,13 +46,20 @@
 <script>
 CatalogPage.prototype.extend({
     
-	demo: Control.chain("$CatalogPage_demo", "content"),
-	notes: Control.chain("$CatalogPage_notes", "content"),
-	sourceFileControl: Control.chain("$sourceCodeControl", "sourceFile"),
-	sourceFileExample: Control.chain("$sourceCodeExample", "sourceFile", function( sourceFileExample ) {
-	    this.$usage().toggle( sourceFileExample != null );
-	}),
-	summary: Control.chain("$CatalogPage_summary", "content"),
+	demo: Control.chain( "$CatalogPage_demo", "content" ),
+	notes: Control.chain( "$CatalogPage_notes", "content" ),
+	sourceFileControl: Control.chain( "$sourceCodeControl", "sourceFile" ),
+	sourceFileExample: Control.chain( "$sourceCodeExample", "sourceFile",
+	   function( sourceFileExample ) {
+	       this.$demoMarkup().toggle( sourceFileExample != null );
+	   }
+	),
+	sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "sourceFile",
+	   function( sourceFileJavaScript ) {
+	       this.$demoJavaScript().toggle( sourceFileJavaScript != null );
+	   }
+    ),
+	summary: Control.chain( "$CatalogPage_summary", "content" ),
 	
 	title: function( title ) {
 	    var result = this._super( title );

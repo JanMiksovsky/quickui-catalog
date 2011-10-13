@@ -1,14 +1,8 @@
 <Control name="AutoSizeTextBoxDemo">
 
 <content>
+    <div>Type as much as you want:</div>
     <AutoSizeTextBox/>
 </content>
-
-<style>
-.AutoSizeTextBox {
-    font-family: "Times New Roman", sans-serif;
-    font-size: 18px;
-}
-</style>
 
 </Control>
