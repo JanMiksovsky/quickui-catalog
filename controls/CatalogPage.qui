@@ -20,7 +20,7 @@
             </div>
             
             <div id="demoJavaScript">
-                <h2>JavaScript for the demo above</h2>
+                <h2>Plain JavaScript alternative for the demo above</h2>
                 <SourceCode id="sourceCodeJavaScript"/>
             </div>
 		    
@@ -49,18 +49,20 @@ CatalogPage.prototype.extend({
 	demo: Control.chain( "$CatalogPage_demo", "content" ),
 	notes: Control.chain( "$CatalogPage_notes", "content" ),
 	sourceFileControl: Control.chain( "$sourceCodeControl", "sourceFile" ),
+    summary: Control.chain( "$CatalogPage_summary", "content" ),
+
 	sourceFileExample: Control.chain( "$sourceCodeExample", "sourceFile",
 	   function( sourceFileExample ) {
 	       this.$demoMarkup().toggle( sourceFileExample != null );
 	   }
 	),
+	
 	sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "sourceFile",
 	   function( sourceFileJavaScript ) {
 	       this.$demoJavaScript().toggle( sourceFileJavaScript != null );
 	   }
     ),
-	summary: Control.chain( "$CatalogPage_summary", "content" ),
-	
+    
 	title: function( title ) {
 	    var result = this._super( title );
 	    if ( title !== undefined ) {
