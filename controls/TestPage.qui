@@ -2,8 +2,7 @@
     
 <content>
 
-<!--
-<pre id="test">
+<SourceCode>
 &lt;html&gt;
 &lt;body class="Greet Control"&gt;
     Hello, 
@@ -11,12 +10,9 @@
     !
 &lt;/body&gt;
 &lt;/html&gt;
-</pre>
--->
+</SourceCode>
 
-<!--
-<FileContents path="default.html"/>
--->
+<SourceFileContents path="default.html"/>
 <FileContents path="controls/readme.md"/>
 
 </content>

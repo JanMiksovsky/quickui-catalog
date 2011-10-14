@@ -88,7 +88,8 @@ AutoSizeTextBox.prototype.extend({
         var $textCopy = this.$textCopy();
         
         // Copy the control's font to the textarea and text copy.
-        $textBox.add( $textCopy ).css({
+        // This ensures both end up with the same text metrics.
+        this.children().css({
             "font-family": this.css( "font-family" ),
             "font-size": this.css( "font-size" ),
             "font-style": this.css( "font-style" ),
