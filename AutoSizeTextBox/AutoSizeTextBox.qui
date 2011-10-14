@@ -1,13 +1,19 @@
 <!--
 A text box that makes itself big enough to show its content.
-This works by copying the text to a hidden div whose height can be measured.
+This works by copying the text to a hidden div which will automatically grow in size;
+the expanding copy will expand the container, which in turn stretch the text box.
 -->
 
 <Control name="AutoSizeTextBox">
 
 <content>
+    
+    <!-- Visible text box -->
     <textarea id="textBox"/>
-    <MultiLineText id="textCopy"/>
+    
+    <!-- Hidden copy of text. Use a pre tag to preserve line breaks, entities, etc. -->
+    <pre id="textCopy"/>
+    
 </content>
 
 <style>
@@ -34,6 +40,7 @@ This works by copying the text to a hidden div whose height can be measured.
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     visibility: hidden;
+    white-space: pre-wrap; /* So lines wrap */
     width: 100%;
 }
 </style>
@@ -55,7 +62,7 @@ AutoSizeTextBox.prototype.extend({
     autoSize: Control.iterator( function() {        
         // Copy text box contents; browser will calculate correct height of copy,
         // which will make overall control taller, which will make text box taller.
-        this.$textCopy().content( this.$textBox().content() );
+        this.$textCopy().text( this.$textBox().content() );
     }),
     
     content: Control.chain( "$textBox", "content", function() {
@@ -80,9 +87,8 @@ AutoSizeTextBox.prototype.extend({
         var $textBox = this.$textBox();
         var $textCopy = this.$textCopy();
         
-        // Copy the control's font to the textarea. The text copy will 
-        // automatically pick up the control's font, but the textarea won't.
-        $textBox.css({
+        // Copy the control's font to the textarea and text copy.
+        $textBox.add( $textCopy ).css({
             "font-family": this.css( "font-family" ),
             "font-size": this.css( "font-size" ),
             "font-style": this.css( "font-style" ),
@@ -105,6 +111,10 @@ AutoSizeTextBox.prototype.extend({
         
         // Mirror the textarea's padding on the text copy.
         // Also add an extra line on the bottom so user sees they have more room.
+        // NOTE: Firefox seems to report 0px padding for the text box, even when there
+        // appears to be 1px padding on a standard textarea. WebKit gets this right.
+        // Perhaps there's some way in Firefox to detect and correct the error, but
+        // for the time being this seems to work okay.
         var paddingBottom = parseInt( $textBox.css( "padding-bottom" ) );
         $textCopy.css({
             "padding-bottom": ( paddingBottom + lineHeight ) + "px",  
