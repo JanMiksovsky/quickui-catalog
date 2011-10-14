@@ -2,6 +2,7 @@
     
 <content>
 
+<!--
 <pre id="test">
 &lt;html&gt;
 &lt;body class="Greet Control"&gt;
@@ -11,13 +12,19 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+-->
+
+<!--
+<FileContents path="default.html"/>
+-->
+<FileContents path="controls/readme.md"/>
 
 </content>
 
 <script>
 TestPage.prototype.extend({
     initialize: function() {
-        this.$test().control( CodeColorizer );
+        //this.$test().control( SourceCode );
     }
 });
 </script>
