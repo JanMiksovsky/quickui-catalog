@@ -1,0 +1,121 @@
+<!--
+Shows a random photo from Flickr's Interestingness collection
+for the previous day. By default, this can be used 100 times
+before it starts repeating photos.
+-->
+
+<Control name="FlickrInterestingPhoto" tag="img">
+    
+<script>
+FlickrInterestingPhoto.prototype.extend({
+    
+    initialize: function() {
+        this.reload();
+    },
+    
+    reload: function() {
+        var self = this;
+        FlickrInterestingPhoto.getRandomPhoto( function( photo ) {
+            self.prop( "src", photo );
+        });
+    }
+    
+});
+
+// Class methods
+FlickrInterestingPhoto.extend({
+    
+    getRandomPhoto: function( callback ) {
+        var self = this;
+        this.getFlickrInterestingPhotos( function( flickrPhotos ) {
+            self._counter = ( self._counter >= 0 )
+                ? ( self._counter + 1 ) % flickrPhotos.length 
+                : 0;
+            var flickrPhoto = flickrPhotos[ self._counter ];
+            var photo = self.getFlickrImageSrc( flickrPhoto );
+            callback( photo );
+        });
+    },
+    
+    getFlickrInterestingPhotos: function( callback ) {
+        
+        if ( this._flickrPhotos ) {
+            callback( this._flickrPhotos );
+            return;
+        }
+        
+        var yesterday = new Date();
+        yesterday.setDate( yesterday.getDate() - 1 );
+        var flickrDate = this._formatFlickrDate( yesterday );
+        
+        var params = {
+            method: "flickr.interestingness.getList",
+            date: flickrDate,
+            per_page: 100
+        };
+
+        var self = this;
+        this.getFlickrPhotos( params, function( flickrPhotos ) {
+            self._flickrPhotos = flickrPhotos;
+            callback( self._flickrPhotos );
+            //var photo = {
+            //    src: self.getFlickrImageSrc( first, "s" /* Small thumbnail */ ),
+            //    href: self.getFlickrImageHref( first )
+            //};
+        });
+    },
+    
+    getFlickrPhotos: function( params, callback ) {
+        var apiKey = "c3685bc8d8cefcc1d25949e4c528cbb0";
+        var baseUrl = "http://api.flickr.com/services/rest/";
+        var url = baseUrl + 
+                    "?api_key=" + apiKey +
+                    this._formatUrlParams( params ) +
+                    "&format=json" +
+                    "&nojsoncallback=1";
+        $.getJSON( url, function( data ) {
+            if ( data && data.photos ) {
+                callback( data.photos.photo );
+            }
+        });
+    },
+    
+    getFlickrImageSrc: function( flickrPhoto, size ) {
+        var sizeParam = ( size ? "_" + size : "" );
+        return "http://farm" + flickrPhoto.farm +
+               ".static.flickr.com/" + flickrPhoto.server +
+               "/" + flickrPhoto.id +
+               "_" + flickrPhoto.secret +
+               sizeParam +
+               ".jpg";
+    },
+    
+    getFlickrImageHref: function(flickrPhoto) {
+        return "http://flickr.com/photo.gne?id=" + flickrPhoto.id;
+    },
+    
+    // Return a date in YYYY-MM-DD format.
+    _formatFlickrDate: function( date ) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var s = year + "-" +
+                ( ( month < 10 ) ? "0" : "" ) + month + "-" +
+                ( ( day < 10 ) ? "0" : "" ) + day;
+        return s;
+    },
+    
+    // Convert the given params dictionary into a string that can be
+    // passed on a URL.
+    _formatUrlParams: function( params ) {
+        var s = "";
+        $.each( params, function( key, value ) {
+            s += "&" + key + "=" + value;
+        });
+        return s;
+    }
+
+});
+</script>
+
+</Control>

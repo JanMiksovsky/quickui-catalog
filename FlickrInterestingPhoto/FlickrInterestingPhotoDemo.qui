@@ -1,0 +1,29 @@
+<Control name="FlickrInterestingPhotoDemo">
+
+<content>
+    <FlickrInterestingPhoto id="photo"/>
+</content>
+
+<style>
+#photo {
+    cursor: pointer;
+}
+</style>
+
+<script>
+FlickrInterestingPhotoDemo.prototype.extend({
+    initialize: function() {
+        this.$photo()
+            .click( function( event ) {
+                $( event.target ).control()
+                    .css( "opacity", "0.25" )
+                    .reload();
+            })
+            .load( function( event ) {
+                $( event.target ).css( "opacity", "1.0" );
+            });
+    }
+});  
+</script>
+
+</Control>
