@@ -3,15 +3,15 @@
 <Control name="CatalogPage">
 
 <prototype>
-	<SitePage area="Catalog">
-		<navigationLinks>
-			<CatalogNavigationLinks/>
-		</navigationLinks>
-		<content>
-		    
-			<div id="CatalogPage_summary" />
+    <SitePage area="Catalog">
+        <navigationLinks>
+            <CatalogNavigationLinks/>
+        </navigationLinks>
+        <content>
+            
+            <div id="CatalogPage_summary" />
 
-			<h2>Live demo</h2>
+            <h2>Live demo</h2>
             <div id="CatalogPage_demo" />
 
             <div id="demoMarkup">
@@ -23,18 +23,18 @@
                 <h2>Plain JavaScript alternative for the demo above</h2>
                 <SourceFileContents id="sourceCodeJavaScript"/>
             </div>
-		    
-		    <h2>Class hierarchy</h2>
-		    <ControlClassHierarchy id="controlClassHierarchy"/>
+            
+            <h2>Class hierarchy</h2>
+            <ControlClassHierarchy id="controlClassHierarchy"/>
 
-			<h2>Notes</h2>
-			<div id="CatalogPage_notes" />
+            <h2>Notes</h2>
+            <div id="CatalogPage_notes" />
 
-			<h2>Full control source code</h2>
-			<SourceFileContents id="sourceCodeControl" />
+            <h2>Full control source code</h2>
+            <SourceFileContents id="sourceCodeControl" />
 
-		</content>
-	</SitePage>
+        </content>
+    </SitePage>
 </prototype>
 
 <style>
@@ -46,9 +46,9 @@
 <script>
 CatalogPage.prototype.extend({
     
-	demo: Control.chain( "$CatalogPage_demo", "content" ),
-	notes: Control.chain( "$CatalogPage_notes", "content" ),
-	sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
+    demo: Control.chain( "$CatalogPage_demo", "content" ),
+    notes: Control.chain( "$CatalogPage_notes", "content" ),
+    sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
     
     initialize: function() {
@@ -61,26 +61,26 @@ CatalogPage.prototype.extend({
         });
     },
 
-	sourceFileExample: Control.chain( "$sourceCodeExample", "path",
-	   function( sourceFileExample ) {
-	       this.$demoMarkup().toggle( sourceFileExample != null );
-	   }
-	),
-	
-	sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "path",
-	   function( sourceFileJavaScript ) {
-	       this.$demoJavaScript().toggle( sourceFileJavaScript != null );
-	   }
+    sourceFileExample: Control.chain( "$sourceCodeExample", "path",
+       function( sourceFileExample ) {
+           this.$demoMarkup().toggle( sourceFileExample != null );
+       }
     ),
     
-	title: function( title ) {
-	    var result = this._super( title );
-	    if ( title !== undefined ) {
-	        this.$controlClassHierarchy().controlClass( title );
-	    }
-	    return result;
-	}
-	
+    sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "path",
+       function( sourceFileJavaScript ) {
+           this.$demoJavaScript().toggle( sourceFileJavaScript != null );
+       }
+    ),
+    
+    title: function( title ) {
+        var result = this._super( title );
+        if ( title !== undefined ) {
+            this.$controlClassHierarchy().controlClass( title );
+        }
+        return result;
+    }
+    
 });
 </script>
 
