@@ -16,12 +16,12 @@
 
             <div id="demoMarkup">
                 <h2>QuickUI Markup for the demo above</h2>
-                <SourceCode id="sourceCodeExample"/>
+                <SourceFileContents id="sourceCodeExample"/>
             </div>
             
             <div id="demoJavaScript">
                 <h2>Plain JavaScript alternative for the demo above</h2>
-                <SourceCode id="sourceCodeJavaScript"/>
+                <SourceFileContents id="sourceCodeJavaScript"/>
             </div>
 		    
 		    <h2>Class hierarchy</h2>
@@ -31,7 +31,7 @@
 			<div id="CatalogPage_notes" />
 
 			<h2>Full control source code</h2>
-			<SourceCode id="sourceCodeControl" />
+			<SourceFileContents id="sourceCodeControl" />
 
 		</content>
 	</SitePage>
@@ -48,7 +48,7 @@ CatalogPage.prototype.extend({
     
 	demo: Control.chain( "$CatalogPage_demo", "content" ),
 	notes: Control.chain( "$CatalogPage_notes", "content" ),
-	sourceFileControl: Control.chain( "$sourceCodeControl", "sourceFile" ),
+	sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
     
     initialize: function() {
@@ -61,13 +61,13 @@ CatalogPage.prototype.extend({
         });
     },
 
-	sourceFileExample: Control.chain( "$sourceCodeExample", "sourceFile",
+	sourceFileExample: Control.chain( "$sourceCodeExample", "path",
 	   function( sourceFileExample ) {
 	       this.$demoMarkup().toggle( sourceFileExample != null );
 	   }
 	),
 	
-	sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "sourceFile",
+	sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "path",
 	   function( sourceFileJavaScript ) {
 	       this.$demoJavaScript().toggle( sourceFileJavaScript != null );
 	   }

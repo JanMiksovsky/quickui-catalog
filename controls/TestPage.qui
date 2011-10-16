@@ -2,17 +2,21 @@
     
 <content>
 
+<!--
 <SourceCode>
-&lt;html&gt;
-&lt;body class="Greet Control"&gt;
+<![CDATA[
+<html>
+<body class="Greet Control">
     Hello, 
-    &lt;i&gt;world&lt;/i&gt;
+    <i>world</i>
     !
-&lt;/body&gt;
-&lt;/html&gt;
+</body>
+</html>
+]]>
 </SourceCode>
+-->
 
-<SourceFileContents path="default.html"/>
+<SourceFileContents path="controls/TestPage.qui"/>
 <FileContents path="controls/readme.md"/>
 
 </content>
