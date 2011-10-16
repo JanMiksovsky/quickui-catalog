@@ -29,7 +29,6 @@ CatalogNavigationLinks.prototype.extend({
             "HorizontalPanels",
             "List",
             "LoremIpsum",
-            "MultiLineText",
             "Page",
             "Popup",
             "RotatingPagesWithDots",

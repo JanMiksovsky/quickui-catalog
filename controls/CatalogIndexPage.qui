@@ -90,10 +90,6 @@
             <div>Generates placeholder text.</div>
         </div>
         <div>
-            <div><CatalogLink>MultiLineText</CatalogLink></div>
-            <div>Displays text that may have line breaks and/or HTML entities.</div>
-        </div>
-        <div>
             <div><CatalogLink>Page</CatalogLink></div>
             <div>
                 Base class for creating top-level pages.

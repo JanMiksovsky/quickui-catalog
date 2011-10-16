@@ -12,10 +12,6 @@
 		<demo>
 			<AutoSizeTextBoxDemo/>
 		</demo>
-		<notes>
-            This control uses <CatalogLink>MultiLineText</CatalogLink> to map
-            JavaScript line breaks to HTML line breaks, and vice versa.
-		</notes>
 	</CatalogPage>
 </prototype>
 </Control>
