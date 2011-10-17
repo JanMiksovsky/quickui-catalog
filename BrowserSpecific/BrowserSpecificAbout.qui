@@ -1,13 +1,13 @@
 <Control name="BrowserSpecificAbout">
 <prototype>
-	<CatalogPage title="BrowserSpecific" sourceFileExample="BrowserSpecific/BrowserSpecificDemo.qui" sourceFileControl="../quicommon/BrowserSpecific.qui">
-		<summary>
-			Conditionally shows contents if the given browser is in use (defined by 
-			<Link href="http://docs.jquery.com/Utilities/jQuery.browser">jQuery.browser</Link>).
-		</summary>
-		<demo>
-			<BrowserSpecificDemo/>
-		</demo>
-	</CatalogPage>
+    <CatalogPage title="BrowserSpecific" sourceFileExample="BrowserSpecific/BrowserSpecificDemo.qui" sourceFileControl="../quicommon/BrowserSpecific.qui">
+        <summary>
+            Conditionally shows contents if the given browser is in use (defined by 
+            <Link href="http://docs.jquery.com/Utilities/jQuery.browser">jQuery.browser</Link>).
+        </summary>
+        <demo>
+            <BrowserSpecificDemo/>
+        </demo>
+    </CatalogPage>
 </prototype>
 </Control>

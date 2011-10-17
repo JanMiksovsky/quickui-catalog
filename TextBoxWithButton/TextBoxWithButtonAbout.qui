@@ -1,13 +1,13 @@
 <Control name="TextBoxWithButtonAbout">
 <prototype>
-	<CatalogPage title="TextBoxWithButton" sourceFileControl="TextBoxWithButton/TextBoxWithButton.qui">
-		<summary>
+    <CatalogPage title="TextBoxWithButton" sourceFileControl="TextBoxWithButton/TextBoxWithButton.qui">
+        <summary>
             A control with a content area (usually some form of text box) and an associated "Go" button
             (labeled something like "Search"), where clicking the button does something with the content.
-		</summary>
-		<demo>
+        </summary>
+        <demo>
             See <CatalogLink>SearchBox</CatalogLink> for a demo.
-		</demo>
-	</CatalogPage>
+        </demo>
+    </CatalogPage>
 </prototype>
 </Control>

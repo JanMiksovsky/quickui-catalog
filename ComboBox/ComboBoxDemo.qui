@@ -16,5 +16,5 @@ ComboBoxDemo.prototype.extend({
     }
 });
 </script>
-	
+    
 </Control>

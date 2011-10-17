@@ -5,27 +5,27 @@
 <script>
 Repeater.prototype.extend({
 
-	itemClass: Control.property[ "class" ]( function() { this._refresh(); }),
-	count: Control.property.integer( function() { this._refresh(); }, 0 ),
+    itemClass: Control.property[ "class" ]( function() { this._refresh(); }),
+    count: Control.property.integer( function() { this._refresh(); }, 0 ),
     expansion: Control.chain( "$Repeater_expansion", "content" ),
     
-	initialize: function() {
-		this._refresh();
-	},
+    initialize: function() {
+        this._refresh();
+    },
 
-	_refresh: function() {
-		var itemClass = this.itemClass();
-		var count = this.count();
-		var controls = [];
-		if ( itemClass && count > 0 ) {
-			for ( var i = 0; i < count; i++ ) {
-				var $control = itemClass.create();
-				controls.push( $control );
-			}
-		}
-		this.content( controls );
-	}
-	
+    _refresh: function() {
+        var itemClass = this.itemClass();
+        var count = this.count();
+        var controls = [];
+        if ( itemClass && count > 0 ) {
+            for ( var i = 0; i < count; i++ ) {
+                var $control = itemClass.create();
+                controls.push( $control );
+            }
+        }
+        this.content( controls );
+    }
+    
 });
 </script>
 

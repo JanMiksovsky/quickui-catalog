@@ -1,28 +1,28 @@
 <Control name="RotatingPagesWithDotsAbout">
 <prototype>
-	<CatalogPage
+    <CatalogPage
         title="RotatingPagesWithDots"
         sourceFileExample="RotatingPagesWithDots/RotatingPagesWithDotsDemo.qui"
         sourceFileControl="RotatingPagesWithDots/RotatingPagesWithDots.qui">
             
-		<summary>
+        <summary>
             Rotates once through a sequence of horizontally-arranged pages,
             and also allows navigation to an individual page (via
             <CatalogLink>SlidingPagesWithDots</CatalogLink>).
-		</summary>
-		
-		<demo>
-            <RotatingPagesWithDotsDemo/>
-		</demo>
-		
-		<notes>
-		    RotatingPagesWithDots seems useful as a home page "hero" element
-		    that can present some visually interesting content in hopes the user
-		    will find something to engage with. The rotation stops after one cycle
-		    to avoid becoming irritating if the user wants to simply read content
-		    on the page.
-		</notes>
+        </summary>
         
-	</CatalogPage>
+        <demo>
+            <RotatingPagesWithDotsDemo/>
+        </demo>
+        
+        <notes>
+            RotatingPagesWithDots seems useful as a home page "hero" element
+            that can present some visually interesting content in hopes the user
+            will find something to engage with. The rotation stops after one cycle
+            to avoid becoming irritating if the user wants to simply read content
+            on the page.
+        </notes>
+        
+    </CatalogPage>
 </prototype>
 </Control>

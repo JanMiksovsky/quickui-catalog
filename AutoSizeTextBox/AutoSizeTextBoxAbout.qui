@@ -1,17 +1,17 @@
 <Control name="AutoSizeTextBoxAbout">
 <prototype>
-	<CatalogPage
+    <CatalogPage
         title="AutoSizeTextBox"
-	    sourceFileControl="AutoSizeTextBox/AutoSizeTextBox.qui"
-	    sourceFileExample="AutoSizeTextBox/AutoSizeTextBoxDemo.qui"
-	    sourceFileJavaScript="AutoSizeTextBox/AutoSizeTextBoxDemo.js"
+        sourceFileControl="AutoSizeTextBox/AutoSizeTextBox.qui"
+        sourceFileExample="AutoSizeTextBox/AutoSizeTextBoxDemo.qui"
+        sourceFileJavaScript="AutoSizeTextBox/AutoSizeTextBoxDemo.js"
         >
-		<summary>
+        <summary>
             A text area that expands to contain its text.
-		</summary>
-		<demo>
-			<AutoSizeTextBoxDemo/>
-		</demo>
-	</CatalogPage>
+        </summary>
+        <demo>
+            <AutoSizeTextBoxDemo/>
+        </demo>
+    </CatalogPage>
 </prototype>
 </Control>

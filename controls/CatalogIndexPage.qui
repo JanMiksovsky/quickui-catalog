@@ -3,19 +3,19 @@
 <prototype>
 <SitePage title="QuickUI Catalog" area="Catalog">
 
-	<navigationLinks>
-		<CatalogNavigationLinks/>
-	</navigationLinks>
+    <navigationLinks>
+        <CatalogNavigationLinks/>
+    </navigationLinks>
 
-	<p>
-	The QuickUI Catalog shows live examples of QuickUI controls, many
-	designed to be ready-to-use base classes for new controls.
-	(Note: Many controls depend on other controls, either for base classes,
-	or as contained elements within a given control. Because QuickUI does
-	not yet offer a dependency-management, for now it's necessary to download
-	all dependencies by hand; automating that process is a task on the QuickUI
-	roadmap.)
-	</p>
+    <p>
+    The QuickUI Catalog shows live examples of QuickUI controls, many
+    designed to be ready-to-use base classes for new controls.
+    (Note: Many controls depend on other controls, either for base classes,
+    or as contained elements within a given control. Because QuickUI does
+    not yet offer a dependency-management, for now it's necessary to download
+    all dependencies by hand; automating that process is a task on the QuickUI
+    roadmap.)
+    </p>
 
     <p>
     The source code for these controls is available in the 
@@ -23,16 +23,16 @@
         quickui-catalog repository
     </Link> on GitHub.
     </p>
-	
-	<div id="table">
+    
+    <div id="table">
         <div>
             <div><CatalogLink>AutoSizeTextBox</CatalogLink></div>
             <div>A text area that expands to contain its text.</div>
         </div>
-	    <div>
-	        <div><CatalogLink>BrowserSpecific</CatalogLink></div>
-	        <div>Conditionally shows contents for specific browsers.</div>
-	    </div>
+        <div>
+            <div><CatalogLink>BrowserSpecific</CatalogLink></div>
+            <div>Conditionally shows contents for specific browsers.</div>
+        </div>
         <div>
             <div><CatalogLink>ButtonBase</CatalogLink></div>
             <div>Base class for buttons which handles tracking of button states.</div>
@@ -159,7 +159,7 @@
                 A layout control that arranges top and/or bottom panels.
             </div>
         </div>
-	</div>
+    </div>
 
 </SitePage>
 </prototype>

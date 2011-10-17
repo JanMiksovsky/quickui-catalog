@@ -29,8 +29,8 @@
 }
 
 #backgroundLeft {
-	background-position: 0 0;
-	left: 0;
+    background-position: 0 0;
+    left: 0;
 }
 
 #backgroundRight {
@@ -60,38 +60,38 @@ button {
     
 <script>
 SpriteButton.prototype.extend({
-	
-	content: Control.chain("$SpriteButton_content", "content"),
+    
+    content: Control.chain("$SpriteButton_content", "content"),
     image: Control.chain("$sprites", "image"),
 
-	initialize: function() {
-		this._super();
-		var self = this;
-		this.$SpriteButton_content()
-			.blur(function() { self.blur(); })
-			.focus(function() { self.focus(); });
-	},
-	
-	cellHeight: Control.chain("css/height", function(value) {
-		this.$SpriteButton_content().height(value + "px");
-		this.$sprites().cellHeight(value);
-	}),
-	
-	disabled: function(value) {
-		if (value !== undefined)
-		{
-			this.$SpriteButton_content().attr("disabled", String(value) == "true");
-		}
-		return this._super( value );
-	},
-	
-	$sprites: function() {
-	    return this.children().filter(".Sprite").cast();
-	},
-	
-	_renderButtonState: function(buttonState) {
-		this.$sprites().currentCell(buttonState);
-	}
+    initialize: function() {
+        this._super();
+        var self = this;
+        this.$SpriteButton_content()
+            .blur(function() { self.blur(); })
+            .focus(function() { self.focus(); });
+    },
+    
+    cellHeight: Control.chain("css/height", function(value) {
+        this.$SpriteButton_content().height(value + "px");
+        this.$sprites().cellHeight(value);
+    }),
+    
+    disabled: function(value) {
+        if (value !== undefined)
+        {
+            this.$SpriteButton_content().attr("disabled", String(value) == "true");
+        }
+        return this._super( value );
+    },
+    
+    $sprites: function() {
+        return this.children().filter(".Sprite").cast();
+    },
+    
+    _renderButtonState: function(buttonState) {
+        this.$sprites().currentCell(buttonState);
+    }
 
 });
 </script>

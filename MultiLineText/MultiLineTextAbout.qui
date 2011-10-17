@@ -1,16 +1,16 @@
 <Control name="MultiLineTextAbout">
 <prototype>
-	<CatalogPage title="MultiLineText" sourceFileExample="MultiLineText/MultiLineTextDemo.qui" sourceFileControl="MultiLineText/MultiLineText.qui">
-		<summary>
+    <CatalogPage title="MultiLineText" sourceFileExample="MultiLineText/MultiLineTextDemo.qui" sourceFileControl="MultiLineText/MultiLineText.qui">
+        <summary>
             Displays text that may have line breaks and/or HTML entities.
-		</summary>
-		<demo>
-			<MultiLineTextDemo/>
-		</demo>
-		<notes>
-		    This control is used by <CatalogLink>AutoSizeTextBox</CatalogLink>
-		    to handle line breaks.
-		</notes>
-	</CatalogPage>
+        </summary>
+        <demo>
+            <MultiLineTextDemo/>
+        </demo>
+        <notes>
+            This control is used by <CatalogLink>AutoSizeTextBox</CatalogLink>
+            to handle line breaks.
+        </notes>
+    </CatalogPage>
 </prototype>
 </Control>

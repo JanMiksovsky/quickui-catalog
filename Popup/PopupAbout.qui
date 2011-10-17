@@ -1,12 +1,12 @@
 <Control name="PopupAbout">
 <prototype>
-	<CatalogPage title="Popup" sourceFileControl="../quicommon/Popup.qui">
-		<summary>
-			Popup serves as a base class for popups, menus, dialogs — things that appear temporarily over other things.
-		</summary>
-		<demo>
-			See <CatalogLink>Dialog</CatalogLink> or <CatalogLink>HasPopup</CatalogLink> for an example.
-		</demo>
-	</CatalogPage>
+    <CatalogPage title="Popup" sourceFileControl="../quicommon/Popup.qui">
+        <summary>
+            Popup serves as a base class for popups, menus, dialogs — things that appear temporarily over other things.
+        </summary>
+        <demo>
+            See <CatalogLink>Dialog</CatalogLink> or <CatalogLink>HasPopup</CatalogLink> for an example.
+        </demo>
+    </CatalogPage>
 </prototype>
 </Control>

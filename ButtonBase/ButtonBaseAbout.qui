@@ -1,15 +1,15 @@
 <Control name="ButtonBaseAbout">
 <prototype>
-	<CatalogPage title="ButtonBase" sourceFileExample="ButtonBase/ButtonBaseDemo.qui" sourceFileControl="../quicommon/ButtonBase.qui">
-		<summary>
-			This is a useful base class for buttons, as it handles basic tracking
-			of the mouse/pointer states and a disabled state. See
-			<CatalogLink>SpriteButton</CatalogLink> and 
-			<CatalogLink>SampleSpriteButton</CatalogLink> for sample subclasses.			
-		</summary>
+    <CatalogPage title="ButtonBase" sourceFileExample="ButtonBase/ButtonBaseDemo.qui" sourceFileControl="../quicommon/ButtonBase.qui">
+        <summary>
+            This is a useful base class for buttons, as it handles basic tracking
+            of the mouse/pointer states and a disabled state. See
+            <CatalogLink>SpriteButton</CatalogLink> and 
+            <CatalogLink>SampleSpriteButton</CatalogLink> for sample subclasses.            
+        </summary>
         <demo>
             <ButtonBaseDemo/>
         </demo>
-	</CatalogPage>
+    </CatalogPage>
 </prototype>
 </Control>

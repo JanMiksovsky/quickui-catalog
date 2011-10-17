@@ -1,13 +1,13 @@
 <Control name="DialogAbout">
 <prototype>
-	<CatalogPage title="Dialog" sourceFileExample="Dialog/DialogDemo.qui" sourceFileControl="../quicommon/Dialog.qui">
-		<summary>
+    <CatalogPage title="Dialog" sourceFileExample="Dialog/DialogDemo.qui" sourceFileControl="../quicommon/Dialog.qui">
+        <summary>
             A modal dialog; must be dismissed before the user can interact with the UI behind it.
-		</summary>
-		<demo>
-			<Link id="dialogLink">Show dialog</Link>
-		</demo>
-	</CatalogPage>
+        </summary>
+        <demo>
+            <Link id="dialogLink">Show dialog</Link>
+        </demo>
+    </CatalogPage>
 </prototype>
 <script>
 DialogAbout.prototype.extend({

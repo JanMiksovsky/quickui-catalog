@@ -1,20 +1,20 @@
 <Control name="SampleSpriteButton">
 
 <prototype>
-	<SpriteButton
-		image="url(SampleSpriteButton/buttonStates.png)"
-		cellHeight="32" />
+    <SpriteButton
+        image="url(SampleSpriteButton/buttonStates.png)"
+        cellHeight="32" />
 </prototype>
 
 <style>
 button {
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 9pt;
-	padding: 6px 10px 8px 10px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    padding: 6px 10px 8px 10px;
 }
 
 .SampleSpriteButton.disabled {
-	color: #bbb;
+    color: #bbb;
 }
 </style>
 
