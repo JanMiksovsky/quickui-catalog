@@ -18,12 +18,16 @@ the remainder of the item's content is AutoCompleted.
 #list > * {
     display: block;
 }
+
+/* Generic appearance */
+.ListComboBox.generic .ButtonBase {
+    border: none;
+}
 </style>
 
 <script>
 ListComboBox.prototype.extend({
     
-    itemClass: Control.chain( "$list", "itemClass" ),
     items: Control.chain( "$list", "items" ),
     mapFunction: Control.chain( "$list", "mapFunction" ),
     
@@ -43,7 +47,18 @@ ListComboBox.prototype.extend({
                     .close();
             }
         });
-    }
+        
+        if ( !this.itemClass() ) {
+             this.itemClass( ButtonBase );
+        }
+    },
+    
+    // Instead of chaining, make this a property so we can check for a default
+    // value of undefined.
+    itemClass: Control.property[ "class" ]( function( itemClass ) {
+        this.$list().itemClass( itemClass );
+    })
+
 });
 </script>
 

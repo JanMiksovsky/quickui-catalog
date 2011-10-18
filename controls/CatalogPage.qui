@@ -46,6 +46,7 @@
 <script>
 CatalogPage.prototype.extend({
     
+    autoFocus: Control.property.bool( null, true ),
     demo: Control.chain( "$CatalogPage_demo", "content" ),
     notes: Control.chain( "$CatalogPage_notes", "content" ),
     sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
@@ -53,11 +54,13 @@ CatalogPage.prototype.extend({
     
     initialize: function() {
         this.inDocument( function( $control ) {
-            // Give the input to any text box or text area in the demo. 
-            $control.$CatalogPage_demo()
-                .find( "input[type='text']" )
-                .add( "textarea" )
-                .focus();
+            if ( $control.autoFocus() ) {
+                // Give the input to any text box or text area in the demo. 
+                $control.$CatalogPage_demo()
+                    .find( "input[type='text']" )
+                    .add( "textarea" )
+                    .focus();
+            }
         });
     },
 
