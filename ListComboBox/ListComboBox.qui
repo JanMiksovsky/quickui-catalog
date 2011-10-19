@@ -48,12 +48,12 @@ ListComboBox.prototype.extend({
             self._handleKeydown( event );
         });
         
-        // Closing the popup collapses the selection to the end of the input.
+        // Closing the popup leaves the text selected.
         this.$HasPopup_popup().bind({
             "closed canceled": function() {
                 var content = self.content();
-                var length = content.length; 
-                self._selectText( length, length );
+                self.inputControl().focus();
+                self._selectText( 0, content.length );
             }
         });
         
