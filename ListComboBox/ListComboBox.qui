@@ -41,7 +41,7 @@ ListComboBox.prototype.extend({
         this.genericIfClassIs( ListComboBox );
         
         var self = this;
-        this.$ComboBox_content().keydown( function( event ) {
+        this.$ComboBox_content().keyup( function( event ) {
             self._autoComplete( event );
         });
         // Clicking an item in the list puts its content into the text box portion.
@@ -71,13 +71,26 @@ ListComboBox.prototype.extend({
     _autoComplete: function( event ) {
         
         // Ignore keys which aren't characters.
-        if ( event.which < 32 ) {
+        if ( event.which < 32
+            || ( event.which >= 35 && event.which <= 40 )
+            || event.which === 46 ) {
             return;
         }
         
         // Take a guess as to what the complete content (including this key)
         // will become.
-        var content = this.content() + String.fromCharCode( event.which );
+        var content = this.content();
+        /*
+        var selectionStart = 
+        if ( document.selection ) 
+            // Selected text will get typed over; drop it.
+            var selectedText = document.selection.createRange().text;
+        } else {
+            content += String.fromCharCode( event.which );
+        }
+        */
+        //content += String.fromCharCode( event.which );
+        console.log( content );
         
         var match = this._matchingItem( content );
         if ( !match ) {
@@ -131,6 +144,34 @@ ListComboBox.prototype.extend({
             // Firefox
             inputControl.setSelectionRange( start, end );
         }
+    },
+    
+    /*
+     * Return the start and end position of the text currently selected in the
+     * input control.
+     */
+    _selection: function() {
+        
+        var inputControl = this.inputControl()[0];
+        if ( !inputControl ) {
+            return; // Can't find input control.
+        }
+        
+        var selectionStart;
+        if ( inputControl.selectionStart ) {
+            // Firefox
+            selectionStart = inputControl.selectionStart;
+        } else if ( document.selection ) {
+            // Solution from
+            // http://the-stickman.com/web-development/javascript/finding-selection-cursor-position-in-a-textarea-in-internet-explorer/
+            var range = document.selection.createRange();
+            var rangeCopy = range.duplicate();
+            rangeCopy.moveToElementText( inputControl );
+            rangeCopy.setEndPoint( "EndToEnd", range );
+            selectionStart = rangeCopy.text.length - range.text.length;
+        }
+        
+        return selectionStart;
     },
     
     /*
