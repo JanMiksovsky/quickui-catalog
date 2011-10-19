@@ -34,6 +34,7 @@ ListComboBox.prototype.extend({
     _itemContents: Control.property(),
     items: Control.chain( "$list", "items", function() { this._updateItemContents(); } ),
     mapFunction: Control.chain( "$list", "mapFunction" ),
+    _timeout: Control.property(),
     
     initialize: function() {
         
@@ -41,9 +42,12 @@ ListComboBox.prototype.extend({
         this.genericIfClassIs( ListComboBox );
         
         var self = this;
-        this.$ComboBox_content().keyup( function( event ) {
-            self._autoComplete( event );
+        
+        // See notes at _handleKeydown.
+        this.$ComboBox_content().keydown( function( event ) {
+            self._handleKeydown( event );
         });
+        
         // Clicking an item in the list puts its content into the text box portion.
         this.$list().click( function( event ) {
             var $closestItem = $( event.target ).closest( self.$list().children() );
@@ -66,31 +70,11 @@ ListComboBox.prototype.extend({
         this.$list().itemClass( itemClass );
     }),
     
-    // Try to auto-complete the current text against the item contents,
-    // in response to a keydown event.
-    _autoComplete: function( event ) {
+    // Try to auto-complete the current text against the item contents.
+    _autoComplete: function() {
         
-        // Ignore keys which aren't characters.
-        if ( event.which < 32
-            || ( event.which >= 35 && event.which <= 40 )
-            || event.which === 46 ) {
-            return;
-        }
-        
-        // Take a guess as to what the complete content (including this key)
-        // will become.
         var content = this.content();
-        /*
-        var selectionStart = 
-        if ( document.selection ) 
-            // Selected text will get typed over; drop it.
-            var selectedText = document.selection.createRange().text;
-        } else {
-            content += String.fromCharCode( event.which );
-        }
-        */
-        //content += String.fromCharCode( event.which );
-        console.log( content );
+        // console.log( content );
         
         var match = this._matchingItem( content );
         if ( !match ) {
@@ -101,10 +85,36 @@ ListComboBox.prototype.extend({
         
         // Select the auto-completed text.
         this._selectText( content.length, match.length );
+    },
+    
+    /*
+     * Handle a keydown event. Keydown gives the best AutoComplete performance
+     * and behavior: among other things, the AutoComplete happens as soon as
+     * the user begins typing. However, using keydown creates a problem that
+     * the input control's content won't actually reflect the effects key the
+     * user just pressed down. So we set a timeout to give the keydown event a
+     * chance to bubble up and do its work, then do our AutoComplete work
+     * against the resulting text.
+     */
+    _handleKeydown: function( event ) {
         
-        // Now that we've auto-completed the text, the input control should
-        // not actually add the character which was original typed. 
-        event.preventDefault();
+        // Ignore key codes which aren't characters.
+        if ( event.which < 46 && event.which !== 32 /* Space */ ) {
+            return;
+        }
+            
+        // Cancel any pending AutoComplete timeout.
+        var timeout = this._timeout();
+        if ( timeout ) {
+            clearTimeout( timeout );
+        }
+        
+        // Queue a new AutoComplete timeout.
+        var self = this;
+        timeout = window.setTimeout( function() {
+            self._autoComplete();
+        }, 50 );
+        this._timeout( timeout );
     },
 
     // Return the item whose prefix matches the given string, ignoring case.
