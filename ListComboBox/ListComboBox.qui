@@ -43,11 +43,6 @@ ListComboBox.prototype.extend({
         
         var self = this;
         
-        // See notes at _handleKeydown.
-        this.$ComboBox_content().keydown( function( event ) {
-            self._handleKeydown( event );
-        });
-        
         // Closing the popup leaves the text selected.
         this.$HasPopup_popup().bind({
             "closed canceled": function() {
@@ -100,6 +95,17 @@ ListComboBox.prototype.extend({
         
         // Select the auto-completed text.
         this._selectText( content.length, match.length );
+    },
+    
+    _bindContentEvents: function() {
+        
+        this._super();
+        
+        // See notes at _handleKeydown.
+        var self = this;
+        this.$ComboBox_content().keydown( function( event ) {
+            self._handleKeydown( event );
+        });
     },
     
     /*
