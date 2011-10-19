@@ -10,7 +10,9 @@ ListComboBoxDemo.prototype.extend({
         this.$comboBox().items([
             "Bird",
             "Cat",
+            "Dingo",
             "Dog",
+            "Elephant",
             "Fish"
         ]);
     }

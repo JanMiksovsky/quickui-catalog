@@ -4,7 +4,9 @@ function demo() {
         .items([
             "Bird",
             "Cat",
+            "Dingo",
             "Dog",
+            "Elephant",
             "Fish"
         ]);
 }

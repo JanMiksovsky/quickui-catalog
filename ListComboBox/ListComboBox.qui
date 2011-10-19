@@ -1,7 +1,10 @@
 <!--
 Renders a list of items in a combo box.
-The user can type arbitrary text; if they type the beginning of a list item's content,
-the remainder of the item's content is AutoCompleted.
+
+The user can type arbitrary text; if they type the beginning of a list item's
+content, the remainder of the item's content is AutoCompleted. For this to
+work, both the control's content and the content of the list items should
+be strings.
 -->
 
 <Control name="ListComboBox">
@@ -28,7 +31,8 @@ the remainder of the item's content is AutoCompleted.
 <script>
 ListComboBox.prototype.extend({
     
-    items: Control.chain( "$list", "items" ),
+    _itemContents: Control.property(),
+    items: Control.chain( "$list", "items", function() { this._updateItemContents(); } ),
     mapFunction: Control.chain( "$list", "mapFunction" ),
     
     initialize: function() {
@@ -36,8 +40,11 @@ ListComboBox.prototype.extend({
         this._super();
         this.genericIfClassIs( ListComboBox );
         
-        // Clicking an item in the list puts its content into the text box portion.
         var self = this;
+        this.$ComboBox_content().keydown( function( event ) {
+            self._autoComplete( event );
+        });
+        // Clicking an item in the list puts its content into the text box portion.
         this.$list().click( function( event ) {
             var $closestItem = $( event.target ).closest( self.$list().children() );
             if ( $closestItem ) {
@@ -57,7 +64,90 @@ ListComboBox.prototype.extend({
     // value of undefined.
     itemClass: Control.property[ "class" ]( function( itemClass ) {
         this.$list().itemClass( itemClass );
-    })
+    }),
+    
+    // Try to auto-complete the current text against the item contents,
+    // in response to a keydown event.
+    _autoComplete: function( event ) {
+        
+        // Ignore keys which aren't characters.
+        if ( event.which < 32 ) {
+            return;
+        }
+        
+        // Take a guess as to what the complete content (including this key)
+        // will become.
+        var content = this.content() + String.fromCharCode( event.which );
+        
+        var match = this._matchingItem( content );
+        if ( !match ) {
+            return;
+        }
+
+        this.content( match );
+        
+        // Select the auto-completed text.
+        this._selectText( content.length, match.length );
+        
+        // Now that we've auto-completed the text, the input control should
+        // not actually add the character which was original typed. 
+        event.preventDefault();
+    },
+
+    // Return the item whose prefix matches the given string, ignoring case.
+    // Return null if not found.
+    _matchingItem: function( s ) {
+        var length = s.length;
+        if ( length > 0 ) {
+            var lower = s.toLowerCase();
+            var itemContents = this._itemContents();
+            for ( var i = 0, itemCount = itemContents.length; i < itemCount; i++ ) {
+                var itemContent = itemContents[i]; 
+                if ( length <= itemContent.length
+                    && itemContent.substr( 0, length ).toLowerCase() === lower ) {
+                    return itemContent;
+                }
+            }
+        }
+        return null;
+    },
+
+    /*
+     * Select the text at the indicated positions in the input control.
+     */
+    _selectText: function( start, end ) {
+        
+        var inputControl = this.inputControl()[0];
+        if ( !inputControl ) {
+            return; // Can't find input control.
+        }
+        
+        if ( inputControl.createTextRange ) {
+            var range = inputControl.createTextRange();
+            range.moveStart( "character", start );
+            range.moveEnd( "character", end );
+            range.select();
+        } else if ( inputControl.setSelectionRange ) {
+            // Firefox
+            inputControl.setSelectionRange( start, end );
+        }
+    },
+    
+    /*
+     * Extract a copy of all the items so we can match against them when
+     * the user types. We get the contents from the list's controls, rather
+     * than from the list's items() property, since the items could be
+     * arbitrary JavaScript objects. Once the list's mapFunction has mapped
+     * those objects into the controls, the controls' content should best
+     * reflect the text to map against. 
+     */
+    _updateItemContents: function() {
+        var itemContents = [];
+        this.$list().controls().eachControl( function( index, $control ) {
+            itemContents.push( $control.content() );
+        });
+        this._itemContents( itemContents );
+    }
 
 });
 </script>
