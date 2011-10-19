@@ -1,0 +1,49 @@
+<Control name="DemoTile">
+
+<content>
+    <h1 id="controlClassName"/>
+    <div id="demo"/>
+    <div id="description"/>
+</content>
+
+<style>
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-shadow: 5px 5px 10px #b0b0b0;
+    -webkit-box-shadow: 5px 5px 10px #b0b0b0;
+    box-shadow: 5px 5px 10px #b0b0b0;
+    height: 250px;
+    padding: 20px;
+    width: 300px;
+}
+
+#controlClassName {
+    margin-top: 0;
+}
+</style>
+
+<script>
+DemoTile.prototype.extend({
+
+    controlClass: Control.property[ "class" ]( function( controlClass ) {
+
+        var className = controlClass.prototype.className;
+        this.$controlClassName().content( className );
+
+        var demoClassName = className + "Demo";
+        this.$demo().transmute( demoClassName );
+        
+        var aboutClassName = className + "About";
+        var aboutClass = window[ aboutClassName ];
+        var description = aboutClass.create().summary();
+        this.$description().content( description );
+        
+    })
+
+});
+</script>
+
+</Control>

@@ -28,6 +28,7 @@ CatalogNavigationLinks.prototype.extend({
             "HintTextBox",
             "HorizontalPanels",
             "List",
+            "ListComboBox",
             "LoremIpsum",
             "Page",
             "Popup",

@@ -1,0 +1,16 @@
+<Control name="ListComboBoxAbout">
+<prototype>
+    <CatalogPage title="ListComboBox"
+        autoFocus="false"
+        sourceFileExample="ListComboBox/ListComboBoxDemo.qui"
+        sourceFileControl="ListComboBox/ListComboBox.qui"
+        sourceFileJavaScript="ListComboBox/ListComboBoxDemo.js">
+        <summary>
+            A <CatalogLink>ComboBox</CatalogLink> which presents its choices as a dropdown list.
+        </summary>
+        <demo>
+            <ListComboBoxDemo/>
+        </demo>
+    </CatalogPage>
+</prototype>
+</Control>

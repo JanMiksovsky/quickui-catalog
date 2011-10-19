@@ -86,6 +86,12 @@
             </div>
         </div>
         <div>
+            <div><CatalogLink>ListComboBox</CatalogLink></div>
+            <div>
+                A combo box that presents its choices as a list.
+            </div>
+        </div>
+        <div>
             <div><CatalogLink>LoremIpsum</CatalogLink></div>
             <div>Generates placeholder text.</div>
         </div>

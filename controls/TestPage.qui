@@ -2,6 +2,9 @@
     
 <content>
 
+    <DemoTile controlClass="ListComboBox"/>
+    <DemoTile controlClass="AutoSizeTextBox"/>
+<!--
 <SourceCode>
 <![CDATA[
 <html>
@@ -16,8 +19,16 @@
 
 <SourceFileContents path="controls/TestPage.qui"/>
 <FileContents path="controls/readme.md"/>
+-->
 
 </content>
+
+<style>
+.DemoTile {
+    display: inline-table;
+    margin: 0 20px 20px 0;
+}
+</style>
 
 <script>
 TestPage.prototype.extend({
