@@ -1,11 +1,11 @@
-<Control name="ComboBoxDemo">
+<Control name="ListComboBoxDemo">
 
 <content>
     <ListComboBox id="comboBox" />
 </content>
 
 <script>
-ComboBoxDemo.prototype.extend({
+ListComboBoxDemo.prototype.extend({
     initialize: function() {
         this.$comboBox().items([
             "Bird",
