@@ -48,6 +48,15 @@ ListComboBox.prototype.extend({
             self._handleKeydown( event );
         });
         
+        // Closing the popup collapses the selection to the end of the input.
+        this.$HasPopup_popup().bind({
+            "closed canceled": function() {
+                var content = self.content();
+                var length = content.length; 
+                self._selectText( length, length );
+            }
+        });
+        
         // Clicking an item in the list puts its content into the text box portion.
         this.$list().click( function( event ) {
             var $closestItem = $( event.target ).closest( self.$list().children() );
@@ -154,34 +163,6 @@ ListComboBox.prototype.extend({
             // Firefox
             inputControl.setSelectionRange( start, end );
         }
-    },
-    
-    /*
-     * Return the start and end position of the text currently selected in the
-     * input control.
-     */
-    _selection: function() {
-        
-        var inputControl = this.inputControl()[0];
-        if ( !inputControl ) {
-            return; // Can't find input control.
-        }
-        
-        var selectionStart;
-        if ( inputControl.selectionStart ) {
-            // Firefox
-            selectionStart = inputControl.selectionStart;
-        } else if ( document.selection ) {
-            // Solution from
-            // http://the-stickman.com/web-development/javascript/finding-selection-cursor-position-in-a-textarea-in-internet-explorer/
-            var range = document.selection.createRange();
-            var rangeCopy = range.duplicate();
-            rangeCopy.moveToElementText( inputControl );
-            rangeCopy.setEndPoint( "EndToEnd", range );
-            selectionStart = rangeCopy.text.length - range.text.length;
-        }
-        
-        return selectionStart;
     },
     
     /*

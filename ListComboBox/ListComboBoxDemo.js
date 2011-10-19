@@ -2,11 +2,19 @@ function demo() {
     $( "#demo" )
         .control( ListComboBox )
         .items([
-            "Bird",
+            "Canary",
             "Cat",
-            "Dingo",
+            "Cockatiel",
             "Dog",
-            "Elephant",
-            "Fish"
+            "Ferret",
+            "Finch",
+            "Fish",
+            "Guinea Pig",
+            "Hamster",
+            "Lizard",
+            "Parakeet",
+            "Parrot",
+            "Rabbit",
+            "Turtle"
         ]);
 }
