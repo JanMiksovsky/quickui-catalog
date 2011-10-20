@@ -45,7 +45,7 @@ ListComboBox.prototype.extend({
         
         // Closing the popup leaves the text selected.
         this.$HasPopup_popup().bind({
-            "closed canceled": function() {
+            "closed": function() {
                 var content = self.content();
                 // HACK for IE: If we set focus to the input while the 
                 // popup is being closed, IE won't hide the popup, so we set
@@ -120,7 +120,7 @@ ListComboBox.prototype.extend({
     _handleKeydown: function( event ) {
         
         // Ignore key codes which aren't characters.
-        if ( event.which < 46 && event.which !== 32 /* Space */ ) {
+        if ( event.which <= 46 && event.which !== 32 /* Space */ ) {
             return;
         }
             
