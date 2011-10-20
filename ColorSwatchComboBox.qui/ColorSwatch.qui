@@ -1,16 +1,21 @@
 <Control name="ColorSwatch">
 
 <style>
-/* Generic appearance */
+{
+    border: 1px solid lightgray;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 1em;
+    width: 1em;
+}
 </style>
 
 <script>
 ColorSwatch.prototype.extend({
-    color: Control.chain( "css/background-color" ),
-    initialize: function() {
-        this.genericIfClassIs( ColorSwatch );
-    }
+    color: Control.chain( "css/background-color" )
 });
 </script>
 
-</Control>
+</Control>

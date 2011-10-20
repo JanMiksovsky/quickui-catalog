@@ -1,0 +1,22 @@
+<Control name="ColorSwatchComboBoxAbout">
+<prototype>
+    <CatalogPage title="ColorSwatchComboBox"
+        sourceFileControl="ColorSwatchComboBox/ColorSwatchComboBox.qui">
+        <summary>
+            A text input area with an optional popup, which typically presents a dropdown list of
+            choices, but could just as easily provide choices in other ways. The user can always
+            choose to enter their own arbitrary text as well; they are not limited to the indicated
+            choices.
+        </summary>
+        <demo>
+            See <CatalogLink>ListComboBox</CatalogLink> for an example.
+        </demo>
+        <notes>
+            The HTML5 specification calls for a <Tag>datagrid</Tag> element which can be used to
+            create combo boxes, but that only supports a rather narrow definition of what a combo
+            box can do. Even once <Tag>datagrid</Tag> is broadly supported, the ComboBox class
+            still has a role to play as a base class for custom combo boxes.
+        </notes>
+    </CatalogPage>
+</prototype>
+</Control>

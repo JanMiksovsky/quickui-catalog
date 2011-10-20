@@ -1,0 +1,28 @@
+<Control name="ColorSwatchButton">
+
+<content>
+    <ColorSwatch id="swatch"/>
+    <div id="ColorSwatchButton_content"/>
+</content>
+
+<style>
+> * {
+    display: inline;
+}
+</style>
+
+<script>
+ColorSwatchButton.prototype.extend({
+
+    initialize: function() {
+        this.genericIfClassIs( ColorSwatchButton );
+    },
+    
+    content: Control.chain( "$ColorSwatchButton_content", "content", function( content ) {
+        this.$swatch().color( content );
+    })
+    
+});
+</script>
+
+</Control>
