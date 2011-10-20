@@ -7,10 +7,13 @@
 <script>
 ColorSwatchComboBox.prototype.extend({
     initialize: function() {
+        this._super();
+        this.genericIfClassIs( ColorSwatchComboBox );
         this.items([
             "Blue",
             "Red",
-            "Yellow"
+            "Yellow",
+            "YellowGreen",
         ]);
     }
 });

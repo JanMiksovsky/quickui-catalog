@@ -1,16 +1,22 @@
 <Control name="ColorSwatchTextBox">
 
 <content>
-    <ColorSwatch id="swatch"/>
-    <input type="text" id="ColorSwatchTextBox_content"/>
+    <ColorSwatch id="swatch"/><input type="text" id="ColorSwatchTextBox_content"/>
 </content>
+
+<style>
+> * {
+    display: inline-block;
+    vertical-align: middle;
+}
+</style>
 
 <script>
 ColorSwatchTextBox.prototype.extend({
     
     initialize: function() {
         var self = this;
-        this.keypress( function() {
+        this.keyup( function() {
             self._refresh();
         });
     },

@@ -1,13 +1,15 @@
 <Control name="ColorSwatchButton">
 
-<content>
-    <ColorSwatch id="swatch"/>
-    <div id="ColorSwatchButton_content"/>
-</content>
+<prototype>
+    <ButtonBase>
+        <ColorSwatch id="swatch"/><div id="ColorSwatchButton_content"/>
+    </ButtonBase>
+</prototype>
 
 <style>
 > * {
-    display: inline;
+    display: inline-block;
+    vertical-align: middle;
 }
 </style>
 

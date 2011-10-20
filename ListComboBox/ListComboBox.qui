@@ -103,7 +103,7 @@ ListComboBox.prototype.extend({
         
         // See notes at _handleKeydown.
         var self = this;
-        this.$ComboBox_content().keydown( function( event ) {
+        this.inputControl().keydown( function( event ) {
             self._handleKeydown( event );
         });
     },
