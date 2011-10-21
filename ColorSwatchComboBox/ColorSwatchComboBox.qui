@@ -31,7 +31,7 @@ ColorSwatchComboBox.prototype.extend({
             "Red",
             "SteelBlue",
             "Yellow",
-            "YellowGreen",
+            "YellowGreen"
         ]);
     }
 });

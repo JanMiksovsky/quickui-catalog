@@ -12,6 +12,10 @@
         <demo>
             <AutoSizeTextBoxDemo/>
         </demo>
+        <notes>
+            This control was discussed in a
+            <Link href="http://miksovsky.blogs.com/flowstate/2011/10/autosizetextbox.html">user interface blog post</Link>.
+        </notes>
     </CatalogPage>
 </prototype>
 </Control>

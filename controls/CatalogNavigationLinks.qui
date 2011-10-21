@@ -1,13 +1,14 @@
 <Control name="CatalogNavigationLinks">
 
 <content>
-    <Link id="linkIndex" href="/catalog/default.html">Index</Link>
+    <Link id="linkIndex" href="/catalog/">Index</Link>
+    <Link href="usingCatalog.html">How to use the catalog</Link>
     <List id="listClass" itemClass="CatalogLink"/>
 </content>
 
 <style>
-#linkIndex {
-    margin-bottom: 15px;
+#listClass {
+    margin-top: 15px;
 }
 </style>
 

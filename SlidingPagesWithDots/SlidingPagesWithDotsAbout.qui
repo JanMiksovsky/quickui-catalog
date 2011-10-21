@@ -17,8 +17,14 @@
         </demo>
         
         <notes>
+            <p>
+            This control was discussed in a
+            <Link href="http://miksovsky.blogs.com/flowstate/2011/10/slidingpageswithdots.html">user interface blog post</Link>.
+            </p>
+            <p>
             See <CatalogLink>RotatingPagesWithDots</CatalogLink> for an example
             of a subclass that adds automatic rotation.
+            </p>
         </notes>
         
     </CatalogPage>

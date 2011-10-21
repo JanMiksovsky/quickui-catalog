@@ -14,6 +14,10 @@
         <demo>
             <ListComboBoxDemo/>
         </demo>
+        <notes>
+            This control was discussed in a
+            <Link href="http://miksovsky.blogs.com/flowstate/2011/10/listcombobox.html">user interface blog post</Link>.
+        </notes>
     </CatalogPage>
 </prototype>
 </Control>

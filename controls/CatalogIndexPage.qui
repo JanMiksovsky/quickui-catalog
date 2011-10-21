@@ -18,10 +18,8 @@
     </p>
 
     <p>
-    The source code for these controls is available in the 
-    <Link href="https://github.com/JanMiksovsky/quickui-catalog">
-        quickui-catalog repository
-    </Link> on GitHub.
+    For information on quickly trying out these controls or building them from
+    the open source, see <Link href="usingCatalog.html">How to use the catalog</Link>.
     </p>
     
     <div id="table">

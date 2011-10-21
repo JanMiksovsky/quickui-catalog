@@ -16,11 +16,17 @@
         </demo>
         
         <notes>
+            <p>
             RotatingPagesWithDots seems useful as a home page "hero" element
             that can present some visually interesting content in hopes the user
             will find something to engage with. The rotation stops after one cycle
             to avoid becoming irritating if the user wants to simply read content
             on the page.
+            </p>
+            <p>
+            This control was discussed in a
+            <Link href="http://miksovsky.blogs.com/flowstate/2011/10/slidingpageswithdots.html">user interface blog post</Link>.
+            </p>
         </notes>
         
     </CatalogPage>
