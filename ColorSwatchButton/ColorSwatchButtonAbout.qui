@@ -1,0 +1,15 @@
+<Control name="ColorSwatchButtonAbout">
+<prototype>
+    <CatalogPage title="ColorSwatchButton"
+        sourceFileControl="ColorSwatchButton/ColorSwatchButton.qui">
+        <summary>
+            A button showing a CSS <CatalogLink>ColorSwatch</CatalogLink> 
+            and color name. Used to present the choices in the dropdown list
+            portion of a <CatalogLink>ColorSwatchComboBox</CatalogLink>.
+        </summary>
+        <demo>
+            <ColorSwatchButton>Magenta</ColorSwatchButton>
+        </demo>
+    </CatalogPage>
+</prototype>
+</Control>

@@ -53,7 +53,7 @@
             </div>
         </div>
         <div>
-            <div><CatalogLink>ColorTextBox</CatalogLink></div>
+            <div><CatalogLink>ColorSwatchTextBox</CatalogLink></div>
             <div>
                 Lets the user type a CSS color value, and renders the typed
                 value as a color swatch.
