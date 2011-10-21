@@ -38,6 +38,28 @@
             <div>Base class for buttons which handles tracking of button states.</div>
         </div>
         <div>
+            <div><CatalogLink>ColorSwatch</CatalogLink></div>
+            <div>Shows a block of a CSS color.</div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorSwatchButton</CatalogLink></div>
+            <div>A button showing a color swatch.</div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorSwatchComboBox</CatalogLink></div>
+            <div>
+                Demonstration of a ListComboBox subclass with a custom text box
+                and custom list presentation.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorTextBox</CatalogLink></div>
+            <div>
+                Lets the user type a CSS color value, and renders the typed
+                value as a color swatch.
+            </div>
+        </div>
+        <div>
             <div><CatalogLink>ComboBox</CatalogLink></div>
             <div>Base class for a combo box: a text input area with a dropdown set of choices.</div>
         </div>

@@ -6,7 +6,10 @@
         sourceFileControl="ListComboBox/ListComboBox.qui"
         sourceFileJavaScript="ListComboBox/ListComboBoxDemo.js">
         <summary>
-            A <CatalogLink>ComboBox</CatalogLink> which presents its choices as a dropdown list.
+            A <CatalogLink>ComboBox</CatalogLink> which presents its choices as
+            a dropdown list. Both the input area and the class used to render
+            the list choices can be customized; see
+            <CatalogLink>ColorSwatchComboBox</CatalogLink> for an example.
         </summary>
         <demo>
             <ListComboBoxDemo/>

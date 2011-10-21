@@ -1,12 +1,23 @@
 <Control name="ColorSwatchComboBoxAbout">
 <prototype>
     <CatalogPage title="ColorSwatchComboBox"
-        sourceFileControl="ColorSwatchComboBox/ColorSwatchComboBox.qui">
+        sourceFileControl="ColorSwatchComboBox/ColorSwatchComboBox.qui"
+        sourceFileExample="ColorSwatchComboBox/ColorSwatchComboBoxDemo.qui"
+        autoFocus="false">
         <summary>
-            ...
+            This combo box lets the user pick a color from a list of colors
+            using a subclass of <CatalogLink>ListComboBox</CatalogLink>.
+            The user can also enter arbitrary CSS color names or values.
+            This demonstrates how to use a text box class
+            (here, <CatalogLink>ColorSwatchTextBox</CatalogLink>)
+            and a list item class
+            (<CatalogLink>ColorSwatchButton</CatalogLink>)
+            to provide custom rendering and validation for both input and
+            choices. The base ListComboBox class provides AutoComplete
+            functionality, matching against the provided list of color choices.
         </summary>
         <demo>
-            ...
+            <ColorSwatchComboBoxDemo/>
         </demo>
     </CatalogPage>
 </prototype>

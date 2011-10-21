@@ -4,6 +4,14 @@
     <ListComboBox textBoxClass="ColorSwatchTextBox" itemClass="ColorSwatchButton"/>
 </prototype>
 
+<style>
+/* Generic appearance */
+.ColorSwatchComboBox.generic .ColorSwatchButton.generic {
+    padding-left: 0;
+    padding-right: 0;
+}    
+</style>
+
 <script>
 ColorSwatchComboBox.prototype.extend({
     initialize: function() {
