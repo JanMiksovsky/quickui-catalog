@@ -2,6 +2,10 @@
 
 <style>
 {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     height: 1.25em;
     margin: 3px;
     width: 1.25em;
@@ -9,20 +13,39 @@
 
 .ColorSwatch.none {
     border: 1px solid lightgray;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
 }
 </style>
 
 <script>
 ColorSwatch.prototype.extend({
-    color: Control.chain( "css/background-color", function( color ) {
-        // See if our attempt to set the color stuck; i.e., the color was valid.
-        var colorValid = ( color === this.css( "background-color" ) );
-        this.toggleClass( "none", !colorValid );
-    })
+    
+    _previousColor: Control.property(),
+    _previousColorValue: Control.property(),
+    
+    color: function( color ) {
+        if ( color === undefined ) {
+            return this.css( "background-color" );
+        } else {
+            
+            this
+                .css( "background-color", "white" ) // Apply white first
+                .css( "background-color", color );  // Apply new color
+        
+            /* Validate the color value. */
+            var colorValid;
+            if ( color === "" || color === null ) {
+                colorValid = false;
+            } else if ( color === "white" || color === "rgb(255, 255, 255)" ) {
+                // White color values are known to be good.
+                colorValid = true;
+            } else {
+                // See if the new value "stuck", or is still white.
+                var colorValue = this.css( "background-color" );
+                colorValid = !( colorValue === "white" || colorValue === "rgb(255, 255, 255)" );
+            }
+            return this.toggleClass( "none", !colorValid );
+        }
+    }
 });
 </script>
 

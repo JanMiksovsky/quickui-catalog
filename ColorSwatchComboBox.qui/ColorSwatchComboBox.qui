@@ -11,7 +11,17 @@ ColorSwatchComboBox.prototype.extend({
         this.genericIfClassIs( ColorSwatchComboBox );
         this.items([
             "Blue",
+            "DarkGreen",
+            "DarkBlue",
+            "DarkRed",
+            "Gold",
+            "Goldenrod",
+            "Green",
+            "LightGray",
+            "LightSeaGreen",
+            "LightSkyBlue",
             "Red",
+            "SteelBlue",
             "Yellow",
             "YellowGreen",
         ]);
