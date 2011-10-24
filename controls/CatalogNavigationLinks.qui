@@ -3,11 +3,12 @@
 <content>
     <Link id="linkIndex" href="/catalog/">Index</Link>
     <Link href="usingCatalog.html">How to use the catalog</Link>
+    <List id="newListClass" itemClass="NewCatalogLink"/>
     <List id="listClass" itemClass="CatalogLink"/>
 </content>
 
 <style>
-#listClass {
+#newListClass, #listClass {
     margin-top: 15px;
 }
 </style>
@@ -15,6 +16,11 @@
 <script>
 CatalogNavigationLinks.prototype.extend({
     initialize: function() {
+        this.$newListClass()
+            .mapFunction( function( controlRecord ) {
+                this.content( controlRecord.name )
+            })
+            .items( controlRecords );
         this.$listClass().items([
             "AutoSizeTextBox",
             "BrowserSpecific",

@@ -17,33 +17,20 @@
 <script type="text/javascript" src="../../plugins/quickui.rehydrate.js"></script>
 <script type="text/javascript" src="../../quicommon/quicommon.js"></script>
 <script type="text/javascript" src="../../controls/controls.js"></script>
-<script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title>CalendarWeek</title>
+<title>AutoSizeTextBox</title>
 
 </head>
 
 <body data-create-controls="true" data-control="NewCatalogPage">
 
 <div data-property="summary">
-    Shows a single week from a calendar as seven days in a row. This is used
-    to render weeks in a <a data-control="NewCatalogLink">CalendarMonth</a>.
+Shows a single day in a calendar. This class is typicall used as the base
+class for days rendered in a <a data-control="NewCatalogLink">CalendarMonth</a>.
 </div>
 
-<p>
-    By default, the current week is shown. 
-</p>
-<p>
-    If the jQuery <a data-control="Link">Globalize</a> plugin is loaded, the
-    first (leftmost) day of the week will be determined from the current culture.
-    Otherwise the first day of the week defaults to Sunday.
-</p>
-<p>
-    Set the dayClass property to change the class used to render the days of the
-    month. The standard base class for custom day classes is
-    <a data-control="NewCatalogLink">CalendarDay</a>.
-</p>
+By default, the current day is shown.
 
 </body>
 
