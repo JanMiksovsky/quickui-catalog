@@ -13,15 +13,25 @@
 
             <h2>Live demo</h2>
             <div id="CatalogPage_demo" />
+            
+            <div id="sampleMarkup">
+                <h2>Sample QuickUI markup to instantiate this control</h2>
+                <SourceCode id="sampleCodeMarkup"/>
+            </div>
 
             <div id="demoMarkup">
-                <h2>QuickUI markup to instantiate this control</h2>
-                <SourceCode id="sourceCodeMarkup"/>
+                <h2>QuickUI Markup for the demo above</h2>
+                <SourceFileContents id="demoFileMarkup"/>
+            </div>
+            
+            <div id="sampleJavaScript">
+                <h2>Sample JavaScript to instantiate this control</h2>
+                <SourceCode id="sampleCodeJavaScript"/>
             </div>
             
             <div id="demoJavaScript">
-                <h2>Plain JavaScript to instantiate this control</h2>
-                <SourceCode id="sourceCodeJavaScript"/>
+                <h2>JavaScript for the demo above</h2>
+                <SourceFileContents id="demoFileJavaScript"/>
             </div>
             
             <h2>Class hierarchy</h2>
@@ -38,8 +48,8 @@
 </prototype>
 
 <style>
-#CatalogPage_demo {
-    display: inline-block;
+#demoMarkup, #demoJavaScript {
+    display: none;
 }
 </style>
 
@@ -47,7 +57,6 @@
 NewCatalogPage.prototype.extend({
     
     autoFocus: Control.property.bool( null, true ),
-    demo: Control.chain( "$CatalogPage_demo", "content" ),
     content: Control.chain( "$CatalogPage_notes", "content" ),
     sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
@@ -65,19 +74,25 @@ NewCatalogPage.prototype.extend({
         });
     },
 
-    /*
-    sourceFileExample: Control.chain( "$sourceCodeExample", "path",
-       function( sourceFileExample ) {
-           this.$demoMarkup().toggle( sourceFileExample != null );
+    demoClass: Control.property[ "class" ]( function( demoClass ) {
+         this.$CatalogPage_demo().transmute( demoClass );
+    }),
+
+    // Demo in markup hides stock "instantiate this control" markup.
+    demoFileMarkup: Control.chain( "$demoFileMarkup", "path",
+       function( demoFileMarkup ) {
+           this.$sampleMarkup().toggle( demoFileMarkup == null );
+           this.$demoMarkup().toggle( demoFileMarkup != null );
        }
     ),
-    
-    sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "path",
-       function( sourceFileJavaScript ) {
-           this.$demoJavaScript().toggle( sourceFileJavaScript != null );
+
+    // Demo in JavaScript hides stock "instantiate this control" JavaScript.
+    demoFileJavaScript: Control.chain( "$demoFileJavaScript", "path",
+       function( demoFileJavaScript ) {
+           this.$sampleJavaScript().toggle( demoFileJavaScript == null );
+           this.$demoJavaScript().toggle( demoFileJavaScript != null );
        }
     ),
-    */
     
     title: function( title ) {
         var result = this._super( title );
@@ -87,14 +102,15 @@ NewCatalogPage.prototype.extend({
             // the fields with standard values.
             var className = title;
             
-            //var demoClassName = className + "Demo";
-            //this.demo( window[ demoClassName ].create() );
-            this.demo( window[ className ].create() );
+            if ( !this.demoClass() ) {
+                // As a default demo, instantiate the control.
+                this.$CatalogPage_demo().transmute( className );
+            }
             
-            this.$sourceCodeMarkup().content(
+            this.$sampleCodeMarkup().content(
                 "<" + className + "/>"
             );
-            this.$sourceCodeJavaScript().content(
+            this.$sampleCodeJavaScript().content(
                 "$( element ).control( " + className + " );"
             );
             

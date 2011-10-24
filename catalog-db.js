@@ -4,6 +4,10 @@
  */
 var controlRecords = [
     {
+        name: "AutoSizeTextBox",
+        summary: "A text area that expands to contain its text."
+    },
+    {
         name: "CalendarDay",
         summary: ""
     },
