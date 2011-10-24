@@ -1,9 +1,11 @@
 <Control name="DemoTile">
 
 <content>
-    <h1 id="controlClassName"/>
-    <div id="demo"/>
-    <div id="description"/>
+    <NewCatalogLink id="className"/>
+    <p id="description"/>
+    <div id="demoContainer">
+        <div id="demo"/>
+    </div>
 </content>
 
 <style>
@@ -20,27 +22,32 @@
     width: 300px;
 }
 
-#controlClassName {
-    margin-top: 0;
+#className {
+    border: none;
+    color: #391c01;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+#description {
+    color: #444;
+}
+
+.DemoTile:hover #className {
+    border-bottom: 1px dotted #391c01;
+}
+.DemoTile:hover #className:hover {
+    border-bottom-style: solid;
 }
 </style>
 
 <script>
 DemoTile.prototype.extend({
 
-    controlClass: Control.property[ "class" ]( function( controlClass ) {
-
-        var className = controlClass.prototype.className;
-        this.$controlClassName().content( className );
-
-        var demoClassName = className + "Demo";
-        this.$demo().transmute( demoClassName );
-        
-        var aboutClassName = className + "About";
-        var aboutClass = window[ aboutClassName ];
-        var description = aboutClass.create().summary();
-        this.$description().content( description );
-        
+    controlRecord: Control.property( function( controlRecord ) {
+        this.$className().content( controlRecord.name );
+        this.$demo().transmute( controlRecord.name );
+        this.$description().content( controlRecord.description );
     })
 
 });

@@ -22,7 +22,6 @@ CatalogNavigationLinks.prototype.extend({
             })
             .items( controlRecords );
         this.$listClass().items([
-            "AutoSizeTextBox",
             "BrowserSpecific",
             "ButtonBase",
             "ColorSwatch",
