@@ -1,0 +1,111 @@
+<!-- A page in the QuickUI Catalog. -->
+
+<Control name="NewCatalogPage">
+
+<prototype>
+    <SitePage area="Catalog">
+        <navigationLinks>
+            <CatalogNavigationLinks/>
+        </navigationLinks>
+        <content>
+            
+            <div id="CatalogPage_summary" />
+
+            <h2>Live demo</h2>
+            <div id="CatalogPage_demo" />
+
+            <div id="demoMarkup">
+                <h2>QuickUI markup to instantiate this control</h2>
+                <SourceCode id="sourceCodeMarkup"/>
+            </div>
+            
+            <div id="demoJavaScript">
+                <h2>Plain JavaScript to instantiate this control</h2>
+                <SourceCode id="sourceCodeJavaScript"/>
+            </div>
+            
+            <h2>Class hierarchy</h2>
+            <ControlClassHierarchy id="controlClassHierarchy"/>
+
+            <h2>Notes</h2>
+            <div id="CatalogPage_notes" />
+
+            <h2>Full control source code</h2>
+            <SourceFileContents id="sourceCodeControl" />
+
+        </content>
+    </SitePage>
+</prototype>
+
+<style>
+#CatalogPage_demo {
+    display: inline-block;
+}
+</style>
+
+<script>
+NewCatalogPage.prototype.extend({
+    
+    autoFocus: Control.property.bool( null, true ),
+    demo: Control.chain( "$CatalogPage_demo", "content" ),
+    content: Control.chain( "$CatalogPage_notes", "content" ),
+    sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
+    summary: Control.chain( "$CatalogPage_summary", "content" ),
+    
+    initialize: function() {
+        this._super();
+        this.inDocument( function( $control ) {
+            if ( $control.autoFocus() ) {
+                // Give the input to any text box or text area in the demo. 
+                $control.$CatalogPage_demo()
+                    .find( "input[type='text']" )
+                    .add( "textarea" )
+                    .focus();
+            }
+        });
+    },
+
+    /*
+    sourceFileExample: Control.chain( "$sourceCodeExample", "path",
+       function( sourceFileExample ) {
+           this.$demoMarkup().toggle( sourceFileExample != null );
+       }
+    ),
+    
+    sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "path",
+       function( sourceFileJavaScript ) {
+           this.$demoJavaScript().toggle( sourceFileJavaScript != null );
+       }
+    ),
+    */
+    
+    title: function( title ) {
+        var result = this._super( title );
+        if ( title !== undefined ) {
+            
+            // Grab control class name from title, use it to populate
+            // the fields with standard values.
+            var className = title;
+            
+            //var demoClassName = className + "Demo";
+            //this.demo( window[ demoClassName ].create() );
+            this.demo( window[ className ].create() );
+            
+            this.$sourceCodeMarkup().content(
+                "<" + className + "/>"
+            );
+            this.$sourceCodeJavaScript().content(
+                "$( element ).control( " + className + " );"
+            );
+            
+            this.$controlClassHierarchy().controlClass( className );
+
+            this.sourceFileControl( className + ".qui" );
+        }
+        return result;
+    }
+    
+});
+</script>
+
+</Control>

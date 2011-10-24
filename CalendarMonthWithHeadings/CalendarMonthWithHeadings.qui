@@ -1,0 +1,85 @@
+<!-- Month calendar with headings for month name and year, plus days of week -->
+
+<Control name="CalendarMonthWithHeadings">
+
+<content>
+    <MonthName id="monthName"/>
+    <div id="monthTable">
+        <DaysOfWeek id="daysOfWeek" format="namesShort"/>
+        <CalendarMonth id="calendar"/>
+    </div>
+</content>
+
+<style>
+#monthName {
+    display: block;
+}
+
+#monthTable {
+    display: table;
+    width: 100%;
+}
+
+#daysOfWeek {
+    display: table-header-group;
+}
+
+/* Generic appearance */
+.CalendarMonthWithHeadings.generic {
+    font-family: sans-serif;
+}
+.CalendarMonthWithHeadings.generic #monthName {
+    font-weight: bold;
+    padding: 4px;
+    text-align: center;
+}
+.CalendarMonthWithHeadings.generic #daysOfWeek {
+    font-size: smaller;
+}
+</style>
+
+<script>
+CalendarMonthWithHeadings.prototype.extend({
+    
+    $days: Control.chain( "$calendar", "$days" ),
+    dayClass: Control.chain( "$calendar", "dayClass" ),
+    dayNameFormat: Control.chain( "$daysOfWeek", "format" ),
+    showMonthName: Control.chain( "$monthName", "visibility" ),
+    
+    initialize: function() {
+        
+        this.genericIfClassIs( CalendarMonthWithHeadings );
+        
+        if ( !this.date() ) {
+            // By default, show current month.
+            this.date( CalendarDay.today() );
+        }
+    },
+    
+    culture: function( culture ) {
+        var result = CalendarMonthWithHeadings.superclass.prototype.culture.call( this, culture );
+        if ( culture !== undefined ) {
+            this.$monthName().culture( culture );
+            this.$daysOfWeek().culture( culture );
+            this.$calendar().culture( culture );
+            var date = this.date();
+            if ( date ) {
+                this.date( date );
+            }
+        }
+        return result;
+    },
+    
+    /* The date shown in the calendar */
+    date: Control.chain( "$calendar", "date", function( date ) {
+        this.$monthName().month( date.getMonth() );
+    }),
+    
+    dayControlForDate: function( date ) {
+        return this.$calendar().dayControlForDate( date );
+    }
+    
+});
+</script>
+
+</Control>

@@ -1,0 +1,83 @@
+<!-- Heading for a 7 day week calendar, globalized. -->
+
+<Control name="DaysOfWeek">
+
+<content>
+    <div class="dayOfWeek"/>
+    <div class="dayOfWeek"/>
+    <div class="dayOfWeek"/>
+    <div class="dayOfWeek"/>
+    <div class="dayOfWeek"/>
+    <div class="dayOfWeek"/>
+    <div class="dayOfWeek"/>
+</content>
+
+<style>
+.dayOfWeek {
+    display: table-cell;
+}
+
+/* Generic appearance */
+.DaysOfWeek.generic .dayOfWeek {
+    text-align: center;
+}
+</style>
+
+<script>
+DaysOfWeek.prototype.extend({
+    
+    initialize: function() {
+        this.genericIfClassIs( DaysOfWeek );
+        if ( !this.format() ) {
+            this.format( "namesAbbr" );
+        }
+    },
+    
+    culture: function( culture ) {
+        var result = DaysOfWeek.superclass.prototype.culture.call( this, culture );
+        if ( culture !== undefined ) {
+            this.format( this.format() );
+        }
+        return result;
+    },
+
+    /*
+     * Uses the day name formats defined by Globalize:
+     * names (e.g., "Sunday"), namesAbbreviated ("Sun"), namesShort ("Su")
+     */
+    format: Control.property( function( format ) {
+        
+        var culture = this.culture();
+        var dayNameEnum = culture ? culture.calendar.days : DaysOfWeek.days;
+        var dayNames = dayNameEnum[ format ];
+        
+        var firstDay = culture ? culture.calendar.firstDay : 0;
+        
+        var $children = this.children();
+        for ( var i = 0; i < dayNames.length; i++ ) {
+            var day = (i + firstDay) % 7;
+            var dayName = dayNames[ day ];
+            $children.eq(i).content( dayName );
+        }
+    })
+    
+});
+
+DaysOfWeek.extend({
+    
+    // Default names; used if Globalize is not loaded.
+    days: {
+        // full day names
+        names: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+        
+        // abbreviated day names
+        namesAbbr: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
+        
+        // shortest day names
+        namesShort: [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]
+    }
+    
+})
+</script>
+
+</Control>

@@ -1,0 +1,53 @@
+<!-- The name of the current month, globalized. -->
+
+<Control name="MonthName" tag="span">
+
+<script>
+MonthName.prototype.extend({
+    
+    initialize: function() {
+        if ( !this.month() ) {
+            var today = new Date();
+            this.month( today.getMonth() );
+        }
+    },
+
+    culture: function( culture ) {
+        var result = MonthName.superclass.prototype.culture.call( this, culture );
+        if ( culture !== undefined ) {
+            this.month( this.month() );
+        }
+        return result;
+    },
+    
+    month: Control.property( function( month ) {
+        var culture = this.culture();
+        var monthNameEnum = culture ? culture.calendar.months.names : MonthName.names;
+        this.content( monthNameEnum[ month ] );
+    })
+    
+});
+
+// Class methods
+MonthName.extend({
+    
+    // Default names, used if Globalize is not avaialble.
+    names: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ],
+    
+});
+</script>
+
+</Control>
