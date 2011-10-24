@@ -1,10 +1,26 @@
 <Control name="TestPage">
     
-<content>
-    <List id="tileList" itemClass="DemoTile" mapFunction="controlRecord"/>
-</content>
+<prototype>
+    <SitePage title="QuickUI Catalog" area="Catalog">
+        
+        <navigationLinks>
+            <CatalogNavigationLinks/>
+        </navigationLinks>
+        
+        <List id="tileList" itemClass="DemoTile" mapFunction="controlRecord"/>
+        
+    </SitePage>
+</prototype>
 
 <style>
+#SitePage_content {
+    max-width: inherit;
+}
+
+#tileList {
+    border-collapse: separate;
+}
+
 .DemoTile {
     display: inline-table;
     margin: 0 20px 20px 0;

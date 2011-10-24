@@ -31,6 +31,7 @@
 
 #description {
     color: #444;
+    font-size: 90%;
 }
 
 .DemoTile:hover #className {
