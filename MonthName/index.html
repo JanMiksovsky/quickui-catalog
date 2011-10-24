@@ -3,18 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<!--
 <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300&v2' rel='stylesheet' type='text/css'>
--->
 <link rel="stylesheet" type="text/css" href="../../plugins/quickui.rehydrate.css" />
 <link rel="stylesheet" type="text/css" href="../../quicommon/quicommon.css" />
 <link rel="stylesheet" type="text/css" href="../../controls/controls.css" />
 <link rel="stylesheet" type="text/css" href="../../site.css" />
 <link rel="stylesheet" type="text/css" href="../quickui-catalog.css" />
 
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script> -->
-<script type="text/javascript" src="http://localhost/projects/lib/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="../../thirdParty/highlight.min.js"></script>
 <script type="text/javascript" src="../../lib/quickui.js"></script>
 <script type="text/javascript" src="../../plugins/quickui.rehydrate.js"></script>
@@ -22,27 +19,24 @@
 <script type="text/javascript" src="../../controls/controls.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title>CalendarMonth</title>
+<title>MonthName</title>
 
 </head>
 
 <body data-create-controls="true" data-control="NewCatalogPage">
 
 <div data-property="summary">
-Shows a single month from a calendar as a standard seven-column table.
-This hosts <a data-control="NewCatalogLink">CalendarWeek</a> instances
-to render up to six weeks of the month. For a version of this control that adds
-headings for the month name and days of the week, see
-<a data-control="NewCatalogLink">CalendarMonthWithHeadings</a>.
+    Shows the name of the month for a given date. This is used as a heading in
+    <a data-control="NewCatalogLink">CalendarMonthWithHeadings</a>.
 </div>
 
 <p>
-By default, the current month is shown.
+    By default, this shows the name of the current month.
 </p>
 <p>
-Set the dayClass property to change the class used to render the days of the
-month. The standard base class for custom day classes is
-<a data-control="NewCatalogLink">CalendarDay</a>.
+    If the jQuery <a data-control="Link">Globalize</a> plugin is loaded, the
+    month names are taken from the current culture. Otherwise, English month
+    names are used.
 </p>
 
 </body>
