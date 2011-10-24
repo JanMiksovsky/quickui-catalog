@@ -1,0 +1,124 @@
+<!-- A single day in a calendar -->
+
+<Control name="CalendarDay">
+
+<style>
+/* Subclasses can extend these */
+.CalendarDay {}
+.CalendarDay.alternateMonth {}
+.CalendarDay.firstWeek {}
+.CalendarDay.firstDayOfMonth {}
+.CalendarDay.lastDayOfMonth {}
+.CalendarDay.today {}
+.CalendarDay.sunday {}
+.CalendarDay.saturday {}
+.CalendarDay.weekday {}
+.CalendarDay.past {}
+.CalendarDay.future {}
+.CalendarDay.insideRange {}
+.CalendarDay.outsideRange {}
+
+/* Generic appearance */
+.CalendarDay.generic {
+    border: 1px solid transparent;
+    font-family: sans-serif;
+    padding: 4px;
+    text-align: right;
+}
+.CalendarDay.generic.today {
+    color: darkred;
+    font-weight: bold;
+}
+</style>
+
+<script>
+CalendarDay.prototype.extend({
+    
+    alternateMonth: Control.chain( "applyClass/alternateMonth" ),
+    firstDayOfMonth: Control.chain( "applyClass/firstDayOfMonth" ),
+    firstWeek: Control.chain( "applyClass/firstWeek" ),
+    future: Control.chain( "applyClass/future" ),
+    lastDayOfMonth: Control.chain( "applyClass/lastDayOfMonth" ),
+    past: Control.chain( "applyClass/past" ),
+    saturday: Control.chain( "applyClass/saturday" ),
+    sunday: Control.chain( "applyClass/sunday" ),
+    today: Control.chain( "applyClass/today" ),
+    weekday: Control.chain( "applyClass/weekday" ),
+    
+    initialize: function() {
+        
+        CalendarDay.superclass.prototype.initialize.call( this );
+        this.genericIfClassIs( CalendarDay );
+        
+        var self = this;
+        this.click( function( event ) {
+            self.trigger( "dateSelected", [ self.date() ] );
+        });
+        
+        if ( !this.date() ) {
+            this.date( CalendarDay.today() );
+        }
+    },
+
+    date: Control.property.date( function( date ) {
+        
+        var today = CalendarDay.today();
+        var dayOfWeek = date.getDay();
+        var dayOfMonth = date.getDate();
+        var nextDate = CalendarDay.addDays( date, 1 );
+        var daysFromToday = Math.round( (date.getTime() - today.getTime()) / CalendarDay.MILLISECONDS_IN_DAY );
+        
+        this
+            .past( date < today )
+            .future( date > today )
+            .firstDayOfMonth( dayOfMonth === 1 )
+            .lastDayOfMonth( date.getMonth() !== nextDate.getMonth() )
+            .firstWeek( dayOfMonth <= 7 )
+            .sunday( dayOfWeek === 0 )
+            .saturday( dayOfWeek === 6 )
+            .weekday( dayOfWeek > 0 && dayOfWeek < 6 )
+            .today( daysFromToday === 0 )
+            .alternateMonth( Math.abs( date.getMonth() - today.getMonth()) % 2 === 1 )
+            .content( date.getDate() );
+    })
+    
+});
+
+
+// Class methods. These are general date utilities.
+CalendarDay.extend({
+
+    MILLISECONDS_IN_DAY: 24 * 60 * 60 * 1000,
+
+    // Return the result of adding the specified number of days to the given date.
+    addDays: function( date, days ) {
+        
+        // Use noon hour for date math, since adding/subtracting multiples of 24 hours
+        // starting from noon is guaranteed to end up on the correct date (although
+        // the hours might have changed).
+        var noon = new Date( date.getTime() );
+        noon.setHours( 11 );
+        var result = new Date( noon.getTime() + (days * this.MILLISECONDS_IN_DAY) );
+        
+        // Restore original hours
+        result.setHours( date.getHours() );
+        return result;
+    },
+    
+    midnightOnDate: function( date ) {
+        var d = new Date( date.getTime() );
+        d.setHours( 0 );
+        d.setMinutes( 0 );
+        d.setSeconds( 0 );
+        d.setMilliseconds( 0 );
+        return d;
+    },
+    
+    today: function() {
+        return this.midnightOnDate( new Date() );
+    }
+
+});
+</script>
+
+</Control>

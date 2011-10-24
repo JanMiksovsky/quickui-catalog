@@ -1,0 +1,101 @@
+<!-- Shows a single calendar week -->
+
+<Control name="CalendarWeek">
+
+<content>
+    <CalendarDay/>
+    <CalendarDay/>
+    <CalendarDay/>
+    <CalendarDay/>
+    <CalendarDay/>
+    <CalendarDay/>
+    <CalendarDay/>
+</content>
+
+<style>
+{
+    display: table-row;
+}
+> * {
+    display: table-cell;
+    width: 14.2%; /* One seventh */
+}
+
+/* Subclasses can extend these */
+.week {}
+.day.insideRange {}
+.day.outsideRange {}
+</style>
+
+<script>
+CalendarWeek.prototype.extend({
+    
+    /* The date that will be included in this week (could be any day of the week) */
+    date: Control.property( function() { this._refresh(); }),
+
+    /* The collection of day cells */
+    $days: Control.chain( "children", "control" ),
+    
+    /* The class of each day cell */
+    dayClass: Control.chain( "$days", "transmute", function() { this._refresh(); } ),
+    
+    initialize: function() {
+        if ( !this.date() ) {
+            // Default date range is the current week.
+            this.date( CalendarDay.today() );
+        }
+    },
+    
+    culture: function( culture ) {
+        var result = CalendarDay.superclass.prototype.culture.call( this, culture );
+        if ( culture !== undefined ) {
+            this._refresh();
+        }
+        return result;
+    },
+
+    // Return the day control for the given date.
+    // TODO: Return null if date is not within this week.
+    dayControlForDate: function( date ) {
+        var days = this.map( function( index, week ) {
+            var $week = $( week ).control();
+            var dayIndex = $week.daysSinceFirstDayOfWeek( date );
+            return $week.$days()[ dayIndex ];
+        });
+        var $days = $().add( days ).control();
+        return $days;
+    },
+    
+    daysSinceFirstDayOfWeek: function( date ) {
+        var firstDayOfWeek = this.firstDayOfWeek();
+        return ( date.getDay() - firstDayOfWeek + 7 ) % 7;
+    },
+    
+    // Return the index of the "first day of the week" in the current culture.
+    // In English, this is 0 (Sunday), but in many places its 1 (Monday).
+    firstDayOfWeek: function() {
+        var culture = this.culture();
+        return culture ? culture.calendar.firstDay : 0;
+    },
+    
+    /*
+     * Set the dates on all controls in the week.
+     */
+    _refresh: function() {
+
+        // Use midnight on the given date as a reference point.
+        date = CalendarDay.midnightOnDate( this.date() );
+
+        // Get the first day of the week containing this date (e.g., Sunday).
+        var dateStart = CalendarDay.addDays( date, -this.daysSinceFirstDayOfWeek( date ) );
+        
+        // Fill in the date range.
+        this.$days().eachControl( function( index, $day) {
+            $day.date( CalendarDay.addDays( dateStart, index ) );
+        });
+    }
+    
+});
+</script>
+
+</Control>
