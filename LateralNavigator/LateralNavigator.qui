@@ -1,0 +1,78 @@
+<!-- Shows content with a heading and previous/next arrows. -->
+    
+<Control name="LateralNavigator">
+
+<content>
+    <div id="header">
+        <HorizontalPanels>
+            <left>
+                <ButtonBase id="LateralNavigator_previousButton" generic="false">&#9664;</ButtonBase>
+            </left>
+            <content>
+                <div id="LateralNavigator_heading"/>
+            </content>
+            <right>
+                <ButtonBase id="LateralNavigator_nextButton" generic="false">&#9654;</ButtonBase>
+            </right>
+        </HorizontalPanels>
+    </div>
+    <div id="LateralNavigator_content"/>
+</content>
+
+<style>
+{
+    display: table;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#header {
+    height: 30px; /* HACK */
+}
+#header > .HorizontalPanels {
+    width: inherit;
+}
+
+#LateralNavigator_content {
+    width: 100%;
+}
+
+/* Generic appearance */
+.LateralNavigator.generic {
+    font-family: sans-serif;
+}
+.LateralNavigator.generic #LateralNavigator_heading {
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+
+<script>
+LateralNavigator.prototype.extend({
+
+    content: Control.chain( "$LateralNavigator_content", "content" ),
+    nextButtonContent: Control.chain( "$LateralNavigator_nextButton", "content" ),
+    previousButtonContent: Control.chain( "$LateralNavigator_previousButton", "content" ),
+    heading: Control.chain( "$LateralNavigator_heading", "content" ),
+
+    initialize: function() {
+
+        this.genericIfClassIs( LateralNavigator );
+
+        var self = this;
+        this.$LateralNavigator_previousButton().click( function() {
+            self.previous();
+        });
+        this.$LateralNavigator_nextButton().click( function() {
+            self.next();
+        });
+    },
+    
+    /* Subclasses should override these */
+    next: function() {},
+    previous: function() {}
+});
+</script>
+
+</Control>

@@ -37,8 +37,10 @@
             <h2>Class hierarchy</h2>
             <ControlClassHierarchy id="controlClassHierarchy"/>
 
-            <h2>Notes</h2>
-            <div id="CatalogPage_notes" />
+            <div id="sectionContent">
+                <h2>Notes</h2>
+                <div id="CatalogPage_content" />
+            </div>
 
             <h2>Full control source code</h2>
             <SourceFileContents id="sourceCodeControl" />
@@ -48,7 +50,7 @@
 </prototype>
 
 <style>
-#demoMarkup, #demoJavaScript {
+#demoMarkup, #demoJavaScript, #sectionContent {
     display: none;
 }
 </style>
@@ -57,7 +59,6 @@
 NewCatalogPage.prototype.extend({
     
     autoFocus: Control.property.bool( null, true ),
-    content: Control.chain( "$CatalogPage_notes", "content" ),
     sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
     
@@ -73,6 +74,10 @@ NewCatalogPage.prototype.extend({
             }
         });
     },
+    
+    content: Control.chain( "$CatalogPage_content", "content", function( content ) {
+        this.$sectionContent().toggle( content != null );
+    }),
 
     demoClass: Control.property[ "class" ]( function( demoClass ) {
          this.$CatalogPage_demo().transmute( demoClass );

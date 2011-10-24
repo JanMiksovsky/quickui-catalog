@@ -1,0 +1,118 @@
+<!-- Shows a month, allowing using to navigate months and select a date. -->
+
+<Control name="CalendarMonthNavigator">
+
+<prototype>
+    <LateralNavigator>
+        <heading>
+            <MonthName id="monthName"/> <span id="year"/>
+        </heading>
+        <CalendarMonthWithHeadings id="calendar" showMonthName="false" />
+    </LateralNavigator>
+</prototype>
+
+<style>
+/* Generic appearance */
+.CalendarMonthNavigator.generic .CalendarDay.selected {
+    background-color: #ddd;
+}
+</style>
+
+<script>
+CalendarMonthNavigator.prototype.extend({
+    
+    dayNameFormat: Control.chain( "$calendar", "dayNameFormat" ),
+
+    initialize: function() {
+        
+        CalendarMonthNavigator.superclass.prototype.initialize.call( this );
+        this.genericIfClassIs( CalendarMonthNavigator );
+        
+        var self = this;
+        this.bind({
+            "dateChanged dateSelected": function( event, date ) {
+                self.date( date );
+            }
+        });
+        
+        if ( !this.dayClass() ) {
+            this.dayClass( CalendarDayButton );
+        }
+        
+        if ( !this.date() ) {
+            this.date( this.$calendar().date() );
+        }
+    },
+
+    culture: function( culture ) {
+        var result = MonthName.superclass.prototype.culture.call( this, culture );
+        if ( culture !== undefined ) {
+            this.$monthName().culture( culture );
+            this.$calendar().culture( culture );
+        }
+        return result;
+    },
+    
+    date: Control.property( function( date ) {
+        if ( this.$calendar().date().getTime() !== date.getTime() ) {
+            this.$calendar().date( date );
+        }
+        this.$monthName().month( date.getMonth() );
+        this.$year().content( date.getFullYear() );
+        this._applySelection();
+    }), 
+    
+    /*
+     * Define our own dayClass property so we can tell if its been set,
+     * so we can provide a default dayClass.
+     */
+    dayClass: Control.property[ "class" ]( function( dayClass ) {
+        this.$calendar().dayClass( dayClass );
+    }),
+
+    next: function() {
+        // Go one month forward.
+        this._adjustMonth( 1 );
+    },
+    
+    previous: function() {
+        // Go one month backward.
+        this._adjustMonth( -1 );
+    },
+    
+    /* True if the selected date should receive the "selected" style */
+    showSelectedDate: Control.property.bool( function( showSelectedDate ) {
+        // Force selection (or not) of currently-selected date.
+        this._applySelection();
+    }, true ),
+    
+    // Move one month forward (if direction is positive) or backward
+    // (if direction is negative).
+    _adjustMonth: function( direction ) {
+        var adjustment = (direction > 0) ? 1 : -1;
+        var newDate = new Date( this.date().getTime() );
+        var dayOfMonth = newDate.getDate();
+        newDate.setMonth( newDate.getMonth() + adjustment );
+        if ( newDate.getDate() != dayOfMonth ) {
+            // We either overshot (tried to go from Oct 31 to "Nov 31") going
+            // forward, or undershot (tried to go from Dec 31 to "Nov 31")
+            // going backward. In either case, the fix is to back up to the last
+            // date of the previous month, which can be accomplished by the
+            // trick of setting the day of the month to zero.
+            newDate.setDate(0);
+        }
+        this.date( newDate );
+    },
+    
+    _applySelection: function() {
+        this.$calendar().$days().removeClass( "selected" );
+        if ( this.showSelectedDate() ) {
+            var dayControl = this.$calendar().dayControlForDate( this.date() );
+            dayControl.addClass( "selected" );
+        }
+    }
+    
+});
+</script>
+
+</Control>

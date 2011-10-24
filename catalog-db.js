@@ -12,8 +12,16 @@ var controlRecords = [
         description: "Shows a single day in a calendar."
     },
     {
+        name: "CalendarDayButton",
+        description: "Shows a single day in a calendar as a button."
+    },
+    {
         name: "CalendarMonth",
         description: "Shows a single month from a calendar as a standard seven-column table."
+    },
+    {
+        name: "CalendarMonthNavigator",
+        description: "Lets the user select a date, typically in the near future, by navigating through calendar months."
     },
     {
         name: "CalendarMonthWithHeadings",
@@ -26,6 +34,10 @@ var controlRecords = [
     {
         name: "DaysOfWeek",
         description: "Shows the names of the seven days of the week."
+    },
+    {
+        name: "LateralNavigator",
+        description: "Shows content with a heading and previous/next arrows."
     },
     {
         name: "MonthName",
