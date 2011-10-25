@@ -20,18 +20,26 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>List</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
-    data-demoClass=""
-    data-demoFileMarkup="Demo.qui">
+    data-demoClass="ListDemo"
+    data-demoFileMarkup="ListDemo.qui"
+    data-sourceFileControl="../../quicommon/List.qui">
 
 <div data-property="summary">
-
+    Renders each element of a JavaScript array as a QuickUI control.
 </div>
+
+<p>
+    If the properties of the array elements map directly to control
+    properties (as in the demo above), you can set the List's items
+    property directly. Alternatively, you can define a mapping function
+    that will be invoked once for each array element.
+</p>
 
 </body>
 

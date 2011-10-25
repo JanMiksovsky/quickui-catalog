@@ -22,17 +22,6 @@ CatalogNavigationLinks.prototype.extend({
             })
             .items( controlRecords );
         this.$listClass().items([
-            "Fader",
-            "CatalogPage",
-            "Gradient",
-            "HasPopup",
-            "HintTextBox",
-            "HorizontalPanels",
-            "List",
-            "ListComboBox",
-            "LoremIpsum",
-            "Page",
-            "Popup",
             "RotatingPagesWithDots",
             "SampleSpriteButton",
             "SearchBox",

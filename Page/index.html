@@ -20,17 +20,21 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>Page</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
     data-demoClass=""
-    data-demoFileMarkup="Demo.qui">
+    data-sourceFileControl="../../quicommon/Page.qui">
 
 <div data-property="summary">
-
+    Base class for the overall top-level control for a page.
+    The Page class offers some simple page-level facilities: getting/setting
+    the page title (e.g., as an attribute in markup), cracking URL parameters,
+    tracking changes via a hashchange event (using the jQuery hashchange plugin),
+    and creating pages that fill the viewport. 
 </div>
 
 </body>

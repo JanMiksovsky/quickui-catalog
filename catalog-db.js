@@ -110,7 +110,7 @@ var controlRecords = [
     {
         name: "HorizontalPanels",
         demoClass: "HorizontalPanelsDemo",
-        description: ""
+        description: "Positions panels on the left and/or right and gives the remaining space to a main content area."
     },
     {
         name: "LateralNavigator",
@@ -119,26 +119,26 @@ var controlRecords = [
     {
         name: "List",
         demoClass: "ListDemo",
-        description: ""
+        description: "Renders each element of a JavaScript array as a QuickUI control."
     },
     {
         name: "ListComboBox",
         demoClass: "ListComboBoxDemo",
-        description: ""
+        description: "A ComboBox which presents its choices as a dropdown list."
     },
     {
         name: "LoremIpsum",
-        description: ""
+        description: "Shows paragraphs of placeholder text."
     },
     {
         name: "Page",
         demoClass: "",
-        description: ""
+        description: "Base class for the overall top-level control for a page."
     },
     {
         name: "Popup",
-        demoClass: "PopupDemo",
-        description: ""
+        demoClass: "",
+        description: "Base class for popups, menus, dialogs — things that appear temporarily over other things."
     },
     {
         name: "MonthName",
