@@ -20,18 +20,30 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>HintTextBox</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
-    data-demoClass=""
-    data-demoFileMarkup="Demo.qui">
+    data-demoClass="HintTextBoxDemo"
+    data-demoFileMarkup="HintTextBoxDemo.qui">
 
 <div data-property="summary">
-
+    A text box that displays a hint (instructions, also known as a
+    "placeholder") when the text box is empty.
 </div>
+
+<p>
+    HTML 5 defines a standard "placeholder" attribute for text boxes.
+    Even where this is supported, the typical browser implementation hides
+    the placeholder (hint) when when the text box receives the focus.
+    This is problematic in several situations. First, a user tabbing
+    into a field may still want to have the hint visible until they begin
+    typing. Second, there are times when it’s desirable to place the default
+    focus for a page into a text box with a hint. Third, if the user erases
+    what they have typed, it’s helpful to show the hint again.
+</p>
 
 </body>
 

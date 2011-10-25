@@ -20,18 +20,28 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>HasPopup</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
-    data-demoClass=""
-    data-demoFileMarkup="Demo.qui">
+    data-demoClass="HasPopupDemo"
+    data-demoFileMarkup="HasPopupDemo.qui"
+    data-sourceFileControl="../../quicommon/HasPopup.qui">
 
 <div data-property="summary">
-
+    A control with an associated
+    <a data-control="NewCatalogLink">Popup</a>
+    which will appear above or below the control.
+    See also <a data-control="NewCatalogLink">ComboBox</a>.
 </div>
+
+<p>
+    The control attempts to position the popup such that it doesn't cover up the control.
+    E.g., if the control is near the bottom of the viewport, and there is room to show the
+    popup above the control, the popup will appear above the control.
+</p>
 
 </body>
 

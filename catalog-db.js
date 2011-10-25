@@ -95,17 +95,17 @@ var controlRecords = [
     {
         name: "Gradient",
         demoClass: "GradientDemo",
-        description: ""
+        description: "Cross-browser gradient."
     },
     {
         name: "HasPopup",
         demoClass: "HasPopupDemo",
-        description: ""
+        description: "A control with an associated Popup which will appear above or below the control."
     },
     {
         name: "HintTextBox",
         demoClass: "HintTextBoxDemo",
-        description: ""
+        description: "A text box that displays a hint (placeholder) when the text box is empty."
     },
     {
         name: "HorizontalPanels",
