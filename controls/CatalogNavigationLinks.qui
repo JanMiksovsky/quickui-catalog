@@ -22,15 +22,6 @@ CatalogNavigationLinks.prototype.extend({
             })
             .items( controlRecords );
         this.$listClass().items([
-            "BrowserSpecific",
-            "ButtonBase",
-            "ColorSwatch",
-            "ColorSwatchButton",
-            "ColorSwatchComboBox",
-            "ColorSwatchTextBox",
-            "ComboBox",
-            "DeviceSpecific",
-            "Dialog",
             "Fader",
             "CatalogPage",
             "Gradient",

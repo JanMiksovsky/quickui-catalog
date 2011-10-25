@@ -88,8 +88,57 @@ var controlRecords = [
         description: "Base class for modal dialogs"
     },
     {
+        name: "Fader",
+        demoClass: "FaderDemo",
+        description: "Fades out content on the right or bottom."
+    },
+    {
+        name: "Gradient",
+        demoClass: "GradientDemo",
+        description: ""
+    },
+    {
+        name: "HasPopup",
+        demoClass: "HasPopupDemo",
+        description: ""
+    },
+    {
+        name: "HintTextBox",
+        demoClass: "HintTextBoxDemo",
+        description: ""
+    },
+    {
+        name: "HorizontalPanels",
+        demoClass: "HorizontalPanelsDemo",
+        description: ""
+    },
+    {
         name: "LateralNavigator",
         description: "Shows content with a heading and previous/next arrows."
+    },
+    {
+        name: "List",
+        demoClass: "ListDemo",
+        description: ""
+    },
+    {
+        name: "ListComboBox",
+        demoClass: "ListComboBoxDemo",
+        description: ""
+    },
+    {
+        name: "LoremIpsum",
+        description: ""
+    },
+    {
+        name: "Page",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "Popup",
+        demoClass: "PopupDemo",
+        description: ""
     },
     {
         name: "MonthName",

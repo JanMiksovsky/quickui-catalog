@@ -37,6 +37,12 @@
     font-size: 90%;
 }
 
+#demoContainer {
+    max-height: 200px;
+    overflow: hidden;
+    width: 300px;
+}
+
 .DemoTile:hover #className {
     border-bottom: 1px dotted #391c01;
 }
