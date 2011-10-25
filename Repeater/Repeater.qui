@@ -1,29 +1,39 @@
-<!-- Create a certain number of instances of another control. -->
+<!-- Creates a certain number of instances of another control class. -->
 
 <Control name="Repeater">
 
 <script>
 Repeater.prototype.extend({
 
-    itemClass: Control.property[ "class" ]( function() { this._refresh(); }),
+    controlClass: Control.property[ "class" ]( function() { this._refresh(); }),
+    controls: Control.chain( "children", "control" ),
     count: Control.property.integer( function() { this._refresh(); }, 0 ),
-    expansion: Control.chain( "$Repeater_expansion", "content" ),
     
     initialize: function() {
         this._refresh();
     },
 
+    content: Control.property( function( content ) {
+        if ( this.controls() ) {
+            this.controls().content( content );
+        }
+    }),
+
     _refresh: function() {
-        var itemClass = this.itemClass();
+        var controlClass = this.controlClass();
         var count = this.count();
+        var content = this.content();
         var controls = [];
-        if ( itemClass && count > 0 ) {
+        if ( controlClass && count > 0 ) {
             for ( var i = 0; i < count; i++ ) {
-                var $control = itemClass.create();
+                var $control = controlClass.create();
+                if ( content ) {
+                    $control.content( content );
+                }
                 controls.push( $control );
             }
         }
-        this.content( controls );
+        Control( this ).content( controls );
     }
     
 });

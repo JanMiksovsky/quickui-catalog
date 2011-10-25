@@ -58,7 +58,7 @@ SlidingPagesWithDots.prototype.extend({
     
     content: Control.chain( "$pages", "content" ),
     pageButtons: Control.chain( "$pageButtons", "children" ),
-    pageButtonClass: Control.chain( "$pageButtons", "itemClass" ),
+    pageButtonClass: Control.chain( "$pageButtons", "controlClass" ),
     pages: Control.chain( "$pages", "pages" ),
     
     initialize: function() {

@@ -131,6 +131,10 @@ var controlRecords = [
         description: "Shows paragraphs of placeholder text."
     },
     {
+        name: "MonthName",
+        description: "Shows the name of the month for a given date."
+    },
+    {
         name: "Page",
         demoClass: "",
         description: "Base class for the overall top-level control for a page."
@@ -141,7 +145,68 @@ var controlRecords = [
         description: "Base class for popups, menus, dialogs — things that appear temporarily over other things."
     },
     {
-        name: "MonthName",
-        description: "Shows the name of the month for a given date."
+        name: "Repeater",
+        demoClass: "RepeaterDemo",
+        description: "Creates a certain number of instances of another control class."
     },
+    {
+        name: "RotatingPagesWithDots",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "SampleSpriteButton",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "SearchBox",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "SlidingPages",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "SlidingPagesWithDots",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "Sprite",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "SpriteButton",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "Switch",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "Tag",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "TextBoxWithButton",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "TextCondenser",
+        demoClass: "",
+        description: ""
+    },
+    {
+        name: "VerticalPanels",
+        demoClass: "",
+        description: ""
+    }
 ];
