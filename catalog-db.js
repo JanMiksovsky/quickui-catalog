@@ -55,15 +55,18 @@ var controlRecords = [
     },
     {
         name: "ColorSwatchButton",
-        description: ""
+        demoClass: "ColorSwatchButtonDemo",
+        description: "A button that shows a color's name and color swatch."
     },
     {
         name: "ColorSwatchComboBox",
-        description: ""
+        demoClass: "ColorSwatchComboBoxDemo",
+        description: "Lets the user type a CSS color name or value, or choose one from a list."
     },
     {
         name: "ColorSwatchTextBox",
-        description: ""
+        demoClass: "ColorSwatchTextBoxDemo",
+        description: "Lets the user type a CSS color name or value."
     },
     {
         name: "ComboBox",

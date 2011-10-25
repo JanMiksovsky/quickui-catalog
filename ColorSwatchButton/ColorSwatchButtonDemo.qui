@@ -1,0 +1,7 @@
+<Control name="ColorSwatchButtonDemo">
+
+<content>
+    <ColorSwatchButton>LightSeaGreen</ColorSwatchButton>
+</content>
+
+</Control>
