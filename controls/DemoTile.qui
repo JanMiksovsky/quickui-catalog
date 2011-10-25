@@ -2,7 +2,7 @@
 
 <content>
     <div id="classNameContainer">
-        <NewCatalogLink id="className"/>
+        <CatalogLink id="className"/>
     </div>
     <p id="description"/>
     <div id="demoContainer">

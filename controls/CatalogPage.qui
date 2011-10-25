@@ -13,22 +13,34 @@
 
             <h2>Live demo</h2>
             <div id="CatalogPage_demo" />
+            
+            <div id="sampleMarkup">
+                <h2>Sample QuickUI markup to instantiate this control</h2>
+                <SourceCode id="sampleCodeMarkup"/>
+            </div>
 
             <div id="demoMarkup">
                 <h2>QuickUI Markup for the demo above</h2>
-                <SourceFileContents id="sourceCodeExample"/>
+                <SourceFileContents id="demoFileMarkup"/>
+            </div>
+            
+            <div id="sampleJavaScript">
+                <h2>Sample JavaScript to instantiate this control</h2>
+                <SourceCode id="sampleCodeJavaScript"/>
             </div>
             
             <div id="demoJavaScript">
-                <h2>Plain JavaScript alternative for the demo above</h2>
-                <SourceFileContents id="sourceCodeJavaScript"/>
+                <h2>JavaScript for the demo above</h2>
+                <SourceFileContents id="demoFileJavaScript"/>
             </div>
             
             <h2>Class hierarchy</h2>
             <ControlClassHierarchy id="controlClassHierarchy"/>
 
-            <h2>Notes</h2>
-            <div id="CatalogPage_notes" />
+            <div id="sectionContent">
+                <h2>Notes</h2>
+                <div id="CatalogPage_content" />
+            </div>
 
             <h2>Full control source code</h2>
             <SourceFileContents id="sourceCodeControl" />
@@ -38,7 +50,7 @@
 </prototype>
 
 <style>
-#demoMarkup, #demoJavaScript {
+#demoMarkup, #demoJavaScript, #sectionContent {
     display: none;
 }
 </style>
@@ -48,7 +60,6 @@ CatalogPage.prototype.extend({
     
     autoFocus: Control.property.bool( null, true ),
     demo: Control.chain( "$CatalogPage_demo", "content" ),
-    notes: Control.chain( "$CatalogPage_notes", "content" ),
     sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
     
@@ -64,23 +75,56 @@ CatalogPage.prototype.extend({
             }
         });
     },
+    
+    content: Control.chain( "$CatalogPage_content", "content", function( content ) {
+        this.$sectionContent().toggle( content != null );
+    }),
 
-    sourceFileExample: Control.chain( "$sourceCodeExample", "path",
-       function( sourceFileExample ) {
-           this.$demoMarkup().toggle( sourceFileExample != null );
+    demoClass: Control.property[ "class" ]( function( demoClass ) {
+         this.$CatalogPage_demo().transmute( demoClass );
+    }),
+
+    // Demo in markup hides stock "instantiate this control" markup.
+    demoFileMarkup: Control.chain( "$demoFileMarkup", "path",
+       function( demoFileMarkup ) {
+           this.$sampleMarkup().toggle( demoFileMarkup == null );
+           this.$demoMarkup().toggle( demoFileMarkup != null );
        }
     ),
-    
-    sourceFileJavaScript: Control.chain( "$sourceCodeJavaScript", "path",
-       function( sourceFileJavaScript ) {
-           this.$demoJavaScript().toggle( sourceFileJavaScript != null );
+
+    // Demo in JavaScript hides stock "instantiate this control" JavaScript.
+    demoFileJavaScript: Control.chain( "$demoFileJavaScript", "path",
+       function( demoFileJavaScript ) {
+           this.$sampleJavaScript().toggle( demoFileJavaScript == null );
+           this.$demoJavaScript().toggle( demoFileJavaScript != null );
        }
     ),
     
     title: function( title ) {
         var result = this._super( title );
         if ( title !== undefined ) {
-            this.$controlClassHierarchy().controlClass( title );
+            
+            // Grab control class name from title, use it to populate
+            // the fields with standard values.
+            var className = title;
+            
+            if ( !this.demo() || this.demo().length === 0 ) {
+                // As a default demo, instantiate the control.
+                this.$CatalogPage_demo().transmute( className );
+            }
+            
+            this.$sampleCodeMarkup().content(
+                "<" + className + "/>"
+            );
+            this.$sampleCodeJavaScript().content(
+                "$( element ).control( " + className + " );"
+            );
+            
+            this.$controlClassHierarchy().controlClass( className );
+
+            if ( !this.sourceFileControl() ) {
+                this.sourceFileControl( className + ".qui" );
+            }
         }
         return result;
     }

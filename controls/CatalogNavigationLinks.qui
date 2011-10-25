@@ -3,7 +3,7 @@
 <content>
     <Link href="/catalog/">Index</Link>
     <Link href="/catalog/usingCatalog.html">How to use the catalog</Link>
-    <List id="listControls" itemClass="NewCatalogLink"/>
+    <List id="listControls" itemClass="CatalogLink"/>
 </content>
 
 <style>
