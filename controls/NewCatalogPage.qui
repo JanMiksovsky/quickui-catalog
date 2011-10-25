@@ -121,7 +121,9 @@ NewCatalogPage.prototype.extend({
             
             this.$controlClassHierarchy().controlClass( className );
 
-            this.sourceFileControl( className + ".qui" );
+            if ( !this.sourceFileControl() ) {
+                this.sourceFileControl( className + ".qui" );
+            }
         }
         return result;
     }

@@ -8,6 +8,16 @@ var controlRecords = [
         description: "A text area that expands to contain its text."
     },
     {
+        name: "BrowserSpecific",
+        demoClass: "BrowserSpecificDemo",
+        description: "Conditionally shows contents if the given browser is in use."
+    },
+    {
+        name: "ButtonBase",
+        demoClass: "ButtonBaseDemo",
+        description: "Base class for buttons, handling mouse and disabled states."
+    },
+    {
         name: "CalendarDay",
         description: "Shows a single day in a calendar."
     },
@@ -32,8 +42,36 @@ var controlRecords = [
         description: "Shows a single week from a calendar as seven days in a row."
     },
     {
+        name: "ColorSwatch",
+        description: ""
+    },
+    {
+        name: "ColorSwatchButton",
+        description: ""
+    },
+    {
+        name: "ColorSwatchComboBox",
+        description: ""
+    },
+    {
+        name: "ColorSwatchTextBox",
+        description: ""
+    },
+    {
+        name: "ComboBox",
+        description: ""
+    },
+    {
         name: "DaysOfWeek",
         description: "Shows the names of the seven days of the week."
+    },
+    {
+        name: "DeviceSpecific",
+        description: ""
+    },
+    {
+        name: "Dialog",
+        description: ""
     },
     {
         name: "LateralNavigator",
