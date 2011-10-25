@@ -1,7 +1,9 @@
 <Control name="DemoTile">
 
 <content>
-    <NewCatalogLink id="className"/>
+    <div id="classNameContainer">
+        <NewCatalogLink id="className"/>
+    </div>
     <p id="description"/>
     <div id="demoContainer">
         <div id="demo"/>
@@ -14,12 +16,19 @@
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    /*
     -moz-box-shadow: 5px 5px 10px #b0b0b0;
     -webkit-box-shadow: 5px 5px 10px #b0b0b0;
     box-shadow: 5px 5px 10px #b0b0b0;
+    */
     height: 250px;
     padding: 20px;
     width: 300px;
+}
+
+#classNameContainer {
+    border-top: 2px solid #928274;
+    padding-top: 0.5em;
 }
 
 #className {
