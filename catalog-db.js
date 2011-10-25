@@ -41,9 +41,17 @@ var controlRecords = [
         name: "CalendarWeek",
         description: "Shows a single week from a calendar as seven days in a row."
     },
+    /*
+    {
+        name: "CatalogPage",
+        demoClass: "",
+        description: "Page template for entries in the QuickUI Catalog."
+    },
+    */
     {
         name: "ColorSwatch",
-        description: ""
+        demoClass: "ColorSwatchDemo",
+        description: "Shows a block of a CSS color."
     },
     {
         name: "ColorSwatchButton",

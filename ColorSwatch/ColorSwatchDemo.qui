@@ -1,0 +1,7 @@
+<Control name="ColorSwatchDemo">
+
+<content>
+    <ColorSwatch color="IndianRed"/>
+</content>
+
+</Control>

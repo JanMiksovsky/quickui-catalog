@@ -1,3 +1,5 @@
+<!-- Shows a block of a CSS color, either a color name or value. -->
+
 <Control name="ColorSwatch">
 
 <style>
@@ -18,9 +20,6 @@
 
 <script>
 ColorSwatch.prototype.extend({
-    
-    _previousColor: Control.property(),
-    _previousColorValue: Control.property(),
     
     color: function( color ) {
         if ( color === undefined ) {
@@ -46,6 +45,7 @@ ColorSwatch.prototype.extend({
             return this.toggleClass( "none", !colorValid );
         }
     }
+    
 });
 </script>
 

@@ -59,6 +59,7 @@
 NewCatalogPage.prototype.extend({
     
     autoFocus: Control.property.bool( null, true ),
+    demo: Control.chain( "$CatalogPage_demo", "content" ),
     sourceFileControl: Control.chain( "$sourceCodeControl", "path" ),
     summary: Control.chain( "$CatalogPage_summary", "content" ),
     
@@ -107,7 +108,7 @@ NewCatalogPage.prototype.extend({
             // the fields with standard values.
             var className = title;
             
-            if ( !this.demoClass() ) {
+            if ( !this.demo() || this.demo().length === 0 ) {
                 // As a default demo, instantiate the control.
                 this.$CatalogPage_demo().transmute( className );
             }
