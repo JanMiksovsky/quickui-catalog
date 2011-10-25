@@ -182,12 +182,12 @@ var controlRecords = [
     {
         name: "SpriteButton",
         demoClass: "",
-        description: ""
+        description: "A button that uses a Sprite for its background."
     },
     {
         name: "Switch",
-        demoClass: "",
-        description: ""
+        demoClass: "SwitchDemo",
+        description: "Shows exactly one child at a time."
     },
     {
         name: "Tag",
