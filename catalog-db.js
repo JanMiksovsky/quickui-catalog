@@ -70,7 +70,8 @@ var controlRecords = [
     },
     {
         name: "ComboBox",
-        description: ""
+        demoClass: "ComboBoxDemo",
+        description: "A text input area with a popup, which generally presents a list of choices."
     },
     {
         name: "DaysOfWeek",
@@ -78,11 +79,13 @@ var controlRecords = [
     },
     {
         name: "DeviceSpecific",
-        description: ""
+        demoClass: "DeviceSpecificDemo",
+        description: "Conditionally loads different content, control class, or styles depending on the type of device."
     },
     {
         name: "Dialog",
-        description: ""
+        demoClass: "DialogDemo",
+        description: "Base class for modal dialogs"
     },
     {
         name: "LateralNavigator",

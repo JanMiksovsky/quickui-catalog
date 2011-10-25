@@ -2,7 +2,7 @@
 
 <prototype>
     <SpriteButton
-        image="url(SampleSpriteButton/buttonStates.png)"
+        image="url(/catalog/SampleSpriteButton/buttonStates.png)"
         cellHeight="32" />
 </prototype>
 

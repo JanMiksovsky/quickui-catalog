@@ -20,19 +20,33 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>ComboBox</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
-    data-demoClass=""
-    data-demoFileMarkup="Demo.qui"
-    data-demoFileJavaScript="Demo.js">
+    data-autoFocus="false"
+    data-demoClass="ComboBoxDemo"
+    data-demoFileMarkup="ComboBoxDemo.qui"
+    data-sourceFileControl="../../quicommon/ComboBox.qui">
 
 <div data-property="summary">
-
+    A text input area with a popup, which typically presents a dropdown list of
+    choices, but could just as easily provide choices in other ways. The user can always
+    choose to enter their own arbitrary text as well; they are not limited to the indicated
+    choices. See <a data-control="NewCatalogLink">ListComboBox</a> for a
+    subclass optimized to show choices as a standard list.
 </div>
+
+<p>
+    The HTML5 specification calls for a
+    <span data-control="Tag">datagrid</span> element which can be used to
+    create combo boxes, but that only supports a rather narrow definition of what a combo
+    box can do. Even once <span data-control="Tag">datagrid</span>
+    is broadly supported, the ComboBox class still has a role to play as a
+    base class for custom combo boxes.
+</p>
 
 </body>
 

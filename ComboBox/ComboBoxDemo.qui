@@ -1,0 +1,11 @@
+<Control name="ComboBoxDemo">
+
+<content>
+    <ComboBox>
+        <popup>
+            User can select common choices from this popup.
+        </popup>
+    </ComboBox>
+</content>
+
+</Control>
