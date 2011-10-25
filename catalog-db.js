@@ -151,33 +151,33 @@ var controlRecords = [
     },
     {
         name: "RotatingPagesWithDots",
-        demoClass: "",
-        description: ""
+        demoClass: "", /* No demo; the animation would be too distracting */
+        description: "Rotates once through a sequence of horizontally-arranged pages"
     },
     {
         name: "SampleSpriteButton",
-        demoClass: "",
-        description: ""
+        demoClass: "SampleSpriteButtonDemo",
+        description: "A sample of how to create a new type of SpriteButton through subclassing."
     },
     {
         name: "SearchBox",
-        demoClass: "",
-        description: ""
+        demoClass: "GoogleSearchBox",
+        description: "A typical web search box"
     },
     {
         name: "SlidingPages",
         demoClass: "",
-        description: ""
+        description: "Arranges its children as page on a horizontally sliding strip"
     },
     {
         name: "SlidingPagesWithDots",
-        demoClass: "",
-        description: ""
+        demoClass: "SlidingPagesWithDotsDemo",
+        description: "Presents children on a horizontally scrolling strip, with a series of dots to navigate the pages."
     },
     {
         name: "Sprite",
-        demoClass: "",
-        description: ""
+        demoClass: "SpriteDemo",
+        description: "A basic CSS sprite"
     },
     {
         name: "SpriteButton",
@@ -191,8 +191,8 @@ var controlRecords = [
     },
     {
         name: "Tag",
-        demoClass: "",
-        description: ""
+        demoClass: "TagDemo",
+        description: "Formats its content as an XML tag."
     },
     {
         name: "TextBoxWithButton",

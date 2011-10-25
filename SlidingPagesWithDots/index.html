@@ -20,18 +20,30 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>SlidingPagesWithDots</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
-    data-demoClass="Demo"
-    data-demoFileMarkup="Demo.qui">
+    data-demoClass="SlidingPagesWithDotsDemo"
+    data-demoFileMarkup="SlidingPagesWithDotsDemo.qui">
 
 <div data-property="summary">
-
+    Hosts a <a data-control="NewCatalogLink">SlidingPages</a> to present children on
+    a horizontally scrolling strip, and adds a set of dots — one per page —
+    which can be used to navigate to the corresponding page. This control
+    is the basis for <a data-control="NewCatalogLink">RotatingPagesWithDots</a>.
 </div>
+
+<p>
+    This control was discussed in a
+    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2011/10/slidingpageswithdots.html">user interface blog post</a>.
+</p>
+<p>
+    See <a data-control="NewCatalogLink">RotatingPagesWithDots</a> for an example
+    of a subclass that adds automatic rotation.
+</p>
 
 </body>
 
