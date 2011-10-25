@@ -187,7 +187,7 @@ var controlRecords = [
     {
         name: "Switch",
         demoClass: "SwitchDemo",
-        description: "Shows exactly one child at a time."
+        description: "Shows exactly one child at a time; useful for modes."
     },
     {
         name: "Tag",
@@ -197,16 +197,16 @@ var controlRecords = [
     {
         name: "TextBoxWithButton",
         demoClass: "",
-        description: ""
+        description: "A control with a content area (usually some form of text box) and an associated \"Go\" button."
     },
     {
         name: "TextCondenser",
-        demoClass: "",
-        description: ""
+        demoClass: "TextCondenserDemo",
+        description: "Switches to a condensed font when necessary to squeeze in more text."
     },
     {
         name: "VerticalPanels",
-        demoClass: "",
-        description: ""
+        demoClass: "VerticalPanelsDemo",
+        description: "Positions panels on the top and/or bottom and gives the remaining space to a main content area."
     }
 ];

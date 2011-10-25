@@ -20,18 +20,36 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title></title>
+<title>VerticalPanels</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="NewCatalogPage"
-    data-demoClass="Demo"
-    data-demoFileMarkup="Demo.qui">
+    data-demoClass="VerticalPanelsDemo"
+    data-demoFileMarkup="VerticalPanelsDemo.qui"
+    data-sourceFileControl="../../quicommon/VerticalPanels.qui">
 
 <div data-property="summary">
-
+    Layout for a main content area with panels on the top and/or bottom
+    <i>of an unknown size</i> (i.e., which size to their content), and
+    where the main content area should take the remaining space.
 </div>
+
+<p>
+    There are many strategies for laying out top/bottom panels, but these
+    all have various constraints, e.g., requiring that the top/bottom panels
+    have a known, fixed height.
+</p>
+<p>
+    The VerticalPanels control is similar to the vertical uses of
+    the XAML (Silverlight) DockPanel control. The layout engine which
+    VerticalPanels relies on uses JavaScript to recalculate the height
+    of the panels when the control is resized. 
+</p>
+<p>
+    See also the similar <a data-control="NewCatalogLink">HorizontalPanels</a> control.
+</p>
 
 </body>
 
