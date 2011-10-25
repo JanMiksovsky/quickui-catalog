@@ -1,14 +1,13 @@
 <Control name="CatalogNavigationLinks">
 
 <content>
-    <Link id="linkIndex" href="/catalog/">Index</Link>
-    <Link href="usingCatalog.html">How to use the catalog</Link>
-    <List id="newListClass" itemClass="NewCatalogLink"/>
-    <List id="listClass" itemClass="CatalogLink"/>
+    <Link href="/catalog/">Index</Link>
+    <Link href="/catalog/usingCatalog.html">How to use the catalog</Link>
+    <List id="listControls" itemClass="NewCatalogLink"/>
 </content>
 
 <style>
-#newListClass, #listClass {
+#listControls {
     margin-top: 15px;
 }
 </style>
@@ -16,25 +15,11 @@
 <script>
 CatalogNavigationLinks.prototype.extend({
     initialize: function() {
-        this.$newListClass()
+        this.$listControls()
             .mapFunction( function( controlRecord ) {
                 this.content( controlRecord.name )
             })
             .items( controlRecords );
-        this.$listClass().items([
-            "RotatingPagesWithDots",
-            "SampleSpriteButton",
-            "SearchBox",
-            "SlidingPages",
-            "SlidingPagesWithDots",
-            "Sprite",
-            "SpriteButton",
-            "Switch",
-            "Tag",
-            "TextBoxWithButton",
-            "TextCondenser",
-            "VerticalPanels"
-        ]);
     }
 });
 </script>

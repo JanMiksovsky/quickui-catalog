@@ -1,0 +1,209 @@
+<Control name="CatalogIndexListPage">
+
+<prototype>
+<SitePage title="QuickUI Catalog" area="Catalog">
+
+    <navigationLinks>
+        <CatalogNavigationLinks/>
+    </navigationLinks>
+
+    <p>
+    The QuickUI Catalog shows live examples of QuickUI controls, many
+    designed to be ready-to-use base classes for new controls.
+    (Note: Many controls depend on other controls, either for base classes,
+    or as contained elements within a given control. Because QuickUI does
+    not yet offer a dependency-management, for now it's necessary to download
+    all dependencies by hand; automating that process is a task on the QuickUI
+    roadmap.)
+    </p>
+
+    <p>
+    For information on quickly trying out these controls or building them from
+    the open source, see <Link href="usingCatalog.html">How to use the catalog</Link>.
+    </p>
+    
+    <div id="table">
+        <div>
+            <div><CatalogLink>AutoSizeTextBox</CatalogLink></div>
+            <div>A text area that expands to contain its text.</div>
+        </div>
+        <div>
+            <div><CatalogLink>BrowserSpecific</CatalogLink></div>
+            <div>Conditionally shows contents for specific browsers.</div>
+        </div>
+        <div>
+            <div><CatalogLink>ButtonBase</CatalogLink></div>
+            <div>Base class for buttons which handles tracking of button states.</div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorSwatch</CatalogLink></div>
+            <div>Shows a block of a CSS color.</div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorSwatchButton</CatalogLink></div>
+            <div>A button showing a color swatch.</div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorSwatchComboBox</CatalogLink></div>
+            <div>
+                Demonstration of a ListComboBox subclass with a custom text box
+                and custom list presentation.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>ColorSwatchTextBox</CatalogLink></div>
+            <div>
+                Lets the user type a CSS color value, and renders the typed
+                value as a color swatch.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>ComboBox</CatalogLink></div>
+            <div>Base class for a combo box: a text input area with a dropdown set of choices.</div>
+        </div>
+        <div>
+            <div><CatalogLink>DeviceSpecific</CatalogLink></div>
+            <div>
+                Conditionally loads different content, control class, or styles
+                depending on the type of device.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>Dialog</CatalogLink></div>
+            <div>Base class for modal dialogs.</div>
+        </div>
+        <div>
+            <div><CatalogLink>Fader</CatalogLink></div>
+            <div>Fades out content on the right or bottom instead of clipping it.</div>
+        </div>
+        <div>
+            <div><CatalogLink>CatalogPage</CatalogLink></div>
+            <div>The template for all pages in this QuickUI Catalog.</div>
+        </div>
+        <div>
+            <div><CatalogLink>Gradient</CatalogLink></div>
+            <div>A browser-agnostic gradient representation.</div>
+        </div>
+        <div>
+            <div><CatalogLink>HasPopup</CatalogLink></div>
+            <div>A control that has an associated popup that will appear above or below the control.</div>
+        </div>
+        <div>
+            <div><CatalogLink>HintTextBox</CatalogLink></div>
+            <div>A text box that displays a hint (instructions) when the text box is empty.</div>
+        </div>
+        <div>
+            <div><CatalogLink>HorizontalPanels</CatalogLink></div>
+            <div>
+                A layout control that arranges left and/or right side panels.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>List</CatalogLink></div>
+            <div>
+                An abstract control that represents each element of a JavaScript
+                array as a QuickUI control.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>ListComboBox</CatalogLink></div>
+            <div>
+                A combo box that presents its choices as a list.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>LoremIpsum</CatalogLink></div>
+            <div>Generates placeholder text.</div>
+        </div>
+        <div>
+            <div><CatalogLink>Page</CatalogLink></div>
+            <div>
+                Base class for creating top-level pages.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>Popup</CatalogLink></div>
+            <div>
+                Base class for popups, menus, dialogs — things that temporarily appear over other things.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>RotatingPagesWithDots</CatalogLink></div>
+            <div>Rotates once through a sequence of horizontally-arranged pages, and also allows navigation to an individual page.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SampleSpriteButton</CatalogLink></div>
+            <div>An example of creating a sprite button through subclassing.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SearchBox</CatalogLink></div>
+            <div>A typical web search box.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SlidingPages</CatalogLink></div>
+            <div>Arranges its children as page on a horizontally sliding strip; only one child can be seen at a time.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SlidingPagesWithDots</CatalogLink></div>
+            <div>Lets the user navigate a horizontally sliding strip of pages</div>
+        </div>
+        <div>
+            <div><CatalogLink>Sprite</CatalogLink></div>
+            <div>A basic CSS sprite.</div>
+        </div>
+        <div>
+            <div><CatalogLink>SpriteButton</CatalogLink></div>
+            <div>A button that uses a sprite for its background.</div>
+        </div>
+        <div>
+            <div><CatalogLink>Switch</CatalogLink></div>
+            <div>
+                Something like a JavaScript switch statement, this shows exactly
+                one child at any given time (e.g., to reflect an UI mode).
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>Tag</CatalogLink></div>
+            <div>A simple HTML macro that includes both content and styling.</div>
+        </div>
+        <div>
+            <div><CatalogLink>TextBoxWithButton</CatalogLink></div>
+            <div>
+                A control with a text box and an associated button, where clicking
+                the button does something with the text box's content.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>TextCondenser</CatalogLink></div>
+            <div>
+                Switches to a condensed font when necessary to squeeze in more text.
+            </div>
+        </div>
+        <div>
+            <div><CatalogLink>VerticalPanels</CatalogLink></div>
+            <div>
+                A layout control that arranges top and/or bottom panels.
+            </div>
+        </div>
+    </div>
+
+</SitePage>
+</prototype>
+
+<style>
+#table {
+    display: table;
+}
+#table > * {
+    display: table-row;
+}
+#table > * > * {
+    display: table-cell;
+    padding-bottom: .5em;
+}
+#table > * > *:not(:last-child) {
+    padding-right: 1em;
+}
+</style>
+
+</Control>

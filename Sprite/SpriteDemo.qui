@@ -2,13 +2,13 @@
 
 <content>
     <Sprite id="sprite"
-        image="url(SampleSpriteButton/buttonStates.png)"
+        image="url(/catalog/SampleSpriteButton/buttonStates.png)"
         currentCell="4"
         cellHeight="32" />
     <p>
         Select a frame from the sprite image:
     </p>
-    <img id="image" src="SampleSpriteButton/buttonStates.png"/>
+    <img id="image" src="/catalog/SampleSpriteButton/buttonStates.png"/>
 </content>
 
 <style>
