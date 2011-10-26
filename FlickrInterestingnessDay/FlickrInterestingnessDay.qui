@@ -120,6 +120,10 @@ FlickrInterestingnessDay.prototype.extend({
 // Class methods
 FlickrInterestingnessDay.extend({
     
+    // Please replace with your own API key.
+    _flickrApiKey: "c3685bc8d8cefcc1d25949e4c528cbb0",
+    
+    // Cache of photos already loaded, indexed by Flickr-style date string. 
     _cache: {},
     
     getInterestingPhotoForDate: function( date, callback ) {
@@ -151,19 +155,23 @@ FlickrInterestingnessDay.extend({
     },
     
     getFlickrPhotos: function( params, callback ) {
-        // Replace with your own API key
-        var apiKey = "c3685bc8d8cefcc1d25949e4c528cbb0";
+
         var baseUrl = "http://api.flickr.com/services/rest/";
-        var url = baseUrl + 
-                    "?api_key=" + apiKey +
-                    this._formatUrlParams( params ) +
-                    "&format=json" +
-                    "&nojsoncallback=1";
-        $.getJSON( url, function( data ) {
-            if ( data && data.photos ) {
-                callback( data.photos.photo );
-            }
-        });
+        
+        // Note: JSONP in jQuery usually calls for callback=?, but the Flickr
+        // API wants jsoncallback=?. Thankfully, jQuery supports that.
+        var url = baseUrl
+                    + "?api_key=" + this._flickrApiKey
+                    + this._formatUrlParams( params )
+                    + "&format=json"
+                    + "&jsoncallback=?";
+
+        $.getJSON( url )
+            .success( function( data ) {
+                if ( data && data.photos ) {
+                    callback( data.photos.photo );
+                }
+            });
     },
     
     getFlickrImageSrc: function( flickrPhoto, size ) {
@@ -201,7 +209,7 @@ FlickrInterestingnessDay.extend({
         return s;
     }
 
-})
+});
 </script>
 
 </Control>
