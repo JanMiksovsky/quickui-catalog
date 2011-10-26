@@ -24,6 +24,18 @@
 
 <script language="JavaScript">
 $(function() {
+
+    // Check for old URL format: #page=FooAbout and, if found, redirect that to /Foo instead.
+    var pageClassName = Page.urlParameters().page;
+    if ( pageClassName ) {
+        if ( pageClassName.slice( -5 ) === "About" ) {
+            // Map FooAbout to Foo
+            pageClassName = pageClassName.substr( 0, pageClassName.length - 5 );
+        }
+        window.location.href = "/catalog/" + pageClassName;
+        return;
+    }
+
     $( "body" ).control( CatalogIndexPage );
 });
 </script>
