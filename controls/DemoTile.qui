@@ -56,10 +56,10 @@ DemoTile.prototype.extend({
 
     controlRecord: Control.property( function( controlRecord ) {
         this.$className().content( controlRecord.name );
-        var demoClass = controlRecord.demoClass
+        var demoClass = controlRecord.demoClass != null
             ? controlRecord.demoClass
             : controlRecord.name;
-        if ( demoClass && demoClass.length > 0 ) {
+        if ( demoClass ) {
             this.$demo().transmute( demoClass );
         }
         this.$description().content( controlRecord.description );

@@ -100,7 +100,7 @@ var controlRecords = [
     {
         name: "FlickrInterestingnessNavigator",
         demoClass: "",
-        description: "Navigates the Interestingness photo collection on Flickr."
+        description: "Navigates the Interestingness photo collection on Flickr by month."
     },
     {
         name: "Gradient",
