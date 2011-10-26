@@ -13,6 +13,7 @@ Repeater.prototype.extend({
         this._refresh();
     },
 
+    // Setting the content sets the content of the contained controls.
     content: Control.property( function( content ) {
         if ( this.controls() ) {
             this.controls().content( content );
@@ -22,9 +23,9 @@ Repeater.prototype.extend({
     _refresh: function() {
         var controlClass = this.controlClass();
         var count = this.count();
-        var content = this.content();
-        var controls = [];
         if ( controlClass && count > 0 ) {
+            var content = this.content();
+            var controls = [];
             for ( var i = 0; i < count; i++ ) {
                 var $control = controlClass.create();
                 if ( content ) {
@@ -33,6 +34,7 @@ Repeater.prototype.extend({
                 controls.push( $control );
             }
         }
+        // Use base .content() property since we've overridden it.
         Control( this ).content( controls );
     }
     

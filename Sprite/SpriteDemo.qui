@@ -1,19 +1,35 @@
 <Control name="SpriteDemo">
 
 <content>
-    <Sprite id="sprite"
-        image="url(/catalog/SampleSpriteButton/buttonStates.png)"
-        currentCell="4"
-        cellHeight="32" />
-    <p>
-        Select a frame from the sprite image:
-    </p>
-    <img id="image" src="/catalog/SampleSpriteButton/buttonStates.png"/>
+    <div class="panel">
+        <p>
+            Click one:
+        </p>
+        <img id="image" src="/catalog/SampleSpriteButton/buttonStates.png"/>
+    </div>
+    <div class="panel">
+        <p>Selected:</p>
+        <Sprite id="sprite"
+            image="url(/catalog/SampleSpriteButton/buttonStates.png)"
+            currentCell="4"
+            cellHeight="32" />
+    </div>
 </content>
 
 <style>
+.panel {
+    display: inline-table;
+}
+.panel p {
+    margin-bottom: 0;
+}
+
 #image {
     cursor: pointer;
+}
+
+#sprite {
+    width: 89px;
 }
 </style>
 
