@@ -32,6 +32,7 @@
 
 .DemoTile {
     display: inline-table;
+    vertical-align: top;
 }
 </style>
 
