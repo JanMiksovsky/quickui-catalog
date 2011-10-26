@@ -19,6 +19,7 @@
 <style>
 .panel {
     display: inline-table;
+    vertical-align: top;
 }
 .panel p {
     margin-bottom: 0;
