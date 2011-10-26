@@ -20,24 +20,23 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title>CalendarDay</title>
+<title>FlickrInterestingnessDay</title>
 
 </head>
 
-<body data-create-controls="true" data-control="CatalogPage">
+<body data-create-controls="true"
+    data-control="CatalogPage"
+    data-demoClass="FlickrInterestingnessDayDemo"
+    data-demoFileMarkup="FlickrInterestingnessDayDemo.qui">
 
 <div data-property="summary">
-Shows a single day in a calendar. This class is typicall used as the base
-class for days rendered in a <a data-control="CatalogLink">CalendarMonth</a>.
+Shows the most interesting photo for a given date (in the past) from the
+<a data-control="Link" href="http://www.flickr.com/explore/interesting/">
+Flickr Interestingness</a> photo collection. This is a specialized class of
+<a data-control="CatalogLink">CalendarDay</a> used by
+<a data-control="CatalogLink">FlickrInterestingnessNavigator</a> to show
+interesting photos by month.
 </div>
-
-<p>
-By default, the current day is shown.
-</p>
-<p>
-See <a data-control="CatalogLink">CalendarDayButton</a> and
-<a data-control="CatalogLink">FlickrInterestingnessDay</a> for sample subclasses.
-</p>
 
 </body>
 

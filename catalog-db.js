@@ -93,6 +93,16 @@ var controlRecords = [
         description: "Fades out content on the right or bottom."
     },
     {
+        name: "FlickrInterestingnessDay",
+        demoClass: "FlickrInterestingnessDayDemo",
+        description: "Shows the most interesting photo on Flickr for a given day."
+    },
+    {
+        name: "FlickrInterestingnessNavigator",
+        demoClass: "",
+        description: "Navigates the Interestingness photo collection on Flickr."
+    },
+    {
         name: "Gradient",
         demoClass: "GradientDemo",
         description: "Cross-browser gradient."
