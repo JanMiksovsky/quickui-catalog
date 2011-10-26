@@ -40,7 +40,7 @@ CalendarMonth.prototype.extend({
     },
     
     culture: function( culture ) {
-        var result = CalendarMonth.superclass.prototype.culture.call( this, culture );
+        var result = this._super( culture );
         if ( culture !== undefined ) {
             this.$weeks().culture( culture );
             this._refresh();

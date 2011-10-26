@@ -45,7 +45,7 @@ CalendarMonthNavigator.prototype.extend({
     },
 
     culture: function( culture ) {
-        var result = MonthName.superclass.prototype.culture.call( this, culture );
+        var result = this._super( culture );
         if ( culture !== undefined ) {
             this.$monthName().culture( culture );
             this.$calendar().culture( culture );

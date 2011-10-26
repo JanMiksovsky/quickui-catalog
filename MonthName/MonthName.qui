@@ -13,7 +13,7 @@ MonthName.prototype.extend({
     },
 
     culture: function( culture ) {
-        var result = MonthName.superclass.prototype.culture.call( this, culture );
+        var result = this._super( culture );
         if ( culture !== undefined ) {
             this.month( this.month() );
         }

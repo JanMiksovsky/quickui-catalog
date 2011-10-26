@@ -34,7 +34,7 @@ DaysOfWeek.prototype.extend({
     },
     
     culture: function( culture ) {
-        var result = DaysOfWeek.superclass.prototype.culture.call( this, culture );
+        var result = this._super( culture );
         if ( culture !== undefined ) {
             this.format( this.format() );
         }

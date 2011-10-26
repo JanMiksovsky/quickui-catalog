@@ -49,7 +49,7 @@ CalendarDayButton.prototype.extend({
     content: Control.chain( "$button", "content" ),
     
     initialize: function() {
-        CalendarDayButton.superclass.prototype.initialize.call( this );
+        this._super();
         this.genericIfClassIs( CalendarDayButton );
     }
 });

@@ -47,7 +47,7 @@ CalendarDay.prototype.extend({
     
     initialize: function() {
         
-        CalendarDay.superclass.prototype.initialize.call( this );
+        this._super();
         this.genericIfClassIs( CalendarDay );
         
         var self = this;
