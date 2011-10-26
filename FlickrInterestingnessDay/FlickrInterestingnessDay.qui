@@ -1,0 +1,200 @@
+<!-- Shows the most interesting photo on Flickr for a given day. -->
+
+<Control name="FlickrInterestingnessDay">
+
+<prototype>
+    <CalendarDay>
+        <div id="FlickrInterestingnessDay_content"/>
+        <a id="link">
+            <img id="image"/>
+        </a>
+    </CalendarDay>
+</prototype>
+
+<style>
+{
+    background: white;
+    padding: 3px;
+    text-align: left;
+    vertical-align: top;
+}
+
+#FlickrInterestingnessDay_content {
+    color: white;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding-left: 4px;
+    position: absolute;
+    text-shadow: black 1px 1px 0;
+    z-index: 1;
+}
+
+#link {
+    text-decoration: none;
+}
+
+#image {
+    display: block;
+    height: 75px;
+    padding: 1px;
+    width: 75px;
+}
+
+.FlickrInterestingnessDay.past {
+    border-color: #7e7262;
+}
+.FlickrInterestingnessDay.today,
+.FlickrInterestingnessDay.future {
+    border-color: #e5e5e5;
+    padding: 3px 0 0 4px;
+}
+.FlickrInterestingnessDay.today #FlickrInterestingnessDay_content,
+.FlickrInterestingnessDay.future #FlickrInterestingnessDay_content {
+    color: #e5e5e5;
+    text-shadow: none;
+}
+.FlickrInterestingnessDay.today #image,
+.FlickrInterestingnessDay.future #image {
+    visibility: hidden;
+}
+</style>
+
+<script>
+FlickrInterestingnessDay.prototype.extend({
+
+    content: Control.chain( "$FlickrInterestingnessDay_content", "content" ),
+    href: Control.chain( "$link", "attr/href" ),
+    image: Control.chain( "$image", "attr/src" ),
+    
+    initialize: function() {
+        if ( !this.date() ) {
+            // Default day is *yesterday* (since we need a date in the past).
+            var date = CalendarDay.today();
+            date.setDate( date.getDate() - 1 );
+            this.date( date );
+        }
+    },
+    
+    autoLoad: Control.property.bool( function( autoLoad ) {
+        if ( autoLoad && this.image() == null ) {
+            this.loadPhoto();
+        }
+    }),
+    
+    date: function( date ) {
+        var result = this._super( date );
+        if ( date !== undefined ) {
+            this
+                .image( null )
+                .href( null );
+            if ( this.autoLoad() ) {
+                this.loadPhoto();
+            }
+        }
+        return result;
+    },
+    
+    loadPhoto: Control.iterator( function() {
+        var date = this.date();
+        // Flickr only has a photo for dates entirely in the past (not for today).
+        if ( date && date < CalendarDay.today() ) {
+            var self = this;
+            FlickrInterestingnessDay.getInterestingPhotoForDate( date, function( photo ) {
+                if (photo) {
+                    self
+                        .image( photo.src )
+                        .href( photo.href );
+                }
+            });
+        }
+    })
+
+});
+
+// Class methods
+FlickrInterestingnessDay.extend({
+    
+    _cache: {},
+    
+    getInterestingPhotoForDate: function( date, callback ) {
+        
+        var flickrDate = this._formatFlickrDate( date );
+        var cachedPhoto = this._cache[ flickrDate ];
+        if ( cachedPhoto ) {
+            callback( cachedPhoto );
+            return;
+        }
+        
+        var params = {
+            method: "flickr.interestingness.getList",
+            date: flickrDate,
+            per_page: 1
+        };
+        var self = this;
+        this.getFlickrPhotos( params, function( flickrPhotos ) {
+            if ( flickrPhotos && flickrPhotos.length > 0 ) {
+                var first = flickrPhotos[0];
+                var photo = {
+                    src: self.getFlickrImageSrc( first, "s" /* Small thumbnail */ ),
+                    href: self.getFlickrImageHref( first )
+                };
+                self._cache[ flickrDate ] = photo;
+                callback( photo );
+            }
+        });
+    },
+    
+    getFlickrPhotos: function( params, callback ) {
+        // Replace with your own API key
+        var apiKey = "c3685bc8d8cefcc1d25949e4c528cbb0";
+        var baseUrl = "http://api.flickr.com/services/rest/";
+        var url = baseUrl + 
+                    "?api_key=" + apiKey +
+                    this._formatUrlParams( params ) +
+                    "&format=json" +
+                    "&nojsoncallback=1";
+        $.getJSON( url, function( data ) {
+            if ( data && data.photos ) {
+                callback( data.photos.photo );
+            }
+        });
+    },
+    
+    getFlickrImageSrc: function( flickrPhoto, size ) {
+        var sizeParam = ( size ? "_" + size : "" );
+        return "http://farm" + flickrPhoto.farm +
+               ".static.flickr.com/" + flickrPhoto.server +
+               "/" + flickrPhoto.id +
+               "_" + flickrPhoto.secret +
+               sizeParam +
+               ".jpg";
+    },
+    
+    getFlickrImageHref: function(flickrPhoto) {
+        return "http://flickr.com/photo.gne?id=" + flickrPhoto.id;
+    },
+    
+    // Return a date in YYYY-MM-DD format.
+    _formatFlickrDate: function( date ) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var s = year + "-" +
+                ( ( month < 10 ) ? "0" : "" ) + month + "-" +
+                ( ( day < 10 ) ? "0" : "" ) + day;
+        return s;
+    },
+    
+    // Convert the given params dictionary into a string that can be
+    // passed on a URL.
+    _formatUrlParams: function( params ) {
+        var s = "";
+        $.each( params, function( key, value ) {
+            s += "&" + key + "=" + value;
+        });
+        return s;
+    }
+
+})
+</script>
+
+</Control>

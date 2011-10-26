@@ -1,0 +1,101 @@
+<!--
+Shows the most interesting photo for each day of a month
+Note: This makes a *separate call* to Flickr's REST API for each day of the month,
+which is terrible. Unfortunately, Flickr's API doesn't allow allow a way to get
+the most interesting photo for each day of the month; separate calls have to be made
+per day.
+-->
+
+<Control name="FlickrInterestingnessNavigator">
+
+<prototype>
+    <CalendarMonthNavigator dayClass="FlickrIntrestingnessDay" dayNameFormat="namesAbbr">
+        <previousButtonContent>
+            <span class="chevron">«</span>
+            <MonthName id="previousMonthName" class="monthButtonName" />
+        </previousButtonContent>
+        <nextButtonContent>
+            <MonthName id="nextMonthName" class="monthButtonName"/>
+            <span class="chevron">»</span>
+        </nextButtonContent>
+    </CalendarMonthNavigator>
+</prototype>
+
+<style>
+{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 800px;
+}
+
+#header {
+    border-bottom: 1px dotted #ddd;
+    font-size: 12px;
+}
+#header #LateralNavigator_heading {
+    color: #ff0084;
+    text-align: center;
+}
+
+.dayOfWeek {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#calendar {
+    border-collapse: collapse;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.monthButtonName {
+    color: #0063dc;    
+}
+.chevron {
+    color: #ff0084;
+    font-weight: bold;
+}
+
+.FlickrInterestingnessDay.insideMonth {
+    border-style: solid;
+    border-width: 1px;
+}
+.FlickrInterestingnessDay.outsideMonth {
+    visibility: hidden;
+}
+</style>
+
+<script>
+FlickrInterestingnessNavigator.prototype.extend({
+    
+    culture: function( culture ) {
+        var result = this._super( culture );
+        if ( culture !== undefined ) {
+            this.$previousMonthName().culture( culture );
+            this.$nextMonthName().culture( culture );
+        }
+        return result;
+    },
+    
+    date: function( date ) {
+        result = this._super( date );
+        if ( date !== undefined ) {
+            var month = this.date().getMonth();
+    
+            // To get previous month, add 11 instead of subtracting 1, because
+            // -1 % 12 = -1, and not 11 as we would want.
+            this.$previousMonthName().month( (month + 11) % 12 );
+            this.$nextMonthName().month( (month + 1) % 12 );
+            
+            this.$calendar().$days().loadPhoto();
+        }
+        return result;
+    }
+        
+});
+</script>
+
+</Control>
