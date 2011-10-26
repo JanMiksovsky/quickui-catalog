@@ -97,14 +97,21 @@ FlickrInterestingnessDay.prototype.extend({
         var date = this.date();
         // Flickr only has a photo for dates entirely in the past (not for today).
         if ( date && date < CalendarDay.today() ) {
+            
             var self = this;
             FlickrInterestingnessDay.getInterestingPhotoForDate( date, function( photo ) {
                 if (photo) {
-                    self
-                        .image( photo.src )
-                        .href( photo.href );
+                    self.image( photo.src );
                 }
             });
+            
+            // Clicking the day navigates to list of the day's interesting photos.
+            var baseUrl = "http://www.flickr.com/explore/interesting/";
+            var url = baseUrl
+                + date.getFullYear() + "/"
+                + ( date.getMonth() + 1 ) + "/"
+                + date.getDate();
+            this.href( url );
         }
     })
 
