@@ -9,7 +9,7 @@ per day.
 <Control name="FlickrInterestingnessNavigator">
 
 <prototype>
-    <CalendarMonthNavigator dayClass="FlickrIntrestingnessDay" dayNameFormat="namesAbbr">
+    <CalendarMonthNavigator dayClass="FlickrInterestingnessDay" dayNameFormat="namesAbbr">
         <previousButtonContent>
             <span class="chevron">«</span>
             <MonthName id="previousMonthName" class="monthButtonName" />
