@@ -52,19 +52,54 @@ AutoSizeTextBox.prototype.extend({
     
     initialize: function() {
         var self = this;
-        this.$textBox().bind( "change keydown keyup", function() {
-            self.autoSize();
+        this.$textBox().bind({
+            "change keyup": function( event ) {
+                self.autoSize();
+            },
+            keypress: function( event ) {
+                if ( event.which === 13 /* Enter */ ) {
+                    // Speculatively add a line to our copy of the text.
+                    /*
+                     * We're not sure what the exact effect of typing this
+                     * character will be, and at this point it's not reflected
+                     * yet in the text box's content. We speculate that it
+                     * will add a line to the text and size accordingly.
+                     * (One other possibility is that the user's replacing
+                     * a selected chunk of text with a newline.) In any event,
+                     * once we get the keyup or change event, we'll make any
+                     * final adjustments.
+                     */
+                    self.autoSize( true );
+                }
+            }
         });
         this.inDocument( function( $control  ) {
             $control._refresh();
         });
     },
 
-    // Resize the text box to exactly contain its content.
-    autoSize: Control.iterator( function() {        
-        // Copy text box contents; browser will calculate correct height of copy,
-        // which will make overall control taller, which will make text box taller.
-        this.$textCopy().text( this.$textBox().content() );
+    /*
+     * Resize the text box to exactly contain its content.
+     * 
+     * We do this by copying the text box contents to the hidden copy.
+     * That copy will size appropriately, which will make the overall control
+     * the right height, which will then size the text box.
+     */
+    autoSize: Control.iterator( function( addExtraLine ) {
+        
+        var content = this.$textBox().content();
+        
+        if ( addExtraLine ) {
+            content += "\n";
+        }
+        
+        // See if last line of content ends in a newline (extra or otherwise).
+        if ( content.slice( -1 ) === "\n" ) {
+            // Add an extra space so that the last line will get fully rendered.
+            content += " "; 
+        }
+        
+        this.$textCopy().text( content );
     }),
     
     content: Control.chain( "$textBox", "content", function() {
@@ -113,14 +148,12 @@ AutoSizeTextBox.prototype.extend({
         $textCopy.css( "line-height", lineHeight + "px" );
         
         // Mirror the textarea's padding on the text copy.
-        // Also add an extra line on the bottom so user sees they have more room.
         // NOTE: Firefox seems to report 0px padding for the text box, even when there
         // appears to be 1px padding on a standard textarea. WebKit gets this right.
         // Perhaps there's some way in Firefox to detect and correct the error, but
         // for the time being this seems to work okay.
-        var paddingBottom = parseInt( $textBox.css( "padding-bottom" ) );
         $textCopy.css({
-            "padding-bottom": ( paddingBottom + lineHeight ) + "px",  
+            "padding-bottom": $textBox.css( "padding-bottom" ),  
             "padding-left": $textBox.css( "padding-left" ),
             "padding-right": $textBox.css( "padding-right" ),
             "padding-top": $textBox.css( "padding-top" )
@@ -128,10 +161,10 @@ AutoSizeTextBox.prototype.extend({
 
         var minimumLines = this.minimumLines();
         if ( minimumLines ) {
-            // Convert the number of lines into a minimum height;
-            // If anyone knows a more accurate way to do this without
-            // using a magic constant, please fix!
-            var height = Math.round( 1.15 * minimumLines * lineHeight );
+            // Convert the number of lines into a minimum height.
+            var height = minimumLines * lineHeight;
+            // Add in the height of text box's top+bottom border.
+            height += $textBox.outerHeight() - $textBox.height();
             this.css( "min-height", height + "px" );
         }
     })
