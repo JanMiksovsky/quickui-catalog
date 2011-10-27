@@ -43,48 +43,60 @@ Control.prototype.extend({
 
 Fader.prototype.extend({
     
-    content: Control.chain("$Fader_content", "content"),
+    content: Control.chain( "$Fader_content", "content" ),
     
     initialize: function() {
-        var self = this;
-        this.inDocument(function( $control ) {
-            $control.redraw();
+        this.inDocument( function( $control ) {
+            $control._redraw();
         });
     },
     
-    direction: Control.property(function(direction) {
+    direction: Control.property( function( direction ) {
         this
-            .toggleClass("vertical", direction !== "horizontal")
-            .redraw()
+            .toggleClass( "vertical", direction !== "horizontal" )
+            ._redraw()
             .$gradient()
                 .direction(direction);
     }),
     
-    redraw: function() {
-        var self = this;
-        return this.eachControl(function(index, $control) {
-            var backgroundColor = $control.css("background-color");
-            var backgroundHex = (backgroundColor.substr(0, 3).toLowerCase() == "rgb")
-                                    ? self._rgbStringToHexColor(backgroundColor)
-                                    : backgroundColor;
-            $control.$gradient()
-                .start(backgroundHex + "00")
-                .end(backgroundHex);
-        });
-    },
-    
-    _rgbStringToHexColor: function(rgbString) {
-        rgb = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-        return "#" + this._hexByte(rgb[1]) + this._hexByte(rgb[2]) + this._hexByte(rgb[3]);
+    // Expand a color like #abc into #aabbcc.
+    _expandShortHexValue: function( s ) {
+        var shortHex = s.slice( 1 ); // Remove "#"
+        var longHex = "";
+        for ( var i = 0; i < shortHex.length; i++ ) {
+            var c = shortHex[i];
+            longHex += c + c;
+        }
+        return "#" + longHex;
     },
 
-    _hexByte: function(n) {
-        var s = (new Number(n & 0xFF)).toString(16);
-        if (s.length == 1)
+    _hexByte: function( n ) {
+        var s = ( new Number( n & 0xFF ) ).toString( 16 );
+        if ( s.length === 1 )
         {
             s = "0" + s;
         }
         return s;
+    },
+    
+    _redraw: Control.iterator( function() {
+        var backgroundColor = this.css("background-color");
+        var backgroundHex = ( backgroundColor.length === 4 )
+            ? this._expandShortHexValue( backgroundColor ) 
+            : ( backgroundColor.substr( 0, 3 ).toLowerCase() === "rgb" )
+                ? this._rgbStringToHexColor( backgroundColor )
+                : backgroundColor;
+        this.$gradient()
+            .start( backgroundHex + "00" )
+            .end( backgroundHex );
+    }),
+    
+    _rgbStringToHexColor: function( rgbString ) {
+        rgb = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        return "#"
+            + this._hexByte( rgb[1] )
+            + this._hexByte( rgb[2] )
+            + this._hexByte( rgb[3] );
     }
     
 });
