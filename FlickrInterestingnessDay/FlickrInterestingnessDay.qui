@@ -22,6 +22,7 @@
 #FlickrInterestingnessDay_content {
     color: white;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 18px;
     padding-left: 4px;
     position: absolute;
     text-shadow: black 1px 1px 0;
@@ -33,6 +34,7 @@
 }
 
 #image {
+    border: none; /* For IE */
     display: block;
     height: 75px;
     padding: 1px;

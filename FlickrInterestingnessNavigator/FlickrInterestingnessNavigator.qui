@@ -52,8 +52,20 @@ per day.
 }
 
 .monthButtonName {
-    color: #0063dc;    
+    color: #0063dc;
+    text-decoration: underline;
 }
+.monthButtonName:hover {
+    background-color: #0259C4;
+    color: white;
+    text-decoration: none;
+}
+.ButtonBase.disabled .monthButtonName {
+    background-color: inherit;
+    color: black;
+    text-decoration: none;
+}
+
 .chevron {
     color: #ff0084;
     font-weight: bold;
@@ -83,13 +95,21 @@ FlickrInterestingnessNavigator.prototype.extend({
     date: function( date ) {
         result = this._super( date );
         if ( date !== undefined ) {
-            var month = this.date().getMonth();
-    
-            // To get previous month, add 11 instead of subtracting 1, because
-            // -1 % 12 = -1, and not 11 as we would want.
-            this.$previousMonthName().month( (month + 11) % 12 );
-            this.$nextMonthName().month( (month + 1) % 12 );
             
+            // Show next/previous month names.
+            var previousMonth = new Date( date.getTime() );
+            previousMonth.setMonth( previousMonth.getMonth() - 1 );
+            this.$previousMonthName().month( previousMonth.getMonth() );
+
+            var nextMonth = new Date( date.getTime() );
+            nextMonth.setMonth( nextMonth.getMonth() + 1 );
+            this.$nextMonthName().month( nextMonth.getMonth() );
+            
+            // Disable navigation into future.
+            var today = new Date();
+            nextMonth.setDate( 1 );
+            this.nextButtonDisabled( nextMonth > today );
+                        
             this.$calendar().$days().loadPhoto();
         }
         return result;

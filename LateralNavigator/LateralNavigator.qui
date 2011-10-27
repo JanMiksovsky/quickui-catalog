@@ -53,7 +53,9 @@ LateralNavigator.prototype.extend({
 
     content: Control.chain( "$LateralNavigator_content", "content" ),
     nextButtonContent: Control.chain( "$LateralNavigator_nextButton", "content" ),
+    nextButtonDisabled: Control.chain( "$LateralNavigator_nextButton", "disabled" ),
     previousButtonContent: Control.chain( "$LateralNavigator_previousButton", "content" ),
+    previousButtonDisabled: Control.chain( "$LateralNavigator_previousButton", "disabled" ),
     heading: Control.chain( "$LateralNavigator_heading", "content" ),
 
     initialize: function() {
