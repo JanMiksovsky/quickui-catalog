@@ -51,6 +51,7 @@ the expanding copy will expand the container, which in turn stretch the text box
 AutoSizeTextBox.prototype.extend({
     
     initialize: function() {
+        
         var self = this;
         this.$textBox().bind({
             "change keyup": function( event ) {
@@ -73,6 +74,7 @@ AutoSizeTextBox.prototype.extend({
                 }
             }
         });
+        
         this.inDocument( function( $control  ) {
             $control._refresh();
         });
@@ -147,25 +149,47 @@ AutoSizeTextBox.prototype.extend({
         } 
         $textCopy.css( "line-height", lineHeight + "px" );
         
-        // Mirror the textarea's padding on the text copy.
+        // Mirror the textarea's padding and borders on the text copy.
         // NOTE: Firefox seems to report 0px padding for the text box, even when there
         // appears to be 1px padding on a standard textarea. WebKit gets this right.
         // Perhaps there's some way in Firefox to detect and correct the error, but
         // for the time being this seems to work okay.
+        var borderBottomWidth = $textBox.css( "border-bottom-width" );
+        var borderLeftWidth = $textBox.css( "border-left-width" );
+        var borderRigthWidth = $textBox.css( "border-right-width" );
+        var borderTopWidth = $textBox.css( "border-top-width" );
+        var paddingBottom = $textBox.css( "padding-bottom" );
+        var paddingLeft = $textBox.css( "padding-left" );
+        var paddingRight = $textBox.css( "padding-right" );
+        var paddingTop = $textBox.css( "padding-top" );
         $textCopy.css({
-            "padding-bottom": $textBox.css( "padding-bottom" ),  
-            "padding-left": $textBox.css( "padding-left" ),
-            "padding-right": $textBox.css( "padding-right" ),
-            "padding-top": $textBox.css( "padding-top" )
+            "border-bottom-width": borderBottomWidth,
+            "border-left-width": borderLeftWidth,
+            "border-right-width": borderRigthWidth,
+            "border-top-width": borderTopWidth,  
+            "padding-bottom": paddingBottom,  
+            "padding-left": paddingLeft,
+            "padding-right": paddingRight,
+            "padding-top": paddingTop
         });
 
         var minimumLines = this.minimumLines();
         if ( minimumLines ) {
+            
             // Convert the number of lines into a minimum height.
             var height = minimumLines * lineHeight;
-            // Add in the height of text box's top+bottom border.
-            height += $textBox.outerHeight() - $textBox.height();
-            this.css( "min-height", height + "px" );
+            
+            // Mozilla incorrectly includes padding+border in height when
+            // -moz-box-sizing is border-box. The other browsers do not,
+            // so for those browsers we need to add it in.
+            if ( !$.browser.mozilla ) {
+                height += parseInt( borderTopWidth )
+                        + parseInt( paddingTop )
+                        + parseInt( paddingBottom )
+                        + parseInt( borderBottomWidth );
+            }
+            
+            this.$textCopy().css( "min-height", height + "px" );
         }
     })
     
