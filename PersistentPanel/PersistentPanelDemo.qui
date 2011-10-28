@@ -1,0 +1,27 @@
+<Control name="PersistentPanelDemo">
+
+<content>
+    <div id="container">
+        <p>Top content, like an ad</p>
+        <PersistentPanel id="toolbar" background="#ddd" padding="5px">
+            <ButtonBase>Button 1</ButtonBase>
+            <ButtonBase>Button 2</ButtonBase>
+            <ButtonBase>Button 3</ButtonBase>
+        </PersistentPanel>
+        <LoremIpsum paragraphs="3"/>
+    </div>
+</content>
+
+<style>
+#container {
+    height: 200px;
+    overflow-y: auto;
+    width: 300px;
+}
+
+#toolbar .ButtonBase {
+    margin-right: 5px;
+}
+</style>
+
+</Control>

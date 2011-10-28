@@ -1,0 +1,129 @@
+<!--
+A panel that can be situated in a vertically scrolling container, and which
+will move up and down in the viewport, but will bump up against the top of
+the viewport and remain visible instead of scrolling out of view.
+-->
+
+<Control name="PersistentPanel">
+
+<content>
+    <div id="PersistentPanel_content"/>
+</content>
+
+<style>
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#PersistentPanel_content {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.PersistentPanel.fixed #PersistentPanel_content {
+    position: fixed;
+}
+</style>
+
+<script>
+PersistentPanel.prototype.extend({
+    
+    content: Control.chain( "$PersistentPanel_content", "content" ),
+    
+    // It's common to want to set the background and padding (e.g., for a
+    // toolbar), so expose these as control properties. 
+    background: Control.chain( "$PersistentPanel_content", "css/background" ),
+    padding: Control.chain( "$PersistentPanel_content", "css/padding" ),
+    
+    initialize: function() {
+        
+        this.inDocument( function( $control ) {
+            if ( !$control.scrollingParent() ) {
+                // No scrolling parent has been set; look for one.
+                $control.scrollingParent( this._findScrollingParent() );
+            }
+            $control._adjustSizes();
+        });
+
+        var self = this;
+        $( window ).resize( function() {
+            self._resize();
+        });
+    },
+    
+    scrollingParent: Control.property( function( scrollingParent ) {
+        var self = this;
+        $( scrollingParent ).scroll( function() {
+            self._scrollingParentScrolled();
+        });
+    }),
+    
+    _adjustSizes: function() {
+        
+        // Make the panel the same width as the container.
+        this.$PersistentPanel_content().width( this.width() );
+        
+        // Make the container the same height as the panel, so that when
+        // the panel pops out in fixed mode, the container can continue
+        // to occupy the same amount of vertical space.
+        this.height( this.$PersistentPanel_content().outerHeight() );
+    },
+    
+    _findScrollingParent: function() {
+        
+        var parents = this.parents();
+        for ( var i = 0; i < parents.length; i++ ) {
+            var overflowY = parents.eq(i).css( "overflow-y" );
+            if ( overflowY === "auto" || overflowY === "scroll" ) {
+                return parents[i];
+            }
+        }
+        
+        // No parent is explicitly requesting scrolling; assume window scrolls.
+        return window;
+    },
+    
+    _resize: function() {
+        
+        // A change in width could have caused the contents to change in height,
+        // or the container to change in width.
+        this._adjustSizes();
+        
+        // A resize could easily have caused the container's position to
+        // move in or out of view, so we treat it like a scroll.
+        this._scrollingParentScrolled();
+        
+    },
+
+    _scrollingParentScrolled: function() {
+        var scrollingParent = this.scrollingParent();
+        if ( scrollingParent ) {
+            
+            var isScrollingParentWindow = ( scrollingParent === window );
+            var $scrollingParent = $( scrollingParent ); 
+            var scrollTop = isScrollingParentWindow
+                ? $scrollingParent.scrollTop()
+                : 0;
+            var containerTop = this.position().top;
+            var isContainerInViewport = ( containerTop >= scrollTop );
+
+            // Position the panel at the top of the viewport.
+            var viewPortTop = isScrollingParentWindow
+                ? 0
+                : $scrollingParent.offset().top;
+            this.$PersistentPanel_content().css( "top",
+                isContainerInViewport ? "auto" : viewPortTop + "px" );
+
+            this.toggleClass( "fixed", !isContainerInViewport );
+        }
+    }        
+    
+});
+</script>
+
+</Control>
