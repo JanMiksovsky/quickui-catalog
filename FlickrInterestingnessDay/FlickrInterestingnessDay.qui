@@ -102,7 +102,9 @@ FlickrInterestingnessDay.prototype.extend({
             
             var self = this;
             FlickrInterestingnessDay.getInterestingPhotoForDate( date, function( photo ) {
-                if (photo) {
+                // Double-check we got a photo, and also check that the date
+                // hasn't been changed since the photo was requested.
+                if ( photo && date === self.date() ) {
                     self.image( photo.src );
                 }
             });

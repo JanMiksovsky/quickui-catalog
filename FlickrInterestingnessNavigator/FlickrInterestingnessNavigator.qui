@@ -99,11 +99,15 @@ FlickrInterestingnessNavigator.prototype.extend({
             // Show next/previous month names.
             var previousMonth = new Date( date.getTime() );
             previousMonth.setMonth( previousMonth.getMonth() - 1 );
-            this.$previousMonthName().month( previousMonth.getMonth() );
+            this.$previousMonthName()
+                .month( previousMonth.getMonth() )
+                .trigger( "sizeChanged" );
 
             var nextMonth = new Date( date.getTime() );
             nextMonth.setMonth( nextMonth.getMonth() + 1 );
-            this.$nextMonthName().month( nextMonth.getMonth() );
+            this.$nextMonthName()
+                .month( nextMonth.getMonth() )
+                .trigger( "sizeChanged" );
             
             // Disable navigation into future.
             var today = new Date();
