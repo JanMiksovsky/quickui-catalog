@@ -8,7 +8,7 @@
             scroll out of the way. Examples: leaderboard ads, top site
             navigation.
         </p>
-        <PersistentPanel id="toolbar" background="#ddd" padding="5px">
+        <PersistentPanel id="toolbar" background="#eee" padding="5px">
             <ButtonBase>Button 1</ButtonBase>
             <ButtonBase>Button 2</ButtonBase>
             <ButtonBase>Button 3</ButtonBase>
@@ -27,6 +27,12 @@
 
 p {
     margin: 4px;
+}
+
+#toolbar #PersistentPanel_content {
+    -moz-box-shadow: 0 2px 2px #bbb;
+    -webkit-box-shadow: 0 2px 2px #bbb;
+    box-shadow: 0 2px 2px #bbb;
 }
 
 #container {
