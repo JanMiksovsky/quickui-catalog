@@ -2,17 +2,33 @@
 
 <content>
     <div id="container">
-        <p>Top content, like an ad</p>
+        <p>
+            This area above the persistent panel (here, a toolbar) can hold
+            content that should be initially visible, but which can later
+            scroll out of the way. Examples: leaderboard ads, top site
+            navigation.
+        </p>
         <PersistentPanel id="toolbar" background="#ddd" padding="5px">
             <ButtonBase>Button 1</ButtonBase>
             <ButtonBase>Button 2</ButtonBase>
             <ButtonBase>Button 3</ButtonBase>
         </PersistentPanel>
+        <p>
+            Below the toolbar sits the main page content.
+        </p>
         <LoremIpsum paragraphs="3"/>
     </div>
 </content>
 
 <style>
+{
+    margin: 0;
+}
+
+p {
+    margin: 4px;
+}
+
 #container {
     height: 200px;
     overflow-y: auto;
