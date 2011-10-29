@@ -124,6 +124,7 @@ var controlRecords = [
     },
     {
         name: "LateralNavigator",
+        demoClass: "",
         description: "Shows content with a heading and previous/next arrows."
     },
     {
