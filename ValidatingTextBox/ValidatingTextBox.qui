@@ -1,0 +1,92 @@
+<!--
+Validates textual input using an asymmetric validation scheme.
+This applies a validation function while the user is typing, when the
+control loses focus, or when a validate() method is called.
+
+The validation is considered asymmetric because the control behaves differently
+in an error state than when not in an error state:
+1. If the control is not yet in an error state, the control's validity is not
+reflected until the focus leaves the control. That is, the input is assumed
+to be good until the user has moved on.
+2. If the control is already in an error state, the control's validity is
+reflected immediately upon detecting valid input. That is, the error is
+forgiven without requiring that the user moves the focus away.
+
+For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
+-->
+
+<Control name="ValidatingTextBox">
+
+<prototype>
+    <TextBox/>
+</prototype>
+
+<style>
+/* Generic appearance */
+
+.ValidatingTextBox.error #textBox {
+    background-color: pink;
+}
+</style>
+
+<script>
+ValidatingTextBox.prototype.extend({
+    
+    error: Control.chain( "applyClass/error" ),
+    required: Control.property.bool(),
+    
+    initialize: function() {
+        var self = this;
+        var timeout;
+        this.$textBox().bind({
+            "blur": function() {
+                self.checkValidity();
+            },
+            "keyup": function() {
+                // Only check text after one second has passed.
+                // self.removeClass( "error" );    // Give user benefit of doubt
+                if (timeout) {
+                    clearTimeout( timeout );
+                }
+                timeout = setTimeout( function() {
+                    self.checkValidity();
+                }, 1000 );
+            }
+        });
+    },
+    
+    checkValidity: function() {
+        var valid = this.validate();
+        this.error( !valid );
+    },
+    
+    /*
+     * Returns true if the control's contents are valid.
+     * The default implementation simply looks as the required() property and,
+     * if true, ensures the content is non-empty.
+     *  
+     * Subclasses can override this to validate their contents. E.g.:
+     * 
+     *  validate: function() {
+     *      var valid = this._super();
+     *      if ( valid ) {
+     *          valid = ... Perform additional checks here ...
+     *      }
+     *      return valid;
+     *  }
+     */
+    validate: function() {
+        var valid;
+        if ( this.required() )
+        {
+            var content = this.content();
+            valid = content && content.length > 0;
+        } else {
+            valid = true;
+        }
+        return valid;
+    }
+});
+</script>
+
+</Control>

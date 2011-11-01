@@ -2,25 +2,13 @@
 
 <Control name="DateTextBox">
 
-<content>
-    <input id="text" type="text" />
-</content>
+<prototype>
+    <ValidatingTextBox/>
+</prototype>
 
 <style>
 {
     width: 6em;
-}
-
-#text {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    width: 100%;
-}
-
-.DateTextBox.error #text {
-    background-color: pink;
 }
 </style>
 
@@ -29,26 +17,6 @@ DateTextBox.prototype.extend({
     
     content: Control.chain( "$text", "content" ),
     _previousDate: Control.property.date(),
-    
-    initialize: function() {
-        var self = this;
-        var timeout;
-        this.$text().bind({
-            "blur": function() {
-                self._processText();
-            },
-            "keyup": function() {
-                // Only check text after one second has passed.
-                self.removeClass( "error" );    // Give user benefit of doubt
-                if (timeout) {
-                    clearTimeout( timeout );
-                }
-                timeout = setTimeout( function() {
-                    self._processText();
-                }, 1000 );
-            }
-        });
-    },
     
     date: Control.property.date( function( date ) {
         var previousDate = this._previousDate();

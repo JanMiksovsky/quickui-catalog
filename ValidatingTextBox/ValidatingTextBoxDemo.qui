@@ -1,0 +1,7 @@
+<Control name="ValidatingTextBoxDemo">
+
+<content>
+    <ValidatingTextBox required="true"/>
+</content>
+
+</Control>
