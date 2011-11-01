@@ -24,16 +24,18 @@ DateTextBox.prototype.extend({
         
         var self = this;
         this.$textBox().blur( function() {
-            var date = self.date();
-            if ( !!date ) {
-                var formattedDate = self._formatDate( date );
-                if ( formattedDate !== self.content() ) {
-                    self.content( formattedDate );
-                }
-            }
+            self._refresh();
         });
     },
-    
+
+    culture: function( culture ) {
+        var result = this._super( culture );
+        if ( culture !== undefined ) {
+            this._refresh();
+        }
+        return result;
+    },
+
     date: Control.property.date( function( date ) {
         var previousDate = this._previousDate();
         var previousTime = previousDate && previousDate.getTime();
@@ -60,10 +62,29 @@ DateTextBox.prototype.extend({
         return valid;
     },
     
+    
+    // Return the separator between dates.
+    _dateSeparator: function() {
+        var culture = this.culture();
+        var calendar = culture ? culture.calendar : DateTextBox;
+        return calendar[ "/" ];
+    },
+    
     _formatDate: function( date ) {
         return (date.getMonth() + 1) + 
-            "/" + date.getDate() +
-            "/" + date.getFullYear();
+            this._dateSeparator() + date.getDate() +
+            this._dateSeparator() + date.getFullYear();
+    },
+    
+    _refresh: function() {
+        var date = this.date();
+        if ( !!date ) {
+            var formattedDate = this._formatDate( date );
+            if ( formattedDate !== this.content() ) {
+                this.content( formattedDate );
+            }
+        }
+        return this;
     },
     
     /*
@@ -76,7 +97,7 @@ DateTextBox.prototype.extend({
      */
     _parseDate: function( text ) {
         
-        var parts = text.split( DateTextBox.DATE_SEPARATOR );
+        var parts = text.split( this._dateSeparator() );
         var currentYear = (new Date()).getFullYear().toString();
         
         var munged;
@@ -102,9 +123,23 @@ DateTextBox.prototype.extend({
     
 });
 
-// Class methods
+/*
+ * Class properties.
+ * When Globalize is not present, these offer the U.S. English defaults.
+ * See the Globalize documentation (https://github.com/jquery/globalize)
+ * for details.
+ */
 DateTextBox.extend({
-    DATE_SEPARATOR: "/"
+	
+	"/": "/",
+	
+	patterns: {
+        // short date pattern
+		d: "M/d/yyyy",
+	},
+	
+	twoDigitYearMax: 2029
+	
 });
 </script>
 
