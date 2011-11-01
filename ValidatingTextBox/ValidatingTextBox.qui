@@ -68,7 +68,7 @@ ValidatingTextBox.prototype.extend({
      * True if the field must be non-empty.
      */
     required: Control.property.bool( function() {
-        this.validate();
+        this.validate( true );
     }),
     
     /*

@@ -7,7 +7,7 @@
 </prototype>
 
 <style>
-{
+#textBox {
     width: 6em;
 }
 </style>
