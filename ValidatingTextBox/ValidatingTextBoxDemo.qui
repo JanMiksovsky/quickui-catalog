@@ -1,7 +1,31 @@
 <Control name="ValidatingTextBoxDemo">
 
 <content>
-    <ValidatingTextBox required="true"/>
+    <div>
+        <div class="label">Normal field:</div>
+        <ValidatingTextBox/>
+    </div>
+    <div>
+        <div class="label">Required field:</div>
+        <ValidatingTextBox required="true"/> 
+    </div>
 </content>
+
+<style>
+{
+    display: table;
+}
+> * {
+    display: table-row;
+}
+> * > * {
+    display: table-cell;
+    padding: .5em;
+}
+
+.label {
+    text-align: right;
+}
+</style>
 
 </Control>

@@ -24,7 +24,7 @@ For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 <style>
 /* Generic appearance */
 
-.ValidatingTextBox.error #textBox {
+.ValidatingTextBox.generic.invalid #textBox {
     background-color: pink;
 }
 </style>
@@ -32,33 +32,44 @@ For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 <script>
 ValidatingTextBox.prototype.extend({
     
-    error: Control.chain( "applyClass/error" ),
-    required: Control.property.bool(),
+    invalid: Control.chain( "applyClass/invalid" ),
     
     initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( ValidatingTextBox );
+        
         var self = this;
-        var timeout;
         this.$textBox().bind({
             "blur": function() {
-                self.checkValidity();
+                self.checkValidity( true );
             },
             "keyup": function() {
-                // Only check text after one second has passed.
-                // self.removeClass( "error" );    // Give user benefit of doubt
-                if (timeout) {
-                    clearTimeout( timeout );
-                }
-                timeout = setTimeout( function() {
-                    self.checkValidity();
-                }, 1000 );
+                self.checkValidity();
             }
         });
     },
     
-    checkValidity: function() {
+    /*
+     * Check to see if the control's contents are valid.
+     * If the strict parameter is true, then apply the invalid state if the
+     * contents are invalid. If the strict parameter is false, then the
+     * control can move out of the invalid state (if the contents are now valid),
+     * but can't move into the invalid state.
+     */
+    checkValidity: Control.iterator( function( strict ) {
         var valid = this.validate();
-        this.error( !valid );
-    },
+        if ( strict || this.invalid() ) {
+            this.invalid( !valid );
+        }
+    }),
+    
+    /*
+     * True if the field must be non-empty.
+     */
+    required: Control.property.bool( function() {
+        this.checkValidity();
+    }),
     
     /*
      * Returns true if the control's contents are valid.
@@ -80,7 +91,7 @@ ValidatingTextBox.prototype.extend({
         if ( this.required() )
         {
             var content = this.content();
-            valid = content && content.length > 0;
+            valid = !!content && content.length > 0;
         } else {
             valid = true;
         }
