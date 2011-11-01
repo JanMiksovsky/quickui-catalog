@@ -24,7 +24,7 @@ For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 <style>
 /* Generic appearance */
 
-.ValidatingTextBox.generic.invalid {
+.ValidatingTextBox.generic.invalid #textBox {
     background-color: pink;
 }
 </style>
@@ -40,7 +40,7 @@ ValidatingTextBox.prototype.extend({
         this.genericIfClassIs( ValidatingTextBox );
         
         var self = this;
-        this.bind({
+        this.$textBox().bind({
             "blur": function() {
                 self.validate( true );
             },

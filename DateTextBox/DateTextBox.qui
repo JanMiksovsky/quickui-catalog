@@ -18,16 +18,29 @@ DateTextBox.prototype.extend({
     _previousDate: Control.property.date(),
     
     initialize: function() {
+        
         this._super();
         this.genericIfClassIs( DateTextBox );
+        
+        var self = this;
+        this.$textBox().blur( function() {
+            var date = self.date();
+            if ( !!date ) {
+                var formattedDate = self._formatDate( date );
+                if ( formattedDate !== self.content() ) {
+                    self.content( formattedDate );
+                }
+            }
+        });
     },
     
     date: Control.property.date( function( date ) {
         var previousDate = this._previousDate();
-        if ( !previousDate || date.getTime() !== previousDate.getTime() ) {
-            // Date changed
+        var previousTime = previousDate && previousDate.getTime();
+        var time = date && date.getTime();
+        var dateChanged = ( previousTime !== time ); 
+        if ( !dateChanged ) {
             this
-                .content( this._formatDate( date ) )
                 ._previousDate( date )
                 .trigger( "dateChanged", [ date ] );
         }
@@ -37,12 +50,12 @@ DateTextBox.prototype.extend({
 
         var valid = this._super();
 
-        var date = this._parseDate( this.content() );
-        if (date) {
+        var content = this.content();
+        if ( !!content ) {
+            var date = this._parseDate( content );
             this.date( date );
+            valid = valid && !!date;
         }
-
-        valid = valid && !!this.date();
         
         return valid;
     },
