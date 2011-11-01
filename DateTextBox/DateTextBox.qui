@@ -71,20 +71,16 @@ DateTextBox.prototype.extend({
     },
     
     _formatDate: function( date ) {
-        return (date.getMonth() + 1) + 
-            this._dateSeparator() + date.getDate() +
-            this._dateSeparator() + date.getFullYear();
-    },
-    
-    _refresh: function() {
-        var date = this.date();
-        if ( !!date ) {
-            var formattedDate = this._formatDate( date );
-            if ( formattedDate !== this.content() ) {
-                this.content( formattedDate );
-            }
+        var culture = this.culture();
+        var formattedDate;
+        if ( culture ) {
+            formattedDate = Globalize.format( date, culture.calendar.patterns.d, culture );
+        } else {
+            formattedDate = (date.getMonth() + 1) + 
+                this._dateSeparator() + date.getDate() +
+                this._dateSeparator() + date.getFullYear();
         }
-        return this;
+        return formattedDate;
     },
     
     /*
@@ -97,18 +93,19 @@ DateTextBox.prototype.extend({
      */
     _parseDate: function( text ) {
         
-        var parts = text.split( this._dateSeparator() );
-        var currentYear = (new Date()).getFullYear().toString();
+        var dateSeparator = this._dateSeparator();
+        var parts = text.split( dateSeparator );
+        var currentYear = ( new Date() ).getFullYear().toString();
         
         var munged;
         if ( parts.length === 2 ) {
             // Add on year
-            munged = text + DateTextBox.DATE_SEPARATOR + currentYear;
+            munged = text + dateSeparator + currentYear;
         } else if ( parts.length === 3 && parts[2].length == 2 ) {
             // Convert short year to long year
             var fullYear = currentYear.substring(0, 2) + parts[2];
-            munged = parts[0] + DateTextBox.DATE_SEPARATOR
-                   + parts[1] + DateTextBox.DATE_SEPARATOR
+            munged = parts[0] + dateSeparator
+                   + parts[1] + dateSeparator
                    + fullYear;
         } else {
             // Parse as is
@@ -119,6 +116,17 @@ DateTextBox.prototype.extend({
         return isNaN( milliseconds )
             ? null
             : new Date(milliseconds);
+    },
+    
+    _refresh: function() {
+        var date = this.date();
+        if ( !!date ) {
+            var formattedDate = this._formatDate( date );
+            if ( formattedDate !== this.content() ) {
+                this.content( formattedDate );
+            }
+        }
+        return this;
     }
     
 });
