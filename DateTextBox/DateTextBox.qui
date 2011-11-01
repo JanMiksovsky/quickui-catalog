@@ -115,7 +115,7 @@ DateTextBox.prototype.extend({
         var parseFn = this.culture()
             ? this._parseDateWithCulture
             : this._parseDateDefault;
-        var date = parseFn( text );
+        var date = parseFn.call( this, text );
         return date;
     },
     
