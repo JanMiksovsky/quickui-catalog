@@ -1,0 +1,119 @@
+<!-- Text box that parses dates -->
+
+<Control name="DateTextBox">
+
+<content>
+    <input id="text" type="text" />
+</content>
+
+<style>
+{
+    width: 6em;
+}
+
+#text {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+}
+
+.DateTextBox.error #text {
+    background-color: pink;
+}
+</style>
+
+<script>
+DateTextBox.prototype.extend({
+    
+    content: Control.chain( "$text", "content" ),
+    _previousDate: Control.property.date(),
+    
+    initialize: function() {
+        var self = this;
+        var timeout;
+        this.$text().bind({
+            "blur": function() {
+                self._processText();
+            },
+            "keyup": function() {
+                // Only check text after one second has passed.
+                self.removeClass( "error" );    // Give user benefit of doubt
+                if (timeout) {
+                    clearTimeout( timeout );
+                }
+                timeout = setTimeout( function() {
+                    self._processText();
+                }, 1000 );
+            }
+        });
+    },
+    
+    date: Control.property.date( function( date ) {
+        var previousDate = this._previousDate();
+        if ( !previousDate || date.getTime() !== previousDate.getTime() ) {
+            // Date changed
+            this
+                .content( this._formatDate( date ) )
+                ._previousDate( date )
+                .trigger( "dateChanged", [ date ] );
+        }
+    }),
+
+    _formatDate: function( date ) {
+        return (date.getMonth() + 1) + 
+            "/" + date.getDate() +
+            "/" + date.getFullYear();
+    },
+    
+    /*
+     * Basic date parser.
+     * Parses the given text as a date and return the result.
+     * Returns null if the text couldn't be parsed.
+     * 
+     * In addition to formats supported by the standard Date.parse(),
+     * this also handles a short year ("1/1/12") or missing year ("1/1").
+     */
+    _parseDate: function( text ) {
+        
+        var parts = text.split( DateTextBox.DATE_SEPARATOR );
+        var currentYear = (new Date()).getFullYear().toString();
+        
+        var munged;
+        if ( parts.length === 2 ) {
+            // Add on year
+            munged = text + DateTextBox.DATE_SEPARATOR + currentYear;
+        } else if ( parts.length === 3 && parts[2].length == 2 ) {
+            // Convert short year to long year
+            var fullYear = currentYear.substring(0, 2) + parts[2];
+            munged = parts[0] + DateTextBox.DATE_SEPARATOR
+                   + parts[1] + DateTextBox.DATE_SEPARATOR
+                   + fullYear;
+        } else {
+            // Parse as is
+            munged = text;
+        }
+        
+        var milliseconds = Date.parse( munged );
+        return isNaN( milliseconds )
+            ? null
+            : new Date(milliseconds);
+    },
+    
+    _processText: function() {
+        var date = this._parseDate( this.content() );
+        if (date) {
+            this.date( date );
+        }
+        this.toggleClass( "error", !date );
+    }
+});
+
+// Class methods
+DateTextBox.extend({
+    DATE_SEPARATOR: "/"
+});
+</script>
+
+</Control>

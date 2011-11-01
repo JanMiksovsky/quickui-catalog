@@ -1,7 +1,8 @@
 <Control name="PersistentPanelDemo">
 
 <content>
-    <div id="container">
+    <HorizontalPanels id="container">
+        <right>
         <p>
             This area above the persistent panel (here, a toolbar) can hold
             content that should be initially visible, but which can later
@@ -16,8 +17,9 @@
         <p>
             Below the toolbar sits the main page content.
         </p>
+        </right>
         <LoremIpsum paragraphs="3"/>
-    </div>
+    </HorizontalPanels>
 </content>
 
 <style>
@@ -38,7 +40,6 @@ p {
 #container {
     height: 200px;
     overflow-y: auto;
-    width: 300px;
 }
 
 #toolbar .ButtonBase {

@@ -1,0 +1,54 @@
+<!--
+Lets user pick a date with a date-optimzed text box or a navigable month calendar.
+-->
+
+<Control name="DateComboBox">
+
+<prototype>
+    <ComboBox textBoxClass="DateTextBox">
+        <popup>
+            <CalendarMonthNavigator id="navigator"/>
+        </popup>
+    </ComboBox>
+</prototype>
+
+<script>
+DateComboBox.prototype.extend({
+    
+    navigatorClass: Control.chain( "$navigator", "transmute" ),
+    
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( DateComboBox );
+        
+        // Sync up dates
+        this.date( this.$navigator().date() );
+
+        // Changing text updates navigator, and vice versa.
+        var self = this;
+        this.bind({
+            "dateChanged": function( event, date ) {
+                self.date( date );
+            },
+            "dateSelected": function( event, date ) {
+                self.close();
+            }
+        });
+    },
+    
+    date: Control.property( function( date ) {
+        var textBoxDate = this.$ComboBox_content().date(); 
+        if ( !textBoxDate || textBoxDate.getTime() !== date.getTime() ) {
+            this.$ComboBox_content().date( date );
+        }
+        var navigatorDate = this.$navigator().date();
+        if ( !navigatorDate || navigatorDate.getTime() !== date.getTime() ) {
+            this.$navigator().date( date );
+        }
+    })
+
+});
+</script>
+
+</Control>
