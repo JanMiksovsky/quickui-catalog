@@ -62,6 +62,34 @@ DateTextBox.prototype.extend({
         return valid;
     },
     
+    /*
+     * Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine an
+     * abbreviated date that omits the year (e.g., "M/d"). This assumes the
+     * short date pattern uses a full year ("yyyy") and the culture's date
+     * separator ("/") immediately before or after the year. It tries to
+     * subtract out these elements to produce a valid format without a year.
+     */
+    _abbreviatedDatePattern: function() {
+        
+        var calendar = this.culture().calendar;
+        var shortPattern = calendar.patterns.d;
+        var separator = calendar[ "/" ];
+        var fullYearPlaceholder = "yyyy";
+        
+        // Try removing separator + year first, then try year + separator.
+        var abbreviatedPattern;
+        var separatorThenYear = separator + fullYearPlaceholder;
+        var yearThenSeparator = fullYearPlaceholder + separator;
+        if ( shortPattern.indexOf( separatorThenYear ) >= 0 ) {
+            abbreviatedPattern = shortPattern.replace( separatorThenYear, "" );
+        } else if ( shortPattern.indexOf( yearThenSeparator ) >= 0 ) {
+            abbreviatedPattern = shortPattern.replace( yearThenSeparator, "" );
+        } else {
+            abbreviatedPattern = null;
+        }
+        
+        return abbreviatedPattern;
+    },
     
     // Return the separator between dates.
     _dateSeparator: function() {
@@ -83,15 +111,40 @@ DateTextBox.prototype.extend({
         return formattedDate;
     },
     
+    _parseDate: function( text ) {
+        var parseFn = this.culture()
+            ? this._parseDateWithCulture
+            : this._parseDateDefault;
+        var date = parseFn( text );
+        return date;
+    },
+    
+    _parseDateWithCulture: function( text ) {
+        
+        var culture = this.culture();
+        
+        var formats = null;
+        var abbreviatedDatePattern = this._abbreviatedDatePattern();
+        if ( abbreviatedDatePattern ) {
+            // Add our abbreviated format to all the culture's patterns.
+            formats = $.map( culture.calendar.patterns, function( pattern, name ) {
+                return pattern;
+            });
+            formats.push( abbreviatedDatePattern );
+        }
+        
+        return Globalize.parseDate( text, formats, culture );
+    },
+    
     /*
      * Basic date parser.
      * Parses the given text as a date and return the result.
      * Returns null if the text couldn't be parsed.
      * 
-     * In addition to formats supported by the standard Date.parse(),
-     * this also handles a short year ("1/1/12") or missing year ("1/1").
+     * This handles the formats supported by the standard Date.parse(),
+     * as well as handling a short year ("1/1/12") or missing year ("1/1").
      */
-    _parseDate: function( text ) {
+    _parseDateDefault: function( text ) {
         
         var dateSeparator = this._dateSeparator();
         var parts = text.split( dateSeparator );
@@ -113,9 +166,10 @@ DateTextBox.prototype.extend({
         }
         
         var milliseconds = Date.parse( munged );
-        return isNaN( milliseconds )
+        var date = isNaN( milliseconds )
             ? null
-            : new Date(milliseconds);
+            : Date( milliseconds );
+        return date;
     },
     
     _refresh: function() {
