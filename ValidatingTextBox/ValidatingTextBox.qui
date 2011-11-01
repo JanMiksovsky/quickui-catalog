@@ -24,7 +24,7 @@ For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 <style>
 /* Generic appearance */
 
-.ValidatingTextBox.generic.invalid #textBox {
+.ValidatingTextBox.generic.invalid {
     background-color: pink;
 }
 </style>
@@ -40,12 +40,12 @@ ValidatingTextBox.prototype.extend({
         this.genericIfClassIs( ValidatingTextBox );
         
         var self = this;
-        this.$textBox().bind({
+        this.bind({
             "blur": function() {
-                self.checkValidity( true );
+                self.validate( true );
             },
             "keyup": function() {
-                self.checkValidity();
+                self.validate();
             }
         });
     },
@@ -57,8 +57,8 @@ ValidatingTextBox.prototype.extend({
      * control can move out of the invalid state (if the contents are now valid),
      * but can't move into the invalid state.
      */
-    checkValidity: Control.iterator( function( strict ) {
-        var valid = this.validate();
+    validate: Control.iterator( function( strict ) {
+        var valid = this.valid();
         if ( strict || this.invalid() ) {
             this.invalid( !valid );
         }
@@ -68,7 +68,7 @@ ValidatingTextBox.prototype.extend({
      * True if the field must be non-empty.
      */
     required: Control.property.bool( function() {
-        this.checkValidity();
+        this.validate();
     }),
     
     /*
@@ -78,15 +78,13 @@ ValidatingTextBox.prototype.extend({
      *  
      * Subclasses can override this to validate their contents. E.g.:
      * 
-     *  validate: function() {
+     *  valid: function() {
      *      var valid = this._super();
-     *      if ( valid ) {
-     *          valid = ... Perform additional checks here ...
-     *      }
+     *      valid = valid && ... Perform additional checks here ...
      *      return valid;
      *  }
      */
-    validate: function() {
+    valid: function() {
         var valid;
         if ( this.required() )
         {

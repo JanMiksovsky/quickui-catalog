@@ -3,11 +3,15 @@
 <content>
     <div>
         <div class="label">Normal field:</div>
-        <ValidatingTextBox/>
+        <div><ValidatingTextBox/></div>
     </div>
     <div>
         <div class="label">Required field:</div>
-        <ValidatingTextBox required="true"/> 
+        <div><ValidatingTextBox required="true"/></div> 
+    </div>
+    <div>
+        <div class="label">Required field:</div>
+        <div><DateTextBox/></div> 
     </div>
 </content>
 

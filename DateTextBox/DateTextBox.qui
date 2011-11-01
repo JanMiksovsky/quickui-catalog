@@ -15,8 +15,12 @@
 <script>
 DateTextBox.prototype.extend({
     
-    content: Control.chain( "$text", "content" ),
     _previousDate: Control.property.date(),
+    
+    initialize: function() {
+        this._super();
+        this.genericIfClassIs( DateTextBox );
+    },
     
     date: Control.property.date( function( date ) {
         var previousDate = this._previousDate();
@@ -28,7 +32,21 @@ DateTextBox.prototype.extend({
                 .trigger( "dateChanged", [ date ] );
         }
     }),
+    
+    valid: function() {
 
+        var valid = this._super();
+
+        var date = this._parseDate( this.content() );
+        if (date) {
+            this.date( date );
+        }
+
+        valid = valid && !!this.date();
+        
+        return valid;
+    },
+    
     _formatDate: function( date ) {
         return (date.getMonth() + 1) + 
             "/" + date.getDate() +
@@ -67,15 +85,8 @@ DateTextBox.prototype.extend({
         return isNaN( milliseconds )
             ? null
             : new Date(milliseconds);
-    },
-    
-    _processText: function() {
-        var date = this._parseDate( this.content() );
-        if (date) {
-            this.date( date );
-        }
-        this.toggleClass( "error", !date );
     }
+    
 });
 
 // Class methods
