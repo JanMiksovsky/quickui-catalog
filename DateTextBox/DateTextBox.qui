@@ -220,21 +220,10 @@ DateTextBox.prototype.extend({
 
 /*
  * Class properties.
- * When Globalize is not present, these offer the U.S. English defaults.
- * See the Globalize documentation (https://github.com/jquery/globalize)
- * for details.
  */
 DateTextBox.extend({
-	
-	"/": "/",
-	
-	patterns: {
-        // short date pattern
-		d: "M/d/yyyy",
-	},
-	
-	twoDigitYearMax: 2029
-	
+    // Date separator, used when Globalize is not present.
+	"/": "/"
 });
 </script>
 

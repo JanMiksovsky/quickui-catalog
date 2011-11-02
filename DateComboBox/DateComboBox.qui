@@ -37,14 +37,24 @@ DateComboBox.prototype.extend({
         });
     },
     
+    /*
+     * Keep dates in text box and navigator in sync.
+     */
     date: Control.property( function( date ) {
-        var textBoxDate = this.$ComboBox_content().date(); 
-        if ( !textBoxDate || textBoxDate.getTime() !== date.getTime() ) {
+        
+        var time = date && date.getTime();
+        
+        var textBoxDate = this.$ComboBox_content().date();
+        if ( !textBoxDate || textBoxDate.getTime() !== time ) {
             this.$ComboBox_content().date( date );
         }
-        var navigatorDate = this.$navigator().date();
-        if ( !navigatorDate || navigatorDate.getTime() !== date.getTime() ) {
-            this.$navigator().date( date );
+        
+        // Navigator can only handle non-null dates.
+        if ( date ) {
+            var navigatorDate = this.$navigator().date();
+            if ( !navigatorDate || navigatorDate.getTime() !== time ) {
+                this.$navigator().date( date );
+            }
         }
     })
 
