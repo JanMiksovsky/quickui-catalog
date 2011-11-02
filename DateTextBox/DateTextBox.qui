@@ -54,9 +54,8 @@ DateTextBox.prototype.extend({
             
             var hasFocus = $.contains( this[0], document.activeElement );
             if ( !hasFocus ) {
-                // We updating the content only if the user isn't typing;
-                // we don't want to confuse them by having the text change
-                // even as they're typing.
+                // We updating the content only if the user isn't typing,
+                // so as not to confuse them.
                 this._refresh();
             }
             
@@ -70,9 +69,12 @@ DateTextBox.prototype.extend({
 
         var valid = this._super();
 
+        // Convert content text to a date.
         var content = this.content();
         var date = this._parseDate( content );
         this.date( date );
+
+        // If a date is supplied, it has to be valid.
         if ( content && content.length > 0 ) {
             valid = valid && !!date;
         }
@@ -134,17 +136,16 @@ DateTextBox.prototype.extend({
         }
         return formattedDate;
     },
-    
+
+    /*
+     * Parse the given text as a date.
+     * Use the culture's parser if available, otherwise use a default parser.
+     */
     _parseDate: function( text ) {
-        var parseFn = this.culture()
-            ? this._parseDateWithCulture
-            : this._parseDateDefault;
-        var date = parseFn.call( this, text );
+        var date = this.culture()
+            ? Globalize.parseDate( text, this._datePatterns(), this.culture() )
+            : this._parseDateDefault( text );
         return date;
-    },
-    
-    _parseDateWithCulture: function( text ) {
-        return Globalize.parseDate( text, this._datePatterns(), this.culture() );
     },
     
     /*
@@ -179,7 +180,7 @@ DateTextBox.prototype.extend({
         var milliseconds = Date.parse( munged );
         var date = isNaN( milliseconds )
             ? null
-            : Date( milliseconds );
+            : new Date( milliseconds );
         return date;
     },
     
