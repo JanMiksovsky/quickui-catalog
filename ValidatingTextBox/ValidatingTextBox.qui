@@ -51,6 +51,17 @@ ValidatingTextBox.prototype.extend({
     },
     
     /*
+     * Setting the content programmatically implicitly performs validation.
+     */
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined ) {
+            this.validate( true );
+        }
+        return result;
+    },
+    
+    /*
      * Check to see if the control's contents are valid.
      * If the strict parameter is true, then apply the invalid state if the
      * contents are invalid. If the strict parameter is false, then the
@@ -98,4 +109,4 @@ ValidatingTextBox.prototype.extend({
 });
 </script>
 
-</Control>
+</Control>

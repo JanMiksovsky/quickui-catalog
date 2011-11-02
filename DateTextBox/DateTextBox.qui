@@ -15,6 +15,7 @@
 <script>
 DateTextBox.prototype.extend({
     
+    _datePatterns: Control.property(),
     _previousDate: Control.property.date(),
     
     initialize: function() {
@@ -26,11 +27,14 @@ DateTextBox.prototype.extend({
         this.$textBox().blur( function() {
             self._refresh();
         });
+        
+        this._updateDatePatterns();
     },
 
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
+            this._updateDatePatterns();
             this._refresh();
         }
         return result;
@@ -72,10 +76,10 @@ DateTextBox.prototype.extend({
      * placeholder ("yyyy") and the culture's date separator ("/") immediately
      * before or after the year.
      */
-    _abbreviatedDatePatterns: function() {
+    _abbreviatedDatePatterns: function( culture ) {
         
         var patterns = [];
-        var calendar = this.culture().calendar;
+        var calendar = culture.calendar;
         var shortPattern = calendar.patterns.d;
         var fullYearPlaceholder = "yyyy";
         
@@ -126,19 +130,7 @@ DateTextBox.prototype.extend({
     },
     
     _parseDateWithCulture: function( text ) {
-        var culture = this.culture();
-        
-        var patterns = null;
-        var abbreviatedDatePatterns = this._abbreviatedDatePatterns();
-        if ( abbreviatedDatePatterns.length > 0 ) {
-            // Add our abbreviated patterns to all the culture's patterns.
-            patterns = $.map( culture.calendar.patterns, function( pattern, name ) {
-                return pattern;
-            });
-            patterns = patterns.concat( abbreviatedDatePatterns );
-        }
-        
-        return Globalize.parseDate( text, patterns, culture );
+        return Globalize.parseDate( text, this._datePatterns(), this.culture() );
     },
     
     /*
@@ -186,6 +178,27 @@ DateTextBox.prototype.extend({
             }
         }
         return this;
+    },
+    
+    /*
+     * If the culture's been set, we amend the list of support date patterns
+     * to include some abbreviated patterns.
+     */
+    _updateDatePatterns: function() {
+        var datePatterns = null;
+        var culture = this.culture();
+        if ( culture ) {
+            // Update our date patterns based on the new culture.
+            var abbreviatedDatePatterns = this._abbreviatedDatePatterns( culture );
+            if ( abbreviatedDatePatterns.length > 0 ) {
+                // Add our abbreviated patterns to all the culture's patterns.
+                datePatterns = $.map( this.culture().calendar.patterns, function( pattern, name ) {
+                    return pattern;
+                });
+                datePatterns = datePatterns.concat( abbreviatedDatePatterns );
+            }
+        }
+        this._datePatterns( datePatterns );
     }
     
 });
