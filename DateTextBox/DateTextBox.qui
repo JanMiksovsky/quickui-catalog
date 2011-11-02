@@ -1,4 +1,9 @@
-<!-- Text box that parses dates -->
+<!--
+Text box that parses dates.
+If Globalize is installed, all of the current culture's local date formats are
+supported, plus modified short date formats that permit a missing year or two-
+digit year. If Globalize is not installed, a default date parser is used.
+-->
 
 <Control name="DateTextBox">
 
@@ -45,7 +50,16 @@ DateTextBox.prototype.extend({
         var previousTime = previousDate && previousDate.getTime();
         var time = date && date.getTime();
         var dateChanged = ( previousTime !== time ); 
-        if ( !dateChanged ) {
+        if ( dateChanged ) {
+            
+            var hasFocus = $.contains( this[0], document.activeElement );
+            if ( !hasFocus ) {
+                // We updating the content only if the user isn't typing;
+                // we don't want to confuse them by having the text change
+                // even as they're typing.
+                this._refresh();
+            }
+            
             this
                 ._previousDate( date )
                 .trigger( "dateChanged", [ date ] );
@@ -57,9 +71,9 @@ DateTextBox.prototype.extend({
         var valid = this._super();
 
         var content = this.content();
-        if ( !!content ) {
-            var date = this._parseDate( content );
-            this.date( date );
+        var date = this._parseDate( content );
+        this.date( date );
+        if ( content && content.length > 0 ) {
             valid = valid && !!date;
         }
         
