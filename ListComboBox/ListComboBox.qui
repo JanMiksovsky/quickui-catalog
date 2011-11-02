@@ -41,24 +41,8 @@ ListComboBox.prototype.extend({
         this._super();
         this.genericIfClassIs( ListComboBox );
         
-        var self = this;
-        
-        // Closing the popup leaves the text selected.
-        this.$HasPopup_popup().bind({
-            "closed": function() {
-                var content = self.content();
-                // HACK for IE: If we set focus to the input while the 
-                // popup is being closed, IE won't hide the popup, so we set
-                // the focus in a timeout. It seems quite hard to prevent this
-                // behavior, so we simply disable the selection behavior in IE.
-                if ( !$.browser.msie ) {
-                    self.inputControl().focus();
-                    self._selectText( 0, content.length );
-                }
-            }
-        });
-        
         // Clicking an item in the list puts its content into the text box portion.
+        var self = this;
         this.$list().click( function( event ) {
             var $closestItem = $( event.target ).closest( self.$list().children() );
             if ( $closestItem ) {
@@ -154,28 +138,6 @@ ListComboBox.prototype.extend({
             }
         }
         return null;
-    },
-
-    /*
-     * Select the text at the indicated positions in the input control.
-     */
-    _selectText: function( start, end ) {
-        
-        var inputControl = this.inputControl()[0];
-        if ( !inputControl ) {
-            return; // Can't find input control.
-        }
-        
-        if ( inputControl.setSelectionRange ) {
-            // Mozilla/WebKit
-            inputControl.setSelectionRange( start, end );
-        } else if ( inputControl.createTextRange ) {
-            // IE
-            var range = inputControl.createTextRange();
-            range.moveStart( "character", start );
-            range.moveEnd( "character", end );
-            range.select();
-        }
     },
     
     /*
