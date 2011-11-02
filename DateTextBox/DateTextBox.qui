@@ -63,32 +63,38 @@ DateTextBox.prototype.extend({
     },
     
     /*
-     * Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine an
-     * abbreviated date that omits the year (e.g., "M/d"). This assumes the
-     * short date pattern uses a full year ("yyyy") and the culture's date
-     * separator ("/") immediately before or after the year. It tries to
-     * subtract out these elements to produce a valid format without a year.
+     * Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine
+     * some abbreviated date patterns.
+     * 
+     * The first abbreviated pattern uses a short two-digit year ("M/d/yy")
+     * instead of a full four-digit year. The second pattern omits the year
+     * ("M/d"). These patterns are determined by looking for a full year
+     * placeholder ("yyyy") and the culture's date separator ("/") immediately
+     * before or after the year.
      */
-    _abbreviatedDatePattern: function() {
+    _abbreviatedDatePatterns: function() {
         
+        var patterns = [];
         var calendar = this.culture().calendar;
         var shortPattern = calendar.patterns.d;
-        var separator = calendar[ "/" ];
         var fullYearPlaceholder = "yyyy";
         
-        // Try removing separator + year first, then try year + separator.
-        var abbreviatedPattern;
+        // Try replacing full four-digit year with short two-digit year.
+        if ( shortPattern.indexOf ( fullYearPlaceholder ) ) {
+            patterns.push( shortPattern.replace( fullYearPlaceholder, "yy" ));
+        }
+        
+        // Try removing separator + year, then try removing year + separator.
+        var separator = calendar[ "/" ];
         var separatorThenYear = separator + fullYearPlaceholder;
         var yearThenSeparator = fullYearPlaceholder + separator;
         if ( shortPattern.indexOf( separatorThenYear ) >= 0 ) {
-            abbreviatedPattern = shortPattern.replace( separatorThenYear, "" );
+            patterns.push( shortPattern.replace( separatorThenYear, "" ) );
         } else if ( shortPattern.indexOf( yearThenSeparator ) >= 0 ) {
-            abbreviatedPattern = shortPattern.replace( yearThenSeparator, "" );
-        } else {
-            abbreviatedPattern = null;
+            patterns.push( shortPattern.replace( yearThenSeparator, "" ) );
         }
         
-        return abbreviatedPattern;
+        return patterns;
     },
     
     // Return the separator between dates.
@@ -120,20 +126,19 @@ DateTextBox.prototype.extend({
     },
     
     _parseDateWithCulture: function( text ) {
-        
         var culture = this.culture();
         
-        var formats = null;
-        var abbreviatedDatePattern = this._abbreviatedDatePattern();
-        if ( abbreviatedDatePattern ) {
-            // Add our abbreviated format to all the culture's patterns.
-            formats = $.map( culture.calendar.patterns, function( pattern, name ) {
+        var patterns = null;
+        var abbreviatedDatePatterns = this._abbreviatedDatePatterns();
+        if ( abbreviatedDatePatterns.length > 0 ) {
+            // Add our abbreviated patterns to all the culture's patterns.
+            patterns = $.map( culture.calendar.patterns, function( pattern, name ) {
                 return pattern;
             });
-            formats.push( abbreviatedDatePattern );
+            patterns = patterns.concat( abbreviatedDatePatterns );
         }
         
-        return Globalize.parseDate( text, formats, culture );
+        return Globalize.parseDate( text, patterns, culture );
     },
     
     /*
