@@ -5,8 +5,11 @@
 </content>
 
 <style>
-.CatalogLink:not(:first-child) {
+.CatalogLink {
     margin-left: 1em;
+}
+.CatalogLink:first-child {
+    margin-left: inherit;
 }
 </style>
 
