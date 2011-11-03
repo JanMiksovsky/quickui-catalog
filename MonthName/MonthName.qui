@@ -45,7 +45,7 @@ MonthName.extend({
         "October",
         "November",
         "December"
-    ],
+    ]
     
 });
 </script>

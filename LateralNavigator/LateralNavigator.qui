@@ -6,13 +6,13 @@
     <div id="header">
         <HorizontalPanels>
             <left>
-                <ButtonBase id="LateralNavigator_previousButton" generic="false">&#9664;</ButtonBase>
+                <ButtonBase id="LateralNavigator_previousButton" class="navigatorButton" generic="false">&#9664;</ButtonBase>
             </left>
             <content>
                 <div id="LateralNavigator_heading"/>
             </content>
             <right>
-                <ButtonBase id="LateralNavigator_nextButton" generic="false">&#9654;</ButtonBase>
+                <ButtonBase id="LateralNavigator_nextButton" class="navigatorButton" generic="false">&#9654;</ButtonBase>
             </right>
         </HorizontalPanels>
     </div>
@@ -44,7 +44,13 @@
 }
 .LateralNavigator.generic #LateralNavigator_heading {
     font-weight: bold;
+    margin-top: .25em; /* Hacky attempt at vertical centering */
     text-align: center;
+}
+.LateralNavigator.generic .navigatorButton {
+    border: none;
+    font-size: larger;
+    padding: 0 0.25em;
 }
 </style>
 
@@ -69,6 +75,15 @@ LateralNavigator.prototype.extend({
         this.$LateralNavigator_nextButton().click( function() {
             self.next();
         });
+    },
+    
+    // Use generic buttons if control itself is generic.
+    generic: function( generic ) {
+        var result = this._super( generic );
+        if ( generic !== undefined ) {
+            this.find( ".navigatorButton" ).control().generic( generic );
+        }
+        return result;
     },
     
     /* Subclasses should override these */
