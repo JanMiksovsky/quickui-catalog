@@ -20,6 +20,10 @@
 .CalendarDay.generic.outsideMonth {
     color: #aaa;
 }
+
+.CalendarWeek.hidden {
+    display: none;
+}
 </style>
 
 <script>
@@ -94,11 +98,12 @@ CalendarMonth.prototype.extend({
             $week.date( CalendarDay.addDays( firstDayOfMonth, 7 * weekRow ) );
             
             // Hide weeks completely in another month (i.e., the next month).
+            // Apply "hidden" class to preserve week's original "display" property.
             var $days = $week.$days();
             var firstDayOfWeek = $days.eq(0).date();
             var lastDayOfWeek = $days.eq(6).date();
             var isWeekInMonth = ( firstDayOfWeek.getMonth() === month || lastDayOfWeek.getMonth() === month );
-            $week.toggle( isWeekInMonth );
+            $week.toggleClass( "hidden", !isWeekInMonth );
         });
         
         // Paint days inside and outside range.
