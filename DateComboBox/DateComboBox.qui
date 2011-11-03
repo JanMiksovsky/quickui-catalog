@@ -33,6 +33,7 @@ DateComboBox.prototype.extend({
                 self.date( date );
             },
             "dateSelected": function( event, date ) {
+                self.date( date );
                 self.close();
             }
         });

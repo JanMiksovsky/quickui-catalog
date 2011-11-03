@@ -8,6 +8,9 @@
             <MonthName id="monthName"/> <span id="year"/>
         </heading>
         <CalendarMonthWithHeadings id="calendar" showMonthName="false" />
+        <div id="todayContainer">
+            <ButtonBase id="buttonToday">Today</ButtonBase>
+        </div>
     </LateralNavigator>
 </prototype>
 
@@ -16,12 +19,19 @@
 .CalendarMonthNavigator.generic .CalendarDay.selected {
     background-color: #ddd;
 }
+.CalendarMonthNavigator.generic #todayContainer {
+    text-align: center;
+}
+.CalendarMonthNavigator.generic #buttonToday.generic {
+    border: none;
+}
 </style>
 
 <script>
 CalendarMonthNavigator.prototype.extend({
     
     dayNameFormat: Control.chain( "$calendar", "dayNameFormat" ),
+    showTodayButton: Control.chain( "$todayContainer", "visibility" ),
 
     initialize: function() {
         
@@ -30,9 +40,15 @@ CalendarMonthNavigator.prototype.extend({
         
         var self = this;
         this.bind({
-            "dateChanged dateSelected": function( event, date ) {
+            "dateChanged": function( event, date ) {
                 self.date( date );
+            },
+            "dateSelected": function( event, date ) {
+                self.$calendar().date( date );
             }
+        });
+        this.$buttonToday().click( function() {
+            self.trigger( "dateSelected", [ CalendarDay.today() ]);
         });
         
         if ( !this.dayClass() ) {
