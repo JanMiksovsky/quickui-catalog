@@ -20,33 +20,36 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title>ComboBox</title>
+<title>DateComboBox</title>
 
 </head>
 
 <body data-create-controls="true"
-    data-control="CatalogPage"
     data-autoFocus="false"
-    data-demoClass="ComboBoxDemo"
-    data-demoFileMarkup="ComboBoxDemo.qui"
-    data-sourceFileControl="../../quicommon/ComboBox.qui">
+    data-control="CatalogPage"
+    data-demoClass="DateComboBoxDemo"
+    data-demoFileMarkup="DateComboBoxDemo.qui">
 
 <div data-property="summary">
-    A text input area with a popup, which typically presents a dropdown list of
-    choices, but could just as easily provide choices in other ways. The user can always
-    choose to enter their own arbitrary text as well; they are not limited to the indicated
-    choices. See <a data-control="CatalogLink">ListComboBox</a>,
-    <a data-control="CatalogLink">ColorSwatchComboBox</a>, or
-    <a data-control="CatalogLink">DateComboBox</a> for typical subclasses.
+    A type of <a data-control="CatalogLink">ComboBox</a> that 
+    that allows the user type a date or choose a date from a calendar.
+    By default, the input portion of the combo box is a
+    <a data-control="CatalogLink">DateTextBox</a>, and the dropdown portion
+    is a <a data-control="CatalogLink">CalendarMonthNavigator</a>.
 </div>
 
 <p>
-    The HTML5 specification calls for a
-    <span data-control="Tag">datagrid</span> element which can be used to
-    create combo boxes, but that only supports a rather narrow definition of what a combo
-    box can do. Even once <span data-control="Tag">datagrid</span>
-    is broadly supported, the ComboBox class still has a role to play as a
-    base class for custom combo boxes.
+    See <a data-control="CatalogLink">DateTextBox</a> for a discussion of
+    supported date formats.
+</p>
+<p>
+    By default, a DateComboBox's dropdown icon is a downward-pointing arrow.
+    This can be changed to a calendar icon to both suggest to the user which
+    type of data the field accepts and to indicate what will appear if the
+    clicks the button. A useful set of free calendar icons can be found in the
+    <a data-control="Link" href="http://somerandomdude.com/work/iconic/">Iconic</a>
+    icon set, available under the Creative Commons Attribution-ShareAlike
+    license. One of the Iconic calendar icons is shown in the demo above.
 </p>
 
 </body>

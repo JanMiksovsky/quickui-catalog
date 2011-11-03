@@ -16,6 +16,7 @@ Lets user pick a date with a date-optimzed text box or a navigable month calenda
 DateComboBox.prototype.extend({
     
     navigatorClass: Control.chain( "$navigator", "transmute" ),
+    required: Control.chain( "$ComboBox_content", "required" ),
     
     initialize: function() {
         

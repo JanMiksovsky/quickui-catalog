@@ -20,33 +20,41 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title>ComboBox</title>
+<title>DateTextBox</title>
 
 </head>
 
 <body data-create-controls="true"
-    data-control="CatalogPage"
-    data-autoFocus="false"
-    data-demoClass="ComboBoxDemo"
-    data-demoFileMarkup="ComboBoxDemo.qui"
-    data-sourceFileControl="../../quicommon/ComboBox.qui">
+    data-control="CatalogPage">
 
 <div data-property="summary">
-    A text input area with a popup, which typically presents a dropdown list of
-    choices, but could just as easily provide choices in other ways. The user can always
-    choose to enter their own arbitrary text as well; they are not limited to the indicated
-    choices. See <a data-control="CatalogLink">ListComboBox</a>,
-    <a data-control="CatalogLink">ColorSwatchComboBox</a>, or
-    <a data-control="CatalogLink">DateComboBox</a> for typical subclasses.
+    A type of <a data-control="CatalogLink">ValidatingTextBox</a> that 
+    that allows the user type a date in several culture-specific formats.
+    This is used as the input portion of a
+    <a data-control="CatalogLink">DateComboBox</a>.
 </div>
 
 <p>
-    The HTML5 specification calls for a
-    <span data-control="Tag">datagrid</span> element which can be used to
-    create combo boxes, but that only supports a rather narrow definition of what a combo
-    box can do. Even once <span data-control="Tag">datagrid</span>
-    is broadly supported, the ComboBox class still has a role to play as a
-    base class for custom combo boxes.
+    DateTextBox is optimized to handle the short date format commonly used
+    to enter dates. In the U.S., the seventh day of December, 2012, is written
+    in short date format as "12/7/2012".
+</p>
+
+<p>
+    If the jQuery
+    <a data-control="Link" href="https://github.com/jquery/globalize">Globalize</a>
+    library is loaded, the short date format is determined from the current
+    culture. E.g., in France, the above date would be entered by typing
+    "7/12/2012" (with day before month). All other date formats defined by
+    Globalize are also accepted. If Globalize is not present, a simple parser
+    is used that can accept U.S.-style short dates.
+</p>
+
+<p>
+    With or without Globalize, DateTextBox also supports abbreviated forms
+    of the short date format that allow a two-digit year or a missing year.
+    So, in the U.S., 12/7/2012 can be entered as "12/7/12" or (in the year 2012),
+    "12/7".
 </p>
 
 </body>

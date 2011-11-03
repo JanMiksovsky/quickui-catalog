@@ -41,13 +41,6 @@ var controlRecords = [
         name: "CalendarWeek",
         description: "Shows a single week from a calendar as seven days in a row."
     },
-    /*
-    {
-        name: "CatalogPage",
-        demoClass: "",
-        description: "Page template for entries in the QuickUI Catalog."
-    },
-    */
     {
         name: "ColorSwatch",
         demoClass: "ColorSwatchDemo",
@@ -72,6 +65,14 @@ var controlRecords = [
         name: "ComboBox",
         demoClass: "ComboBoxDemo",
         description: "A text input area with a popup, which generally presents a list of choices."
+    },
+    {
+        name: "DateComboBox",
+        description: "Lets the user type a date or choose one from a dropdown calendar."
+    },
+    {
+        name: "DateTextBox",
+        description: "Lets the user type a date in several culture-specific formats."
     },
     {
         name: "DaysOfWeek",
@@ -214,6 +215,11 @@ var controlRecords = [
         name: "TextCondenser",
         demoClass: "TextCondenserDemo",
         description: "Switches to a condensed font when necessary to squeeze in more text."
+    },
+    {
+        name: "ValidatingTextBox",
+        demoClass: "ValidatingTextBoxDemo",
+        description: "Verifies that text box content meets some conditions."
     },
     {
         name: "VerticalPanels",

@@ -10,7 +10,7 @@
         <ValidatingTextBox required="true"/> 
     </div>
     <div>
-        <div class="label">Required field:</div>
+        <div class="label">Date field:</div>
         <DateTextBox/> 
     </div>
 </content>

@@ -20,33 +20,38 @@
 <script type="text/javascript" src="../catalog-db.js"></script>
 <script type="text/javascript" src="../quickui-catalog.js"></script>
 
-<title>ComboBox</title>
+<title>ValidatingTextBox</title>
 
 </head>
 
 <body data-create-controls="true"
     data-control="CatalogPage"
-    data-autoFocus="false"
-    data-demoClass="ComboBoxDemo"
-    data-demoFileMarkup="ComboBoxDemo.qui"
-    data-sourceFileControl="../../quicommon/ComboBox.qui">
+    data-demoClass="ValidatingTextBoxDemo"
+    data-demoFileMarkup="ValidatingTextBoxDemo.qui">
 
 <div data-property="summary">
-    A text input area with a popup, which typically presents a dropdown list of
-    choices, but could just as easily provide choices in other ways. The user can always
-    choose to enter their own arbitrary text as well; they are not limited to the indicated
-    choices. See <a data-control="CatalogLink">ListComboBox</a>,
-    <a data-control="CatalogLink">ColorSwatchComboBox</a>, or
-    <a data-control="CatalogLink">DateComboBox</a> for typical subclasses.
+    A text box which verifies that its content meets some conditions. This is
+    used as the base class for <a data-control="CatalogLink">DateTextBox</a>.
 </div>
 
 <p>
-    The HTML5 specification calls for a
-    <span data-control="Tag">datagrid</span> element which can be used to
-    create combo boxes, but that only supports a rather narrow definition of what a combo
-    box can do. Even once <span data-control="Tag">datagrid</span>
-    is broadly supported, the ComboBox class still has a role to play as a
-    base class for custom combo boxes.
+    Validation is performed as the user types by calling a validate()
+    function. If the contents fail to pass validation, the control's invalid()
+    method is invoked, which by default applies an "invalid" CSS class to
+    the control.
+</p>
+<p>
+    The validation feedback is <b>asymmetric</b>, meaning that the text box
+    will not reflect an invalid state until validation is enforced strictly.
+    (By default, that happens when the focus leaves the control.) This allows
+    the user to type without prematurely chastising them for entering invalid
+    data. However, if the user corrects an invalid response, the invalid state
+    is removed immediately after they type the character that fixes the data.
+    In this way, the control is slow to complain, and quick to forgive.
+    For more details on the motivation for asymmetric validation, see this
+    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2010/09/form-validation-feedback-be-slow-to-complain-and-quick-to-forgive.html">
+        user interface blog post
+    </a>.
 </p>
 
 </body>

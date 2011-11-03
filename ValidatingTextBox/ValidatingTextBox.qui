@@ -34,6 +34,11 @@ ValidatingTextBox.prototype.extend({
     
     invalid: Control.chain( "applyClass/invalid" ),
     
+    // True if the field must be non-empty.
+    required: Control.property.bool(),
+    
+    validateOnBlur: Control.property.bool( null, true ),
+    
     initialize: function() {
         
         this._super();
@@ -42,7 +47,9 @@ ValidatingTextBox.prototype.extend({
         var self = this;
         this.$textBox().bind({
             "blur": function() {
-                self.validate( true );
+                if ( self.validateOnBlur() ) {
+                    self.validate( true );
+                }
             },
             "keyup": function() {
                 self.validate();
@@ -63,23 +70,17 @@ ValidatingTextBox.prototype.extend({
     
     /*
      * Check to see if the control's contents are valid.
-     * If the strict parameter is true, then apply the invalid state if the
-     * contents are invalid. If the strict parameter is false, then the
-     * control can move out of the invalid state (if the contents are now valid),
-     * but can't move into the invalid state.
+     * 
+     * If the strict parameter is true, apply the invalid state if the contents
+     * are invalid. If the strict parameter is false, then the control can move
+     * out of the invalid state (if the contents are now valid), but won't move
+     * into the invalid state (even if the contents are actually invalid).
      */
     validate: Control.iterator( function( strict ) {
         var valid = this.valid();
         if ( strict || this.invalid() ) {
             this.invalid( !valid );
         }
-    }),
-    
-    /*
-     * True if the field must be non-empty.
-     */
-    required: Control.property.bool( function() {
-        this.validate( true );
     }),
     
     /*
