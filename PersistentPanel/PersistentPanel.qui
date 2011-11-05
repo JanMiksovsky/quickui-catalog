@@ -28,6 +28,11 @@ the viewport and remain visible instead of scrolling out of view.
 .PersistentPanel.fixed #PersistentPanel_content {
     position: fixed;
 }
+
+/* Generic appearance */
+.PersistentPanel.generic #PersistentPanel_content {
+    background: white;
+}
 </style>
 
 <script>
@@ -41,6 +46,8 @@ PersistentPanel.prototype.extend({
     padding: Control.chain( "$PersistentPanel_content", "css/padding" ),
     
     initialize: function() {
+        
+        this.genericIfClassIs( PersistentPanel );
         
         this.inDocument( function( $control ) {
             if ( !$control.scrollingParent() ) {
@@ -71,7 +78,7 @@ PersistentPanel.prototype.extend({
         // Make the container the same height as the panel, so that when
         // the panel pops out in fixed mode, the container can continue
         // to occupy the same amount of vertical space.
-        this.height( this.$PersistentPanel_content().outerHeight() );
+        this.height( this.$PersistentPanel_content().outerHeight( true ) );
     },
     
     _findScrollingParent: function() {
@@ -107,8 +114,8 @@ PersistentPanel.prototype.extend({
             var isScrollingParentWindow = ( scrollingParent === window );
             var $scrollingParent = $( scrollingParent ); 
             var scrollTop = isScrollingParentWindow
-                ? $scrollingParent.scrollTop()
-                : 0;
+                ? 0
+                : $scrollingParent.scrollTop();
             var containerTop = this.position().top;
             var isContainerInViewport = ( containerTop >= scrollTop );
 

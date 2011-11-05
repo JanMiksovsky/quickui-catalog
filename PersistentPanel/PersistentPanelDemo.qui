@@ -3,47 +3,42 @@
 <content>
     <HorizontalPanels id="container">
         <right>
-        <p>
-            This area above the persistent panel (here, a toolbar) can hold
-            content that should be initially visible, but which can later
-            scroll out of the way. Examples: leaderboard ads, top site
-            navigation.
-        </p>
-        <PersistentPanel id="toolbar" background="#eee" padding="5px">
-            <ButtonBase>Button 1</ButtonBase>
-            <ButtonBase>Button 2</ButtonBase>
-            <ButtonBase>Button 3</ButtonBase>
-        </PersistentPanel>
-        <p>
-            Below the toolbar sits the main page content.
-        </p>
+            <div class="right">
+                This side panel can scroll out of the way.
+            </div>
+            <PersistentPanel>
+                <div class="right important">
+                    This panel is persistent; it won't scroll away.
+                </div>
+            </PersistentPanel>
+            <div class="right">
+                Any content here below the panel will also scroll away.
+            </div>
         </right>
-        <LoremIpsum paragraphs="3"/>
+        <p>
+            Here's the main content, which can scroll.
+        </p>
+        <LoremIpsum paragraphs="5"/>
     </HorizontalPanels>
 </content>
 
 <style>
-{
-    margin: 0;
+.right {
+    padding: 4px;
+    width: 150px;
 }
-
-p {
-    margin: 4px;
-}
-
-#toolbar #PersistentPanel_content {
-    -moz-box-shadow: 0 2px 2px #bbb;
-    -webkit-box-shadow: 0 2px 2px #bbb;
-    box-shadow: 0 2px 2px #bbb;
+.important {
+    background: #eee;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 #container {
     height: 200px;
     overflow-y: auto;
-}
-
-#toolbar .ButtonBase {
-    margin-right: 5px;
 }
 </style>
 
