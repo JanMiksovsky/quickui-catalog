@@ -2,6 +2,12 @@
 A panel that can be situated in a vertically scrolling container, and which
 will move up and down in the viewport, but will bump up against the top of
 the viewport and remain visible instead of scrolling out of view.
+
+The control hosts its content within a panel that can pop out of the layout
+flow. To faciliate styling, the control exposes background and padding
+properties that map to the corresponding properties on this inner panel.
+For most complex content styling, set all content elements within a single
+div or other element and style that.
 -->
 
 <Control name="PersistentPanel">
@@ -37,12 +43,20 @@ the viewport and remain visible instead of scrolling out of view.
 
 <script>
 PersistentPanel.prototype.extend({
+
+    /*
+     * The content's background. See top notes.
+     */    
+    background: Control.chain( "$PersistentPanel_content", "css/background" ),
     
+    /*
+     * The control's content.
+     */
     content: Control.chain( "$PersistentPanel_content", "content" ),
     
-    // It's common to want to set the background and padding (e.g., for a
-    // toolbar), so expose these as control properties. 
-    background: Control.chain( "$PersistentPanel_content", "css/background" ),
+    /*
+     * The content's padding. See top notes.
+     */
     padding: Control.chain( "$PersistentPanel_content", "css/padding" ),
     
     initialize: function() {
@@ -63,6 +77,11 @@ PersistentPanel.prototype.extend({
         });
     },
     
+    /*
+     * The parent of this control used to determine whether the control is
+     * in or out of view. The default value for this property is the closest
+     * parent element with overflow-y set to "auto" or "scroll".
+     */
     scrollingParent: Control.property( function( scrollingParent ) {
         var self = this;
         $( scrollingParent ).scroll( function() {
@@ -128,7 +147,7 @@ PersistentPanel.prototype.extend({
 
             this.toggleClass( "fixed", !isContainerInViewport );
         }
-    }        
+    }
     
 });
 </script>
