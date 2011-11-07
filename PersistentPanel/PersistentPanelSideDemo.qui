@@ -16,7 +16,7 @@
             
             <right>
                 
-                <AdPlaceholder dimensions="Medium Rectangle"/>
+                <AdPlaceholder id="ad" dimensions="Medium Rectangle"/>
                 
                 <PersistentPanel id="panel">
                     <!-- These contents will always be visible -->
@@ -50,6 +50,9 @@
     padding: 2em;
 }
 
+#ad {
+    margin-top: 1em;
+}
 #panel {
     margin: 1em 0;
 }

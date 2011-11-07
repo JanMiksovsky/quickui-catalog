@@ -74,7 +74,7 @@ AdPlaceholder.prototype.extend({
                 height: height,
                 width: width
             })
-            .content( dimensions );
+            .content( width + " x " + height );
             
     })
     

@@ -4,6 +4,11 @@
  */
 var controlRecords = [
     {
+        name: "AdPlaceholder",
+        demoClass: "AdPlaceholderDemo",
+        description: "Placeholder for a standard advertising unit"
+    },
+    {
         name: "AutoSizeTextBox",
         description: "A text area that expands to contain its text."
     },
@@ -153,7 +158,7 @@ var controlRecords = [
     },
     {
         name: "PersistentPanel",
-        demoClass: "",
+        demoClass: "PersistentPanelDemo",
         description: "A panel whose contents will bump up against the top or bottom of a scrolling parent so as to remain always visible."
     },
     {

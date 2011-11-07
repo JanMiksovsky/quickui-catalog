@@ -1,0 +1,7 @@
+<Control name="AdPlaceholderDemo">
+
+<content>
+    <AdPlaceholder dimensions="Rectangle"/>
+</content>
+
+</Control>
