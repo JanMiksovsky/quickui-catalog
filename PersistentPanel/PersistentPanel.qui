@@ -145,7 +145,7 @@ PersistentPanel.prototype.extend({
             var scrollTop = $scrollingParent.scrollTop();
             var containerTop = this.position().top;
             var isContainerInViewport = ( containerTop >= scrollTop );
-            console.log( scrollTop + " " + containerTop + " " + isContainerInViewport );
+            //console.log( scrollTop + " " + containerTop + " " + isContainerInViewport );
 
             // Position the panel at the top of the viewport.
             var viewPortTop = isScrollingParentWindow

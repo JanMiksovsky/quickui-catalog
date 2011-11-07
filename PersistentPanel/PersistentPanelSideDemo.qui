@@ -15,14 +15,15 @@
             </content>
             
             <right>
-                <div class="right">
-                    This side panel can scroll out of the way.
-                </div>
                 
-                <PersistentPanel>
+                <AdPlaceholder dimensions="Medium Rectangle"/>
+                
+                <PersistentPanel id="panel">
                     <!-- These contents will always be visible -->
                     <div class="right important">
-                        This panel is persistent; it won't scroll away.
+                        This panel is persistent, so it won't scroll away.
+                        This is useful for any information or controls which
+                        must be visible at all times.
                     </div>
                 </PersistentPanel>
                 
@@ -49,13 +50,16 @@
     padding: 2em;
 }
 
+#panel {
+    margin: 1em 0;
+}
+
 .right {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 4px;
-    width: 150px;
 }
 
 .important {

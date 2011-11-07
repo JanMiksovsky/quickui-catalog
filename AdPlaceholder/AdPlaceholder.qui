@@ -1,0 +1,102 @@
+<!--
+Shows a placeholder for a standard IAB ad unit.
+The size can be specified with either pixel dimensions or a unit name.
+See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
+-->
+
+<Control name="AdPlaceholder">
+
+<content>
+    <div id="label">Advertisement</div>
+    <div id="AdPlaceholder_content"/>
+</content>
+
+<style>
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/* Generic appearance */
+.AdPlaceholder.generic {
+    background: gray;
+    color: white;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.AdPlaceholder.generic #label {
+    font-weight: bold;
+}
+</style>
+
+<script>
+AdPlaceholder.prototype.extend({
+
+    initialize: function() {
+        this.genericIfClassIs( AdPlaceholder );
+        
+        if ( !this.dimensions() ) {
+            // Use default size.
+            this.dimensions( "300 x 250" );
+        }
+    },
+    
+    /*
+     * The content of the ad unit. By default this shows the unit/dimensions.
+     */
+    content: Control.chain( "$AdPlaceholder_content", "content" ),
+    
+    /*
+     * The dimensions of the ad unit. Should include two values separated
+     * by an "x", e.g., "300 x 250". Can also be one of the following
+     * ad unit names:
+     * 
+     *      Medium Rectangle
+     *      Rectangle
+     *      Leaderboard
+     *      Wide Skyscraper
+     *      Half Page Ad
+     *      Button 2
+     *      Micro Bar
+     */
+    dimensions: Control.property( function( dimensions ) {
+        
+        var s = AdPlaceholder.standardUnits[ dimensions ] || dimensions;
+        var parts = s.toLowerCase().split( "x" );
+        var width = parseInt( parts[0] );
+        var height = parseInt( parts[1] );
+        
+        this
+            .css({
+                height: height,
+                width: width
+            })
+            .content( dimensions );
+            
+    })
+    
+});
+
+// Class methods
+AdPlaceholder.extend({
+    
+    /*
+     * Names of all core standard ad units as of 2/28/2011.
+     * See http://www.iab.net/iab_products_and_industry_services/1421/1443/1452
+     */
+    standardUnits: {
+        "Medium Rectangle": "300 x 250",
+        "Rectangle": "180 x 150",
+        "Leaderboard": "728 x 90",
+        "Wide Skyscraper": "160 x 600",
+        "Half Page Ad": "300 x 600",
+        "Button 2": "120 x 60",
+        "Micro Bar": "88 x 31"
+    }
+});
+</script>
+
+</Control>
