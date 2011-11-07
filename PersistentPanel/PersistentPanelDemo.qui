@@ -24,16 +24,16 @@
 
 <style>
 .right {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     padding: 4px;
     width: 150px;
 }
 .important {
     background: #eee;
     border: 1px solid gray;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 
 #container {
