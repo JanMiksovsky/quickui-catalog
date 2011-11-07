@@ -152,6 +152,11 @@ var controlRecords = [
         description: "Base class for the overall top-level control for a page."
     },
     {
+        name: "PersistentPanel",
+        demoClass: "",
+        description: "A panel whose contents will bump up against the top or bottom of a scrolling parent so as to remain always visible."
+    },
+    {
         name: "Popup",
         demoClass: "",
         description: "Base class for popups, menus, dialogs — things that appear temporarily over other things."

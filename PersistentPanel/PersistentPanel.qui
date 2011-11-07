@@ -52,7 +52,10 @@ PersistentPanel.prototype.extend({
     /*
      * The control's content.
      */
-    content: Control.chain( "$PersistentPanel_content", "content" ),
+    content: Control.chain( "$PersistentPanel_content", "content", function() {
+        this._adjustSizes();
+        this.trigger( "sizeChanged" );
+    }),
     
     /*
      * The content's padding. See top notes.
@@ -126,17 +129,23 @@ PersistentPanel.prototype.extend({
         
     },
 
+    /*
+     * Do the real work of the control: determine whether the panel contents
+     * should flow with the document, or pop out into a fixed position.
+     */
     _scrollingParentScrolled: function() {
         var scrollingParent = this.scrollingParent();
         if ( scrollingParent ) {
             
             var isScrollingParentWindow = ( scrollingParent === window );
-            var $scrollingParent = $( scrollingParent ); 
-            var scrollTop = isScrollingParentWindow
-                ? 0
-                : $scrollingParent.scrollTop();
+            var $scrollingParent = $( scrollingParent );
+            //var scrollTop = isScrollingParentWindow
+            //    ? 0
+            //    : $scrollingParent.scrollTop();
+            var scrollTop = $scrollingParent.scrollTop();
             var containerTop = this.position().top;
             var isContainerInViewport = ( containerTop >= scrollTop );
+            console.log( scrollTop + " " + containerTop + " " + isContainerInViewport );
 
             // Position the panel at the top of the viewport.
             var viewPortTop = isScrollingParentWindow

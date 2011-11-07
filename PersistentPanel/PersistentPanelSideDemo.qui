@@ -1,0 +1,67 @@
+<Control name="PersistentPanelSideDemo">
+
+<prototype>
+    <Page fill="true">
+        <HorizontalPanels id="container" fill="true">
+    
+            <content>
+                <!-- Main (scrolling) contents -->
+                <div id="text">
+                    <h1>
+                        Scroll this area, keeping an eye on the right side.
+                    </h1>
+                    <LoremIpsum paragraphs="10"/>
+                </div>
+            </content>
+            
+            <right>
+                <div class="right">
+                    This side panel can scroll out of the way.
+                </div>
+                
+                <PersistentPanel>
+                    <!-- These contents will always be visible -->
+                    <div class="right important">
+                        This panel is persistent; it won't scroll away.
+                    </div>
+                </PersistentPanel>
+                
+                <div class="right">
+                    Any content here below the panel will also scroll away.
+                </div>
+            </right>
+            
+        </HorizontalPanels>
+    </Page>
+</prototype>
+
+<style>
+#container {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+#text {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 2em;
+}
+
+.right {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 4px;
+    width: 150px;
+}
+
+.important {
+    background: #eee;
+    border: 1px solid gray;
+}
+</style>
+
+</Control>
