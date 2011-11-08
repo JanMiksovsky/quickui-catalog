@@ -147,7 +147,8 @@ PersistentPanel.prototype.extend({
 
     /*
      * Do the real work of the control: determine whether the panel contents
-     * should flow with the document, or pop out into a fixed position.
+     * should flow with the document, or pop out into a docked position at the
+     * top or bottom of the viewport.
      */
     _recalc: function() {
         var scrollingParent = this.scrollingParent();
@@ -155,13 +156,17 @@ PersistentPanel.prototype.extend({
             
             var isScrollingParentWindow = ( scrollingParent === window );
             var $scrollingParent = $( scrollingParent );
+            
             var scrollTop = $scrollingParent.scrollTop();
             var containerTop = this.position().top;
-            var dock = ( containerTop < scrollTop );
+            var aboveViewPort = ( containerTop < scrollTop );
 
-            var contentTop;
-            var contentWidth;
-            var containerHeight;
+            var scrollBottom = scrollTop + $scrollingParent.height();
+            var containerBottom = containerTop + this.height();
+            var belowViewPort = ( containerBottom > scrollBottom );
+            
+            var dock = ( aboveViewPort || belowViewPort );
+
             if ( dock ) {
                 /*
                  * Docking the content puts it outside the normal document.
@@ -174,17 +179,27 @@ PersistentPanel.prototype.extend({
                  * width. This may cause the content to change in height.
                  * We then set the container's height to match the content's.
                  */
+                this.$PersistentPanel_content().width( this.width() );
+                this.height( this.$PersistentPanel_content().outerHeight( true ) );
+
+                var css;
                 var viewPortTop = isScrollingParentWindow
                     ? 0
                     : $scrollingParent.offset().top;
-                this.$PersistentPanel_content().css({
-                    "top": viewPortTop + "px",
-                    "width": this.width()
-                });
-                this.height( this.$PersistentPanel_content().outerHeight( true ) );
+                if ( aboveViewPort ) {
+                    css = { "top": viewPortTop + "px" };
+                } else {
+                    var viewPortBottom = isScrollingParentWindow
+                        ? 0
+                        : viewPortTop + $scrollingParent.height();
+                    css = { "bottom": viewPortBottom };
+                }
+                this.$PersistentPanel_content().css( css );
+                
             } else {
                 // Reset any dimensions we set while docked.
                 this.$PersistentPanel_content().css({
+                    "bottom": "",
                     "top": "",
                     "width": ""
                 });
@@ -198,4 +213,4 @@ PersistentPanel.prototype.extend({
 });
 </script>
 
-</Control>
+</Control>

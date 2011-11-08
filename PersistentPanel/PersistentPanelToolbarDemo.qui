@@ -53,9 +53,10 @@ p {
     box-shadow: 0 2px 2px #bbb;
     padding: 0.5em 2em;
 }
+
 #toolbar .ButtonBase {
     margin-right: 5px;
 }
 </style>
 
-</Control>
+</Control>
