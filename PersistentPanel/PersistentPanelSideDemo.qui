@@ -15,20 +15,24 @@
             </content>
             
             <right>
-                
-                <AdPlaceholder id="ad" dimensions="Medium Rectangle"/>
-                
-                <PersistentPanel id="panel">
-                    <!-- These contents will always be visible -->
-                    <div class="right important">
-                        This panel is persistent, so it won't scroll away.
-                        This is useful for any information or controls which
-                        must be visible at all times.
+                <div id="rightPanel">
+
+                    <AdPlaceholder id="ad" dimensions="Medium Rectangle"/>
+
+                    <PersistentPanel>
+                        <!-- These contents will always be visible -->
+                        <div id="important">
+                            This panel is persistent, so it won't scroll away.
+                            This is useful for any information or controls which
+                            must be visible at all times.
+                        </div>
+                    </PersistentPanel>
+                    
+                    <div class="right">
+                        Any content here will scroll away underneath the panel
+                        above.
                     </div>
-                </PersistentPanel>
-                
-                <div class="right">
-                    Any content here below the panel will also scroll away.
+                    
                 </div>
             </right>
             
@@ -50,24 +54,27 @@
     padding: 2em;
 }
 
-#ad {
-    margin-top: 1em;
-}
-#panel {
-    margin: 1em 0;
+h1 {
+    margin-top: 0;
 }
 
-.right {
+#rightPanel {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 4px;
+    padding-top: 2em;
+    width: 300px;
 }
 
-.important {
+#rightPanel > * {
+    margin-bottom: 1em;
+}
+
+#important {
     background: #eee;
     border: 1px solid gray;
+    padding: 0.5em;
 }
 </style>
 

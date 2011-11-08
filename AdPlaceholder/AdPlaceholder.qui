@@ -7,12 +7,14 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 <Control name="AdPlaceholder">
 
 <content>
-    <div id="label">Advertisement</div>
-    <div id="AdPlaceholder_content"/>
+    <div id="container">
+        <div id="label">Advertisement</div>
+        <div id="AdPlaceholder_content"/>
+    </div>
 </content>
 
 <style>
-{
+#adContainer {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -20,7 +22,7 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 }
 
 /* Generic appearance */
-.AdPlaceholder.generic {
+.AdPlaceholder.generic #container {
     background: gray;
     color: white;
     display: table-cell;
@@ -69,12 +71,13 @@ AdPlaceholder.prototype.extend({
         var width = parseInt( parts[0] );
         var height = parseInt( parts[1] );
         
-        this
-            .css({
+        this.$container().css({
                 height: height,
                 width: width
-            })
-            .content( width + " x " + height );
+        });
+        this
+            .content( width + " x " + height )
+            .trigger( "sizeChanged" );
             
     })
     
