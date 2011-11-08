@@ -53,8 +53,10 @@ PersistentPanel.prototype.extend({
      * The control's content.
      */
     content: Control.chain( "$PersistentPanel_content", "content", function() {
-        this._adjustSizes();
-        this.trigger( "sizeChanged" );
+        if ( this.inDocument() ) {
+            this._resize();
+            this.trigger( "sizeChanged" );
+        }
     }),
     
     /*
@@ -69,9 +71,9 @@ PersistentPanel.prototype.extend({
         this.inDocument( function( $control ) {
             if ( !$control.scrollingParent() ) {
                 // No scrolling parent has been set; look for one.
-                $control.scrollingParent( this._findScrollingParent() );
+                $control.scrollingParent( $control._findScrollingParent() );
             }
-            $control._adjustSizes();
+            $control._resize();
         });
 
         var self = this;
@@ -91,7 +93,7 @@ PersistentPanel.prototype.extend({
             self._scrollingParentScrolled();
         });
     }),
-    
+
     _adjustSizes: function() {
         
         // Make the panel the same width as the container.
@@ -103,21 +105,41 @@ PersistentPanel.prototype.extend({
         this.height( this.$PersistentPanel_content().outerHeight( true ) );
     },
     
+    /*
+     * Determine which parent of the control scrolls vertically.
+     */
     _findScrollingParent: function() {
+        
+        // By default, assume the window is what is scrolling.
+        var scrollingParent = window;
         
         var parents = this.parents();
         for ( var i = 0; i < parents.length; i++ ) {
+            
+            if ( parents[i] === document.body ) {
+                /*
+                 * It doesn't appear possible to bind to the scroll event
+                 * for the document body. Instead, if the body is the
+                 * scrolling parent, we use the window instead, which has
+                 * the same effect.
+                 */
+                break;
+            }
+            
             var overflowY = parents.eq(i).css( "overflow-y" );
             if ( overflowY === "auto" || overflowY === "scroll" ) {
-                return parents[i];
+                // Found a parent that explicitly asks for scrolling; use that.
+                scrollingParent = parents[i];
+                break;
             }
         }
         
-        // No parent is explicitly requesting scrolling; assume window scrolls.
-        return window;
+        return scrollingParent;
     },
     
     _resize: function() {
+        
+        console.log( "_resize" );
         
         // A change in width could have caused the contents to change in height,
         // or the container to change in width.
@@ -145,14 +167,14 @@ PersistentPanel.prototype.extend({
             var scrollTop = $scrollingParent.scrollTop();
             var containerTop = this.position().top;
             var isContainerInViewport = ( containerTop >= scrollTop );
-            //console.log( scrollTop + " " + containerTop + " " + isContainerInViewport );
+            console.log( scrollTop + " " + containerTop + " " + isContainerInViewport );
 
             // Position the panel at the top of the viewport.
             var viewPortTop = isScrollingParentWindow
                 ? 0
                 : $scrollingParent.offset().top;
             this.$PersistentPanel_content().css( "top",
-                isContainerInViewport ? "auto" : viewPortTop + "px" );
+                isContainerInViewport ? "" : viewPortTop + "px" );
 
             this.toggleClass( "fixed", !isContainerInViewport );
         }
