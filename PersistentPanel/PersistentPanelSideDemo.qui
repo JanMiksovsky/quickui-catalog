@@ -8,9 +8,9 @@
                 <!-- Main (scrolling) contents -->
                 <div id="text">
                     <h1>
-                        Scroll this area, keeping an eye on the right side.
+                        Scroll this page, keeping an eye on the right side.
                     </h1>
-                    <LoremIpsum paragraphs="10"/>
+                    <LoremIpsum paragraphs="30"/>
                 </div>
             </content>
             

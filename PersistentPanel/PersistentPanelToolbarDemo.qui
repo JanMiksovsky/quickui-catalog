@@ -12,7 +12,7 @@
         </div>
         <PersistentPanel>
             <div id="toolbar">
-                These buttons are always available:
+                This toolbar is always available:
                 <ButtonBase>Button 1</ButtonBase>
                 <ButtonBase>Button 2</ButtonBase>
                 <ButtonBase>Button 3</ButtonBase>
@@ -23,7 +23,7 @@
                 Below the toolbar sits the main page content, which can scroll
                 under the toolbar.
             </p>
-            <LoremIpsum paragraphs="10"/>
+            <LoremIpsum paragraphs="30"/>
         </div>
     </Page>
 </prototype>
