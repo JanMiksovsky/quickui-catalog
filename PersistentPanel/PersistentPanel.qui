@@ -31,7 +31,7 @@ div or other element and style that.
     -webkit-box-sizing: border-box;
 }
 
-.PersistentPanel.fixed #PersistentPanel_content {
+.PersistentPanel.docked #PersistentPanel_content {
     position: fixed;
 }
 
@@ -53,11 +53,13 @@ PersistentPanel.prototype.extend({
      * The control's content.
      */
     content: Control.chain( "$PersistentPanel_content", "content", function() {
-        if ( this.inDocument() ) {
-            this._resize();
-            this.trigger( "sizeChanged" );
-        }
+        this.trigger( "sizeChanged" );
     }),
+    
+    /*
+     * True if the control is currently docked to the top of the viewport.
+     */
+    docked: Control.chain( "applyClass/docked" ),
     
     /*
      * The content's padding. See top notes.
@@ -68,17 +70,23 @@ PersistentPanel.prototype.extend({
         
         this.genericIfClassIs( PersistentPanel );
         
-        this.inDocument( function( $control ) {
-            if ( !$control.scrollingParent() ) {
-                // No scrolling parent has been set; look for one.
-                $control.scrollingParent( $control._findScrollingParent() );
-            }
-            $control._resize();
-        });
-
         var self = this;
+        this
+            .bind( "sizeChanged", function() {
+                if ( self.inDocument() ) {
+                    self._recalc();
+                }
+            })
+            .inDocument( function( $control ) {
+                if ( !$control.scrollingParent() ) {
+                    // No scrolling parent has been set; look for one.
+                    $control.scrollingParent( $control._findScrollingParent() );
+                }
+                $control._recalc();
+            });
+
         $( window ).resize( function() {
-            self._resize();
+            self._recalc();
         });
     },
     
@@ -90,7 +98,7 @@ PersistentPanel.prototype.extend({
     scrollingParent: Control.property( function( scrollingParent ) {
         var self = this;
         $( scrollingParent ).scroll( function() {
-            self._scrollingParentScrolled();
+            self._recalc();
         });
     }),
 
@@ -136,47 +144,54 @@ PersistentPanel.prototype.extend({
         
         return scrollingParent;
     },
-    
-    _resize: function() {
-        
-        console.log( "_resize" );
-        
-        // A change in width could have caused the contents to change in height,
-        // or the container to change in width.
-        this._adjustSizes();
-        
-        // A resize could easily have caused the container's position to
-        // move in or out of view, so we treat it like a scroll.
-        this._scrollingParentScrolled();
-        
-    },
 
     /*
      * Do the real work of the control: determine whether the panel contents
      * should flow with the document, or pop out into a fixed position.
      */
-    _scrollingParentScrolled: function() {
+    _recalc: function() {
         var scrollingParent = this.scrollingParent();
         if ( scrollingParent ) {
             
             var isScrollingParentWindow = ( scrollingParent === window );
             var $scrollingParent = $( scrollingParent );
-            //var scrollTop = isScrollingParentWindow
-            //    ? 0
-            //    : $scrollingParent.scrollTop();
             var scrollTop = $scrollingParent.scrollTop();
             var containerTop = this.position().top;
-            var isContainerInViewport = ( containerTop >= scrollTop );
-            console.log( scrollTop + " " + containerTop + " " + isContainerInViewport );
+            var dock = ( containerTop < scrollTop );
 
-            // Position the panel at the top of the viewport.
-            var viewPortTop = isScrollingParentWindow
-                ? 0
-                : $scrollingParent.offset().top;
-            this.$PersistentPanel_content().css( "top",
-                isContainerInViewport ? "" : viewPortTop + "px" );
-
-            this.toggleClass( "fixed", !isContainerInViewport );
+            var contentTop;
+            var contentWidth;
+            var containerHeight;
+            if ( dock ) {
+                /*
+                 * Docking the content puts it outside the normal document.
+                 * The control (the outer container) will collapse in size,
+                 * which we don't want to happen -- anything below the control
+                 * will suddenly jump in position. To ensure smooth movement,
+                 * we force the control and content to match sizes.
+                 * 
+                 * We first set the content's width to match the container's
+                 * width. This may cause the content to change in height.
+                 * We then set the container's height to match the content's.
+                 */
+                var viewPortTop = isScrollingParentWindow
+                    ? 0
+                    : $scrollingParent.offset().top;
+                this.$PersistentPanel_content().css({
+                    "top": viewPortTop + "px",
+                    "width": this.width()
+                });
+                this.height( this.$PersistentPanel_content().outerHeight( true ) );
+            } else {
+                // Reset any dimensions we set while docked.
+                this.$PersistentPanel_content().css({
+                    "top": "",
+                    "width": ""
+                });
+                this.css( "height", "" );
+            }
+            
+            this.docked( dock );
         }
     }
     

@@ -1,7 +1,10 @@
+<!-- Shows how to use a PersistentPanel to create a docking toolbar. -->
+
 <Control name="PersistentPanelToolbarDemo">
 
 <prototype>
     <Page>
+        <!-- These contents will scroll -->
         <div class="normal">
             <AdPlaceholder dimensions="Leaderboard"/>
             <p>
@@ -11,6 +14,7 @@
             </p>
         </div>
         <PersistentPanel>
+            <!-- This toolbar will always be visible -->
             <div id="toolbar">
                 This toolbar is always available:
                 <ButtonBase>Button 1</ButtonBase>
@@ -18,11 +22,11 @@
                 <ButtonBase>Button 3</ButtonBase>
             </div>
         </PersistentPanel>
+        <!-- This content will scroll under the toolbar -->
         <div class="normal">
-            <p>
-                Below the toolbar sits the main page content, which can scroll
-                under the toolbar.
-            </p>
+            <h1>
+                Scroll this page, keeping an eye on the toolbar.
+            </h1>
             <LoremIpsum paragraphs="30"/>
         </div>
     </Page>
@@ -31,7 +35,6 @@
 <style>
 {
     margin: 0;
-    overflow-y: scroll;
 }
 
 .normal {
@@ -48,7 +51,7 @@ p {
     -moz-box-shadow: 0 2px 2px #bbb;
     -webkit-box-shadow: 0 2px 2px #bbb;
     box-shadow: 0 2px 2px #bbb;
-    padding: 0.5em 0;
+    padding: 0.5em 2em;
 }
 #toolbar .ButtonBase {
     margin-right: 5px;
