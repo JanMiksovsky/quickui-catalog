@@ -1,0 +1,57 @@
+<Control name="PersistentPanelToolbarDemo">
+
+<prototype>
+    <Page>
+        <div class="normal">
+            <AdPlaceholder dimensions="Leaderboard"/>
+            <p>
+                This area above the persistent panel (here, a toolbar) can hold
+                content that should be initially visible, but which can later
+                scroll out of the way. Examples: ads, top navigation.
+            </p>
+        </div>
+        <PersistentPanel>
+            <div id="toolbar">
+                These buttons are always available:
+                <ButtonBase>Button 1</ButtonBase>
+                <ButtonBase>Button 2</ButtonBase>
+                <ButtonBase>Button 3</ButtonBase>
+            </div>
+        </PersistentPanel>
+        <div class="normal">
+            <p>
+                Below the toolbar sits the main page content, which can scroll
+                under the toolbar.
+            </p>
+            <LoremIpsum paragraphs="10"/>
+        </div>
+    </Page>
+</prototype>
+
+<style>
+{
+    margin: 0;
+}
+
+.normal {
+    max-width: 600px;
+    padding: 1em 2em;
+}
+
+p {
+    margin: 4px;
+}
+
+#toolbar {
+    background: #eee;
+    -moz-box-shadow: 0 2px 2px #bbb;
+    -webkit-box-shadow: 0 2px 2px #bbb;
+    box-shadow: 0 2px 2px #bbb;
+    padding: 0.5em;
+}
+#toolbar .ButtonBase {
+    margin-right: 5px;
+}
+</style>
+
+</Control>
