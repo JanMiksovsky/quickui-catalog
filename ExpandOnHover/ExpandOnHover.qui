@@ -1,0 +1,88 @@
+<Control name="ExpandOnHover">
+
+<content>
+    <div id="ExpandOnHover_content"/>
+</content>
+
+<style>
+{
+    border: 1px solid gray;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+}
+
+#ExpandOnHover_content {
+    border: 1px solid red;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#ExpandOnHover_content:hover {
+    height: 85px !important;
+    left: -5px;
+    position: absolute;
+    top: -5px;
+    width: 85px !important;
+    z-index: 1;
+}
+</style>
+
+<script>
+ExpandOnHover.prototype.extend({
+    
+    /*
+     * The control's content.
+     */
+    content: Control.chain( "$ExpandOnHover_content", "content", function() {
+        if ( this.inDocument() ) {
+            this._recalc();
+        }
+    }),
+    
+    /*
+     * The number of pixels the control should grow in each direction.
+     */
+    grow: Control.property.integer( null, 1 ),
+    
+    initialize: function() {
+        
+        this.genericIfClassIs( ExpandOnHover );
+        
+        var self = this;
+        this
+            .bind( "sizeChanged", function() {
+                self._recalc();
+            })
+            /*
+            .hover(
+                function() { self._hoverIn(); },
+                function() { self._hoverOut(); }
+            )
+            */
+            .inDocument( function( $control ) {
+                $control._recalc();
+            });
+    },
+    
+    _hoverIn: function() {
+        
+    },
+    
+    _hoverOut: function() {
+        
+    },
+    
+    _recalc: function() {
+        this.height( this.$ExpandOnHover_content().outerHeight() );
+        this.width( this.$ExpandOnHover_content().outerWidth() );
+    }
+    
+});
+</script>
+
+</Control>

@@ -1,0 +1,17 @@
+<Control name="ExpandOnHoverDemo">
+
+<content>
+    <ExpandOnHover>1</ExpandOnHover><ExpandOnHover>2</ExpandOnHover><ExpandOnHover>3</ExpandOnHover><ExpandOnHover>4</ExpandOnHover><ExpandOnHover>5</ExpandOnHover>
+</content>
+
+<style>
+.ExpandOnHover {
+    display: inline-block;
+    /* margin: 1em; */
+}
+.ExpandOnHover #ExpandOnHover_content {
+    height: 75px;
+    width: 75px;
+}
+</style>
+</Control>
