@@ -14,10 +14,12 @@
 }
 
 #ExpandOnHover_content {
+    /*
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    */
     position: relative;
 }
 </style>
@@ -48,10 +50,10 @@ ExpandOnHover.prototype.extend({
         this.hoverEffects({
             "background-color": "#ffffff",
             "border-color": "#ffd700",
-            "height": "85px",
+            "height": "60px",
             "left": "-5px",
             "top": "-5px",
-            "width": "85px"
+            "width": "60px"
         });
         
         var self = this;
@@ -78,11 +80,12 @@ ExpandOnHover.prototype.extend({
         //this._savedState( currentState );
         
         this.$ExpandOnHover_content()
+            .stop()
             .css({
                 "position": "absolute",
                 "z-index": "2"
             })
-            .animate( this.hoverEffects(), "1000" );
+            .animate( this.hoverEffects(), "fast" );
     },
     
     _hoverOut: function() {
@@ -118,12 +121,14 @@ ExpandOnHover.prototype.extend({
                 case "border-width":
                     value = $content.css( "border-top-width" );
                     break;
+                /*
                 case "height":
                     value = $content.outerHeight() + "px";
                     break;
                 case "width":
                     value = $content.outerWidth() + "px";
                     break;
+                */
                 default:
                     value = $content.css( key );
                     break;
