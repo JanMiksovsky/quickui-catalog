@@ -6,7 +6,6 @@
 
 <style>
 {
-    border: 1px solid gray;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -15,30 +14,18 @@
 }
 
 #ExpandOnHover_content {
-    border: 1px solid red;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
 }
-
-/*
-#ExpandOnHover_content:hover {
-    height: 85px !important;
-    left: -5px;
-    position: absolute;
-    top: -5px;
-    width: 85px !important;
-    z-index: 1;
-}
-*/
 </style>
 
 <script>
 ExpandOnHover.prototype.extend({
     
-    _savedState: Control.property(),
+    _originalState: Control.property(),
     
     /*
      * The control's content.
@@ -57,6 +44,15 @@ ExpandOnHover.prototype.extend({
     initialize: function() {
         
         this.genericIfClassIs( ExpandOnHover );
+
+        this.hoverEffects({
+            "background-color": "#ffffff",
+            "border-color": "#ffd700",
+            "height": "85px",
+            "left": "-5px",
+            "top": "-5px",
+            "width": "85px"
+        });
         
         var self = this;
         this
@@ -68,32 +64,40 @@ ExpandOnHover.prototype.extend({
                 function() { self._hoverOut(); }
             )
             .inDocument( function( $control ) {
-                $control._recalc();
+                $control
+                    ._originalState( $control._getCurrentState() )
+                    ._recalc();
             });
     },
     
+    hoverEffects: Control.property(),
+    
     _hoverIn: function() {
         
-        var hoverEffects = {
-            height: "85px",
-            left: "-5px",
-            top: "-5px",
-            width: "85px"
-        };
-        
-        var currentState = this._getCurrentState( hoverEffects );
-        this._savedState( currentState );
+        //var currentState = this._getCurrentState( hoverEffects );
+        //this._savedState( currentState );
         
         this.$ExpandOnHover_content()
-            .css( "position", "absolute")
-            .css( hoverEffects );
+            .css({
+                "position": "absolute",
+                "z-index": "2"
+            })
+            .animate( this.hoverEffects(), "1000" );
     },
     
     _hoverOut: function() {
-        var savedState = this._savedState() || {};
+        var savedState = this._originalState() || {};
         this.$ExpandOnHover_content()
-            .css( "position", "inherit" )
-            .css( savedState );
+            .stop()
+            .css({
+                "z-index": "1"
+            })
+            .animate( savedState, "fast", null, function() {
+                $( this ).css({
+                    "position": "inherit",
+                    "z-index": "inherit"
+                });
+            });
     },
     
     _recalc: function() {
@@ -101,12 +105,19 @@ ExpandOnHover.prototype.extend({
         this.width( this.$ExpandOnHover_content().outerWidth() );
     },
     
-    _getCurrentState: function( effects ) {
+    _getCurrentState: function() {
         var currentState = {};
         var $content = this.$ExpandOnHover_content();
+        var effects = this.hoverEffects();
         for ( var key in effects ) {
             var value;
             switch ( key ) {
+                case "border-color":
+                    value = $content.css( "border-top-color" );
+                    break;
+                case "border-width":
+                    value = $content.css( "border-top-width" );
+                    break;
                 case "height":
                     value = $content.outerHeight() + "px";
                     break;

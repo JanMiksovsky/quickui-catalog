@@ -5,13 +5,22 @@
 </content>
 
 <style>
+{
+    padding: 2em;
+}
+
 .ExpandOnHover {
     display: inline-block;
-    margin: 1em;
     vertical-align: top;
 }
 .ExpandOnHover #ExpandOnHover_content {
+    background-color: #d8d8d8;
+    border: 3px solid #d0d0d0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
     height: 75px;
+    text-align: center;
     width: 75px;
 }
 </style>
