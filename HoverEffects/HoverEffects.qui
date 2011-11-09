@@ -1,7 +1,15 @@
-<Control name="ExpandOnHover">
+<!--
+Apply effects on hover, which can include changing the item's size
+and position.
+
+To animate color properties, use a plugin such as Color Animation at
+http://plugins.jquery.com/project/color-animation.
+-->
+
+<Control name="HoverEffects">
 
 <content>
-    <div id="ExpandOnHover_content"/>
+    <div id="HoverEffects_content"/>
 </content>
 
 <style>
@@ -12,34 +20,32 @@
     box-sizing: border-box;
     position: relative;
 }
-
-#ExpandOnHover_content {
-    position: relative;
-}
 </style>
 
 <script>
-ExpandOnHover.prototype.extend({
+HoverEffects.prototype.extend({
     
     _originalState: Control.property(),
     
     /*
      * The control's content.
      */
-    content: Control.chain( "$ExpandOnHover_content", "content", function() {
+    content: Control.chain( "$HoverEffects_content", "content", function() {
         if ( this.inDocument() ) {
             this._recalc();
         }
     }),
     
     /*
-     * The number of pixels the control should grow in each direction.
+     * The effects that will be applied on hover.
      */
-    grow: Control.property.integer( null, 1 ),
+    effects: Control.property( function() {
+        this._originalState( this._getCurrentState() );
+    }),
     
     initialize: function() {
         
-        this.genericIfClassIs( ExpandOnHover );
+        this.genericIfClassIs( HoverEffects );
 
         var self = this;
         this
@@ -56,61 +62,37 @@ ExpandOnHover.prototype.extend({
                     ._recalc();
             });
     },
-    
-    hoverEffects: Control.property( function() {
-        this._originalState( this._getCurrentState() );
-    }),
-    
-    _hoverIn: function() {
-        
-        //var currentState = this._getCurrentState( hoverEffects );
-        //this._savedState( currentState );
-        
-        this.$ExpandOnHover_content()
-            .stop()
-            .css({
-                "position": "absolute",
-                "z-index": "2"
-            })
-            .animate( this.hoverEffects(), "fast" );
-    },
-    
-    _hoverOut: function() {
-        var savedState = this._originalState() || {};
-        this.$ExpandOnHover_content()
-            .stop()
-            .css({
-                "z-index": "1"
-            })
-            .animate( savedState, "fast", null, function() {
-                $( this ).css({
-                    "position": "inherit",
-                    "z-index": "inherit"
-                });
-            });
-    },
-    
-    _recalc: function() {
-        this.height( this.$ExpandOnHover_content().outerHeight() );
-        this.width( this.$ExpandOnHover_content().outerWidth() );
-    },
-    
+
+    /*
+     * Get the current values of all CSS attributes which will be overwritten
+     * by the effects. This snapshot is used on hover out to restore the
+     * original state.
+     */
     _getCurrentState: function() {
         var currentState = {};
-        var $content = this.$ExpandOnHover_content();
-        var effects = this.hoverEffects();
+        var $content = this.$HoverEffects_content();
+        var effects = this.effects();
         for ( var key in effects ) {
             var value;
             switch ( key ) {
-                
+
+                /*
+                 * When border properties are applied, they may get split up
+                 * into border-<side> properties, leaving the overall border
+                 * properties empty. So, use the properties of one of the
+                 * border sides as a proxy for the overall border properties.
+                 */
                 case "border-color":
                     value = $content.css( "border-top-color" );
                     break;
-                    
                 case "border-width":
                     value = $content.css( "border-top-width" );
                     break;
                 
+                /*
+                 * Map dimensions of "auto" to "0" so that the dimension can
+                 * be animated. 
+                 */
                 case "bottom":
                 case "left":
                 case "right":
@@ -128,6 +110,41 @@ ExpandOnHover.prototype.extend({
             currentState[ key ] = value;
         }
         return currentState;
+    },
+
+    _hoverIn: function() {
+        this.$HoverEffects_content()
+            .stop()
+            .css({
+                "position": "absolute",
+                "z-index": "2"
+            })
+            .animate( this.effects(), "fast" );
+    },
+    
+    _hoverOut: function() {
+        var savedState = this._originalState() || {};
+        this.$HoverEffects_content()
+            .stop()
+            .css({
+                "z-index": "1"
+            })
+            .animate( savedState, "fast", null, function() {
+                $( this ).css({
+                    "position": "inherit",
+                    "z-index": "inherit"
+                });
+            });
+    },
+    
+    /*
+     * Update the control's size to match the contents. This lets us
+     * apply absolute positioning to the contents on hover while still
+     * preserving room for the content in the normal document flow.
+     */
+    _recalc: function() {
+        this.height( this.$HoverEffects_content().outerHeight() );
+        this.width( this.$HoverEffects_content().outerWidth() );
     }
     
 });

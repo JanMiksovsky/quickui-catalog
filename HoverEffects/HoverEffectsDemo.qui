@@ -1,7 +1,7 @@
-<Control name="ExpandOnHoverDemo">
+<Control name="HoverEffectsDemo">
 
 <content>
-    <ExpandOnHover>1</ExpandOnHover><ExpandOnHover>2</ExpandOnHover><ExpandOnHover>3</ExpandOnHover><ExpandOnHover>4</ExpandOnHover><ExpandOnHover>5</ExpandOnHover>
+    <HoverEffects>1</HoverEffects><HoverEffects>2</HoverEffects><HoverEffects>3</HoverEffects><HoverEffects>4</HoverEffects><HoverEffects>5</HoverEffects>
 </content>
 
 <style>
@@ -9,11 +9,11 @@
     padding: 2em;
 }
 
-.ExpandOnHover {
+.HoverEffects {
     display: inline-block;
     vertical-align: top;
 }
-.ExpandOnHover #ExpandOnHover_content {
+.HoverEffects #HoverEffects_content {
     background-color: #e8e8e8;
     border: 3px solid #e0e0e0;
     cursor: default;
@@ -30,9 +30,9 @@
 </style>
 
 <script>
-ExpandOnHoverDemo.prototype.extend({
+HoverEffectsDemo.prototype.extend({
     initialize: function() {
-        this.find( ".ExpandOnHover" ).control().hoverEffects({
+        this.children().control().effects({
             "background-color": "#ffffff",
             "border-color": "#ffd700",
             "height": "60px",
