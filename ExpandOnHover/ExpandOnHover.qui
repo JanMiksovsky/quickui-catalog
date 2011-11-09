@@ -23,6 +23,7 @@
     position: relative;
 }
 
+/*
 #ExpandOnHover_content:hover {
     height: 85px !important;
     left: -5px;
@@ -31,10 +32,13 @@
     width: 85px !important;
     z-index: 1;
 }
+*/
 </style>
 
 <script>
 ExpandOnHover.prototype.extend({
+    
+    _savedState: Control.property(),
     
     /*
      * The control's content.
@@ -59,12 +63,10 @@ ExpandOnHover.prototype.extend({
             .bind( "sizeChanged", function() {
                 self._recalc();
             })
-            /*
             .hover(
                 function() { self._hoverIn(); },
                 function() { self._hoverOut(); }
             )
-            */
             .inDocument( function( $control ) {
                 $control._recalc();
             });
@@ -72,15 +74,52 @@ ExpandOnHover.prototype.extend({
     
     _hoverIn: function() {
         
+        var hoverEffects = {
+            height: "85px",
+            left: "-5px",
+            top: "-5px",
+            width: "85px"
+        };
+        
+        var currentState = this._getCurrentState( hoverEffects );
+        this._savedState( currentState );
+        
+        this.$ExpandOnHover_content()
+            .css( "position", "absolute")
+            .css( hoverEffects );
     },
     
     _hoverOut: function() {
-        
+        var savedState = this._savedState() || {};
+        this.$ExpandOnHover_content()
+            .css( "position", "inherit" )
+            .css( savedState );
     },
     
     _recalc: function() {
         this.height( this.$ExpandOnHover_content().outerHeight() );
         this.width( this.$ExpandOnHover_content().outerWidth() );
+    },
+    
+    _getCurrentState: function( effects ) {
+        var currentState = {};
+        var $content = this.$ExpandOnHover_content();
+        for ( var key in effects ) {
+            var value;
+            switch ( key ) {
+                case "height":
+                    value = $content.outerHeight() + "px";
+                    break;
+                case "width":
+                    value = $content.outerWidth() + "px";
+                    break;
+                default:
+                    value = $content.css( key );
+                    break;
+            }
+            currentState[ key ] = value;
+        }
+        return currentState;
     }
     
 });
