@@ -1,7 +1,7 @@
 <Control name="HoverEffectsDemo">
 
 <content>
-    <HoverEffects>1</HoverEffects><HoverEffects>2</HoverEffects><HoverEffects>3</HoverEffects><HoverEffects>4</HoverEffects><HoverEffects>5</HoverEffects>
+    <Repeater id="squares" controlClass="HoverEffects" count="5"/>
 </content>
 
 <style>
@@ -21,7 +21,7 @@
     font-size: 36px;
     font-weight: bold;
     height: 50px;
-    text-align: center;
+    padding-left: 0.25em;
     -moz-user-select: -moz-none;
     -webkit-user-select: none;
     user-select: none;
@@ -32,14 +32,16 @@
 <script>
 HoverEffectsDemo.prototype.extend({
     initialize: function() {
-        this.children().control().effects({
-            "background-color": "#ffffff",
-            "border-color": "#ffd700",
-            "height": "60px",
-            "left": "-5px",
-            "top": "-5px",
-            "width": "60px"
-        });
+        this.$squares().children().control()
+            .effects({
+                "background-color": "#ffffff",
+                "border-color": "#ffd700",
+                "height": "60px",
+                "left": "-5px",
+                "top": "-5px",
+                "width": "60px"
+            })
+            .propertyVector( "content", [ 1, 2, 3, 4, 5 ] );
     }
 });
 </script>
