@@ -7,19 +7,20 @@
 <style>
 {
     border: 1px solid gray;
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     position: relative;
 }
 
 #ExpandOnHover_content {
     border: 1px solid red;
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
 }
 
 #ExpandOnHover_content:hover {
