@@ -14,12 +14,6 @@
 }
 
 #ExpandOnHover_content {
-    /*
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    */
     position: relative;
 }
 </style>
@@ -47,15 +41,6 @@ ExpandOnHover.prototype.extend({
         
         this.genericIfClassIs( ExpandOnHover );
 
-        this.hoverEffects({
-            "background-color": "#ffffff",
-            "border-color": "#ffd700",
-            "height": "60px",
-            "left": "-5px",
-            "top": "-5px",
-            "width": "60px"
-        });
-        
         var self = this;
         this
             .bind( "sizeChanged", function() {
@@ -72,7 +57,9 @@ ExpandOnHover.prototype.extend({
             });
     },
     
-    hoverEffects: Control.property(),
+    hoverEffects: Control.property( function() {
+        this._originalState( this._getCurrentState() );
+    }),
     
     _hoverIn: function() {
         
@@ -115,20 +102,25 @@ ExpandOnHover.prototype.extend({
         for ( var key in effects ) {
             var value;
             switch ( key ) {
+                
                 case "border-color":
                     value = $content.css( "border-top-color" );
                     break;
+                    
                 case "border-width":
                     value = $content.css( "border-top-width" );
                     break;
-                /*
-                case "height":
-                    value = $content.outerHeight() + "px";
+                
+                case "bottom":
+                case "left":
+                case "right":
+                case "top":
+                    value = $content.css( key );
+                    if ( value === "auto" ) {
+                        value = "0";
+                    }
                     break;
-                case "width":
-                    value = $content.outerWidth() + "px";
-                    break;
-                */
+                    
                 default:
                     value = $content.css( key );
                     break;

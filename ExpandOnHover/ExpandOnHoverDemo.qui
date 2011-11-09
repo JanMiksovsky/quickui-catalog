@@ -28,4 +28,20 @@
     width: 50px;
 }
 </style>
+
+<script>
+ExpandOnHoverDemo.prototype.extend({
+    initialize: function() {
+        this.find( ".ExpandOnHover" ).control().hoverEffects({
+            "background-color": "#ffffff",
+            "border-color": "#ffd700",
+            "height": "60px",
+            "left": "-5px",
+            "top": "-5px",
+            "width": "60px"
+        });
+    }
+});
+</script>
+
 </Control>
