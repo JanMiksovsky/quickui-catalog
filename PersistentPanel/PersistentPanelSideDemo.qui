@@ -20,6 +20,9 @@
                 <div id="rightPanel">
 
                     <AdPlaceholder id="ad" dimensions="Medium Rectangle"/>
+                    <div class="right">
+                        Any content above the panel will scroll away.
+                    </div>
 
                     <PersistentPanel>
                         <!-- These contents will always be visible -->
@@ -31,8 +34,7 @@
                     </PersistentPanel>
                     
                     <div class="right">
-                        Any content here will scroll away underneath the panel
-                        above.
+                        Any content below the panel will also scroll away.
                     </div>
                     
                 </div>

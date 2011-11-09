@@ -7,7 +7,8 @@
 <style>
 .ExpandOnHover {
     display: inline-block;
-    /* margin: 1em; */
+    margin: 1em;
+    vertical-align: top;
 }
 .ExpandOnHover #ExpandOnHover_content {
     height: 75px;
