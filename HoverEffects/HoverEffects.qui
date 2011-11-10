@@ -37,6 +37,16 @@ HoverEffects.prototype.extend({
     }),
     
     /*
+     * The speed with which animations are applied.
+     * 
+     * This uses a faster default than $.animate(), since hover animations
+     * should generally respond quickly.
+     * 
+     * Set this to 0 to have effects applied instantaneously.
+     */
+    duration: Control.property( null, "fast" ),
+    
+    /*
      * The effects that will be applied on hover.
      */
     effects: Control.property( function() {
@@ -114,22 +124,24 @@ HoverEffects.prototype.extend({
 
     _hoverIn: function() {
         this.$HoverEffects_content()
-            .stop()
+            .stop() // In case this was doing its _hoverOut animation
             .css({
                 "position": "absolute",
-                "z-index": "2"
+                "z-index": "2"  // In front of any element doing _hoverOut
             })
-            .animate( this.effects(), "fast" );
+            .animate( this.effects(), this.duration() );
     },
     
     _hoverOut: function() {
         var savedState = this._originalState() || {};
         this.$HoverEffects_content()
-            .stop()
+            .stop() // In case this was doing its _hoverIn animation
             .css({
-                "z-index": "1"
+                // Show in front of peer elements, but behind _hoverIn element.
+                "z-index": "1" 
             })
-            .animate( savedState, "fast", null, function() {
+            .animate( savedState, this.duration(), null, function() {
+                // Restore normal positioning when animation completes.
                 $( this ).css({
                     "position": "inherit",
                     "z-index": "inherit"

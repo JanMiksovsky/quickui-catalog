@@ -128,6 +128,13 @@ var controlRecords = [
         demoClass: "HorizontalPanelsDemo",
         description: "Positions panels on the left and/or right and gives the remaining space to a main content area."
     },
+    /*
+    {
+        name: "HoverEffects",
+        demoClass: "HoverEffectsDemo",
+        description: "Apply effects on hover, which can include changing the item's size and position."
+    },
+    */
     {
         name: "LateralNavigator",
         demoClass: "",

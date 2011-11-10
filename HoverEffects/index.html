@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300&v2' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="../../plugins/quickui.rehydrate.css" />
+<link rel="stylesheet" type="text/css" href="../../quicommon/quicommon.css" />
+<link rel="stylesheet" type="text/css" href="../../controls/controls.css" />
+<link rel="stylesheet" type="text/css" href="../../site.css" />
+<link rel="stylesheet" type="text/css" href="../quickui-catalog.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="../../thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="../../thirdParty/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" src="../../lib/quickui.js"></script>
+<script type="text/javascript" src="../../plugins/quickui.rehydrate.js"></script>
+<script type="text/javascript" src="../../quicommon/quicommon.js"></script>
+<script type="text/javascript" src="../../controls/controls.js"></script>
+<script type="text/javascript" src="../catalog-db.js"></script>
+<script type="text/javascript" src="../quickui-catalog.js"></script>
+
+<title>HoverEffects</title>
+
+</head>
+
+<body data-create-controls="true"
+    data-control="CatalogPage"
+    data-demoClass="HoverEffectsDemo"
+    data-demoFileMarkup="HoverEffectsDemo.qui">
+
+<div data-property="summary">
+    Applies effects to its content on hover. These effects can include
+    growing an item and/or changing its position, while still preserving
+    the layout of adjacent elements.
+</div>
+
+<p>
+    You define the animation effects by setting the control's effects()
+    property. This should be a dictionary of CSS properties that can be animated
+    with <a data-control="Link" href="http://api.jquery.com/animate/">$.animate()</a>.
+    The position and size of the content can be animated without
+    moving adjacent elements in the document flow; while the mouse is over
+    the content, the control leaves a placeholder element of the content's
+    original size to hold the shape of the surrounding elements.
+</p>
+<p>
+    To animate color properties (as shown in the demo), include a plugin such as
+    <a data-control="Link" href="http://plugins.jquery.com/project/color-animation">Color Animation</a>.
+</p>
+<p>
+    This control was discussed in a
+    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2011/11/hovereffects.html">user interface blog post</a>.
+</p>
+
+</body>
+
+</html>
