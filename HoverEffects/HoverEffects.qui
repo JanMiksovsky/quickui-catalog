@@ -44,7 +44,7 @@ HoverEffects.prototype.extend({
      * 
      * Set this to 0 to have effects applied instantaneously.
      */
-    duration: Control.property( null, "fast" ),
+    duration: Control.property( null, 100 ),
     
     /*
      * The effects that will be applied on hover.
