@@ -1,11 +1,11 @@
-<Control name="HoverEffectsDemo">
+<Control name="HighlightEffectsDemo">
 
 <content>
-    <HoverEffects content="1"/>
-    <HoverEffects content="2"/>
-    <HoverEffects content="3"/>
-    <HoverEffects content="4"/>
-    <HoverEffects content="5"/>
+    <HighlightEffects content="1"/>
+    <HighlightEffects content="2"/>
+    <HighlightEffects content="3"/>
+    <HighlightEffects content="4"/>
+    <HighlightEffects content="5"/>
 </content>
 
 <style>
@@ -25,7 +25,7 @@
  * demo purposes, however, we'll take a shortcut and directly set the style
  * of the HoverEffect's content.
  */
-.HoverEffects #HoverEffects_content {
+.HighlightEffects #HighlightEffects_content {
     background-color: #e8e8e8;
     border: 3px solid #e0e0e0;
     cursor: default;
@@ -42,7 +42,7 @@
 </style>
 
 <script>
-HoverEffectsDemo.prototype.extend({
+HighlightEffectsDemo.prototype.extend({
     initialize: function() {
         
         // Remove extra white space nodes so inline controls touch.

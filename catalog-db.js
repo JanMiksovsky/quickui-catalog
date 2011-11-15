@@ -119,6 +119,11 @@ var controlRecords = [
         description: "A control with an associated Popup which will appear above or below the control."
     },
     {
+        name: "HighlightEffects",
+        demoClass: "HighlightEffectsDemo",
+        description: "Apply effects on hover, which can include changing the item's size and position."
+    },
+    {
         name: "HintTextBox",
         demoClass: "HintTextBoxDemo",
         description: "A text box that displays a hint (placeholder) when the text box is empty."
@@ -128,13 +133,6 @@ var controlRecords = [
         demoClass: "HorizontalPanelsDemo",
         description: "Positions panels on the left and/or right and gives the remaining space to a main content area."
     },
-    /*
-    {
-        name: "HoverEffects",
-        demoClass: "HoverEffectsDemo",
-        description: "Apply effects on hover, which can include changing the item's size and position."
-    },
-    */
     {
         name: "LateralNavigator",
         demoClass: "",

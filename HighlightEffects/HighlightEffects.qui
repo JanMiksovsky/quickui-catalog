@@ -6,10 +6,10 @@ To animate color properties, use a plugin such as Color Animation at
 http://plugins.jquery.com/project/color-animation.
 -->
 
-<Control name="HoverEffects">
+<Control name="HighlightEffects">
 
 <content>
-    <div id="HoverEffects_content"/>
+    <div id="HighlightEffects_content"/>
 </content>
 
 <style>
@@ -23,14 +23,14 @@ http://plugins.jquery.com/project/color-animation.
 </style>
 
 <script>
-HoverEffects.prototype.extend({
+HighlightEffects.prototype.extend({
     
     _originalState: Control.property(),
     
     /*
      * The control's content.
      */
-    content: Control.chain( "$HoverEffects_content", "content", function() {
+    content: Control.chain( "$HighlightEffects_content", "content", function() {
         if ( this.inDocument() ) {
             this._recalc();
         }
@@ -55,7 +55,7 @@ HoverEffects.prototype.extend({
     
     initialize: function() {
         
-        this.genericIfClassIs( HoverEffects );
+        this.genericIfClassIs( HighlightEffects );
 
         var self = this;
         this
@@ -80,7 +80,7 @@ HoverEffects.prototype.extend({
      */
     _getCurrentState: function() {
         var currentState = {};
-        var $content = this.$HoverEffects_content();
+        var $content = this.$HighlightEffects_content();
         var effects = this.effects();
         for ( var key in effects ) {
             var value;
@@ -123,7 +123,7 @@ HoverEffects.prototype.extend({
     },
 
     _hoverIn: function() {
-        this.$HoverEffects_content()
+        this.$HighlightEffects_content()
             .stop() // In case this was doing its _hoverOut animation
             .css({
                 "position": "absolute",
@@ -134,7 +134,7 @@ HoverEffects.prototype.extend({
     
     _hoverOut: function() {
         var savedState = this._originalState() || {};
-        this.$HoverEffects_content()
+        this.$HighlightEffects_content()
             .stop() // In case this was doing its _hoverIn animation
             .css({
                 // Show in front of peer elements, but behind _hoverIn element.
@@ -155,8 +155,8 @@ HoverEffects.prototype.extend({
      * preserving room for the content in the normal document flow.
      */
     _recalc: function() {
-        this.height( this.$HoverEffects_content().outerHeight() );
-        this.width( this.$HoverEffects_content().outerWidth() );
+        this.height( this.$HighlightEffects_content().outerHeight() );
+        this.width( this.$HighlightEffects_content().outerWidth() );
     }
     
 });
