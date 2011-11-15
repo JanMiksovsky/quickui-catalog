@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../plugins/quickui.rehydrate.css" />
 <link rel="stylesheet" type="text/css" href="../quicommon/quicommon.css" />
 <link rel="stylesheet" type="text/css" href="../controls/controls.css" />
 <link rel="stylesheet" type="text/css" href="../site.css" />
@@ -19,6 +20,7 @@
 <script type="text/javascript" src="../thirdParty/highlight.min.js"></script>
 <script type="text/javascript" src="../thirdParty/jquery.animate-colors-min.js"></script>
 <script type="text/javascript" src="../lib/quickui.js"></script>
+<script type="text/javascript" src="../../plugins/quickui.rehydrate.js"></script>
 <script type="text/javascript" src="../quicommon/quicommon.js"></script>
 <script type="text/javascript" src="../controls/controls.js"></script>
 <script type="text/javascript" src="catalog-db.js"></script>
@@ -38,12 +40,100 @@ $(function() {
         return;
     }
 
-    $( "body" ).control( CatalogIndexPage );
+    // Get all the classes mentioned in link text.
+    var $body = Control( "body" );
+    var classNames = getLinkText( $body.find( "a" ) );
+    
+    // Get records for all the classes which were named. 
+    var records = getControlRecords( classNames );
+    
+    // Wipe the content and create tiles for each class.
+    $body
+        .content( null )
+        .rehydrate()
+        .controlRecords( records );
+
 });
+
+// Return the text of each link as an array
+function getLinkText( $links ) {
+    return $links.map( function( index, link ) {
+        return $( link ).text();
+    }).get();
+}
+
+function getControlRecords( classNames ) {
+    
+    var recordsByName = {};
+    for ( var i = 0; i < controlRecords.length; i++ ) {
+        var controlRecord = controlRecords[i];
+        recordsByName[ controlRecord.name ] = controlRecord;
+    }
+    
+    var records = [];
+    for ( var i = 0; i < classNames.length; i++ ) {
+        var className = classNames[i];
+        var record = recordsByName[ className ];
+        records.push( record );
+    }
+    
+    return records;
+}
 </script>
 
 </head>
 
-<body/>
+<body data-control="CatalogIndexPage">
+    <a href="AdPlaceholder">AdPlaceholder</a>
+    <a href="AutoSizeTextBox">AutoSizeTextBox</a>
+    <a href="BrowserSpecific">BrowserSpecific</a>
+    <a href="ButtonBase">ButtonBase</a>
+    <a href="CalendarDay">CalendarDay</a>
+    <a href="CalendarDayButton">CalendarDayButton</a>
+    <a href="CalendarMonth">CalendarMonth</a>
+    <a href="CalendarMonthNavigator">CalendarMonthNavigator</a>
+    <a href="CalendarMonthWithHeadings">CalendarMonthWithHeadings</a>
+    <a href="CalendarWeek">CalendarWeek</a>
+    <a href="ColorSwatch">ColorSwatch</a>
+    <a href="ColorSwatchButton">ColorSwatchButton</a>
+    <a href="ColorSwatchComboBox">ColorSwatchComboBox</a>
+    <a href="ColorSwatchTextBox">ColorSwatchTextBox</a>
+    <a href="ComboBox">ComboBox</a>
+    <a href="DateComboBox">DateComboBox</a>
+    <a href="DateTextBox">DateTextBox</a>
+    <a href="DaysOfWeek">DaysOfWeek</a>
+    <a href="DeviceSpecific">DeviceSpecific</a>
+    <a href="Dialog">Dialog</a>
+    <a href="Fader">Fader</a>
+    <a href="FlickrInterestingnessDay">FlickrInterestingnessDay</a>
+    <a href="FlickrInterestingnessNavigator">FlickrInterestingnessNavigator</a>
+    <a href="Gradient">Gradient</a>
+    <a href="HasPopup">HasPopup</a>
+    <a href="HighlightEffects">HighlightEffects</a>
+    <a href="HintTextBox">HintTextBox</a>
+    <a href="HorizontalPanels">HorizontalPanels</a>
+    <a href="LateralNavigator">LateralNavigator</a>
+    <a href="List">List</a>
+    <a href="ListComboBox">ListComboBox</a>
+    <a href="LoremIpsum">LoremIpsum</a>
+    <a href="MonthName">MonthName</a>
+    <a href="Page">Page</a>
+    <a href="PersistentPanel">PersistentPanel</a>
+    <a href="Popup">Popup</a>
+    <a href="Repeater">Repeater</a>
+    <a href="RotatingPagesWithDots">RotatingPagesWithDots</a>
+    <a href="SampleSpriteButton">SampleSpriteButton</a>
+    <a href="SearchBox">SearchBox</a>
+    <a href="SlidingPages">SlidingPages</a>
+    <a href="SlidingPagesWithDots">SlidingPagesWithDots</a>
+    <a href="Sprite">Sprite</a>
+    <a href="SpriteButton">SpriteButton</a>
+    <a href="Switch">Switch</a>
+    <a href="Tag">Tag</a>
+    <a href="TextBoxWithButton">TextBoxWithButton</a>
+    <a href="TextCondenser">TextCondenser</a>
+    <a href="ValidatingTextBox">ValidatingTextBox</a>
+    <a href="VerticalPanels">VerticalPanels</a>
+</body>
 
 </html>
