@@ -6,14 +6,22 @@ The user can select items with the mouse and keyboard.
 <Control name="ListBox">
 
 <prototype>
-    <List itemClass="ToggleButton" />
+    <List itemClass="ButtonBase" />
 </prototype>
 
 <style>
 > * {
     display: block;
 }
+
 /* Generic appearance */
+.ListBox.generic .ButtonBase.generic {
+    border: none;
+}
+.ListBox.generic .ButtonBase.generic.selected {
+    background: highlight;
+    color: highlighttext;
+}
 </style>
 
 <script>
@@ -36,27 +44,59 @@ ListBox.prototype.extend({
         this._super();
         this.genericIfClassIs( ListBox );
         
+        var self = this;
         this.on( "click", function( event ) {
-            console.log( event.target );
+            var child = self._getChildContainingElement( event.target );
+            if ( child ) {
+                self.toggleElement( child );
+            }
         });
 
+    },
+    
+    multiSelect: Control.property.bool( null, false ),
+    
+    selectedElement: function( element ) {
+        
+    },
+    
+    selectedIndex: function( index ) {
+        
     },
     
     selectedItems: function( items ) {
         
     },
     
-    selectedElements: function( ) {
-        
+    selectedElements: function( elements ) {
+        if ( elements === undefined ) {
+            return this.controls().filter( ".selected" );
+        } else {
+            this.controls()
+                .removeClass( "selected" )
+                .filter( elements )
+                .addClass( "selected" );
+            return this;
+        }
     },
     
     selectedIndices: function( indices ) {
         
     },
+        
+    toggleElement: function( element, toggle ) {
+        $( element ).toggleClass( "selected", toggle );
+        return this;
+    },
+
+    _getChildContainingElement: function( element ) {
+        return $( element ).closest( this.children() );
+    },
     
     _refresh: function() {
         
     }
+    
 });
 </script>
 
