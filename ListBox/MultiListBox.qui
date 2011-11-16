@@ -16,6 +16,50 @@ MultiListBox.prototype.extend({
         this.genericIfClassIs( MultiListBox );
     },
     
+    /*
+     * The controls in the list which are currently selected.
+     */
+    selectedControls: function( selectedControls ) {
+        if ( selectedControls === undefined ) {
+            return this.controls().filter( ".selected" );
+        } else {
+            this.controls()
+                .removeClass( "selected" )
+                .filter( selectedControls )
+                .addClass( "selected" );
+            this.trigger( "selectionChanged" );
+            return this;
+        }
+    },
+    
+    /*
+     * The indices of the currently-selected controls.
+     */
+    selectedIndices: function( selectedIndices ) {
+        var controls = this.controls();
+        if ( selectedIndices === undefined ) {
+            var indices = [];
+            for ( var i = 0; i < controls.length; i++ ) {
+                if ( controls.eq(i).hasClass( "selected" ) ) {
+                    indices.push( i );
+                }
+            }
+            return indices;
+        } else {
+            var selectedControls = [];
+            if ( selectedIndices ) {
+                for ( var i = 0; i < selectedIndices.length; i++ ) {
+                    var index = selectedIndices[i];
+                    selectedControls.push( controls[ index ] );
+                }
+            }
+            return this.selectedControls( selectedControls );
+        }
+    },
+    
+    /*
+     * The items represented by the currently-selected controls.
+     */
     selectedItems: function( selectedItems ) {
         if ( selectedItems === undefined ) {
             var indices = this.selectedIndices();
@@ -43,41 +87,10 @@ MultiListBox.prototype.extend({
         }
     },
     
-    selectedControls: function( selectedControls ) {
-        if ( selectedControls === undefined ) {
-            return this.controls().filter( ".selected" );
-        } else {
-            this.controls()
-                .removeClass( "selected" )
-                .filter( selectedControls )
-                .addClass( "selected" );
-            this.trigger( "selectionChanged" );
-            return this;
-        }
-    },
-    
-    selectedIndices: function( selectedIndices ) {
-        var controls = this.controls();
-        if ( selectedIndices === undefined ) {
-            var indices = [];
-            for ( var i = 0; i < controls.length; i++ ) {
-                if ( controls.eq(i).hasClass( "selected" ) ) {
-                    indices.push( i );
-                }
-            }
-            return indices;
-        } else {
-            var selectedControls = [];
-            if ( selectedIndices ) {
-                for ( var i = 0; i < selectedIndices.length; i++ ) {
-                    var index = selectedIndices[i];
-                    selectedControls.push( controls[ index ] );
-                }
-            }
-            return this.selectedControls( selectedControls );
-        }
-    },
-    
+    /*
+     * Toggle the selected state of the given control (if toggle is undefined),
+     * or set the selected state to the indicated toggle value.
+     */
     toggleControl: function( control, toggle ) {
         $( control ).toggleClass( "selected", toggle );
         this.trigger( "selectionChanged" );

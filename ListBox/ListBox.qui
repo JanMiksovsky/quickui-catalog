@@ -56,6 +56,9 @@ ListBox.prototype.extend({
             });
     },
     
+    /*
+     * The control in the list which is currently selected.
+     */
     selectedControl: function( selectedControl ) {
         if ( selectedControl === undefined ) {
             return this.controls().filter( ".selected" ).eq(0);
@@ -72,6 +75,9 @@ ListBox.prototype.extend({
         }
     },
     
+    /*
+     * The index of the currently-selected control.
+     */
     selectedIndex: function( selectedIndex ) {
         if ( selectedIndex === undefined ) {
             var control = this.selectedControl();
@@ -87,6 +93,9 @@ ListBox.prototype.extend({
         }
     },
     
+    /*
+     * The item represented by the currently-selected control.
+     */
     selectedItem: function( selectedItem ) {
         if ( selectedItem === undefined ) {
             var index = this.selectedIndex();
