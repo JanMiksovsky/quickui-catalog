@@ -42,7 +42,11 @@ ListBox.prototype.extend({
         this._super();
         this.genericIfClassIs( ListBox );
         
-        this.attr( "tabindex", "tabindex" );
+        /*
+         * Try to convince the browser that the list is focusable, but without
+         * forcing it into the tab order (as a positive tabindex would do).
+         */
+        this.attr( "tabindex", "-1" );
         
         var self = this;
         this.on("click", function( event ) {
@@ -59,7 +63,7 @@ ListBox.prototype.extend({
     /*
      * The control in the list which is currently selected.
      */
-    selectedControl: function( selectedControl ) {
+    selectedControl: Control.iterator( function( selectedControl ) {
         if ( selectedControl === undefined ) {
             return this.controls().filter( ".selected" ).eq(0);
         } else {
@@ -71,14 +75,13 @@ ListBox.prototype.extend({
             if ( selectedControl !== previousControl ) {
                 this.trigger( "selectionChanged" );
             }
-            return this;
         }
-    },
+    }),
     
     /*
      * The index of the currently-selected control.
      */
-    selectedIndex: function( selectedIndex ) {
+    selectedIndex: Control.iterator( function( selectedIndex ) {
         if ( selectedIndex === undefined ) {
             var control = this.selectedControl();
             return control
@@ -89,14 +92,14 @@ ListBox.prototype.extend({
             var control = ( index >= 0 )
                 ? this.controls().eq( index )
                 : null;
-            return this.selectedControl( control );
+            this.selectedControl( control );
         }
-    },
+    }),
     
     /*
      * The item represented by the currently-selected control.
      */
-    selectedItem: function( selectedItem ) {
+    selectedItem: Control.iterator( function( selectedItem ) {
         if ( selectedItem === undefined ) {
             var index = this.selectedIndex();
             return index >= 0
@@ -104,9 +107,9 @@ ListBox.prototype.extend({
                 : null;
         } else {
             var index = $.inArray( selectedItem, this.items() );
-            return this.selectedIndex( index );
+            this.selectedIndex( index );
         }
-    },
+    }),
     
     _controlClick: function( control ) {
         this.selectedControl( control );

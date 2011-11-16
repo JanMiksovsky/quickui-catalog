@@ -43,6 +43,7 @@ ListBoxDemo.prototype.extend({
                 "LightSeaGreen",
                 "LightSkyBlue",
                 "Red",
+                "Teal",
                 "SteelBlue",
                 "Yellow",
                 "YellowGreen"
@@ -68,6 +69,7 @@ ListBoxDemo.prototype.extend({
                 "Parakeet",
                 "Parrot",
                 "Rabbit",
+                "Teal",
                 "Turtle"
             ])
             .on( "selectionChanged", function() {

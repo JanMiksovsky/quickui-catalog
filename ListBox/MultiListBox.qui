@@ -19,7 +19,7 @@ MultiListBox.prototype.extend({
     /*
      * The controls in the list which are currently selected.
      */
-    selectedControls: function( selectedControls ) {
+    selectedControls: Control.iterator( function( selectedControls ) {
         if ( selectedControls === undefined ) {
             return this.controls().filter( ".selected" );
         } else {
@@ -28,14 +28,13 @@ MultiListBox.prototype.extend({
                 .filter( selectedControls )
                 .addClass( "selected" );
             this.trigger( "selectionChanged" );
-            return this;
         }
-    },
+    }),
     
     /*
      * The indices of the currently-selected controls.
      */
-    selectedIndices: function( selectedIndices ) {
+    selectedIndices: Control.iterator( function( selectedIndices ) {
         var controls = this.controls();
         if ( selectedIndices === undefined ) {
             var indices = [];
@@ -53,14 +52,14 @@ MultiListBox.prototype.extend({
                     selectedControls.push( controls[ index ] );
                 }
             }
-            return this.selectedControls( selectedControls );
+            this.selectedControls( selectedControls );
         }
-    },
+    }),
     
     /*
      * The items represented by the currently-selected controls.
      */
-    selectedItems: function( selectedItems ) {
+    selectedItems: Control.iterator( function( selectedItems ) {
         if ( selectedItems === undefined ) {
             var indices = this.selectedIndices();
             var items = this.items();
@@ -83,9 +82,9 @@ MultiListBox.prototype.extend({
                     }
                 }
             }
-            return this.selectedControls( selectedControls );
+            this.selectedControls( selectedControls );
         }
-    },
+    }),
     
     /*
      * Toggle the selected state of the given control (if toggle is undefined),
