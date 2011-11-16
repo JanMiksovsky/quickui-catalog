@@ -46,9 +46,9 @@ ListBox.prototype.extend({
         
         var self = this;
         this.on("click", function( event ) {
-                var child = self._getChildContainingElement( event.target );
+                var child = self._getControlContainingElement( event.target );
                 if ( child ) {
-                    self._elementClick( child );
+                    self._controlClick( child );
                 }
             })
             .on("keydown", function( event ) {
@@ -56,47 +56,55 @@ ListBox.prototype.extend({
             });
     },
     
-    selectedElement: function( element ) {
-        if ( element === undefined ) {
-            return this.controls().filter( ".selected" )[0];
+    selectedControl: function( selectedControl ) {
+        if ( selectedControl === undefined ) {
+            return this.controls().filter( ".selected" ).eq(0);
         } else {
-            var previousElement = this.selectedElement();
+            var previousControl = this.selectedControl();
             this.controls()
                 .removeClass( "selected" )
-                .filter( element )
+                .filter( selectedControl )
                 .addClass( "selected" );
-            if ( element !== previousElement ) {
+            if ( selectedControl !== previousControl ) {
                 this.trigger( "selectionChanged" );
             }
             return this;
         }
     },
     
-    selectedIndex: function( index ) {
-        if ( index === undefined ) {
-            var element = this.selectedElement();
-            return element
-                ? this.controls().index( element )
+    selectedIndex: function( selectedIndex ) {
+        if ( selectedIndex === undefined ) {
+            var control = this.selectedControl();
+            return control
+                ? this.controls().index( control )
                 : -1;
         } else {
-            var n = parseInt( index );
-            var element = this.controls().eq( n );
-            this.selectedElement( element );
-            return this;
+            var index = parseInt( selectedIndex );
+            var control = ( index >= 0 )
+                ? this.controls().eq( index )
+                : null;
+            return this.selectedControl( control );
         }
     },
     
-    selectedItem: function( item ) {
-        
+    selectedItem: function( selectedItem ) {
+        if ( selectedItem === undefined ) {
+            var index = this.selectedIndex();
+            return index >= 0
+                ? this.items()[ index ]
+                : null;
+        } else {
+            var index = $.inArray( selectedItem, this.items() );
+            return this.selectedIndex( index );
+        }
     },
     
-    _elementClick: function( element ) {
-        this.selectedElement( element );
-        // $( child ).focus();
+    _controlClick: function( control ) {
+        this.selectedControl( control );
     },
     
-    _getChildContainingElement: function( element ) {
-        return $( element ).closest( this.children() );
+    _getControlContainingElement: function( element ) {
+        return $( element ).closest( this.controls() ).control();
     },
     
     _keydown: function( event ) {
@@ -105,21 +113,21 @@ ListBox.prototype.extend({
         switch ( event.which ) {
             
             case 35: // End
-                handled = this._selectLastElement();
+                handled = this._selectLastControl();
                 break;
             
             case 36: // Home
-                handled = this._selectFirstElement();
+                handled = this._selectFirstControl();
                 break;
             
             case 37: // Left
             case 38: // Up
-                handled = this._selectPreviousElement();
+                handled = this._selectPreviousControl();
                 break;
                 
             case 39: // Right
             case 40: // Down
-                handled = this._selectNextElement();
+                handled = this._selectNextControl();
                 break;
                 
             default:
@@ -134,11 +142,7 @@ ListBox.prototype.extend({
         }
     },
     
-    _refresh: function() {
-        
-    },
-    
-    _selectFirstElement: function() {
+    _selectFirstControl: function() {
         if ( this.controls().length > 0 ) {
             this.selectedIndex( 0 );
             return true;
@@ -146,7 +150,7 @@ ListBox.prototype.extend({
         return false;
     },
     
-    _selectLastElement: function() {
+    _selectLastControl: function() {
         if ( this.controls().length > 0 ) {
             this.selectedIndex( this.controls().length - 1 );
             return true;
@@ -154,7 +158,7 @@ ListBox.prototype.extend({
         return false;
     },
     
-    _selectNextElement: function() {
+    _selectNextControl: function() {
         var index = this.selectedIndex() + 1;
         if ( index < this.controls().length ) {
             this.selectedIndex( index );
@@ -163,7 +167,7 @@ ListBox.prototype.extend({
         return false;
     },
     
-    _selectPreviousElement: function() {
+    _selectPreviousControl: function() {
         var index = this.selectedIndex() - 1;
         if ( index >= 0 && this.controls().length > 0 ) {
             this.selectedIndex( index );

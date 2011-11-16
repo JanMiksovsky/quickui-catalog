@@ -51,6 +51,7 @@ ListBoxDemo.prototype.extend({
                 var index = self.$colors().selectedIndex();
                 self.$index().content( index );
             });
+        this.$index().content( this.$colors().selectedIndex() );
             
         this.$animals()
             .items([
@@ -70,7 +71,7 @@ ListBoxDemo.prototype.extend({
                 "Turtle"
             ])
             .on( "selectionChanged", function() {
-                var count = self.$animals().selectedElements().length;
+                var count = self.$animals().selectedControls().length;
                 self.$count().content( count );
             });
     }

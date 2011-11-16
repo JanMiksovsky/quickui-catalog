@@ -1,3 +1,7 @@
+<!--
+A ListBox capable of multiple selection.
+-->
+
 <Control name="MultiListBox">
 
 <prototype>
@@ -12,34 +16,76 @@ MultiListBox.prototype.extend({
         this.genericIfClassIs( MultiListBox );
     },
     
-    selectedItems: function( items ) {
-        
+    selectedItems: function( selectedItems ) {
+        if ( selectedItems === undefined ) {
+            var indices = this.selectedIndices();
+            var items = this.items();
+            var selectedItems = [];
+            for ( var i = 0; i < indices.length; i++ ) {
+                var index = indices[i];
+                selectedItems.push( items[i] );
+            }
+            return selectedItems;
+        } else {
+            var selectedControls = [];
+            if ( selectedItems ) {
+                var controls = this.controls();
+                var items = this.items();
+                for ( var i = 0; i < selectedItems.length; i++ ) {
+                    var item = selectedItems[i];
+                    var index = $.inArray( item, items );
+                    if ( index >= 0 ) {
+                        selectedControls.push( controls[ index ] );
+                    }
+                }
+            }
+            return this.selectedControls( selectedControls );
+        }
     },
     
-    selectedElements: function( elements ) {
-        if ( elements === undefined ) {
+    selectedControls: function( selectedControls ) {
+        if ( selectedControls === undefined ) {
             return this.controls().filter( ".selected" );
         } else {
             this.controls()
                 .removeClass( "selected" )
-                .filter( elements )
+                .filter( selectedControls )
                 .addClass( "selected" );
+            this.trigger( "selectionChanged" );
             return this;
         }
     },
     
-    selectedIndices: function( indices ) {
-        
+    selectedIndices: function( selectedIndices ) {
+        var controls = this.controls();
+        if ( selectedIndices === undefined ) {
+            var indices = [];
+            for ( var i = 0; i < controls.length; i++ ) {
+                if ( controls.eq(i).hasClass( "selected" ) ) {
+                    indices.push( i );
+                }
+            }
+            return indices;
+        } else {
+            var selectedControls = [];
+            if ( selectedIndices ) {
+                for ( var i = 0; i < selectedIndices.length; i++ ) {
+                    var index = selectedIndices[i];
+                    selectedControls.push( controls[ index ] );
+                }
+            }
+            return this.selectedControls( selectedControls );
+        }
     },
     
-    toggleElement: function( element, toggle ) {
-        $( element ).toggleClass( "selected", toggle );
+    toggleControl: function( control, toggle ) {
+        $( control ).toggleClass( "selected", toggle );
         this.trigger( "selectionChanged" );
         return this;
     },
     
-    _elementClick: function( element ) {
-        this.toggleElement( element );
+    _controlClick: function( control ) {
+        this.toggleControl( control );
     }
 
 });

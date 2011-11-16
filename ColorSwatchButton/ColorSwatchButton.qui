@@ -20,6 +20,8 @@ ColorSwatchButton.prototype.extend({
         this.genericIfClassIs( ColorSwatchButton );
     },
     
+    color: Control.chain( "$swatch", "color" ),
+    
     content: Control.chain( "$ColorSwatchButton_content", "content", function( content ) {
         this.$swatch().color( content );
     })
