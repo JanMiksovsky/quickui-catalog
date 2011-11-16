@@ -19,11 +19,15 @@ The user can select items with the mouse and keyboard.
 <script>
 ListBox.prototype.extend({
     
-    activeItem: function() {
+    activeElement: function() {
         
     },
     
-    activeItemIndex: function() {
+    activeIndex: function() {
+        
+    },
+    
+    activeItem: function() {
         
     },
     
@@ -31,6 +35,10 @@ ListBox.prototype.extend({
         
         this._super();
         this.genericIfClassIs( ListBox );
+        
+        this.on( "click", function( event ) {
+            console.log( event.target );
+        });
 
     },
     
@@ -38,7 +46,11 @@ ListBox.prototype.extend({
         
     },
     
-    selectedItemIndices: function( indices ) {
+    selectedElements: function( ) {
+        
+    },
+    
+    selectedIndices: function( indices ) {
         
     },
     
