@@ -12,9 +12,18 @@ The user can select items with the mouse and keyboard.
 <style>
 > * {
     display: block;
+    outline: none;
 }
 
 /* Generic appearance */
+.ListBox.generic {
+    border: 1px solid lightgray;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .ListBox.generic .ButtonBase.generic {
     border: none;
     width: 100%;
@@ -28,29 +37,18 @@ The user can select items with the mouse and keyboard.
 <script>
 ListBox.prototype.extend({
     
-    activeElement: function() {
-        
-    },
-    
-    activeIndex: function() {
-        
-    },
-    
-    activeItem: function() {
-        
-    },
-    
     initialize: function() {
         
         this._super();
         this.genericIfClassIs( ListBox );
         
+        this.attr( "tabindex", "tabindex" );
+        
         var self = this;
         this.on("click", function( event ) {
                 var child = self._getChildContainingElement( event.target );
                 if ( child ) {
-                    self.toggleElement( child );
-                    $( child ).focus();
+                    self._elementClick( child );
                 }
             })
             .on("keydown", function( event ) {
@@ -58,41 +56,45 @@ ListBox.prototype.extend({
             });
     },
     
-    multiSelect: Control.property.bool( null, false ),
-    
     selectedElement: function( element ) {
-        
-    },
-    
-    selectedIndex: function( index ) {
-        
-    },
-    
-    selectedItems: function( items ) {
-        
-    },
-    
-    selectedElements: function( elements ) {
-        if ( elements === undefined ) {
-            return this.controls().filter( ".selected" );
+        if ( element === undefined ) {
+            return this.controls().filter( ".selected" )[0];
         } else {
+            var previousElement = this.selectedElement();
             this.controls()
                 .removeClass( "selected" )
-                .filter( elements )
+                .filter( element )
                 .addClass( "selected" );
+            if ( element !== previousElement ) {
+                this.trigger( "selectionChanged" );
+            }
             return this;
         }
     },
     
-    selectedIndices: function( indices ) {
+    selectedIndex: function( index ) {
+        if ( index === undefined ) {
+            var element = this.selectedElement();
+            return element
+                ? this.controls().index( element )
+                : -1;
+        } else {
+            var n = parseInt( index );
+            var element = this.controls().eq( n );
+            this.selectedElement( element );
+            return this;
+        }
+    },
+    
+    selectedItem: function( item ) {
         
     },
-        
-    toggleElement: function( element, toggle ) {
-        $( element ).toggleClass( "selected", toggle );
-        return this;
+    
+    _elementClick: function( element ) {
+        this.selectedElement( element );
+        // $( child ).focus();
     },
-
+    
     _getChildContainingElement: function( element ) {
         return $( element ).closest( this.children() );
     },
@@ -102,16 +104,22 @@ ListBox.prototype.extend({
         var handled;
         switch ( event.which ) {
             
+            case 35: // End
+                handled = this._selectLastElement();
+                break;
+            
+            case 36: // Home
+                handled = this._selectFirstElement();
+                break;
+            
             case 37: // Left
             case 38: // Up
-                this._selectPreviousElement();
-                handled = true;
+                handled = this._selectPreviousElement();
                 break;
                 
             case 39: // Right
             case 40: // Down
-                this._selectNextElement();
-                handled = true;
+                handled = this._selectNextElement();
                 break;
                 
             default:
@@ -130,12 +138,38 @@ ListBox.prototype.extend({
         
     },
     
+    _selectFirstElement: function() {
+        if ( this.controls().length > 0 ) {
+            this.selectedIndex( 0 );
+            return true;
+        }
+        return false;
+    },
+    
+    _selectLastElement: function() {
+        if ( this.controls().length > 0 ) {
+            this.selectedIndex( this.controls().length - 1 );
+            return true;
+        }
+        return false;
+    },
+    
     _selectNextElement: function() {
-        console.log( "next" );
+        var index = this.selectedIndex() + 1;
+        if ( index < this.controls().length ) {
+            this.selectedIndex( index );
+            return true;
+        }
+        return false;
     },
     
     _selectPreviousElement: function() {
-        console.log( "previous" );
+        var index = this.selectedIndex() - 1;
+        if ( index >= 0 && this.controls().length > 0 ) {
+            this.selectedIndex( index );
+            return true;
+        }
+        return false;
     }
     
 });
