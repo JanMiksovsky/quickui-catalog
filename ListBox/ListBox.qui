@@ -17,6 +17,7 @@ The user can select items with the mouse and keyboard.
 /* Generic appearance */
 .ListBox.generic .ButtonBase.generic {
     border: none;
+    width: 100%;
 }
 .ListBox.generic .ButtonBase.generic.selected {
     background: highlight;
@@ -45,13 +46,16 @@ ListBox.prototype.extend({
         this.genericIfClassIs( ListBox );
         
         var self = this;
-        this.on( "click", function( event ) {
-            var child = self._getChildContainingElement( event.target );
-            if ( child ) {
-                self.toggleElement( child );
-            }
-        });
-
+        this.on("click", function( event ) {
+                var child = self._getChildContainingElement( event.target );
+                if ( child ) {
+                    self.toggleElement( child );
+                    $( child ).focus();
+                }
+            })
+            .on("keydown", function( event ) {
+                self._keydown( event );
+            });
     },
     
     multiSelect: Control.property.bool( null, false ),
@@ -93,8 +97,45 @@ ListBox.prototype.extend({
         return $( element ).closest( this.children() );
     },
     
+    _keydown: function( event ) {
+        
+        var handled;
+        switch ( event.which ) {
+            
+            case 37: // Left
+            case 38: // Up
+                this._selectPreviousElement();
+                handled = true;
+                break;
+                
+            case 39: // Right
+            case 40: // Down
+                this._selectNextElement();
+                handled = true;
+                break;
+                
+            default:
+                handled = false;
+                break;
+        }
+        
+        if (handled)
+        {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    },
+    
     _refresh: function() {
         
+    },
+    
+    _selectNextElement: function() {
+        console.log( "next" );
+    },
+    
+    _selectPreviousElement: function() {
+        console.log( "previous" );
     }
     
 });
