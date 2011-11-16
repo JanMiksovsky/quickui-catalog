@@ -1,0 +1,51 @@
+<!--
+A list box that allows single and multiple selection.
+The user can select items with the mouse and keyboard.
+-->
+
+<Control name="ListBox">
+
+<prototype>
+    <List itemClass="ToggleButton" />
+</prototype>
+
+<style>
+> * {
+    display: block;
+}
+/* Generic appearance */
+</style>
+
+<script>
+ListBox.prototype.extend({
+    
+    activeItem: function() {
+        
+    },
+    
+    activeItemIndex: function() {
+        
+    },
+    
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( ListBox );
+
+    },
+    
+    selectedItems: function( items ) {
+        
+    },
+    
+    selectedItemIndices: function( indices ) {
+        
+    },
+    
+    _refresh: function() {
+        
+    }
+});
+</script>
+
+</Control>
