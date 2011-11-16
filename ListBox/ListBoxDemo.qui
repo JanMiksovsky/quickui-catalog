@@ -1,25 +1,12 @@
 <Control name="ListBoxDemo">
 
 <content>
-    <div class="panel">
-        <ListBox id="colors" itemClass="ColorSwatchButton"/>
-        <div id="index"/>
-    </div>
-    <div class="panel">
-        <MultiListBox id="animals" />
-        <div id="count">0</div>
-    </div>
+    <ListBox id="colors" itemClass="ColorSwatchButton"/>
+    <div id="index"/>
 </content>
 
 <style>
 {
-    padding: 0.5in;
-}
-
-.panel {
-    display: inline-block;
-    margin-right: 2em;
-    vertical-align: top;
     width: 200px;
 }    
 </style>
@@ -27,9 +14,7 @@
 <script>
 ListBoxDemo.prototype.extend({
     initialize: function() {
-        
         var self = this;
-        
         this.$colors()
             .items([
                 "Blue",
@@ -53,29 +38,6 @@ ListBoxDemo.prototype.extend({
                 self.$index().content( index );
             });
         this.$index().content( this.$colors().selectedIndex() );
-            
-        this.$animals()
-            .items([
-                "Canary",
-                "Cat",
-                "Cockatiel",
-                "Dog",
-                "Ferret",
-                "Finch",
-                "Fish",
-                "Guinea Pig",
-                "Hamster",
-                "Lizard",
-                "Parakeet",
-                "Parrot",
-                "Rabbit",
-                "Teal",
-                "Turtle"
-            ])
-            .on( "selectionChanged", function() {
-                var count = self.$animals().selectedControls().length;
-                self.$count().content( count );
-            });
     }
 });
 </script>

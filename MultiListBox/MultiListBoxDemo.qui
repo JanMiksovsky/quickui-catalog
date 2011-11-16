@@ -1,0 +1,44 @@
+<Control name="MultiListBoxDemo">
+
+<content>
+    <MultiListBox id="animals" />
+    <div id="count">0</div>
+</content>
+
+<style>
+{
+    width: 200px;
+}    
+</style>
+
+<script>
+MultiListBoxDemo.prototype.extend({
+    initialize: function() {
+        var self = this;
+        this.$animals()
+            .items([
+                "Canary",
+                "Cat",
+                "Cockatiel",
+                "Dog",
+                "Ferret",
+                "Finch",
+                "Fish",
+                "Guinea Pig",
+                "Hamster",
+                "Lizard",
+                "Parakeet",
+                "Parrot",
+                "Rabbit",
+                "Teal",
+                "Turtle"
+            ])
+            .on( "selectionChanged", function() {
+                var count = self.$animals().selectedControls().length;
+                self.$count().content( count );
+            });
+    }
+});
+</script>
+
+</Control>

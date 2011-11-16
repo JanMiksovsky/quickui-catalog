@@ -144,6 +144,11 @@ var controlRecords = [
         description: "Renders each element of a JavaScript array as a QuickUI control."
     },
     {
+        name: "ListBox",
+        demoClass: "ListBoxDemo",
+        description: "A list that supports single selection and keyboard navigation."
+    },
+    {
         name: "ListComboBox",
         demoClass: "ListComboBoxDemo",
         description: "A ComboBox which presents its choices as a dropdown list."
@@ -155,6 +160,11 @@ var controlRecords = [
     {
         name: "MonthName",
         description: "Shows the name of the month for a given date."
+    },
+    {
+        name: "MultiListBox",
+        demoClass: "MultiListBoxDemo",
+        description: "A list that supports multiple selection and keyboard navigation."
     },
     {
         name: "Page",
