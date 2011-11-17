@@ -2,7 +2,9 @@
 
 <content>
     <MultiListBox id="animals" />
-    <div id="count">0</div>
+    <div>
+        Selected items: <span id="count">0</span>
+    </div>
 </content>
 
 <style>

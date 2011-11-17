@@ -1,6 +1,6 @@
 <!--
-A list box that allows single and multiple selection.
-The user can select items with the mouse and keyboard.
+A list box that allows single selection.
+The user can select an item with the mouse or keyboard.
 -->
 
 <Control name="ListBox">
@@ -49,14 +49,16 @@ ListBox.prototype.extend({
         /*
          * Try to convince the browser that the list is focusable, but without
          * forcing it into the tab order (as a positive tabindex would do).
+         * Firefox, Chrome, and IE seem to handle this as desired if tabindex
+         * is set to a negative number.
          */
         this.attr( "tabindex", "-1" );
         
         var self = this;
         this.on("click", function( event ) {
-                var child = self._getControlContainingElement( event.target );
-                if ( child ) {
-                    self._controlClick( child );
+                var control = self._getControlContainingElement( event.target );
+                if ( control ) {
+                    self._controlClick( control );
                 }
             })
             .on("keydown", function( event ) {
@@ -126,19 +128,16 @@ ListBox.prototype.extend({
     
     /*
      * Return the control that spans the given y position, or -1 if not found.
-     * If "first" is true, prefer the first control at that position; if false,
-     * prefer the last.
+     * If downward is true, move down the list of controls to find the
+     * first control found at the given y position; if downward is false,
+     * move up the list of controls to find the last control at that position. 
      */
-    _getControlAtY: function( y, first ) {
+    _getControlAtY: function( y, downward ) {
         
-        if ( first === undefined ) {
-            first = true;
-        }
-
         var controls = this.controls();
-        var start = first ? 0 : controls.length - 1;
-        var end = first ? controls.length : 0;
-        var step = first ? 1 : -1;
+        var start = downward ? 0 : controls.length - 1;
+        var end = downward ? controls.length : 0;
+        var step = downward ? 1 : -1;
         for ( var i = start; i !== end; i += step ) {
             var $control = controls.eq(i);
             var controlTop = Math.round( $control.offset().top );
@@ -151,6 +150,9 @@ ListBox.prototype.extend({
         return -1;
     },
     
+    /*
+     * Handle a keydown event.
+     */
     _keydown: function( event ) {
         
         var handled;
@@ -199,49 +201,40 @@ ListBox.prototype.extend({
     },
     
     _pageDown: function() {
-
-        var scrollTop = this.scrollTop();
-        var selectedIndex = this.selectedIndex();
-        
-        // Find the control at the bottom of the viewport.
-        var viewPortDimensions = this._viewPortDimensions();
-        var index = this._getControlAtY( viewPortDimensions.bottom );
-        if ( index >= 0 && selectedIndex === index ) {
-            // Last visible control is currently selected; find which control
-            // is one page height below the viewport.
-            index = this._getControlAtY( viewPortDimensions.bottom + viewPortDimensions.height );
-        }
-
-        if ( index < 0 ) {
-            // Would scroll past last control, so just select last control.
-            return this._selectLastControl();
-        }
-        
-        if ( index !== this.selectedIndex() ) {
-            this.selectedIndex( index );
-            return true;
-        }
-        
-        return false;
+        return this._scrollOnePage( true );
     },
     
     _pageUp: function() {
+        return this._scrollOnePage( false );
+    },
+    
+    /*
+     * Move by one page downward (if downward is true), or upward (if false).
+     */
+    _scrollOnePage: function( downward ) {
 
-        var viewPortHeight = this.height();
         var selectedIndex = this.selectedIndex();
         
-        // Find the control at the top of the viewport.
+        // Find the control at the bottom/top edge of the viewport.
         var viewPortDimensions = this._viewPortDimensions();
-        var index = this._getControlAtY( viewPortDimensions.top, false );
+        var edge = downward ? viewPortDimensions.bottom : viewPortDimensions.top;
+        var index = this._getControlAtY( edge, downward );
+        
         if ( index >= 0 && selectedIndex === index ) {
-            // First visible control is currently selected; find which control
-            // is one page height above the view port.
-            index = this._getControlAtY( viewPortDimensions.top - viewPortDimensions.height, false );
+            // The control at that edge is already selected.
+            // Move one page further down/up.
+            var delta = downward
+                ? viewPortDimensions.height
+                : -viewPortDimensions.height; 
+            index = this._getControlAtY( edge + delta, downward );
         }
 
         if ( index < 0 ) {
-            // Would scroll above first control, so just select first control.
-            return this._selectFirstControl();
+            // Would have scrolled too far in that direction.
+            // Just select the last/first control.
+            index = downward
+                ? this.controls().length - 1
+                : 0;
         }
         
         if ( index !== this.selectedIndex() ) {
@@ -252,6 +245,9 @@ ListBox.prototype.extend({
         return false;
     },
     
+    /*
+     * Scroll the given control into view.
+     */
     _scrollToControl: function( $control ) {
         
         var controlTop = $control.offset().top;

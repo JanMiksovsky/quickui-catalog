@@ -2,12 +2,13 @@
 
 <content>
     <ListBox id="colors" itemClass="ColorSwatchButton"/>
-    <div id="index"/>
+    <div>
+        Selected color: <span id="color"/>
+    </div>
 </content>
 
 <style>
 {
-    padding: 1in;
     width: 200px;
 }
 
@@ -39,10 +40,9 @@ ListBoxDemo.prototype.extend({
                 "YellowGreen"
             ])
             .on( "selectionChanged", function() {
-                var index = self.$colors().selectedIndex();
-                self.$index().content( index );
+                var color = self.$colors().selectedItem();
+                self.$color().content( color );
             });
-        this.$index().content( this.$colors().selectedIndex() );
     }
 });
 </script>
