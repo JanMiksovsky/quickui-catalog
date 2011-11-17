@@ -141,7 +141,7 @@ ListBox.prototype.extend({
         var step = first ? 1 : -1;
         for ( var i = start; i !== end; i += step ) {
             var $control = controls.eq(i);
-            var controlTop = Math.round( $control.position().top );
+            var controlTop = Math.round( $control.offset().top );
             var controlBottom = controlTop + $control.outerHeight();
             if ( controlTop <= y && controlBottom >= y ) {
                 return i;
@@ -201,15 +201,15 @@ ListBox.prototype.extend({
     _pageDown: function() {
 
         var scrollTop = this.scrollTop();
-        var viewPortHeight = this.height();
         var selectedIndex = this.selectedIndex();
         
         // Find the control at the bottom of the viewport.
-        var index = this._getControlAtY( viewPortHeight );
+        var viewPortDimensions = this._viewPortDimensions();
+        var index = this._getControlAtY( viewPortDimensions.bottom );
         if ( index >= 0 && selectedIndex === index ) {
             // Last visible control is currently selected; find which control
             // is one page height below the viewport.
-            index = this._getControlAtY( 2 * viewPortHeight );
+            index = this._getControlAtY( viewPortDimensions.bottom + viewPortDimensions.height );
         }
 
         if ( index < 0 ) {
@@ -231,11 +231,12 @@ ListBox.prototype.extend({
         var selectedIndex = this.selectedIndex();
         
         // Find the control at the top of the viewport.
-        var index = this._getControlAtY( 0, false );
+        var viewPortDimensions = this._viewPortDimensions();
+        var index = this._getControlAtY( viewPortDimensions.top, false );
         if ( index >= 0 && selectedIndex === index ) {
             // First visible control is currently selected; find which control
             // is one page height above the view port.
-            index = this._getControlAtY( - viewPortHeight, false );
+            index = this._getControlAtY( viewPortDimensions.top - viewPortDimensions.height, false );
         }
 
         if ( index < 0 ) {
@@ -253,18 +254,18 @@ ListBox.prototype.extend({
     
     _scrollToControl: function( $control ) {
         
-        var controlTop = $control.position().top;
+        var controlTop = $control.offset().top;
         var controlBottom = controlTop + $control.outerHeight();
-        
+
+        var viewPortDimensions = this._viewPortDimensions();
         var scrollTop = this.scrollTop();
-        var viewPortHeight = this.height();
         
-        if ( controlBottom > viewPortHeight ) {
+        if ( controlBottom > viewPortDimensions.bottom ) {
             // Scroll up until control is entirely visible.
-            this.scrollTop( scrollTop + controlBottom - viewPortHeight );
-        } else if ( controlTop < 0 ) {
+            this.scrollTop( scrollTop + controlBottom - viewPortDimensions.bottom );
+        } else if ( controlTop < viewPortDimensions.top ) {
             // Scroll down until control is entirely visible.
-            this.scrollTop( scrollTop + controlTop  );
+            this.scrollTop( scrollTop - ( viewPortDimensions.top - controlTop ) );
         }
     },
     
@@ -300,6 +301,16 @@ ListBox.prototype.extend({
             return true;
         }
         return false;
+    },
+    
+    _viewPortDimensions: function() {
+        var viewPortTop = this.offset().top;
+        var viewPortHeight = this.height();
+        return {
+            top: viewPortTop,
+            height: viewPortHeight,
+            bottom: viewPortTop + viewPortHeight
+        };
     }
     
 });
