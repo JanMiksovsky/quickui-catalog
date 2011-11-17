@@ -132,7 +132,7 @@ ListBox.prototype.extend({
         var controls = this.controls();
         for ( var i = 0; i < controls.length; i++ ) {
             var $control = controls.eq(i);
-            var controlTop = $control.position().top;
+            var controlTop = Math.round( $control.position().top );
             var controlBottom = controlTop + $control.outerHeight();
             if ( controlTop <= y && controlBottom >= y ) {
                 return i;
@@ -199,10 +199,8 @@ ListBox.prototype.extend({
         var index = this._getControlAtY( viewPortHeight );
         if ( index >= 0 && selectedIndex === index ) {
             // Last visible control is currently selected; find which control
-            // is one page height below that control.
-            var $control = this.controls().eq( index );
-            var controlBottom = $control.position().top + $control.outerHeight();
-            index = this._getControlAtY( controlBottom + viewPortHeight );
+            // is one page height below the viewport.
+            index = this._getControlAtY( 2 * viewPortHeight );
         }
 
         if ( index < 0 ) {
@@ -227,10 +225,8 @@ ListBox.prototype.extend({
         var index = this._getControlAtY( 0 );
         if ( index >= 0 && selectedIndex === index ) {
             // First visible control is currently selected; find which control
-            // is one page height above that control.
-            var $control = this.controls().eq( index );
-            var controlTop = $control.position().top;
-            index = this._getControlAtY( controlTop - viewPortHeight );
+            // is one page height above the view port.
+            index = this._getControlAtY( - viewPortHeight );
         }
 
         if ( index < 0 ) {
