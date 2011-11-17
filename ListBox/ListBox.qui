@@ -126,11 +126,20 @@ ListBox.prototype.extend({
     
     /*
      * Return the control that spans the given y position, or -1 if not found.
+     * If "first" is true, prefer the first control at that position; if false,
+     * prefer the last.
      */
-    _getControlAtY: function( y ) {
+    _getControlAtY: function( y, first ) {
         
+        if ( first === undefined ) {
+            first = true;
+        }
+
         var controls = this.controls();
-        for ( var i = 0; i < controls.length; i++ ) {
+        var start = first ? 0 : controls.length - 1;
+        var end = first ? controls.length : 0;
+        var step = first ? 1 : -1;
+        for ( var i = start; i !== end; i += step ) {
             var $control = controls.eq(i);
             var controlTop = Math.round( $control.position().top );
             var controlBottom = controlTop + $control.outerHeight();
@@ -222,11 +231,11 @@ ListBox.prototype.extend({
         var selectedIndex = this.selectedIndex();
         
         // Find the control at the top of the viewport.
-        var index = this._getControlAtY( 0 );
+        var index = this._getControlAtY( 0, false );
         if ( index >= 0 && selectedIndex === index ) {
             // First visible control is currently selected; find which control
             // is one page height above the view port.
-            index = this._getControlAtY( - viewPortHeight );
+            index = this._getControlAtY( - viewPortHeight, false );
         }
 
         if ( index < 0 ) {
