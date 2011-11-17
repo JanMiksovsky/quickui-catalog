@@ -219,7 +219,31 @@ ListBox.prototype.extend({
     },
     
     _pageUp: function() {
+
+        var viewPortHeight = this.height();
+        var selectedIndex = this.selectedIndex();
         
+        // Find the control at the top of the viewport.
+        var index = this._getControlAtY( 0 );
+        if ( index >= 0 && selectedIndex === index ) {
+            // First visible control is currently selected; find which control
+            // is one page height above that control.
+            var $control = this.controls().eq( index );
+            var controlTop = $control.position().top;
+            index = this._getControlAtY( controlTop - viewPortHeight );
+        }
+
+        if ( index < 0 ) {
+            // Would scroll above first control, so just select first control.
+            return this._selectFirstControl();
+        }
+        
+        if ( index !== this.selectedIndex() ) {
+            this.selectedIndex( index );
+            return true;
+        }
+        
+        return false;
     },
     
     _scrollToControl: function( $control ) {
