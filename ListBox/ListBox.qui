@@ -124,10 +124,36 @@ ListBox.prototype.extend({
         return $( element ).closest( this.controls() ).control();
     },
     
+    /*
+     * Return the control that spans the given y position, or -1 if not found.
+     */
+    _getControlAtY: function( y ) {
+        
+        var controls = this.controls();
+        for ( var i = 0; i < controls.length; i++ ) {
+            var $control = controls.eq(i);
+            var controlTop = $control.position().top;
+            var controlBottom = controlTop + $control.outerHeight();
+            if ( controlTop <= y && controlBottom >= y ) {
+                return i;
+            }
+        }
+        
+        return -1;
+    },
+    
     _keydown: function( event ) {
         
         var handled;
         switch ( event.which ) {
+            
+            case 33: // Page Up
+                handled = this._pageUp();
+                break;
+                
+            case 34: // Page Down
+                handled = this._pageDown();
+                break;
             
             case 35: // End
                 handled = this._selectLastControl();
@@ -159,11 +185,43 @@ ListBox.prototype.extend({
         }
     },
     
+    _pageDown: function() {
+
+        var scrollTop = this.scrollTop();
+        var viewPortHeight = this.height();
+        var selectedIndex = this.selectedIndex();
+        
+        // Find the control at the bottom of the viewport.
+        var index = this._getControlAtY( viewPortHeight );
+        if ( index >= 0 && selectedIndex === index ) {
+            // Last visible control is currently selected; find which control
+            // is one page height below that control.
+            var $control = this.controls().eq( index );
+            var controlBottom = $control.position().top + $control.outerHeight();
+            index = this._getControlAtY( controlBottom + viewPortHeight );
+        }
+
+        if ( index < 0 ) {
+            // Would scroll past last control, so just select last control.
+            return this._selectLastControl();
+        }
+        
+        if ( index !== this.selectedIndex() ) {
+            this.selectedIndex( index );
+            return true;
+        }
+        
+        return false;
+    },
+    
+    _pageUp: function() {
+        
+    },
+    
     _scrollToControl: function( $control ) {
         
         var controlTop = $control.position().top;
-        var controlHeight = $control.outerHeight();
-        var controlBottom = controlTop + controlHeight;
+        var controlBottom = controlTop + $control.outerHeight();
         
         var scrollTop = this.scrollTop();
         var viewPortHeight = this.height();
