@@ -165,12 +165,16 @@ ListBox.prototype.extend({
             
             case 37: // Left
             case 38: // Up
-                handled = this._selectPreviousControl();
+                handled = event.altKey
+                    ? this._selectFirstControl()
+                    : this._selectPreviousControl();
                 break;
                 
             case 39: // Right
             case 40: // Down
-                handled = this._selectNextControl();
+                handled = event.altKey
+                    ? this._selectLastControl()
+                    : this._selectNextControl();
                 break;
                 
             default:
