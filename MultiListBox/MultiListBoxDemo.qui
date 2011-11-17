@@ -2,7 +2,7 @@
 
 <content>
     <MultiListBox id="animals" />
-    <div>
+    <div id="status">
         Selected items: <span id="count">0</span>
     </div>
 </content>
@@ -10,7 +10,16 @@
 <style>
 {
     width: 200px;
-}    
+}
+
+#animals {
+    height: 200px;
+}
+
+#status {
+    color: gray;
+    font-size: smaller;
+}
 </style>
 
 <script>

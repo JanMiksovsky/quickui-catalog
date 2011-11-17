@@ -164,7 +164,7 @@ var controlRecords = [
     {
         name: "MultiListBox",
         demoClass: "MultiListBoxDemo",
-        description: "A list that supports multiple selection and keyboard navigation."
+        description: "A list that supports multiple selection."
     },
     {
         name: "Page",

@@ -2,7 +2,7 @@
 
 <content>
     <ListBox id="colors" itemClass="ColorSwatchButton"/>
-    <div>
+    <div id="status">
         Selected color: <span id="color"/>
     </div>
 </content>
@@ -14,7 +14,12 @@
 
 #colors {
     height: 200px;
-}    
+}
+
+#status {
+    color: gray;
+    font-size: smaller;
+}
 </style>
 
 <script>
