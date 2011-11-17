@@ -8,6 +8,10 @@
 <style>
 {
     width: 200px;
+}
+
+#colors {
+    height: 200px;
 }    
 </style>
 

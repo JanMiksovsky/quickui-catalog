@@ -10,6 +10,10 @@ The user can select items with the mouse and keyboard.
 </prototype>
 
 <style>
+{
+    overflow-y: auto;
+}
+
 > * {
     display: block;
     outline: none;
@@ -72,6 +76,7 @@ ListBox.prototype.extend({
                 .removeClass( "selected" )
                 .filter( selectedControl )
                 .addClass( "selected" );
+            this._scrollToControl( selectedControl );
             if ( selectedControl !== previousControl ) {
                 this.trigger( "selectionChanged" );
             }
@@ -151,6 +156,24 @@ ListBox.prototype.extend({
         {
             event.stopPropagation();
             event.preventDefault();
+        }
+    },
+    
+    _scrollToControl: function( $control ) {
+        
+        var controlTop = $control.position().top;
+        var controlHeight = $control.outerHeight();
+        var controlBottom = controlTop + controlHeight;
+        
+        var scrollTop = this.scrollTop();
+        var viewPortHeight = this.height();
+        
+        if ( controlBottom > viewPortHeight ) {
+            // Scroll up until control is entirely visible.
+            this.scrollTop( scrollTop + controlBottom - viewPortHeight );
+        } else if ( controlTop < 0 ) {
+            // Scroll down until control is entirely visible.
+            this.scrollTop( scrollTop + controlTop  );
         }
     },
     
