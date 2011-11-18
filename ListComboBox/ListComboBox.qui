@@ -75,6 +75,23 @@ ListComboBox.prototype.extend({
         this.$list().itemClass( itemClass );
     }),
     
+    open: function() {
+
+        // See if current text is in the list.
+        var content = this.content();
+        var index = $.inArray( content, this._itemContents() );
+        if ( index >= 0 ) {
+            // Select the item that represents the current text.
+            this.$list().selectedIndex( index );
+        }
+        
+        var result = this._super();
+        if ( this.opened() ) {
+            this.$list().focus();
+        }
+        return result;
+    },
+    
     // Try to auto-complete the current text against the item contents.
     _autoComplete: function() {
         
@@ -130,9 +147,6 @@ ListComboBox.prototype.extend({
             case 40: // Down
                 if ( !this.opened() ) {
                     this.open();
-                    this.$list()
-                        .selectedIndex( 0 )
-                        .focus();
                     handled = true;
                 }
                 break;
