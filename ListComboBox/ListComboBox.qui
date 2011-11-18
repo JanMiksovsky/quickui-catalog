@@ -89,11 +89,13 @@ ListComboBox.prototype.extend({
         // See if current text is in the list and, if found, select it.
         var content = this.content();
         var index = $.inArray( content, this._itemContents() );
-        if ( index < 0 ) {
+        if ( index < 0 && ( content == null || content.length === 0 ) ) {
             // Not found; select the first item instead.
             index = 0;
         }
-        this.$list().selectedIndex( index );
+        if ( index >= 0 ) {
+            this.$list().selectedIndex( index );
+        }
         
         return this._super();
     },
@@ -151,7 +153,11 @@ ListComboBox.prototype.extend({
                 
             default:
                 // Ignore other key codes which aren't characters.
-                if ( event.which <= 46 ) {
+                // Also ignore Alt, Ctrl, etc. key combinations.
+                if ( event.which <= 46
+                    || event.altKey
+                    || event.ctrlKey
+                    || event.metaKey ) {
                     return;
                 }
                 break;
