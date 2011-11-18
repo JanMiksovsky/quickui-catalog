@@ -62,6 +62,15 @@ ListComboBox.prototype.extend({
                     var content = selectedControl.content();
                     self.content( content );
                 }
+            })
+            .on( "keydown", function( event ) {
+                if ( event.which === 13 /* Enter */) {
+                    if ( self.opened() ) {
+                        self.close();
+                        event.stopPropagation();
+                        event.preventDefault();
+                    }
+                }
             });
         
         if ( !this.itemClass() ) {
@@ -77,19 +86,16 @@ ListComboBox.prototype.extend({
     
     open: function() {
 
-        // See if current text is in the list.
+        // See if current text is in the list and, if found, select it.
         var content = this.content();
         var index = $.inArray( content, this._itemContents() );
-        if ( index >= 0 ) {
-            // Select the item that represents the current text.
-            this.$list().selectedIndex( index );
+        if ( index < 0 ) {
+            // Not found; select the first item instead.
+            index = 0;
         }
+        this.$list().selectedIndex( index );
         
-        var result = this._super();
-        if ( this.opened() ) {
-            this.$list().focus();
-        }
-        return result;
+        return this._super();
     },
     
     // Try to auto-complete the current text against the item contents.
@@ -113,10 +119,10 @@ ListComboBox.prototype.extend({
         
         this._super();
         
-        // See notes at _handleKeydown.
+        // See notes at _contentKeydown.
         var self = this;
         this.inputControl().keydown( function( event ) {
-            self._handleKeydown( event );
+            self._contentKeydown( event );
         });
     },
     
@@ -129,26 +135,18 @@ ListComboBox.prototype.extend({
      * chance to bubble up and do its work, then do our AutoComplete work
      * against the resulting text.
      */
-    _handleKeydown: function( event ) {
+    _contentKeydown: function( event ) {
         
         var handled = false;
         switch ( event.which ) {
-            
-            case 13: // Enter
-                if ( this.opened() ) {
-                    this.close();
-                    handled = true;
-                }
-                break;
             
             case 32: // Space
                 break;
                 
             case 40: // Down
-                if ( !this.opened() ) {
-                    this.open();
-                    handled = true;
-                }
+                this.open();
+                this.$list().focus();
+                handled = true;
                 break;
                 
             default:

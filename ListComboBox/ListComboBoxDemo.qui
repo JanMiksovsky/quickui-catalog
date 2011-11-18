@@ -1,7 +1,7 @@
 <Control name="ListComboBoxDemo">
 
 <content>
-    <ListComboBox id="comboBox" openOnFocus="false"/>
+    <ListComboBox id="comboBox"/>
 </content>
 
 <script>
