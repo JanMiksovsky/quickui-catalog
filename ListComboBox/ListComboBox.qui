@@ -12,12 +12,15 @@ be strings.
 <prototype>
     <ComboBox>
         <popup>
-            <List id="list"/>
+            <ListBox id="list"/>
         </popup>
     </ComboBox>
 </prototype>
 
 <style>
+#list {
+    border: none;
+}
 #list > * {
     display: block;
 }
@@ -43,15 +46,23 @@ ListComboBox.prototype.extend({
         
         // Clicking an item in the list puts its content into the text box portion.
         var self = this;
-        this.$list().click( function( event ) {
-            var $closestItem = $( event.target ).closest( self.$list().children() );
-            if ( $closestItem ) {
-                var itemContent = $closestItem.control().content();
-                self
-                    .content( itemContent )
-                    .close();
-            }
-        });
+        this.$list()
+            .click( function( event ) {
+                var $closestItem = $( event.target ).closest( self.$list().children() );
+                if ( $closestItem ) {
+                    var itemContent = $closestItem.control().content();
+                    self
+                        .content( itemContent )
+                        .close();
+                }
+            })
+            .on( "selectionChanged", function() {
+                var selectedControl = self.$list().selectedControl();
+                if ( selectedControl ) {
+                    var content = selectedControl.content();
+                    self.content( content );
+                }
+            });
         
         if ( !this.itemClass() ) {
              this.itemClass( ButtonBase );
@@ -103,8 +114,40 @@ ListComboBox.prototype.extend({
      */
     _handleKeydown: function( event ) {
         
-        // Ignore key codes which aren't characters.
-        if ( event.which <= 46 && event.which !== 32 /* Space */ ) {
+        var handled = false;
+        switch ( event.which ) {
+            
+            case 13: // Enter
+                if ( this.opened() ) {
+                    this.close();
+                    handled = true;
+                }
+                break;
+            
+            case 32: // Space
+                break;
+                
+            case 40: // Down
+                if ( !this.opened() ) {
+                    this.open();
+                    this.$list()
+                        .selectedIndex( 0 )
+                        .focus();
+                    handled = true;
+                }
+                break;
+                
+            default:
+                // Ignore other key codes which aren't characters.
+                if ( event.which <= 46 ) {
+                    return;
+                }
+                break;
+        }
+        
+        if ( handled ) {
+            event.stopPropagation();
+            event.preventDefault();
             return;
         }
             
