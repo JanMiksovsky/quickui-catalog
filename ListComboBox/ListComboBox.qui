@@ -96,7 +96,15 @@ ListComboBox.prototype.extend({
             this.$list().selectedIndex( index );
         }
         
-        return this._super();
+        var result = this._super();
+        
+        // Give the input control focus if it doesn't already have it.
+        var inputControl = this.inputControl();
+        if ( document.activeElement !== inputControl[0] ) {
+            this.inputControl().focus();
+        }
+        
+        return result;
     },
     
     // Try to auto-complete the current text against the item contents.
@@ -116,11 +124,7 @@ ListComboBox.prototype.extend({
         // Select the auto-completed text.
         this._selectText( content.length, match.length );
         
-        if ( this.opened() ) {
-            // Select the match in the list if it's there
-            var index = $.inArray( match, this._itemContents() );
-            this.$list().selectedIndex( index );
-        }
+        this._selectTextInList();
     },
     
     _bindContentEvents: function() {
@@ -152,13 +156,14 @@ ListComboBox.prototype.extend({
             38, // Up
             40 // Down
         ];
+        var self = this;
         
-        // Do AutoComplete on space or characters from zero digit (0) and up,
+        // Do AutoComplete on Space, or characters from zero (0) and up,
         // ignoring any combinations that involve Alt or Ctrl.
-        if ( (event.which === 32 || event.which >= 48 ) 
+        if ( ( event.which === 32 || event.which >= 48 ) 
             && !( event.altKey || event.ctrlKey || event.metaKey) ) {
 
-            this._setAutoCompleteTimeout();
+            this._setTimeout( function() { self._autoComplete(); });
             
         } else if ( this.opened() && $.inArray( event.which, navigationKeys ) >= 0 ) {
             
@@ -166,9 +171,16 @@ ListComboBox.prototype.extend({
             this.$list().trigger( event );
             handled = true;
 
+        } else if ( event.which === 8 || event.which === 46 ) {
+            
+            // On Backspace or Delete, clear list select if text is empty.
+            this._setTimeout( function() {
+                self._selectTextInList();
+            });
+            
         } else if ( event.which === 40 ) {
             
-            // Pressing down when list is closed will open list.
+            // Pressing Down when list is closed will open list.
             this.open();
             
             // If the input text is empty, select the first list item.
@@ -204,10 +216,20 @@ ListComboBox.prototype.extend({
         }
         return null;
     },
+
+    // Select the current input text in the list if it's there.
+    // Clear the list selection if the text is not found.
+    _selectTextInList: function() {
+        if ( this.opened() ) {
+            var content = this.content();
+            var index = $.inArray( content, this._itemContents() );
+            this.$list().selectedIndex( index );
+        }
+    },
     
-    // Arrange for AutoComplete to be performed via a timeout.
+    // Arrange for a callback to be performed via a timeout.
     // See notes at _contentKeydown.
-    _setAutoCompleteTimeout: function() {
+    _setTimeout: function( callback ) {
         
         // Cancel any pending AutoComplete timeout.
         var timeout = this._timeout();
@@ -215,11 +237,9 @@ ListComboBox.prototype.extend({
             clearTimeout( timeout );
         }
         
-        // Queue a new AutoComplete timeout.
+        // Queue a new timeout.
         var self = this;
-        timeout = window.setTimeout( function() {
-            self._autoComplete();
-        }, 50 );
+        timeout = window.setTimeout( callback, 50 );
         this._timeout( timeout );
     },
     
