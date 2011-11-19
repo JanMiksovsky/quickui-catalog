@@ -61,6 +61,7 @@ ListComboBox.prototype.extend({
                 if ( selectedControl ) {
                     var content = selectedControl.content();
                     self.content( content );
+                    self._selectText( 0, content.length );
                 }
             })
             .on( "keydown", function( event ) {
@@ -140,47 +141,41 @@ ListComboBox.prototype.extend({
     _contentKeydown: function( event ) {
         
         var handled = false;
-        switch ( event.which ) {
+        var navigationKeys = [
+            33, // Page Up
+            34, // Page Down
+            35, // End
+            36, // Home
+            38, // Up
+            40 // Down
+        ];
+        
+        // Do AutoComplete on space or characters from zero digit (0) and up,
+        // ignoring any combinations that involve Alt or Ctrl.
+        if ( (event.which === 32 || event.which >= 48 ) 
+            && ! ( event.altKey || event.ctrlKey || event.metaKey) ) {
+
+            this._setAutoCompleteTimeout();
+            handled = true;
             
-            case 32: // Space
-                break;
-                
-            case 40: // Down
-                this.open();
-                this.$list().focus();
-                handled = true;
-                break;
-                
-            default:
-                // Ignore other key codes which aren't characters.
-                // Also ignore Alt, Ctrl, etc. key combinations.
-                if ( event.which <= 46
-                    || event.altKey
-                    || event.ctrlKey
-                    || event.metaKey ) {
-                    return;
-                }
-                break;
+        } else if ( this.opened() && $.inArray( event.which, navigationKeys ) ) {
+            
+            // Forward navigation keys to opened list.
+            this.$list().trigger( event );
+            handled = true;
+
+        } else if ( event.which === 40 ) {
+            
+            // Pressing down when list is closed will open list.
+            this.open();
+            handled = true;
+            
         }
         
         if ( handled ) {
             event.stopPropagation();
             event.preventDefault();
-            return;
         }
-            
-        // Cancel any pending AutoComplete timeout.
-        var timeout = this._timeout();
-        if ( timeout ) {
-            clearTimeout( timeout );
-        }
-        
-        // Queue a new AutoComplete timeout.
-        var self = this;
-        timeout = window.setTimeout( function() {
-            self._autoComplete();
-        }, 50 );
-        this._timeout( timeout );
     },
 
     // Return the item whose prefix matches the given string, ignoring case.
@@ -199,6 +194,24 @@ ListComboBox.prototype.extend({
             }
         }
         return null;
+    },
+    
+    // Arrange for AutoComplete to be performed via a timeout.
+    // See notes at _contentKeydown.
+    _setAutoCompleteTimeout: function() {
+        
+        // Cancel any pending AutoComplete timeout.
+        var timeout = this._timeout();
+        if ( timeout ) {
+            clearTimeout( timeout );
+        }
+        
+        // Queue a new AutoComplete timeout.
+        var self = this;
+        timeout = window.setTimeout( function() {
+            self._autoComplete();
+        }, 50 );
+        this._timeout( timeout );
     },
     
     /*

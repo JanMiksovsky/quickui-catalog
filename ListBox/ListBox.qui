@@ -157,7 +157,7 @@ ListBox.prototype.extend({
         
         var handled;
         switch ( event.which ) {
-            
+
             case 33: // Page Up
                 handled = this._pageUp();
                 break;
@@ -174,14 +174,12 @@ ListBox.prototype.extend({
                 handled = this._selectFirstControl();
                 break;
             
-            case 37: // Left
             case 38: // Up
                 handled = event.altKey
                     ? this._selectFirstControl()
                     : this._selectPreviousControl();
                 break;
                 
-            case 39: // Right
             case 40: // Down
                 handled = event.altKey
                     ? this._selectLastControl()
