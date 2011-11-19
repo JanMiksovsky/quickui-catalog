@@ -71,14 +71,19 @@ ListBox.prototype.extend({
      */
     selectedControl: Control.iterator( function( selectedControl ) {
         if ( selectedControl === undefined ) {
-            return this.controls().filter( ".selected" ).eq(0);
+            var control = this.controls().filter( ".selected" ).eq(0);
+            return control.length > 0
+                ? control
+                : null;
         } else {
             var previousControl = this.selectedControl();
             this.controls()
                 .removeClass( "selected" )
                 .filter( selectedControl )
                 .addClass( "selected" );
-            this._scrollToControl( selectedControl );
+            if ( selectedControl ) {
+                this._scrollToControl( selectedControl );
+            }
             if ( selectedControl !== previousControl ) {
                 this.trigger( "selectionChanged" );
             }

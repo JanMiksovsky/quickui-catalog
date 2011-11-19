@@ -60,8 +60,10 @@ ListComboBox.prototype.extend({
                 var selectedControl = self.$list().selectedControl();
                 if ( selectedControl ) {
                     var content = selectedControl.content();
-                    self.content( content );
-                    self._selectText( 0, content.length );
+                    if ( content !== self.content() ) {
+                        self.content( content );
+                        self._selectText( 0, content.length );
+                    }
                 }
             })
             .on( "keydown", function( event ) {
@@ -87,13 +89,9 @@ ListComboBox.prototype.extend({
     
     open: function() {
 
-        // See if current text is in the list and, if found, select it.
+        // See if current text is in the list and, if so, select it.
         var content = this.content();
         var index = $.inArray( content, this._itemContents() );
-        if ( index < 0 && ( content == null || content.length === 0 ) ) {
-            // Not found; select the first item instead.
-            index = 0;
-        }
         if ( index >= 0 ) {
             this.$list().selectedIndex( index );
         }
@@ -109,6 +107,7 @@ ListComboBox.prototype.extend({
         
         var match = this._matchingItem( content );
         if ( !match ) {
+            this.$list().selectedControl( null );
             return;
         }
 
@@ -116,6 +115,12 @@ ListComboBox.prototype.extend({
         
         // Select the auto-completed text.
         this._selectText( content.length, match.length );
+        
+        if ( this.opened() ) {
+            // Select the match in the list if it's there
+            var index = $.inArray( match, this._itemContents() );
+            this.$list().selectedIndex( index );
+        }
     },
     
     _bindContentEvents: function() {
@@ -144,8 +149,6 @@ ListComboBox.prototype.extend({
         var navigationKeys = [
             33, // Page Up
             34, // Page Down
-            35, // End
-            36, // Home
             38, // Up
             40 // Down
         ];
@@ -153,12 +156,11 @@ ListComboBox.prototype.extend({
         // Do AutoComplete on space or characters from zero digit (0) and up,
         // ignoring any combinations that involve Alt or Ctrl.
         if ( (event.which === 32 || event.which >= 48 ) 
-            && ! ( event.altKey || event.ctrlKey || event.metaKey) ) {
+            && !( event.altKey || event.ctrlKey || event.metaKey) ) {
 
             this._setAutoCompleteTimeout();
-            handled = true;
             
-        } else if ( this.opened() && $.inArray( event.which, navigationKeys ) ) {
+        } else if ( this.opened() && $.inArray( event.which, navigationKeys ) >= 0 ) {
             
             // Forward navigation keys to opened list.
             this.$list().trigger( event );
@@ -168,6 +170,13 @@ ListComboBox.prototype.extend({
             
             // Pressing down when list is closed will open list.
             this.open();
+            
+            // If the input text is empty, select the first list item.
+            var content = this.content();
+            if ( content == null || content.length === 0 ) {
+                this.$list().selectedIndex( 0 );
+            }
+
             handled = true;
             
         }
