@@ -73,6 +73,8 @@ AdPlaceholder.prototype.extend({
         
         this.$container().css({
                 height: height,
+                "min-height": height,
+                "min-width": width,
                 width: width
         });
         this
