@@ -1,7 +1,7 @@
 <Control name="PanelWithOverflowDemo">
 
 <content>
-    <PanelWithOverflow>
+    <PanelWithOverflow id="panel">
         <ButtonBase class="toolbarButton" content="One"/>
         <ButtonBase class="toolbarButton" content="Two"/>
         <ButtonBase class="toolbarButton" content="Three"/>
@@ -21,7 +21,7 @@
 </content>
 
 <style>
-.PanelWithOverflow {
+#panel {
     background-color: #eee;
 }
 
@@ -34,5 +34,18 @@
     margin-right: 0;
 }
 </style>
+
+<script>
+PanelWithOverflowDemo.prototype.extend({
+    initialize: function() {
+        // Remove extra white space nodes so inline controls touch.
+        var content = this.$panel().content();
+        var stripped = $.grep( content, function( item ) {
+            return typeof item !== "string";
+        });
+        this.$panel().content( stripped );
+    }
+});
+</script>
 
 </Control>
