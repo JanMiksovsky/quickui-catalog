@@ -22,16 +22,21 @@
 
 <style>
 #panel {
-    background-color: #eee;
+    padding: 5px;
 }
-
+#panel #PanelWithOverflow_content {
+    background-color: #eee; /* So we can see boundary */
+}
 .toolbarButton {
-    margin-right: 10px;
+    margin-right: 5px;
+}
+.toolbarButton:last-child {
+    margin-right: 0;
 }
 
 .toolbarButton.overflowed {
     border: none;
-    margin-right: 0;
+    margin: 0;
 }
 </style>
 
@@ -48,4 +53,4 @@ PanelWithOverflowDemo.prototype.extend({
 });
 </script>
 
-</Control>
+</Control>
