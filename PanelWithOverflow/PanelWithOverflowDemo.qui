@@ -1,0 +1,38 @@
+<Control name="PanelWithOverflowDemo">
+
+<content>
+    <PanelWithOverflow>
+        <ButtonBase class="toolbarButton" content="One"/>
+        <ButtonBase class="toolbarButton" content="Two"/>
+        <ButtonBase class="toolbarButton" content="Three"/>
+        <ButtonBase class="toolbarButton" content="Four"/>
+        <ButtonBase class="toolbarButton" content="Five"/>
+        <ButtonBase class="toolbarButton" content="Six"/>
+        <ButtonBase class="toolbarButton" content="Seven"/>
+        <ButtonBase class="toolbarButton" content="Eight"/>
+        <ButtonBase class="toolbarButton" content="Nine"/>
+        <ButtonBase class="toolbarButton" content="Ten"/>
+        <ButtonBase class="toolbarButton" content="Eleven"/>
+        <ButtonBase class="toolbarButton" content="Twelve"/>
+        <ButtonBase class="toolbarButton" content="Thirteen"/>
+        <ButtonBase class="toolbarButton" content="Fourteen"/>
+        <ButtonBase class="toolbarButton" content="Fifteen"/>
+    </PanelWithOverflow>
+</content>
+
+<style>
+.PanelWithOverflow {
+    background-color: #eee;
+}
+
+.toolbarButton {
+    margin-right: 10px;
+}
+
+.toolbarButton.overflowed {
+    border: none;
+    margin-right: 0;
+}
+</style>
+
+</Control>
