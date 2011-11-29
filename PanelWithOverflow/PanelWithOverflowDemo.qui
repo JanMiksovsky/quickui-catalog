@@ -21,9 +21,6 @@
 </content>
 
 <style>
-#panel {
-    padding: 5px;
-}
 #panel #PanelWithOverflow_content {
     background-color: #eee; /* So we can see boundary */
 }

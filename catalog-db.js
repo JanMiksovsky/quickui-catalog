@@ -172,6 +172,11 @@ var controlRecords = [
         description: "Base class for the overall top-level control for a page."
     },
     {
+        name: "PanelWithOverflow",
+        demoClass: "PanelWithOverflowDemo",
+        description: "Allows any items which don't fit to overflow into a dropdown menu."
+    },
+    {
         name: "PersistentPanel",
         demoClass: "PersistentPanelDemo",
         description: "A panel whose contents will bump up against the top or bottom of a scrolling parent so as to remain always visible."
