@@ -23,6 +23,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 }
 
 #PanelWithOverflow_content {
+    position: relative; /* Simplifies layout calcs */
     overflow: hidden;
     white-space: nowrap;
 }
@@ -132,4 +133,4 @@ PanelWithOverflow.prototype.extend({
 });
 </script>
 
-</Control>
+</Control>

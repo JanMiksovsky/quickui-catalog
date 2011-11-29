@@ -34,7 +34,7 @@
     margin-right: 0;
 }
 
-.toolbarButton.overflowed {
+.Popup .toolbarButton {
     border: none;
     margin: 0;
 }
