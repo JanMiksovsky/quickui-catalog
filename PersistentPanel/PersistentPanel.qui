@@ -42,6 +42,7 @@ in a scrolling element nested within some outer scrolling element.
 /* Generic appearance */
 .PersistentPanel.generic #PersistentPanel_content {
     background: white;
+    z-index: 1;
 }
 </style>
 
