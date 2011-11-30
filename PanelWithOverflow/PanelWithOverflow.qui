@@ -44,6 +44,11 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 #menuButton #HasPopup_popup > * {
     display: block;
 }
+
+/* Generic appearance */
+.PanelWithOverflow.generic #menuButton .ButtonBase.generic {
+    border-color: transparent;
+}
 </style>
 
 <script>
@@ -66,8 +71,8 @@ PanelWithOverflow.prototype.extend({
     
     initialize: function() {
         
-        this.genericIfClassIs( PanelWithOverflow );
         this._super();
+        this.genericIfClassIs( PanelWithOverflow );
         
         var self = this;
         this.$menuButton().on({
