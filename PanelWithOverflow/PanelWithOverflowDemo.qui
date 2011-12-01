@@ -1,39 +1,65 @@
 <Control name="PanelWithOverflowDemo">
 
 <content>
-    <PanelWithOverflow id="panel">
-        <ButtonBase class="toolbarButton" content="One"/>
-        <ButtonBase class="toolbarButton" content="Two"/>
-        <ButtonBase class="toolbarButton" content="Three"/>
-        <ButtonBase class="toolbarButton" content="Four"/>
-        <ButtonBase class="toolbarButton" content="Five"/>
-        <ButtonBase class="toolbarButton" content="Six"/>
-        <ButtonBase class="toolbarButton" content="Seven"/>
-        <ButtonBase class="toolbarButton" content="Eight"/>
-        <ButtonBase class="toolbarButton" content="Nine"/>
-        <ButtonBase class="toolbarButton" content="Ten"/>
-        <ButtonBase class="toolbarButton" content="Eleven"/>
-        <ButtonBase class="toolbarButton" content="Twelve"/>
-        <ButtonBase class="toolbarButton" content="Thirteen"/>
-        <ButtonBase class="toolbarButton" content="Fourteen"/>
-        <ButtonBase class="toolbarButton" content="Fifteen"/>
+    <PanelWithOverflow id="toolbar">
+        <ButtonBase class="toolbarButton" generic="false" content="One"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Two"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Three"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Four"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Five"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Six"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Seven"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Eight"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Nine"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Ten"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Eleven"/>
+        <ButtonBase class="toolbarButton" generic="false" content="Twelve"/>
     </PanelWithOverflow>
 </content>
 
 <style>
-#panel {
-    background-color: #eee; /* So we can see boundary */
+{
+    margin: 0;
+    padding: 0;
 }
+
+#toolbar {
+    background: whitesmoke;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px;
+}
+
 .toolbarButton {
-    margin-right: 5px;
+    background-color: whitesmoke;
+    border-radius: 2px;
+    border: 1px solid #e5e5e5;
+    color: #444;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 0.5em 1em;
 }
 .toolbarButton:last-child {
     margin-right: 0;
 }
+.toolbarButton:hover {
+    border-color: #c6c6c6;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+.toolbarButton.focused {
+    border-color: #4d90fe;
+}
+.toolbarButton.pressed {
+    background-color: #e0e0e0;
+}
 
 .Popup .toolbarButton {
-    border: none;
-    margin: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+}
+.Popup .toolbarButton:last-child {
+    margin-bottom: 0;
 }
 </style>
 
@@ -41,11 +67,11 @@
 PanelWithOverflowDemo.prototype.extend({
     initialize: function() {
         // Remove extra white space nodes so inline controls touch.
-        var content = this.$panel().content();
+        var content = this.$toolbar().content();
         var stripped = $.grep( content, function( item ) {
             return typeof item !== "string";
         });
-        this.$panel().content( stripped );
+        this.$toolbar().content( stripped );
     }
 });
 </script>
