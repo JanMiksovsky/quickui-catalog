@@ -101,8 +101,8 @@ PanelWithOverflow.prototype.extend({
         for ( var i = $children.length - 1; i > 0; i-- ) {
             var $child = $children.eq(i);
             // Look at right edge, not counting right margin
-            var right = $child.position().left + $child.outerWidth() +
-                        parseInt( $child.css( "margin-left" ) );
+            var marginLeft = parseInt( $child.css( "margin-left" ) ) || 0;
+            var right = marginLeft + $child.position().left + $child.outerWidth();
             var overflowed = ( right > availableWidth );
             $child.toggleClass( "overflowed", overflowed );
             if ( overflowed ) {
