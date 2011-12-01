@@ -173,7 +173,7 @@ var controlRecords = [
     },
     {
         name: "PanelWithOverflow",
-        demoClass: "PanelWithOverflowDemo",
+        demoClass: "LaunchPanelWithOverflowDemo",
         description: "Allows any items which don't fit to overflow into a dropdown menu."
     },
     {
