@@ -1,0 +1,11 @@
+open quickui.org
+cd public_html/quickui
+
+lcd quickui.catalog
+cd release
+put quickui.catalog.js
+put quickui.catalog.css
+lcd ..
+cd ..
+
+quit
