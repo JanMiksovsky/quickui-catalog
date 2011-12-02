@@ -1056,6 +1056,9 @@ SampleDialog = Dialog.subclass({
 });
 SampleDialog.prototype.extend({
     initialize: function() {
+        
+        this._super();
+        
         var self = this;
         this.$buttonClose().click(function() {
             self.close();
