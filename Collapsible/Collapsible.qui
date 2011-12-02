@@ -45,8 +45,8 @@ Collapsible.prototype.extend({
 	    } else {
 	        
 	        // Setter
-            var result = value ? "show" : "hide";
-            this.animate(
+            var result = value ? "hide" : "show";
+            this.$Collapsible_content().animate(
                 { 
                     height: result,
                     opacity: result
@@ -92,7 +92,7 @@ Collapsible.prototype.extend({
 	
     toggleOnClick: Control.property.bool( null, true ),
     
-    _collapsed: Control.property.bool()
+    _collapsed: Control.property.bool( null, false )
 
 });
 </script>

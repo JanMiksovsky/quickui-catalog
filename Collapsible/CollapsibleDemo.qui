@@ -1,0 +1,23 @@
+<Control name="CollapsibleDemo">
+
+<content>
+    <Collapsible>
+        <heading>Test</heading>
+        <content>
+            <LoremIpsum/>
+        </content>
+    </Collapsible>
+</content>
+
+<style>
+{
+    padding: 2em;
+}
+
+.Collapsible {
+    border: 1px solid lightgray;
+    max-width: 800px;
+}
+</style>
+
+</Control>
