@@ -68,12 +68,10 @@ SlidingPagesWithDots.prototype.extend({
             this.pageButtonClass( ButtonBase );
         }
 
-        // TODO: Use $.on() when that becomes available.
         var self = this;
         this.$pageButtons().click( function( event ) {
-            var buttonClassName = self.pageButtonClass().prototype.className;
-            var buttonCssClassName = "." + buttonClassName;
-            var pageButton = $( event.target ).closest( buttonCssClassName ).control();
+            // Which button was clicked?
+            var pageButton = $( event.target ).closest( self.pageButtons() ).control();
             if ( pageButton ) {
                 var index = self.pageButtons().index( pageButton );
                 if ( index >= 0 ) {
