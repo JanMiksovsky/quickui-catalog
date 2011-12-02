@@ -1,4 +1,5 @@
 .externalToolBuilders
 .project
 build
-quickui-catalog.*
+quickui.catalog.js
+quickui.catalog.css
