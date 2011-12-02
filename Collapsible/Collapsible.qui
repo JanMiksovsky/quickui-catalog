@@ -1,0 +1,100 @@
+<!--
+A panel that can expand and collapse.
+-->
+
+<Control name="Collapsible">
+
+<content>
+    <div id="Collapsible_heading"/>
+    <div id="Collapsible_content"/>
+</content>
+
+<style>
+/* Animation effects look jerky if the top (or bottom) element has a top (bottom) margin. */
+#Collapsible_content > *:first-child {
+	margin-top: 0;
+}
+#Collapsible_content > *:last-child {
+	margin-bottom: 0;
+}
+</style>
+
+<script>
+Collapsible.prototype.extend({
+    
+    /*
+     * The control's contents which can be expanded and collapsed.
+     */
+    content: Control.chain( "$Collapsible_content", "content" ),
+    
+    /*
+     * The speed of the expand/collapse animation, in milliseconds.
+     */
+    duration: Control.property( null, "fast" ),
+    
+    /*
+     * Get or set the control's collapsed state.
+     * When called as a setter, a true value collapsed the control;
+     * a false value expands the control.
+     */
+	collapsed: function( value ) {
+	    if ( value === undefined )
+	    {
+	        // Getter
+	        return this._collapsed();
+	    } else {
+	        
+	        // Setter
+            var result = value ? "show" : "hide";
+            this.animate(
+                { 
+                    height: result,
+                    opacity: result
+                },
+                this.duration()
+            );
+            
+            if ( this._collapsed() !== value ) {
+                this.trigger( "collapsedChanged" );
+                this._collapsed( value );
+            }
+            
+            return this;
+	    }
+	},
+    
+    /*
+     * The control's heading. By default, a click anywhere within the heading
+     * toggles the control's collapsed state.
+     * 
+     * This can be empty if the application wants to programmatically control
+     * the collapsed state in some other means.
+     */
+    heading: Control.chain( "$Collapsible_heading", "content" ),
+    
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( Collapsible );
+        
+        var self = this;
+        this.click( function() {
+            if ( self.toggleOnClick() ) {
+                self.toggleCollapse();
+            }
+        });
+    },
+	
+	toggleCollapse: function()
+	{
+		this.collapsed( !this.collapsed() );
+	},
+	
+    toggleOnClick: Control.property.bool( null, true ),
+    
+    _collapsed: Control.property.bool()
+
+});
+</script>
+
+</Control>
