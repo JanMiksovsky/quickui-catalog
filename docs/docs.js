@@ -1126,7 +1126,7 @@ SpriteDemo = Control.subclass({
                 "<p>\n            Click one:\n        </p>",
                 " ",
                 {
-                    html: "<img src=\"/catalog/SampleSpriteButton/buttonStates.png\" />",
+                    html: "<img src=\"/catalog/resources/sampleButtonStates.png\" />",
                     id: "image"
                 },
                 " "
@@ -1142,7 +1142,7 @@ SpriteDemo = Control.subclass({
                 {
                     control: "Sprite",
                     id: "sprite",
-                    image: "url(/catalog/SampleSpriteButton/buttonStates.png)",
+                    image: "url(/catalog/resources/sampleButtonStates.png)",
                     currentCell: "4",
                     cellHeight: "32"
                 },

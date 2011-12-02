@@ -5,12 +5,12 @@
         <p>
             Click one:
         </p>
-        <img id="image" src="/catalog/SampleSpriteButton/buttonStates.png"/>
+        <img id="image" src="/catalog/resources/sampleButtonStates.png"/>
     </div>
     <div class="panel">
         <p>Selected:</p>
         <Sprite id="sprite"
-            image="url(/catalog/SampleSpriteButton/buttonStates.png)"
+            image="url(/catalog/resources/sampleButtonStates.png)"
             currentCell="4"
             cellHeight="32" />
     </div>

@@ -3883,7 +3883,7 @@ RotatingPagesWithDots.prototype.extend({
 //
 SampleSpriteButton = SpriteButton.subclass({
     name: "SampleSpriteButton",
-    image: "url(/catalog/SampleSpriteButton/buttonStates.png)",
+    image: "url(/catalog/resources/sampleButtonStates.png)",
     cellHeight: "32"
 });
 
