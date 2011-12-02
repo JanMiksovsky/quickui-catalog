@@ -1,0 +1,83 @@
+<!--
+Base class for modal dialogs.
+-->
+
+<Control name="Dialog">
+
+<prototype>
+    <Popup cancelOnOutsideClick="false" />
+</prototype>
+
+<style>
+{
+    position: fixed;
+}
+
+/* Generic appearance */
+.Dialog.generic {
+    background-color: white;
+    border: 1px solid black;
+    padding: .75em;
+}
+</style>
+
+<script>
+Dialog.prototype.extend({
+    
+    initialize: function() {
+        this._super();
+        this.genericIfClassIs( Dialog );
+        var self = this;
+        this.position( function() {
+            self._position();
+        });
+    },
+    
+    cancel: function() {
+        this._super();
+        this.remove();
+    },
+    
+    close: function() {
+        this._super();
+        this.remove();
+    },
+    
+    /*
+     * Position the dialog.
+     * By default, center dialog horizontally and vertically. 
+     */
+    _position: function() {
+        return this.css({
+            left: ($(window).width() - this.outerWidth()) / 2,
+            top: ($(window).height() - this.outerHeight()) / 2
+        });
+    }
+
+});
+
+// Class methods
+Dialog.extend({
+    showDialog: function( dialogClass, properties, callbackOk, callbackCancel ) {
+        $("body")
+            .append( "<div/>" )
+            .find( ":last" )
+            .bind({
+                closed: function() {
+                    if ( callbackOk ) {
+                        callbackOk.call( $( this ).control() );
+                    }
+                },
+                canceled: function() {
+                    if ( callbackCancel ) {
+                        callbackCancel.call( $( this ).control() );
+                    }
+                }
+            })
+            .control( dialogClass, properties )
+            .open();
+    }
+});
+</script>
+
+</Control>
