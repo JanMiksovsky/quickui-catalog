@@ -53,9 +53,9 @@ action.
 <ol>
     <li>
         Open the
-        <a href="http://jsfiddle.net/Jan_Miksovsky/LhUKD" target="_blank">sample QuickUI demo</a>.
+        <a href="http://jsfiddle.net/Jan_Miksovsky/LhUKD" target="_blank">sample QuickUI fiddle</a>.
     </li>
-    <li>You can interact with the live controls in the "Result" area.</li>
+    <li>Interact with the live controls in the "Result" area.</li>
     <li>
         Try editing the JavaScript to create other controls from the catalog,
         set different properties on them, etc. Click the Run button to
@@ -67,19 +67,16 @@ action.
 <p>
 If you want to try using the controls in your own web project, for now there
 are several JavaScript and CSS files you must include. You'll need a recent
-version of jQuery, the core quickui.js runtime, plus several files on which
-the catalog depends. Some of the latter files will eventually be consolidated
-into a smaller set.
+version of jQuery, the core quickui.js runtime, plus the JavaScript and CSS
+files for the catalog controls.
 </p>
 
 <pre>
-&lt;link rel="stylesheet" type="text/css" href="http://quickui.org/quicommon/quicommon.css"/>
-&lt;link rel="stylesheet" type="text/css" href="http://quickui.org/catalog/quickui-catalog.css"/>
+&lt;link rel="stylesheet" type="text/css" href="http://quickui.org/release/quickui.catalog.css"/>
 
 &lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js">&lt;/script>
 &lt;script type="text/javascript" src="http://quickui.org/lib/quickui.js">&lt;/script>
-&lt;script type="text/javascript" src="http://quickui.org/quicommon/quicommon.js">&lt;/script>
-&lt;script type="text/javascript" src="http://quickui.org/catalog/quickui-catalog.js">&lt;/script>
+&lt;script type="text/javascript" src="http://quickui.org/release/quickui.catalog.js">&lt;/script>
 </pre>
 
 <h2>Option 3: Build the catalog controls from the source</h2>
@@ -110,13 +107,6 @@ QuickUI catalog is maintained under the MIT license on GitHub.
         parent class (ListComboBox.qui). For now, determining these dependencies
         is a manual process; the plan is to eventually have those dependencies
         tracked and resolved automatically.
-    </li>
-    <li>
-        Most of the catalog controls also depend upon controls defined in
-        the quicommon.js/.css files posted at the locations
-        indicated in the above code fragment. For now, you'll need to include
-        references to those files (or copies of them) as well. Those
-        dependencies will eventually be simplified.
     </li>
 </ol>
 
