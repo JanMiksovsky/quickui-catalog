@@ -15,24 +15,28 @@
 <script>
 ColorSwatchComboBox.prototype.extend({
     initialize: function() {
+        
         this._super();
         this.genericIfClassIs( ColorSwatchComboBox );
-        this.items([
-            "Blue",
-            "DarkGreen",
-            "DarkBlue",
-            "DarkRed",
-            "Gold",
-            "Goldenrod",
-            "Green",
-            "LightGray",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "Red",
-            "SteelBlue",
-            "Yellow",
-            "YellowGreen"
-        ]);
+        
+        if ( this.items() == null || this.items().length === 0 ) {
+            this.items([
+                "Blue",
+                "DarkGreen",
+                "DarkBlue",
+                "DarkRed",
+                "Gold",
+                "Goldenrod",
+                "Green",
+                "LightGray",
+                "LightSeaGreen",
+                "LightSkyBlue",
+                "Red",
+                "SteelBlue",
+                "Yellow",
+                "YellowGreen"
+            ]);
+        }
     }
 });
 </script>
