@@ -3,11 +3,14 @@
 <prototype>
     <Collapsible>
         <heading>
-            <div id="CollapsibleWithHeadingButton_heading"/>
-            <BasicButton id="CollapsibleWithHeadingButton_button">
-                <div id="collapsedButtonContent">+</div>
-                <div id="expandedButtonContent">-</div>
-            </BasicButton>
+            <HorizontalPanels id="headingPanels">
+                <right>
+                    <BasicButton id="headingButton">
+                        <div id="collapsedButtonContent">+</div>
+                        <div id="expandedButtonContent">-</div>
+                    </BasicButton>
+                </right>
+            </HorizontalPanels>            
         </heading>
     </Collapsible>
 </prototype>
@@ -33,7 +36,7 @@ CollapsibleWithHeadingButton.prototype.extend({
     /*
      * The class of the heading button.
      */
-    buttonClass: Control.chain( "CollapsibleWithHeadingButton_button", "transmute" ),
+    buttonClass: Control.chain( "$headingButton", "transmute" ),
     
     /*
      * The content of the heading button when the panel is collapsed.
@@ -48,7 +51,7 @@ CollapsibleWithHeadingButton.prototype.extend({
     /*
      * The heading shown at the top of the panel.
      */
-    heading: Control.chain( "$CollapsibleWithHeadingButton_heading", "content" ),
+    heading: Control.chain( "$headingPanels", "content" ),
     
     initialize: function() {
         this._super();

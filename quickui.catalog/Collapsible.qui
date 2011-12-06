@@ -10,6 +10,10 @@ A panel that can expand and collapse.
 </content>
 
 <style>
+#Collapsible_heading {
+    cursor: hand;
+}
+
 /* Subclasses can add their own rules for this class. */
 .Collapsible.collapsed {}
 
@@ -25,6 +29,10 @@ A panel that can expand and collapse.
 .Collapsible.generic {
     border: 1px solid lightgray;
     padding: 1em;
+}
+
+.Collapsible.generic #Collapsible_heading {
+    font-weight: bold;
 }
 </style>
 
