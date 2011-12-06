@@ -1,16 +1,18 @@
-<Control name="CollapsibleDemo">
+<Control name="CollapsibleWithHeadingButtonDemo">
 
 <content>
-    <Collapsible>
+    <CollapsibleWithHeadingButton>
         <heading>Test</heading>
         <content>
             <LoremIpsum/>
         </content>
-    </Collapsible>
+    </CollapsibleWithHeadingButton>
 </content>
 
 <style>
-
+{
+    max-width: 300px;
+}
 </style>
 
 </Control>
