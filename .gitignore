@@ -1,7 +1,7 @@
 .externalToolBuilders
 .project
 build
-quickui.catalog.js
-quickui.catalog.css
+quickui.catalog.*
 docs.js
 docs.css
+tests/common/common.*
