@@ -47,6 +47,16 @@ var controlRecords = [
         description: "Shows a single week from a calendar as seven days in a row."
     },
     {
+        name: "Collapsible",
+        demoClass: "CollapsibleDemo",
+        description: "A panel that can be toggled between collapsed and expanded states."
+    },
+    {
+        name: "Collapsible",
+        demoClass: "CollapsibleWithHeadingButtonDemo",
+        description: "A collapsible panel with a button whose contents change depending on the collapsed/expanded state."
+    },
+    {
         name: "ColorSwatch",
         demoClass: "ColorSwatchDemo",
         description: "Shows a block of a CSS color."
