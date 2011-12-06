@@ -52,7 +52,7 @@ var controlRecords = [
         description: "A panel that can be toggled between collapsed and expanded states."
     },
     {
-        name: "Collapsible",
+        name: "CollapsibleWithHeadingButton",
         demoClass: "CollapsibleWithHeadingButtonDemo",
         description: "A collapsible panel with a button whose contents change depending on the collapsed/expanded state."
     },
