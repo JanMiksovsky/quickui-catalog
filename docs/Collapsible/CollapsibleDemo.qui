@@ -10,7 +10,9 @@
 </content>
 
 <style>
-
+.LoremIpsum p {
+    margin: 0;
+}
 </style>
 
 </Control>

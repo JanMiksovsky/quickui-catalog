@@ -22,12 +22,18 @@
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font: caption;
+    font-family: sans-serif;
     padding: .25em .5em;
 }
-.BasicButton.generic:hover {
+
+/* 
+ * We use ".hovered" rather than ":hover" so that the hover state can be
+ * programmatically applied to a control.
+ */
+.BasicButton.generic.hovered {
     background-color: lightgray;
 }
+
 .BasicButton.generic.pressed {
     background-color: gray;
     color: white;

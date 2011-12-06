@@ -30,7 +30,9 @@ A panel that can expand and collapse.
     border: 1px solid lightgray;
     padding: 1em;
 }
-
+.Collapsible.generic #Collapsible_content {
+    margin-top: 0.5em;
+}
 .Collapsible.generic #Collapsible_heading {
     font-weight: bold;
 }
@@ -97,7 +99,7 @@ Collapsible.prototype.extend({
         this.genericIfClassIs( Collapsible );
         
         var self = this;
-        this.click( function() {
+        this.$Collapsible_heading().click( function() {
             if ( self.toggleOnClick() ) {
                 self.toggleCollapse();
             }

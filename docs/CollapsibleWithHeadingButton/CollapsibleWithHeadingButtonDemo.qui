@@ -2,7 +2,7 @@
 
 <content>
     <CollapsibleWithHeadingButton>
-        <heading>Section with a long label that probably wraps or something</heading>
+        <heading>This section has a long title that probably wraps or something</heading>
         <content>
             <LoremIpsum/>
         </content>
@@ -12,6 +12,10 @@
 <style>
 {
     max-width: 300px;
+}
+
+.LoremIpsum p {
+    margin: 0;
 }
 </style>
 

@@ -5,7 +5,7 @@
         <heading>
             <BasicButton id="headingButton">
                 <div id="collapsedButtonContent">+</div>
-                <div id="expandedButtonContent">-</div>
+                <div id="expandedButtonContent">−</div> <!-- Minus sign, not hyphen -->
             </BasicButton>
             <Fader id="CollapsibleWithHeadingButton_heading"/>
         </heading>
@@ -13,20 +13,12 @@
 </prototype>
 
 <style>
-#Collapsible_heading {
-    /*
-    display: table;
-    width: 100%;
-    */
-}
-#Collapsible_heading > * {
-    /*
-    display: table-cell;
-    */
-}
-
 #headingButton {
     float: right;
+}
+
+#Collapsible_content {
+    clear: both;
 }
 
 #collapsedButtonContent {
@@ -41,6 +33,23 @@
 .CollapsibleWithHeadingButton.collapsed #expandedButtonContent {
     display: none;
 }
+
+/* Generic appearance */
+.CollapsibleWithHeadingButton.generic #headingButton {
+    font-weight: normal;
+    margin-left: 1em;
+}
+
+.CollapsibleWithHeadingButton.generic #headingButton.BasicButton.generic {
+    padding: 0 0.25em;
+}
+
+/* Hovering over heading triggers button's hover state */
+/*
+.CollapsibleWithHeadingButton.generic #Collapsible_heading:hover {
+    background-color: lightgray;
+}
+*/
 </style>
 
 <script>
@@ -69,6 +78,12 @@ CollapsibleWithHeadingButton.prototype.extend({
     initialize: function() {
         this._super();
         this.genericIfClassIs( CollapsibleWithHeadingButton );
+        
+        var $button = this.$headingButton();
+        this.$CollapsibleWithHeadingButton_heading().hover(
+            function hoverIn() { $button.addClass( "hovered" ); },
+            function hoverOut() { $button.removeClass( "hovered" ); }
+        );
     }
     
 });
