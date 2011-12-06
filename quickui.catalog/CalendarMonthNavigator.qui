@@ -9,7 +9,7 @@
         </heading>
         <CalendarMonthWithHeadings id="calendar" showMonthName="false" />
         <div id="todayContainer">
-            <ButtonBase id="buttonToday">Today</ButtonBase>
+            <BasicButton id="buttonToday">Today</BasicButton>
         </div>
     </LateralNavigator>
 </prototype>

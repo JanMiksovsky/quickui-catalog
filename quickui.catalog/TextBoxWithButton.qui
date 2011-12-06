@@ -58,7 +58,7 @@ TextBoxWithButton.prototype.extend({
         if ($goButton.children().length > 0)
         {
             var buttonControl = Control($goButton.children()[0]);
-            if (buttonControl != null && buttonControl instanceof ButtonBase)
+            if (buttonControl != null && buttonControl instanceof BasicButton)
             {
                 buttonControl.disabled(this._isContentEmpty());
             }

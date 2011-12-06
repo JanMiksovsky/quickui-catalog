@@ -4,11 +4,11 @@
 
 <content>
     <!--
-    We host the button inside a container (instead of inheriting from ButtonBase)
+    We host the button inside a container (instead of inheriting from BasicButton)
     so that we can add some clickable padding around the visible button. Otherwise
     the dot would be too small to easily click.
     -->
-    <ButtonBase id="button" generic="false"/>
+    <BasicButton id="button" generic="false"/>
 </content>
 
 <style>

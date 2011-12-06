@@ -17,9 +17,9 @@
             <!-- This toolbar will always be visible -->
             <div id="toolbar">
                 This toolbar is always available:
-                <ButtonBase>Button 1</ButtonBase>
-                <ButtonBase>Button 2</ButtonBase>
-                <ButtonBase>Button 3</ButtonBase>
+                <BasicButton>Button 1</BasicButton>
+                <BasicButton>Button 2</BasicButton>
+                <BasicButton>Button 3</BasicButton>
             </div>
         </PersistentPanel>
         <!-- This content will scroll under the toolbar -->
@@ -54,7 +54,7 @@ p {
     padding: 0.5em 2em;
 }
 
-#toolbar .ButtonBase {
+#toolbar .BasicButton {
     margin-right: 5px;
 }
 </style>

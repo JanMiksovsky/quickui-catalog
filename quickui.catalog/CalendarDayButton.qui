@@ -2,7 +2,7 @@
 
 <prototype>
     <CalendarDay>
-        <ButtonBase id="button" generic="false"/>
+        <BasicButton id="button" generic="false"/>
     </CalendarDay>
 </prototype>
 

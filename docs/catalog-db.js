@@ -13,14 +13,14 @@ var controlRecords = [
         description: "A text area that expands to contain its text."
     },
     {
+        name: "BasicButton",
+        demoClass: "BasicButtonDemo",
+        description: "Base class for buttons, handling mouse and disabled states."
+    },
+    {
         name: "BrowserSpecific",
         demoClass: "BrowserSpecificDemo",
         description: "Conditionally shows contents if the given browser is in use."
-    },
-    {
-        name: "ButtonBase",
-        demoClass: "ButtonBaseDemo",
-        description: "Base class for buttons, handling mouse and disabled states."
     },
     {
         name: "CalendarDay",

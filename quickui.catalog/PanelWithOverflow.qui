@@ -11,7 +11,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 <prototype>
     <Layout>
         <HasPopup id="menuButton" closeOnInsideClick="true" openOnClick="true">
-            <ButtonBase id="PanelWithOverflow_indicator">»</ButtonBase>
+            <BasicButton id="PanelWithOverflow_indicator">»</BasicButton>
         </HasPopup>
         <div id="PanelWithOverflow_content"/>
     </Layout>
@@ -46,7 +46,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 }
 
 /* Generic appearance */
-.PanelWithOverflow.generic #menuButton .ButtonBase.generic {
+.PanelWithOverflow.generic #menuButton .BasicButton.generic {
     border-color: transparent;
 }
 </style>

@@ -2,18 +2,18 @@
 
 <content>
     <PanelWithOverflow id="toolbar">
-        <ButtonBase class="toolbarButton" generic="false" content="One"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Two"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Three"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Four"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Five"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Six"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Seven"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Eight"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Nine"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Ten"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Eleven"/>
-        <ButtonBase class="toolbarButton" generic="false" content="Twelve"/>
+        <BasicButton class="toolbarButton" generic="false" content="One"/>
+        <BasicButton class="toolbarButton" generic="false" content="Two"/>
+        <BasicButton class="toolbarButton" generic="false" content="Three"/>
+        <BasicButton class="toolbarButton" generic="false" content="Four"/>
+        <BasicButton class="toolbarButton" generic="false" content="Five"/>
+        <BasicButton class="toolbarButton" generic="false" content="Six"/>
+        <BasicButton class="toolbarButton" generic="false" content="Seven"/>
+        <BasicButton class="toolbarButton" generic="false" content="Eight"/>
+        <BasicButton class="toolbarButton" generic="false" content="Nine"/>
+        <BasicButton class="toolbarButton" generic="false" content="Ten"/>
+        <BasicButton class="toolbarButton" generic="false" content="Eleven"/>
+        <BasicButton class="toolbarButton" generic="false" content="Twelve"/>
     </PanelWithOverflow>
 </content>
 

@@ -3,11 +3,11 @@
 <Control name="SpriteButton">
 
 <prototype>
-    <ButtonBase>
+    <BasicButton>
         <Sprite id="backgroundLeft" />
         <Sprite id="backgroundRight" />
         <button id="SpriteButton_content" />
-    </ButtonBase>
+    </BasicButton>
 </prototype>
 
 <style>

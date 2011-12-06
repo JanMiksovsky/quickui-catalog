@@ -6,13 +6,13 @@
     <div id="header">
         <HorizontalPanels>
             <left>
-                <ButtonBase id="LateralNavigator_previousButton" class="navigatorButton" generic="false">&#9664;</ButtonBase>
+                <BasicButton id="LateralNavigator_previousButton" class="navigatorButton" generic="false">&#9664;</BasicButton>
             </left>
             <content>
                 <div id="LateralNavigator_heading"/>
             </content>
             <right>
-                <ButtonBase id="LateralNavigator_nextButton" class="navigatorButton" generic="false">&#9654;</ButtonBase>
+                <BasicButton id="LateralNavigator_nextButton" class="navigatorButton" generic="false">&#9654;</BasicButton>
             </right>
         </HorizontalPanels>
     </div>

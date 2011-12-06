@@ -63,7 +63,7 @@ per day.
     color: white;
     text-decoration: none;
 }
-.ButtonBase.disabled .monthButtonName {
+.BasicButton.disabled .monthButtonName {
     background-color: inherit;
     color: black;
     text-decoration: none;

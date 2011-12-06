@@ -1,9 +1,9 @@
 <Control name="ColorSwatchButton">
 
 <prototype>
-    <ButtonBase>
+    <BasicButton>
         <ColorSwatch id="swatch"/><div id="ColorSwatchButton_content"/>
-    </ButtonBase>
+    </BasicButton>
 </prototype>
 
 <style>
@@ -17,6 +17,7 @@
 ColorSwatchButton.prototype.extend({
 
     initialize: function() {
+        this._super();
         this.genericIfClassIs( ColorSwatchButton );
     },
     

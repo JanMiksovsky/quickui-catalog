@@ -31,7 +31,7 @@ Show its children as sliding pages which can be navigated by clicking buttons be
     padding: 5px;
 }
 
-.SlidingPagesWithDots.generic #pageButtons > .ButtonBase {
+.SlidingPagesWithDots.generic #pageButtons > .BasicButton {
     background: white;
     border: 1px solid #888;
     border-radius: 5px;
@@ -44,11 +44,11 @@ Show its children as sliding pages which can be navigated by clicking buttons be
     width: 10px;
 }
 
-.SlidingPagesWithDots.generic #pageButtons > .ButtonBase:hover {
+.SlidingPagesWithDots.generic #pageButtons > .BasicButton:hover {
     background: #ddd;
 }
 
-.SlidingPagesWithDots.generic #pageButtons > .ButtonBase.selected {
+.SlidingPagesWithDots.generic #pageButtons > .BasicButton.selected {
     background: #bbb;
 }
 </style>
@@ -65,7 +65,7 @@ SlidingPagesWithDots.prototype.extend({
         
         this.genericIfClassIs( SlidingPagesWithDots );
         if ( !this.pageButtonClass() ) {
-            this.pageButtonClass( ButtonBase );
+            this.pageButtonClass( BasicButton );
         }
 
         var self = this;

@@ -26,7 +26,7 @@ be strings.
 }
 
 /* Generic appearance */
-.ListComboBox.generic .ButtonBase {
+.ListComboBox.generic .BasicButton {
     border: none;
 }
 </style>
@@ -82,7 +82,7 @@ ListComboBox.prototype.extend({
             });
         
         if ( !this.itemClass() ) {
-             this.itemClass( ButtonBase );
+             this.itemClass( BasicButton );
         }
     },
     
