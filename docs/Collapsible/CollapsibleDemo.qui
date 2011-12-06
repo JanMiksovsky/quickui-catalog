@@ -4,7 +4,7 @@
     <Collapsible>
         <heading>Heading (click to toggle)</heading>
         <content>
-            <LoremIpsum/>
+            <LoremIpsum sentences="5" />
         </content>
     </Collapsible>
 </content>
@@ -15,4 +15,4 @@
 }
 </style>
 
-</Control>
+</Control>

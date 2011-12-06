@@ -8,7 +8,7 @@ Generates Lorem Ipsum placeholder paragraphs.
 LoremIpsum.prototype.extend({
     
     initialize: function() {
-        if ( !this.paragraphs() ) {
+        if ( !this.paragraphs() && !this.sentences() ) {
             this.paragraphs( 1 );
         }
     },
@@ -16,10 +16,10 @@ LoremIpsum.prototype.extend({
     /*
      * The number of paragraphs to show. Default is one paragraph.
      */
-    paragraphs: Control.property.integer( function( count ) {
+    paragraphs: Control.property.integer( function( paragraphCount ) {
         
         var content = [];
-        for ( var i = 0; i < count; i++ ) {
+        for ( var i = 0; i < paragraphCount; i++ ) {
             
             var paragraph = this._generateParagraph();
             
@@ -33,18 +33,29 @@ LoremIpsum.prototype.extend({
         
         this.content( content );
     }),
+    
+    /*
+     * A specific number of sentences to show.
+     */
+    sentences: Control.property.integer( function( sentenceCount ) {
+        var paragraph = LoremIpsum.leadSentence + " ";
+        if ( sentenceCount > 1 ) {
+            paragraph += this._generateParagraph( sentenceCount - 1 );
+        }
+        this.content( paragraph );
+    }),
 
     /*
      * Generate a random paragraph.
      */    
-    _generateParagraph: function() {
+    _generateParagraph: function( sentenceCount ) {
         
         // Between 5 and 12 sentences per paragraph.
-        var count = Math.floor( Math.random() * 8 ) + 5;
+        sentenceCount = sentenceCount || Math.floor( Math.random() * 8 ) + 5;
         var sentencesAvailable = LoremIpsum.sentences.length;
         
         var paragraph = "";
-        for ( var i = 0; i < count; i++ ) {
+        for ( var i = 0; i < sentenceCount; i++ ) {
             if ( paragraph.length > 0 ) {
                 paragraph += " ";
             }

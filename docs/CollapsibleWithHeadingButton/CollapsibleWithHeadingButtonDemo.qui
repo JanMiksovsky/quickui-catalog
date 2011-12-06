@@ -4,7 +4,7 @@
     <CollapsibleWithHeadingButton>
         <heading>Section heading goes here</heading>
         <content>
-            <LoremIpsum/>
+            <LoremIpsum sentences="5" />
         </content>
     </CollapsibleWithHeadingButton>
 </content>
@@ -19,4 +19,4 @@
 }
 </style>
 
-</Control>
+</Control>
