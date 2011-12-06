@@ -63,7 +63,7 @@ TabSet.prototype.extend({
         
         var self = this;
         this.$tabButtons().click( function( event ) {
-            var tabButtonCssClass = "." + self.tabButtonClass().prototype.className;
+            var tabButtonCssClass = "." + self.tabButtonClass().className;
             var tabButton = $( event.target ).closest( tabButtonCssClass ).control();
             if ( tabButton ) {
                 var index = self.tabButtons().index( tabButton );
