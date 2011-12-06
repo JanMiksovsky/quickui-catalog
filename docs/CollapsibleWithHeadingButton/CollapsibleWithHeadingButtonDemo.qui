@@ -2,7 +2,7 @@
 
 <content>
     <CollapsibleWithHeadingButton>
-        <heading>Test</heading>
+        <heading>Section with a long label that probably wraps or something</heading>
         <content>
             <LoremIpsum/>
         </content>

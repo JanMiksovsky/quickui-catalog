@@ -11,7 +11,7 @@ A panel that can expand and collapse.
 
 <style>
 #Collapsible_heading {
-    cursor: hand;
+    cursor: pointer;
 }
 
 /* Subclasses can add their own rules for this class. */

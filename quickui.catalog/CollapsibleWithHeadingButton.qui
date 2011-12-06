@@ -3,19 +3,32 @@
 <prototype>
     <Collapsible>
         <heading>
-            <HorizontalPanels id="headingPanels">
-                <right>
-                    <BasicButton id="headingButton">
-                        <div id="collapsedButtonContent">+</div>
-                        <div id="expandedButtonContent">-</div>
-                    </BasicButton>
-                </right>
-            </HorizontalPanels>            
+            <BasicButton id="headingButton">
+                <div id="collapsedButtonContent">+</div>
+                <div id="expandedButtonContent">-</div>
+            </BasicButton>
+            <Fader id="CollapsibleWithHeadingButton_heading"/>
         </heading>
     </Collapsible>
 </prototype>
 
 <style>
+#Collapsible_heading {
+    /*
+    display: table;
+    width: 100%;
+    */
+}
+#Collapsible_heading > * {
+    /*
+    display: table-cell;
+    */
+}
+
+#headingButton {
+    float: right;
+}
+
 #collapsedButtonContent {
     display: none;
 }
@@ -51,7 +64,7 @@ CollapsibleWithHeadingButton.prototype.extend({
     /*
      * The heading shown at the top of the panel.
      */
-    heading: Control.chain( "$headingPanels", "content" ),
+    heading: Control.chain( "$CollapsibleWithHeadingButton_heading", "content" ),
     
     initialize: function() {
         this._super();
