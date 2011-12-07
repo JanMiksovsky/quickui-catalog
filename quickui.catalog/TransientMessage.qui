@@ -1,0 +1,49 @@
+<Control name="TransientMessage">
+
+<prototype>
+    <Popup cancelOnOutsideClick="false"/>
+</prototype>
+
+<style>
+/* Generic appearance */
+.TransientMessage.generic {
+    /* TODO: IE */
+    background: rgba( 0, 0, 0, 0.5 );
+    color: white;
+    position: fixed;
+    top: 0;
+}
+</style>
+
+<script>
+/* Class methods */
+TransientMessage.extend({
+    showMessage: function( message ) {
+        
+        var transientMessage = TransientMessage
+            .create()
+            .content( message );
+        $( "body" )
+            .append( transientMessage );
+        transientMessage.open();
+        
+        return transientMessage;
+    }
+});
+
+TransientMessage.prototype.extend({
+    
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( TransientMessage );
+        
+        var self = this;
+        this.positionPopup( function() {
+        });
+    }
+    
+});
+</script>
+
+</Control>
