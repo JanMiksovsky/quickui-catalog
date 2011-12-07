@@ -1,3 +1,8 @@
+<!--
+A collapsible panel whose heading region, by default, includes a button on
+the far right that indicates the panel's collapsed/expanded state.
+-->
+
 <Control name="CollapsibleWithHeadingButton">
 
 <prototype>
