@@ -42,7 +42,7 @@ LoremIpsum.prototype.extend({
         if ( sentenceCount > 1 ) {
             paragraph += this._generateParagraph( sentenceCount - 1 );
         }
-        this.content( paragraph );
+        this.content( "<p>" + paragraph + "</p>" );
     }),
 
     /*

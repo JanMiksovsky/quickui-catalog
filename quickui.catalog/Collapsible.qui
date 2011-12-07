@@ -17,14 +17,6 @@ A panel that can expand and collapse.
 /* Subclasses can add their own rules for this class. */
 .Collapsible.collapsed {}
 
-/* Animation effects look jerky if the top (or bottom) element has a top (bottom) margin. */
-#Collapsible_content > *:first-child {
-	margin-top: 0;
-}
-#Collapsible_content > *:last-child {
-	margin-bottom: 0;
-}
-
 /* Generic appearance */
 .Collapsible.generic {
     border: 1px solid lightgray;
@@ -36,8 +28,19 @@ A panel that can expand and collapse.
     padding: 0.5em 0.5em 0.5em 1em;
 }
 
+/*
+ * The animation seems to work better if the top/bottom padding is actually
+ * implemented as top/bottom margin on the content. So we apply left/right
+ * padding to the container, but top/bottom margin on the content.
+ */
 .Collapsible.generic #Collapsible_content {
-    padding: 1em;
+    padding: 0 1em;
+}
+.Collapsible.generic #Collapsible_content > *:first-child {
+    margin-top: 0;
+}
+.Collapsible.generic #Collapsible_content > *:last-child {
+    margin-bottom: 0;
 }
 </style>
 
