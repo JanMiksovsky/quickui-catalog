@@ -49,8 +49,8 @@ Dialog.prototype.extend({
      */
     _positionPopup: function() {
         return this.css({
-            left: ($(window).width() - this.outerWidth()) / 2,
-            top: ($(window).height() - this.outerHeight()) / 2
+            left: ( $( window ).width() - this.outerWidth() ) / 2,
+            top: ( $( window ).height() - this.outerHeight() ) / 2
         });
     }
 

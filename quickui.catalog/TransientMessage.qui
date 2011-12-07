@@ -25,13 +25,18 @@ TransientMessage.prototype.extend({
         
         var self = this;
         this.positionPopup( function() {
+            return self.css({
+                left: ( $( window ).width() - this.outerWidth() ) / 2,
+            });
         });
     },
 
     _close: function() {
         var self = this;
         this.fadeOut( null, function() {
-            self.close();
+            self
+                .close()
+                .remove();
         });
     },
     
@@ -51,9 +56,10 @@ TransientMessage.extend({
             .append( transientMessage );
         transientMessage.open();
         
+        var duration = message.length * 50;
         var timeout = setTimeout( function() {
             transientMessage._close();
-        }, 1000 );
+        }, duration );
         transientMessage._timeout( timeout );
         
         return transientMessage;
