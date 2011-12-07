@@ -1,7 +1,7 @@
 <Control name="TransientMessage">
 
 <prototype>
-    <Popup cancelOnOutsideClick="false"/>
+    <Popup/>
 </prototype>
 
 <style>
@@ -16,21 +16,6 @@
 </style>
 
 <script>
-/* Class methods */
-TransientMessage.extend({
-    showMessage: function( message ) {
-        
-        var transientMessage = TransientMessage
-            .create()
-            .content( message );
-        $( "body" )
-            .append( transientMessage );
-        transientMessage.open();
-        
-        return transientMessage;
-    }
-});
-
 TransientMessage.prototype.extend({
     
     initialize: function() {
@@ -41,7 +26,38 @@ TransientMessage.prototype.extend({
         var self = this;
         this.positionPopup( function() {
         });
-    }
+    },
+
+    _close: function() {
+        var self = this;
+        this.fadeOut( null, function() {
+            self.close();
+        });
+    },
+    
+    _timeout: Control.property()
+    
+});
+
+/* Class methods */
+TransientMessage.extend({
+    
+    showMessage: function( message ) {
+        
+        var transientMessage = TransientMessage
+            .create()
+            .content( message );
+        $( "body" )
+            .append( transientMessage );
+        transientMessage.open();
+        
+        var timeout = setTimeout( function() {
+            transientMessage._close();
+        }, 1000 );
+        transientMessage._timeout( timeout );
+        
+        return transientMessage;
+    },
     
 });
 </script>
