@@ -54,7 +54,7 @@ var controlRecords = [
     {
         name: "CollapsibleWithHeadingButton",
         demoClass: "CollapsibleWithHeadingButtonDemo",
-        description: "A collapsible panel whose heading region includes button that changes depending on the collapsed state."
+        description: "A collapsible panel whose heading region includes a button that reflects the collapsed state."
     },
     {
         name: "ColorSwatch",

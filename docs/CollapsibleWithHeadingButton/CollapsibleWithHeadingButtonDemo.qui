@@ -2,7 +2,7 @@
 
 <content>
     <CollapsibleWithHeadingButton>
-        <heading>Section heading goes here</heading>
+        <heading>Heading</heading>
         <content>
             <LoremIpsum sentences="5" />
         </content>
@@ -10,10 +10,6 @@
 </content>
 
 <style>
-{
-    max-width: 600px;
-}
-
 .LoremIpsum p {
     margin: 0;
 }

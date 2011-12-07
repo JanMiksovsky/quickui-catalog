@@ -35,16 +35,6 @@
 }
 
 /* Generic appearance */
-.CollapsibleWithHeadingButton.generic {
-    padding: 0;
-}
-
-.CollapsibleWithHeadingButton.generic #Collapsible_heading {
-    background: #e5e5e5;
-    padding: 0.5em 1em;
-    
-}
-
 .CollapsibleWithHeadingButton.generic #CollapsibleWithHeadingButton_heading {
     background: #e5e5e5;    /* Fader requires explicit background color. */
 }
@@ -56,11 +46,6 @@
 
 .CollapsibleWithHeadingButton.generic #headingButton.BasicButton.generic {
     padding: 0 0.25em;
-}
-
-.CollapsibleWithHeadingButton.generic #Collapsible_content {
-    margin-top: 0;
-    padding: 1em;
 }
 
 /* Hovering over heading triggers button's hover state */

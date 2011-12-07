@@ -28,13 +28,16 @@ A panel that can expand and collapse.
 /* Generic appearance */
 .Collapsible.generic {
     border: 1px solid lightgray;
-    padding: 1em;
 }
-.Collapsible.generic #Collapsible_content {
-    margin-top: 0.5em;
-}
+
 .Collapsible.generic #Collapsible_heading {
+    background: #e5e5e5;
     font-weight: bold;
+    padding: 0.5em 0.5em 0.5em 1em;
+}
+
+.Collapsible.generic #Collapsible_content {
+    padding: 1em;
 }
 </style>
 
@@ -65,15 +68,19 @@ Collapsible.prototype.extend({
 	        
 	        // Setter
             var result = value ? "hide" : "show";
+            var self = this;
             this.$Collapsible_content().animate(
                 { 
                     height: result,
                     opacity: result
                 },
-                this.duration()
+                this.duration(),
+                null,
+                function() {
+                    /* Wait until animation completes to apply collapsed style. */
+                    self.toggleClass( "collapsed", value );
+                }
             );
-            
-            this.toggleClass( "collapsed", value );
             
             if ( this._collapsed() !== value ) {
                 this.trigger( "collapsedChanged" );
