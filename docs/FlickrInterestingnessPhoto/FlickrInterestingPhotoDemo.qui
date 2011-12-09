@@ -1,7 +1,13 @@
-<Control name="FlickrInterestingPhotoDemo">
+<Control name="FlickrInterestingnessPhotoDemo">
 
 <content>
-    <FlickrInterestingPhoto id="photo"/>
+    <SlidingPagesWithDots>
+        <FlickrInterestingnessPhoto id="photo"/>
+        <FlickrInterestingnessPhoto id="photo"/>
+        <FlickrInterestingnessPhoto id="photo"/>
+        <FlickrInterestingnessPhoto id="photo"/>
+        <FlickrInterestingnessPhoto id="photo"/>
+    </SlidingPagesWithDots>
 </content>
 
 <style>
@@ -11,7 +17,8 @@
 </style>
 
 <script>
-FlickrInterestingPhotoDemo.prototype.extend({
+FlickrInterestingnessPhotoDemo.prototype.extend({
+    /*
     initialize: function() {
         this.$photo()
             .click( function( event ) {
@@ -23,6 +30,7 @@ FlickrInterestingPhotoDemo.prototype.extend({
                 $( event.target ).css( "opacity", "1.0" );
             });
     }
+   */
 });  
 </script>
 

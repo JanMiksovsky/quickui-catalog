@@ -33,9 +33,16 @@ SlidingPages.prototype.extend({
     pages: Control.chain( "$SlidingPages_content", "children" ),
     
     initialize: function() {
-        this.inDocument( function( $control ) {
-            $control._adjustWidths();
-        });
+
+        var self = this;
+        this
+            .inDocument( function( $control ) {
+                $control._adjustWidths();
+            })
+            .on( "sizeChanged", function() {
+                self._adjustWidths();
+            });
+
         if ( !this.activeIndex() ) {
             this.activeIndex(0);
         }
