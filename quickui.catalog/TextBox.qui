@@ -33,7 +33,13 @@ top-level element.
 
 <script>
 TextBox.prototype.extend({
-    content: Control.chain( "$textBox", "content" )
+    content: Control.chain( "$textBox", "content", function() {
+        /*
+         * Setting content programmatically generates a change event
+         * so that the UI can react accordingly.
+         */
+        this.trigger( "change" );
+    })
 });
 </script>
 
