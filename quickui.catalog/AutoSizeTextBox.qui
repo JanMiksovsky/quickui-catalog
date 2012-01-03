@@ -120,6 +120,11 @@ AutoSizeTextBox.prototype.extend({
         }
     }, 2 ),
     
+    /*
+     * Set to false to disable spell-checking.
+     */
+    spellcheck: Control.chain( "$textBox", "prop/spellcheck" ),
+    
     // For the following, we need to wait until the control's in the DOM.    
     _refresh: Control.iterator( function() {
 
