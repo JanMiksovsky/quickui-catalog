@@ -1,10 +1,10 @@
 <!-- Shows the most interesting photo on Flickr for a given day. -->
 
-<Control name="FlickrInterestingnessDay">
+<Control name="FlickrInterestingDay">
 
 <prototype>
     <CalendarDay>
-        <div id="FlickrInterestingnessDay_content"/>
+        <div id="FlickrInterestingDay_content"/>
         <a id="link">
             <img id="image"/>
         </a>
@@ -19,7 +19,7 @@
     vertical-align: top;
 }
 
-#FlickrInterestingnessDay_content {
+#FlickrInterestingDay_content {
     color: white;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -41,29 +41,29 @@
     width: 75px;
 }
 
-.FlickrInterestingnessDay.past {
+.FlickrInterestingDay.past {
     border-color: #7e7262;
 }
-.FlickrInterestingnessDay.today,
-.FlickrInterestingnessDay.future {
+.FlickrInterestingDay.today,
+.FlickrInterestingDay.future {
     border-color: #e5e5e5;
     padding: 3px 0 0 4px;
 }
-.FlickrInterestingnessDay.today #FlickrInterestingnessDay_content,
-.FlickrInterestingnessDay.future #FlickrInterestingnessDay_content {
+.FlickrInterestingDay.today #FlickrInterestingDay_content,
+.FlickrInterestingDay.future #FlickrInterestingDay_content {
     color: #e5e5e5;
     text-shadow: none;
 }
-.FlickrInterestingnessDay.today #image,
-.FlickrInterestingnessDay.future #image {
+.FlickrInterestingDay.today #image,
+.FlickrInterestingDay.future #image {
     visibility: hidden;
 }
 </style>
 
 <script>
-FlickrInterestingnessDay.prototype.extend({
+FlickrInterestingDay.prototype.extend({
 
-    content: Control.chain( "$FlickrInterestingnessDay_content", "content" ),
+    content: Control.chain( "$FlickrInterestingDay_content", "content" ),
     href: Control.chain( "$link", "attr/href" ),
     image: Control.chain( "$image", "attr/src" ),
     
@@ -101,7 +101,7 @@ FlickrInterestingnessDay.prototype.extend({
         if ( date && date < CalendarDay.today() ) {
             
             var self = this;
-            FlickrInterestingnessDay.getInterestingPhotoForDate( date, function( photo ) {
+            FlickrInterestingDay.getInterestingPhotoForDate( date, function( photo ) {
                 // Double-check we got a photo, and also check that the date
                 // hasn't been changed since the photo was requested.
                 if ( photo && date === self.date() ) {
@@ -122,7 +122,7 @@ FlickrInterestingnessDay.prototype.extend({
 });
 
 // Class methods
-FlickrInterestingnessDay.extend({
+FlickrInterestingDay.extend({
     
     // Please replace with your own API key.
     _flickrApiKey: "c3685bc8d8cefcc1d25949e4c528cbb0",

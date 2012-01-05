@@ -1,0 +1,13 @@
+<Control name="FlickrInterestingPhotoDemo">
+
+<content>
+    <SlidingPagesWithDots pageButtonClass="BlueDotButton">
+        <FlickrInterestingPhoto id="photo"/>
+        <FlickrInterestingPhoto id="photo"/>
+        <FlickrInterestingPhoto id="photo"/>
+        <FlickrInterestingPhoto id="photo"/>
+        <FlickrInterestingPhoto id="photo"/>
+    </SlidingPagesWithDots>
+</content>
+
+</Control>

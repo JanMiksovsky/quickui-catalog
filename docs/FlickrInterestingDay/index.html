@@ -20,25 +20,23 @@
 <script type="text/javascript" src="/controls/controls.js"></script>
 <script type="text/javascript" src="/catalog/docs.js"></script>
 
-<title>FlickrInterestingnessNavigator</title>
+<title>FlickrInterestingDay</title>
 
 </head>
 
 <body data-create-controls="true"
-    data-control="CatalogPage">
+    data-control="CatalogPage"
+    data-demoClass="FlickrInterestingDayDemo"
+    data-demoFileMarkup="FlickrInterestingDayDemo.qui">
 
 <div data-property="summary">
-A <a data-control="CatalogLink">CalendarMonthNavigator</a> that browses the
-<a data-control="Link" href="http://www.flickr.com/explore/interesting/">Flickr Interestingness</a>
-photos by month. The class of the calendar days,
-<a data-control="CatalogLink">FlickrInterestingnessDay</a>,
-does the work of loading the photo for a given day.
+Shows the most interesting photo for a given date (in the past) from the
+<a data-control="Link" href="http://www.flickr.com/explore/interesting/">
+Flickr Interestingness</a> photo collection. This is a specialized class of
+<a data-control="CatalogLink">CalendarDay</a> used by
+<a data-control="CatalogLink">FlickrInterestingNavigator</a> to show
+interesting photos by month.
 </div>
-
-<p>
-    This control was the subject of a
-    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2011/10/calendarmonthnavigator.html">user interface blog post</a>.
-</p>
 
 </body>
 

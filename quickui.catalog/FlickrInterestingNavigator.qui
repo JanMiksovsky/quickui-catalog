@@ -6,11 +6,11 @@ the most interesting photo for each day of the month; separate calls have to be 
 per day.
 -->
 
-<Control name="FlickrInterestingnessNavigator">
+<Control name="FlickrInterestingNavigator">
 
 <prototype>
     <CalendarMonthNavigator
-        dayClass="FlickrInterestingnessDay"
+        dayClass="FlickrInterestingDay"
         dayNameFormat="namesAbbr"
         showTodayButton="false">
         <previousButtonContent>
@@ -74,17 +74,17 @@ per day.
     font-weight: bold;
 }
 
-.FlickrInterestingnessDay.insideMonth {
+.FlickrInterestingDay.insideMonth {
     border-style: solid;
     border-width: 1px;
 }
-.FlickrInterestingnessDay.outsideMonth {
+.FlickrInterestingDay.outsideMonth {
     visibility: hidden;
 }
 </style>
 
 <script>
-FlickrInterestingnessNavigator.prototype.extend({
+FlickrInterestingNavigator.prototype.extend({
     
     culture: function( culture ) {
         var result = this._super( culture );

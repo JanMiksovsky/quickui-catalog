@@ -4,10 +4,10 @@ for the previous day. By default, this can be used 100 times
 before it starts repeating photos.
 -->
 
-<Control name="FlickrInterestingnessPhoto" tag="img">
+<Control name="FlickrInterestingPhoto" tag="img">
     
 <script>
-FlickrInterestingnessPhoto.prototype.extend({
+FlickrInterestingPhoto.prototype.extend({
     
     initialize: function() {
         
@@ -21,7 +21,7 @@ FlickrInterestingnessPhoto.prototype.extend({
     
     reload: function() {
         var self = this;
-        FlickrInterestingnessPhoto.getRandomPhoto( function( photo ) {
+        FlickrInterestingPhoto.getRandomPhoto( function( photo ) {
             self.prop( "src", photo );
         });
     }
@@ -29,11 +29,11 @@ FlickrInterestingnessPhoto.prototype.extend({
 });
 
 // Class methods
-FlickrInterestingnessPhoto.extend({
+FlickrInterestingPhoto.extend({
     
     getRandomPhoto: function( callback ) {
         var self = this;
-        this.getFlickrInterestingnessPhotos( function( flickrPhotos ) {
+        this.getFlickrInterestingPhotos( function( flickrPhotos ) {
             self._counter = ( self._counter >= 0 )
                 ? ( self._counter + 1 ) % flickrPhotos.length 
                 : 0;
@@ -43,7 +43,7 @@ FlickrInterestingnessPhoto.extend({
         });
     },
     
-    getFlickrInterestingnessPhotos: function( callback ) {
+    getFlickrInterestingPhotos: function( callback ) {
         
         if ( this._flickrPhotos ) {
             callback( this._flickrPhotos );
