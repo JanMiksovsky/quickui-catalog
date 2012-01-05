@@ -2,11 +2,11 @@
 
 <content>
     <SlidingPagesWithDots pageButtonClass="BlueDotButton">
-        <FlickrInterestingPhoto id="photo"/>
-        <FlickrInterestingPhoto id="photo"/>
-        <FlickrInterestingPhoto id="photo"/>
-        <FlickrInterestingPhoto id="photo"/>
-        <FlickrInterestingPhoto id="photo"/>
+        <FlickrInterestingPhoto/>
+        <FlickrInterestingPhoto/>
+        <FlickrInterestingPhoto/>
+        <FlickrInterestingPhoto/>
+        <FlickrInterestingPhoto/>
     </SlidingPagesWithDots>
 </content>
 
