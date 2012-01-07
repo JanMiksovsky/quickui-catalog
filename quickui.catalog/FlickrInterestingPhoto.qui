@@ -15,30 +15,56 @@ FlickrInterestingPhoto.prototype.extend({
         this.on( "load" , function() {
             self.trigger( "sizeChanged" );
         });
-        
-        this.reload();
+
+        var photo = this.photo();
+        if ( !photo || photo.length === 0 ) {
+            this.reload();
+        }
     },
     
     reload: function() {
         var self = this;
         FlickrInterestingPhoto.getRandomPhoto( function( photo ) {
             self.prop( "src", photo );
-        });
-    }
+        }, this.photoSize());
+    },
+    
+    /* The photo currently shown */
+    photo: Control.chain( "attr/src" ),
+    
+    /*
+     * The size of photo to show.
+     * 
+     * This uses the size suffixes from http://www.flickr.com/services/api/misc.urls.html
+     * s   small square 75x75
+     * t   thumbnail, 100 on longest side
+     * m   small, 240 on longest side
+     * -   medium, 500 on longest side
+     * z   medium 640, 640 on longest side
+     * o   original image, either a jpg, gif or png, depending on source format
+     * 
+     * If this property is not set, the photo will be medium size.
+     */
+    photoSize: Control.property( function() {
+        var photo = this.photo();
+        if ( photo && photo.length > 0 ) {
+            this.reload();
+        }
+    })
     
 });
 
 // Class methods
 FlickrInterestingPhoto.extend({
     
-    getRandomPhoto: function( callback ) {
+    getRandomPhoto: function( callback, size ) {
         var self = this;
         this.getFlickrInterestingPhotos( function( flickrPhotos ) {
             self._counter = ( self._counter >= 0 )
                 ? ( self._counter + 1 ) % flickrPhotos.length 
                 : 0;
             var flickrPhoto = flickrPhotos[ self._counter ];
-            var photo = self.getFlickrImageSrc( flickrPhoto );
+            var photo = self.getFlickrImageSrc( flickrPhoto, size );
             callback( photo );
         });
     },
@@ -64,10 +90,6 @@ FlickrInterestingPhoto.extend({
         this.getFlickrPhotos( params, function( flickrPhotos ) {
             self._flickrPhotos = flickrPhotos;
             callback( self._flickrPhotos );
-            //var photo = {
-            //    src: self.getFlickrImageSrc( first, "s" /* Small thumbnail */ ),
-            //    href: self.getFlickrImageHref( first )
-            //};
         });
     },
     
