@@ -21,20 +21,15 @@ ColorSwatchComboBox.prototype.extend({
         
         if ( this.items() == null || this.items().length === 0 ) {
             this.items([
+                "Black",
                 "Blue",
-                "DarkGreen",
-                "DarkBlue",
-                "DarkRed",
-                "Gold",
-                "Goldenrod",
+                "Gray",
                 "Green",
-                "LightGray",
-                "LightSeaGreen",
-                "LightSkyBlue",
                 "Red",
-                "SteelBlue",
-                "Yellow",
-                "YellowGreen"
+                "Orange",
+                "Pink",
+                "Purple",
+                "Yellow"
             ]);
         }
     }

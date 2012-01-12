@@ -1,7 +1,7 @@
 <Control name="ColorSwatchComboBoxDemo">
 
 <content>
-    <ColorSwatchComboBox content="SteelBlue"/>
+    <ColorSwatchComboBox content="Red"/>
 </content>
 
 </Control>
