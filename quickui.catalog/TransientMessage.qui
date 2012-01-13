@@ -1,3 +1,7 @@
+<!--
+A message which briefly appears on a page and then automatically disappears. 
+-->
+
 <Control name="TransientMessage">
 
 <prototype>
