@@ -13,7 +13,10 @@ A message which briefly appears on a page and then automatically disappears.
 .TransientMessage.generic {
     /* TODO: IE */
     background: rgba( 0, 0, 0, 0.5 );
+    border-color: white;
+    border-top-style: none;
     color: white;
+    padding: .75em;
     position: fixed;
     top: 0;
 }
@@ -21,6 +24,14 @@ A message which briefly appears on a page and then automatically disappears.
 
 <script>
 TransientMessage.prototype.extend({
+    
+    /*
+     * The time before the message automatically disappears.
+     * 
+     * If undefined (the default value), the duration will be calculated
+     * from the length of the message.
+     */
+    duration: Control.property(),
     
     initialize: function() {
         
@@ -30,17 +41,48 @@ TransientMessage.prototype.extend({
         var self = this;
         this.positionPopup( function() {
             return self.css({
-                left: ( $( window ).width() - this.outerWidth() ) / 2,
+                left: ( $( window ).width() - this.outerWidth() ) / 2
             });
         });
     },
+    
+    cancel: function() {
+        this._super();
+        this.remove();
+    },
+    
+    close: function() {
+        this._super();
+        this.remove();
+    },
+    
+    /* Show the message */
+    open: function() {
+        
+        this._super();
+        
+        var duration = this.duration();
+        if ( !duration ) {
+            var content = this.content();
+            var length = ( typeof content === "string" )
+                ? content.length
+                : $( content ).text().length;
+            duration = 750 + ( length * 20 );
+        }
+        
+        var self = this;
+        var timeout = setTimeout( function() {
+            self._fadeOut();
+        }, duration );
+        this._timeout( timeout );
+        
+        return this;
+    },
 
-    _close: function() {
+    _fadeOut: function() {
         var self = this;
         this.fadeOut( null, function() {
-            self
-                .close()
-                .remove();
+            self.close();
         });
     },
     
@@ -51,20 +93,19 @@ TransientMessage.prototype.extend({
 /* Class methods */
 TransientMessage.extend({
     
-    showMessage: function( message ) {
+    /*
+     * Show the given message for the indicated (optional) duration.
+     */
+    showMessage: function( message, duration ) {
         
-        var transientMessage = TransientMessage
-            .create()
+        var transientMessage = TransientMessage.create()
             .content( message );
+        if ( duration ) {
+            transientMessage.duration( duration );
+        }
         $( "body" )
             .append( transientMessage );
         transientMessage.open();
-        
-        var duration = message.length * 50;
-        var timeout = setTimeout( function() {
-            transientMessage._close();
-        }, duration );
-        transientMessage._timeout( timeout );
         
         return transientMessage;
     },

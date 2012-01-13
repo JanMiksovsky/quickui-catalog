@@ -25,7 +25,9 @@
 <title>TransientMessage</title>
 
 <script id="demo">
-TransientMessage.showMessage( "Hello, world!" );
+TransientMessage.showMessage(
+    "This message will go away on its own…"
+);
 </script>
 
 </head>
@@ -34,7 +36,18 @@ TransientMessage.showMessage( "Hello, world!" );
 
 <div data-property="summary">
 A message which briefly appears on a page and then automatically disappears.
+This is useful for delivering a short, non-critical message that doesn't require
+user acknowledgment. 
 </div>
+
+<p>
+The generic style for a TransientMessage places it at the top of the page.
+</p>
+<p>
+If you need to be sure the user has read the message, or if some users
+(e.g., new users) will require more time to read it, consider a
+<a data-control="CatalogLink">Dialog</a> instead.
+</p>
 
 </body>
 
