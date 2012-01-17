@@ -42,26 +42,31 @@
 <script>
 VerticalPanels.prototype.extend({
     
-    content: Control.chain( "$VerticalPanels_content", "content" ),
-    fill: Control.chain( "applyClass/fill" ),
+    content: Control.chain( "$VerticalPanels_content", "content", function() {
+        this.trigger( "sizeChanged" );        
+    }),
+    
+    fill: Control.chain( "applyClass/fill", function() {
+        this.trigger( "sizeChanged" );
+    }),
     
     bottom: Control.chain( "$VerticalPanels_bottom", "content", function() {
-        if ( this.inDocument() ) {
-            this.layout();
-        }
+        this.trigger( "sizeChanged" );        
     }),
     
     top: Control.chain( "$VerticalPanels_top", "content", function() {
-        if ( this.inDocument() ) {
-            this.layout();
-        }
+        this.trigger( "sizeChanged" );        
     }),
     
     layout: function() {
         //this._log("layout");
-        var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
-        var availableHeight = this.height() - panelHeight;
-        this.$VerticalPanels_content().height( availableHeight );
+        if ( this.fill() ) {
+            var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
+            var availableHeight = this.height() - panelHeight;
+            this.$VerticalPanels_content().height( availableHeight );
+        } else {
+            this.$VerticalPanels_content().height( "" );
+        }
         return this;
     }
 });

@@ -8,7 +8,9 @@ Layout.prototype.extend({
     initialize: function() {
         var self = this;
         this.bind( "sizeChanged", function() {
-            self.layout();
+            if ( self.inDocument() ) {
+                self.layout();
+            }
         });
         Layout.track( this );
     },

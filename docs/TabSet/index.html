@@ -21,32 +21,33 @@
 <script type="text/javascript" src="/controls/controls.js"></script>
 <script type="text/javascript" src="/catalog/docs.js"></script>
 
-<title>TransientMessage</title>
+<title>TabSet</title>
 
 <script id="demo">
-TransientMessage.showMessage(
-    "This message will go away on its own…"
+$demo.append(
+    TabSet.create()
+        .content([
+            Tab.create()
+                .description( "One" )
+                .content( "First page" ),
+            Tab.create()
+                .description( "Two" )
+                .content( "Second page" ),
+            Tab.create()
+                .description( "Three" )
+                .content( "Third page" )
+        ])
 );
 </script>
 
 </head>
 
-<body data-create-controls="true" data-control="CatalogPage2" data-autoRun="false">
+<body data-create-controls="true"
+    data-control="CatalogPage2">
 
 <div data-property="summary">
-A message which briefly appears on a page and then automatically disappears.
-This is useful for delivering a short, non-critical message that doesn't require
-user acknowledgment. 
-</div>
 
-<p>
-The generic style for a TransientMessage places it at the top of the page.
-</p>
-<p>
-If you need to be sure the user has read the message, or if some users
-(e.g., new users) will require more time to read it, consider a
-<a data-control="CatalogLink">Dialog</a> instead.
-</p>
+</div>
 
 </body>
 

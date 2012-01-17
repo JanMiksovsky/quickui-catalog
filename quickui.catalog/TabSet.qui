@@ -8,7 +8,7 @@ called name(), that will be used as the name on the tab.
 <Control name="TabSet">
 
 <content>
-    <VerticalPanels fill="true">
+    <VerticalPanels id="tabPanels">
         <top>
             <List id="tabButtons" itemClass="BasicButton" />
         </top>
@@ -49,13 +49,18 @@ called name(), that will be used as the name on the tab.
 
 <script>
 TabSet.prototype.extend({
+    
+    /*
+     * The array of elements to be shown as tabs.
+     */
+    content: Control.chain( "$TabSet_content", "content", function() {
+        this._refresh();
+    }),
 
-    content: Control.chain( "$TabSet_content", "content", function() { this._refresh(); } ),
-    selectTabOnClick: Control.property.bool( null, true ),
-    tabButtons: Control.chain( "$tabButtons", "children" ),
-    selectedTab: Control.chain( "$TabSet_content", "activeChild" ),
-    tabButtonClass: Control.chain( "$tabButtons", "itemClass", function() { this._refresh(); } ),
-    tabs: Control.chain( "$TabSet_content", "children", "cast" ),
+    /*
+     * True if the TabSet should vertically fill its container.
+     */    
+    fill: Control.chain( "$tabPanels", "fill" ),
     
     initialize: function() {
         
@@ -99,28 +104,62 @@ TabSet.prototype.extend({
         }
     },
     
+    /*
+     * True if a tab should be selected on click; false if the showing of the
+     * clicked tab will be handled separately. 
+     */
+    selectTabOnClick: Control.property.bool( null, true ),
+
+    /*
+     * The child currently shown as the selected tab.
+     */
+    selectedTab: Control.chain( "$TabSet_content", "activeChild" ),
+    
+    /*
+     * The index of the selected tab.
+     */
     selectedTabIndex: Control.chain( "$TabSet_content", "activeIndex", function( index ) {
         this.tabButtons()
             .removeClass( "selected" )    // Deselect all tab buttons.
             .eq( index )
             .addClass( "selected" );      // Select the indicated button.
+        
+        // Size of the active tab may have changed.
+        this.$tabPanels().trigger( "sizeChanged" );
     }),
 
+    /*
+     * The current set of tab button controls.
+     */
+    tabButtons: Control.chain( "$tabButtons", "children" ),
+    
+    /*
+     * The class which should be used to create tab buttons for the set.
+     */
+    tabButtonClass: Control.chain( "$tabButtons", "itemClass", function() { this._refresh(); } ),
+    
+    /*
+     * The content of the current set of tabs.
+     */
+    tabs: Control.chain( "$TabSet_content", "children", "cast" ),
+
     _refresh: function() {
+        
         if ( this.tabButtonClass() === undefined ) {
             return;
         }
         
-        // Show the names for each tab as a button.
-        var tabNames = this.tabs()
+        // Show the description for each tab as a button.
+        var descriptions = this.tabs()
             .map( function( index, tab ) {
                 var $tab = $( tab ).control();
-                return ( $tab && $.isFunction( $tab.name ) )
-                    ? $tab.name()
+                return ( $tab && $.isFunction( $tab.description ) )
+                    ? $tab.description()
                     : "";
             })
             .get();
-        this.$tabButtons().items( tabNames );
+            
+        this.$tabButtons().items( descriptions );
     }
 });
 </script>

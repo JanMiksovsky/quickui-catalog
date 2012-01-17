@@ -48,7 +48,10 @@
 <script>
 HorizontalPanels.prototype.extend({
     
-    content: Control.chain( "$HorizontalPanels_content", "content" ),
+    content: Control.chain( "$HorizontalPanels_content", "content", function() {
+        this.trigger( "sizeChanged" );        
+    }),
+    
     fill: Control.chain( "applyClass/fill" ),
     
     layout: function() {
@@ -62,15 +65,11 @@ HorizontalPanels.prototype.extend({
     },
     
     left: Control.chain( "$HorizontalPanels_left", "content", function() {
-        if ( this.inDocument() ) {
-            this.layout();
-        }
+        this.trigger( "sizeChanged" );        
     }),
     
     right: Control.chain( "$HorizontalPanels_right", "content", function() {
-        if ( this.inDocument() ) {
-            this.layout();
-        }
+        this.trigger( "sizeChanged" );        
     })
 
 });
