@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300&v2' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/plugins/quickui.rehydrate.css" />
+<link rel="stylesheet" type="text/css" href="/release/quickui.catalog.css" />
+<link rel="stylesheet" type="text/css" href="/site.css" />
+<link rel="stylesheet" type="text/css" href="/controls/controls.css" />
+<link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
+<!-- <script type="text/javascript" src="/thirdParty/highlight.min.js"></script> -->
+<script type="text/javascript" src="/lib/quickui.js"></script>
+<script type="text/javascript" src="/plugins/quickui.rehydrate.js"></script>
+<script type="text/javascript" src="/release/quickui.catalog.js"></script>
+<script type="text/javascript" src="/catalog/catalog-db.js"></script>
+<script type="text/javascript" src="/controls/controls.js"></script>
+<script type="text/javascript" src="/catalog/docs.js"></script>
+
+<title>TransientMessage</title>
+
+<script id="demo">
+TransientMessage.showMessage(
+    "This message will go away on its own…"
+);
+</script>
+
+</head>
+
+<body data-create-controls="true" data-control="CatalogPage2" data-autoRun="false">
+
+<div data-property="summary">
+A message which briefly appears on a page and then automatically disappears.
+This is useful for delivering a short, non-critical message that doesn't require
+user acknowledgment. 
+</div>
+
+<p>
+The generic style for a TransientMessage places it at the top of the page.
+</p>
+<p>
+If you need to be sure the user has read the message, or if some users
+(e.g., new users) will require more time to read it, consider a
+<a data-control="CatalogLink">Dialog</a> instead.
+</p>
+
+</body>
+
+</html>

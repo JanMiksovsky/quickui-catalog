@@ -157,7 +157,11 @@ DateTextBox.prototype.extend({
      * as well as handling a short year ("1/1/12") or missing year ("1/1").
      */
     _parseDateDefault: function( text ) {
-        
+
+        if ( text === "" ) {
+            return null;
+        }
+
         var dateSeparator = this._dateSeparator();
         var parts = text.split( dateSeparator );
         var currentYear = ( new Date() ).getFullYear().toString();
