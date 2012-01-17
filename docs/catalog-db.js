@@ -262,6 +262,11 @@ var controlRecords = [
         description: "Switches to a condensed font when necessary to squeeze in more text."
     },
     {
+        name: "TransientMessage",
+        demoClass: "TransientMessageDemo",
+        description: "A message which briefly appears on a page before automatically disappearing."
+    },
+    {
         name: "ValidatingTextBox",
         demoClass: "ValidatingTextBoxDemo",
         description: "Verifies that text box content meets some conditions."

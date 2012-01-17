@@ -1,20 +1,14 @@
 <Control name="TransientMessageDemo">
 
 <content>
-    <a id="link">Click for a message</a>
+    <Link id="link">Click for a message</Link>
 </content>
-
-<style>
-#link {
-    cursor: pointer;
-}
-</style>
 
 <script>
 TransientMessageDemo.prototype.extend({
     initialize: function() {
         this.$link().click( function() {
-            TransientMessage.showMessage( "This transient message will go away on its own." );
+            TransientMessage.showMessage( "This message will go away on its own…" );
         });
     }
 });
