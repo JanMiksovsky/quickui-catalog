@@ -26,7 +26,7 @@ A message which briefly appears on a page and then automatically disappears.
 TransientMessage.prototype.extend({
     
     /*
-     * The time before the message automatically disappears.
+     * The time before the message begins to fade out.
      * 
      * If undefined (the default value), the duration will be calculated
      * from the length of the message.
@@ -94,15 +94,18 @@ TransientMessage.prototype.extend({
 TransientMessage.extend({
     
     /*
-     * Show the given message for the indicated (optional) duration.
+     * Show the given content for the indicated (optional) duration.
      */
-    showMessage: function( message, duration ) {
+    showMessage: function( content, duration ) {
         
-        var transientMessage = TransientMessage.create()
-            .content( message );
+        var transientMessage = TransientMessage.create();
+        if ( content ) {
+            transientMessage.content( content );
+        }
         if ( duration ) {
             transientMessage.duration( duration );
         }
+        
         $( "body" )
             .append( transientMessage );
         transientMessage.open();
