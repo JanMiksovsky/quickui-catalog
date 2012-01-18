@@ -1,4 +1,4 @@
-<Control name="MultiListBoxDemo">
+<Control className="MultiListBoxDemo">
 
 <content>
     <MultiListBox id="animals" />

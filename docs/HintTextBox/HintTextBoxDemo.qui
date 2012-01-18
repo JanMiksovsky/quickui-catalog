@@ -1,4 +1,4 @@
-<Control name="HintTextBoxDemo">
+<Control className="HintTextBoxDemo">
 
 <content>
     <div>

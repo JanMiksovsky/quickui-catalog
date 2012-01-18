@@ -1,4 +1,4 @@
-<Control name="HorizontalPanels">
+<Control className="HorizontalPanels">
 
 <prototype>
     <Layout>

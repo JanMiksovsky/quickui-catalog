@@ -2,7 +2,7 @@
 Generates Lorem Ipsum placeholder paragraphs.
 -->
 
-<Control name="LoremIpsum">
+<Control className="LoremIpsum">
 
 <script>
 LoremIpsum.prototype.extend({

@@ -4,7 +4,7 @@ content is too long. Must set explicitly set the control's background-color
 if the color is not white. 
 -->
 
-<Control name="Fader">
+<Control className="Fader">
 
 <content>
     <div id="Fader_content"/>

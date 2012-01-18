@@ -3,7 +3,7 @@ Control with a content area (usually some form of text box) and an associated "G
 (labeled something like "Search"), where clicking the button does something with the content.
 --> 
 
-<Control name="TextBoxWithButton">
+<Control className="TextBoxWithButton">
 
 <content>
     <div id="TextBoxWithButton_textBox"/>

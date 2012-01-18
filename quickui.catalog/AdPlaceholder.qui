@@ -4,7 +4,7 @@ The size can be specified with either pixel dimensions or a unit name.
 See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 -->
 
-<Control name="AdPlaceholder">
+<Control className="AdPlaceholder">
 
 <content>
     <div id="container">

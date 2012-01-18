@@ -1,6 +1,6 @@
 <!-- Shows how to use a PersistentPanel to create a docking toolbar. -->
 
-<Control name="PersistentPanelToolbarDemo">
+<Control className="PersistentPanelToolbarDemo">
 
 <prototype>
     <Page>

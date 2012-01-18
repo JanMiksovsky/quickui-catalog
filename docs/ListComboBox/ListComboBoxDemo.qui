@@ -1,4 +1,4 @@
-<Control name="ListComboBoxDemo">
+<Control className="ListComboBoxDemo">
 
 <content>
     <ListComboBox id="comboBox"/>

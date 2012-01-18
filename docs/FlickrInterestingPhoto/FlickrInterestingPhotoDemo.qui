@@ -1,4 +1,4 @@
-<Control name="FlickrInterestingPhotoDemo">
+<Control className="FlickrInterestingPhotoDemo">
 
 <content>
     <SlidingPagesWithDots pageButtonClass="BlueDotButton">

@@ -1,6 +1,6 @@
 <!-- The name of the current month, globalized. -->
 
-<Control name="MonthName" tag="span">
+<Control className="MonthName" tag="span">
 
 <script>
 MonthName.prototype.extend({

@@ -1,4 +1,4 @@
-<Control name="HintTextBox">
+<Control className="HintTextBox">
 
 <content>
     <input id="HintTextBox_textBox" type="text"/>

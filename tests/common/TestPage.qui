@@ -1,4 +1,4 @@
-<Control name="TestPage">
+<Control className="TestPage">
     
 <prototype>
     <Page title="Test Page">

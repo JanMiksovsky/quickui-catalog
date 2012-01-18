@@ -1,4 +1,4 @@
-<Control name="DialogDemo">
+<Control className="DialogDemo">
 
 <content>
     <Link id="dialogLink">Click for a sample dialog</Link>

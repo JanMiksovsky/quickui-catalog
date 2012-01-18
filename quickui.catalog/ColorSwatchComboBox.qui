@@ -1,4 +1,4 @@
-<Control name="ColorSwatchComboBox">
+<Control className="ColorSwatchComboBox">
 
 <prototype>
     <ListComboBox textBoxClass="ColorSwatchTextBox" itemClass="ColorSwatchButton"/>

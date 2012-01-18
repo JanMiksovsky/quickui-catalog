@@ -1,6 +1,6 @@
 <!-- Shows how to use a PersistentPanel on the side of a page. -->
 
-<Control name="PersistentPanelSideDemo">
+<Control className="PersistentPanelSideDemo">
 
 <prototype>
     <Page fill="true">

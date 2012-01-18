@@ -1,4 +1,4 @@
-<Control name="SampleDialog">
+<Control className="SampleDialog">
     
 <prototype>
     <Dialog>

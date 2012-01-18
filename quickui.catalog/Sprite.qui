@@ -3,7 +3,7 @@ Very basic CSS image sprite.
 The images have to be stacked vertically, and all be the same height.
 -->
 
-<Control name="Sprite">
+<Control className="Sprite">
 
 <style>
 {

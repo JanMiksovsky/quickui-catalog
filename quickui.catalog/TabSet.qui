@@ -5,7 +5,7 @@ Each child of the content will be treated as a page. If the child has a function
 called name(), that will be used as the name on the tab.
 -->
 
-<Control name="TabSet">
+<Control className="TabSet">
 
 <content>
     <VerticalPanels id="tabPanels">

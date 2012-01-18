@@ -1,4 +1,4 @@
-<Control name="ListDemo">
+<Control className="ListDemo">
 
 <content>
     <List id="buttonList" itemClass="SampleSpriteButton"/>

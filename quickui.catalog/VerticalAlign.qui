@@ -1,6 +1,6 @@
 <!-- Vertically aligns its child elements. -->
 
-<Control name="VerticalAlign">
+<Control className="VerticalAlign">
 
 <style>
 {

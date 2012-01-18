@@ -1,4 +1,4 @@
-<Control name="SwitchDemo">
+<Control className="SwitchDemo">
 
 <content>
     

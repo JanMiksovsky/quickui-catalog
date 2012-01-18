@@ -1,4 +1,4 @@
-<Control name="CollapsibleDemo">
+<Control className="CollapsibleDemo">
 
 <content>
     <Collapsible>

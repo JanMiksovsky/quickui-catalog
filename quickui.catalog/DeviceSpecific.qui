@@ -1,6 +1,6 @@
 <!-- Load different content, control class, or styles depending on the type of device. -->
 
-<Control name="DeviceSpecific">
+<Control className="DeviceSpecific">
 
 <script>
 DeviceSpecific.prototype.extend({

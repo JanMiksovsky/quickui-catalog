@@ -1,6 +1,6 @@
 <!-- Pick exactly one child to show at a time. -->
 
-<Control name="Switch">
+<Control className="Switch">
 
 <style>
 .hidden {

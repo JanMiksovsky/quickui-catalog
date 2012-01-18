@@ -1,6 +1,6 @@
 <!-- Creates a certain number of instances of another control class. -->
 
-<Control name="Repeater">
+<Control className="Repeater">
 
 <script>
 Repeater.prototype.extend({

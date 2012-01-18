@@ -2,7 +2,7 @@
 A ListBox capable of multiple selection.
 -->
 
-<Control name="MultiListBox">
+<Control className="MultiListBox">
 
 <prototype>
     <ListBox/>

@@ -1,6 +1,6 @@
 <!-- Dot buttons, inspired by Apple's -->
 
-<Control name="BlueDotButton">
+<Control className="BlueDotButton">
 
 <content>
     <!--

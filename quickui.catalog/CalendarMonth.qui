@@ -1,6 +1,6 @@
 <!-- A month in a calendar -->
 
-<Control name="CalendarMonth">
+<Control className="CalendarMonth">
 
 <content>
     <CalendarWeek/>

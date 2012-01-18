@@ -1,4 +1,4 @@
-<Control name="BrowserSpecificDemo">
+<Control className="BrowserSpecificDemo">
     <BrowserSpecific style="display: inline">
         <webkit>You are using WebKit.</webkit>
         <msie>You are using Internet Explorer.</msie>

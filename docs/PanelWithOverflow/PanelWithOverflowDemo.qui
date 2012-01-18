@@ -1,4 +1,4 @@
-<Control name="PanelWithOverflowDemo">
+<Control className="PanelWithOverflowDemo">
 
 <content>
     <PanelWithOverflow id="toolbar">

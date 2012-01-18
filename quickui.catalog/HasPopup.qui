@@ -2,7 +2,7 @@
 A control with a popup menu that appears above or below it.
 -->
 
-<Control name="HasPopup">
+<Control className="HasPopup">
     
 <content>
     <div id="HasPopup_content" />

@@ -1,4 +1,4 @@
-<Control name="ValidatingTextBoxDemo">
+<Control className="ValidatingTextBoxDemo">
 
 <content>
     <div>

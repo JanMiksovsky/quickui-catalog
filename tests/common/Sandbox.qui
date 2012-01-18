@@ -1,4 +1,4 @@
-<Control name="Sandbox">
+<Control className="Sandbox">
     
 <prototype>
     <Page title="QuickUI Sandbox" fill="true">

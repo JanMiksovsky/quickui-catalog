@@ -26,7 +26,7 @@
 <script id="demo">
 // Simple Tab subclass that adds padding.
 var CustomTab = Tab.subclass({
-    name: "CustomTab",
+    className: "CustomTab",
     css: {
         padding: "1em"
     }
@@ -36,11 +36,14 @@ $demo.append(
     TabSet.create()
         .content([
             CustomTab.create()
-                .description( "Read" )
-                .content( "Read UI could go here" ),
+                .description( "Photo" )
+                .content(
+                    FlickrInterestingPhoto.create()
+                        .css( "width", "100%" )
+                ),
             CustomTab.create()
-                .description( "Edit" )
-                .content( "Edit UI could go here" )
+                .description( "Settings" )
+                .content( "Settings and metadata could go here" )
         ])
 );
 </script>

@@ -2,7 +2,7 @@
 A message which briefly appears on a page before automatically disappearing. 
 -->
 
-<Control name="TransientMessage">
+<Control className="TransientMessage">
 
 <prototype>
     <Popup/>

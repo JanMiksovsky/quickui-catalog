@@ -1,6 +1,6 @@
 <!-- Heading for a 7 day week calendar, globalized. -->
 
-<Control name="DaysOfWeek">
+<Control className="DaysOfWeek">
 
 <content>
     <div class="dayOfWeek"/>

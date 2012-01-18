@@ -1,4 +1,4 @@
-<Control name="ToggleButton">
+<Control className="ToggleButton">
 
 <prototype>
     <BasicButton/>

@@ -1,4 +1,4 @@
-<Control name="RotatingPagesWithDotsDemo">
+<Control className="RotatingPagesWithDotsDemo">
 
 <content>
     <RotatingPagesWithDots pageButtonClass="BlueDotButton" rotationInterval="1500">

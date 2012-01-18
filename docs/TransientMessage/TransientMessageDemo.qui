@@ -1,4 +1,4 @@
-<Control name="TransientMessageDemo">
+<Control className="TransientMessageDemo">
 
 <content>
     <Link id="link">Click for a message</Link>

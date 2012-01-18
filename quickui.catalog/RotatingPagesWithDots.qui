@@ -3,7 +3,7 @@ Rotates once through a set of pages automatically when control is loaded.
 The rotation stops if the user clicks to navigate to a specific page.
 -->
 
-<Control name="RotatingPagesWithDots">
+<Control className="RotatingPagesWithDots">
 
 <prototype>
     <SlidingPagesWithDots/>

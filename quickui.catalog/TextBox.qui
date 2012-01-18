@@ -9,7 +9,7 @@ here could be simplified and actually have the input element be the control's
 top-level element. 
 -->
 
-<Control name="TextBox">
+<Control className="TextBox">
 
 <content>
     <input id="textBox" type="text"/>    

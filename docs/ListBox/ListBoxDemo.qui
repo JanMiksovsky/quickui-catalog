@@ -1,4 +1,4 @@
-<Control name="ListBoxDemo">
+<Control className="ListBoxDemo">
 
 <content>
     <ListBox id="colors" itemClass="ColorSwatchButton"/>

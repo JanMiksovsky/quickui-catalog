@@ -1,4 +1,4 @@
-<Control name="SearchBox">
+<Control className="SearchBox">
 
 <content>
     <TextBoxWithButton>

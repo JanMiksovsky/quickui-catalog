@@ -1,4 +1,4 @@
-<Control name="AutoSizeTextBoxDemo">
+<Control className="AutoSizeTextBoxDemo">
 
 <content>
     <div>Type as much text as you want:</div>

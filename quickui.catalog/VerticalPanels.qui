@@ -1,4 +1,4 @@
-<Control name="VerticalPanels">
+<Control className="VerticalPanels">
 
 <prototype>
     <Layout>

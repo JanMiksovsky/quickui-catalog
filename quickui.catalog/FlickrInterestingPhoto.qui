@@ -4,7 +4,7 @@ for the previous day. By default, this can be used 100 times
 before it starts repeating photos.
 -->
 
-<Control name="FlickrInterestingPhoto" tag="img">
+<Control className="FlickrInterestingPhoto" tag="img">
     
 <script>
 FlickrInterestingPhoto.prototype.extend({

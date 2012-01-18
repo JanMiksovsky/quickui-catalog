@@ -1,4 +1,4 @@
-<Control name="ColorSwatchButtonDemo">
+<Control className="ColorSwatchButtonDemo">
 
 <content>
     <ColorSwatchButton>LightSeaGreen</ColorSwatchButton>

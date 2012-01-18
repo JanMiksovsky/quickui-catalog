@@ -1,6 +1,6 @@
 <!-- Conditionally shows contents if the given browser is in use. -->
 
-<Control name="BrowserSpecific">
+<Control className="BrowserSpecific">
 
 <script>
 BrowserSpecific.prototype.extend({

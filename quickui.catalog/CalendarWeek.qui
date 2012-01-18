@@ -1,6 +1,6 @@
 <!-- Shows a single calendar week -->
 
-<Control name="CalendarWeek">
+<Control className="CalendarWeek">
 
 <content>
     <CalendarDay/>

@@ -2,7 +2,7 @@
 Creates a set of controls, one for each item in a list.
 -->
 
-<Control name="List">
+<Control className="List">
 
 <script>
 List.prototype.extend({

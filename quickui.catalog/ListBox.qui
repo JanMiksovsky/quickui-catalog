@@ -3,7 +3,7 @@ A list box that allows single selection.
 The user can select an item with the mouse or keyboard.
 -->
 
-<Control name="ListBox">
+<Control className="ListBox">
 
 <prototype>
     <List itemClass="BasicButton" />

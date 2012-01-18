@@ -1,4 +1,4 @@
-<Control name="FlickrInterestingDayDemo">
+<Control className="FlickrInterestingDayDemo">
 
 <content>
     <FlickrInterestingDay autoLoad="true"/>

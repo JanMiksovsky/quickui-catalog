@@ -1,4 +1,4 @@
-<Control name="LoremIpsum">
+<Control className="LoremIpsum">
 
 <content>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et adipiscing mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vestibulum orci sed justo lobortis viverra. Suspendisse blandit dolor nunc, nec facilisis metus. Ut vestibulum ornare eros id vestibulum. Phasellus aliquam pellentesque urna, eu ullamcorper odio sollicitudin vel. Aliquam lacinia dolor at elit viverra ullamcorper. Vestibulum ac quam augue. Fusce tortor risus, commodo in molestie vitae, rutrum eu metus. Nunc tellus justo, consequat in ultrices elementum, gravida a mi. Praesent in lorem erat, quis dictum magna. Aenean et eros ligula, quis sodales justo. Quisque egestas imperdiet dignissim.

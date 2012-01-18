@@ -1,4 +1,4 @@
-<Control name="PersistentPanelDemo">
+<Control className="PersistentPanelDemo">
 
 <content>
     Click for a full-page

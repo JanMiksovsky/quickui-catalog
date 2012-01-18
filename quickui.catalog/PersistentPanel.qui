@@ -14,7 +14,7 @@ scrolling element on the page; it will not work property when placed
 in a scrolling element nested within some outer scrolling element.
 -->
 
-<Control name="PersistentPanel">
+<Control className="PersistentPanel">
 
 <content>
     <div id="PersistentPanel_content"/>

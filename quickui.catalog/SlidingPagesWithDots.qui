@@ -3,7 +3,7 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 (The conventional button representation is a dot.)
 -->
 
-<Control name="SlidingPagesWithDots">
+<Control className="SlidingPagesWithDots">
 
 <content>
     <SlidingPages id="pages"/>

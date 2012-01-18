@@ -1,6 +1,6 @@
 <!-- Shows a block of a CSS color, either a color name or value. -->
 
-<Control name="ColorSwatch">
+<Control className="ColorSwatch">
 
 <style>
 {

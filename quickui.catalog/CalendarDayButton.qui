@@ -1,4 +1,4 @@
-<Control name="CalendarDayButton">
+<Control className="CalendarDayButton">
 
 <prototype>
     <CalendarDay>

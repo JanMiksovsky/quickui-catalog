@@ -1,4 +1,4 @@
-<Control name="SampleSpriteButtonDemo">
+<Control className="SampleSpriteButtonDemo">
 
 <content>
     <SampleSpriteButton>Save</SampleSpriteButton>

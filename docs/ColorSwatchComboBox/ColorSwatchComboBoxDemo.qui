@@ -1,4 +1,4 @@
-<Control name="ColorSwatchComboBoxDemo">
+<Control className="ColorSwatchComboBoxDemo">
 
 <content>
     <ColorSwatchComboBox content="Red"/>

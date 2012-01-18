@@ -7,7 +7,7 @@ work, both the control's content and the content of the list items should
 be strings.
 -->
 
-<Control name="ListComboBox">
+<Control className="ListComboBox">
 
 <prototype>
     <ComboBox>

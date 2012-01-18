@@ -1,6 +1,6 @@
 <!-- A button that uses CSS image sprites for its background. -->
 
-<Control name="SpriteButton">
+<Control className="SpriteButton">
 
 <prototype>
     <BasicButton>

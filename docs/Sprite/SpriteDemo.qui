@@ -1,4 +1,4 @@
-<Control name="SpriteDemo">
+<Control className="SpriteDemo">
 
 <content>
     <div class="panel">

@@ -1,4 +1,4 @@
-<Control name="HighlightEffectsDemo">
+<Control className="HighlightEffectsDemo">
 
 <content>
     <HighlightEffects content="1"/>

@@ -4,7 +4,7 @@ This works by copying the text to a hidden div which will automatically grow in 
 the expanding copy will expand the container, which in turn stretch the text box.
 -->
 
-<Control name="AutoSizeTextBox">
+<Control className="AutoSizeTextBox">
 
 <content>
     

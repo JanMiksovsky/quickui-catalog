@@ -1,4 +1,4 @@
-<Control name="RepeaterDemo">
+<Control className="RepeaterDemo">
 
 <content>
     <Repeater controlClass="BasicButton" count="5" content="Hello"/>

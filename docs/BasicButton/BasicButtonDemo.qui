@@ -1,4 +1,4 @@
-<Control name="BasicButtonDemo">
+<Control className="BasicButtonDemo">
 
 <content>
     <BasicButton>OK</BasicButton>

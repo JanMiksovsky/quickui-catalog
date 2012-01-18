@@ -1,4 +1,4 @@
-<Control name="ColorSwatchTextBox">
+<Control className="ColorSwatchTextBox">
 
 <content>
     <ColorSwatch id="swatch"/><input type="text" id="ColorSwatchTextBox_content"/>

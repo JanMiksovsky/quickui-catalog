@@ -1,4 +1,4 @@
-<Control name="AdPlaceholderDemo">
+<Control className="AdPlaceholderDemo">
 
 <content>
     <AdPlaceholder dimensions="Button 2"/>

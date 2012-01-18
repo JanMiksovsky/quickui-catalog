@@ -1,4 +1,4 @@
-<Control name="GradientDemo">
+<Control className="GradientDemo">
 
 <content>
     <Gradient start="#808080" end="#f0f0f0"/>

@@ -1,6 +1,6 @@
 <!-- Open Sans and Open Sans Condensed fonts from Google Web Fonts. -->
  
-<Control name="TextCondenserDemo">
+<Control className="TextCondenserDemo">
 
 <content>
     <Fader>

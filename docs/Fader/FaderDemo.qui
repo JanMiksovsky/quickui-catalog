@@ -1,4 +1,4 @@
-<Control name="FaderDemo">
+<Control className="FaderDemo">
     
 <content>
     <Fader style="max-width: 175px;">
