@@ -54,7 +54,7 @@ TabSet.prototype.extend({
      * The array of elements to be shown as tabs.
      */
     content: Control.chain( "$TabSet_content", "content", function() {
-        this._refresh();
+        this._createButtons();
     }),
 
     /*
@@ -86,7 +86,7 @@ TabSet.prototype.extend({
          * Map the Switch's activeChildChanged event to a more semantically
          * specific activeTabChanged event.
          */
-        this.$TabSet_content().bind({
+        this.$TabSet_content().on({
             "activeChildChanged": function( event, index, child ) {
                 // Only map active events coming from our own Switch;
                 // ignore events coming from any Switch within a tab.
@@ -123,9 +123,6 @@ TabSet.prototype.extend({
             .removeClass( "selected" )    // Deselect all tab buttons.
             .eq( index )
             .addClass( "selected" );      // Select the indicated button.
-        
-        // Size of the active tab may have changed.
-        this.$tabPanels().trigger( "sizeChanged" );
     }),
 
     /*
@@ -136,14 +133,19 @@ TabSet.prototype.extend({
     /*
      * The class which should be used to create tab buttons for the set.
      */
-    tabButtonClass: Control.chain( "$tabButtons", "itemClass", function() { this._refresh(); } ),
+    tabButtonClass: Control.chain( "$tabButtons", "itemClass", function() {
+        this._createButtons();
+    }),
     
     /*
      * The content of the current set of tabs.
      */
     tabs: Control.chain( "$TabSet_content", "children", "cast" ),
 
-    _refresh: function() {
+    /*
+     * Called whenever the set of buttons needs to be regenerated.
+     */
+    _createButtons: function() {
         
         if ( this.tabButtonClass() === undefined ) {
             return;
@@ -153,14 +155,22 @@ TabSet.prototype.extend({
         var descriptions = this.tabs()
             .map( function( index, tab ) {
                 var $tab = $( tab ).control();
-                return ( $tab && $.isFunction( $tab.description ) )
-                    ? $tab.description()
-                    : "";
+                var description = ( $tab && $.isFunction( $tab.description ) )
+                        ? $tab.description()
+                        : "";
+                return description;
             })
             .get();
             
         this.$tabButtons().items( descriptions );
+        
+        var selectedTabIndex = this.selectedTabIndex(); 
+        if ( selectedTabIndex != null ) {
+            // Ensure the indicated button is shown as selected.
+            this.selectedTabIndex( selectedTabIndex );
+        }
     }
+
 });
 </script>
 

@@ -12,8 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
-<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
+<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
 <script type="text/javascript" src="/lib/quickui.js"></script>
 <script type="text/javascript" src="/plugins/quickui.rehydrate.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
@@ -21,40 +20,26 @@
 <script type="text/javascript" src="/controls/controls.js"></script>
 <script type="text/javascript" src="/catalog/docs.js"></script>
 
-<title>TabSet</title>
-
-<script id="demo">
-// Simple Tab subclass that adds padding.
-var CustomTab = Tab.subclass({
-    name: "CustomTab",
-    css: {
-        padding: "1em"
-    }
-});
-
-$demo.append(
-    TabSet.create()
-        .content([
-            CustomTab.create()
-                .description( "Read" )
-                .content( "Read UI could go here" ),
-            CustomTab.create()
-                .description( "Edit" )
-                .content( "Edit UI could go here" )
-        ])
-);
-</script>
+<title>Tab</title>
 
 </head>
 
 <body data-create-controls="true"
-    data-control="CatalogPage2">
+    data-control="CatalogPage">
 
 <div data-property="summary">
-A set of tabbed pages, only one of which is shown at a time. For each content
-element, the control creates a corresponding <a data-control="CatalogLink">Tab</a>
-button. The user can navigate the tabs by clicking these buttons.
+A tabbed page which can be hosted in a TabSet.
 </div>
+
+<div data-property="demo">
+See <a data-control="CatalogLink">TabSet</a> for a demo.
+</div>
+
+<p>
+This control currently just provides a description() property,
+which is used to populate the content of the button created by the TabSet
+control. This control can be used as a base class for custom tabbed pages.
+</p>
 
 </body>
 

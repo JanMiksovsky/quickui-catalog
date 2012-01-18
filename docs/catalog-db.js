@@ -247,6 +247,14 @@ var controlRecords = [
         description: "Shows exactly one child at a time; useful for modes."
     },
     {
+        name: "Tab",
+        description: "A tabbed page which can be hosted in a TabSet."
+    },
+    {
+        name: "TabSet",
+        description: "A set of tabbed pages which can be navigated by a set of buttons across the top."
+    },
+    {
         name: "Tag",
         demoClass: "TagDemo",
         description: "Formats its content as an XML tag."

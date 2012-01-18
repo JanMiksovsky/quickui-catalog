@@ -11,6 +11,26 @@
 <script>
 Switch.prototype.extend({
     
+    /*
+     * The set of elements that will be held; only one will be shown at a time.
+     * 
+     * If the set changes, this will attempt to preserve the one that was
+     * previously active. Otherwise, the first element is made active.
+     */
+    content: function( value ) {
+        var previousChild = this.activeChild();
+        var result = this._super( value );
+        if ( value !== undefined ) {
+            if ( previousChild && previousChild.parent()[0] === this[0] ) {
+                // Still have previously active child; hide other children.
+                this.activeChild( previousChild );
+            } else {
+                this.activeIndex( 0 );
+            }
+        }
+        return result;
+    },
+    
     initialize: function() {
         if ( this.children().not( ".hidden" ).length > 1 ) {
             // Show first child by default. 
@@ -40,12 +60,13 @@ Switch.prototype.extend({
             $( activeChild )
                 .trigger( "active" )
                 .toggleClass( "hidden", false );
-                
-            // Trigger our own activeChildChanged event.
-            this.trigger( "activeChildChanged", [ activeChildIndex, activeChild ] );
             
-            // In case the new child wants to re-lay itself out.
-            Layout.recalc();
+            this
+                // Trigger our own activeChildChanged event.
+                .trigger( "activeChildChanged", [ activeChildIndex, activeChild ] )
+            
+                // In case the new child wants to re-lay itself out.
+                .trigger( "sizeChanged" );
             
             return this;
         }
