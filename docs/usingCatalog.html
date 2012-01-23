@@ -16,7 +16,7 @@
 <script type="text/javascript" src="/thirdParty/jquery.ba-hashchange.js"></script>
 <script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
 <script type="text/javascript" src="/thirdParty/jquery.animate-colors-min.js"></script>
-<script type="text/javascript" src="/lib/quickui.js"></script>
+<script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/plugins/quickui.rehydrate.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/controls/controls.js"></script>
@@ -38,11 +38,16 @@ TODO: Get this working. The control below has difficulty rehydrating.
 
 <p>
 The QuickUI Catalog is evolving from a demonstration of controls to a library
-of controls intended for general reuse in other projects. Work is underway
-to make the use of these controls simpler, but for now there are several ways
-for web developers to try out these controls. This catalog can also serve
+of controls intended for general reuse in other projects. This catalog can also serve
 as a design resource exploring different user interface components for
-consideration in your own projects. 
+consideration in your own projects.
+</p>
+<p>
+You have several options, presented below, for using QuickUI controls in code.
+See the
+<a data-control="Link" href="/tutorial/">QuickUI tutorial</a>, particularly
+the first section on "Using Controls", for the mechanics of how to actually
+use a control.
 </p>
 
 <h2>Option 1: Use a jsFiddle</h2>
@@ -67,14 +72,14 @@ action.
 <p>
 If you want to try using the controls in your own web project, you'll need to 
 reference a recent version of jQuery, plus the core quickui.js runtime and the
-JavaScript and CSS files for the catalog controls.
+JavaScript and CSS files for the catalog controls. For example:
 </p>
 
 <pre>
 &lt;link rel="stylesheet" type="text/css" href="http://quickui.org/release/quickui.catalog.css"/>
 
 &lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js">&lt;/script>
-&lt;script type="text/javascript" src="http://quickui.org/lib/quickui.js">&lt;/script>
+&lt;script type="text/javascript" src="http://quickui.org/release/quickui.js">&lt;/script>
 &lt;script type="text/javascript" src="http://quickui.org/release/quickui.catalog.js">&lt;/script>
 </pre>
 
@@ -87,7 +92,7 @@ QuickUI catalog is maintained under the MIT license on GitHub.
 </p>
 
 <ol>
-    <li><a href="/downloads">Download the QuickUI tools.</a></li>
+    <li><a href="/downloads">Download the QuickUI markup compiler.</a></li>
     <li>
         Clone the <a href="https://github.com/JanMiksovsky/quickui-catalog">quickui-catalog repo</a>.
     </li>
