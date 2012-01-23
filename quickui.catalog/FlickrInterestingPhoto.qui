@@ -96,11 +96,11 @@ FlickrInterestingPhoto.extend({
     getFlickrPhotos: function( params, callback ) {
         var apiKey = "c3685bc8d8cefcc1d25949e4c528cbb0";
         var baseUrl = "http://api.flickr.com/services/rest/";
-        var url = baseUrl + 
-                    "?api_key=" + apiKey +
-                    this._formatUrlParams( params ) +
-                    "&format=json" +
-                    "&nojsoncallback=1";
+        var url = baseUrl 
+                    + "?api_key=" + apiKey
+                    + this._formatUrlParams( params )
+                    + "&format=json"
+                    + "&jsoncallback=?";
         $.getJSON( url, function( data ) {
             if ( data && data.photos ) {
                 callback( data.photos.photo );
