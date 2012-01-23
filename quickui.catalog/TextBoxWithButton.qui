@@ -29,7 +29,7 @@ TextBoxWithButton.prototype.extend({
     
     initialize: function() {
         var self = this;
-        this.$TextBoxWithButton_textBox().bind("change keydown keyup", function(event) {
+        this.$TextBoxWithButton_textBox().on("change keydown keyup", function(event) {
             self._disableButtonIfContentEmpty();
             var keyCode = event.keyCode || event.which;
             if (!self._isContentEmpty() && keyCode == 13 /* Enter */)

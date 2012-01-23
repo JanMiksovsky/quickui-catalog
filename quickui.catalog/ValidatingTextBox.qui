@@ -45,7 +45,7 @@ ValidatingTextBox.prototype.extend({
         this.genericIfClassIs( ValidatingTextBox );
         
         var self = this;
-        this.$textBox().bind({
+        this.$textBox().on({
             "blur": function() {
                 if ( self.validateOnBlur() ) {
                     self.validate( true );

@@ -184,7 +184,7 @@ ComboBox.prototype.extend({
     _bindContentEvents: function() {
         this._super();
         var self = this;
-        this.$ComboBox_content().bind({
+        this.$ComboBox_content().on({
             "click": function( event ) {
                 if ( self.openOnFocus() && !self.opened() ) {
                     self.open();

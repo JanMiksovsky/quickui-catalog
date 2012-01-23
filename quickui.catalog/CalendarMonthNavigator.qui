@@ -39,7 +39,7 @@ CalendarMonthNavigator.prototype.extend({
         this.genericIfClassIs( CalendarMonthNavigator );
         
         var self = this;
-        this.bind({
+        this.on({
             "dateChanged": function( event, date ) {
                 self.date( date );
             },

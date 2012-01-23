@@ -35,7 +35,7 @@ SearchBox.prototype.extend({
     
     initialize: function() {
         var self = this;
-        this.bind("goButtonClick", function() {
+        this.on("goButtonClick", function() {
             var searchTerms = self.$searchTerms().content();
             var url = self.query().replace("%s", searchTerms);
             window.location.href = url;

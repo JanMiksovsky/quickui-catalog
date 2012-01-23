@@ -40,7 +40,7 @@ HintTextBox.prototype.extend({
     
     initialize: function() {
         var self = this;
-        this.bind({
+        this.on({
             "click": function() { self._hideHint(); },
             "focus": function() {
                 if (!self._isTextBoxFocused())
@@ -49,7 +49,7 @@ HintTextBox.prototype.extend({
                 }
             }
         });
-        this.$HintTextBox_textBox().bind({
+        this.$HintTextBox_textBox().on({
             "blur": function() {
                 self
                     ._isTextBoxFocused(false)

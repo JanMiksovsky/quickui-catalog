@@ -106,7 +106,7 @@ TestPage.prototype.extend({
             self.$switch().activeIndex(index);
         });
         
-        this.$tabSet().bind({
+        this.$tabSet().on({
             
             // Raised by any child of a Switch inside the TabSet.
             "active": function( event ) {

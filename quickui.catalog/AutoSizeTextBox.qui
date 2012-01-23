@@ -53,7 +53,7 @@ AutoSizeTextBox.prototype.extend({
     initialize: function() {
         
         var self = this;
-        this.$textBox().bind({
+        this.$textBox().on({
             "change keyup": function( event ) {
                 self.autoSize();
             },

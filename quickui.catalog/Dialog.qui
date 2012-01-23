@@ -62,7 +62,7 @@ Dialog.extend({
         $("body")
             .append( "<div/>" )
             .find( ":last" )
-            .bind({
+            .on({
                 closed: function() {
                     if ( callbackOk ) {
                         callbackOk.call( $( this ).control() );

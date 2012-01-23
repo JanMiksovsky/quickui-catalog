@@ -77,7 +77,7 @@ PersistentPanel.prototype.extend({
         
         var self = this;
         this
-            .bind( "sizeChanged", function() {
+            .on( "sizeChanged", function() {
                 if ( self.inDocument() ) {
                     self._recalc();
                 }

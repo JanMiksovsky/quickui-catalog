@@ -120,7 +120,7 @@ Popup.prototype.extend({
         }
         
         // Listen for window blur event.
-        $( window ).bind( "blur", this._windowBlurHandler() );
+        $( window ).on( "blur", this._windowBlurHandler() );
         
         return this;
     },
@@ -148,7 +148,7 @@ Popup.prototype.extend({
                 }
             }
             this.data( "_keydownHandler", handler );
-            $( document ).bind( "keydown", handler );
+            $( document ).on( "keydown", handler );
         } else {
             handler = this.data( "_keydownHandler" );
             if ( handler ) {

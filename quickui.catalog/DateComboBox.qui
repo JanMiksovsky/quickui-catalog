@@ -28,7 +28,7 @@ DateComboBox.prototype.extend({
 
         // Changing text updates navigator, and vice versa.
         var self = this;
-        this.bind({
+        this.on({
             "dateChanged": function( event, date ) {
                 self.date( date );
             },
