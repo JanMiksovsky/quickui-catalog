@@ -13,6 +13,18 @@ FlickrInterestingPhoto.prototype.extend({
         
         var self = this;
         this.on( "load" , function() {
+            
+            /*
+             * HACK for IE. When the load event is triggered, IE seems to report
+             * the width of the img element as the width of its own little
+             * image placeholder icon. By forcing the width to "auto"
+             * value, IE reports the correct photo width (and height) instead.
+             * This allows anyone listening for the sizeChanged event to get
+             * the correct dimensions of the photo, instead of the dimensions
+             * of the image placeholder icon. 
+             */
+            self.css( "width", "auto" );
+            
             self.trigger( "sizeChanged" );
         });
 
