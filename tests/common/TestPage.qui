@@ -29,7 +29,7 @@
         </Switch>
         
         <TabSet id="tabSet" style="height: 100px;">
-            <Tab name="Tab A">
+            <Tab description="Tab A">
                 <Switch id="switchAnimals">
                     <div>Aardvark</div>
                     <div>Ant</div>
@@ -37,8 +37,8 @@
                 </Switch>
                 <BasicButton id="buttonChangeAnimal">Change</BasicButton>
             </Tab>
-            <Tab name="Tab B">Bandicoot</Tab>
-            <Tab name="Tab C">Chickadee</Tab>
+            <Tab description="Tab B">Bandicoot</Tab>
+            <Tab description="Tab C">Chickadee</Tab>
         </TabSet>
         
         <HorizontalPanels id="horiziontalPanels" style="height: 50px;">
@@ -47,11 +47,13 @@
             <right>Right</right>
         </HorizontalPanels>
         
-        <VerticalPanels id="verticalPanels" style="height: 200px;">
-            <top>Top</top>
-            <content>Vertical panels</content>
-            <bottom>Bottom</bottom>
-        </VerticalPanels>
+        <div style="height: 200px; position: relative;">
+            <VerticalPanels id="verticalPanels" fill="true">
+                <top>Top</top>
+                <content>Vertical panels</content>
+                <bottom>Bottom</bottom>
+            </VerticalPanels>
+        </div>
         
         <BrowserSpecific>
             <webkit>You are using WebKit</webkit>
