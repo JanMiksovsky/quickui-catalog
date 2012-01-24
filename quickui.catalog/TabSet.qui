@@ -54,6 +54,7 @@ TabSet.prototype.extend({
      * The array of elements to be shown as tabs.
      */
     content: Control.chain( "$TabSet_content", "content", function() {
+        this._tabHeights( null );
         this._createButtons();
         this._tabSizeChanged();
     }),
@@ -188,14 +189,26 @@ TabSet.prototype.extend({
             return;
         }
         
-        var tabHeights = tabs.map( function( index, tab ) {
-            return $( tab ).outerHeight( true );
-        }).get();
+        var tabHeights = this._tabHeights();
+        if ( !tabHeights ) {
+            var tabHeights = tabs.map( function( index, tab ) {
+                return $( tab ).outerHeight( true );
+            }).get();
+        } else {
+            var tab = this.$TabSet_content().activeChild();
+            var tabHeight = tab.outerHeight();
+            var index = this.$TabSet_content().activeIndex();
+            tabHeights[ index ] = tabHeight;
+        }
+        this._tabHeights( tabHeights );
+        
         var maxTabHeight = Math.max.apply( this, tabHeights );
         if ( maxTabHeight > 0 ) {
             this.$TabSet_content().height( maxTabHeight );
         }
-    }
+    },
+    
+    _tabHeights: Control.property()
 
 });
 </script>
