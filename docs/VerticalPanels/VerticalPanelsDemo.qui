@@ -1,7 +1,7 @@
 <Control className="VerticalPanelsDemo">
 
 <content>
-    <VerticalPanels>
+    <VerticalPanels fill="true">
         <top>Top panel</top>
         <content>Main content</content>
         <bottom>Bottom panel</bottom>
@@ -11,6 +11,7 @@
 <style>
 .VerticalPanels {
     height: 200px;
+    width: 300px;
 }
 .VerticalPanels > * {
     border: 1px solid lightgray;
