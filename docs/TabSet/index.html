@@ -11,7 +11,8 @@
 <link rel="stylesheet" type="text/css" href="/controls/controls.css" />
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
+<script type="text/javascript" src="http://localhost/projects/lib/jquery-1.7.min.js"></script>
 <script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
 <script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
@@ -32,20 +33,22 @@ var CustomTab = Tab.subclass({
     }
 });
 
-$demo.append(
-    TabSet.create()
-        .content([
-            CustomTab.create()
-                .description( "Photo" )
-                .content(
-                    FlickrInterestingPhoto.create()
-                        .css( "max-width", "100%" )
-                ),
-            CustomTab.create()
-                .description( "Metadata" )
-                .content( LoremIpsum.create() )
-        ])
-);
+if ( Control( $demo ).inDocument() ) {
+    $demo.append(
+        TabSet.create()
+            .content([
+                CustomTab.create()
+                    .description( "Photo" )
+                    .content(
+                        FlickrInterestingPhoto.create()
+                            .css( "max-width", "100%" )
+                    ),
+                CustomTab.create()
+                    .description( "Metadata" )
+                    .content( LoremIpsum.create() )
+            ])
+    );
+}
 </script>
 
 </head>
