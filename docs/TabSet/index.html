@@ -28,27 +28,23 @@
 // Simple Tab subclass that adds padding.
 var CustomTab = Tab.subclass({
     className: "CustomTab",
-    css: {
-        padding: "1em"
-    }
+    css: { padding: "1em" }
 });
 
-if ( Control( $demo ).inDocument() ) {
-    $demo.append(
-        TabSet.create()
-            .content([
-                CustomTab.create()
-                    .description( "Photo" )
-                    .content(
-                        FlickrInterestingPhoto.create()
-                            .css( "max-width", "100%" )
-                    ),
-                CustomTab.create()
-                    .description( "Metadata" )
-                    .content( LoremIpsum.create() )
-            ])
-    );
-}
+$demo.append(
+    TabSet.create()
+        .content([
+            CustomTab.create()
+                .description( "Photo" )
+                .content(
+                    FlickrInterestingPhoto.create()
+                        .css( "max-width", "100%" )
+                ),
+            CustomTab.create()
+                .description( "Metadata" )
+                .content( LoremIpsum.create() )
+        ])
+);
 </script>
 
 </head>
