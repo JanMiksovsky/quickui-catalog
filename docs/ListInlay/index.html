@@ -21,29 +21,30 @@
 <script type="text/javascript" src="/controls/controls.js"></script>
 <script type="text/javascript" src="/catalog/docs.js"></script>
 
-<title>TabSet</title>
+<title>ListInlay</title>
 
 <script id="demo">
-// Simple Tab subclass that adds padding.
-var CustomTab = Tab.subclass({
-    className: "CustomTab",
-    css: { padding: "1em" }
-});
+var descriptions = [
+    "One", "Two", "Three", "Four", "Five",
+    "Six", "Seven", "Eight", "Nine", "Ten"
+];
+var items = [];
+for ( var i = 0; i < descriptions.length; i++ ) {
+    items.push({
+       description: descriptions[i],
+       content: LoremIpsum.create()
+    });
+}
 
-$demo.append(
-    TabSet.create()
-        .content([
-            CustomTab.create()
-                .description( "Photo" )
-                .content(
-                    FlickrInterestingPhoto.create()
-                        .css( "max-width", "100%" )
-                ),
-            CustomTab.create()
-                .description( "Metadata" )
-                .content( LoremIpsum.create() )
-        ])
-);
+$demo
+    .css({
+        height: "400px",
+        "overflow-y": "auto"
+     })
+    .append(
+        ListInlay.create()
+            .items( items )
+    );
 </script>
 
 </head>
@@ -52,9 +53,6 @@ $demo.append(
     data-control="CatalogPage2">
 
 <div data-property="summary">
-A set of tabbed pages, only one of which is shown at a time. For each content
-element, the control creates a corresponding <a data-control="CatalogLink">Tab</a>
-button. The user can navigate the tabs by clicking these buttons.
 </div>
 
 </body>

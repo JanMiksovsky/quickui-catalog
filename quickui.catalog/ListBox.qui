@@ -66,6 +66,33 @@ ListBox.prototype.extend({
             });
     },
     
+    items: function( value ) {
+        /* Preserve selection index when items change */ 
+        var previousIndex = this.selectedIndex();
+        var result = this._super( value );
+        if ( value !== undefined && value.length > 0 ) {
+            var index = ( previousIndex >= 0 && previousIndex <= value.length )
+                ? previousIndex     // Restore previous selection.
+                : -1;               // Nothing will be selected.
+            this.selectedIndex( index );
+        }
+        return result;
+    },
+    
+    /*
+     * Toggle the selected state of the given control.
+     * If select is true, this applies the "selected" class to the control,
+     * which the list uses to track which control is selected. If the control
+     * supports a selected() function, that will be invoked as well.
+     * Subclasses can perform additional manipulations here.
+     */
+    selectControl: function( control, select ) {
+        control.toggleClass( "selected", select );
+        if ( $.isFunction( control.selected ) ) {
+            control.selected( select );
+        }
+    },
+    
     /*
      * The control in the list which is currently selected.
      */
@@ -77,10 +104,11 @@ ListBox.prototype.extend({
                 : null;
         } else {
             var previousControl = this.selectedControl();
-            this.controls()
-                .removeClass( "selected" )
-                .filter( selectedControl )
-                .addClass( "selected" );
+            var selectedElement = selectedControl ? selectedControl[0] : null;
+            var self = this;
+            this.controls().eachControl( function( index, control) {
+                self.selectControl( control, control[0] === selectedElement );
+            });
             if ( selectedControl ) {
                 this._scrollToControl( selectedControl );
             }

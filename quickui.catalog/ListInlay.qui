@@ -1,0 +1,50 @@
+<!--
+A list whose selected item can show additional information.
+
+By default, this control expects items to be a dictionary of the form:
+
+{
+    description: (content, usually a single line, that's always visible)
+    content: (expanded content that appears when an item is selected)
+}
+
+-->
+
+<Control className="ListInlay">
+    
+<prototype>
+    <ListBox itemClass="Collapsible"/>
+</prototype>
+
+<script>
+ListInlay.prototype.extend({
+    
+    initialize: function() {
+        this._super();
+        this.genericIfClassIs( ListInlay );
+        this.mapFunction( function( item ) {
+            if ( item === undefined ) {
+                return {
+                    description: this.heading(),
+                    content: this.content()
+                };
+            } else {
+                this
+                    .heading( item.description )
+                    .content( item.content );
+                if ( this instanceof Collapsible ) {
+                    // Let ListBox manage toggling instead of Collapsible
+                    this.toggleOnClick( false );
+                }
+            }
+        });
+    },
+    
+    selectControl: function( control, select ) {
+        this._super( control, select );
+        control.collapsed( !select );
+    }
+});    
+</script>
+
+</Control>

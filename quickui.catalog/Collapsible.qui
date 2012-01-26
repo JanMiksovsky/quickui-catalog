@@ -62,37 +62,42 @@ Collapsible.prototype.extend({
      * When called as a setter, a true value collapsed the control;
      * a false value expands the control.
      */
-	collapsed: function( value ) {
+	collapsed: Control.iterator( function( value ) {
 	    if ( value === undefined )
 	    {
 	        // Getter
 	        return this._collapsed();
 	    } else {
-	        
 	        // Setter
-            var result = value ? "hide" : "show";
-            var self = this;
-            this.$Collapsible_content().animate(
-                { 
-                    height: result,
-                    opacity: result
-                },
-                this.duration(),
-                null,
-                function() {
-                    /* Wait until animation completes to apply collapsed style. */
-                    self.toggleClass( "collapsed", value );
-                }
-            );
+	        if ( this.inDocument() ) {
+	            // Animate if in document.
+                var result = value ? "hide" : "show";
+                var self = this;
+                this.$Collapsible_content().animate(
+                    { 
+                        height: result,
+                        opacity: result
+                    },
+                    this.duration(),
+                    null,
+                    function() {
+                        /* Wait until animation completes to apply collapsed style. */
+                        self.toggleClass( "collapsed", value );
+                    }
+                );
+	        } else {
+	            // Not in document, animation won't work.
+	            this
+	               .toggleClass( "collapsed", value )
+	               .$Collapsible_content().toggle( !value );
+	        }
             
             if ( this._collapsed() !== value ) {
                 this.trigger( "collapsedChanged" );
                 this._collapsed( value );
             }
-            
-            return this;
 	    }
-	},
+	}),
     
     /*
      * The control's heading. By default, a click anywhere within the heading
