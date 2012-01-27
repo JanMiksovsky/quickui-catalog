@@ -24,27 +24,30 @@
 <title>ListInlay</title>
 
 <script id="demo">
-var descriptions = [
-    "One", "Two", "Three", "Four", "Five",
-    "Six", "Seven", "Eight", "Nine", "Ten"
-];
-var items = [];
-for ( var i = 0; i < descriptions.length; i++ ) {
-    items.push({
-        description: descriptions[i],
-        content: $("<p/>").append(
-            FlickrInterestingPhoto.create({
-                photoSize: "t",
-                css: {
-                    "float": "left",
-                    "margin-right": "1em"
-                }
-            }),
-            LoremIpsum.create()
-        )
-    });
-}
+// Create array of items that have a description and content.
+var items = $.map(
+    [
+        "One", "Two", "Three", "Four", "Five",
+        "Six", "Seven", "Eight", "Nine", "Ten"
+    ],
+    function( description ) {
+        return {
+            description: description,
+            content: $("<p/>").append(
+                FlickrInterestingPhoto.create({
+                    photoSize: "t",
+                    css: {
+                        "float": "left",
+                        "margin-right": "1em"
+                    }
+                }),
+                LoremIpsum.create()
+            )
+        };
+    }
+);
 
+// Show the items in a ListInlay.
 $demo
     .css({
         height: "400px",
@@ -62,7 +65,28 @@ $demo
     data-control="CatalogPage2">
 
 <div data-property="summary">
+A list in which the user can expand a single item to view item details.
+See also the <a data-control="CatalogLink">MultiListInlay</a> variant.
 </div>
+
+<p>
+By default, this control expects items to be a dictionary of the form:
+</p>
+
+<pre>
+{
+    description: (content, usually a single line, that's always visible)
+    content: (expanded content that appears when an item is selected)
+}
+</pre>
+
+<p>
+This control implements the
+<a data-control="Link" href="http://designinginterfaces.com/patterns/list-inlay/">List Inlay user interface pattern</a>
+discussed in the book "Designing Interfaces".  
+This control was also the subject of a
+<a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2012/01/listinlay.html">user interface blog post</a>.
+</p>
 
 </body>
 
