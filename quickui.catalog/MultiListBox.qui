@@ -23,10 +23,12 @@ MultiListBox.prototype.extend({
         if ( selectedControls === undefined ) {
             return this.controls().filter( ".selected" );
         } else {
-            this.controls()
-                .removeClass( "selected" )
-                .filter( selectedControls )
-                .addClass( "selected" );
+            var self = this;
+            this.controls().eachControl( function( index, control ) {
+                var filter = selectedControls.filter( control );
+                var select = ( filter && filter.length > 0 );
+                self.selectControl( control, select );
+            });
             this.trigger( "selectionChanged" );
         }
     }),
@@ -91,7 +93,8 @@ MultiListBox.prototype.extend({
      * or set the selected state to the indicated toggle value.
      */
     toggleControl: function( control, toggle ) {
-        $( control ).toggleClass( "selected", toggle );
+        var toggle = toggle || !control.hasClass( "selected" );
+        this.selectControl( control, toggle );
         this.trigger( "selectionChanged" );
         return this;
     },
