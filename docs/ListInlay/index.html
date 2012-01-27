@@ -31,8 +31,17 @@ var descriptions = [
 var items = [];
 for ( var i = 0; i < descriptions.length; i++ ) {
     items.push({
-       description: descriptions[i],
-       content: LoremIpsum.create()
+        description: descriptions[i],
+        content: $("<p/>").append(
+            FlickrInterestingPhoto.create({
+                photoSize: "t",
+                css: {
+                    "float": "left",
+                    "margin-right": "1em"
+                }
+            }),
+            LoremIpsum.create()
+        )
     });
 }
 
