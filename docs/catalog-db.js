@@ -169,6 +169,11 @@ var controlRecords = [
         description: "A ComboBox which presents its choices as a dropdown list."
     },
     {
+        name: "ListInlay",
+        demoClass: "ListInlayDemo",
+        description: "List that can have a single item expanded to show more detail."
+    },
+    {
         name: "LoremIpsum",
         description: "Shows paragraphs of placeholder text."
     },
@@ -180,6 +185,11 @@ var controlRecords = [
         name: "MultiListBox",
         demoClass: "MultiListBoxDemo",
         description: "A list that supports multiple selection."
+    },
+    {
+        name: "MultiListInlay",
+        demoClass: "",
+        description: "List that can have multiple items expanded to show more detail."
     },
     {
         name: "Page",

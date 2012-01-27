@@ -11,6 +11,7 @@ A panel that can expand and collapse.
 
 <style>
 #Collapsible_heading {
+    clear: both;
     cursor: pointer;
 }
 
@@ -34,6 +35,7 @@ A panel that can expand and collapse.
  * padding to the container, but top/bottom margin on the content.
  */
 .Collapsible.generic #Collapsible_content {
+    overflow: auto;
     padding: 0 1em;
 }
 .Collapsible.generic #Collapsible_content > *:first-child {
