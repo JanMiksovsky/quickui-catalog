@@ -24,7 +24,7 @@ ListInlayDemo.prototype.extend({
     initialize: function() {
         
         var descriptions = [
-            "One", "Two", "Three"
+            "One", "Two", "Three", "Four", "Five"
         ];
         var items = [];
         for ( var i = 0; i < descriptions.length; i++ ) {

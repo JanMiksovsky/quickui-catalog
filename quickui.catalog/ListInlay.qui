@@ -42,8 +42,13 @@ ListInlay.prototype.extend({
     
     selectControl: function( control, select ) {
         this._super( control, select );
-        control.collapsed( !select );
+        if ( select ) {
+            control.toggleCollapse();
+        } else {
+            control.collapsed( true );
+        }
     }
+    
 });    
 </script>
 
