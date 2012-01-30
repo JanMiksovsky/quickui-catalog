@@ -9,26 +9,23 @@ $.extend(Blog.prototype, {
     
     apiKey: Control.property(),
     
+    count: Control.property.integer(),
+    
     feed: Control.property(function() {
         this.reload();
     }),
     
     reload: function() {
         
-        var baseUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q={feed}&callback=?";
-        
-        var url = baseUrl;
-        var apiKey = this.apiKey();
-        if ( apiKey ) {
-            url += "&key=" + apiKey;
-        }
-        
-        var feed = this.feed();
-        if (feed == null)
-        {
+        if ( !this.apiKey() ) {
             return;
         }
-        url = url.replace( "{feed}", feed );
+        
+        var url = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0";
+        url += this._urlParam( "key", this.apiKey() );
+        url += this._urlParam( "q", this.feed() );
+        url += this._urlParam( "num", this.count() );
+        url += this._urlParam( "callback", "?" );
         
         var self = this;
         $.getJSON( url )
@@ -42,7 +39,13 @@ $.extend(Blog.prototype, {
             });
     },
     
-    _entries: Control.chain( "$postList", "items" )
+    _entries: Control.chain( "$postList", "items" ),
+    
+    _urlParam: function( key, value ) {
+        return value
+            ? "&" + key + "=" + value
+            : ""; 
+    }
 });
 </script>
 

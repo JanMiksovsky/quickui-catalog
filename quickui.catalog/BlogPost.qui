@@ -1,9 +1,18 @@
 <Control className="BlogPost">
 
 <content>
-    <h2 id="BlogPost_postTitle"/>
+    <a id="BlogPost_postTitle" target="_blank" />
     <div id="BlogPost_content"/>
 </content>
+
+<style>
+/* Generic appearance */
+.BlogPost.generic #BlogPost_postTitle {
+    color: inherit;
+    font-size: larger;
+    font-weight: bold;
+}
+</style>
 
 <script>
 BlogPost.prototype.extend({
@@ -12,10 +21,18 @@ BlogPost.prototype.extend({
     
     entry: Control.property( function( entry ) {
         this.postTitle( entry.title );
+        this.link( entry.link );
         this.content( entry.content );
     }),
     
-    postTitle: Control.chain( "$BlogPost_postTitle", "content" )
+    initialize: function() {
+        this._super();
+        this.genericIfClassIs( BlogPost );
+    },
+    
+    postTitle: Control.chain( "$BlogPost_postTitle", "content" ),
+    
+    link: Control.chain( "$BlogPost_postTitle", "prop/href" )
     
 });  
 </script>
