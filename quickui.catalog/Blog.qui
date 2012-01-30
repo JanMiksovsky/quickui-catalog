@@ -1,0 +1,49 @@
+<Control className="Blog">
+
+<content>
+    <List id="postList" itemClass="BlogPost" mapFunction="entry" />
+</content>
+
+<script>
+$.extend(Blog.prototype, {
+    
+    apiKey: Control.property(),
+    
+    feed: Control.property(function() {
+        this.reload();
+    }),
+    
+    reload: function() {
+        
+        var baseUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q={feed}&callback=?";
+        
+        var url = baseUrl;
+        var apiKey = this.apiKey();
+        if ( apiKey ) {
+            url += "&key=" + apiKey;
+        }
+        
+        var feed = this.feed();
+        if (feed == null)
+        {
+            return;
+        }
+        url = url.replace( "{feed}", feed );
+        
+        var self = this;
+        $.getJSON( url )
+            .success( function( data ) {
+                var entries = ( data.responseData
+                                && data.responseData.feed
+                                && data.responseData.feed.entries )
+                    ? data.responseData.feed.entries
+                    : null;
+                self._entries( entries );
+            });
+    },
+    
+    _entries: Control.chain( "$postList", "items" )
+});
+</script>
+
+</Control>

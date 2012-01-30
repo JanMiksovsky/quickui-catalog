@@ -1,0 +1,23 @@
+<Control className="BlogPost">
+
+<content>
+    <h2 id="BlogPost_postTitle"/>
+    <div id="BlogPost_content"/>
+</content>
+
+<script>
+BlogPost.prototype.extend({
+    
+    content: Control.chain( "$BlogPost_content", "content" ),
+    
+    entry: Control.property( function( entry ) {
+        this.postTitle( entry.title );
+        this.content( entry.content );
+    }),
+    
+    postTitle: Control.chain( "$BlogPost_postTitle", "content" )
+    
+});  
+</script>
+
+</Control>
