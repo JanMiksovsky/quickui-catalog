@@ -1,0 +1,27 @@
+<Control className="TabSetDemo">
+
+<content>
+    <TabSet>
+        <Tab description="First">
+            <LoremIpsum sentences="2"/>
+        </Tab>
+        <Tab description="Second">
+            <LoremIpsum sentences="3"/>
+        </Tab>
+        <Tab description="Third">
+            <LoremIpsum sentences="3"/>
+        </Tab>
+    </TabSet>
+</content>
+
+<style>
+.Tab {
+    padding: 0.5em;
+}
+
+p {
+    margin: 0;
+}
+</style>
+
+</Control>

@@ -30,10 +30,6 @@ The TabSet control will resize itself to be as tall as its tallest child.
 /* Generic appearance */
 .TabSet.generic #TabSet_content {
     border: 1px solid gray;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     height: 100%;
 }
 .TabSet.generic #tabButtons {

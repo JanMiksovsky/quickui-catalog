@@ -93,7 +93,8 @@ Switch.prototype.extend({
         this.on( "sizeChanged", function() {
             self._childSizeChanged();
         });
-        
+
+        // TODO: Call _childSizeChanged() on a window resize event too.        
         this.inDocument( function() {
             this._childSizeChanged();
         });

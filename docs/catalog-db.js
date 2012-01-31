@@ -262,7 +262,8 @@ var controlRecords = [
     },
     {
         name: "TabSet",
-        description: "A set of tabbed pages which can be navigated by a set of buttons across the top."
+        demoClass: "TabSetDemo",
+        description: "A set of pages which can be navigated by a set of tab buttons across the top."
     },
     {
         name: "Tag",
