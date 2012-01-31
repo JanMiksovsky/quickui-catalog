@@ -25,6 +25,7 @@ FlickrInterestingPhoto.prototype.extend({
              */
             self.css( "width", "auto" );
             
+            console.log( "FlickrInterestingPhoto.load()" );
             self.trigger( "sizeChanged" );
         });
 

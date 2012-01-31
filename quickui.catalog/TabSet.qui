@@ -3,6 +3,8 @@ A set of tabbed pages.
 
 Each child of the content will be treated as a page. If the child has a function
 called name(), that will be used as the name on the tab.
+
+The TabSet control will resize itself to be as tall as its tallest child.
 -->
 
 <Control className="TabSet">
@@ -12,7 +14,7 @@ called name(), that will be used as the name on the tab.
         <top>
             <List id="tabButtons" itemClass="BasicButton" />
         </top>
-        <Switch id="TabSet_content"/>
+        <Switch id="TabSet_content" maximize="true" />
     </VerticalPanels>
 </content>
 
@@ -54,9 +56,10 @@ TabSet.prototype.extend({
      * The array of elements to be shown as tabs.
      */
     content: Control.chain( "$TabSet_content", "content", function() {
-        this._tabHeights( null );
         this._createButtons();
-        this._tabSizeChanged();
+        if ( this.inDocument() ) {
+            this._tabSizeChanged();
+        }
     }),
 
     /*
@@ -69,6 +72,12 @@ TabSet.prototype.extend({
         this.genericIfClassIs( TabSet );
         
         var self = this;
+        this.inDocument( function() {
+            if ( this.content() !== null ) {
+                this._tabSizeChanged();
+            }
+        });
+        
         this.$tabButtons().click( function( event ) {
             var tabButtonCssClass = "." + self.tabButtonClass().className;
             var tabButton = $( event.target ).closest( tabButtonCssClass ).control();
@@ -84,8 +93,7 @@ TabSet.prototype.extend({
             }
         });
         
-        this.$TabSet_content()
-        .on({
+        this.$TabSet_content().on({
             "activeChildChanged": function( event, index, child ) {
                 /*
                  * Map the Switch's activeChildChanged event to a more
@@ -189,26 +197,16 @@ TabSet.prototype.extend({
             return;
         }
         
-        var tabHeights = this._tabHeights();
-        if ( !tabHeights ) {
-            var tabHeights = tabs.map( function( index, tab ) {
-                return $( tab ).outerHeight( true );
-            }).get();
-        } else {
-            var tab = this.$TabSet_content().activeChild();
-            var tabHeight = tab.outerHeight();
-            var index = this.$TabSet_content().activeIndex();
-            tabHeights[ index ] = tabHeight;
-        }
-        this._tabHeights( tabHeights );
+        var tabHeights = tabs.map( function( index, tab ) {
+            return $( tab ).outerHeight( true );
+        }).get();
+        console.log( tabHeights );
         
         var maxTabHeight = Math.max.apply( this, tabHeights );
         if ( maxTabHeight > 0 ) {
             this.$TabSet_content().height( maxTabHeight );
         }
-    },
-    
-    _tabHeights: Control.property()
+    }
 
 });
 </script>
