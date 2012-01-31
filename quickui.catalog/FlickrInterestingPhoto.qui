@@ -24,8 +24,7 @@ FlickrInterestingPhoto.prototype.extend({
              * of the image placeholder icon. 
              */
             self.css( "width", "auto" );
-            
-            console.log( "FlickrInterestingPhoto.load()" );
+
             self.trigger( "sizeChanged" );
         });
 

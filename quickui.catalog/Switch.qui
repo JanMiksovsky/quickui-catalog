@@ -71,8 +71,10 @@ Switch.prototype.extend({
      * previously active. Otherwise, the first element is made active.
      */
     content: function( value ) {
+        
         var previousChild = this.activeChild();
         var result = this._super( value );
+        
         if ( value !== undefined ) {
             if ( previousChild && previousChild.parent()[0] === this[0] ) {
                 // Still have previously active child; hide other children.
@@ -81,21 +83,58 @@ Switch.prototype.extend({
                 this.activeIndex( 0 );
             }
         }
+        
         return result;
     },
     
     initialize: function() {
+        
+        var self = this;
+        this.on( "sizeChanged", function() {
+            self._childSizeChanged();
+        });
+        
+        this.inDocument( function() {
+            this._childSizeChanged();
+        });
+        
         if ( this.activeIndex() < 0 ) {
             // Show first child by default. 
             this.activeIndex(0);
         }
+        
     },
     
     /*
      * True if the control should always adjust its own height to be as tall
      * as its tallest child, whether or not that child is currently active.
      */
-    maximize: Control.chain( "applyClass/maximize" )
+    maximize: Control.chain( "applyClass/maximize" ),
+    
+    /*
+     * The size of a child may have changed. Make the control as tall as the
+     * tallest child.
+     */
+    _childSizeChanged: function() {
+        
+        if ( !this.maximize() ) {
+            return;
+        }
+        
+        var children = this.children();
+        if ( children.length === 0 ) {
+            return;
+        }
+        
+        var childHeights = children.map( function( index, child ) {
+            return $( child ).outerHeight( true );
+        }).get();
+        
+        var maxChildHeight = Math.max.apply( this, childHeights );
+        if ( maxChildHeight > 0 ) {
+            this.height( maxChildHeight );
+        }
+    }
         
 });
 </script>

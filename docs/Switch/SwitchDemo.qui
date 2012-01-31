@@ -2,7 +2,7 @@
 
 <content>
     
-    <Switch id="switchMode">
+    <Switch id="switchMode" maximize="true">
         <input type="text" id="textEditable" value="Hello, world." />
         <div id="textReadOnly" />
     </Switch>
@@ -15,10 +15,6 @@
 </content>
 
 <style>
-#switchMode {
-    min-height: 2em;
-}
-
 #textReadOnly {
     padding: 3px;
 }
