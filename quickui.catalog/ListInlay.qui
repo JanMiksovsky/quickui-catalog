@@ -22,6 +22,7 @@ ListInlay.prototype.extend({
     initialize: function() {
         this._super();
         this.genericIfClassIs( ListInlay );
+        /*
         this.mapFunction( function( item ) {
             if ( item === undefined ) {
                 return {
@@ -33,10 +34,15 @@ ListInlay.prototype.extend({
                     .heading( item.description )
                     .content( item.content );
                 if ( this instanceof Collapsible ) {
-                    // Let ListBox manage toggling instead of Collapsible
+                    
                     this.toggleOnClick( false );
                 }
             }
+        });
+        */
+        this.mapFunction({
+            description: "heading",
+            content: "content"
         });
     },
     
@@ -47,6 +53,11 @@ ListInlay.prototype.extend({
         } else {
             control.collapsed( true );
         }
+    },
+    
+    _setupControl: function( control ) {
+        // Let ListBox manage toggling instead of Collapsible
+        control.toggleOnClick( false );
     }
     
 });    

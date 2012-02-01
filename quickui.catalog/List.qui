@@ -55,32 +55,41 @@ List.prototype.extend({
         }
     },
     
-    //
-    // Used to map an incoming list item to property setters on the control
-    // class indicated by itemClass. This can either be a simple string,
-    // in which case it will be taken as the name of a control class property,
-    // Alternately, this can be a function of the form:
-    //
-    //      function foo( item ) { ... }
-    //
-    // where item is the list item.
-    //
-    // If item is undefined, the map function is being invoked as a getter,
-    // and should extract the item from the control (available via "this").
-    // If item is defined, the map function is being invoked as a setter, and
-    // should pass the item to the control (e.g., by setting properties on it).
-    //
+    /*
+     * Used to map an incoming list item to property setters on the control
+     * class indicated by itemClass. This can be a simple string,
+     * in which case it will be taken as the name of a control class property.
+     * It can also be a dictionary mapping item properties to control class
+     * properties. Finally, the map can also be a function of the form:
+     *
+     *      function foo( item ) { ... }
+     *
+     * where item is the list item.
+     *
+     * If item is undefined, the map function is being invoked as a getter,
+     * and should extract the item from the control (available via "this").
+     * If item is defined, the map function is being invoked as a setter, and
+     * should pass the item to the control (e.g., by setting properties on it).
+     */
     mapFunction: Control.property(
         function() { this._refresh(); },
-        "content"
+        "content" // By default, items are passed to the content() property.
     ),
+    
+    /*
+     * This can be extended by subclasses who want to perform per-control
+     * set-up.
+     */
+    _setupControl: function( $control ) {},
     
     _createControlsForItems: function( items ) {
         var itemClass = this.itemClass();
         var mapFunction = this._getMapFunction();
+        var self = this;
         var controls = $.map( items || [], function( item, index ) {
             var $control = itemClass.create();
             mapFunction.call( $control, item );
+            self._setupControl( $control );
             return $control;
         });
         this.content( controls );
@@ -102,9 +111,36 @@ List.prototype.extend({
      */
     _getMapFunction: function() {
         var mapFunction = this.mapFunction();
-        return typeof mapFunction === "string"
-            ? function( item ) { return this[ mapFunction ]( item ); }
-            : mapFunction;
+        if ( typeof mapFunction === "string" ) {
+            // Invoke the property with the given name.
+            return function( item ) {
+                return this[ mapFunction ]( item );
+            }
+        } else if ( $.isFunction( mapFunction) ) {
+            // Use function as is.
+            return mapFunction;
+        } else {
+            // Object dictionary mapping item members -> control properties.
+            return function( item ) {
+                if ( item === undefined ) {
+                    // Getter
+                    var result = {};
+                    for ( key in mapFunction ) {
+                        var propertyName = mapFunction[ key ];
+                        var value = this[ propertyName ]();
+                        result[ propertyName ] = value;
+                    }
+                    return result;
+                } else {
+                    // Setter
+                    for ( key in mapFunction ) {
+                        var propertyName = mapFunction[ key ];
+                        var value = item[ key ];
+                        this[ propertyName ]( value );
+                    }
+                }
+            }
+        }
     },
 
     // Get all the items, then recreate them again (possibly as different controls).        
