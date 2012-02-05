@@ -1,0 +1,49 @@
+<Control className="LabeledInput">
+
+<content>
+    <span id="LabeledInput_inputControl"/><label id="LabeledInput_content"/>
+</content>
+
+<style>
+{
+    display: inline-block;
+}
+
+#LabeledInput_content {
+    user-select: none;
+    -khtml-user-select:none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+</style>
+
+<script>
+LabeledInput.prototype.extend({
+    
+    checked: Control.chain( "_input", "prop/checked" ),
+    content: Control.chain( "$LabeledInput_content", "content" ),
+    disabled: Control.chain( "_input", "prop/disabled" ),
+    inputControl: Control.chain( "$LabeledInput_inputControl", "content" ),
+    _input: Control.chain( "$LabeledInput_inputControl", "find/input" ),
+    
+    initialize: function() {
+        var id = LabeledInput.generateUniqueId();
+        this._input().prop( "id", id );
+        this.$LabeledInput_content().prop( "for", id );
+    }
+
+});
+
+// Class members
+LabeledInput.extend({
+    
+    generateUniqueId: function() {
+        return "_input" + this._count++;
+    },
+    
+    _count: 0
+    
+});
+</script>
+
+</Control>

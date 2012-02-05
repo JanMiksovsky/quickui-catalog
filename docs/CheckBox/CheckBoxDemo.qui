@@ -1,0 +1,8 @@
+<Control className="CheckBoxDemo">
+
+<content>
+    <CheckBox>Read only</CheckBox>
+    <CheckBox>Archive</CheckBox>
+</content>
+
+</Control>

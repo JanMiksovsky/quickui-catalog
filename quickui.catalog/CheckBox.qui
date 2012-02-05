@@ -1,0 +1,15 @@
+<Control className="CheckBox">
+
+<prototype>
+    <LabeledInput>
+        <inputControl><input type="checkbox" /></inputControl>
+    </LabeledInput>
+</prototype>
+
+<style>
+input[type=checkbox] {
+    margin-left: 0;
+}
+</style>
+
+</Control>

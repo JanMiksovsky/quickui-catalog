@@ -1,0 +1,21 @@
+<Control className="RadioButton">
+
+<prototype>
+    <LabeledInput>
+        <inputControl><input type="radio" /></inputControl>
+    </LabeledInput>
+</prototype>
+
+<style>
+input[type=checkbox] {
+    margin-left: 0;
+}
+</style>
+
+<script>
+RadioButton.prototype.extend({
+    name: Control.chain( "_input", "prop/name")
+});
+</script>
+
+</Control>
