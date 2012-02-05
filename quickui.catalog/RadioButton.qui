@@ -1,20 +1,18 @@
+<!--
+A labeled radio button.
+
+TODO: If name is unspecified, look for name from siblings or gen a new name.
+-->
+
 <Control className="RadioButton">
 
 <prototype>
-    <LabeledInput>
-        <inputControl><input type="radio" /></inputControl>
-    </LabeledInput>
+    <LabeledInput type="radio"/>
 </prototype>
-
-<style>
-input[type=checkbox] {
-    margin-left: 0;
-}
-</style>
 
 <script>
 RadioButton.prototype.extend({
-    name: Control.chain( "_input", "prop/name")
+    name: Control.chain( "$input", "prop/name")
 });
 </script>
 

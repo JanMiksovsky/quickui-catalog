@@ -1,12 +1,22 @@
+<!--
+An input control (e.g., a check box or radio button) with an associated label.
+The label is automatically associated with the input, ensuring that user clicks
+on the label have the same effect as clicking the input control.
+-->
+
 <Control className="LabeledInput">
 
 <content>
-    <span id="LabeledInput_inputControl"/><label id="LabeledInput_content"/>
+    <input id="input"/><label id="LabeledInput_content"/>
 </content>
 
 <style>
 {
     display: inline-block;
+}
+
+#input {
+    margin-left: 0;
 }
 
 #LabeledInput_content {
@@ -20,17 +30,17 @@
 <script>
 LabeledInput.prototype.extend({
     
-    checked: Control.chain( "_input", "prop/checked" ),
+    checked: Control.chain( "$input", "prop/checked" ),
     content: Control.chain( "$LabeledInput_content", "content" ),
-    disabled: Control.chain( "_input", "prop/disabled" ),
-    inputControl: Control.chain( "$LabeledInput_inputControl", "content" ),
-    _input: Control.chain( "$LabeledInput_inputControl", "find/input" ),
+    disabled: Control.chain( "$input", "prop/disabled" ),
     
     initialize: function() {
         var id = LabeledInput.generateUniqueId();
-        this._input().prop( "id", id );
+        this.$input().prop( "id", id );
         this.$LabeledInput_content().prop( "for", id );
-    }
+    },
+    
+    type: Control.chain( "$input", "prop/type" )
 
 });
 
