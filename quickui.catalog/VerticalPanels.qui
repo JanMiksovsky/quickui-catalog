@@ -33,6 +33,7 @@
     overflow-y: hidden;
     position: absolute;
     height: 100%;
+    width: 100%;
 }
 .VerticalPanels.fill #VerticalPanels_content {
     overflow-y: auto;

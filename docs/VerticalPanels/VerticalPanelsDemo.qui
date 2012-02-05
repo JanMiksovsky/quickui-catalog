@@ -9,10 +9,12 @@
 </content>
 
 <style>
-.VerticalPanels {
+{
     height: 200px;
+    position: relative;
     width: 300px;
 }
+
 .VerticalPanels > * {
     border: 1px solid lightgray;
     padding: 6px;
