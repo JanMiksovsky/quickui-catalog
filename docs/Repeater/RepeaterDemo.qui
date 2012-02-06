@@ -1,7 +1,7 @@
 <Control className="RepeaterDemo">
 
 <content>
-    <Repeater controlClass="BasicButton" count="5" content="Hello"/>
+    <Repeater controlClass="BasicButton" count="4" content="Button" increment="true" />
 </content>
 
 </Control>

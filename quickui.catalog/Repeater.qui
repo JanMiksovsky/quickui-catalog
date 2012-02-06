@@ -5,37 +5,73 @@
 <script>
 Repeater.prototype.extend({
 
+    /*
+     * The content which will be repeated in each instance.
+     */
+    content: Control.property( function( content ) {
+        this._refreshContent( this.controls() );
+    }),
+
+    /*
+     * The class that will be repeated.
+     */
     controlClass: Control.property[ "class" ]( function() { this._refresh(); }),
+    
+    /*
+     * The generated collection of controls.
+     */
     controls: Control.chain( "children", "control" ),
+    
+    /*
+     * The number of repetitions to create.
+     */
     count: Control.property.integer( function() { this._refresh(); }, 0 ),
     
     initialize: function() {
         this._refresh();
     },
-
-    // Setting the content sets the content of the contained controls.
-    content: Control.property( function( content ) {
-        if ( this.controls() ) {
-            this.controls().content( content );
-        }
+    
+    /*
+     * True if the Repeater should append "1", "2", "3", etc., after the
+     * content of each instance.
+     */
+    increment: Control.property.bool( function() {
+        this._refreshContent( this.controls() );
     }),
 
     _refresh: function() {
         var controlClass = this.controlClass();
         var count = this.count();
         if ( controlClass && count > 0 ) {
-            var content = this.content();
             var controls = [];
             for ( var i = 0; i < count; i++ ) {
                 var $control = controlClass.create();
-                if ( content ) {
-                    $control.content( content );
-                }
                 controls.push( $control );
             }
+            this._refreshContent( controls );
         }
         // Use base .content() property since we've overridden it.
         Control( this ).content( controls );
+    },
+    
+    _refreshContent: function( controls ) {
+        var content = this.content();
+        var increment = this.increment();
+        for ( var i = 0; i < controls.length; i++ ) {
+            var $control = $( controls[i] ).control();
+            // TODO: if content is jQuery object, should clone elements. 
+            var instanceContent;
+            if ( content && increment ) {
+                instanceContent = content + " " + ( i + 1 );
+            } else if ( content ) {
+                instanceContent = content;
+            } else if ( increment ) {
+                instanceContent = i + 1;
+            }
+            if ( instanceContent ) {
+                $control.content( instanceContent );
+            }
+        }
     }
     
 });
