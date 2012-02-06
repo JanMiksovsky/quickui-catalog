@@ -55,6 +55,9 @@ Repeater.prototype.extend({
     },
     
     _refreshContent: function( controls ) {
+        if ( controls == null ) {
+            return;
+        }
         var content = this.content();
         var increment = this.increment();
         for ( var i = 0; i < controls.length; i++ ) {
