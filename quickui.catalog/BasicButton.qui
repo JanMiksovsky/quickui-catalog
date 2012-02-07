@@ -24,6 +24,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
     padding: .25em .5em;
+    white-space: nowrap;
 }
 
 /* 
