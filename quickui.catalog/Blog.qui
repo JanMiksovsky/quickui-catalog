@@ -17,7 +17,7 @@ $.extend(Blog.prototype, {
         this.reload();
     },
     
-    reload: function() {
+    reload: Control.iterator( function() {
         
         if ( !this.apiKey() || !this.feed() ) {
             return;
@@ -40,7 +40,7 @@ $.extend(Blog.prototype, {
                     : null;
                 self._entries( entries );
             });
-    },
+    }),
     
     _entries: Control.chain( "$postList", "items" ),
     
