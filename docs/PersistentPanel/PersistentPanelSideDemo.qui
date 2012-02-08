@@ -12,7 +12,12 @@
                     <h1>
                         Scroll this page, keeping an eye on the right side.
                     </h1>
-                    <LoremIpsum paragraphs="30"/>
+                    <FlickrInterestingPhoto/>
+                    <LoremIpsum paragraphs="8"/>
+                    <FlickrInterestingPhoto/>
+                    <LoremIpsum paragraphs="8"/>
+                    <FlickrInterestingPhoto/>
+                    <LoremIpsum paragraphs="8"/>
                 </div>
             </content>
             
@@ -79,6 +84,12 @@ h1 {
     background: #eee;
     border: 1px solid gray;
     padding: 0.5em;
+}
+
+.FlickrInterestingPhoto {
+    float: left;
+    margin: 0 1em 1em 0;
+    width: 50% !important;
 }
 </style>
 

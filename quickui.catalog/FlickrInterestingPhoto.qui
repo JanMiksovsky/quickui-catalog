@@ -1,7 +1,10 @@
 <!--
-Shows a random photo from Flickr's Interestingness collection
-for the previous day. By default, this can be used 100 times
-before it starts repeating photos.
+Shows a random photo from Flickr's Interestingness collection for a recent day.
+By default, this can be used 100 times before it starts repeating photos.
+
+This gets photos from the day before yesterday in the current time zone.
+This is done because yesterday in the current time zone may still be "today" in
+Flickr's time zone, and Flickr doesn't make photos available for the current day. 
 -->
 
 <Control className="FlickrInterestingPhoto" tag="img">
@@ -34,12 +37,12 @@ FlickrInterestingPhoto.prototype.extend({
         }
     },
     
-    reload: function() {
+    reload: Control.iterator( function() {
         var self = this;
         FlickrInterestingPhoto.getRandomPhoto( function( photo ) {
             self.prop( "src", photo );
         }, this.photoSize());
-    },
+    }),
     
     /* The photo currently shown */
     photo: Control.chain( "attr/src" ),
@@ -69,6 +72,15 @@ FlickrInterestingPhoto.prototype.extend({
 // Class methods
 FlickrInterestingPhoto.extend({
     
+    /*
+     * Flickr API key.
+     * 
+     * This is the QuickUI account API key. Set
+     * FlickrInterestingPhoto.apiKey = "<your key here>" before the first
+     * call to this control to use your own key.
+     */
+    apiKey: "c3685bc8d8cefcc1d25949e4c528cbb0",
+    
     getRandomPhoto: function( callback, size ) {
         var self = this;
         this.getFlickrInterestingPhotos( function( flickrPhotos ) {
@@ -88,9 +100,9 @@ FlickrInterestingPhoto.extend({
             return;
         }
         
-        var yesterday = new Date();
-        yesterday.setDate( yesterday.getDate() - 1 );
-        var flickrDate = this._formatFlickrDate( yesterday );
+        var day = new Date();
+        day.setDate( day.getDate() - 2 );   // Day before yesterday
+        var flickrDate = this._formatFlickrDate( day );
         
         var params = {
             method: "flickr.interestingness.getList",
@@ -100,16 +112,16 @@ FlickrInterestingPhoto.extend({
 
         var self = this;
         this.getFlickrPhotos( params, function( flickrPhotos ) {
+            self._shuffle( flickrPhotos );
             self._flickrPhotos = flickrPhotos;
             callback( self._flickrPhotos );
         });
     },
     
     getFlickrPhotos: function( params, callback ) {
-        var apiKey = "c3685bc8d8cefcc1d25949e4c528cbb0";
         var baseUrl = "http://api.flickr.com/services/rest/";
         var url = baseUrl 
-                    + "?api_key=" + apiKey
+                    + "?api_key=" + this.apiKey
                     + this._formatUrlParams( params )
                     + "&format=json"
                     + "&jsoncallback=?";
@@ -153,6 +165,21 @@ FlickrInterestingPhoto.extend({
             s += "&" + key + "=" + value;
         });
         return s;
+    },
+
+    /*
+     * Perform a Fisher-Yates shuffle.
+     * From http://sedition.com/perl/javascript-fy.html
+     */
+    _shuffle: function( array ) {
+        var i = array.length;
+        while (--i >= 0)
+        {
+            var j = Math.floor( Math.random() * ( i + 1 ) );
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
     }
 
 });
