@@ -11,13 +11,15 @@ $.extend(Blog.prototype, {
     
     count: Control.property.integer(),
     
-    feed: Control.property(function() {
+    feed: Control.property(),
+    
+    initialize: function() {
         this.reload();
-    }),
+    },
     
     reload: function() {
         
-        if ( !this.apiKey() ) {
+        if ( !this.apiKey() || !this.feed() ) {
             return;
         }
         
@@ -26,6 +28,7 @@ $.extend(Blog.prototype, {
         url += this._urlParam( "q", this.feed() );
         url += this._urlParam( "num", this.count() );
         url += this._urlParam( "callback", "?" );
+        console.log( url );
         
         var self = this;
         $.getJSON( url )
