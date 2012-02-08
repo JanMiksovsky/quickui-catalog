@@ -8,63 +8,83 @@ Generates Lorem Ipsum placeholder paragraphs.
 LoremIpsum.prototype.extend({
     
     initialize: function() {
-        if ( !this.paragraphs() && !this.sentences() ) {
-            this.paragraphs( 1 );
+        if ( !LoremIpsum._usedLorem ) {
+            // This is the first LoremIpsum control instance, so it gets
+            // the special lead sentence by default.
+            this.lorem( true );
+            LoremIpsum._usedLorem = true;
+        }
+        var content = this.content();
+        if ( content && content.length === 0 ) {
+            this._refresh();
         }
     },
     
     /*
-     * The number of paragraphs to show. Default is one paragraph.
+     * True if the first sentence should definitely be (or not be)
+     * the standard "Lorem ipsum dolor sit amet..." If this is undefined,
+     * the first instance of this control class will start with this sentence;
+     * subsequent instances won't.
      */
-    paragraphs: Control.property.integer( function( paragraphCount ) {
-        
-        var content = [];
-        for ( var i = 0; i < paragraphCount; i++ ) {
-            
-            var paragraph = this._generateParagraph();
-            
-            if ( i === 0 ) {
-                // First paragraph starts with special lead.
-                paragraph = LoremIpsum.leadSentence + " " + paragraph;
-            }
-            
-            content.push( "<p>" + paragraph + "</p>" );
-        }
-        
-        this.content( content );
+    lorem: Control.property.bool( function() {
+        this._refresh();
     }),
     
     /*
-     * A specific number of sentences to show.
+     * The number of paragraphs to show. Default is one paragraph.
      */
-    sentences: Control.property.integer( function( sentenceCount ) {
-        var paragraph = LoremIpsum.leadSentence + " ";
-        if ( sentenceCount > 1 ) {
-            paragraph += this._generateParagraph( sentenceCount - 1 );
-        }
-        this.content( "<p>" + paragraph + "</p>" );
+    paragraphs: Control.property.integer( function( paragraphs ) {
+        this._refresh();
+    }, 1),
+    
+    /*
+     * A specific number of sentences to show per paragraph.
+     * If not set, each paragraph will have a variable number of sentences.
+     */
+    sentences: Control.property.integer( function( sentences ) {
+        this._refresh();
     }),
 
     /*
      * Generate a random paragraph.
      */    
-    _generateParagraph: function( sentenceCount ) {
+    _generateParagraph: function( useLorem ) {
         
-        // Between 5 and 12 sentences per paragraph.
-        sentenceCount = sentenceCount || Math.floor( Math.random() * 8 ) + 5;
+        // Default is 5 and 12 sentences per paragraph.
+        var sentenceCount = this.sentences() || Math.floor( Math.random() * 8 ) + 5;
         var sentencesAvailable = LoremIpsum.sentences.length;
         
         var paragraph = "";
-        for ( var i = 0; i < sentenceCount; i++ ) {
-            if ( paragraph.length > 0 ) {
-                paragraph += " ";
+        if ( sentenceCount > 0 ) {
+            
+            // Use special first sentence?
+            if ( useLorem ) {
+                paragraph = LoremIpsum.loremSentence;
+                sentenceCount--;
             }
-            var sentenceIndex = Math.floor( Math.random() * ( sentencesAvailable) );
-            var sentence = LoremIpsum.sentences[ sentenceIndex ];
-            paragraph += sentence;
+            
+            // Pick remaining sentences.
+            for ( var i = 0; i < sentenceCount; i++ ) {
+                if ( paragraph.length > 0 ) {
+                    paragraph += " ";
+                }
+                var sentenceIndex = Math.floor( Math.random() * ( sentencesAvailable) );
+                paragraph += LoremIpsum.sentences[ sentenceIndex ];
+            }
         }
+        paragraph = "<p>" + paragraph + "</p>";
         
         return paragraph;
+    },
+    
+    _refresh: function() {
+        var content = [];
+        for ( var i = 0, length = this.paragraphs(); i < length; i++ ) {
+            var useLorem = ( i === 0 && this.lorem() );
+            var paragraph = this._generateParagraph( useLorem );
+            content.push( paragraph );
+        }
+        this.content( content );
     }
     
 });
@@ -72,7 +92,7 @@ LoremIpsum.prototype.extend({
 // Class members
 LoremIpsum.extend({
     
-    leadSentence: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+    loremSentence: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
     
     sentences: [
         "Duis et adipiscing mi.",
@@ -106,7 +126,6 @@ LoremIpsum.extend({
         "Nulla quis nulla ac lectus dapibus viverra.",
         "Pellentesque commodo mauris vitae sapien molestie sit amet pharetra quam pretium.",
         "Maecenas scelerisque rhoncus risus, in pharetra dui euismod ac.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "Mauris ut turpis sapien, sed molestie odio.",
         "Vivamus nec lectus nunc, vel ultricies felis.",
         "Mauris iaculis rhoncus dictum.",
@@ -175,7 +194,9 @@ LoremIpsum.extend({
         "Sed ultrices sollicitudin neque ut molestie.",
         "Sed at lectus in lacus scelerisque suscipit non id risus.",
         "Aliquam lorem nibh, convallis vitae molestie in, commodo feugiat nibh."
-    ]
+    ],
+    
+    _usedLorem: false
 })
 </script>
 
