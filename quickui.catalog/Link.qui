@@ -1,0 +1,26 @@
+<!--
+Wraps an anchor tag.
+
+Unlike a stock anchor tag, this will show a hand cursor even when the href
+is empty, as is often the case with a link whose behavior is determined by
+a click event handler.
+
+This can also serve as a useful base class for custom link classes.
+-->
+
+<Control className="Link" tag="a">
+
+<style>
+{
+    cursor: pointer;
+}
+</style>
+
+<script>
+Link.prototype.extend({
+    href: Control.chain( "prop/href" ),
+    target: Control.chain( "prop/target" )
+});
+</script>
+
+</Control>
