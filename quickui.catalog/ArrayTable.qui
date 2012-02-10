@@ -1,4 +1,4 @@
-<!-- Render an array as a table. -->
+<!-- Render a JavaScript array as a table. -->
 
 <Control className="ArrayTable">
 
