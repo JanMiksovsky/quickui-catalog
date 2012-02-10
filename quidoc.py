@@ -44,8 +44,21 @@ def control_docs(control_path):
 
 def docs_for_script(script):
     """ Returns docs for all members documented in the given script. """
-    # Finds all properties prefixed with comments.
-    prog_properties = re.compile("/\*(.*?)\*/\s*([a-zA-Z0-9][\w]+):", re.DOTALL)
+    # Finds all properties prefixed with standard multiline comments.
+    # These must look like a sequence of lines like:
+    #
+    # /*
+    #  * Comment line
+    #  * Another comment line
+    #  * ...
+    #  */
+    #     foo: 
+    #
+    # The opening /* and closing */ have to be on their own lines, and the latter
+    # must be immediately followed with a line that starts with a JavaScript
+    # identifier that does not include an underscore (which is treated as an
+    # internal member).
+    prog_properties = re.compile("^\s*/\*\s*$\n((?:^\s*\*.*$\n)*)^\s*\*/\s*$\n^\s*([a-zA-Z0-9$][\w]+):", re.MULTILINE)
     properties = prog_properties.findall(script)
     return { property_name: strip_interior_asterisks(comment)
          for (comment, property_name) in properties }

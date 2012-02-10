@@ -1,7 +1,9 @@
 .externalToolBuilders
 .project
+.pydevproject
 build
 quickui.catalog.*
+controlDocumentation.js
 docs.js
 docs.css
 tests/common/common.*
