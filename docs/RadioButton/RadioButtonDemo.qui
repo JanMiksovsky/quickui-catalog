@@ -1,0 +1,10 @@
+<Control className="RadioButtonDemo">
+
+<content>
+    Skill level:
+    <RadioButton name="skillLevel" checked="true">Beginner</RadioButton>
+    <RadioButton name="skillLevel">Intermediate</RadioButton>
+    <RadioButton name="skillLevel">Advanced</RadioButton>
+</content>
+
+</Control>

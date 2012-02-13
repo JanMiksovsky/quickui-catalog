@@ -47,6 +47,11 @@ var controlRecords = [
         description: "Shows a single week from a calendar as seven days in a row."
     },
     {
+        name: "CheckBox",
+        demoClass: "CheckBoxDemo",
+        description: "A check box with an associated label."
+    },
+    {
         name: "Collapsible",
         demoClass: "CollapsibleDemo",
         description: "A panel that can be toggled between collapsed and expanded states."
@@ -149,6 +154,11 @@ var controlRecords = [
         description: "Positions panels on the left and/or right and gives the remaining space to a main content area."
     },
     {
+        name: "LabeledInput",
+        demoClass: "",
+        description: "An HTML input control with an associated clickable label."                    
+    },
+    {
         name: "LateralNavigator",
         demoClass: "",
         description: "Shows content with a heading and previous/next arrows."
@@ -210,6 +220,11 @@ var controlRecords = [
         name: "Popup",
         demoClass: "",
         description: "Base class for popups, menus, dialogs — things that appear temporarily over other things."
+    },
+    {
+        name: "RadioButton",
+        demoClass: "RadioButtonDemo",
+        description: "A radio button with an associated label."
     },
     {
         name: "Repeater",

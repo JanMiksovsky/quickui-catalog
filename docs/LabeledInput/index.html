@@ -24,18 +24,41 @@
 
 <title>LabeledInput</title>
 
-<script id="demo">
-function demo() {
-}
-</script>
-
 </head>
 
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-
+An HTML input control with an associated clickable label.
 </div>
+
+<p>
+The stock HTML input controls such as check boxes and radio buttons do not,
+by default, have clickable labels. A developer can position static text next
+to an input control, but by default such text will have no behavioral
+relationship to the input. The result is that users are often confused when
+they click the static text and discover (or, worse, fail to notice) that their
+click has not had the intended effect. Instead, they have to painstakingly
+click the comparatively small input control (the box or circle) to make their
+choice.
+</p>
+<p>
+HTML has long provided a <span data-control="Tag">label</span> tag that can
+be used to associated static text with an input control such as a check box or
+radio button. A user click on the label text will implicitly count as a click
+on the input control, producing the desired effect. However, developers often
+forget to use label tags. Moreover, the developer must explicitly associate the
+input and label by assigning an ID to the input and referencing this ID
+in the label.
+</p>
+<p>
+The LabeledInput control wraps an HTML <span data-control="Tag">input</span>
+and <span data-control="Tag">label</span>, and automatically binds the two.
+The base LabeledInput class is subclassed by
+<a data-control="CatalogLink">CheckBox</a> and
+<a data-control="CatalogLink">RadioButton</a>, allowing for the easy creation
+of user user-friendly check boxes and radio buttons respectively.  
+</p>
 
 </body>
 
