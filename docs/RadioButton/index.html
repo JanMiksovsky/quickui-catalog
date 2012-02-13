@@ -30,14 +30,11 @@ function demo() {
 $demo.append(
     "Skill level: ",
     RadioButton.create()
-        .name( "skillLevel" )
         .content( "Beginner" )
         .checked( true ),
     RadioButton.create()    
-        .name( "skillLevel" )
         .content( "Intermediate" ),
     RadioButton.create()    
-        .name( "skillLevel" )
         .content( "Advanced" )
 );
 
@@ -55,7 +52,10 @@ A radio button with an associated label.
 
 <p>
 See the notes at <a data-control="CatalogLink">LabeledInput</a> for a
-discussion of how this control wraps a stock HTML radio button.
+discussion of how this control wraps a stock HTML radio button. In addition
+to automatically binding the label with the radio button, the RadioButton
+class can also automatically generate a radio group name, allowing radio buttons
+to be grouped without the need for an explicit group name.
 </p>
 
 </body>
