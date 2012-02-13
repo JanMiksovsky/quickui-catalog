@@ -5,7 +5,7 @@ A labeled check box.
 <Control className="CheckBox">
 
 <prototype>
-    <LabeledInput type="checkbox"/>
+    <LabeledInput _type="checkbox"/>
 </prototype>
 
 </Control>

@@ -7,11 +7,17 @@ TODO: If name is unspecified, look for name from siblings or gen a new name.
 <Control className="RadioButton">
 
 <prototype>
-    <LabeledInput type="radio"/>
+    <LabeledInput _type="radio"/>
 </prototype>
 
 <script>
 RadioButton.prototype.extend({
+    
+    /*
+     * The text name of the radio button group.
+     * Set the name() of all radio buttons in the same group to the same value
+     * to ensure the radio buttons are mutually exclusive.
+     */
     name: Control.chain( "$input", "prop/name")
 });
 </script>

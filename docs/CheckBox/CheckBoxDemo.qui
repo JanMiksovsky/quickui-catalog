@@ -2,7 +2,7 @@
 
 <content>
     <div>
-        Rent:
+        I want to rent:
         <CheckBox checked="true">Boots</CheckBox>
         <CheckBox checked="true">Skis</CheckBox>
         <CheckBox checked="true">Poles</CheckBox>

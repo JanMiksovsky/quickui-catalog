@@ -15,10 +15,6 @@ on the label have the same effect as clicking the input control.
     display: inline-block;
 }
 
-#input {
-    margin-left: 0;
-}
-
 #LabeledInput_content {
     user-select: none;
     -khtml-user-select:none;
@@ -30,17 +26,40 @@ on the label have the same effect as clicking the input control.
 <script>
 LabeledInput.prototype.extend({
     
-    checked: Control.chain( "$input", "prop/checked" ),
+    /*
+     * True if the input control is checked, false if unchecked.
+     */
+    checked: Control.chain( "_inputControl", "prop/checked" ),
+    
+    /*
+     * The label for the input control.
+     * This can be arbitrary content, not just text.
+     */
     content: Control.chain( "$LabeledInput_content", "content" ),
-    disabled: Control.chain( "$input", "prop/disabled" ),
+    
+    /*
+     * True if the input control should be disabled.
+     */
+    disabled: Control.chain( "_inputControl", "prop/disabled" ),
     
     initialize: function() {
         var id = LabeledInput.generateUniqueId();
-        this.$input().prop( "id", id );
+        this._inputControl().prop( "id", id );
         this.$LabeledInput_content().prop( "for", id );
     },
     
-    type: Control.chain( "$input", "prop/type" )
+    /*
+     * Return the input control.
+     * We restrict our search to direct children, in case the label also
+     * includes input controls.
+     */
+    _inputControl: Control.chain( "children", "filter/input" ),
+    
+    /*
+     * Sets the input control's type.
+     * This is set in subclasses CheckBox and RadioButton.
+     */
+    _type: Control.chain( "_inputControl", "prop/type" )
 
 });
 

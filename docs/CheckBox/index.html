@@ -22,10 +22,24 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title></title>
+<title>CheckBox</title>
 
 <script id="demo">
 function demo() {
+
+$demo.append(
+    "I want to rent: ",
+    CheckBox.create()
+        .content( "Boots" )
+        .checked( true ),
+    CheckBox.create()
+        .content( "Skis" )
+        .checked( true ),
+    CheckBox.create()
+        .content( "Poles" )
+        .checked( true )
+);
+
 }
 </script>
 
@@ -34,7 +48,7 @@ function demo() {
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-
+A check box with a label.
 </div>
 
 </body>

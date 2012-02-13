@@ -22,16 +22,32 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title></title>
+<title>RadioButton</title>
 
 <script id="demo">
 function demo() {
+
+$demo.append(
+    "Skill level: ",
+    RadioButton.create()
+        .name( "skillLevel" )
+        .content( "Beginner" )
+        .checked( true ),
+    RadioButton.create()    
+        .name( "skillLevel" )
+        .content( "Intermediate" ),
+    RadioButton.create()    
+        .name( "skillLevel" )
+        .content( "Advanced" )
+);
+
 }
 </script>
 
 </head>
 
-<body data-create-controls="true" data-control="CatalogPageNew">
+<body data-create-controls="true"
+    data-control="CatalogPageNew">
 
 <div data-property="summary">
 
