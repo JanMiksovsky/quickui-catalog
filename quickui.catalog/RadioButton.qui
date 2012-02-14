@@ -36,7 +36,7 @@ RadioButton.prototype.extend({
      * you can rely on the autoName() property to automatically select a name
      * which will group the control with auto-named sibiling radio buttons.
      */
-    name: Control.chain( "$input", "prop/name", function() {
+    name: Control.chain( "_inputControl", "prop/name", function() {
         this._checkName();
     }),
     

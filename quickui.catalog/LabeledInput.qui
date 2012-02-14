@@ -1,21 +1,23 @@
 <!--
 An input control (e.g., a check box or radio button) with an associated label.
-The label is automatically associated with the input, ensuring that user clicks
-on the label have the same effect as clicking the input control.
+
+The control's top element is a label, which ensures that user clicks anywhere
+within have the same effect as clicking the input control.
 -->
 
-<Control className="LabeledInput">
+<Control className="LabeledInput" tag="label">
 
 <content>
-    <input id="input"/><label id="LabeledInput_content"/>
+    <input/><span id="LabeledInput_content"/>
 </content>
 
 <style>
-{
-    display: inline-block;
+> input {
+    margin-right: 0;    /* Don't leave unclickable gap to right of input */
 }
 
 #LabeledInput_content {
+    padding-left: 3px;  /* Restore normal gap suppressed above */
     user-select: none;
     -khtml-user-select:none;
     -moz-user-select: none;
@@ -42,12 +44,6 @@ LabeledInput.prototype.extend({
      */
     disabled: Control.chain( "_inputControl", "prop/disabled" ),
     
-    initialize: function() {
-        var id = LabeledInput.generateUniqueId();
-        this._inputControl().prop( "id", id );
-        this.$LabeledInput_content().prop( "for", id );
-    },
-    
     /*
      * Return the input control.
      * We restrict our search to direct children, in case the label also
@@ -61,17 +57,6 @@ LabeledInput.prototype.extend({
      */
     _type: Control.chain( "_inputControl", "prop/type" )
 
-});
-
-// Class members
-LabeledInput.extend({
-    
-    generateUniqueId: function() {
-        return "_input" + this._count++;
-    },
-    
-    _count: 0
-    
 });
 </script>
 
