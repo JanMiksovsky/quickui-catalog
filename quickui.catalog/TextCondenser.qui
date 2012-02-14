@@ -41,6 +41,9 @@ Shows text in a condensed font if necessary to squeeze in more text.
 <script>
 TextCondenser.prototype.extend({
     
+    /*
+     * The font family to use for condensed text.
+     */
     condensedFontFamily: Control.chain("$condensed", "css/font-family"),
 
     content: Control.chain("$normal", "content", function(content) {

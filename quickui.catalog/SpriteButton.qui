@@ -60,8 +60,28 @@ button {
     
 <script>
 SpriteButton.prototype.extend({
+
+    /*
+     * The height of the sprite image, in pixels.
+     */    
+    cellHeight: Control.chain("css/height", function(value) {
+        this.$SpriteButton_content().height(value + "px");
+        this.$sprites().cellHeight(value);
+    }),
     
     content: Control.chain("$SpriteButton_content", "content"),
+    
+    disabled: function(value) {
+        if (value !== undefined)
+        {
+            this.$SpriteButton_content().attr("disabled", String(value) == "true");
+        }
+        return this._super( value );
+    },
+    
+    /*
+     * The sprite image.
+     */
     image: Control.chain("$sprites", "image"),
 
     initialize: function() {
@@ -70,19 +90,6 @@ SpriteButton.prototype.extend({
         this.$SpriteButton_content()
             .blur(function() { self.blur(); })
             .focus(function() { self.focus(); });
-    },
-    
-    cellHeight: Control.chain("css/height", function(value) {
-        this.$SpriteButton_content().height(value + "px");
-        this.$sprites().cellHeight(value);
-    }),
-    
-    disabled: function(value) {
-        if (value !== undefined)
-        {
-            this.$SpriteButton_content().attr("disabled", String(value) == "true");
-        }
-        return this._super( value );
     },
     
     $sprites: function() {

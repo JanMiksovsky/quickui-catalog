@@ -67,6 +67,9 @@ ListBox.prototype.extend({
             });
     },
     
+    /*
+     * The array of items shown in the list box.
+     */
     items: function( value ) {
         /* Preserve selection index when items change */ 
         var previousIndex = this.selectedIndex();
@@ -81,10 +84,11 @@ ListBox.prototype.extend({
     },
     
     /*
-     * Toggle the selected state of the given control.
-     * If select is true, this applies the "selected" class to the control,
-     * which the list uses to track which control is selected. If the control
-     * supports a selected() function, that will be invoked as well.
+     * Toggles the selected state of a control in the list.
+     * 
+     * If the select parameter is true, this applies the "selected" class to the
+     * control, which the list uses to track which control is selected. If the
+     * control supports a selected() function, that will be invoked as well.
      * Subclasses can perform additional manipulations here.
      */
     selectControl: function( control, select ) {

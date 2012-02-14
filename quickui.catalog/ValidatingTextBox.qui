@@ -32,12 +32,16 @@ For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 <script>
 ValidatingTextBox.prototype.extend({
     
-    invalid: Control.chain( "applyClass/invalid" ),
-    
-    // True if the field must be non-empty.
-    required: Control.property.bool(),
-    
-    validateOnBlur: Control.property.bool( null, true ),
+    /*
+     * The control's content. Setting this implicitly performs validation.
+     */
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined ) {
+            this.validate( true );
+        }
+        return result;
+    },
     
     initialize: function() {
         
@@ -57,15 +61,36 @@ ValidatingTextBox.prototype.extend({
         });
     },
     
+    invalid: Control.chain( "applyClass/invalid" ),
+    
     /*
-     * Setting the content programmatically implicitly performs validation.
+     * True if the text box must be non-empty to be valid.
      */
-    content: function( content ) {
-        var result = this._super( content );
-        if ( content !== undefined ) {
-            this.validate( true );
+    required: Control.property.bool(),
+    
+    /*
+     * Returns true if the control's contents are valid.
+     * The default implementation simply looks as the required() property and,
+     * if true, ensures the content is non-empty.
+     *  
+     * Subclasses can override this to validate their contents. E.g.:
+     * 
+     *      valid: function() {
+     *          var valid = this._super();
+     *          valid = valid && ... Perform additional checks here ...
+     *          return valid;
+     *      }
+     */
+    valid: function() {
+        var valid;
+        if ( this.required() )
+        {
+            var content = this.content();
+            valid = !!content && content.length > 0;
+        } else {
+            valid = true;
         }
-        return result;
+        return valid;
     },
     
     /*
@@ -84,29 +109,11 @@ ValidatingTextBox.prototype.extend({
     }),
     
     /*
-     * Returns true if the control's contents are valid.
-     * The default implementation simply looks as the required() property and,
-     * if true, ensures the content is non-empty.
-     *  
-     * Subclasses can override this to validate their contents. E.g.:
-     * 
-     *  valid: function() {
-     *      var valid = this._super();
-     *      valid = valid && ... Perform additional checks here ...
-     *      return valid;
-     *  }
+     * True if validation should be automatically be performed when the control
+     * loses focus. Default is true.
      */
-    valid: function() {
-        var valid;
-        if ( this.required() )
-        {
-            var content = this.content();
-            valid = !!content && content.length > 0;
-        } else {
-            valid = true;
-        }
-        return valid;
-    }
+    validateOnBlur: Control.property.bool( null, true )
+
 });
 </script>
 

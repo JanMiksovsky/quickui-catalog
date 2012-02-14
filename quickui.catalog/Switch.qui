@@ -55,7 +55,9 @@ Switch.prototype.extend({
         }
     }),
     
-    // The index of the currently visible child.
+    /*
+     * The index of the currently visible child.
+     */
     activeIndex: function( index ) {
         if ( index === undefined ) {
             return this.children().index( this.activeChild() );
@@ -65,7 +67,7 @@ Switch.prototype.extend({
     },
     
     /*
-     * The set of elements that will be held; only one will be shown at a time.
+     * The array of elements that will be held; only one will be shown at a time.
      * 
      * If the set changes, this will attempt to preserve the one that was
      * previously active. Otherwise, the first element is made active.

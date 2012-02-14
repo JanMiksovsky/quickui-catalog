@@ -22,30 +22,12 @@ ListInlay.prototype.extend({
     initialize: function() {
         this._super();
         this.genericIfClassIs( ListInlay );
-        /*
-        this.mapFunction( function( item ) {
-            if ( item === undefined ) {
-                return {
-                    description: this.heading(),
-                    content: this.content()
-                };
-            } else {
-                this
-                    .heading( item.description )
-                    .content( item.content );
-                if ( this instanceof Collapsible ) {
-                    
-                    this.toggleOnClick( false );
-                }
-            }
-        });
-        */
         this.mapFunction({
             description: "heading",
             content: "content"
         });
     },
-    
+
     selectControl: function( control, select ) {
         this._super( control, select );
         if ( select ) {

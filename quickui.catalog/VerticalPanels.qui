@@ -42,21 +42,26 @@
 
 <script>
 VerticalPanels.prototype.extend({
-    
-    content: Control.chain( "$VerticalPanels_content", "content", function() {
-        this.trigger( "sizeChanged" );        
-    }),
-    
-    fill: Control.chain( "applyClass/fill", function() {
-        this.trigger( "sizeChanged" );
-    }),
-    
+
+    /*
+     * The content of the bottom panel.
+     */    
     bottom: Control.chain( "$VerticalPanels_bottom", "content", function() {
         this.trigger( "sizeChanged" );        
     }),
     
-    top: Control.chain( "$VerticalPanels_top", "content", function() {
+    /*
+     * The content of the main center panel.
+     */
+    content: Control.chain( "$VerticalPanels_content", "content", function() {
         this.trigger( "sizeChanged" );        
+    }),
+    
+    /*
+     * True if the control should fill its container.
+     */
+    fill: Control.chain( "applyClass/fill", function() {
+        this.trigger( "sizeChanged" );
     }),
     
     layout: function() {
@@ -69,7 +74,15 @@ VerticalPanels.prototype.extend({
             this.$VerticalPanels_content().height( "" );
         }
         return this;
-    }
+    },
+    
+    /*
+     * The content of the top panel.
+     */
+    top: Control.chain( "$VerticalPanels_top", "content", function() {
+        this.trigger( "sizeChanged" );        
+    })
+
 });
 </script>
 

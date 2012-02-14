@@ -29,10 +29,12 @@ input {
 
 <script>
 SearchBox.prototype.extend({
-    
+
+    /*
+     * A hint to show in the text box.
+     */    
     hint: Control.chain("$searchTerms", "hint"),
-    query: Control.property(null, "%s"),
-    
+
     initialize: function() {
         var self = this;
         this.on("goButtonClick", function() {
@@ -41,7 +43,14 @@ SearchBox.prototype.extend({
             window.location.href = url;
         });
         this.$searchTerms().focus();
-    }
+    },
+    
+    /*
+     * The search query that should be executed when the user presses the "Go"
+     * button. This should be string containing the sequence "%s", which will
+     * be replaced with the search terms the user has entered in the text box.
+     */
+    query: Control.property(null, "%s")
     
 });
 </script>

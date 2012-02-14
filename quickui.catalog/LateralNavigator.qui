@@ -57,12 +57,10 @@
 <script>
 LateralNavigator.prototype.extend({
 
+    /*
+     * The content for the current position in the sequence.
+     */
     content: Control.chain( "$LateralNavigator_content", "content" ),
-    nextButtonContent: Control.chain( "$LateralNavigator_nextButton", "content" ),
-    nextButtonDisabled: Control.chain( "$LateralNavigator_nextButton", "disabled" ),
-    previousButtonContent: Control.chain( "$LateralNavigator_previousButton", "content" ),
-    previousButtonDisabled: Control.chain( "$LateralNavigator_previousButton", "disabled" ),
-    heading: Control.chain( "$LateralNavigator_heading", "content" ),
 
     initialize: function() {
 
@@ -86,8 +84,41 @@ LateralNavigator.prototype.extend({
         return result;
     },
     
-    /* Subclasses should override these */
+    /*
+     * The content of the "Next" button. By default, this is a right-pointing
+     * arrow.
+     */
+    nextButtonContent: Control.chain( "$LateralNavigator_nextButton", "content" ),
+    
+    /*
+     * True if the "Next" button should be disabled.
+     */
+    nextButtonDisabled: Control.chain( "$LateralNavigator_nextButton", "disabled" ),
+    
+    /*
+     * The content of the "Previous" button. By default, this is a left-pointing
+     * arrow.
+     */
+    previousButtonContent: Control.chain( "$LateralNavigator_previousButton", "content" ),
+    
+    /*
+     * True if the "Previous" button should be disabled.
+     */
+    previousButtonDisabled: Control.chain( "$LateralNavigator_previousButton", "disabled" ),
+    
+    /*
+     * The content of the heading area.
+     */
+    heading: Control.chain( "$LateralNavigator_heading", "content" ),
+    
+    /*
+     * Move to the next step in the sequence.
+     */
     next: function() {},
+    
+    /*
+     * Move to the previous step in the sequence.
+     */
     previous: function() {}
 });
 </script>

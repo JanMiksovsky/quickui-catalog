@@ -19,14 +19,22 @@
  */
 Page.prototype.extend({
     
-    // If true, have the page fill its container.
+    /*
+     * True if the page should fill its container. Default is false.
+     */
     fill: Control.chain( "applyClass/fill" ),
 
+    /*
+     * The URL parameters for the current page. Read-only.
+     */
     urlParameters: function() {
         return Page.urlParameters();
     },
         
-    // Gets or sets the title of the page.
+    /*
+     * The title of the page. This will generally be shown in the browser's
+     * window title bar, etc.
+     */
     title: function( title ) {
         if ( title === undefined ) {
             return document.title;

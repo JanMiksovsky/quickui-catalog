@@ -10,16 +10,27 @@ This can also serve as a useful base class for custom link classes.
 
 <Control className="Link" tag="a">
 
-<style>
-{
-    cursor: pointer;
-}
-</style>
-
 <script>
 Link.prototype.extend({
+
+    /*
+     * The location that will be opened if the user clicks the link.
+     */
     href: Control.chain( "prop/href" ),
+    
+    initialize: function() {
+        if ( !this.href() ) {
+            // Set a placeholder href which will force the display of an
+            // underline, and use of a hand cursor.
+            this.href( "javascript:" );
+        }
+    },
+
+    /*
+     * The target of the link.
+     */
     target: Control.chain( "prop/target" )
+
 });
 </script>
 

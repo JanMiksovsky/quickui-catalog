@@ -1,3 +1,5 @@
+<!-- A text box that shows a "hint" as to what the user should enter. -->
+
 <Control className="HintTextBox">
 
 <content>
@@ -33,9 +35,19 @@
 <script>
 HintTextBox.prototype.extend({
     
+    /*
+     * The content of the text box.
+     */
     content: Control.chain("$HintTextBox_textBox", "content", function() {
         this._showHintIfEmpty();
     }),
+    
+    /*
+     * The "hint" shown within the text box that suggests what the user should
+     * type there. This hint is hidden if: the text box has content, the
+     * text box has just acquired the keyboard focus, or if the user clicks in
+     * the text box. 
+     */
     hint: Control.chain("$HintTextBox_hint", "content"),
     
     initialize: function() {

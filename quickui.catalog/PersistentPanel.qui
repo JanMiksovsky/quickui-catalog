@@ -66,11 +66,6 @@ PersistentPanel.prototype.extend({
      */
     docked: Control.chain( "applyClass/docked" ),
     
-    /*
-     * The content's padding. See top notes.
-     */
-    padding: Control.chain( "$PersistentPanel_content", "css/padding" ),
-    
     initialize: function() {
         
         this.genericIfClassIs( PersistentPanel );
@@ -94,6 +89,11 @@ PersistentPanel.prototype.extend({
             self._recalc();
         });
     },
+    
+    /*
+     * The content's padding. See top notes.
+     */
+    padding: Control.chain( "$PersistentPanel_content", "css/padding" ),
     
     /*
      * The parent of this control used to determine whether the control is

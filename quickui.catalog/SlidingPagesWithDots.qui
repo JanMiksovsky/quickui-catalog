@@ -56,10 +56,24 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 <script>
 SlidingPagesWithDots.prototype.extend({
     
-    content: Control.chain( "$pages", "content" ),
-    pageButtons: Control.chain( "$pageButtons", "children" ),
-    pageButtonClass: Control.chain( "$pageButtons", "controlClass" ),
-    pages: Control.chain( "$pages", "pages" ),
+    /*
+     * The index of the page currently being shown.
+     */
+    activeIndex: Control.property( function( activeIndex ) {
+        this.$pages().activeIndex( activeIndex );
+        this.pageButtons()
+            .removeClass( "selected" )
+            .eq( activeIndex )
+                .addClass( "selected" );
+        return this;
+    }),
+    
+    /*
+     * The array of elements to show as pages.
+     */
+    content: Control.chain( "$pages", "content", function() {
+        this.$pageButtons().count( this.pages().length );
+    }),
     
     initialize: function() {
         
@@ -85,18 +99,14 @@ SlidingPagesWithDots.prototype.extend({
         }
     },
     
-    activeIndex: Control.property( function( activeIndex ) {
-        this.$pages().activeIndex( activeIndex );
-        this.pageButtons()
-            .removeClass( "selected" )
-            .eq( activeIndex )
-                .addClass( "selected" );
-        return this;
-    }),
+    pageButtons: Control.chain( "$pageButtons", "children" ),
+
+    /*
+     * The class used to render the buttons to navigate between pages.
+     */    
+    pageButtonClass: Control.chain( "$pageButtons", "controlClass" ),
     
-    content: Control.chain( "$pages", "content", function() {
-        this.$pageButtons().count( this.pages().length );
-    })
+    pages: Control.chain( "$pages", "pages" )
 
 });
 </script>

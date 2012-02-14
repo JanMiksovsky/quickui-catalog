@@ -20,6 +20,9 @@
 <script>
 Tab.prototype.extend({
     
+    /*
+     * The content of the tab.
+     */
     content: function( value ) {
         var result = this._super( value );
         if ( value !== undefined ) {
@@ -30,6 +33,9 @@ Tab.prototype.extend({
         return result;
     },
     
+    /*
+     * The description which should be rendered in the button for the tab.
+     */
     description: Control.property()
     
 });

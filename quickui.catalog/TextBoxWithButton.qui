@@ -24,8 +24,11 @@ Control with a content area (usually some form of text box) and an associated "G
 <script>
 TextBoxWithButton.prototype.extend({
     
-    goButton: Control.chain("$TextBoxWithButton_goButton", "content"),    
-    textBox: Control.chain("$TextBoxWithButton_textBox", "content"),
+    /*
+     * The button shown next to the text box. This button is disabled if the
+     * text box is currently empty.
+     */
+    goButton: Control.chain("$TextBoxWithButton_goButton", "content"),
     
     initialize: function() {
         var self = this;
@@ -42,7 +45,10 @@ TextBoxWithButton.prototype.extend({
         });
         this._disableButtonIfContentEmpty();
     },
-    
+
+    /*
+     * The content of the text box.
+     */    
     content: function(value) {
         result = this.$TextBoxWithButton_textBox().content(value); 
         if (value !== undefined) 
@@ -51,6 +57,11 @@ TextBoxWithButton.prototype.extend({
         }
         return result;
     },
+    
+    /*
+     * The text box.
+     */    
+    textBox: Control.chain("$TextBoxWithButton_textBox", "content"),
     
     _disableButtonIfContentEmpty: function() {
         var content = this.content();

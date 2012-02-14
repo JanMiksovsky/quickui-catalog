@@ -34,10 +34,16 @@ be strings.
 <script>
 ListComboBox.prototype.extend({
     
-    _itemContents: Control.property(),
+    
+    /*
+     * The array of items in the dropdown list. See List for details.
+     */
     items: Control.chain( "$list", "items", function() { this._updateItemContents(); } ),
+    
+    /*
+     * A mapping of items to controls and back. See List for details.
+     */
     mapFunction: Control.chain( "$list", "mapFunction" ),
-    _timeout: Control.property(),
     
     initialize: function() {
         
@@ -86,8 +92,9 @@ ListComboBox.prototype.extend({
         }
     },
     
-    // Instead of chaining, make this a property so we can check for a default
-    // value of undefined.
+    /*
+     * The class which should be used to render the list items as controls.
+     */
     itemClass: Control.property[ "class" ]( function( itemClass ) {
         this.$list().itemClass( itemClass );
     }),
@@ -204,6 +211,8 @@ ListComboBox.prototype.extend({
         }
     },
 
+    _itemContents: Control.property(),
+    
     // Return the item whose prefix matches the given string, ignoring case.
     // Return null if not found.
     _matchingItem: function( s ) {
@@ -247,6 +256,8 @@ ListComboBox.prototype.extend({
         timeout = window.setTimeout( callback, 50 );
         this._timeout( timeout );
     },
+    
+    _timeout: Control.property(),
     
     /*
      * Extract a copy of all the items so we can match against them when

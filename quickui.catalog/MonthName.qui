@@ -4,14 +4,10 @@
 
 <script>
 MonthName.prototype.extend({
-    
-    initialize: function() {
-        if ( !this.month() ) {
-            var today = new Date();
-            this.month( today.getMonth() );
-        }
-    },
 
+    /*
+     * The control's current culture.
+     */
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
@@ -20,6 +16,16 @@ MonthName.prototype.extend({
         return result;
     },
     
+    initialize: function() {
+        if ( !this.month() ) {
+            var today = new Date();
+            this.month( today.getMonth() );
+        }
+    },
+    
+    /*
+     * The index of the month to show: 0 = January, 1 = February, etc.
+     */
     month: Control.property( function( month ) {
         var culture = this.culture();
         var monthNameEnum = culture ? culture.calendar.months.names : MonthName.names;

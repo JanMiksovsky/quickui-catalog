@@ -30,7 +30,25 @@ is visible at a time. The strip can be programmatically slid left and right.
 <script>
 SlidingPages.prototype.extend({
     
-    pages: Control.chain( "$SlidingPages_content", "children" ),
+    /*
+     * The index of the page currently being shown.
+     */
+    activeIndex: Control.property.integer( function( activeIndex ) {
+        var page = this.pages().eq( activeIndex );
+        if ( page.length > 0 ) {
+            var left = page.position().left;
+            this.$SlidingPages_content().animate({
+                "left": -left
+            }, "fast" );
+        }
+    }),
+
+    /*
+     * The array of elements to use as pages.
+     */
+    content: Control.chain( "$SlidingPages_content", "content", function() {
+        this._adjustWidths();
+    }),
     
     initialize: function() {
 
@@ -47,20 +65,8 @@ SlidingPages.prototype.extend({
             this.activeIndex(0);
         }
     },
-
-    content: Control.chain( "$SlidingPages_content", "content", function() {
-        this._adjustWidths();
-    }),
     
-    activeIndex: Control.property.integer( function( activeIndex ) {
-        var page = this.pages().eq( activeIndex );
-        if ( page.length > 0 ) {
-            var left = page.position().left;
-            this.$SlidingPages_content().animate({
-                "left": -left
-            }, "fast" );
-        }
-    }),
+    pages: Control.chain( "$SlidingPages_content", "children" ),
     
     // Force all pages and the control itself to the maximium width of the pages.
     _adjustWidths: function() {

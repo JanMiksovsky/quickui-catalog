@@ -48,10 +48,16 @@
 <script>
 HorizontalPanels.prototype.extend({
     
+    /*
+     * The content of the main center panel.
+     */
     content: Control.chain( "$HorizontalPanels_content", "content", function() {
         this.trigger( "sizeChanged" );        
     }),
     
+    /*
+     * True if the control should fill its container.
+     */
     fill: Control.chain( "applyClass/fill" ),
     
     layout: function() {
@@ -64,10 +70,16 @@ HorizontalPanels.prototype.extend({
         return this;
     },
     
+    /*
+     * The content of the left panel.
+     */
     left: Control.chain( "$HorizontalPanels_left", "content", function() {
         this.trigger( "sizeChanged" );        
     }),
     
+    /*
+     * The content of the right panel.
+     */
     right: Control.chain( "$HorizontalPanels_right", "content", function() {
         this.trigger( "sizeChanged" );        
     })

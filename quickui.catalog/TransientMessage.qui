@@ -26,6 +26,22 @@ A message which briefly appears on a page before automatically disappearing.
 TransientMessage.prototype.extend({
     
     /*
+     * Cancel display of the message.
+     */
+    cancel: function() {
+        this._super();
+        this.remove();
+    },
+    
+    /*
+     * Close display of the message normally.
+     */
+    close: function() {
+        this._super();
+        this.remove();
+    },
+    
+    /*
      * The time before the message begins to fade out.
      * 
      * If undefined (the default value), the duration will be calculated
@@ -45,18 +61,10 @@ TransientMessage.prototype.extend({
             });
         });
     },
-    
-    cancel: function() {
-        this._super();
-        this.remove();
-    },
-    
-    close: function() {
-        this._super();
-        this.remove();
-    },
-    
-    /* Show the message */
+
+    /*
+     * Show the message.
+     */    
     open: function() {
         
         this._super();

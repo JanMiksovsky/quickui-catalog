@@ -26,10 +26,6 @@ The rotation stops if the user clicks to navigate to a specific page.
 <script>
 RotatingPagesWithDots.prototype.extend({
     
-    // Interval between rotation animations (does not include animation duration).
-    rotationInterval: Control.property.integer( null, 1000 ),
-    _timeout: Control.property(),
-    
     initialize: function() {
         
         this._super();
@@ -57,8 +53,16 @@ RotatingPagesWithDots.prototype.extend({
             }
         }
     }),
+    
+    /*
+     * Interval between rotation animations. This does not include the duration
+     * of the sliding animation. The default value is 1000 (one second).
+     */
+    rotationInterval: Control.property.integer( null, 1000 ),
 
-    // Stop the rotation    
+    /*
+     * Stop the rotation in progress.
+     */
     stop: Control.iterator( function() {
         clearTimeout( this._timeout() );
         this._timeout( null );
@@ -69,7 +73,10 @@ RotatingPagesWithDots.prototype.extend({
         var rotationInterval = this.rotationInterval();
         var self = this;
         this._timeout( setTimeout( function() { self.rotate(); }, rotationInterval ) );
-    } 
+    },
+    
+    _timeout: Control.property(),
+
 });
 </script>
 
