@@ -1,3 +1,5 @@
+<!-- Shows a day of the month as a button. -->
+
 <Control className="CalendarDayButton">
 
 <prototype>

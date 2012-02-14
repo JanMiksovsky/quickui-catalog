@@ -63,10 +63,22 @@ An input area with a dropdown arrow, which invokes a popup.
 <script>
 ComboBox.prototype.extend({
 
+    /*
+     * True if the dropdown portion should automatically close if the user
+     * presses Enter. Default is true.
+     */
     closeOnEnter: Control.property.bool( null, true ),
+    
+    /*
+     * The content of the combo box's input portion.
+     */
     content: Control.chain( "$ComboBox_content", "content" ),
+    
+    /*
+     * The content of the dropdown button. By default, this shows a
+     * downward-pointing arrow.
+     */
     dropdownButtonContent: Control.chain( "$dropdownButton", "content" ),
-    openOnFocus: Control.property.bool( null, true ),
     
     initialize: function() {
         
@@ -142,14 +154,17 @@ ComboBox.prototype.extend({
     },
     
     /*
-     * Return the combo box's input control. By default we return the first
+     * Returns the combo box's input control. By default this is the first
      * text input element in the content. Subclasses can override this to
-     * point at a different element.
+     * indicate that a different element should be used for input.
      */
     inputControl: function() {
         return this.$ComboBox_content().find( "input[type='text']" ).eq(0);
     },
     
+    /*
+     * Open the combo box.
+     */
     open: function() {
         if ( !this.opened() ) {
         
@@ -169,6 +184,12 @@ ComboBox.prototype.extend({
         }
         return this._super();
     },
+
+    /*
+     * True if the control should automatically open when it receives the
+     * keyboard focus. Default is true.
+     */
+    openOnFocus: Control.property.bool( null, true ),
 
     /*
      * The class of the text box portion of the combo box.

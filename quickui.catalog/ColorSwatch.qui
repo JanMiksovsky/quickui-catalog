@@ -21,6 +21,9 @@
 <script>
 ColorSwatch.prototype.extend({
     
+    /*
+     * The color to show. This will become the control's background color.
+     */
     color: function( color ) {
         if ( color === undefined ) {
             return this.css( "background-color" );

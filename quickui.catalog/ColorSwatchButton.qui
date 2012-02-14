@@ -15,17 +15,24 @@
 
 <script>
 ColorSwatchButton.prototype.extend({
+    
+    /*
+     * The color to show.
+     */
+    color: Control.chain( "$swatch", "color" ),
+    
+    /*
+     * The swatch's label. Setting this implicitly sets the color to show
+     * the color with the indicated name.
+     */
+    content: Control.chain( "$ColorSwatchButton_content", "content", function( content ) {
+        this.$swatch().color( content );
+    }),
 
     initialize: function() {
         this._super();
         this.genericIfClassIs( ColorSwatchButton );
-    },
-    
-    color: Control.chain( "$swatch", "color" ),
-    
-    content: Control.chain( "$ColorSwatchButton_content", "content", function( content ) {
-        this.$swatch().color( content );
-    })
+    }
     
 });
 </script>

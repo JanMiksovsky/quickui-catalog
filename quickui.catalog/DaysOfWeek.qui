@@ -26,13 +26,9 @@
 <script>
 DaysOfWeek.prototype.extend({
     
-    initialize: function() {
-        this.genericIfClassIs( DaysOfWeek );
-        if ( !this.format() ) {
-            this.format( "namesAbbr" );
-        }
-    },
-    
+    /*
+     * The control's current culture.
+     */
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
@@ -40,10 +36,14 @@ DaysOfWeek.prototype.extend({
         }
         return result;
     },
-
+    
     /*
-     * Uses the day name formats defined by Globalize:
-     * names (e.g., "Sunday"), namesAbbreviated ("Sun"), namesShort ("Su")
+     * The format used to show the names of the day. These are defined by
+     * the Globalize library:
+     * 
+     *  "names": the full name, e.g. "Sunday".
+     *  "namesAbbreviated": an abbreviated name, e.g., "Sun".
+     *  "namesShort": an even shorter name, e.g., "Su".
      */
     format: Control.property( function( format ) {
         
@@ -59,7 +59,14 @@ DaysOfWeek.prototype.extend({
             var dayName = dayNames[ day ];
             $children.eq(i).content( dayName );
         }
-    })
+    }),
+
+    initialize: function() {
+        this.genericIfClassIs( DaysOfWeek );
+        if ( !this.format() ) {
+            this.format( "namesAbbr" );
+        }
+    }
     
 });
 

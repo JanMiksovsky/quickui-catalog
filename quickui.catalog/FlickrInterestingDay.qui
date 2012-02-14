@@ -62,26 +62,20 @@
 
 <script>
 FlickrInterestingDay.prototype.extend({
-
-    content: Control.chain( "$FlickrInterestingDay_content", "content" ),
-    href: Control.chain( "$link", "attr/href" ),
-    image: Control.chain( "$image", "attr/src" ),
     
-    initialize: function() {
-        if ( !this.date() ) {
-            // Default day is *yesterday* (since we need a date in the past).
-            var date = CalendarDay.today();
-            date.setDate( date.getDate() - 1 );
-            this.date( date );
-        }
-    },
-    
+    /*
+     * True if the control should automatically load the photo when the date
+     * is set. Default is false.
+     */
     autoLoad: Control.property.bool( function( autoLoad ) {
         if ( autoLoad && this.image() == null ) {
             this.loadPhoto();
         }
     }),
     
+    /*
+     * The date to show.
+     */
     date: function( date ) {
         var result = this._super( date );
         if ( date !== undefined ) {
@@ -94,7 +88,31 @@ FlickrInterestingDay.prototype.extend({
         }
         return result;
     },
+
+    content: Control.chain( "$FlickrInterestingDay_content", "content" ),
     
+    /*
+     * The location of the Flickr page for the photo.
+     */
+    href: Control.chain( "$link", "attr/href" ),
+    
+    /*
+     * The location of the photo image on Flickr.
+     */
+    image: Control.chain( "$image", "attr/src" ),
+    
+    initialize: function() {
+        if ( !this.date() ) {
+            // Default day is *yesterday* (since we need a date in the past).
+            var date = CalendarDay.today();
+            date.setDate( date.getDate() - 1 );
+            this.date( date );
+        }
+    },
+    
+    /*
+     * Load the photo for the given date.
+     */
     loadPhoto: Control.iterator( function() {
         var date = this.date();
         // Flickr only has a photo for dates entirely in the past (not for today).

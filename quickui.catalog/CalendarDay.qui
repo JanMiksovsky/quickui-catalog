@@ -44,22 +44,10 @@ CalendarDay.prototype.extend({
     sunday: Control.chain( "applyClass/sunday" ),
     today: Control.chain( "applyClass/today" ),
     weekday: Control.chain( "applyClass/weekday" ),
-    
-    initialize: function() {
-        
-        this._super();
-        this.genericIfClassIs( CalendarDay );
-        
-        var self = this;
-        this.click( function( event ) {
-            self.trigger( "dateSelected", [ self.date() ] );
-        });
-        
-        if ( !this.date() ) {
-            this.date( CalendarDay.today() );
-        }
-    },
 
+    /*
+     * The date to show.
+     */
     date: Control.property.date( function( date ) {
         
         var today = CalendarDay.today();
@@ -80,7 +68,22 @@ CalendarDay.prototype.extend({
             .today( daysFromToday === 0 )
             .alternateMonth( Math.abs( date.getMonth() - today.getMonth()) % 2 === 1 )
             .content( date.getDate() );
-    })
+    }),
+    
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( CalendarDay );
+        
+        var self = this;
+        this.click( function( event ) {
+            self.trigger( "dateSelected", [ self.date() ] );
+        });
+        
+        if ( !this.date() ) {
+            this.date( CalendarDay.today() );
+        }
+    }
     
 });
 

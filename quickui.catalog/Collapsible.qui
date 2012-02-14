@@ -123,11 +123,18 @@ Collapsible.prototype.extend({
         });
     },
 	
+	/*
+	 * Toggle the collapsed state of the control.
+	 */
 	toggleCollapse: function()
 	{
 		this.collapsed( !this.collapsed() );
 	},
 	
+	/*
+	 * True if the control should toggle its state when the user clicks in
+	 * the heading. Default is true.
+	 */
     toggleOnClick: Control.property.bool( null, true ),
     
     _collapsed: Control.property.bool( null, false )

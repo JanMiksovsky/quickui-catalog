@@ -11,16 +11,41 @@ A control with a popup menu that appears above or below it.
 
 <script>
 HasPopup.prototype.extend({
-    
+
+    /*
+     * Cancels the popup.
+     */    
     cancel: Control.chain( "$HasPopup_popup", "cancel" ),
+
+    /*
+     * True if the user can cancel an open popup by pressing the Escape key.
+     * Default is true.
+     */
+    cancelOnEscapeKey: Control.chain( "$HasPopup_popup", "cancelOnEscapeKey" ),
+
+    /*
+     * True if the popup should be cancelled if the user clicks outside it.
+     * Default is true.
+     */
     cancelOnOutsideClick: Control.chain( "$HasPopup_popup", "cancelOnOutsideClick" ),
+
+    /*
+     * The element(s) with which the popup will be associated. By default,
+     * clicking in the content will open the popup, and the popup will be
+     * positioned with respect to this content.
+     */
     content: Control.chain( "$HasPopup_content", "content" ),
+
+    /*
+     * Close the popup normally.
+     */
     close: Control.chain( "$HasPopup_popup", "close" ),
+
+    /*
+     * True if the popup should be closed normally if the user clicks inside
+     * it. Default is true.
+     */
     closeOnInsideClick: Control.chain( "$HasPopup_popup", "closeOnInsideClick" ),
-    openOnClick: Control.property.bool(),
-    open: Control.chain( "$HasPopup_popup", "open" ),
-    opened: Control.chain( "$HasPopup_popup", "opened" ),
-    popup: Control.chain( "$HasPopup_popup", "content" ),
 
     initialize: function()
     {
@@ -34,6 +59,27 @@ HasPopup.prototype.extend({
             self._positionPopup();
         });
     },
+
+    /*
+     * True if the popup should open when the user clicks in the control's
+     * content. Default is true. 
+     */
+    openOnClick: Control.property.bool(),
+
+    /*
+     * Open the popup.
+     */
+    open: Control.chain( "$HasPopup_popup", "open" ),
+    
+    /*
+     * True if the popup is currently opened.
+     */
+    opened: Control.chain( "$HasPopup_popup", "opened" ),
+    
+    /*
+     * The content of the popup associated with the control.
+     */
+    popup: Control.chain( "$HasPopup_popup", "content" ),
     
     _positionPopup: function() {
         

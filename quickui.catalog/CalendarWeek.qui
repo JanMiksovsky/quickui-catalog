@@ -30,22 +30,9 @@
 <script>
 CalendarWeek.prototype.extend({
     
-    /* The date that will be included in this week (could be any day of the week) */
-    date: Control.property( function() { this._refresh(); }),
-
-    /* The collection of day cells */
-    $days: Control.chain( "children", "control" ),
-    
-    /* The class of each day cell */
-    dayClass: Control.chain( "$days", "transmute", function() { this._refresh(); } ),
-    
-    initialize: function() {
-        if ( !this.date() ) {
-            // Default date range is the current week.
-            this.date( CalendarDay.today() );
-        }
-    },
-    
+    /*
+     * The control's current culture.
+     */
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
@@ -53,10 +40,17 @@ CalendarWeek.prototype.extend({
         }
         return result;
     },
+    
+    /*
+     * The date that will be included in this week (can be any day of the week).
+     */
+    date: Control.property( function() { this._refresh(); }),
 
-    // Return the day control for the given date.
-    // TODO: Return null if date is not within this week.
+    /*
+     * Returns the control currently used to represent the given date.
+     */
     dayControlForDate: function( date ) {
+        // TODO: Return null if date is not within this week.
         var days = this.map( function( index, week ) {
             var $week = $( week ).control();
             var dayIndex = $week.daysSinceFirstDayOfWeek( date );
@@ -64,6 +58,21 @@ CalendarWeek.prototype.extend({
         });
         var $days = $().add( days ).control();
         return $days;
+    },
+
+    /* The collection of day cells */
+    $days: Control.chain( "children", "control" ),
+    
+    /*
+     * The class used to represent days in the week.
+     */
+    dayClass: Control.chain( "$days", "transmute", function() { this._refresh(); } ),
+    
+    initialize: function() {
+        if ( !this.date() ) {
+            // Default date range is the current week.
+            this.date( CalendarDay.today() );
+        }
     },
     
     daysSinceFirstDayOfWeek: function( date ) {

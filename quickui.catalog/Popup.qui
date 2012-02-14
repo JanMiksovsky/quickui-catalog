@@ -33,10 +33,24 @@ Popup.prototype.extend({
     blanket: Control.property(),
     blanketColor: Control.property(),
     blanketOpacity: Control.property(),
+    
+    /*
+     * True if the user can cancel an open popup by pressing the Escape key.
+     * Default is true.
+     */
     cancelOnEscapeKey: Control.property.bool( null, true ),
+    
+    /*
+     * True if the popup should be cancelled if the user clicks outside it.
+     * Default is true.
+     */
     cancelOnOutsideClick: Control.property.bool( null, true ),
+    
+    /*
+     * True if the popup should be closed normally if the user clicks inside
+     * it. Default is true.
+     */
     closeOnInsideClick: Control.property.bool(),
-    _windowBlurHandler: Control.property(),
     
     initialize: function()
     {
@@ -125,7 +139,9 @@ Popup.prototype.extend({
         return this;
     },
     
-    // Return true if the popup is currently open (visible).
+    /*
+     * Open the popup.
+     */
     opened: function() {
         return this.blanket() != null;
     },
@@ -224,7 +240,10 @@ Popup.prototype.extend({
             }
         });
         return Math.max.apply( null, zIndices );
-    }
+    },
+    
+    _windowBlurHandler: Control.property(),
+
 });
 </script>
 

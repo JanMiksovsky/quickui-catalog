@@ -29,9 +29,46 @@
 
 <script>
 CalendarMonthNavigator.prototype.extend({
+
+    /*
+     * The control's current culture.
+     */
+    culture: function( culture ) {
+        var result = this._super( culture );
+        if ( culture !== undefined ) {
+            this.$monthName().culture( culture );
+            this.$calendar().culture( culture );
+        }
+        return result;
+    },
     
+    /*
+     * The date that will be included in the month (can be any day of the month).
+     */
+    date: Control.property( function( date ) {
+        if ( this.$calendar().date().getTime() !== date.getTime() ) {
+            this.$calendar().date( date );
+        }
+        this.$monthName().month( date.getMonth() );
+        this.$year().content( date.getFullYear() );
+        this._applySelection();
+    }), 
+    
+    /*
+     * The class used to represent days in the month.
+     */
+    dayClass: Control.property[ "class" ]( function( dayClass ) {
+        /*
+         * We define our own dayClass property so we can tell if its been set.
+         * This lets us provide a default dayClass.
+         */
+        this.$calendar().dayClass( dayClass );
+    }),
+    
+    /*
+     * The format used to show day headings. See DaysOfWeek.
+     */
     dayNameFormat: Control.chain( "$calendar", "dayNameFormat" ),
-    showTodayButton: Control.chain( "$todayContainer", "visibility" ),
 
     initialize: function() {
         
@@ -60,47 +97,32 @@ CalendarMonthNavigator.prototype.extend({
         }
     },
 
-    culture: function( culture ) {
-        var result = this._super( culture );
-        if ( culture !== undefined ) {
-            this.$monthName().culture( culture );
-            this.$calendar().culture( culture );
-        }
-        return result;
-    },
-    
-    date: Control.property( function( date ) {
-        if ( this.$calendar().date().getTime() !== date.getTime() ) {
-            this.$calendar().date( date );
-        }
-        this.$monthName().month( date.getMonth() );
-        this.$year().content( date.getFullYear() );
-        this._applySelection();
-    }), 
-    
     /*
-     * Define our own dayClass property so we can tell if its been set,
-     * so we can provide a default dayClass.
+     * Show the next month.
      */
-    dayClass: Control.property[ "class" ]( function( dayClass ) {
-        this.$calendar().dayClass( dayClass );
-    }),
-
     next: function() {
-        // Go one month forward.
         this._adjustMonth( 1 );
     },
-    
+
+    /*
+     * Show the previous month.
+     */    
     previous: function() {
-        // Go one month backward.
         this._adjustMonth( -1 );
     },
     
-    /* True if the selected date should receive the "selected" style */
+    /*
+     * True if the selected date should have the "selected" style applied to it.
+     */
     showSelectedDate: Control.property.bool( function( showSelectedDate ) {
         // Force selection (or not) of currently-selected date.
         this._applySelection();
     }, true ),
+
+    /*
+     * True if the "Today" button should be shown.
+     */
+    showTodayButton: Control.chain( "$todayContainer", "visibility" ),
     
     // Move one month forward (if direction is positive) or backward
     // (if direction is negative).

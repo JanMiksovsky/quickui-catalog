@@ -36,25 +36,15 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 
 <script>
 AdPlaceholder.prototype.extend({
-
-    initialize: function() {
-        this.genericIfClassIs( AdPlaceholder );
-        
-        if ( !this.dimensions() ) {
-            // Use default size.
-            this.dimensions( "300 x 250" );
-        }
-    },
     
     /*
-     * The content of the ad unit. By default this shows the unit/dimensions.
+     * Ad unit content. By default, this shows the unit/dimensions.
      */
     content: Control.chain( "$AdPlaceholder_content", "content" ),
     
     /*
-     * The dimensions of the ad unit. Should include two values separated
-     * by an "x", e.g., "300 x 250". Can also be one of the following
-     * ad unit names:
+     * Ad unit dimensions. Should include two values separated by an "x",
+     * e.g., "300 x 250". Can also be one of the following ad unit names:
      * 
      *      Medium Rectangle
      *      Rectangle
@@ -81,8 +71,17 @@ AdPlaceholder.prototype.extend({
             .content( width + " x " + height )
             .trigger( "sizeChanged" );
             
-    })
-    
+    }),
+
+    initialize: function() {
+        this.genericIfClassIs( AdPlaceholder );
+        
+        if ( !this.dimensions() ) {
+            // Use default size.
+            this.dimensions( "300 x 250" );
+        }
+    }
+
 });
 
 // Class methods

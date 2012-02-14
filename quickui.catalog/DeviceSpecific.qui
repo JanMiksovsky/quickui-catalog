@@ -5,10 +5,15 @@
 <script>
 DeviceSpecific.prototype.extend({
 
-    "defaultClass": Control.property[ "class" ](),
-    "mobileClass": Control.property[ "class" ](),
+    /*
+     * The content to use when the current device is not a mobile device.
+     */
     "default": Control.property(),
-    "mobile": Control.property(),
+    
+    /*
+     * The class of the control when the current device is not a mobile device.
+     */
+    "defaultClass": Control.property[ "class" ](),
     
     initialize: function() {
 
@@ -44,7 +49,18 @@ DeviceSpecific.prototype.extend({
         if ( deviceClasses ) {
             $control.addClass( deviceClasses );
         }
-    }
+    },
+    
+    /*
+     * The content to use when the current device is a mobile device.
+     */
+    "mobile": Control.property(),
+    
+    /*
+     * The class of the control when the current device is a mobile device.
+     */
+    "mobileClass": Control.property[ "class" ]()
+
 });
 
 // Class methods

@@ -45,12 +45,11 @@ Fader.prototype.extend({
     
     content: Control.chain( "$Fader_content", "content" ),
     
-    initialize: function() {
-        this.inDocument( function( $control ) {
-            $control._redraw();
-        });
-    },
-    
+    /*
+     * The direction in which the content should fade. If "horizontal" (the
+     * default), the content will fade to the right. If "vertical", the content
+     * will fade to the bottom. 
+     */
     direction: Control.property( function( direction ) {
         this
             .toggleClass( "vertical", direction !== "horizontal" )
@@ -58,6 +57,12 @@ Fader.prototype.extend({
             .$gradient()
                 .direction(direction);
     }),
+    
+    initialize: function() {
+        this.inDocument( function( $control ) {
+            $control._redraw();
+        });
+    },
     
     // Expand a color like #abc into #aabbcc.
     _expandShortHexValue: function( s ) {

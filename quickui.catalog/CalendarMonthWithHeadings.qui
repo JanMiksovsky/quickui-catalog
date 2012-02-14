@@ -42,20 +42,10 @@
 CalendarMonthWithHeadings.prototype.extend({
     
     $days: Control.chain( "$calendar", "$days" ),
-    dayClass: Control.chain( "$calendar", "dayClass" ),
-    dayNameFormat: Control.chain( "$daysOfWeek", "format" ),
-    showMonthName: Control.chain( "$monthName", "visibility" ),
     
-    initialize: function() {
-        
-        this.genericIfClassIs( CalendarMonthWithHeadings );
-        
-        if ( !this.date() ) {
-            // By default, show current month.
-            this.date( CalendarDay.today() );
-        }
-    },
-    
+    /*
+     * The control's current culture.
+     */
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
@@ -75,9 +65,37 @@ CalendarMonthWithHeadings.prototype.extend({
         this.$monthName().month( date.getMonth() );
     }),
     
+    /*
+     * The class used to represent days in the month.
+     */
+    dayClass: Control.chain( "$calendar", "dayClass" ),
+
+    /*
+     * Returns the control currently showing the given date.
+     */
     dayControlForDate: function( date ) {
         return this.$calendar().dayControlForDate( date );
-    }
+    },
+
+    /*
+     * The format used to show day headings. See DaysOfWeek.
+     */
+    dayNameFormat: Control.chain( "$daysOfWeek", "format" ),
+    
+    initialize: function() {
+        
+        this.genericIfClassIs( CalendarMonthWithHeadings );
+        
+        if ( !this.date() ) {
+            // By default, show current month.
+            this.date( CalendarDay.today() );
+        }
+    },
+
+    /*
+     * True if the name of the month should be shown.
+     */
+    showMonthName: Control.chain( "$monthName", "visibility" )
     
 });
 </script>

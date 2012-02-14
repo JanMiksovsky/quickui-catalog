@@ -5,11 +5,10 @@
 <script>
 BrowserSpecific.prototype.extend({
 
+    /*
+     * Content to show if none of the specified browsers apply.
+     */
     "default": Control.property(),
-    "mozilla": Control.property(),
-    "msie": Control.property(),
-    "opera": Control.property(),
-    "webkit": Control.property(),
     
     initialize: function() {
         var content;
@@ -29,7 +28,28 @@ BrowserSpecific.prototype.extend({
             content = this[ "default" ]();
         }
         this.content( content );
-    }
+    },
+    
+    /*
+     * Content to show to Mozilla (Firefox) users.
+     */
+    mozilla: Control.property(),
+    
+    /*
+     * Content to show to Microsoft Internet Explorer users.
+     */
+    msie: Control.property(),
+    
+    /*
+     * Content to show to Opera users.
+     */
+    opera: Control.property(),
+    
+    /*
+     * Content to show to WebKit (Chrome, Safari) users.
+     */
+    webkit: Control.property()
+
 });
 </script>
 

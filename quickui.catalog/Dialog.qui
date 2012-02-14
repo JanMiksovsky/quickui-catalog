@@ -23,6 +23,22 @@ Base class for modal dialogs.
 
 <script>
 Dialog.prototype.extend({
+
+    /*
+     * Cancel the dialog. This implicitly closes the dialog.
+     */    
+    cancel: function() {
+        this._super();
+        this.remove();
+    },
+    
+    /*
+     * Close the dialog normally.
+     */
+    close: function() {
+        this._super();
+        this.remove();
+    },
     
     initialize: function() {
         this._super();
@@ -31,16 +47,6 @@ Dialog.prototype.extend({
         this.positionPopup( function() {
             self._positionPopup();
         });
-    },
-    
-    cancel: function() {
-        this._super();
-        this.remove();
-    },
-    
-    close: function() {
-        this._super();
-        this.remove();
     },
     
     /*

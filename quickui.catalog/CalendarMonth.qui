@@ -29,20 +29,12 @@
 <script>
 CalendarMonth.prototype.extend({
 
-    dayClass: Control.chain( "$weeks", "dayClass", function() { this._refresh(); } ),
     $days: Control.chain( "find/.CalendarDay", "control" ),
     $weeks: Control.chain( "children", "control" ),
     
-    initialize: function() {
-        
-        this.genericIfClassIs( CalendarMonth );
-        
-        if ( !this.date() ) {
-            // By default, show current month.
-            this.date( CalendarDay.today() );
-        }
-    },
-    
+    /*
+     * The control's current culture.
+     */
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
@@ -52,7 +44,14 @@ CalendarMonth.prototype.extend({
         return result;
     },
 
-    // The date that will be included in this month (could be any day of the month)
+    /*
+     * The class used to represent days in the month.
+     */
+    dayClass: Control.chain( "$weeks", "dayClass", function() { this._refresh(); } ),
+
+    /*
+     * The date that will be included in this month (can be any day of the month).
+     */
     date: Control.property( function() {
         this
             ._refresh()
@@ -64,9 +63,21 @@ CalendarMonth.prototype.extend({
         return this.weekControlForDate( date ).dayControlForDate( date );
     },
     
-    // Return the week control for the given date.
-    // TODO: Return null if date is not within this month.
+    initialize: function() {
+        
+        this.genericIfClassIs( CalendarMonth );
+        
+        if ( !this.date() ) {
+            // By default, show current month.
+            this.date( CalendarDay.today() );
+        }
+    },
+    
+    /*
+     * Returns the week control for the given date.
+     */
     weekControlForDate: function( date ) {
+        // TODO: Return null if date is not within this month.
         var dayOMonth = date.getDate();
         var weeksWithDate = this.map( function( index, month ) {
             var $weeks = $( month ).control().$weeks();

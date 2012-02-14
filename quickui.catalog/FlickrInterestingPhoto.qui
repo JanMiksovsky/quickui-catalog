@@ -37,6 +37,9 @@ FlickrInterestingPhoto.prototype.extend({
         }
     },
     
+    /*
+     * Reload the photo.
+     */
     reload: Control.iterator( function() {
         var self = this;
         FlickrInterestingPhoto.getRandomPhoto( function( photo ) {
@@ -44,7 +47,9 @@ FlickrInterestingPhoto.prototype.extend({
         }, this.photoSize());
     }),
     
-    /* The photo currently shown */
+    /*
+     * The location of the current photo image.
+     */
     photo: Control.chain( "attr/src" ),
     
     /*
@@ -74,8 +79,7 @@ FlickrInterestingPhoto.extend({
     
     /*
      * Flickr API key.
-     * 
-     * This is the QuickUI account API key. Set
+     * By default, this uses the QuickUI account API key. Set
      * FlickrInterestingPhoto.apiKey = "<your key here>" before the first
      * call to this control to use your own key.
      */

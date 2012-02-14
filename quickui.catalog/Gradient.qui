@@ -7,14 +7,25 @@ Alpha values are possible, but all colors must be specified as RGBA hex values.
 
 <script>
 Gradient.prototype.extend({
-    
-    end: Control.property(function() { this._redraw(); }),
+
+    /*
+     * The direction of the gradient: "horizontal" or "vertical" (the default).
+     */    
     direction: Control.property(function() { this._redraw(); }, "vertical"),
-    start: Control.property(function() { this._redraw(); }),
+    
+    /*
+     * The ending value for the gradient.
+     */
+    end: Control.property(function() { this._redraw(); }),
     
     initialize: function() {
         this._redraw();
     },
+
+    /*
+     * The starting value for the gradient.
+     */
+    start: Control.property(function() { this._redraw(); }),
     
     _redraw: function() {
         var direction = this.direction();

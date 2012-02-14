@@ -15,8 +15,26 @@ Lets user pick a date with a date-optimzed text box or a navigable month calenda
 <script>
 DateComboBox.prototype.extend({
     
-    navigatorClass: Control.chain( "$navigator", "transmute" ),
-    required: Control.chain( "$ComboBox_content", "required" ),
+    /*
+     * The date indicated in the control.
+     */
+    date: Control.property( function( date ) {
+        
+        var time = date && date.getTime();
+        
+        var textBoxDate = this.$ComboBox_content().date();
+        if ( !textBoxDate || textBoxDate.getTime() !== time ) {
+            this.$ComboBox_content().date( date );
+        }
+        
+        // Navigator can only handle non-null dates.
+        if ( date ) {
+            var navigatorDate = this.$navigator().date();
+            if ( !navigatorDate || navigatorDate.getTime() !== time ) {
+                this.$navigator().date( date );
+            }
+        }
+    }),
     
     initialize: function() {
         
@@ -38,27 +56,18 @@ DateComboBox.prototype.extend({
             }
         });
     },
+
+    /*
+     * The class used for the dropdown portion of the combo box.
+     * By default this is a CalendarMonthNavigator, but it can be set to any
+     * class that exposes a date() property.
+     */    
+    navigatorClass: Control.chain( "$navigator", "transmute" ),
     
     /*
-     * Keep dates in text box and navigator in sync.
+     * True if the user must enter a value in this field.
      */
-    date: Control.property( function( date ) {
-        
-        var time = date && date.getTime();
-        
-        var textBoxDate = this.$ComboBox_content().date();
-        if ( !textBoxDate || textBoxDate.getTime() !== time ) {
-            this.$ComboBox_content().date( date );
-        }
-        
-        // Navigator can only handle non-null dates.
-        if ( date ) {
-            var navigatorDate = this.$navigator().date();
-            if ( !navigatorDate || navigatorDate.getTime() !== time ) {
-                this.$navigator().date( date );
-            }
-        }
-    })
+    required: Control.chain( "$ComboBox_content", "required" )
 
 });
 </script>
