@@ -55,7 +55,25 @@ LabeledInput.prototype.extend({
      * Sets the input control's type.
      * This is set in subclasses CheckBox and RadioButton.
      */
-    _type: Control.chain( "_inputControl", "prop/type" )
+    _type: function( type ) {
+        var input = this._inputControl();        
+        if ( type !== undefined && $.browser.msie && parseInt( $.browser.version ) < 9 ) {
+            // IE8 can't change an input's "type" attribute.
+            for ( i = 0; i < this.length; i++ ) {
+                var oldInput = input.eq(i);
+                // Create a new input to replace the existing one.
+                var newInput = $( "<input type='" + type + "'/>" ).prop({
+                    // Copy old input's properties to new one.
+                    checked: oldInput.prop( "checked" ),
+                    disabled: oldInput.prop( "disabled" )
+                });
+                oldInput.replaceWith( newInput );
+            }
+            return this;
+        } else {
+            return input.prop( "type", type );
+        }
+    }
 
 });
 </script>
