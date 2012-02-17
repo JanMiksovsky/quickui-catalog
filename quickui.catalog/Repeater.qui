@@ -24,8 +24,9 @@ Repeater.prototype.extend({
     
     /*
      * The number of repetitions to create.
+     * The default count is 1.
      */
-    count: Control.property.integer( function() { this._refresh(); }, 0 ),
+    count: Control.property.integer( function() { this._refresh(); }, 1 ),
     
     initialize: function() {
         this._refresh();
