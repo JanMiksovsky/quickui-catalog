@@ -4,11 +4,54 @@
     <Layout/>
 </prototype>
 
+<style>
+{
+    position: relative;
+}
+
+> * {
+    position: absolute;
+}
+</style>
+
 <script>
 PackedColumns.prototype.extend({
     
     layout: function() {
+
+        var children = this.children();
+        var childCount = children.length;
+        if ( childCount === 0 ) {
+            return;
+        }
+        
         // Infer column width from outer width of first child
+        var columnWidth = children.eq(0).outerWidth();
+        var columns = Math.max( Math.floor( this.width() / columnWidth ), 1 );
+        //console.log( this.width() + " " + columnWidth + " " + columns );
+        
+        var columnHeight = [];
+        for ( var childIndex = 0; childIndex < childCount; childIndex++ ) {
+            
+            // Find shortest column
+            var shortestColumn = 0;
+            for ( var column = 1; column < columns; column++ ) {
+                var height = columnHeight[ column ] || 0;
+                if ( height < columnHeight[ shortestColumn ] ) {
+                    shortestColumn = column;
+                }
+            }
+            
+            // Add the current child to the shortest column
+            var x = shortestColumn * columnWidth;
+            var y = columnHeight[ shortestColumn ] || 0;
+            var child = children.eq( childIndex );
+            child.css({
+                left: x,
+                top: y
+            });
+            columnHeight[ shortestColumn ] = y + child.outerHeight();
+        }
     },
     
     spacing: Control.property.integer()
