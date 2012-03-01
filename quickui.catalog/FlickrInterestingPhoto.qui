@@ -26,7 +26,7 @@ FlickrInterestingPhoto.prototype.extend({
              * the correct dimensions of the photo, instead of the dimensions
              * of the image placeholder icon. 
              */
-            self.css( "width", "auto" );
+            //self.css( "width", "auto" );
 
             self.trigger( "sizeChanged" );
         });

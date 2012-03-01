@@ -1,0 +1,27 @@
+<Control className="PinterestBoard">
+
+<content>
+    <PackedColumns>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+        <PinterestPin/>
+    </PackedColumns>
+</content>
+
+<style>
+{
+    background-color: #F7F5F5;
+    font-family: Helvetica Neue, Arial, Sans-serif;
+    font-size: 11px;
+    padding: 15px;
+}
+</style>
+
+</Control>

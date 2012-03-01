@@ -1,0 +1,19 @@
+<Control className="PackedColumns">
+
+<prototype>
+    <Layout/>
+</prototype>
+
+<script>
+PackedColumns.prototype.extend({
+    
+    layout: function() {
+        // Infer column width from outer width of first child
+    },
+    
+    spacing: Control.property.integer()
+    
+});
+</script>
+
+</Control>

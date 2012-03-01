@@ -1,0 +1,30 @@
+<Control className="PinterestPin">
+
+<content>
+    <FlickrInterestingPhoto id="photo"/>
+    <LoremIpsum id="text"/>
+</content>
+
+<style>
+{
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+    -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+    -webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+    color: #211922;
+    margin: 0 15px 15px 0;
+    padding: 15px;
+    width: 192px;
+}
+
+#photo {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#text p {
+    margin: 0;
+}
+</style>
+
+</Control>
