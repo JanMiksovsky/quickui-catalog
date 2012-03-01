@@ -1,18 +1,7 @@
 <Control className="PinterestBoard">
 
 <content>
-    <PackedColumns>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-        <PinterestPin/>
-    </PackedColumns>
+    <PackedColumns id="packedColumns"/>
 </content>
 
 <style>
@@ -23,5 +12,21 @@
     padding: 15px;
 }
 </style>
+
+<script>
+PinterestBoard.prototype.extend({
+    
+    initialize: function() {
+        var pins = Repeater
+            .create({
+                controlClass: "PinterestPin",
+                count: 40
+            })
+            .controls();
+        this.$packedColumns().content( pins );
+    }
+    
+});
+</script>
 
 </Control>

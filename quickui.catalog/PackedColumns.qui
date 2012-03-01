@@ -25,8 +25,12 @@ PackedColumns.prototype.extend({
             return;
         }
         
-        // Infer column width from outer width of first child
-        var columnWidth = children.eq(0).outerWidth();
+        // Infer column width and inter-child margins from first child.
+        var firstChild = children.eq(0);
+        var marginRight = parseInt( firstChild.css( "margin-right" ) );
+        var marginBottom = parseInt( firstChild.css( "margin-bottom" ) );
+        var columnWidth = firstChild.outerWidth() + marginRight;
+        
         var columns = Math.max( Math.floor( this.width() / columnWidth ), 1 );
         //console.log( this.width() + " " + columnWidth + " " + columns );
         
@@ -50,7 +54,7 @@ PackedColumns.prototype.extend({
                 left: x,
                 top: y
             });
-            columnHeight[ shortestColumn ] = y + child.outerHeight();
+            columnHeight[ shortestColumn ] = y + child.outerHeight() + marginBottom;
         }
     },
     
