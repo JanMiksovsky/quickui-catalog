@@ -20,7 +20,7 @@ PinterestBoard.prototype.extend({
         var pins = Repeater
             .create({
                 controlClass: "PinterestPin",
-                count: 40
+                count: 50
             })
             .controls();
         this.$packedColumns().content( pins );
