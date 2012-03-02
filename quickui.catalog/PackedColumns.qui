@@ -44,13 +44,19 @@ PackedColumns.prototype.extend({
         
         // Infer column width and inter-child margins from first child.
         var firstChild = children.eq(0);
+        var columnWidth = firstChild.outerWidth();
         var marginRight = parseInt( firstChild.css( "margin-right" ) );
         var marginBottom = parseInt( firstChild.css( "margin-bottom" ) );
-        var columnWidth = firstChild.outerWidth() + marginRight;
         
-        var columns = Math.max( Math.floor( this.width() / columnWidth ), 1 );
+        var availableWidth = this.width();
+        var columns = Math.max(
+                        Math.floor( ( availableWidth + marginRight )
+                            / ( columnWidth + marginRight ) ),
+                        1);
 
-        var leftover = Math.max( this.width() - columns * columnWidth, 0 );
+        var consumedWidth = columns * columnWidth
+                            + ( columns - 1 ) * marginRight;
+        var leftover = Math.max( availableWidth - consumedWidth, 0 );
         var offsetX = this.center()
             ? leftover / 2
             : 0;
@@ -68,7 +74,7 @@ PackedColumns.prototype.extend({
             }
             
             // Add the current child to the shortest column
-            var x = shortestColumn * columnWidth + offsetX;
+            var x = shortestColumn * ( columnWidth + marginRight ) + offsetX;
             var y = columnHeight[ shortestColumn ] || 0;
             var child = children.eq( childIndex );
             child.css({

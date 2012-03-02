@@ -1,3 +1,5 @@
+<!-- Simulated Pinterest-style pinboard pin -->
+
 <Control className="PinterestPin">
 
 <content>
