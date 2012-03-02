@@ -1,7 +1,7 @@
 <Control className="PinterestBoard">
 
 <content>
-    <PackedColumns id="packedColumns"/>
+    <PackedColumns id="packedColumns" center="true"/>
 </content>
 
 <style>

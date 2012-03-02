@@ -2,7 +2,7 @@
 
 <content>
     <FlickrInterestingPhoto id="photo"/>
-    <LoremIpsum id="text"/>
+    <LoremIpsum id="text" sentences="1" />
 </content>
 
 <style>

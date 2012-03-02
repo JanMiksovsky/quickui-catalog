@@ -1,3 +1,11 @@
+<!--
+Pack children into columns.
+
+The number of columns is variable, and is determined by diving the control's
+available width by the column width (which is taken from the width of the
+first child).
+-->
+
 <Control className="PackedColumns">
 
 <prototype>
@@ -17,6 +25,15 @@
 <script>
 PackedColumns.prototype.extend({
     
+    /*
+     * True if the columns should be centered. Default is false.
+     */
+    center: Control.property.bool( function() {
+        if ( this.inDocument() ) {
+            this.layout();
+        }
+    }),
+    
     layout: function() {
 
         var children = this.children();
@@ -32,7 +49,11 @@ PackedColumns.prototype.extend({
         var columnWidth = firstChild.outerWidth() + marginRight;
         
         var columns = Math.max( Math.floor( this.width() / columnWidth ), 1 );
-        //console.log( this.width() + " " + columnWidth + " " + columns );
+
+        var leftover = Math.max( this.width() - columns * columnWidth, 0 );
+        var offsetX = this.center()
+            ? leftover / 2
+            : 0;
         
         var columnHeight = [];
         for ( var childIndex = 0; childIndex < childCount; childIndex++ ) {
@@ -47,7 +68,7 @@ PackedColumns.prototype.extend({
             }
             
             // Add the current child to the shortest column
-            var x = shortestColumn * columnWidth;
+            var x = shortestColumn * columnWidth + offsetX;
             var y = columnHeight[ shortestColumn ] || 0;
             var child = children.eq( childIndex );
             child.css({
@@ -56,9 +77,7 @@ PackedColumns.prototype.extend({
             });
             columnHeight[ shortestColumn ] = y + child.outerHeight() + marginBottom;
         }
-    },
-    
-    spacing: Control.property.integer()
+    }
     
 });
 </script>
