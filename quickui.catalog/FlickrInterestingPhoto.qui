@@ -78,16 +78,19 @@ FlickrInterestingPhoto.prototype.extend({
 FlickrInterestingPhoto.extend({
     
     /*
-     * Flickr API key.
-     * By default, this uses the QuickUI account API key. Set
-     * FlickrInterestingPhoto.apiKey = "<your key here>" before the first
-     * call to this control to use your own key.
+     * Your Flickr API key. By default, this uses the QuickUI account API key.
+     * Set this to your own key before the first call to this control.
      */
     apiKey: "c3685bc8d8cefcc1d25949e4c528cbb0",
-    
+
+    /*
+     * Return a (somewhat) random photo from the Interestingness collection.
+     * The set of photos are obtained only once per page; once the set is
+     * exhausted, subsequent calls will cycle through the set. 
+     */    
     getRandomPhoto: function( callback, size ) {
         var self = this;
-        this.getFlickrInterestingPhotos( function( flickrPhotos ) {
+        this.getFlickrInterestingPhotos().done( function( flickrPhotos ) {
             self._counter = ( self._counter >= 0 )
                 ? ( self._counter + 1 ) % flickrPhotos.length 
                 : 0;
@@ -96,30 +99,33 @@ FlickrInterestingPhoto.extend({
             callback( photo );
         });
     },
-    
-    getFlickrInterestingPhotos: function( callback ) {
-        
-        if ( this._flickrPhotos ) {
-            callback( this._flickrPhotos );
-            return;
-        }
-        
-        var day = new Date();
-        day.setDate( day.getDate() - 2 );   // Day before yesterday
-        var flickrDate = this._formatFlickrDate( day );
-        
-        var params = {
-            method: "flickr.interestingness.getList",
-            date: flickrDate,
-            per_page: 100
-        };
 
-        var self = this;
-        this.getFlickrPhotos( params, function( flickrPhotos ) {
-            self._shuffle( flickrPhotos );
-            self._flickrPhotos = flickrPhotos;
-            callback( self._flickrPhotos );
-        });
+    getFlickrInterestingPhotos: function() {
+        if ( !this._promise ) {
+
+            // This is the first request for photos.             
+            var deferred = new jQuery.Deferred();
+            this._promise = deferred.promise();
+            
+            var day = new Date();
+            day.setDate( day.getDate() - 2 );   // Day before yesterday
+            var flickrDate = this._formatFlickrDate( day );
+            
+            var params = {
+                method: "flickr.interestingness.getList",
+                date: flickrDate,
+                per_page: 100
+            };
+    
+            var self = this;
+            this.getFlickrPhotos( params, function( flickrPhotos ) {
+                // Shuffle the photos before returning them.
+                self._shuffle( flickrPhotos );
+                self._flickrPhotos = flickrPhotos;
+                deferred.resolve( flickrPhotos );
+            });
+        }
+        return this._promise;
     },
     
     getFlickrPhotos: function( params, callback ) {
@@ -176,9 +182,7 @@ FlickrInterestingPhoto.extend({
      * From http://sedition.com/perl/javascript-fy.html
      */
     _shuffle: function( array ) {
-        var i = array.length;
-        while (--i >= 0)
-        {
+        for ( var i = array.length - 1; i >= 0; i-- ) {
             var j = Math.floor( Math.random() * ( i + 1 ) );
             var temp = array[i];
             array[i] = array[j];
