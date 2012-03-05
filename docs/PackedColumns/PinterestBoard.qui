@@ -3,10 +3,11 @@
 <Control className="PinterestBoard">
 
 <content>
-    <h1>Resize this window to see differently column layouts</h1>
+    <h1>Resize this window to see different column layouts</h1>
     <p>
-        Even though the tiles vary widely in height, the columns always end up
-        roughly equal in overall height.
+        The sample photos may take a while to load. As they load, the column
+        contents may shuffle in response.  Even though the photos vary widely in
+        height, the columns always end up roughly equal in overall height.
     </p>
     <PackedColumns id="packedColumns"/>
 </content>
