@@ -202,6 +202,11 @@ var controlRecords = [
         description: "List that can have multiple items expanded to show more detail."
     },
     {
+        name: "PackedColumns",
+        demoClass: "",
+        description: "Packs its children into a dynamic number of columns of roughly equal height."
+    },
+    {
         name: "Page",
         demoClass: "",
         description: "Base class for the overall top-level control for a page."

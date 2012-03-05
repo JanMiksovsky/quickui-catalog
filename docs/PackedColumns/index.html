@@ -26,19 +26,32 @@
 
 <script id="demo">
 function demo() {
-   
-var Photo = FlickrInterestingPhoto.subclass({
-    className: "Photo",
-    photoSize: "t"
+
+// A block of random height
+var Block = Control.subclass({
+    className: "Block",
+    prototype: {
+        initialize: function() {
+            var height = 50 + Math.floor(151 * Math.random());
+            this.height( height + "px" );
+        }
+    },
+    css: {
+        border: "1px solid gray",
+        width: "100px"
+    }
 });
 
 $demo.append(
     PackedColumns.create().content([
-        Photo.create(),
-        Photo.create(),
-        Photo.create(),
-        Photo.create(),
-        Photo.create()
+        Block.create().content( "1" ),
+        Block.create().content( "2" ),
+        Block.create().content( "3" ),
+        Block.create().content( "4" ),
+        Block.create().content( "5" ),
+        Block.create().content( "6" ),
+        Block.create().content( "7" ),
+        Block.create().content( "8" )
     ])
 );
 
@@ -50,8 +63,30 @@ $demo.append(
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-
+Packs its children into columns, using a simple heuristic to try to keep the
+columns roughly equal in height. See the
+<a data-control="Link" href="demo.html">full-page demo</a> for an example
+of typical use.
 </div>
+
+<p>
+The control uses its first child as an examplar. It uses that child's width
+as the preferred width for all children. This width is used to calculate the
+number of columns which can fit into the control. The first child's right and
+bottom margin are also used, respectively, to determine the preferred spacing
+between columns and the preferred vertical spacing between children within a
+column.
+</p>
+
+<p>
+The layout heuristic is simple and fast: the control examines each of its
+children in turn, and adds that child to whichever column is currently shortest.
+</p>
+<p>
+    This control was discussed in a
+    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2012/03/packedcolumns.html">user interface blog post</a>.
+</p>
+
 
 </body>
 
