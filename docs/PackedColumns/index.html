@@ -26,15 +26,20 @@
 
 <script id="demo">
 function demo() {
+   
+var Photo = FlickrInterestingPhoto.subclass({
+    className: "Photo",
+    photoSize: "t"
+});
 
 $demo.append(
-    Repeater.create({
-        controlClass: PinterestPin, // Defined elsewhere
-        count: 5,
-        css: {
-            "background-color": "#F7F5F5"
-        }
-    })
+    PackedColumns.create().content([
+        Photo.create(),
+        Photo.create(),
+        Photo.create(),
+        Photo.create(),
+        Photo.create()
+    ])
 );
 
 }

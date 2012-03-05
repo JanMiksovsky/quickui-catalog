@@ -34,6 +34,12 @@ PackedColumns.prototype.extend({
         }
     }),
     
+    content: function( value ) {
+        var result = this._super( value ); 
+        this.trigger( "sizeChanged" );
+        return result;
+    },
+    
     layout: function() {
 
         var children = this.children();
@@ -45,6 +51,9 @@ PackedColumns.prototype.extend({
         // Infer column width and inter-child margins from first child.
         var firstChild = children.eq(0);
         var columnWidth = firstChild.outerWidth();
+        if ( columnWidth === 0 ) {
+            return; // No width; perhaps child will load later.
+        }
         var marginRight = parseInt( firstChild.css( "margin-right" ) );
         var marginBottom = parseInt( firstChild.css( "margin-bottom" ) );
         
