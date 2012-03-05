@@ -29,7 +29,9 @@ Repeater.prototype.extend({
     count: Control.property.integer( function() { this._refresh(); }, 1 ),
     
     initialize: function() {
-        this._refresh();
+        if ( this.controls() == null ) {
+            this._refresh();
+        }
     },
     
     /*

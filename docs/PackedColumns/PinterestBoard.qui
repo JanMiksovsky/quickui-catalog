@@ -5,9 +5,9 @@
 <content>
     <h1>Resize this window to see different column layouts</h1>
     <p>
-        The sample photos may take a while to load. As they load, the column
-        contents may shuffle in response.  Even though the photos vary widely in
-        height, the columns always end up roughly equal in overall height.
+        As the photos load, the column contents may shuffle to accommodate the
+        new heights of the photos. Even though the photos vary widely in height,
+        the columns always end up roughly equal in overall height.
     </p>
     <PackedColumns id="packedColumns"/>
 </content>
@@ -27,8 +27,8 @@ PinterestBoard.prototype.extend({
     initialize: function() {
         var pins = Repeater
             .create({
-                controlClass: "PinterestPin",
-                count: 50
+                count: 50,
+                controlClass: "PinterestPin"
             })
             .controls();
         this.$packedColumns().content( pins );
