@@ -1,6 +1,6 @@
 <Control className="HasPopupDemo">
     
-<HasPopup openOnClick="true" closeOnInsideClick="true">
+<HasPopup closeOnInsideClick="true">
     Click me for a popup
     <popup>
         And here's the popup!

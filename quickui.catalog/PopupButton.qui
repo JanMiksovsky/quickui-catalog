@@ -1,0 +1,29 @@
+<Control className="PopupButton">
+
+<prototype>
+    <HasPopup>
+        <div id="PopupButton_content"/>
+        <div id="dropdownArrow">&#9660;</div>
+    </HasPopup>
+</prototype>
+
+<style>
+#PopupButton_content, #dropdownArrow {
+    display: inline-block;
+}    
+</style>
+
+<script>
+PopupButton.prototype.extend({
+    
+    content: Control.chain( "$PopupButton_content", "content" ),
+    
+    initialize: function() {
+        this._super();
+        this.$HasPopup_content().control( BasicButton );
+        this.genericIfClassIs( PopupButton );
+    }
+});
+</script>
+
+</Control>

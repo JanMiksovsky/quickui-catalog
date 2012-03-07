@@ -64,7 +64,7 @@ HasPopup.prototype.extend({
      * True if the popup should open when the user clicks in the control's
      * content. Default is true. 
      */
-    openOnClick: Control.property.bool(),
+    openOnClick: Control.property.bool( null, true ),
 
     /*
      * Open the popup.

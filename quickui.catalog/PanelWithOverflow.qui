@@ -10,7 +10,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 
 <prototype>
     <Layout>
-        <HasPopup id="menuButton" closeOnInsideClick="true" openOnClick="true">
+        <HasPopup id="menuButton" closeOnInsideClick="true">
             <BasicButton id="PanelWithOverflow_indicator">»</BasicButton>
         </HasPopup>
         <div id="PanelWithOverflow_content"/>
