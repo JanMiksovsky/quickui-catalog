@@ -50,7 +50,7 @@ Popup.prototype.extend({
      * True if the popup should be closed normally if the user clicks inside
      * it. Default is true.
      */
-    closeOnInsideClick: Control.property.bool(),
+    closeOnInsideClick: Control.property.bool( null, true ),
     
     initialize: function()
     {

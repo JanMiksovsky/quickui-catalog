@@ -5,7 +5,7 @@ An input area with a dropdown arrow, which invokes a popup.
 <Control className="ComboBox">
 
 <prototype>
-    <HasPopup openOnClick="false">
+    <HasPopup closeOnInsideClick="false" openOnClick="false">
         <content>
             <div id="ComboBox_content"/>
             <ToggleButton id="dropdownButton">&#9660;</ToggleButton>
