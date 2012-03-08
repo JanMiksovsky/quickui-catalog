@@ -10,7 +10,11 @@
 <style>
 #PopupButton_content, #indicator {
     display: inline-block;
-}    
+}
+
+#PopupButton_content {
+    display: none;
+}
 </style>
 
 <script>
@@ -19,7 +23,10 @@ PopupButton.prototype.extend({
     /*
      * The content of the button.
      */
-    content: Control.chain( "$PopupButton_content", "content" ),
+    content: Control.chain( "$PopupButton_content", "content", function( content ) {
+        var hasContent = content && content.length > 0;
+        this.$PopupButton_content().css( "display", hasContent ? "inline-block" : "none" );
+    }),
     
     /*
      * Content which indicates the button can be clicked to produce a popup.
