@@ -227,6 +227,11 @@ var controlRecords = [
         description: "Base class for popups, menus, dialogs — things that appear temporarily over other things."
     },
     {
+        name: "PopupButton",
+        demoClass: "PopupButtonDemo",
+        description: "A button that produces a popup when clicked."
+    },
+    {
         name: "RadioButton",
         demoClass: "RadioButtonDemo",
         description: "A radio button with an associated label."

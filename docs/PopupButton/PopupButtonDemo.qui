@@ -1,0 +1,25 @@
+<Control className="PopupButtonDemo">
+
+<content>
+    <PopupButton content="Orientation">
+        <popup>
+            <BasicButton id="buttonPortrait" content="Portrait"/>
+            <BasicButton id="buttonLandscape" content="Landscape"/>
+        </popup>
+    </PopupButton>
+</content>
+
+<style>
+#buttonPortrait {
+    height: 100px;
+    margin: 5px;
+    width: 75px;
+}
+#buttonLandscape {
+    height: 75px;
+    margin: 5px;
+    width: 100px;
+}
+</style>
+
+</Control>

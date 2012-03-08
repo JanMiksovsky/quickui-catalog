@@ -1,3 +1,5 @@
+<!-- A button that produces a popup when clicked. -->
+
 <Control className="PopupButton">
 
 <prototype>
