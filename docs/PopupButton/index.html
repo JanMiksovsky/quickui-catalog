@@ -29,10 +29,22 @@ function demo() {
     
 $demo.append(
     PopupButton.create()
-        .content( "Mode" )
+        .content( "Orientation" )
         .popup([
-            "Landscape",
-            "Portrait"
+            BasicButton.create()
+                .content( "Portrait" )
+                .css({
+                    height: "100px",
+                    margin: "5px",
+                    width: "75px"
+                }),
+            BasicButton.create()
+                .content( "Landscape" )
+                .css({
+                    height: "75px",
+                    margin: "5px",
+                    width: "100px"
+                })
         ])
 );
 

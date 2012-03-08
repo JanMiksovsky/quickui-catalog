@@ -37,6 +37,13 @@ HasPopup.prototype.extend({
     content: Control.chain( "$HasPopup_content", "content" ),
 
     /*
+     * The class of the content portion.
+     */
+    contentClass: Control.property[ "class" ]( function( contentClass ) {
+        this.$HasPopup_content().transmute( contentClass, true, false, true );
+    }),
+    
+    /*
      * Close the popup normally.
      */
     close: Control.chain( "$HasPopup_popup", "close" ),

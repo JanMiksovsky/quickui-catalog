@@ -1,7 +1,7 @@
 <Control className="PopupButton">
 
 <prototype>
-    <HasPopup>
+    <HasPopup contentClass="BasicButton">
         <div id="PopupButton_content"/>
         <div id="dropdownArrow">&#9660;</div>
     </HasPopup>
@@ -20,7 +20,6 @@ PopupButton.prototype.extend({
     
     initialize: function() {
         this._super();
-        this.$HasPopup_content().control( BasicButton );
         this.genericIfClassIs( PopupButton );
     }
 });
