@@ -5,6 +5,8 @@ Unlike a stock anchor tag, this will show a hand cursor even when the href
 is empty, as is often the case with a link whose behavior is determined by
 a click event handler.
 
+The link will have the "current" style if it points to the current page.
+
 This can also serve as a useful base class for custom link classes.
 -->
 
@@ -12,14 +14,23 @@ This can also serve as a useful base class for custom link classes.
 
 <script>
 Link.prototype.extend({
+    
+    /*
+     * True if the link points to the current page.
+     */
+    current: Control.chain( "applyClass/current" ),
 
     /*
      * The location that will be opened if the user clicks the link.
      */
-    href: Control.chain( "prop/href" ),
+    href: Control.chain( "prop/href", function() {
+        this._checkCurrentPage();
+    }),
     
     initialize: function() {
-        if ( !this.href() ) {
+        if ( this.href() ) {
+            this._checkCurrentPage();
+        } else {
             // Set a placeholder href which will force the display of an
             // underline, and use of a hand cursor.
             this.href( "javascript:" );
@@ -29,7 +40,17 @@ Link.prototype.extend({
     /*
      * The target of the link.
      */
-    target: Control.chain( "prop/target" )
+    target: Control.chain( "prop/target" ),
+
+    /*
+     * Apply the "current" style if the link points to the page we're on.
+     */    
+    _checkCurrentPage: function() {
+        var href = this.href();
+        var pageHref = window.location.href;
+        var pageHrefRight = pageHref.substring( pageHref.length - href.length );
+        this.current( pageHrefRight === href );
+    }
 
 });
 </script>
