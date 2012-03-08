@@ -10,9 +10,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 
 <prototype>
     <Layout>
-        <HasPopup id="menuButton">
-            <BasicButton id="PanelWithOverflow_indicator">»</BasicButton>
-        </HasPopup>
+        <PopupButton id="menuButton" indicator="»"/>
         <div id="PanelWithOverflow_content"/>
     </Layout>
 </prototype>
@@ -63,9 +61,9 @@ PanelWithOverflow.prototype.extend({
     
     /*
      * The indicator used to show when contents have overflowed
-     * the contorl's bounds.
+     * the control's bounds.
      */
-    indicator: Control.chain( "$PanelWithOverflow_indicator", "content", function() {
+    indicator: Control.chain( "$menuButton", "indicator", function() {
         this.layout();
     }),
     

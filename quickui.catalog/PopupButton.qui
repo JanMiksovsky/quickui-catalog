@@ -3,12 +3,12 @@
 <prototype>
     <HasPopup contentClass="BasicButton">
         <div id="PopupButton_content"/>
-        <div id="dropdownArrow">&#9660;</div>
+        <div id="indicator">&#9660;</div>
     </HasPopup>
 </prototype>
 
 <style>
-#PopupButton_content, #dropdownArrow {
+#PopupButton_content, #indicator {
     display: inline-block;
 }    
 </style>
@@ -16,7 +16,16 @@
 <script>
 PopupButton.prototype.extend({
     
+    /*
+     * The content of the button.
+     */
     content: Control.chain( "$PopupButton_content", "content" ),
+    
+    /*
+     * Content which indicates the button can be clicked to produce a popup.
+     * The default indicator is a downward-pointing arrow. 
+     */
+    indicator: Control.chain( "$indicator", "content" ),
     
     initialize: function() {
         this._super();
@@ -25,4 +34,4 @@ PopupButton.prototype.extend({
 });
 </script>
 
-</Control>
+</Control>
