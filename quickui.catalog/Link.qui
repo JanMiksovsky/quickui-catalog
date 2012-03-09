@@ -24,17 +24,18 @@ Link.prototype.extend({
      * The location that will be opened if the user clicks the link.
      */
     href: Control.chain( "prop/href", function() {
-        this._checkCurrentPage();
+        this._checkIfCurrent();
     }),
     
     initialize: function() {
-        if ( this.href() ) {
-            this._checkCurrentPage();
-        } else {
+        if ( !this.href() ) {
             // Set a placeholder href which will force the display of an
             // underline, and use of a hand cursor.
             this.href( "javascript:" );
         }
+        this.inDocument( function() {
+            this._checkIfCurrent();
+        });
     },
 
     /*
@@ -45,11 +46,14 @@ Link.prototype.extend({
     /*
      * Apply the "current" style if the link points to the page we're on.
      */    
-    _checkCurrentPage: function() {
-        var href = this.href();
-        var pageHref = window.location.href;
-        var pageHrefRight = pageHref.substring( pageHref.length - href.length );
-        this.current( pageHrefRight === href );
+    _checkIfCurrent: function() {
+        var current = false;
+        if ( this.inDocument() ) {
+            var href = this.href();
+            var pageHref = window.location.href;
+            current = ( href === pageHref.substring( pageHref.length - href.length ) );
+        }
+        this.current( current );
     }
 
 });
