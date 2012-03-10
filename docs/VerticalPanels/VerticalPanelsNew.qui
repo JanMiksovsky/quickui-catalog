@@ -1,0 +1,44 @@
+<Control className="VerticalPanelsNew">
+
+<content>
+    <div id="container">
+        <div id="top" class="bar">Top</div>
+        <div id="main">
+            <LoremIpsum paragraphs="10"/>
+        </div>
+        <div id="bottom" class="bar">Bottom</div>
+    </div>
+</content>
+
+<style>
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+
+#container {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    height: 100%;
+    width: 100%;
+}
+
+#main {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    overflow-y: auto;
+    padding: .5em;
+}
+
+.bar {
+    background-color: #ddd;
+    padding: .5em;
+}
+</style>
+
+</Control>
