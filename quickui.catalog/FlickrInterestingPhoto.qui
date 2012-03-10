@@ -14,21 +14,31 @@ FlickrInterestingPhoto.prototype.extend({
     
     initialize: function() {
         
-        var self = this;
         this.on( "load" , function() {
             
             /*
-             * HACK for IE. When the load event is triggered, IE seems to report
-             * the width of the img element as the width of its own little
-             * image placeholder icon. By forcing the width to "auto"
-             * value, IE reports the correct photo width (and height) instead.
+             * HACK for IE. When the load event is triggered, IE reports the
+             * width of the img element as the width of its own little image
+             * placeholder icon. This stinks -- there's no way to get the
+             * correct width or height until sometime after the load event
+             * completes.
+             * 
+             * As a workaround, if we're in IE and see that the width is 28px,
+             * we assume we're dealing with the image placeholder icon instead
+             * of the real image. By forcing the width to "auto", IE reports the
+             * correct photo width (and height) instead.
+             * 
              * This allows anyone listening for the sizeChanged event to get
              * the correct dimensions of the photo, instead of the dimensions
              * of the image placeholder icon. 
              */
-            //self.css( "width", "auto" );
+            var $element = $( this );
+            if ( $.browser.msie && parseInt( $element.width() ) === 28 ) {
+                console.log( $element.width() + " " + $element.height() );
+                $element.css( "width", "auto" );
+            }
 
-            self.trigger( "sizeChanged" );
+            $element.trigger( "sizeChanged" );
         });
 
         var photo = this.photo();
