@@ -30,11 +30,6 @@ other things, if the CSS position is set to absolute, Mozilla will report
     /* display: -moz-box; */
     display: -webkit-box;
     display: box;
-    /*
-    Setting height when not in fill mode prevents resize logic from
-    cycling endlessly and shouldn't otherwise affect anything.
-    */
-    height: 100%;
     position: relative;
 }
 
@@ -43,19 +38,30 @@ other things, if the CSS position is set to absolute, Mozilla will report
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    position: relative; /* So inner controls can be absolutely positioned within */
+    left: 0;
+    right: 0;
 }
-
-.VerticalPanelsNew.fill {
-    overflow-y: hidden;
-    position: absolute;
-    width: 100%;
+#VerticalPanels_top {
+    top: 0;
+}
+#VerticalPanels_bottom {
+    bottom: 0;
 }
 
 #VerticalPanels_content {
-    -moz-box-flex: 1;
+    /* -moz-box-flex: 1; */
     -webkit-box-flex: 1;
     box-flex: 1;
+    overflow-y: hidden;
+}
+
+.VerticalPanelsNew.fill {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.VerticalPanelsNew.fill.manual > * {
+    position: absolute;
 }
 .VerticalPanelsNew.fill #VerticalPanels_content {
     overflow-y: auto;
@@ -91,12 +97,19 @@ VerticalPanelsNew.prototype.extend({
         if ( !this._flexBox() ) {
             // Do the layout ourselves.
             if ( this.fill() ) {
-                var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
-                var availableHeight = this.height() - panelHeight;
-                this.$VerticalPanels_content().height( availableHeight );
+                css = {
+                    top: this.$VerticalPanels_top().outerHeight( true ),
+                    bottom: this.$VerticalPanels_bottom().outerHeight( true )
+                };
             } else {
-                this.$VerticalPanels_content().css( "height", "inherit" );
+                css = {
+                    top: "inherit",
+                    bottom: "inherit"
+                };
             }
+            console.log( css );
+            this.$VerticalPanels_content().css( css );
+            this.addClass( "manual" );
         }
         return this;
     },
@@ -105,20 +118,19 @@ VerticalPanelsNew.prototype.extend({
      * The content of the top panel.
      */
     top: Control.chain( "$VerticalPanels_top", "content", function() {
-        this.trigger( "sizeChanged" );        
+        this.trigger( "sizeChanged" );      
     }),
     
     /*
      * Return true if we're using the CSS flexbox layout module.
      */
     _flexBox: function() {
-        var display = this.css( "display" );
         var flexBoxVariants = [
             "box",
             /* "-moz-box" */
             "-webkit-box"
         ];
-        return $.inArray( display, flexBoxVariants ) >= 0;
+        return $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
     }
 
 });

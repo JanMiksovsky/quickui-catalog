@@ -3,11 +3,15 @@
 <prototype>
     <Page fill="true">
         <VerticalPanelsNew fill="true">
-            <top>Top</top>
+            <top>
+                <LoremIpsum sentences="2"/>
+            </top>
             <content>
                 <LoremIpsum paragraphs="30"/>
             </content>
-            <bottom>Bottom</bottom>
+            <bottom>
+                <LoremIpsum sentences="2"/>
+            </bottom>
         </VerticalPanelsNew>
     </Page>
 </prototype>
@@ -15,7 +19,16 @@
 <style>
 #VerticalPanels_top, #VerticalPanels_bottom {
     background-color: #ddd;
+}
+.VerticalPanelsNew > * {
     padding: .5em;
+}
+
+.LoremIpsum > p:first-child {
+    margin-top: 0;
+}
+.LoremIpsum > p:last-child {
+    margin-bottom: 0;
 }
 </style>
 
