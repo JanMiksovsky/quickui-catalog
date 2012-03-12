@@ -30,8 +30,6 @@ Layout.prototype.extend({
 });
 
 // Class methods.
-// TODO: Most of this has been factored into the new inDocument() event,
-// so rewrite this to use that.
 Layout.extend({
     
     /*
