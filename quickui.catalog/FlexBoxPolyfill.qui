@@ -1,0 +1,119 @@
+<!--
+A polyfill (shim) supporting the CSS flexible box layout model on newer browsers
+and emulating some very basic aspects of that layout model on older browsers.
+
+As of 3/12/12, Mozilla's flexbox support is too flaky to use. Among other
+things, if the CSS position is set to absolute, Mozilla will report "display"
+as "block" instead of "-moz-box" as expected. 
+-->
+ 
+<Control className="FlexBoxPolyfill">
+
+<prototype>
+    <Layout>
+        <div id="FlexBoxPolyfill_panel1" />
+        <div id="FlexBoxPolyfill_content" />
+        <div id="FlexBoxPolyfill_panel2" />
+    </Layout>
+</prototype>
+
+<style>
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /* display: -moz-box; */
+    display: -webkit-box;
+    display: box;
+    position: relative;
+}
+
+> * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#FlexBoxPolyfill_content {
+    /* -moz-box-flex: 1; */
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    overflow: hidden;
+}
+
+.FlexBoxPolyfill.fill {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.FlexBoxPolyfill.fill.noFlexBox > * {
+    position: absolute;
+}
+</style>
+
+<script>
+FlexBoxPolyfill.prototype.extend({
+    
+    /*
+     * The content of the main center panel.
+     */
+    content: Control.chain( "$FlexBoxPolyfill_content", "content", function() {
+        this.trigger( "sizeChanged" );
+    }),
+    
+    /*
+     * True if the control should fill its container. This will also enable
+     * an automatic vertical scroll bar on the main content panel.
+     */
+    fill: Control.chain( "applyClass/fill", function() {
+        this.trigger( "sizeChanged" );
+    }),
+    
+    layout: function() {
+        var flexBoxVariants = [
+            "box",
+            /* "-moz-box" */
+            "-webkit-box"
+        ];
+        var flexBox = $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
+        if ( !flexBox ) {
+            // Do the layout ourselves.
+            var css = this._noFlexBoxCss();
+            //console.log( css );
+            this.$FlexBoxPolyfill_content().css( css );
+            this.addClass( "noFlexBox" );
+        }
+        return this;
+    },
+    
+    /* Subclass should set this to "horizontal" or "vertical" */
+    _direction: Control.property(),
+    
+    /*
+     * Return the appropriate CSS to simulate flex behavior for the main content
+     * panel.
+     */
+    _noFlexBoxCss: function() {
+        var vertical = this._direction() === "vertical";
+        var leadingEdge = vertical ? "top" : "left";
+        var trailingEdge = vertical ? "bottom" : "right";
+        var measureFn = vertical ? $.prototype.outerHeight : $.prototype.outerWidth;
+        var panel1 = this.$FlexBoxPolyfill_panel1();
+        var panel2 = this.$FlexBoxPolyfill_panel2();
+        var css = {};
+        if ( this.fill() ) {
+            css[ leadingEdge ] = measureFn.call( panel1, true );
+            css[ trailingEdge ] = measureFn.call( panel2, true );
+        } else {
+            css[ leadingEdge ] = "inherit";
+            css[ trailingEdge ] = "inherit";
+        }
+        return css;
+    }
+    
+});
+</script>
+
+</Control>

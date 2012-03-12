@@ -1,8 +1,8 @@
-<Control className="VerticalPanelsPageNew">
+<Control className="VerticalPanelsPage">
 
 <prototype>
     <Page fill="true">
-        <VerticalPanelsNew fill="true">
+        <VerticalPanels fill="true">
             <top>
                 <LoremIpsum sentences="2"/>
             </top>
@@ -12,15 +12,15 @@
             <bottom>
                 <LoremIpsum sentences="2"/>
             </bottom>
-        </VerticalPanelsNew>
+        </VerticalPanels>
     </Page>
 </prototype>
 
 <style>
-#VerticalPanels_top, #VerticalPanels_bottom {
+#FlexBoxPolyfill_panel1, #FlexBoxPolyfill_panel2 {
     background-color: #ddd;
 }
-.VerticalPanelsNew > * {
+.FlexBoxPolyfill > * {
     padding: .5em;
 }
 

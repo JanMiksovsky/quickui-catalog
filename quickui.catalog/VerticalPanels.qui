@@ -1,41 +1,30 @@
+<!-- Position a top and/or bottom panel above or below a main content panel. -->
+
 <Control className="VerticalPanels">
 
 <prototype>
-    <Layout>
-        <div id="VerticalPanels_top" />
-        <div id="VerticalPanels_content" />
-        <div id="VerticalPanels_bottom" />
-    </Layout>
+    <FlexBoxPolyfill _direction="vertical" />
 </prototype>
 
 <style>
 {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    /*
-    Setting height when not in fill mode prevents resize logic from
-    cylcing endlessly and shouldn't otherwise affect anything.
-    */
-    height: 100%;
-    position: relative;
-}
-> * {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    position: relative; /* So inner controls can be absolutely positioned within */
+    /* -moz-box-orient: vertical; */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
 }
 
-.VerticalPanels.fill {
-    overflow-y: hidden;
-    position: absolute;
-    height: 100%;
-    width: 100%;
+> * {
+    left: 0;
+    right: 0;
 }
-.VerticalPanels.fill #VerticalPanels_content {
+#FlexBoxPolyfill_panel1 {
+    top: 0;
+}
+#FlexBoxPolyfill_panel2 {
+    bottom: 0;
+}
+
+.VerticalPanels.fill #FlexBoxPolyfill_content {
     overflow-y: auto;
 }
 </style>
@@ -46,41 +35,15 @@ VerticalPanels.prototype.extend({
     /*
      * The content of the bottom panel.
      */    
-    bottom: Control.chain( "$VerticalPanels_bottom", "content", function() {
-        this.trigger( "sizeChanged" );        
-    }),
-    
-    /*
-     * The content of the main center panel.
-     */
-    content: Control.chain( "$VerticalPanels_content", "content", function() {
-        this.trigger( "sizeChanged" );        
-    }),
-    
-    /*
-     * True if the control should fill its container.
-     */
-    fill: Control.chain( "applyClass/fill", function() {
+    bottom: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
         this.trigger( "sizeChanged" );
     }),
-    
-    layout: function() {
-        //this._log("layout");
-        if ( this.fill() ) {
-            var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
-            var availableHeight = this.height() - panelHeight;
-            this.$VerticalPanels_content().height( availableHeight );
-        } else {
-            this.$VerticalPanels_content().height( "" );
-        }
-        return this;
-    },
     
     /*
      * The content of the top panel.
      */
-    top: Control.chain( "$VerticalPanels_top", "content", function() {
-        this.trigger( "sizeChanged" );        
+    top: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
+        this.trigger( "sizeChanged" );      
     })
 
 });
