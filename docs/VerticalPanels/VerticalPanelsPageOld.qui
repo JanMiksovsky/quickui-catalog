@@ -1,0 +1,22 @@
+<Control className="VerticalPanelsPageOld">
+
+<prototype>
+    <Page fill="true">
+        <VerticalPanels fill="true">
+            <top>Top</top>
+            <content>
+                <LoremIpsum paragraphs="30"/>
+            </content>
+            <bottom>Bottom</bottom>
+        </VerticalPanels>
+    </Page>
+</prototype>
+
+<style>
+#VerticalPanels_top, #VerticalPanels_bottom {
+    background-color: #ddd;
+    padding: .5em;
+}
+</style>
+
+</Control>
