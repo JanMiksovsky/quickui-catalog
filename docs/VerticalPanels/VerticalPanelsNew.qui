@@ -1,3 +1,14 @@
+<!--
+Position a top and/or bottom panel above or below a main content panel.
+
+This uses the CSS flexbox module where available, and falls back to a manual
+layout algorithm on older browsers.
+
+As of 3/12/12, Mozilla's flexbox support is too flaky to be worth it. Among
+other things, if the CSS position is set to absolute, Mozilla will report
+"display" as "block" instead of "-moz-box" as expected. 
+-->
+
 <Control className="VerticalPanelsNew">
 
 <prototype>
@@ -10,19 +21,23 @@
 
 <style>
 {
+    /* -moz-box-orient: vertical; */
     -webkit-box-orient: vertical;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    /* display: -moz-box; */
     display: -webkit-box;
+    display: box;
     /*
     Setting height when not in fill mode prevents resize logic from
-    cylcing endlessly and shouldn't otherwise affect anything.
+    cycling endlessly and shouldn't otherwise affect anything.
     */
     height: 100%;
     position: relative;
 }
+
 > * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -34,11 +49,15 @@
 .VerticalPanelsNew.fill {
     overflow-y: hidden;
     position: absolute;
-    height: 100%;
     width: 100%;
 }
-.VerticalPanelsNew.fill #VerticalPanels_content {
+
+#VerticalPanels_content {
+    -moz-box-flex: 1;
     -webkit-box-flex: 1;
+    box-flex: 1;
+}
+.VerticalPanelsNew.fill #VerticalPanels_content {
     overflow-y: auto;
 }
 </style>
@@ -61,7 +80,8 @@ VerticalPanelsNew.prototype.extend({
     }),
     
     /*
-     * True if the control should fill its container.
+     * True if the control should fill its container. This will also enable
+     * an automatic vertical scroll bar on the main content panel.
      */
     fill: Control.chain( "applyClass/fill", function() {
         this.trigger( "sizeChanged" );
@@ -70,13 +90,12 @@ VerticalPanelsNew.prototype.extend({
     layout: function() {
         if ( !this._flexBox() ) {
             // Do the layout ourselves.
-            console.log( "layout" );
             if ( this.fill() ) {
                 var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
                 var availableHeight = this.height() - panelHeight;
                 this.$VerticalPanels_content().height( availableHeight );
             } else {
-                this.$VerticalPanels_content().height( "" );
+                this.$VerticalPanels_content().css( "height", "inherit" );
             }
         }
         return this;
@@ -94,7 +113,12 @@ VerticalPanelsNew.prototype.extend({
      */
     _flexBox: function() {
         var display = this.css( "display" );
-        return display === "-webkit-box";
+        var flexBoxVariants = [
+            "box",
+            /* "-moz-box" */
+            "-webkit-box"
+        ];
+        return $.inArray( display, flexBoxVariants ) >= 0;
     }
 
 });
