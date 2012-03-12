@@ -50,42 +50,52 @@ VerticalPanelsNew.prototype.extend({
      * The content of the bottom panel.
      */    
     bottom: Control.chain( "$VerticalPanels_bottom", "content", function() {
-        //this.trigger( "sizeChanged" );        
+        this.trigger( "sizeChanged" );        
     }),
     
     /*
      * The content of the main center panel.
      */
     content: Control.chain( "$VerticalPanels_content", "content", function() {
-        //this.trigger( "sizeChanged" );        
+        this.trigger( "sizeChanged" );        
     }),
     
     /*
      * True if the control should fill its container.
      */
     fill: Control.chain( "applyClass/fill", function() {
-        //this.trigger( "sizeChanged" );
+        this.trigger( "sizeChanged" );
     }),
     
-    /*
     layout: function() {
-        if ( this.fill() ) {
-            var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
-            var availableHeight = this.height() - panelHeight;
-            this.$VerticalPanels_content().height( availableHeight );
-        } else {
-            this.$VerticalPanels_content().height( "" );
+        if ( !this._flexBox() ) {
+            // Do the layout ourselves.
+            console.log( "layout" );
+            if ( this.fill() ) {
+                var panelHeight = this.$VerticalPanels_top().outerHeight() + this.$VerticalPanels_bottom().outerHeight();
+                var availableHeight = this.height() - panelHeight;
+                this.$VerticalPanels_content().height( availableHeight );
+            } else {
+                this.$VerticalPanels_content().height( "" );
+            }
         }
         return this;
     },
-    */
     
     /*
      * The content of the top panel.
      */
     top: Control.chain( "$VerticalPanels_top", "content", function() {
-        //this.trigger( "sizeChanged" );        
-    })
+        this.trigger( "sizeChanged" );        
+    }),
+    
+    /*
+     * Return true if we're using the CSS flexbox layout module.
+     */
+    _flexBox: function() {
+        var display = this.css( "display" );
+        return display === "-webkit-box";
+    }
 
 });
 </script>
