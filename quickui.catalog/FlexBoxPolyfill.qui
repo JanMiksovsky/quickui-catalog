@@ -9,13 +9,11 @@ as "block" instead of "-moz-box" as expected.
  
 <Control className="FlexBoxPolyfill">
 
-<prototype>
-    <Layout>
-        <div id="FlexBoxPolyfill_panel1" />
-        <div id="FlexBoxPolyfill_content" />
-        <div id="FlexBoxPolyfill_panel2" />
-    </Layout>
-</prototype>
+<content>
+    <div id="FlexBoxPolyfill_panel1" />
+    <div id="FlexBoxPolyfill_content" />
+    <div id="FlexBoxPolyfill_panel2" />
+</content>
 
 <style>
 {
@@ -72,6 +70,13 @@ FlexBoxPolyfill.prototype.extend({
     fill: Control.chain( "applyClass/fill", function() {
         this.trigger( "sizeChanged" );
     }),
+    
+    initialize: function() {
+        var self = this;
+        this.on( "layout", function() {
+            self.layout();
+        });
+    },
     
     layout: function() {
         var flexBoxVariants = [
