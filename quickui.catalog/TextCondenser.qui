@@ -32,6 +32,7 @@ Shows text in a condensed font if necessary to squeeze in more text.
     visibility: hidden;
     position: absolute;
 }
+
 .TextCondenser.condensed #condensed {
     visibility: visible;
     position: relative;
@@ -44,17 +45,17 @@ TextCondenser.prototype.extend({
     /*
      * The font family to use for condensed text.
      */
-    condensedFontFamily: Control.chain("$condensed", "css/font-family"),
+    condensedFontFamily: Control.chain( "$condensed", "css/font-family" ),
 
-    content: Control.chain("$normal", "content", function(content) {
-        this.$condensed().content(content); // Make a copy of the text.
+    content: Control.chain( "$normal", "content", function( content ) {
+        this.$condensed().content( content ); // Make a copy of the text.
         this.layout();
     }),
     
     layout: function() {
-        return this.eachControl(function(index, $control) {
+        return this.eachControl( function( index, $control ) {
             var tooWide = this.$normal().width() > this.width();
-            this.applyClass("condensed", tooWide);
+            this.applyClass( "condensed", tooWide );
         });
     }
 });
