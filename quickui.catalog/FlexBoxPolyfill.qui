@@ -24,8 +24,8 @@ as "block" instead of "-moz-box" as expected.
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     /* display: -moz-box; */
-    display: -webkit-box;
-    display: box;
+    /* display: -webkit-box; */
+    /* display: box; */
 }
 
 > * {
@@ -37,8 +37,8 @@ as "block" instead of "-moz-box" as expected.
 
 #FlexBoxPolyfill_content {
     /* -moz-box-flex: 1; */
-    -webkit-box-flex: 1;
-    box-flex: 1;
+    /* -webkit-box-flex: 1; */
+    /* box-flex: 1; */
 }
 
 .FlexBoxPolyfill.noFlexBox {
@@ -95,9 +95,9 @@ FlexBoxPolyfill.prototype.extend({
      */
     orient: Control.property( function( orient ) {
         this.css({
-            /* -moz-box-orient: orient; */
+            /* -moz-box-orient: orient, */
             "-webkit-box-orient": orient,
-            "box-orient": orient,
+            "box-orient": orient
         });
     }),
     

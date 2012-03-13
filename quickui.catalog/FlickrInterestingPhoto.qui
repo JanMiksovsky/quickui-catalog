@@ -39,6 +39,7 @@ FlickrInterestingPhoto.prototype.extend({
             }
 
             $element.trigger( "sizeChanged" );
+            $element.trigger( "layout" ); // Experimental
         });
 
         var photo = this.photo();
