@@ -26,7 +26,6 @@ as "block" instead of "-moz-box" as expected.
     /* display: -moz-box; */
     display: -webkit-box;
     display: box;
-    position: relative;
 }
 
 > * {
@@ -40,11 +39,15 @@ as "block" instead of "-moz-box" as expected.
     /* -moz-box-flex: 1; */
     -webkit-box-flex: 1;
     box-flex: 1;
-    overflow: hidden;
+}
+
+.FlexBoxPolyfill.noFlexBox {
+    position: relative;
 }
 
 .FlexBoxPolyfill.fill {
     height: 100%;
+    overflow: hidden;
     position: absolute;
     width: 100%;
 }
@@ -64,8 +67,7 @@ FlexBoxPolyfill.prototype.extend({
     }),
     
     /*
-     * True if the control should fill its container. This will also enable
-     * an automatic vertical scroll bar on the main content panel.
+     * True if the control should fill its container.
      */
     fill: Control.chain( "applyClass/fill", function() {
         this.trigger( "sizeChanged" );
@@ -88,15 +90,23 @@ FlexBoxPolyfill.prototype.extend({
         return this;
     },
     
-    /* Subclass should set this to "horizontal" or "vertical" */
-    _direction: Control.property(),
+    /*
+     * The orientation of the panels: "horizontal" or "vertical".
+     */
+    orient: Control.property( function( orient ) {
+        this.css({
+            /* -moz-box-orient: orient; */
+            "-webkit-box-orient": orient,
+            "box-orient": orient,
+        });
+    }),
     
     /*
      * Return the appropriate CSS to simulate flex behavior for the main content
      * panel.
      */
     _noFlexBoxCss: function() {
-        var vertical = this._direction() === "vertical";
+        var vertical = ( this.orient() === "vertical" );
         var leadingEdge = vertical ? "top" : "left";
         var trailingEdge = vertical ? "bottom" : "right";
         var measureFn = vertical ? $.prototype.outerHeight : $.prototype.outerWidth;
@@ -111,8 +121,21 @@ FlexBoxPolyfill.prototype.extend({
             css[ trailingEdge ] = "inherit";
         }
         return css;
-    }
+    },
     
+    /*
+     * The content of the first docked panel.
+     */    
+    _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
+        this.trigger( "sizeChanged" );
+    }),
+    
+    /*
+     * The content of the second docked.
+     */
+    _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
+        this.trigger( "sizeChanged" );      
+    })
 });
 </script>
 

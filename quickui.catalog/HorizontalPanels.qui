@@ -1,88 +1,40 @@
+<!-- Position a left and/or right panel on the sides of a main content panel. -->
+
 <Control className="HorizontalPanels">
 
 <prototype>
-    <Layout>
-        <div id="HorizontalPanels_left" />
-        <div id="HorizontalPanels_content"/>
-        <div id="HorizontalPanels_right" />
-    </Layout>
+    <FlexBoxPolyfill orient="horizontal" />
 </prototype>
 
 <style>
-{
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    position: relative;
-    /*
-    Setting width when not in fill mode prevents resize logic from
-    cylcing endlessly and shouldn't otherwise affect anything.
-    */
-    width: 100%;
-}
-
-.HorizontalPanels > * {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    bottom: 0;
-    position: absolute;
+.HorizontalPanels.noFlexBox > * {
     top: 0;
+    bottom: 0;
 }
-
-#HorizontalPanels_left {
+.HorizontalPanels.noFlexBox #FlexBoxPolyfill_panel1 {
     left: 0;
 }
-#HorizontalPanels_right {
+.HorizontalPanels.noFlexBox #FlexBoxPolyfill_panel2 {
     right: 0;
 }
 
-.HorizontalPanels.fill {
-    height: 100%;
-    position: absolute;
+.HorizontalPanels.fill #FlexBoxPolyfill_content {
+    overflow-y: auto;
 }
 </style>
 
 <script>
 HorizontalPanels.prototype.extend({
-    
-    /*
-     * The content of the main center panel.
-     */
-    content: Control.chain( "$HorizontalPanels_content", "content", function() {
-        this.trigger( "sizeChanged" );        
-    }),
-    
-    /*
-     * True if the control should fill its container.
-     */
-    fill: Control.chain( "applyClass/fill" ),
-    
-    layout: function() {
-        var panelLeftWidth = this.$HorizontalPanels_left().outerWidth();
-        var panelRightWidth = this.$HorizontalPanels_right().outerWidth();
-        this.$HorizontalPanels_content().css({
-            left: panelLeftWidth,
-            right: panelRightWidth
-        });
-        return this;
-    },
-    
+
     /*
      * The content of the left panel.
-     */
-    left: Control.chain( "$HorizontalPanels_left", "content", function() {
-        this.trigger( "sizeChanged" );        
-    }),
+     */    
+    left: Control.chain( "_panel1" ),
     
     /*
      * The content of the right panel.
      */
-    right: Control.chain( "$HorizontalPanels_right", "content", function() {
-        this.trigger( "sizeChanged" );        
-    })
+    right: Control.chain( "_panel2" )
 
 });
 </script>

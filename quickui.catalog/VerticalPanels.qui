@@ -3,16 +3,10 @@
 <Control className="VerticalPanels">
 
 <prototype>
-    <FlexBoxPolyfill _direction="vertical" />
+    <FlexBoxPolyfill orient="vertical" />
 </prototype>
 
 <style>
-{
-    /* -moz-box-orient: vertical; */
-    -webkit-box-orient: vertical;
-    box-orient: vertical;
-}
-
 > * {
     left: 0;
     right: 0;
@@ -35,16 +29,12 @@ VerticalPanels.prototype.extend({
     /*
      * The content of the bottom panel.
      */    
-    bottom: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
-        this.trigger( "sizeChanged" );
-    }),
+    bottom: Control.chain( "_panel2" ),
     
     /*
      * The content of the top panel.
      */
-    top: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
-        this.trigger( "sizeChanged" );      
-    })
+    top: Control.chain( "_panel1" )
 
 });
 </script>
