@@ -171,6 +171,13 @@ FlexBoxPolyfill.prototype.extend({
         var panel1 = this.$FlexBoxPolyfill_panel1();
         var panel2 = this.$FlexBoxPolyfill_panel2();
         var css = {};
+        /*
+         * TODO: The fill property is too specific a test here; all we care
+         * about is whether the relevant control dimension is constrained.
+         * It might be better to have this control expose a constrained()
+         * property that just indicates that. Setting fill(true) would
+         * implicitly set constrained(true).
+         */
         if ( this.fill() ) {
             css[ leadingEdge ] = measureFn.call( panel1, true );
             css[ trailingEdge ] = measureFn.call( panel2, true );
