@@ -8,12 +8,10 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 
 <Control className="PanelWithOverflow">
 
-<prototype>
-    <Layout>
-        <PopupButton id="menuButton" indicator="»"/>
-        <div id="PanelWithOverflow_content"/>
-    </Layout>
-</prototype>
+<content>
+    <PopupButton id="menuButton" indicator="»"/>
+    <div id="PanelWithOverflow_content"/>
+</content>
 
 <style>
 {
@@ -56,7 +54,7 @@ PanelWithOverflow.prototype.extend({
      * The contents of the control.
      */
     content: Control.chain( "$PanelWithOverflow_content", "content", function() {
-        this.layout();
+        this.trigger( "sizeChanged" );
     }),
     
     /*
@@ -64,7 +62,7 @@ PanelWithOverflow.prototype.extend({
      * the control's bounds.
      */
     indicator: Control.chain( "$menuButton", "indicator", function() {
-        this.layout();
+        this.trigger( "sizeChanged" );
     }),
     
     initialize: function() {
@@ -73,6 +71,9 @@ PanelWithOverflow.prototype.extend({
         this.genericIfClassIs( PanelWithOverflow );
         
         var self = this;
+        this.on( "layout sizeChanged", function() {
+            self.layout();
+        });
         this.$menuButton().on({
             "canceled closed": function() { self._menuClosed(); },
             "opened": function() { self._menuOpened(); }

@@ -193,7 +193,7 @@ FlexBoxPolyfill.prototype.extend({
      */    
     _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
         if ( !this._usingFlexBox() ) {
-            this.trigger( "layout" );
+            this.trigger( "sizeChanged" );
         }
     }),
     
@@ -202,7 +202,7 @@ FlexBoxPolyfill.prototype.extend({
      */
     _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
         if ( !this._usingFlexBox() ) {
-            this.trigger( "layout" );
+            this.trigger( "sizeChanged" );
         }
     })
     

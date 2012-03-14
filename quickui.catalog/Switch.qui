@@ -48,7 +48,7 @@ Switch.prototype.extend({
                 // Trigger our own activeChildChanged event.
                 .trigger( "activeChildChanged", [ activeChildIndex, activeChild ] )
             
-                // In case the new child wants to re-lay itself out.
+                // In case the new child changed our size.
                 .trigger( "sizeChanged" );
             
             return this;
@@ -92,7 +92,7 @@ Switch.prototype.extend({
     initialize: function() {
         
         var self = this;
-        this.on( "layout", function() {
+        this.on( "layout sizeChanged", function() {
             self._childSizeChanged();
         });
 

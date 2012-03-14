@@ -122,10 +122,9 @@ Popup.prototype.extend({
             ._bindKeydownHandler( true )
             .css( "z-index", maximumZIndex + 2 )
             .show()
-            .trigger( "opened" );
-            
-        // In case the overlay wants to resize anything now that it's visible.
-        Layout.recalc();
+            .trigger( "opened" )
+            // In case popup wants to resize anything now that it's visible.
+            .trigger( "sizeChanged" );
         
         // Position the popup after the layout recalc.
         var positionPopup = this.positionPopup();
