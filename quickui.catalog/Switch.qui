@@ -49,7 +49,7 @@ Switch.prototype.extend({
                 .trigger( "activeChildChanged", [ activeChildIndex, activeChild ] )
             
                 // In case the new child wants to re-lay itself out.
-                .trigger( "layout" );
+                .trigger( "sizeChanged" );
             
             return this;
         }

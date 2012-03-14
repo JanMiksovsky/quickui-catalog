@@ -8,10 +8,6 @@ first child).
 
 <Control className="PackedColumns">
 
-<prototype>
-    <Layout/>
-</prototype>
-
 <style>
 {
     position: relative;
@@ -36,11 +32,20 @@ PackedColumns.prototype.extend({
     
     content: function( value ) {
         var result = this._super( value ); 
-        this.trigger( "layout" );
+        this.trigger( "sizeChanged" );
         return result;
     },
     
+    initialize: function() {
+        var self = this;
+        this.on( "layout sizeChanged", function() {
+            self.layout();
+        });
+    },
+    
     layout: function() {
+        
+        console.log( "layout" );
 
         var children = this.children();
         var childCount = children.length;

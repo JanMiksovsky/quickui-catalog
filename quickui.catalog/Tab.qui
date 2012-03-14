@@ -28,7 +28,7 @@ Tab.prototype.extend({
         if ( value !== undefined ) {
             // The parent (e.g., a TabSet) may want to know that the size
             // of this element has changed.
-            this.trigger( "layout" );  
+            this.trigger( "sizeChanged" );  
         }
         return result;
     },

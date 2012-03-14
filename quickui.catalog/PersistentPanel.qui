@@ -58,7 +58,7 @@ PersistentPanel.prototype.extend({
      * The control's content.
      */
     content: Control.chain( "$PersistentPanel_content", "content", function() {
-        this.trigger( "layout" );
+        this.trigger( "sizeChanged" );
     }),
     
     /*
