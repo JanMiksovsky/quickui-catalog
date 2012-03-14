@@ -22,8 +22,8 @@ as "block" instead of "-moz-box" as expected.
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     /* display: -moz-box; */
-    /* display: -webkit-box; */
-    /* display: box; */
+    display: -webkit-box;
+    display: box;
 }
 
 > * {
@@ -35,8 +35,8 @@ as "block" instead of "-moz-box" as expected.
 
 #FlexBoxPolyfill_content {
     /* -moz-box-flex: 1; */
-    /* -webkit-box-flex: 1; */
-    /* box-flex: 1; */
+    -webkit-box-flex: 1;
+    box-flex: 1;
 }
 
 .FlexBoxPolyfill.noFlexBox {
@@ -60,38 +60,43 @@ FlexBoxPolyfill.prototype.extend({
     /*
      * The content of the main center panel.
      */
-    content: Control.chain( "$FlexBoxPolyfill_content", "content", function() {
-        this.trigger( "layout" );
-    }),
-    
+    content: Control.chain( "$FlexBoxPolyfill_content", "content" ),
+
     /*
      * True if the control should fill its container.
      */
     fill: Control.chain( "applyClass/fill", function() {
-        this.trigger( "layout" );
+        if ( !this.flexBox() ) {
+            this.trigger( "layout" );
+        }
     }),
     
     initialize: function() {
         var self = this;
-        this.on( "layout", function() {
-            self.layout();
+        this.inDocument( function() {
+            if ( !self.flexBox() ) {
+                // We'll need to do the layout ourselves.
+                self
+                    .addClass( "noFlexBox" )
+                    .on( "layout", function() {
+                        var css = self._noFlexBoxCss();
+                        self.$FlexBoxPolyfill_content().css( css );
+                    });
+            }
         });
     },
     
-    layout: function() {
+    /*
+     * Returns true if the control is used the CSS flexible layout module,
+     * or false if the control is using JavaScript layout logic.
+     */ 
+    flexBox: function() {
         var flexBoxVariants = [
             "box",
             /* "-moz-box" */
             "-webkit-box"
         ];
-        var flexBox = $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
-        if ( !flexBox ) {
-            // Do the layout ourselves.
-            this.addClass( "noFlexBox" );
-            var css = this._noFlexBoxCss();
-            this.$FlexBoxPolyfill_content().css( css );
-        }
-        return this;
+        return $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
     },
     
     /*
@@ -131,14 +136,18 @@ FlexBoxPolyfill.prototype.extend({
      * The content of the first docked panel.
      */    
     _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
-        this.trigger( "layout" );
+        if ( !this.flexBox() ) {
+            this.trigger( "layout" );
+        }
     }),
     
     /*
      * The content of the second docked.
      */
     _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
-        this.trigger( "layout" );      
+        if ( !this.flexBox() ) {
+            this.trigger( "layout" );
+        }
     })
 });
 </script>
