@@ -28,7 +28,7 @@ FlickrInterestingPhoto.prototype.extend({
              * of the real image. By forcing the width to "auto", IE reports the
              * correct photo width (and height) instead.
              * 
-             * This allows anyone listening for the sizeChanged event to get
+             * This allows anyone listening for the layout event to get
              * the correct dimensions of the photo, instead of the dimensions
              * of the image placeholder icon. 
              */
@@ -38,8 +38,7 @@ FlickrInterestingPhoto.prototype.extend({
                 $element.css( "width", "auto" );
             }
 
-            $element.trigger( "sizeChanged" );
-            $element.trigger( "layout" ); // Experimental
+            $element.trigger( "layout" );
         });
 
         var photo = this.photo();

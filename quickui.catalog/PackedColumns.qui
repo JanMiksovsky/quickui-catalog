@@ -36,7 +36,7 @@ PackedColumns.prototype.extend({
     
     content: function( value ) {
         var result = this._super( value ); 
-        this.trigger( "sizeChanged" );
+        this.trigger( "layout" );
         return result;
     },
     

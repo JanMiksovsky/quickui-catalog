@@ -110,13 +110,13 @@ FlickrInterestingNavigator.prototype.extend({
             previousMonth.setMonth( previousMonth.getMonth() - 1 );
             this.$previousMonthName()
                 .month( previousMonth.getMonth() )
-                .trigger( "sizeChanged" );
+                .trigger( "layout" );
 
             var nextMonth = new Date( date.getTime() );
             nextMonth.setMonth( nextMonth.getMonth() + 1 );
             this.$nextMonthName()
                 .month( nextMonth.getMonth() )
-                .trigger( "sizeChanged" );
+                .trigger( "layout" );
             
             // Disable navigation into future.
             var today = new Date();

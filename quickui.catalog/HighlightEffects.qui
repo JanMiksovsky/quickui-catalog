@@ -60,7 +60,7 @@ HighlightEffects.prototype.extend({
 
         var self = this;
         this
-            .on( "sizeChanged", function() {
+            .on( "layout", function() {
                 self._recalc();
             })
             .hover(

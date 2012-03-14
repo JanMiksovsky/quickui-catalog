@@ -61,14 +61,14 @@ FlexBoxPolyfill.prototype.extend({
      * The content of the main center panel.
      */
     content: Control.chain( "$FlexBoxPolyfill_content", "content", function() {
-        this.trigger( "sizeChanged" );
+        this.trigger( "layout" );
     }),
     
     /*
      * True if the control should fill its container.
      */
     fill: Control.chain( "applyClass/fill", function() {
-        this.trigger( "sizeChanged" );
+        this.trigger( "layout" );
     }),
     
     initialize: function() {
@@ -87,10 +87,9 @@ FlexBoxPolyfill.prototype.extend({
         var flexBox = $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
         if ( !flexBox ) {
             // Do the layout ourselves.
-            var css = this._noFlexBoxCss();
-            //console.log( css );
-            this.$FlexBoxPolyfill_content().css( css );
             this.addClass( "noFlexBox" );
+            var css = this._noFlexBoxCss();
+            this.$FlexBoxPolyfill_content().css( css );
         }
         return this;
     },
@@ -132,14 +131,14 @@ FlexBoxPolyfill.prototype.extend({
      * The content of the first docked panel.
      */    
     _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
-        this.trigger( "sizeChanged" );
+        this.trigger( "layout" );
     }),
     
     /*
      * The content of the second docked.
      */
     _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
-        this.trigger( "sizeChanged" );      
+        this.trigger( "layout" );      
     })
 });
 </script>
