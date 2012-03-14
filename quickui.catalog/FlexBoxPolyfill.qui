@@ -60,6 +60,19 @@ bugs; it's just not worth using at this point.
 FlexBoxPolyfill.prototype.extend({
     
     /*
+     * Returns true if the browser supports the CSS flexible layout module,
+     * or false if the control is using JavaScript layout logic.
+     */ 
+    browserSupportsFlexBox: function() {
+        var flexBoxVariants = [
+            "box",
+            /* "-moz-box", */
+            "-webkit-box"
+        ];
+        return $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
+    },
+    
+    /*
      * The content of the main center panel.
      */
     content: Control.chain( "$FlexBoxPolyfill_content", "content" ),
@@ -68,7 +81,7 @@ FlexBoxPolyfill.prototype.extend({
      * True if the control should fill its container.
      */
     fill: Control.chain( "applyClass/fill", function() {
-        if ( !this.flexBox() ) {
+        if ( !this._checkFlexBox() ) {
             this.trigger( "layout" );
         }
     }),
@@ -76,29 +89,8 @@ FlexBoxPolyfill.prototype.extend({
     initialize: function() {
         var self = this;
         this.inDocument( function() {
-            if ( !self.flexBox() ) {
-                // We'll need to do the layout ourselves.
-                self
-                    .addClass( "noFlexBox" )
-                    .on( "layout", function() {
-                        var css = self._noFlexBoxCss();
-                        self.$FlexBoxPolyfill_content().css( css );
-                    });
-            }
+            self._checkFlexBox();
         });
-    },
-    
-    /*
-     * Returns true if the control is used the CSS flexible layout module,
-     * or false if the control is using JavaScript layout logic.
-     */ 
-    flexBox: function() {
-        var flexBoxVariants = [
-            "box",
-            /* "-moz-box", */
-            "-webkit-box"
-        ];
-        return $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
     },
     
     /*
@@ -110,7 +102,62 @@ FlexBoxPolyfill.prototype.extend({
             "-webkit-box-orient": orient,
             "box-orient": orient
         });
-    }),
+        this._checkFlexBox();
+    }, "horizontal"),
+    
+    _checkFlexBox: function() {
+        
+        var flexBox = this.browserSupportsFlexBox();
+
+        /*
+         * WebKit has a bug preventing use of overflow: auto in combination with
+         * -webkit-box-orient: horizontal, a common need in this control.
+         * See http://code.google.com/p/chromium/issues/detail?id=118004.
+         * Until that gets fixed, we disable flexbox support on WebKit for
+         * horizontal orientation. 
+         */
+        if ( $.browser.webkit && this.orient() === "horizontal" ) {
+            flexBox = false;
+        }
+        
+        if ( flexBox ) {
+            // Let the browser do the layout.
+            if ( !this._usingFlexBox() ) {
+                this
+                    .off( "layout" )
+                    ._usingFlexBox( true );
+            }
+        } else {
+            // We'll need to do the layout ourselves.
+            if ( this._usingFlexBox() ) {
+                var self = this;
+                this
+                    // Clear usingFlexBox before binding layout event; binding
+                    // forces an initial layout handler call, which will need
+                    // the noFlexBox class to be applied in order to calculate
+                    // the layout properly.
+                    ._usingFlexBox( false )
+                    .on( "layout", function() {
+                        var css = self._noFlexBoxCss();
+                        self.$FlexBoxPolyfill_content().css( css );
+                    });
+            }
+        }
+        
+        return flexBox;
+    },
+
+    /*
+     * True if the control is currently using CSS flexible box layout, and
+     * false if using manual layout.
+     */
+    _usingFlexBox: function( usingFlexBox ) {
+        if ( usingFlexBox === undefined ) {
+            return !this.hasClass( "noFlexBox" );
+        } else {
+            return this.toggleClass( "noFlexBox", !usingFlexBox );
+        }
+    },
     
     /*
      * Return the appropriate CSS to simulate flex behavior for the main content
@@ -138,7 +185,7 @@ FlexBoxPolyfill.prototype.extend({
      * The content of the first docked panel.
      */    
     _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
-        if ( !this.flexBox() ) {
+        if ( !this._usingFlexBox() ) {
             this.trigger( "layout" );
         }
     }),
@@ -147,10 +194,11 @@ FlexBoxPolyfill.prototype.extend({
      * The content of the second docked.
      */
     _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
-        if ( !this.flexBox() ) {
+        if ( !this._usingFlexBox() ) {
             this.trigger( "layout" );
         }
     })
+    
 });
 </script>
 
