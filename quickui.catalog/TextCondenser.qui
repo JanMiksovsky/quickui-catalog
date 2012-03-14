@@ -47,7 +47,7 @@ TextCondenser.prototype.extend({
 
     content: Control.chain( "$normal", "content", function( content ) {
         this.$condensed().content( content ); // Make a copy of the text.
-        this.trigger( "sizeChanged" );
+        this.checkForSizeChange();
     }),
     
     initialize: function() {

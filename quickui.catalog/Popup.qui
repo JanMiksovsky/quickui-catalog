@@ -124,7 +124,7 @@ Popup.prototype.extend({
             .show()
             .trigger( "opened" )
             // In case popup wants to resize anything now that it's visible.
-            .trigger( "sizeChanged" );
+            .checkForSizeChange();
         
         // Position the popup after the layout recalc.
         var positionPopup = this.positionPopup();

@@ -32,7 +32,7 @@ PackedColumns.prototype.extend({
     
     content: function( value ) {
         var result = this._super( value ); 
-        this.trigger( "sizeChanged" );
+        this.checkForSizeChange();
         return result;
     },
     
@@ -45,8 +45,6 @@ PackedColumns.prototype.extend({
     
     layout: function() {
         
-        console.log( "layout" );
-
         var children = this.children();
         var childCount = children.length;
         if ( childCount === 0 ) {

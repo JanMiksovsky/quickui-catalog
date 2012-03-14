@@ -32,13 +32,13 @@ FlickrInterestingPhoto.prototype.extend({
              * the correct dimensions of the photo, instead of the dimensions
              * of the image placeholder icon. 
              */
-            var $element = $( this );
-            if ( $.browser.msie && parseInt( $element.width() ) === 28 ) {
-                console.log( $element.width() + " " + $element.height() );
-                $element.css( "width", "auto" );
+            var control = Control( this );
+            if ( $.browser.msie && parseInt( control.width() ) === 28 ) {
+                console.log( control.width() + " " + control.height() );
+                control.css( "width", "auto" );
             }
 
-            $element.trigger( "sizeChanged" );
+            control.checkForSizeChange();
         });
 
         var photo = this.photo();

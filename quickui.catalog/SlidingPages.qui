@@ -57,7 +57,7 @@ SlidingPages.prototype.extend({
             .inDocument( function( $control ) {
                 $control._adjustWidths();
             })
-            .on( "layout", function() {
+            .on( "layout sizeChanged", function() {
                 self._adjustWidths();
             });
 

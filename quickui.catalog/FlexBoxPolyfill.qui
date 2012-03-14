@@ -41,8 +41,22 @@ bugs; it's just not worth using at this point.
     box-flex: 1;
 }
 
+.FlexBoxPolyfill.horizontal {
+    /* -moz-box-orient: horizontal; */
+    -webkit-box-orient: horizontal;
+    box-orient: horizontal;
+}
+.FlexBoxPolyfill.vertical {
+    /* -moz-box-orient: vertical; */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+}
+
 .FlexBoxPolyfill.noFlexBox {
     position: relative;
+}
+.FlexBoxPolyfill.noFlexBox.horizontal > * {
+    position: absolute;
 }
 
 .FlexBoxPolyfill.fill {
@@ -97,11 +111,9 @@ FlexBoxPolyfill.prototype.extend({
      * The orientation of the panels: "horizontal" or "vertical".
      */
     orient: Control.property( function( orient ) {
-        this.css({
-            /* -moz-box-orient: orient, */
-            "-webkit-box-orient": orient,
-            "box-orient": orient
-        });
+        var vertical = this._vertical();
+        this.toggleClass( "horizontal", !vertical );
+        this.toggleClass( "vertical", vertical );
         this._checkFlexBox();
     }, "horizontal"),
     
@@ -116,7 +128,7 @@ FlexBoxPolyfill.prototype.extend({
          * Until that gets fixed, we disable flexbox support on WebKit for
          * horizontal orientation. 
          */
-        if ( $.browser.webkit && this.orient() === "horizontal" ) {
+        if ( $.browser.webkit && !this._vertical() ) {
             flexBox = false;
         }
         
@@ -124,7 +136,7 @@ FlexBoxPolyfill.prototype.extend({
             // Let the browser do the layout.
             if ( !this._usingFlexBox() ) {
                 this
-                    .off( "layout" )
+                    .off( "layout sizeChanged" )
                     ._usingFlexBox( true );
             }
         } else {
@@ -137,34 +149,20 @@ FlexBoxPolyfill.prototype.extend({
                     // the noFlexBox class to be applied in order to calculate
                     // the layout properly.
                     ._usingFlexBox( false )
-                    .on( "layout", function() {
-                        var css = self._noFlexBoxCss();
-                        self.$FlexBoxPolyfill_content().css( css );
+                    .on( "layout sizeChanged", function() {
+                        self._layout();
                     });
             }
         }
         
         return flexBox;
     },
-
-    /*
-     * True if the control is currently using CSS flexible box layout, and
-     * false if using manual layout.
-     */
-    _usingFlexBox: function( usingFlexBox ) {
-        if ( usingFlexBox === undefined ) {
-            return !this.hasClass( "noFlexBox" );
-        } else {
-            return this.toggleClass( "noFlexBox", !usingFlexBox );
-        }
-    },
     
     /*
-     * Return the appropriate CSS to simulate flex behavior for the main content
-     * panel.
+     * Simulate flex behavior for the main content panel.
      */
-    _noFlexBoxCss: function() {
-        var vertical = ( this.orient() === "vertical" );
+    _layout: function() {
+        var vertical = this._vertical();
         var leadingEdge = vertical ? "top" : "left";
         var trailingEdge = vertical ? "bottom" : "right";
         var measureFn = vertical ? $.prototype.outerHeight : $.prototype.outerWidth;
@@ -178,14 +176,15 @@ FlexBoxPolyfill.prototype.extend({
          * property that just indicates that. Setting fill(true) would
          * implicitly set constrained(true).
          */
-        if ( this.fill() ) {
+        if ( this.fill() || !this._vertical() ) {
             css[ leadingEdge ] = measureFn.call( panel1, true );
             css[ trailingEdge ] = measureFn.call( panel2, true );
         } else {
+            // Vertical orientation without fill requires no special layout.
             css[ leadingEdge ] = "inherit";
             css[ trailingEdge ] = "inherit";
         }
-        return css;
+        this.$FlexBoxPolyfill_content().css( css );
     },
     
     /*
@@ -193,7 +192,7 @@ FlexBoxPolyfill.prototype.extend({
      */    
     _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
         if ( !this._usingFlexBox() ) {
-            this.trigger( "sizeChanged" );
+            this.$FlexBoxPolyfill_panel1().checkForSizeChange();
         }
     }),
     
@@ -202,9 +201,26 @@ FlexBoxPolyfill.prototype.extend({
      */
     _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
         if ( !this._usingFlexBox() ) {
-            this.trigger( "sizeChanged" );
+            this.$FlexBoxPolyfill_panel2().checkForSizeChange();
         }
-    })
+    }),
+
+    /*
+     * True if the control is currently using CSS flexible box layout, and
+     * false if using manual layout.
+     */
+    _usingFlexBox: function( usingFlexBox ) {
+        if ( usingFlexBox === undefined ) {
+            return !this.hasClass( "noFlexBox" );
+        } else {
+            return this.toggleClass( "noFlexBox", !usingFlexBox );
+        }
+    },
+    
+    // Return true if we're using vertical orientation, false if not.
+    _vertical: function() {
+        return ( this.orient() === "vertical" );
+    }
     
 });
 </script>

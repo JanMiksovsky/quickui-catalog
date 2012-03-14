@@ -54,7 +54,7 @@ PanelWithOverflow.prototype.extend({
      * The contents of the control.
      */
     content: Control.chain( "$PanelWithOverflow_content", "content", function() {
-        this.trigger( "sizeChanged" );
+        this.checkForSizeChange();
     }),
     
     /*
@@ -62,7 +62,7 @@ PanelWithOverflow.prototype.extend({
      * the control's bounds.
      */
     indicator: Control.chain( "$menuButton", "indicator", function() {
-        this.trigger( "sizeChanged" );
+        this.checkForSizeChange();
     }),
     
     initialize: function() {

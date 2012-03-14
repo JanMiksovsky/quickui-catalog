@@ -69,7 +69,7 @@ AdPlaceholder.prototype.extend({
         });
         this
             .content( width + " x " + height )
-            .trigger( "sizeChanged" );
+            .checkForSizeChange();
             
     }),
 
