@@ -1,7 +1,7 @@
 <Control className="HorizontalPanelsDemo">
 
 <content>
-    <HorizontalPanels>
+    <HorizontalPanels constrainHeight="true">
         <left>Left panel</left>
         <content>Main content</content>
         <right>Right panel</right>
@@ -9,9 +9,10 @@
 </content>
 
 <style>
-.HorizontalPanels {
+{
     height: 200px;
 }
+
 .HorizontalPanels > * {
     border: 1px solid lightgray;
     padding: 6px;

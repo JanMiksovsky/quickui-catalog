@@ -130,7 +130,21 @@ SimpleFlexBox.prototype.extend({
         this._checkFlexBox();
     }, "horizontal"),
     
+    /*
+     * See if we can use the CSS flexible layout module (preferred), whether
+     * we can use other flexbox-less styling for layout, or whether we need to
+     * do manual layout. For the latter, start a layout event handler.
+     * Return true if we're using flexbox, false if not.  
+     */
     _checkFlexBox: function() {
+        
+        if ( !this.inDocument() ) {
+            /*
+             * Detection of flexbox support requires styles, which means the
+             * control has to be in the DOM.
+             */
+             return false;
+        }
 
         var flexBox = this.browserSupportsFlexBox();
         var constrainHeight = this.constrainHeight();
@@ -178,14 +192,18 @@ SimpleFlexBox.prototype.extend({
      */
     _layout: function() {
         var vertical = this._vertical();
-        var leadingEdge = vertical ? "top" : "left";
-        var trailingEdge = vertical ? "bottom" : "right";
         var measureFn = vertical ? $.prototype.outerHeight : $.prototype.outerWidth;
-        var panel1 = this.$SimpleFlexBox_panel1();
-        var panel2 = this.$SimpleFlexBox_panel2();
-        var css = {};
-        css[ leadingEdge ] = measureFn.call( panel1, true );
-        css[ trailingEdge ] = measureFn.call( panel2, true );
+        var sizePanel1 = measureFn.call( this.$SimpleFlexBox_panel1(), true );
+        var sizePanel2 = measureFn.call( this.$SimpleFlexBox_panel2(), true );
+        var css = vertical
+            ? {
+                bottom: sizePanel2, 
+                top: sizePanel1
+            }
+            : {
+                left: sizePanel1,
+                right: sizePanel2
+            };
         this.$SimpleFlexBox_content().css( css );
     },
     
