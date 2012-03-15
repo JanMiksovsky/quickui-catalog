@@ -3,8 +3,8 @@
 <Control className="PersistentPanelSideDemo">
 
 <prototype>
-    <Page fill="true">
-        <HorizontalPanels id="container" fill="true">
+    <Page>
+        <HorizontalPanels id="container">
     
             <content>
                 <!-- Main (scrolling) contents -->
@@ -50,6 +50,10 @@
 </prototype>
 
 <style>
+{
+    margin: 0;
+}
+
 #container {
     margin: 0 auto;
     width: 1024px;

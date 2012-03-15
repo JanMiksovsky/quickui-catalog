@@ -72,16 +72,14 @@ bugs; it's just not worth using at this point.
 }
 .SimpleFlexBox.noFlexBox.horizontal > * {
     display: table-cell;
-}
-.SimpleFlexBox.noFlexBox.horizontal > .panel {
-    /* flexbox seems to treat panels as if they had nowrap. */
-    white-space: nowrap;
+    vertical-align: top;
 }
 .SimpleFlexBox.noFlexBox.vertical {
     display: inherit;
 }
 .SimpleFlexBox.noFlexBox.vertical > * {
     display: inherit;
+    vertical-align: inherit;
 }
 .SimpleFlexBox.noFlexBox.fill {
     display: inherit;
@@ -89,6 +87,7 @@ bugs; it's just not worth using at this point.
 .SimpleFlexBox.noFlexBox.fill > * {
     display: inherit; 
     position: absolute;
+    vertical-align: inherit;
 }
 </style>
 
