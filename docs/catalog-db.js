@@ -254,12 +254,17 @@ var controlRecords = [
     {
         name: "SearchBox",
         demoClass: "GoogleSearchBox",
-        description: "A typical web search box"
+        description: "A typical web search box."
+    },
+    {
+        name: "SimpleFlexBox",
+        demoClass: "",
+        description: "Allows use of simple CSS flexbox layouts in older browsers."
     },
     {
         name: "SlidingPages",
         demoClass: "",
-        description: "Arranges its children as page on a horizontally sliding strip"
+        description: "Arranges its children as page on a horizontally sliding strip."
     },
     {
         name: "SlidingPagesWithDots",
@@ -269,7 +274,7 @@ var controlRecords = [
     {
         name: "Sprite",
         demoClass: "SpriteDemo",
-        description: "A basic CSS sprite"
+        description: "A basic CSS sprite."
     },
     {
         name: "SpriteButton",

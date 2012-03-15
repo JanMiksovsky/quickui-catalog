@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300&v2' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/plugins/quickui.rehydrate.css" />
+<link rel="stylesheet" type="text/css" href="/release/quickui.catalog.css" />
+<link rel="stylesheet" type="text/css" href="/site.css" />
+<link rel="stylesheet" type="text/css" href="/controls/controls.css" />
+<link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
+<script type="text/javascript" src="/release/quickui.js"></script>
+<script type="text/javascript" src="/plugins/quickui.rehydrate.js"></script>
+<script type="text/javascript" src="/release/quickui.catalog.js"></script>
+<script type="text/javascript" src="/catalog/catalog-db.js"></script>
+<script type="text/javascript" src="/controls/controls.js"></script>
+<script type="text/javascript" src="/catalog/docs.js"></script>
+<script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
+
+<title>SimpleFlexBox</title>
+
+</head>
+
+<body data-create-controls="true" data-control="CatalogPageNew">
+
+<div data-property="summary">
+A control that handles some very basic uses of the
+<a data-control="Link" href="http://www.w3.org/TR/css3-flexbox/">CSS Flexible Box Layout Module</a>, a.k.a. "flexbox".
+When flexbox support is not available, or in situations where it is known to be
+buggy, the control falls back to simpler styling solutions or manual layout.
+This control most intended as a base class for the
+<a data-control="CatalogLink">HorizontalPanels</a> and
+<a data-control="CatalogLink">VerticalPanels</a> controls.
+</div>
+
+<p>
+    There are many strategies for laying out a content area with top/bottom or
+    left/right panels, but most of these assume that the side panels have a
+    known, fixed height or width (respectively). The SimpleFlexBox control
+    works with panels whose content size is not determined until runtime.
+</p>
+<p>
+    This control is a "polyfill", meant to enable use of layout features which
+    are not yet available in all browsers. For simplicity, the control assumes
+    a maximum of one panel to either side of the main content panel. I.e.,
+    in horizontal orientation, there can be up to one left panel and one
+    right panel; in vertical orientation, there can be up to one top panel
+    and one bottom panel.  
+</p>
+
+</body>
+
+</html>
