@@ -7,18 +7,18 @@
 </prototype>
 
 <style>
-.HorizontalPanels.noFlexBox > * {
+.HorizontalPanels.noFlexBox.constrainHeight > * {
     top: 0;
     bottom: 0;
 }
-.HorizontalPanels.noFlexBox #SimpleFlexBox_panel1 {
+.HorizontalPanels.noFlexBox.constrainHeight #SimpleFlexBox_panel1 {
     left: 0;
 }
-.HorizontalPanels.noFlexBox #SimpleFlexBox_panel2 {
+.HorizontalPanels.noFlexBox.constrainHeight #SimpleFlexBox_panel2 {
     right: 0;
 }
 
-.HorizontalPanels.fill #SimpleFlexBox_content {
+.HorizontalPanels.constrainHeight #SimpleFlexBox_content {
     overflow-y: auto;
 }
 </style>

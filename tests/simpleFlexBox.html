@@ -16,9 +16,13 @@ body {
 }
 
 .test {
-    height: 300px;
+    border: 1px solid #ddd;
     overflow: hidden;
     position: relative;
+}
+
+.SimpleFlexBox.constrainHeight {
+    height: 350px;
 }
 
 .SimpleFlexBox > .panel {
@@ -35,7 +39,7 @@ body {
 
     <h2>HorizontalPanels: constrained height</h2>
     <div class="test">
-        <div data-control="HorizontalPanels" data-left="Left panel" data-right="Right panel" data-fill="true">
+        <div data-control="HorizontalPanels" data-left="Left panel" data-right="Right panel" data-constrainHeight="true">
             Start main content
             <div data-control="LoremIpsum" data-paragraphs="3"></div>
             End main content
@@ -53,7 +57,7 @@ body {
     
     <h2>VerticalPanels: constrained height</h2>
     <div class="test">
-        <div data-control="VerticalPanels" data-top="Top panel" data-bottom="Bottom panel" data-fill="true">
+        <div data-control="VerticalPanels" data-top="Top panel" data-bottom="Bottom panel" data-constrainHeight="true">
             Start main content
             <div data-control="LoremIpsum" data-paragraphs="3"></div>
             End main content

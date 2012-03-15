@@ -1,5 +1,5 @@
 <!--
-A polyfill (shim) supporting the CSS flexible box layout model on newer browsers
+A polyconstrainHeight (shim) supporting the CSS flexible box layout model on newer browsers
 and emulating some very basic aspects of that layout model on older browsers.
 
 As of 3/12/12, Mozilla's flexbox support is too flaky to use. Among other
@@ -53,38 +53,26 @@ bugs; it's just not worth using at this point.
     box-orient: vertical;
 }
 
-.SimpleFlexBox.fill {
+.SimpleFlexBox.constrainHeight {
+    /* This can be overridden, but seems like a useful default. */
     height: 100%;
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
 }
 
 /* noFlexBox will be applied where flexbox is unsupported or known to be buggy. */
 .SimpleFlexBox.noFlexBox {
-    /*
-     * We only use display: table for horizontal + no fill. We start out assuming
-     * the need for that and then turn it off for vertical or fill, because
-     * IE8 doesn't support the :not selector.
-     */
-    display: table;
     position: relative;
+}
+.SimpleFlexBox.noFlexBox.horizontal {
+    display: table;
 }
 .SimpleFlexBox.noFlexBox.horizontal > * {
     display: table-cell;
     vertical-align: top;
 }
-.SimpleFlexBox.noFlexBox.vertical {
+.SimpleFlexBox.noFlexBox.constrainHeight {
     display: inherit;
 }
-.SimpleFlexBox.noFlexBox.vertical > * {
-    display: inherit;
-    vertical-align: inherit;
-}
-.SimpleFlexBox.noFlexBox.fill {
-    display: inherit;
-}
-.SimpleFlexBox.noFlexBox.fill > * {
+.SimpleFlexBox.noFlexBox.constrainHeight > * {
     display: inherit; 
     position: absolute;
     vertical-align: inherit;
@@ -113,9 +101,13 @@ SimpleFlexBox.prototype.extend({
     content: Control.chain( "$SimpleFlexBox_content", "content" ),
 
     /*
-     * True if the control should fill its container.
+     * Set this to true if you have styled the control to constrain its
+     * height, e.g., with absolute positioning or a hard pixel height. 
+     * (Unfortunately, there doesn't seem to be a way to programmatically
+     * determine whether the control has had its height styled.) The default
+     * is false.
      */
-    fill: Control.chain( "applyClass/fill", function() {
+    constrainHeight: Control.chain( "applyClass/constrainHeight", function() {
         if ( !this._checkFlexBox() ) {
             this.trigger( "layout" );
         }
@@ -139,48 +131,50 @@ SimpleFlexBox.prototype.extend({
     }, "horizontal"),
     
     _checkFlexBox: function() {
-        
-        var flexBox = this.browserSupportsFlexBox();
 
+        var flexBox = this.browserSupportsFlexBox();
+        var constrainHeight = this.constrainHeight();
+        
         /*
          * WebKit has a bug preventing use of overflow: auto in combination with
-         * -webkit-box-orient: horizontal, a common need in this control.
+         * -webkit-box-orient: horizontal, which will often come up when
+         * constraining height.
          * See http://code.google.com/p/chromium/issues/detail?id=118004.
          * Until that gets fixed, we disable flexbox support on WebKit for
-         * horizontal orientation. 
+         * horizontal orientation and constrained height.
          */
-        if ( $.browser.webkit && !this._vertical() ) {
+        if ( $.browser.webkit && !this._vertical() && constrainHeight ) {
             flexBox = false;
         }
+
+        /*
+         * We have to set the noFlexBox class before the layout event handler
+         * gets bound; binding forces an initial layout handler call, which will
+         * need the noFlexBox class to be applied in order to calculate the
+         * layout properly.
+         */
+        this._usingFlexBox( flexBox );
         
-        if ( flexBox ) {
-            // Let the browser do the layout.
-            if ( !this._usingFlexBox() ) {
-                this
-                    .off( "layout sizeChanged" )
-                    ._usingFlexBox( true );
-            }
-        } else {
-            // We'll need to do the layout ourselves.
-            if ( this._usingFlexBox() ) {
-                var self = this;
-                this
-                    // Clear usingFlexBox before binding layout event; binding
-                    // forces an initial layout handler call, which will need
-                    // the noFlexBox class to be applied in order to calculate
-                    // the layout properly.
-                    ._usingFlexBox( false )
-                    .on( "layout sizeChanged", function() {
-                        self._layout();
-                    });
-            }
+        // Handle the layout events as needed.
+        var handlingLayout = this._handlingLayout();
+        var needLayout = !flexBox && constrainHeight;
+        if ( needLayout && !handlingLayout ) {
+            var self = this;
+            this.on( "layout sizeChanged", function() {
+                self._layout();
+            });
+            this._handlingLayout( true );
+        } else if ( !needLayout && handlingLayout ) {
+            this.off( "layout sizeChanged" );
+            this._handlingLayout( false );
         }
         
         return flexBox;
     },
     
     /*
-     * Simulate flex behavior for the main content panel.
+     * Simulate flex behavior for the main content panel when the height
+     * is constrained.
      */
     _layout: function() {
         var vertical = this._vertical();
@@ -190,23 +184,15 @@ SimpleFlexBox.prototype.extend({
         var panel1 = this.$SimpleFlexBox_panel1();
         var panel2 = this.$SimpleFlexBox_panel2();
         var css = {};
-        /*
-         * TODO: The fill property is too specific a test here; all we care
-         * about is whether the relevant control dimension is constrained.
-         * It might be better to have this control expose a constrained()
-         * property that just indicates that. Setting fill(true) would
-         * implicitly set constrained(true).
-         */
-        if ( this.fill() || !this._vertical() ) {
-            css[ leadingEdge ] = measureFn.call( panel1, true );
-            css[ trailingEdge ] = measureFn.call( panel2, true );
-        } else {
-            // Vertical orientation without fill requires no special layout.
-            css[ leadingEdge ] = "inherit";
-            css[ trailingEdge ] = "inherit";
-        }
+        css[ leadingEdge ] = measureFn.call( panel1, true );
+        css[ trailingEdge ] = measureFn.call( panel2, true );
         this.$SimpleFlexBox_content().css( css );
     },
+    
+    /*
+     * True if we're currently handling the layout event to do manual layout.
+     */
+    _handlingLayout: Control.property(),
     
     /*
      * The content of the first docked panel.
