@@ -3,7 +3,7 @@
 <Control className="HorizontalPanels">
 
 <prototype>
-    <FlexBoxPolyfill orient="horizontal" />
+    <SimpleFlexBox orient="horizontal" />
 </prototype>
 
 <style>
@@ -11,14 +11,14 @@
     top: 0;
     bottom: 0;
 }
-.HorizontalPanels.noFlexBox #FlexBoxPolyfill_panel1 {
+.HorizontalPanels.noFlexBox #SimpleFlexBox_panel1 {
     left: 0;
 }
-.HorizontalPanels.noFlexBox #FlexBoxPolyfill_panel2 {
+.HorizontalPanels.noFlexBox #SimpleFlexBox_panel2 {
     right: 0;
 }
 
-.HorizontalPanels.fill #FlexBoxPolyfill_content {
+.HorizontalPanels.fill #SimpleFlexBox_content {
     overflow-y: auto;
 }
 </style>

@@ -9,12 +9,12 @@ whether flexbox is even supported. Forcing the use of flexbox reveals more
 bugs; it's just not worth using at this point.
 -->
  
-<Control className="FlexBoxPolyfill">
+<Control className="SimpleFlexBox">
 
 <content>
-    <div id="FlexBoxPolyfill_panel1" />
-    <div id="FlexBoxPolyfill_content" />
-    <div id="FlexBoxPolyfill_panel2" />
+    <div id="SimpleFlexBox_panel1" />
+    <div id="SimpleFlexBox_content" />
+    <div id="SimpleFlexBox_panel2" />
 </content>
 
 <style>
@@ -35,43 +35,43 @@ bugs; it's just not worth using at this point.
     -webkit-box-sizing: border-box;
 }
 
-#FlexBoxPolyfill_content {
+#SimpleFlexBox_content {
     /* -moz-box-flex: 1; */
     -webkit-box-flex: 1;
     box-flex: 1;
 }
 
-.FlexBoxPolyfill.horizontal {
+.SimpleFlexBox.horizontal {
     /* -moz-box-orient: horizontal; */
     -webkit-box-orient: horizontal;
     box-orient: horizontal;
 }
-.FlexBoxPolyfill.vertical {
+.SimpleFlexBox.vertical {
     /* -moz-box-orient: vertical; */
     -webkit-box-orient: vertical;
     box-orient: vertical;
 }
 
-.FlexBoxPolyfill.noFlexBox {
+.SimpleFlexBox.noFlexBox {
     position: relative;
 }
-.FlexBoxPolyfill.noFlexBox.horizontal > * {
+.SimpleFlexBox.noFlexBox.horizontal > * {
     position: absolute;
 }
 
-.FlexBoxPolyfill.fill {
+.SimpleFlexBox.fill {
     height: 100%;
     overflow: hidden;
     position: absolute;
     width: 100%;
 }
-.FlexBoxPolyfill.fill.noFlexBox > * {
+.SimpleFlexBox.fill.noFlexBox > * {
     position: absolute;
 }
 </style>
 
 <script>
-FlexBoxPolyfill.prototype.extend({
+SimpleFlexBox.prototype.extend({
     
     /*
      * Returns true if the browser supports the CSS flexible layout module,
@@ -89,7 +89,7 @@ FlexBoxPolyfill.prototype.extend({
     /*
      * The content of the main center panel.
      */
-    content: Control.chain( "$FlexBoxPolyfill_content", "content" ),
+    content: Control.chain( "$SimpleFlexBox_content", "content" ),
 
     /*
      * True if the control should fill its container.
@@ -166,8 +166,8 @@ FlexBoxPolyfill.prototype.extend({
         var leadingEdge = vertical ? "top" : "left";
         var trailingEdge = vertical ? "bottom" : "right";
         var measureFn = vertical ? $.prototype.outerHeight : $.prototype.outerWidth;
-        var panel1 = this.$FlexBoxPolyfill_panel1();
-        var panel2 = this.$FlexBoxPolyfill_panel2();
+        var panel1 = this.$SimpleFlexBox_panel1();
+        var panel2 = this.$SimpleFlexBox_panel2();
         var css = {};
         /*
          * TODO: The fill property is too specific a test here; all we care
@@ -184,24 +184,24 @@ FlexBoxPolyfill.prototype.extend({
             css[ leadingEdge ] = "inherit";
             css[ trailingEdge ] = "inherit";
         }
-        this.$FlexBoxPolyfill_content().css( css );
+        this.$SimpleFlexBox_content().css( css );
     },
     
     /*
      * The content of the first docked panel.
      */    
-    _panel1: Control.chain( "$FlexBoxPolyfill_panel1", "content", function() {
+    _panel1: Control.chain( "$SimpleFlexBox_panel1", "content", function() {
         if ( !this._usingFlexBox() ) {
-            this.$FlexBoxPolyfill_panel1().checkForSizeChange();
+            this.$SimpleFlexBox_panel1().checkForSizeChange();
         }
     }),
     
     /*
      * The content of the second docked.
      */
-    _panel2: Control.chain( "$FlexBoxPolyfill_panel2", "content", function() {
+    _panel2: Control.chain( "$SimpleFlexBox_panel2", "content", function() {
         if ( !this._usingFlexBox() ) {
-            this.$FlexBoxPolyfill_panel2().checkForSizeChange();
+            this.$SimpleFlexBox_panel2().checkForSizeChange();
         }
     }),
 

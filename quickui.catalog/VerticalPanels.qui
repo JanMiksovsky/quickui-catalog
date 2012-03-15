@@ -3,7 +3,7 @@
 <Control className="VerticalPanels">
 
 <prototype>
-    <FlexBoxPolyfill orient="vertical" />
+    <SimpleFlexBox orient="vertical" />
 </prototype>
 
 <style>
@@ -11,14 +11,14 @@
     left: 0;
     right: 0;
 }
-#FlexBoxPolyfill_panel1 {
+#SimpleFlexBox_panel1 {
     top: 0;
 }
-#FlexBoxPolyfill_panel2 {
+#SimpleFlexBox_panel2 {
     bottom: 0;
 }
 
-.VerticalPanels.fill #FlexBoxPolyfill_content {
+.VerticalPanels.fill #SimpleFlexBox_content {
     overflow-y: auto;
 }
 </style>

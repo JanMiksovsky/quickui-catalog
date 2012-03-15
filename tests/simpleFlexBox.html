@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="http://quickui/release/quickui.catalog.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://quickui/release/quickui.js"></script>
+<script type="text/javascript" src="http://quickui/plugins/quickui.rehydrate.js"></script>
+<script type="text/javascript" src="http://quickui/release/quickui.catalog.js"></script>
+
+<style>
+body {
+    font-family: Helvetica, sans serif;
+}
+
+.test {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+#SimpleFlexBox_panel1, #SimpleFlexBox_panel2 {
+    background: #eee;
+}
+</style>
+
+</head>
+
+<body data-create-controls="true">
+
+    <h1>SimpleFlexBox tests</h1>
+
+    <h2>HorizontalPanels: constrained height</h2>
+    <div class="test">
+        <div data-control="HorizontalPanels" data-left="Left panel" data-right="Right panel" data-fill="true">
+            Start main content
+            <div data-control="LoremIpsum" data-paragraphs="5"></div>
+            End main content
+        </div>
+    </div>
+
+    <h2>HorizontalPanels: unconstrained height</h2>
+    <div class="test">
+        <div data-control="HorizontalPanels" data-left="Left panel" data-right="Right panel">
+            Start main content
+            <div data-control="LoremIpsum" data-paragraphs="2"></div>
+            End main content
+        </div>
+    </div>
+    
+    <h2>VerticalPanels: constrained height</h2>
+    <div class="test">
+        <div data-control="VerticalPanels" data-top="Top panel" data-bottom="Bottom panel" data-fill="true">
+            Start main content
+            <div data-control="LoremIpsum" data-paragraphs="5"></div>
+            End main content
+        </div>
+    </div>
+
+    <h2>VerticalPanels: unconstrained height</h2>
+    <div class="test">
+        <div data-control="VerticalPanels" data-top="Top panel" data-bottom="Bottom panel">
+            Start main content
+            <div data-control="LoremIpsum" data-paragraphs="2"></div>
+            End main content
+        </div>
+    </div>
+    
+</body>
+
+</html>
