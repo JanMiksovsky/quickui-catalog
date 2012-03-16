@@ -72,23 +72,23 @@ p {
 <script>
 Menu.prototype.extend({
     
-    close: Control.iterator( function() {
-        this
-            .hide()
-            .trigger( "menuClosed" );
+    /*
+     * Close the menu.
+     * 
+     * By default, this generates a menuClosed event. The event can be
+     * suppressed by passing a triggerMenuClosed argument of false.
+     */
+    close: Control.iterator( function( triggerMenuClosed ) {
+        console.log( "Menu: hide" );
+        this.removeClass( "open" );
+        if ( triggerMenuClosed === undefined || triggerMenuClosed ) {
+            this.trigger( "menuClosed" );
+        }
     }),
     
     content: Control.chain( "$Menu_content", "content" ),
     
     description: Control.chain( "$Menu_description", "content" ),
-    
-    /*
-     * Hides the menu, but does not trigger the menuClosed event.
-     */
-    hide: Control.iterator( function() {
-        console.log( "Menu: hide" );
-        this.removeClass( "open" );
-    }),
      
     initialize: function() {
         

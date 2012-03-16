@@ -14,13 +14,21 @@ MenuBar.prototype.extend({
             menuClosed: function() { self.active( false ); },
             menuOpened: function() { self.active( true ); }
         });
-        this.on( "mouseenter", "> .Menu", function( event ) {
+        this.on( "mouseenter", ".Menu", function( event ) {
             if ( self.active() ) {
                 // Implicitly close any other open menu(s).
                 console.log( "MenuBar: mouseenter Menu" );
-                var newMenu = $( event.target ).control();
-                var oldMenus = self.children().filter( ".Menu").not( newMenu );
-                oldMenus.hide();
+                var newMenu = $( event.target ).closest( ".Menu" ).control();
+                var oldMenus = self.children()
+                                    .filter( ".Menu.open" )
+                                    .not( newMenu )
+                                    .control();
+                if ( oldMenus ) {
+                    oldMenus.close( false );    // false == don't trigger menuClosed event.
+                }
+                if ( newMenu ) {
+                    newMenu.open();
+                }
             }
         });
     },
