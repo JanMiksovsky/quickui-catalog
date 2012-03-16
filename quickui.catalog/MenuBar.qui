@@ -1,0 +1,62 @@
+<Control className="MenuBar">
+
+<style>
+/* Subclasses can extend this style */
+.MenuBar.active {}
+</style>
+
+<script>
+MenuBar.prototype.extend({
+    
+    initialize: function() {
+        var self = this;
+        this.on({
+            menuClosed: function() { self.active( false ); },
+            menuOpened: function() { self.active( true ); }
+        });
+        this.on( "mouseenter", "> .Menu", function( event ) {
+            if ( self.active() ) {
+                // Implicitly close any other open menu(s).
+                console.log( "MenuBar: mouseenter Menu" );
+                var newMenu = $( event.target ).control();
+                var oldMenus = self.children().filter( ".Menu").not( newMenu );
+                oldMenus.hide();
+            }
+        });
+    },
+    
+    /*
+     * True if a menu in the menu bar is currently open.
+     */
+    active: Control.chain( "applyClass/active", function( active ) {
+        var handlingGlobalClick = this._handlingGlobalClick();
+        if ( active && !handlingGlobalClick ) {
+            var self = this;
+            $( document ).on( "click", function( event ) {
+                self._globalClick( event );
+            });
+            this._handlingGlobalClick( true );
+            console.log( "MenuBar: global click tracking on" );
+        } else if ( !active && handlingGlobalClick ) {
+            $( document ).off( "click" );
+            this._handlingGlobalClick( false );
+            console.log( "MenuBar: global click tracking off" );
+        }
+    }),
+    
+    _globalClick: function( event ) {
+        // See if click bubbled up from within this menu bar (and its menus).
+        var outsideClick = ( $( event.target ).parents().filter( this ).length === 0 );
+        if ( outsideClick ) {
+            console.log( "MenuBar: outside click" );
+            this.find( ".Menu.open" ).control().close();
+            this.active( false );
+        }
+    },
+    
+    _handlingGlobalClick: Control.property.bool()
+    
+});
+</script>
+
+</Control>

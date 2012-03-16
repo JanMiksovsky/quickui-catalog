@@ -210,7 +210,7 @@ SimpleFlexBox.prototype.extend({
     /*
      * True if we're currently handling the layout event to do manual layout.
      */
-    _handlingLayout: Control.property(),
+    _handlingLayout: Control.property.bool(),
     
     /*
      * The content of the first docked panel.

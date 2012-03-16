@@ -1,0 +1,119 @@
+<Control className="Menu">
+
+<content>
+    <div id="Menu_description"/>
+    <div id="Menu_content"/>
+</content>
+
+<style>
+{
+    cursor: default;
+    display: inline-block;
+    position: relative;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#Menu_content {
+    display: none;
+    position: absolute;
+}
+.Menu.open #Menu_content {
+    display: inherit;
+}
+
+a {
+    border: none !important;
+}
+
+a:hover {
+    border: none !important;
+}
+
+p {
+    margin: 0;
+}
+
+> .separator {
+    border-top: 1px solid lightgray;
+    height: 1px;
+    margin: 0.5em 0;
+}
+
+/* Generic appearance */
+.Menu.generic #Menu_content {
+    background: white;
+    border: 1px solid gray;
+    box-shadow: 3px 3px 5px rgba( 0, 0, 0, 0.5 );
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.5em;
+}
+.Menu.generic #Menu_description {
+    padding: 0.5em;
+}
+
+#Menu_description:hover {
+    background: #eee;
+}
+
+.Menu.open #Menu_description {
+    background: #bbb;
+}
+
+.Menu.generic #Menu_content > .BasicButton.generic {
+    border: none;
+}
+</style>
+
+<script>
+Menu.prototype.extend({
+    
+    close: Control.iterator( function() {
+        this
+            .hide()
+            .trigger( "menuClosed" );
+    }),
+    
+    content: Control.chain( "$Menu_content", "content" ),
+    
+    description: Control.chain( "$Menu_description", "content" ),
+    
+    /*
+     * Hides the menu, but does not trigger the menuClosed event.
+     */
+    hide: Control.iterator( function() {
+        console.log( "Menu: hide" );
+        this.removeClass( "open" );
+    }),
+     
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( Menu );
+        
+        var self = this;
+        this.click( function() {
+            console.log( "Menu: click" );
+            if ( self.hasClass( "open" ) ) {
+                self.close();
+            } else {
+                self.open();
+            }
+        });
+    },
+    
+    open: Control.iterator( function() {
+        console.log( "Menu: open" );
+        this
+            .addClass( "open" )
+            .trigger( "menuOpened" );
+    })
+    
+});
+</script>
+
+</Control>

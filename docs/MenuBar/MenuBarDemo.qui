@@ -1,0 +1,26 @@
+<Control className="MenuBarDemo">
+
+<content>
+    <MenuBar>
+        <Menu description="File">
+            <BasicButton>New</BasicButton>
+            <BasicButton>Open…</BasicButton>
+            <BasicButton>Save</BasicButton>
+        </Menu>
+        <Menu description="Edit">
+            <BasicButton>Undo</BasicButton>
+            <div class="separator"/>
+            <BasicButton>Cut</BasicButton>
+            <BasicButton>Copy</BasicButton>
+            <BasicButton>Paste</BasicButton>
+        </Menu>
+        <Menu description="View">
+            <BasicButton>Portrait</BasicButton>
+            <BasicButton>Landscape</BasicButton>
+            <div class="separator"/>
+            <BasicButton>Full Screen</BasicButton>
+        </Menu>
+    </MenuBar>
+</content>
+
+</Control>
