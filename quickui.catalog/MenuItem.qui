@@ -1,0 +1,32 @@
+<Control className="MenuItem">
+
+<prototype>
+    <BasicButton/>
+</prototype>
+
+<style>
+{
+    display: block;
+    white-space: nowrap;
+}
+
+/* Generic appearance */
+.MenuItem.generic {
+    border: none;
+}
+
+.MenuItem.generic:hover {
+    background: #eee;
+}
+</style>
+
+<script>
+MenuItem.prototype.extend({
+    initialize: function() {
+        this._super();
+        this.genericIfClassIs( MenuItem );
+    }
+});
+</script>
+
+</Control>

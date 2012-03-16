@@ -23,49 +23,38 @@
     display: inherit;
 }
 
-a {
-    border: none !important;
-}
-
-a:hover {
-    border: none !important;
-}
-
-p {
-    margin: 0;
-}
-
-> .separator {
-    border-top: 1px solid lightgray;
-    height: 1px;
-    margin: 0.5em 0;
-}
-
 /* Generic appearance */
-.Menu.generic #Menu_content {
-    background: white;
-    border: 1px solid gray;
-    box-shadow: 3px 3px 5px rgba( 0, 0, 0, 0.5 );
+.Menu.generic {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0.5em;
-}
-.Menu.generic #Menu_description {
-    padding: 0.5em;
 }
 
+.Menu.generic #Menu_description {
+    border: 1px solid transparent;
+    padding: 0.5em;
+}
 #Menu_description:hover {
     background: #eee;
 }
 
-.Menu.open #Menu_description {
-    background: #bbb;
+.Menu.generic #Menu_content {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    -moz-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    cursor: default;
+    margin: 0;
+    outline: none;
+    padding: 0.5em;
 }
 
-.Menu.generic #Menu_content > .BasicButton.generic {
-    border: none;
+.Menu.open #Menu_description {
+    background: white;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-bottom-style: none;
 }
 </style>
 
@@ -79,7 +68,7 @@ Menu.prototype.extend({
      * suppressed by passing a triggerMenuClosed argument of false.
      */
     close: Control.iterator( function( triggerMenuClosed ) {
-        console.log( "Menu: hide" );
+        //console.log( "Menu: hide" );
         this.removeClass( "open" );
         if ( triggerMenuClosed === undefined || triggerMenuClosed ) {
             this.trigger( "menuClosed" );
@@ -97,7 +86,7 @@ Menu.prototype.extend({
         
         var self = this;
         this.click( function() {
-            console.log( "Menu: click" );
+            //console.log( "Menu: click" );
             if ( self.hasClass( "open" ) ) {
                 self.close();
             } else {
@@ -107,7 +96,7 @@ Menu.prototype.extend({
     },
     
     open: Control.iterator( function() {
-        console.log( "Menu: open" );
+        //console.log( "Menu: open" );
         this
             .addClass( "open" )
             .trigger( "menuOpened" );

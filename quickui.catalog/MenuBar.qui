@@ -3,12 +3,34 @@
 <style>
 /* Subclasses can extend this style */
 .MenuBar.active {}
+
+/* Generic appearance */
+.MenuBar.generic {
+    background: white;
+}
 </style>
 
 <script>
 MenuBar.prototype.extend({
     
+    /*
+     * Close any menu(s) currently open.
+     * 
+     * TODO: better reallyClose parameter
+     */
+    close: Control.iterator( function( reallyClose ) {
+        var openMenus = this.children().filter( ".Menu.open" ).control();
+        if ( openMenus ) {
+            openMenus.close( false );    // false == don't trigger menuClosed event.
+        }
+        var close = ( reallyClose === undefined ? true : reallyClose );
+        this.active( !close );
+    }),
+    
     initialize: function() {
+        
+        this.genericIfClassIs( MenuBar );
+        
         var self = this;
         this.on({
             menuClosed: function() { self.active( false ); },
@@ -17,15 +39,9 @@ MenuBar.prototype.extend({
         this.on( "mouseenter", ".Menu", function( event ) {
             if ( self.active() ) {
                 // Implicitly close any other open menu(s).
-                console.log( "MenuBar: mouseenter Menu" );
+                //console.log( "MenuBar: mouseenter Menu" );
+                self.close( false );
                 var newMenu = $( event.target ).closest( ".Menu" ).control();
-                var oldMenus = self.children()
-                                    .filter( ".Menu.open" )
-                                    .not( newMenu )
-                                    .control();
-                if ( oldMenus ) {
-                    oldMenus.close( false );    // false == don't trigger menuClosed event.
-                }
                 if ( newMenu ) {
                     newMenu.open();
                 }
@@ -35,6 +51,8 @@ MenuBar.prototype.extend({
     
     /*
      * True if a menu in the menu bar is currently open.
+     * 
+     * TODO: Factor out event stuff
      */
     active: Control.chain( "applyClass/active", function( active ) {
         var handlingGlobalClick = this._handlingGlobalClick();
@@ -43,22 +61,27 @@ MenuBar.prototype.extend({
             $( document ).on( "click", function( event ) {
                 self._globalClick( event );
             });
+            $( window ).on( "blur", function( event ) {
+                //console.log( "window: blur" );
+                self.close();
+            })
             this._handlingGlobalClick( true );
-            console.log( "MenuBar: global click tracking on" );
+            //console.log( "MenuBar: global click tracking on" );
         } else if ( !active && handlingGlobalClick ) {
             $( document ).off( "click" );
+            $( window ).off( "blur" );
             this._handlingGlobalClick( false );
-            console.log( "MenuBar: global click tracking off" );
+            //console.log( "MenuBar: global click tracking off" );
         }
     }),
     
+    // TODO: Better name
     _globalClick: function( event ) {
         // See if click bubbled up from within this menu bar (and its menus).
         var outsideClick = ( $( event.target ).parents().filter( this ).length === 0 );
         if ( outsideClick ) {
-            console.log( "MenuBar: outside click" );
-            this.find( ".Menu.open" ).control().close();
-            this.active( false );
+            //console.log( "MenuBar: outside click" );
+            this.close();
         }
     },
     
