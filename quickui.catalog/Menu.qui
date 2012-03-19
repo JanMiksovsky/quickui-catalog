@@ -83,11 +83,18 @@ Menu.prototype.extend({
     close: Control.iterator( function() {
         return this
             ._handleKeydown( false )
-            .removeClass( "open" );
+            .removeClass( "open" )
+            .trigger( "menuClosed" );
     }),
     
+    /*
+     * The content that appears when the menu is open.
+     */
     content: Control.chain( "$Menu_content", "content" ),
     
+    /*
+     * The menu's descriptive label. Clicking this will open the menu.
+     */
     description: Control.chain( "$Menu_description", "content", function() {
         if ( this.inDocument() ) {
             this._updateShield();
@@ -101,18 +108,22 @@ Menu.prototype.extend({
         
         var self = this;
         this
-            .click( function() {
+            .click( function( event ) {
                 if ( self.isOpen() ) {
                     self.close();
                 } else {
                     self.open();
                 }
+                event.stopPropagation();
             })
             .inDocument( function() {
                 this._updateShield();
             });
     },
     
+    /*
+     * Returns true if the menu is currently open.
+     */
     isOpen: Control.chain( "applyClass/open" ),
     
     /*
@@ -137,12 +148,10 @@ Menu.prototype.extend({
                     event.stopPropagation();
                 }
             };
-            console.log( "turning on" );
             $( document ).on( "keydown", handler );
             this._keydownHandler( handler );
         } else if ( !handleKeydown && keydownHandler ) {
             // Remove existing keydown handler.
-            console.log( "turning off" );
             $( document ).off( "keydown", keydownHandler );
             this._keydownHandler( null );
         }
