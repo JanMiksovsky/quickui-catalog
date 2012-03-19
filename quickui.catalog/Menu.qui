@@ -2,7 +2,7 @@
 
 <content>
     <div id="Menu_description"/>
-    <div id="shield"/>
+    <div id="shield"/> <!-- Used to obscure borders between description and content. -->
     <div id="Menu_content"/>
 </content>
 
@@ -54,6 +54,7 @@
 
 .Menu.generic #Menu_content {
     background: white;
+    border: 1px solid #ccc; /* IE8 */
     border: 1px solid rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
     -moz-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
@@ -69,6 +70,7 @@
 
 .Menu.open #Menu_description {
     background: white;
+    border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);
     border-bottom-style: none;
 }
