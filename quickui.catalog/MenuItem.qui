@@ -13,6 +13,8 @@
 /* Generic appearance */
 .MenuItem.generic {
     border: none;
+    margin: 0.5em 0;
+    padding: 0.25em 1em;
 }
 
 .MenuItem.generic:hover {

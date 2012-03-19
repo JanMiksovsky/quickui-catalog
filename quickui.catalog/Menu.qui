@@ -2,6 +2,7 @@
 
 <content>
     <div id="Menu_description"/>
+    <div id="shield"/>
     <div id="Menu_content"/>
 </content>
 
@@ -23,6 +24,12 @@
     display: inherit;
 }
 
+#shield {
+    display: none; /* Don't show this unless it's asked for. */
+    position: absolute;
+    z-index: 1;
+}
+
 /* Generic appearance */
 .Menu.generic {
     -moz-box-sizing: border-box;
@@ -39,6 +46,12 @@
     background: #eee;
 }
 
+.Menu.generic #shield {
+    background: white;  /* Same as menu's background color */
+    height: 1px;        /* Same as this menu's border-top-width */
+    left: 1px;          /* Same as this menu's border-left-width */
+}
+
 .Menu.generic #Menu_content {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -48,7 +61,10 @@
     cursor: default;
     margin: 0;
     outline: none;
-    padding: 0.5em;
+}
+
+.Menu.open #shield {
+    display: block;
 }
 
 .Menu.open #Menu_description {
@@ -77,7 +93,11 @@ Menu.prototype.extend({
     
     content: Control.chain( "$Menu_content", "content" ),
     
-    description: Control.chain( "$Menu_description", "content" ),
+    description: Control.chain( "$Menu_description", "content", function() {
+        if ( this.inDocument() ) {
+            this._updateShield();
+        }
+    }),
      
     initialize: function() {
         
@@ -85,14 +105,18 @@ Menu.prototype.extend({
         this.genericIfClassIs( Menu );
         
         var self = this;
-        this.click( function() {
-            //console.log( "Menu: click" );
-            if ( self.hasClass( "open" ) ) {
-                self.close();
-            } else {
-                self.open();
-            }
-        });
+        this
+            .click( function() {
+                //console.log( "Menu: click" );
+                if ( self.hasClass( "open" ) ) {
+                    self.close();
+                } else {
+                    self.open();
+                }
+            })
+            .inDocument( function() {
+                this._updateShield();
+            });
     },
     
     open: Control.iterator( function() {
@@ -100,7 +124,23 @@ Menu.prototype.extend({
         this
             .addClass( "open" )
             .trigger( "menuOpened" );
-    })
+    }),
+    
+    /*
+     * The "shield" is a thin block that can be used to obscure the boundary
+     * between the description and content so that those two elements can
+     * appear to exist on a seamless surface. For this to work, the shield
+     * needs to be (almost) as wide as the description. 
+     */
+    _updateShield: function() {
+        // We want the width of the description including padding, but not
+        // including border.
+        var $description = this.$Menu_description();
+        var shieldWidth = $description.width()
+            + parseInt( $description.css( "padding-left" ) )
+            + parseInt( $description.css( "padding-right" ) );
+        this.$shield().width( shieldWidth );
+    }
     
 });
 </script>

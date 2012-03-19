@@ -8,4 +8,18 @@
 }
 </style>
 
+<script>
+MenuSeparator.prototype.extend({
+    initialize: function() {
+        /*
+        this.click( function( event ) {
+            // Swallow clicks so clicks on the separator don't dismiss the menu.
+            event.stopPropagation();
+            return false;
+        });
+        */
+    }
+});
+</script>
+
 </Control>
