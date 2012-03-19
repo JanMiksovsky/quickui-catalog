@@ -14,17 +14,10 @@
 MenuBar.prototype.extend({
     
     /*
-     * Close any menu(s) currently open.
-     * 
-     * TODO: better reallyClose parameter
+     * Close currently open any menus.
      */
-    close: Control.iterator( function( reallyClose ) {
-        var openMenus = this.children().filter( ".Menu.open" ).control();
-        if ( openMenus ) {
-            openMenus.close( false );    // false == don't trigger menuClosed event.
-        }
-        var close = ( reallyClose === undefined ? true : reallyClose );
-        this.active( !close );
+    close: Control.iterator( function() {
+        this._closeOpenMenus();
     }),
     
     initialize: function() {
@@ -33,16 +26,25 @@ MenuBar.prototype.extend({
         
         var self = this;
         this.on({
-            menuClosed: function() { self.active( false ); },
-            menuOpened: function() { self.active( true ); }
+            menuClosed: function( event ) {
+                if ( self._openMenus() == null ) {
+                    // No longer any open menus.
+                    self.active( false );
+                }
+            },
+            menuOpened: function( event ) {
+                self.active( true );
+                // Close open menus other than the one which just opened.
+                var newMenu = $( event.target ).closest( ".Menu" ).control();
+                self._closeOpenMenus( newMenu );
+            }
         });
         this.on( "mouseenter", ".Menu", function( event ) {
             if ( self.active() ) {
-                // Implicitly close any other open menu(s).
-                //console.log( "MenuBar: mouseenter Menu" );
-                self.close( false );
+                // Riffing: Implicitly open the menu the user hovered into
+                // if it's not already open.
                 var newMenu = $( event.target ).closest( ".Menu" ).control();
-                if ( newMenu ) {
+                if ( newMenu && !newMenu.isOpen() ) {
                     newMenu.open();
                 }
             }
@@ -52,7 +54,7 @@ MenuBar.prototype.extend({
     /*
      * True if a menu in the menu bar is currently open.
      * 
-     * TODO: Factor out event stuff
+     * TODO: Factor out event stuff. Don't turn off all window/document events.
      */
     active: Control.chain( "applyClass/active", function( active ) {
         var handlingGlobalClick = this._handlingGlobalClick();
@@ -75,6 +77,16 @@ MenuBar.prototype.extend({
         }
     }),
     
+    /*
+     * Close open menus. If a keepMenu is specified, leave that menu open.
+     */
+    _closeOpenMenus: function( keepMenu ) {
+        var openMenus = this._openMenus();
+        if ( openMenus ) {
+            openMenus.not( keepMenu ).close();
+        }
+    },
+    
     // TODO: Better name
     _globalClick: function( event ) {
         // See if click bubbled up from within this menu bar (and its menus).
@@ -85,7 +97,12 @@ MenuBar.prototype.extend({
         }
     },
     
-    _handlingGlobalClick: Control.property.bool()
+    _handlingGlobalClick: Control.property.bool(),
+    
+    /*
+     * Return the currently open menus.
+     */
+    _openMenus: Control.chain( "children", "filter/.Menu.open", "control" )
     
 });
 </script>

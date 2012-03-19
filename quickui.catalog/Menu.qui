@@ -78,17 +78,12 @@
 Menu.prototype.extend({
     
     /*
-     * Close the menu.
-     * 
-     * By default, this generates a menuClosed event. The event can be
-     * suppressed by passing a triggerMenuClosed argument of false.
+     * Close the menu. This generates a menuClosed event.
      */
-    close: Control.iterator( function( triggerMenuClosed ) {
-        //console.log( "Menu: hide" );
-        this.removeClass( "open" );
-        if ( triggerMenuClosed === undefined || triggerMenuClosed ) {
-            this.trigger( "menuClosed" );
-        }
+    close: Control.iterator( function() {
+        return this
+            ._handleKeydown( false )
+            .removeClass( "open" );
     }),
     
     content: Control.chain( "$Menu_content", "content" ),
@@ -107,8 +102,7 @@ Menu.prototype.extend({
         var self = this;
         this
             .click( function() {
-                //console.log( "Menu: click" );
-                if ( self.hasClass( "open" ) ) {
+                if ( self.isOpen() ) {
                     self.close();
                 } else {
                     self.open();
@@ -119,12 +113,43 @@ Menu.prototype.extend({
             });
     },
     
+    isOpen: Control.chain( "applyClass/open" ),
+    
+    /*
+     * Open the menu. This triggers a menuOpened event.
+     */
     open: Control.iterator( function() {
-        //console.log( "Menu: open" );
-        this
-            .addClass( "open" )
+        return this
+            ._handleKeydown( true )
+            .isOpen( true )
             .trigger( "menuOpened" );
     }),
+        
+    _handleKeydown: function( handleKeydown ) {
+        var keydownHandler = this._keydownHandler();
+        if ( handleKeydown && !keydownHandler ) {
+            // Not yet handling keydown, so wire it up.
+            var self = this;
+            var handler = function( event ) {
+                // Pressing ESC closes menu. */
+                if ( event.which === 27 /* Escape */ ) {
+                    self.close();
+                    event.stopPropagation();
+                }
+            };
+            console.log( "turning on" );
+            $( document ).on( "keydown", handler );
+            this._keydownHandler( handler );
+        } else if ( !handleKeydown && keydownHandler ) {
+            // Remove existing keydown handler.
+            console.log( "turning off" );
+            $( document ).off( "keydown", keydownHandler );
+            this._keydownHandler( null );
+        }
+        return this;
+    },
+
+    _keydownHandler: Control.property(),
     
     /*
      * The "shield" is a thin block that can be used to obscure the boundary
