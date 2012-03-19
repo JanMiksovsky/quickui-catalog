@@ -16,50 +16,7 @@ MenuBar.prototype.extend({
     /*
      * Returns true if a menu in the menu bar is currently open.
      */
-    active: Control.chain( "applyClass/active", function( active ) {
-        var documentClickHandler = this._documentClickHandler();
-        var windowBlurHandler = this._windowBlurHandler();
-        if ( active ) {
-            
-            // Wire up event handlers.
-            
-            var self = this;
-            if ( !documentClickHandler ) {
-                documentClickHandler = function( event ) {
-                    // If user clicked outside the menu bar (and its menu),
-                    // then close all open menus.
-                    var outsideClick = ( $( event.target ).parents().filter( self ).length === 0 );
-                    if ( outsideClick ) {
-                        self.close();
-                    }
-                };
-                $( document ).on( "click", documentClickHandler );
-                this._documentClickHandler( documentClickHandler );
-            }
-            if ( !windowBlurHandler ) {
-                windowBlurHandler = function( event ) {
-                    // Close any open menus on blur.
-                    self.close();
-                };
-                $( window ).on( "blur", windowBlurHandler );
-                this._windowBlurHandler( windowBlurHandler );
-            }
-            
-        } else if ( !active ) {
-            
-            // Tear down event handlers.
-            
-            if ( documentClickHandler ) {
-                $( document ).off( "click", documentClickHandler );
-                this._documentClickHandler( null );
-            }
-            if ( windowBlurHandler ) {
-                $( window ).off( "blur", windowBlurHandler );
-                this._windowBlurHandler( null );
-            }
-            
-        }
-    }),
+    active: Control.chain( "applyClass/active"),
     
     /*
      * Close currently open any menus.
@@ -109,16 +66,10 @@ MenuBar.prototype.extend({
         }
     },
     
-    // Handler for the document click event.
-    _documentClickHandler: Control.property(),
-    
     /*
      * Return the currently open menus.
      */
-    _openMenus: Control.chain( "children", "filter/.Menu.open", "control" ),
-    
-    // Handler for the window blur event.
-    _windowBlurHandler: Control.property()
+    _openMenus: Control.chain( "children", "filter/.Menu.open", "control" )
     
 });
 </script>

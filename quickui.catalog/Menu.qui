@@ -80,11 +80,27 @@
 Menu.prototype.extend({
     
     /*
-     * Close the menu. This generates a menuClosed event.
+     * Close the menu. This generates a menuClosed event. Calling this when the
+     * menu is already closed has no effect.
      */
     close: Control.iterator( function() {
+        
+        if ( !this.isOpen() ) {
+            // Already closed
+            return this;
+        }
+        
+        // Tear down event handlers.
+        $( document ).off({
+            click: this._documentClickHandler(),
+            keydown: this._documentKeydownHandler()
+        });
+        $( window ).off( "blur", this._windowBlurHandler() );
+        
         return this
-            ._handleKeydown( false )
+            ._documentClickHandler( null )
+            ._documentKeydownHandler( null )
+            ._windowBlurHandler( null )
             .removeClass( "open" )
             .trigger( "menuClosed" );
     }),
@@ -129,38 +145,56 @@ Menu.prototype.extend({
     isOpen: Control.chain( "applyClass/open" ),
     
     /*
-     * Open the menu. This triggers a menuOpened event.
+     * Open the menu. This triggers a menuOpened event. Calling this when the
+     * menu is already opened has no effect.
      */
     open: Control.iterator( function() {
+        
+        if ( this.isOpen() ) {
+            // Already open;
+        }
+        
+        // Wire up events.
+        // We save references to the handlers so we can unbind them later.
+        var self = this;
+        var documentKeydownHandler = function( event ) {
+            // Pressing ESC closes menu. */
+            if ( event.which === 27 /* Escape */ ) {
+                self.close();
+                event.stopPropagation();
+            }
+        };
+        var documentClickHandler = function( event ) {
+            // If user clicked outside this menu, close it.
+            var outsideClick = ( $( event.target ).parents().filter( self ).length === 0 );
+            if ( outsideClick ) {
+                self.close();
+            }
+        };
+        var windowBlurHandler = function( event ) {
+            // Close any open menus on blur.
+            self.close();
+        };
+                        
+        $( document ).on({
+            click: documentClickHandler,
+            keydown: documentKeydownHandler
+        });
+        $( window ).on( "blur", windowBlurHandler );
+                        
         return this
-            ._handleKeydown( true )
+            ._documentClickHandler( documentClickHandler )
+            ._documentKeydownHandler( documentKeydownHandler )
+            ._windowBlurHandler( windowBlurHandler )
             .isOpen( true )
             .trigger( "menuOpened" );
     }),
-        
-    _handleKeydown: function( handleKeydown ) {
-        var keydownHandler = this._keydownHandler();
-        if ( handleKeydown && !keydownHandler ) {
-            // Not yet handling keydown, so wire it up.
-            var self = this;
-            var handler = function( event ) {
-                // Pressing ESC closes menu. */
-                if ( event.which === 27 /* Escape */ ) {
-                    self.close();
-                    event.stopPropagation();
-                }
-            };
-            $( document ).on( "keydown", handler );
-            this._keydownHandler( handler );
-        } else if ( !handleKeydown && keydownHandler ) {
-            // Remove existing keydown handler.
-            $( document ).off( "keydown", keydownHandler );
-            this._keydownHandler( null );
-        }
-        return this;
-    },
+    
+    // Handler for the document click event
+    _documentClickHandler: Control.property(),
 
-    _keydownHandler: Control.property(),
+    // Handler for the keydown event
+    _documentKeydownHandler: Control.property(),
     
     /*
      * The "shield" is a thin block that can be used to obscure the boundary
@@ -176,7 +210,10 @@ Menu.prototype.extend({
             + parseInt( $description.css( "padding-left" ) )
             + parseInt( $description.css( "padding-right" ) );
         this.$shield().width( shieldWidth );
-    }
+    },
+    
+    // Handler for the window blur event
+    _windowBlurHandler: Control.property()
     
 });
 </script>
