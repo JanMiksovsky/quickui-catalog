@@ -15,7 +15,9 @@
     border: none;
     padding: 0.5em 1em;
 }
-
+.MenuItem.generic.pressed {
+    color: inherit;
+}
 .MenuItem.generic:hover {
     background: #eee;
 }

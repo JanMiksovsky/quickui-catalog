@@ -49,7 +49,7 @@ MenuBar.prototype.extend({
                 // Riffing: Implicitly open the menu the user hovered into
                 // if it's not already open.
                 var newMenu = $( event.target ).closest( ".Menu" ).control();
-                if ( newMenu && !newMenu.isOpen() ) {
+                if ( newMenu && !newMenu.opened() ) {
                     newMenu.open();
                 }
             }

@@ -86,7 +86,7 @@ Menu.prototype.extend({
      */
     close: Control.iterator( function() {
         
-        if ( !this.isOpen() ) {
+        if ( !this.opened() ) {
             // Already closed
             return this;
         }
@@ -128,7 +128,7 @@ Menu.prototype.extend({
         var self = this;
         this
             .click( function( event ) {
-                if ( self.isOpen() ) {
+                if ( self.opened() ) {
                     self.close();
                 } else {
                     self.open();
@@ -143,7 +143,7 @@ Menu.prototype.extend({
     /*
      * Returns true if the menu is currently open.
      */
-    isOpen: Control.chain( "applyClass/open" ),
+    opened: Control.chain( "applyClass/open" ),
     
     /*
      * Open the menu. This triggers a menuOpened event. Calling this when the
@@ -151,7 +151,7 @@ Menu.prototype.extend({
      */
     open: Control.iterator( function() {
         
-        if ( this.isOpen() ) {
+        if ( this.opened() ) {
             // Already open;
         }
         
@@ -187,7 +187,7 @@ Menu.prototype.extend({
             ._documentClickHandler( documentClickHandler )
             ._documentKeydownHandler( documentKeydownHandler )
             ._windowBlurHandler( windowBlurHandler )
-            .isOpen( true )
+            .opened( true )
             .trigger( "menuOpened" );
     }),
     
