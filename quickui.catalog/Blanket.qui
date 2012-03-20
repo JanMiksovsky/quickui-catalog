@@ -26,23 +26,60 @@ Blanket.prototype.extend({
      * stacking context).
      */
     lift: function( $target ) {
-        var $stackingContext = this._findStackingContext( $target );
-        $target
-            .css({
-                "z-index": 1
-            });
+        
+        var targetCss = {
+            position: $target.css( "position" ),
+            "z-index": $target.css( "z-index" )
+        };
+        
+        var targetPreviousCss = {};
+        if ( targetCss.position === "static" ) {
+            /*
+             * Give the target relative positioning so its z-index will work.
+             */
+            targetPreviousCss.position = ( targetCss.position !== "static" )
+                ? targetCss.position
+                : "";
+            $target.css( "position", "relative" );
+        }
+        
+        var targetZIndex = parseInt( targetCss[ "z-index" ] ); 
+        if ( isNaN( targetZIndex ) ) {
+            /*
+             * The target doesn't have a z-index, so we'll temporarily assign
+             * a z-index of zero so it at least ends up above all other elements
+             * with no z-index within the target's stacking context.
+             */
+            targetPreviousCss[ "z-index" ] = ( targetCss[ "z-index" ] !== "auto" )
+                ? targetCss[ "z-index" ]
+                : "";
+            targetZIndex = 0;
+            $target.css( "z-index", targetZIndex );
+        }
+        
         return this
             ._target( $target )
-            .insertAfter( $target );
+            ._targetPreviousCss( targetPreviousCss )
+            .css({
+                "z-index": targetZIndex
+            })
+            .insertBefore( $target );
     },
     
     restore: function() {
         var $target = this._target();
         if ( $target ) {
-            $target.css({
-                "z-index": ""
-            });
-            this._target( null );
+            // Undo any CSS we've applied
+            var targetCss = this._targetPreviousCss();
+            if ( targetCss.position ) {
+                $target.css( "position", targetCss.position );
+            }
+            if ( targetCss[ "z-index" ] ) {
+                $target.css( "z-index", targetCss[ "z-index" ] );
+            }
+            this
+                ._target( null )
+                ._targetPreviousCss( null );
         }
         return this;
     },
@@ -59,8 +96,31 @@ Blanket.prototype.extend({
         }
         return context;
     },
+
+    /*
+     * Return the maximum Z-index in use within the indicated stacking context.
+     */
+    _maximumZIndexWithin: function( $context )
+    {
+        var topLevelElements = $( "body" ).children().andSelf();
+        var zIndices = $.map( topLevelElements, function( element ) {
+            switch ( $(element).css("position") ) {
+                case "absolute":
+                case "fixed":
+                    var zIndex = parseInt( $( element ).css( "z-index" ) ) || 1;
+                    return zIndex;
+            }
+        });
+        return Math.max.apply( null, zIndices );
+    },
     
-    _target: Control.property()
+    _findSubcontexts: function( $context ) {
+        
+    },
+    
+    _target: Control.property(),
+    
+    _targetPreviousCss: Control.property()
     
 });
 </script>

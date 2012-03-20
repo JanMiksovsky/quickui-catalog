@@ -1,10 +1,6 @@
 <Control className="MenuBar">
 
 <style>
-{
-    position: relative; /* Need position so blanket can "lift" the control. */
-}
-
 /* Subclasses can extend this style */
 .MenuBar.opened {}
 

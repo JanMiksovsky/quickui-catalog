@@ -48,8 +48,6 @@
 
 .BasicButton {
     background: white;
-    position: relative;
-    z-index: 4;
 }
 
 .MenuBar {
