@@ -1,3 +1,13 @@
+<!--
+A standard menu bar.
+
+Note: The menu bar places a Blanket instance underneath itself to absorb
+clicks outside the menu. If you're using a MenuBar on a page with elements
+that have an explicit z-index, you'll want to give the MenuBar a higher z-index
+so that it (and its blanket) end up above all other elements when any menus
+are open. See notes in the source for the Blanket class.
+-->
+
 <Control className="MenuBar">
 
 <style>

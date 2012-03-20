@@ -71,10 +71,10 @@ Blanket.prototype.extend({
         if ( $target ) {
             // Undo any CSS we've applied
             var targetCss = this._targetPreviousCss();
-            if ( targetCss.position ) {
+            if ( targetCss.position != null ) {
                 $target.css( "position", targetCss.position );
             }
-            if ( targetCss[ "z-index" ] ) {
+            if ( targetCss[ "z-index" ] != null ) {
                 $target.css( "z-index", targetCss[ "z-index" ] );
             }
             this
@@ -83,43 +83,11 @@ Blanket.prototype.extend({
         }
         return this;
     },
-    
-    /*
-     * Return the closest parent with a "position" and "z-index" attributes.
-     * If none if found, return the document body. 
-     */
-    _findStackingContext: function( $element ) {
-        for ( var context = $element.parent(); context[0] !== document.body; context = context.parent() ) {
-            if ( context.css( "z-index" ) !== "auto" && context.css( "position" ) !== "static" ) {
-                break;
-            }
-        }
-        return context;
-    },
 
-    /*
-     * Return the maximum Z-index in use within the indicated stacking context.
-     */
-    _maximumZIndexWithin: function( $context )
-    {
-        var topLevelElements = $( "body" ).children().andSelf();
-        var zIndices = $.map( topLevelElements, function( element ) {
-            switch ( $(element).css("position") ) {
-                case "absolute":
-                case "fixed":
-                    var zIndex = parseInt( $( element ).css( "z-index" ) ) || 1;
-                    return zIndex;
-            }
-        });
-        return Math.max.apply( null, zIndices );
-    },
-    
-    _findSubcontexts: function( $context ) {
-        
-    },
-    
+    // The target element the blanket is being shown behind.    
     _target: Control.property(),
     
+    // The saved values for any CSS properties on the target that we've touched. 
     _targetPreviousCss: Control.property()
     
 });
