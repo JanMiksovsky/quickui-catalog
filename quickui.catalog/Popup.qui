@@ -11,6 +11,10 @@ Base class for popups, menus, dialogs, things that appear temporarily over other
     z-index: 1;
 }
 
+.Popup.opened {
+    display: block;
+}
+
 /* Generic appearance */
 .Popup.generic {
     background: white;
@@ -47,6 +51,12 @@ Popup.prototype.extend({
     cancelOnOutsideClick: Control.property.bool( null, true ),
     
     /*
+     * True if the popup should be cancelled if the window loses focus.
+     * Default is true.
+     */
+    cancelOnWindowBlur: Control.property.bool( null, true ),
+    
+    /*
      * True if the popup should be closed normally if the user clicks inside
      * it. Default is true.
      */
@@ -66,7 +76,9 @@ Popup.prototype.extend({
 
         // When window loses focus, cancel the popup. This is wired up later.
         this._windowBlurHandler( function() {
-            self.cancel();
+            if ( self.cancelOnWindowBlur() ) {
+                self.cancel();
+            }
         });
     },
     
@@ -77,11 +89,14 @@ Popup.prototype.extend({
      * This has no effect if the popup is already closed.
      */
     cancel: function() {
-        return !this.opened()
-            ? this
-            : this
-                .trigger( "canceled" )
-                ._hidePopup();
+        if ( !this.opened() ) {
+            // Already closed
+            return this;
+        }
+        
+        return this
+            .trigger( "canceled" )
+            ._hidePopup();
     },
     
     /*
@@ -90,11 +105,14 @@ Popup.prototype.extend({
      * This has no effect if the popup is already closed.
      */
     close: function() {
-        return !this.opened()
-            ? this
-            : this
-                .trigger("closed")
-                ._hidePopup();
+        if ( !this.opened() ) {
+            // Already closed
+            return this;
+        }
+        
+        return this
+            .trigger("closed")
+            ._hidePopup();
     },
 
     /*
@@ -108,20 +126,26 @@ Popup.prototype.extend({
             return this;
         }
         
+        /*
         if ( this.blanket() == null ) {
             this.blanket( this._createBlanket() );
         }
+        */
         
         /* Show control and blanket at the top of the Z-order. */
+        /*
         var maximumZIndex = this._maximumZIndex();
         this.blanket()
             .css( "z-index", maximumZIndex + 1 )
             .show();
-            
+        */
+       
+       this.blanket( Blanket.create().lift( this ) );
+           
         this
             ._bindKeydownHandler( true )
-            .css( "z-index", maximumZIndex + 2 )
-            .show()
+            // .css( "z-index", maximumZIndex + 2 )
+            .opened( true )
             .trigger( "opened" )
             // In case popup wants to resize anything now that it's visible.
             .checkForSizeChange();
@@ -141,9 +165,7 @@ Popup.prototype.extend({
     /*
      * Open the popup.
      */
-    opened: function() {
-        return this.blanket() != null;
-    },
+    opened: Control.chain( "applyClass/opened" ),
     
     /*
      * A callback function that will be invoked to position the popup.
@@ -212,9 +234,10 @@ Popup.prototype.extend({
     {
         this
             ._bindKeydownHandler( false )
-            .hide()
-            .css( "z-index", null ); // No need to define Z-order any longer.
+            .opened( false );
+            
         if ( this.blanket() != null ) {
+            this.blanket().restore();
             this.blanket().remove();
             this.blanket(null);
         }

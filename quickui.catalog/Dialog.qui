@@ -5,7 +5,11 @@ Base class for modal dialogs.
 <Control className="Dialog">
 
 <prototype>
-    <Popup cancelOnOutsideClick="false" />
+    <Popup
+        cancelOnOutsideClick="false"
+        cancelOnWindowBlur="false"
+        closeOnInsideClick="false"
+    />
 </prototype>
 
 <style>
