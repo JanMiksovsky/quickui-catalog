@@ -2,37 +2,54 @@
 
 <content>
     <h1>MenuBar demo</h1>
-    <MenuBar>
-        <Menu description="File">
-            <MenuItem>New</MenuItem>
-            <MenuSeparator/>
-            <MenuItem>Open…</MenuItem>
-            <MenuItem>Save</MenuItem>
-            <MenuSeparator/>
-            <MenuItem>Close</MenuItem>
-        </Menu>
-        <Menu description="Edit">
-            <MenuItem>Undo</MenuItem>
-            <MenuSeparator/>
-            <MenuItem>Cut</MenuItem>
-            <MenuItem>Copy</MenuItem>
-            <MenuItem>Paste</MenuItem>
-        </Menu>
-        <Menu description="View">
-            <MenuItem>Portrait</MenuItem>
-            <MenuItem>Landscape</MenuItem>
-            <MenuSeparator/>
-            <MenuItem>Full Screen</MenuItem>
-        </Menu>
-    </MenuBar>
-    <div id="main">
-        <LoremIpsum paragraphs="5" />
+    <div id="container">
+        <BasicButton>OK</BasicButton>
+        <MenuBar>
+            <Menu description="File">
+                <MenuItem>New</MenuItem>
+                <MenuSeparator/>
+                <MenuItem>Open…</MenuItem>
+                <MenuItem>Save</MenuItem>
+                <MenuSeparator/>
+                <MenuItem>Close</MenuItem>
+            </Menu>
+            <Menu description="Edit">
+                <MenuItem>Undo</MenuItem>
+                <MenuSeparator/>
+                <MenuItem>Cut</MenuItem>
+                <MenuItem>Copy</MenuItem>
+                <MenuItem>Paste</MenuItem>
+            </Menu>
+            <Menu description="View">
+                <MenuItem>Portrait</MenuItem>
+                <MenuItem>Landscape</MenuItem>
+                <MenuSeparator/>
+                <MenuItem>Full Screen</MenuItem>
+            </Menu>
+        </MenuBar>
+        <div id="main">
+            <LoremIpsum paragraphs="5" />
+        </div>
     </div>
+    <BasicButton>Done</BasicButton>
 </content>
 
 <style>
 {
     background: #ebebeb;
+}
+
+#container {
+    /*
+    position: relative;
+    z-index: 3;
+    */
+}
+
+.BasicButton {
+    background: white;
+    position: relative;
+    z-index: 4;
 }
 
 .MenuBar {

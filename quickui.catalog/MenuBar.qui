@@ -28,7 +28,9 @@ MenuBar.prototype.extend({
         
         var $blanket = this._blanket();
         if ( $blanket ) {
-            $blanket.remove();
+            $blanket
+                .restore()
+                .remove();
             this._blanket( null );
         }
         

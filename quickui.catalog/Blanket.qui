@@ -26,6 +26,7 @@ Blanket.prototype.extend({
      * stacking context).
      */
     lift: function( $target ) {
+        var $stackingContext = this._findStackingContext( $target );
         $target
             .css({
                 "z-index": 1
@@ -39,11 +40,24 @@ Blanket.prototype.extend({
         var $target = this._target();
         if ( $target ) {
             $target.css({
-                "z-index": "inherit"
+                "z-index": ""
             });
             this._target( null );
         }
         return this;
+    },
+    
+    /*
+     * Return the closest parent with a "position" and "z-index" attributes.
+     * If none if found, return the document body. 
+     */
+    _findStackingContext: function( $element ) {
+        for ( var context = $element.parent(); context[0] !== document.body; context = context.parent() ) {
+            if ( context.css( "z-index" ) !== "auto" && context.css( "position" ) !== "static" ) {
+                break;
+            }
+        }
+        return context;
     },
     
     _target: Control.property()
