@@ -20,7 +20,7 @@
     display: none;
     position: absolute;
 }
-.Menu.open #Menu_content {
+.Menu.opened #Menu_content {
     display: inherit;
 }
 
@@ -65,11 +65,11 @@
     padding: 0.5em 0;
 }
 
-.Menu.open #shield {
+.Menu.opened #shield {
     display: block;
 }
 
-.Menu.open #Menu_description {
+.Menu.opened #Menu_description {
     background: white;
     border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);
@@ -102,7 +102,7 @@ Menu.prototype.extend({
             ._documentClickHandler( null )
             ._documentKeydownHandler( null )
             ._windowBlurHandler( null )
-            .removeClass( "open" )
+            .opened( false )
             .trigger( "menuClosed" );
     }),
     
@@ -143,7 +143,7 @@ Menu.prototype.extend({
     /*
      * Returns true if the menu is currently open.
      */
-    opened: Control.chain( "applyClass/open" ),
+    opened: Control.chain( "applyClass/opened" ),
     
     /*
      * Open the menu. This triggers a menuOpened event. Calling this when the

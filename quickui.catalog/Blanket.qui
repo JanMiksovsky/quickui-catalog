@@ -1,0 +1,54 @@
+<!--
+A "blanket" that covers the entire viewport, typically to swallow clicks.
+-->
+
+<Control className="Blanket">
+
+<style>
+{
+    background: black;
+    cursor: default;
+    position: fixed;
+    opacity: 0.2;       /* TODO: Remove */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script>
+Blanket.prototype.extend({
+    
+    /*
+     * Add the blanket to the DOM such that it ends up behind the target
+     * element and in front of everything else (within that element's
+     * stacking context).
+     */
+    lift: function( $target ) {
+        $target
+            .css({
+                "z-index": 1
+            });
+        return this
+            ._target( $target )
+            .insertAfter( $target );
+    },
+    
+    restore: function() {
+        var $target = this._target();
+        if ( $target ) {
+            $target.css({
+                "z-index": "inherit"
+            });
+            this._target( null );
+        }
+        return this;
+    },
+    
+    _target: Control.property()
+    
+});
+</script>
+
+</Control>

@@ -1,6 +1,7 @@
 <Control className="MenuBarDemo">
 
 <content>
+    <h1>MenuBar demo</h1>
     <MenuBar>
         <Menu description="File">
             <MenuItem>New</MenuItem>

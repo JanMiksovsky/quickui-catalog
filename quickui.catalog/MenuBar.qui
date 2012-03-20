@@ -1,8 +1,12 @@
 <Control className="MenuBar">
 
 <style>
+{
+    position: relative; /* Need position so blanket can "lift" the control. */
+}
+
 /* Subclasses can extend this style */
-.MenuBar.active {}
+.MenuBar.opened {}
 
 /* Generic appearance */
 .MenuBar.generic {
@@ -14,15 +18,23 @@
 MenuBar.prototype.extend({
     
     /*
-     * Returns true if a menu in the menu bar is currently open.
-     */
-    active: Control.chain( "applyClass/active"),
-    
-    /*
      * Close currently open any menus.
      */
     close: Control.iterator( function() {
-        this._closeOpenMenus();
+        if ( !this.opened() ) {
+            // Already closed
+            return;
+        }
+        
+        var $blanket = this._blanket();
+        if ( $blanket ) {
+            $blanket.remove();
+            this._blanket( null );
+        }
+        
+        this
+            ._closeOpenMenus()
+            .opened( false );
     }),
     
     initialize: function() {
@@ -34,18 +46,18 @@ MenuBar.prototype.extend({
             menuClosed: function( event ) {
                 if ( self._openMenus() == null ) {
                     // No longer any open menus.
-                    self.active( false );
+                    self.close();
                 }
             },
             menuOpened: function( event ) {
-                self.active( true );
+                self.open();
                 // Close open menus other than the one which just opened.
                 var newMenu = $( event.target ).closest( ".Menu" ).control();
                 self._closeOpenMenus( newMenu );
             }
         });
         this.on( "mouseenter", ".Menu", function( event ) {
-            if ( self.active() ) {
+            if ( self.opened() ) {
                 // Riffing: Implicitly open the menu the user hovered into
                 // if it's not already open.
                 var newMenu = $( event.target ).closest( ".Menu" ).control();
@@ -57,6 +69,25 @@ MenuBar.prototype.extend({
     },
     
     /*
+     * Returns true if any of the menu bar's menus are currently open.
+     */
+    opened: Control.chain( "applyClass/opened" ),
+    
+    open: Control.iterator( function() {
+        if ( this.opened() ) {
+            // Already open
+            return;
+        }
+        
+        var $blanket = Blanket.create().lift( this );
+        this._blanket( $blanket );
+        
+        this.opened( true );
+    }),
+    
+    _blanket: Control.property(),
+    
+    /*
      * Close open menus. If a keepMenu is specified, leave that menu open.
      */
     _closeOpenMenus: function( keepMenu ) {
@@ -64,12 +95,13 @@ MenuBar.prototype.extend({
         if ( openMenus ) {
             openMenus.not( keepMenu ).close();
         }
+        return this;
     },
     
     /*
      * Return the currently open menus.
      */
-    _openMenus: Control.chain( "children", "filter/.Menu.open", "control" )
+    _openMenus: Control.chain( "children", "filter/.Menu.opened", "control" )
     
 });
 </script>
