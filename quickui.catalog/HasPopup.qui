@@ -57,9 +57,10 @@ HasPopup.prototype.extend({
     initialize: function()
     {
         var self = this;
-        this.$HasPopup_content().click( function() {
+        this.$HasPopup_content().click( function( event ) {
             if ( self.openOnClick() ) {
                 self.open();
+                event.stopPropagation();
             }
         });
         this.$HasPopup_popup().positionPopup( function() {

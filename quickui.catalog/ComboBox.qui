@@ -138,8 +138,9 @@ ComboBox.prototype.extend({
             }
         });
         
-        this.$dropdownButton().click( function() {
+        this.$dropdownButton().click( function( event ) {
             self.open();
+            event.stopPropagation();
         });
         
         // Allow the popup container itself to receive the focus.
