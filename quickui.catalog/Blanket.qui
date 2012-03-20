@@ -25,7 +25,7 @@ Blanket.prototype.extend({
      * element and in front of everything else (within that element's
      * stacking context).
      */
-    lift: function( $target ) {
+    lift: Control.iterator( function( $target ) {
         
         var targetCss = {
             position: $target.css( "position" ),
@@ -57,16 +57,24 @@ Blanket.prototype.extend({
             $target.css( "z-index", targetZIndex );
         }
         
+        /*
+         * The blanket ends up with the same z-index as the target, but at the
+         * immediately before the target's location in the DOM, so the target
+         * will appear over the blanket.
+         */
         return this
             ._target( $target )
             ._targetPreviousCss( targetPreviousCss )
-            .css({
-                "z-index": targetZIndex
-            })
+            .css( "z-index", targetZIndex )
             .insertBefore( $target );
-    },
+    }),
     
-    restore: function() {
+    /*
+     * Restore the target element to its original condition.
+     * The blanket must be separately removed from the DOM (e.g., via a
+     * call to jQuery's remove() function).
+     */
+    restore: Control.iterator( function() {
         var $target = this._target();
         if ( $target ) {
             // Undo any CSS we've applied
@@ -82,7 +90,7 @@ Blanket.prototype.extend({
                 ._targetPreviousCss( null );
         }
         return this;
-    },
+    }),
 
     // The target element the blanket is being shown behind.    
     _target: Control.property(),
