@@ -21,8 +21,12 @@
 
 #shield {
     display: none; /* Don't show this unless it's asked for. */
+    left: 0;
     position: absolute;
-    z-index: 1;
+    z-index: 0;
+}
+.MenuNew.opened #shield {
+    display: block;
 }
 
 /* Generic appearance */
@@ -44,7 +48,7 @@
 .MenuNew.generic #shield {
     background: white;  /* Same as menu's background color */
     height: 1px;        /* Same as this menu's border-top-width */
-    left: 1px;          /* Same as this menu's border-left-width */
+    top: -1px;          /* Same as border-top-width but negative */
 }
 
 .MenuNew.generic #HasPopup_popup {
@@ -60,14 +64,11 @@
     padding: 0.5em 0;
 }
 
-.MenuNew.opened #HasPopup_content {
+.MenuNew.generic.opened #HasPopup_content {
     background: white;
     border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);
     border-bottom-style: none;
-}
-.MenuNew.opened #shield {
-    display: block;
 }
 </style>
 

@@ -31,16 +31,18 @@ Dialog.prototype.extend({
      * Cancel the dialog. This implicitly closes the dialog.
      */    
     cancel: function() {
-        this._super();
-        this.remove();
+        return this
+            ._super()
+            .remove();
     },
     
     /*
      * Close the dialog normally.
      */
     close: function() {
-        this._super();
-        this.remove();
+        return this
+            ._super()
+            .remove();
     },
     
     initialize: function() {

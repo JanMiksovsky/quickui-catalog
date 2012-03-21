@@ -23,7 +23,7 @@ A "blanket" that covers the entire viewport, typically to swallow clicks.
 /* Generic appearance */
 .Blanket.generic.modal {
     background: black;
-    opacity: 0.2;
+    opacity: 0.25;
 }
 </style>
 

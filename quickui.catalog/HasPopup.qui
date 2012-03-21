@@ -9,6 +9,12 @@ A control with a popup menu that appears above or below it.
     <Popup id="HasPopup_popup" />
 </content>
 
+<style>
+{
+    position: relative;
+}
+</style>
+
 <script>
 HasPopup.prototype.extend({
 
@@ -63,9 +69,14 @@ HasPopup.prototype.extend({
                 event.stopPropagation();
             }
         });
-        this.$HasPopup_popup().positionPopup( function() {
-            self._positionPopup();
-        });
+        this.$HasPopup_popup()
+            .on({
+                "closed canceled": function() { self.opened( false ) },
+                opened: function() { self.opened( true ); }
+            })
+            .positionPopup( function() {
+                self._positionPopup();
+            });
         this.$HasPopup_popup().target( this );
     },
 
@@ -83,7 +94,7 @@ HasPopup.prototype.extend({
     /*
      * True if the popup is currently opened.
      */
-    opened: Control.chain( "$HasPopup_popup", "opened" ),
+    opened: Control.chain( "applyClass/opened" ),
     
     /*
      * The content of the popup associated with the control.
@@ -91,6 +102,8 @@ HasPopup.prototype.extend({
     popup: Control.chain( "$HasPopup_popup", "content" ),
     
     _positionPopup: function() {
+        
+        return;
         
         var offset = this.offset();
         var position = this.position();

@@ -8,7 +8,7 @@ Base class for popups, menus, dialogs, things that appear temporarily over other
 {
     display: none;
     position: absolute;
-    z-index: 1;
+    z-index: 0;
 }
 
 .Popup.opened {
@@ -43,13 +43,13 @@ Popup.prototype.extend({
     cancelOnEscapeKey: Control.property.bool( null, true ),
     
     /*
-     * True if the popup should be cancelled if the user clicks outside it.
+     * True if the popup should be canceled if the user clicks outside it.
      * Default is true. See also the modal() property.
      */
     cancelOnOutsideClick: Control.property.bool( null, true ),
     
     /*
-     * True if the popup should be cancelled if the window loses focus.
+     * True if the popup should be canceled if the window loses focus.
      * Default is true.
      */
     cancelOnWindowBlur: Control.property.bool( null, true ),
