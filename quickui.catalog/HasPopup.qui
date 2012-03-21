@@ -96,6 +96,11 @@ HasPopup.prototype.extend({
     opened: Control.chain( "applyClass/opened" ),
     
     /*
+     * The class used to render the overlay behind the popup.
+     */
+    overlayClass: Control.chain( "$HasPopup_popup", "overlayClass" ),
+    
+    /*
      * The content of the popup associated with the control.
      */
     popup: Control.chain( "$HasPopup_popup", "content" ),

@@ -1,11 +1,11 @@
 <!--
 A standard menu bar.
 
-Note: The menu bar places a Blanket instance underneath itself to absorb
+Note: The menu bar places a Overlay instance underneath itself to absorb
 clicks outside the menu. If you're using a MenuBar on a page with elements
 that have an explicit z-index, you'll want to give the MenuBar a higher z-index
-so that it (and its blanket) end up above all other elements when any menus
-are open. See notes in the source for the Blanket class.
+so that it (and its overlay) end up above all other elements when any menus
+are open. See notes in the source for the Overlay class.
 -->
 
 <Control className="MenuBar">
@@ -32,12 +32,12 @@ MenuBar.prototype.extend({
             return;
         }
         
-        var $blanket = this._blanket();
-        if ( $blanket ) {
-            $blanket
+        var $overlay = this._overlay();
+        if ( $overlay ) {
+            $overlay
                 .restore()
                 .remove();
-            this._blanket( null );
+            this._overlay( null );
         }
         
         this
@@ -45,19 +45,35 @@ MenuBar.prototype.extend({
             .opened( false );
     }),
     
+    /*
+     * The menus in the menu bar.
+     */
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined ) {
+            // Since we're managing our own overlay, we suppress the overlays
+            // on the individual menus in our content.
+            var menus = this.find( ".HasPopup" ).control();
+            if ( menus ) {
+                menus.overlayClass( null );
+            }
+        }
+        return result;
+    },
+    
     initialize: function() {
         
         this.genericIfClassIs( MenuBar );
         
         var self = this;
         this.on({
-            menuClosed: function( event ) {
+            "closed canceled": function( event ) {
                 if ( self._openMenus() == null ) {
                     // No longer any open menus.
                     self.close();
                 }
             },
-            menuOpened: function( event ) {
+            opened: function( event ) {
                 self.open();
                 // Close open menus other than the one which just opened.
                 var newMenu = $( event.target ).closest( ".Menu" ).control();
@@ -87,13 +103,11 @@ MenuBar.prototype.extend({
             return;
         }
         
-        var $blanket = Blanket.create().lift( this );
-        this._blanket( $blanket );
+        var $overlay = Overlay.create().lift( this );
+        this._overlay( $overlay );
         
         this.opened( true );
     }),
-    
-    _blanket: Control.property(),
     
     /*
      * Close open menus. If a keepMenu is specified, leave that menu open.
@@ -109,7 +123,10 @@ MenuBar.prototype.extend({
     /*
      * Return the currently open menus.
      */
-    _openMenus: Control.chain( "children", "filter/.Menu.opened", "control" )
+    _openMenus: Control.chain( "children", "filter/.Menu.opened", "control" ),
+
+    // The overlay behind the menu bar.    
+    _overlay: Control.property()
     
 });
 </script>
