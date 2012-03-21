@@ -2,9 +2,8 @@
 
 <content>
     <h1>MenuBar demo</h1>
-    <BasicButton>OK</BasicButton>
     <MenuBar>
-        <MenuNew content="File">
+        <Menu content="File">
             <popup>
                 <MenuItem>New</MenuItem>
                 <MenuSeparator/>
@@ -13,8 +12,8 @@
                 <MenuSeparator/>
                 <MenuItem>Close</MenuItem>
             </popup>
-        </MenuNew>
-        <MenuNew content="Edit">
+        </Menu>
+        <Menu content="Edit">
             <popup>
                 <MenuItem>Undo</MenuItem>
                 <MenuSeparator/>
@@ -22,29 +21,24 @@
                 <MenuItem>Copy</MenuItem>
                 <MenuItem>Paste</MenuItem>
             </popup>
-        </MenuNew>
-        <MenuNew content="View">
+        </Menu>
+        <Menu content="View">
             <popup>
                 <MenuItem>Portrait</MenuItem>
                 <MenuItem>Landscape</MenuItem>
                 <MenuSeparator/>
                 <MenuItem>Full Screen</MenuItem>
             </popup>
-        </MenuNew>
+        </Menu>
     </MenuBar>
     <div id="main">
         <LoremIpsum paragraphs="5" />
     </div>
-    <BasicButton>Done</BasicButton>
 </content>
 
 <style>
 {
     background: #ebebeb;
-}
-
-.BasicButton {
-    background: white;
 }
 
 .MenuBar {

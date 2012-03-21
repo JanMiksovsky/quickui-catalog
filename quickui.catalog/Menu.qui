@@ -1,33 +1,33 @@
+<!-- A popup menu. This is typically used in a Menu bar. -->
+
 <Control className="Menu">
 
-<content>
-    <div id="Menu_description"/>
-    <div id="shield"/> <!-- Used to obscure borders between description and content. -->
-    <div id="Menu_content"/>
-</content>
+<prototype>
+    <HasPopup>
+        <popup>
+            <div id="shield"/> <!-- Used to obscure borders between description and content. -->
+            <div id="Menu_popup"/>
+        </popup>
+    </HasPopup>
+</prototype>
 
 <style>
 {
     cursor: default;
     display: inline-block;
-    position: relative;
     -moz-user-select: -moz-none;
     -webkit-user-select: none;
     user-select: none;
 }
 
-#Menu_content {
-    display: none;
-    position: absolute;
-}
-.Menu.opened #Menu_content {
-    display: inherit;
-}
-
 #shield {
-    display: none; /* Don't show this unless it's asked for. */
+    display: none;  /* Shield isn't shown unless it's requested. */
+    left: 0;
     position: absolute;
-    z-index: 1;
+    z-index: 0;
+}
+.Menu.opened #shield {
+    display: block;
 }
 
 /* Generic appearance */
@@ -38,21 +38,21 @@
     box-sizing: border-box;
 }
 
-.Menu.generic #Menu_description {
+.Menu.generic #HasPopup_content {
     border: 1px solid transparent;
     padding: 0.5em;
 }
-#Menu_description:hover {
+.Menu.generic #HasPopup_content:hover {
     background: #eee;
 }
 
 .Menu.generic #shield {
     background: white;  /* Same as menu's background color */
     height: 1px;        /* Same as this menu's border-top-width */
-    left: 1px;          /* Same as this menu's border-left-width */
+    top: -1px;          /* Same as border-top-width but negative */
 }
 
-.Menu.generic #Menu_content {
+.Menu.generic #HasPopup_popup {
     background: white;
     border: 1px solid #ccc; /* IE8 */
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -65,11 +65,7 @@
     padding: 0.5em 0;
 }
 
-.Menu.opened #shield {
-    display: block;
-}
-
-.Menu.opened #Menu_description {
+.Menu.generic.opened #HasPopup_content {
     background: white;
     border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);
@@ -81,44 +77,15 @@
 Menu.prototype.extend({
     
     /*
-     * Close the menu. This generates a menuClosed event. Calling this when the
-     * menu is already closed has no effect.
-     */
-    close: Control.iterator( function() {
-        
-        if ( !this.opened() ) {
-            // Already closed
-            return this;
-        }
-        
-        // Tear down event handlers.
-        $( document ).off({
-            click: this._documentClickHandler(),
-            keydown: this._documentKeydownHandler()
-        });
-        $( window ).off( "blur", this._windowBlurHandler() );
-        
-        return this
-            ._documentClickHandler( null )
-            ._documentKeydownHandler( null )
-            ._windowBlurHandler( null )
-            .opened( false )
-            .trigger( "menuClosed" );
-    }),
-    
-    /*
-     * The content that appears when the menu is open.
-     */
-    content: Control.chain( "$Menu_content", "content" ),
-    
-    /*
      * The menu's descriptive label. Clicking this will open the menu.
      */
-    description: Control.chain( "$Menu_description", "content", function() {
-        if ( this.inDocument() ) {
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined && this.inDocument() ) {
             this._updateShield();
         }
-    }),
+        return result;
+    },
      
     initialize: function() {
         
@@ -126,95 +93,28 @@ Menu.prototype.extend({
         this.genericIfClassIs( Menu );
         
         var self = this;
-        this
-            .click( function( event ) {
-                if ( self.opened() ) {
-                    self.close();
-                } else {
-                    self.open();
-                }
-                event.stopPropagation();
-            })
-            .inDocument( function() {
-                this._updateShield();
-            });
+        this.inDocument( function() {
+            this._updateShield();
+        });
     },
     
-    /*
-     * Returns true if the menu is currently open.
-     */
-    opened: Control.chain( "applyClass/opened" ),
-    
-    /*
-     * Open the menu. This triggers a menuOpened event. Calling this when the
-     * menu is already opened has no effect.
-     */
-    open: Control.iterator( function() {
-        
-        if ( this.opened() ) {
-            // Already open;
-        }
-        
-        // Wire up events.
-        // We save references to the handlers so we can unbind them later.
-        var self = this;
-        var documentKeydownHandler = function( event ) {
-            // Pressing ESC closes menu. */
-            if ( event.which === 27 /* Escape */ ) {
-                self.close();
-                event.stopPropagation();
-            }
-        };
-        var documentClickHandler = function( event ) {
-            // If user clicked outside this menu, close it.
-            var outsideClick = ( $( event.target ).parents().filter( self ).length === 0 );
-            if ( outsideClick ) {
-                self.close();
-            }
-        };
-        var windowBlurHandler = function( event ) {
-            // Close any open menus on blur.
-            self.close();
-        };
-                        
-        $( document ).on({
-            click: documentClickHandler,
-            keydown: documentKeydownHandler
-        });
-        $( window ).on( "blur", windowBlurHandler );
-                        
-        return this
-            ._documentClickHandler( documentClickHandler )
-            ._documentKeydownHandler( documentKeydownHandler )
-            ._windowBlurHandler( windowBlurHandler )
-            .opened( true )
-            .trigger( "menuOpened" );
-    }),
-    
-    // Handler for the document click event
-    _documentClickHandler: Control.property(),
-
-    // Handler for the keydown event
-    _documentKeydownHandler: Control.property(),
+    popup: Control.chain( "$Menu_popup", "content" ),
     
     /*
      * The "shield" is a thin block that can be used to obscure the boundary
-     * between the description and content so that those two elements can
+     * between the content and popup so that those two elements can
      * appear to exist on a seamless surface. For this to work, the shield
      * needs to be (almost) as wide as the description. 
      */
     _updateShield: function() {
-        // We want the width of the description including padding, but not
+        // We want the width of the content including padding, but not
         // including border.
-        var $description = this.$Menu_description();
-        var shieldWidth = $description.width()
-            + parseInt( $description.css( "padding-left" ) )
-            + parseInt( $description.css( "padding-right" ) );
+        var $content = this.$HasPopup_content();
+        var shieldWidth = $content.width()
+            + parseInt( $content.css( "padding-left" ) )
+            + parseInt( $content.css( "padding-right" ) );
         this.$shield().width( shieldWidth );
-    },
-    
-    // Handler for the window blur event
-    _windowBlurHandler: Control.property()
+    }
     
 });
 </script>

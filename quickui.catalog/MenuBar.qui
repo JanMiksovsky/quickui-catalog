@@ -47,21 +47,23 @@ MenuBar.prototype.extend({
         }
         
         this
-            ._closeOpenMenus()
+            ._closeOpenPopups()
             .opened( false );
     }),
     
     /*
-     * The menus in the menu bar.
+     * The menus in the menu bar. These are typically HasPopup controls,
+     * including subclasses like Menu. Other types of controls can be
+     * safely placed in the content as well.
      */
     content: function( content ) {
         var result = this._super( content );
         if ( content !== undefined ) {
             // Since we're managing our own overlay, we suppress the overlays
             // on the individual menus in our content.
-            var menus = this.find( ".HasPopup" ).control();
-            if ( menus ) {
-                menus.overlayClass( null );
+            var popups = this.find( ".HasPopup" ).control();
+            if ( popups ) {
+                popups.overlayClass( null );
             }
         }
         return result;
@@ -74,23 +76,23 @@ MenuBar.prototype.extend({
         var self = this;
         this.on({
             "closed canceled": function( event ) {
-                if ( self._openMenus() == null ) {
-                    // No longer any open menus.
+                if ( self._openPopups() == null ) {
+                    // No longer any open popups.
                     self.close();
                 }
             },
             opened: function( event ) {
                 self.open();
-                // Close open menus other than the one which just opened.
-                var newMenu = $( event.target ).closest( ".MenuNew" ).control();
-                self._closeOpenMenus( newMenu );
+                // Close open popups other than the one which just opened.
+                var newMenu = $( event.target ).closest( ".HasPopup" ).control();
+                self._closeOpenPopups( newMenu );
             }
         });
-        this.on( "mouseenter", ".MenuNew", function( event ) {
+        this.on( "mouseenter", ".HasPopup", function( event ) {
             if ( self.opened() ) {
-                // Riffing: Implicitly open the menu the user hovered into
+                // Riffing: Implicitly open the popup the user hovered into
                 // if it's not already open.
-                var newMenu = $( event.target ).closest( ".MenuNew" ).control();
+                var newMenu = $( event.target ).closest( ".HasPopup" ).control();
                 if ( newMenu && !newMenu.opened() ) {
                     newMenu.open();
                 }
@@ -117,12 +119,12 @@ MenuBar.prototype.extend({
     }),
     
     /*
-     * Close open menus. If a keepMenu is specified, leave that menu open.
+     * Close open popups. If a keepPopup is specified, leave that menu open.
      */
-    _closeOpenMenus: function( keepMenu ) {
-        var openMenus = this._openMenus();
+    _closeOpenPopups: function( keepPopup ) {
+        var openMenus = this._openPopups();
         if ( openMenus ) {
-            openMenus = openMenus.not( keepMenu );
+            openMenus = openMenus.not( keepPopup );
             if ( openMenus.length > 0 ) {
                 openMenus.close();
             }
@@ -131,9 +133,9 @@ MenuBar.prototype.extend({
     },
     
     /*
-     * Return the currently open menus.
+     * Return the currently open popups.
      */
-    _openMenus: Control.chain( "children", "filter/.MenuNew.opened", "control" ),
+    _openPopups: Control.chain( "children", "filter/.HasPopup.opened", "control" ),
 
     // The overlay behind the menu bar.    
     _overlay: Control.property()
