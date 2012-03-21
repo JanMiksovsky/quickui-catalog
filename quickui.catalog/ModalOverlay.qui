@@ -33,7 +33,7 @@ ModalOverlay.prototype.extend({
                 event.stopPropagation();
             },
             
-            mousewheel: function( event) {
+            "DOMMouseScroll mousewheel": function( event) {
                 // Prevent wheel scrolls over overlay from scrolling underlying
                 // page, which is sort of disconcerting when a modal dialog
                 // is up.
