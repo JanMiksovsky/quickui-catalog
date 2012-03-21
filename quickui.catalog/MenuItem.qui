@@ -7,6 +7,9 @@
 <style>
 {
     display: block;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    user-select: none;
     white-space: nowrap;
 }
 
@@ -20,6 +23,9 @@
 }
 .MenuItem.generic:hover {
     background: #eee;
+}
+.MenuItem.generic.disabled:hover {
+    background: inherit;
 }
 </style>
 

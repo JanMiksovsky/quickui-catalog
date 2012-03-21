@@ -15,7 +15,7 @@
         </Menu>
         <Menu content="Edit">
             <popup>
-                <MenuItem>Undo</MenuItem>
+                <MenuItem disabled="true">Undo</MenuItem>
                 <MenuSeparator/>
                 <MenuItem>Cut</MenuItem>
                 <MenuItem>Copy</MenuItem>
