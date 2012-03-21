@@ -33,8 +33,6 @@ Base class for popups, menus, dialogs, things that appear temporarily over other
 
 <script>
 Popup.prototype.extend({
-
-    blanket: Control.property(),
     
     /*
      * True if the user can cancel an open popup by pressing the Escape key.
@@ -109,10 +107,10 @@ Popup.prototype.extend({
             return this;
         }
 
-        var $blanket = Blanket.create()
+        var $overlay = Overlay.create()
             .lift( this.target() || this )
             .modal( this.modal() );
-        this.blanket( $blanket );
+        this._overlay( $overlay );
         
         this
             ._eventsOn()
@@ -146,7 +144,7 @@ Popup.prototype.extend({
     target: Control.property(),
 
     /*
-     * Take care of hiding the popup, its blanket, and raising the indicated event.
+     * Take care of hiding the popup, its overlay, and raising the indicated event.
      */
     _close: function( closeEventName )
     {
@@ -159,11 +157,12 @@ Popup.prototype.extend({
             this.trigger( closeEventName );
         }
 
-        if ( this.blanket() != null ) {
-            // Destroy blanket
-            this.blanket().restore();
-            this.blanket().remove();
-            this.blanket(null);
+        if ( this._overlay() != null ) {
+            // Destroy overlay
+            this._overlay()
+                .restore()
+                .remove();
+            this._overlay(null);
         }
         
         return this
@@ -240,7 +239,10 @@ Popup.prototype.extend({
     _handlerDocumentKeydown: Control.property(),
     
     // Handler for the window blur event
-    _handlerWindowBlur: Control.property()
+    _handlerWindowBlur: Control.property(),
+
+    // The Overlay control behind the popup absorbing mouse clicks.
+    _overlay: Control.property()
 
 });
 </script>

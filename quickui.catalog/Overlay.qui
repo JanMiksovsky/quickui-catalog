@@ -1,8 +1,8 @@
 <!--
-A "blanket" that covers the entire viewport, typically to swallow clicks.
+A control that covers the entire viewport, typically to swallow clicks.
 -->
 
-<Control className="Blanket">
+<Control className="Overlay">
 
 <style>
 {
@@ -21,25 +21,25 @@ A "blanket" that covers the entire viewport, typically to swallow clicks.
 }
 
 /* Generic appearance */
-.Blanket.generic.modal {
+.Overlay.generic.modal {
     background: black;
     opacity: 0.25;
 }
 </style>
 
 <script>
-Blanket.prototype.extend({
+Overlay.prototype.extend({
     
     initialize: function() {
-        this.genericIfClassIs( Blanket );
+        this.genericIfClassIs( Overlay );
         
         var self = this;
         this.click( function( event ) {
             if ( self.modal() ) {
                 /*
-                 * When a Blanket is invoked by a modal Popup, the Popup itself
+                 * When a Overlay is invoked by a modal Popup, the Popup itself
                  * will ignore mouse clicks anyway. We still absorb mouse
-                 * clicks here in case a Blanket were to be used in some
+                 * clicks here in case a Overlay were to be used in some
                  * context other than a Popup.
                  */
                 event.stopPropagation();
@@ -48,7 +48,7 @@ Blanket.prototype.extend({
     },
     
     /*
-     * Add the blanket to the DOM such that it ends up behind the target
+     * Add the overlay to the DOM such that it ends up behind the target
      * element and in front of everything else (within that element's
      * stacking context).
      */
@@ -85,9 +85,9 @@ Blanket.prototype.extend({
         }
         
         /*
-         * The blanket ends up with the same z-index as the target, but at the
+         * The overlay ends up with the same z-index as the target, but at the
          * immediately before the target's location in the DOM, so the target
-         * will appear over the blanket.
+         * will appear over the overlay.
          */
         return this
             ._target( $target )
@@ -97,13 +97,13 @@ Blanket.prototype.extend({
     }),
     
     /*
-     * True if the blanket absorbs clicks rather than letting them bubble up.
+     * True if the overlay absorbs clicks rather than letting them bubble up.
      */
     modal: Control.chain( "applyClass/modal" ),
     
     /*
      * Restore the target element to its original condition.
-     * The blanket must be separately removed from the DOM (e.g., via a
+     * The overlay must be separately removed from the DOM (e.g., via a
      * call to jQuery's remove() function).
      */
     restore: Control.iterator( function() {
@@ -124,7 +124,7 @@ Blanket.prototype.extend({
         return this;
     }),
 
-    // The target element the blanket is being shown behind.    
+    // The target element the overlay is being shown behind.    
     _target: Control.property(),
     
     // The saved values for any CSS properties on the target that we've touched. 
