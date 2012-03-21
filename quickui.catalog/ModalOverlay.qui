@@ -1,0 +1,38 @@
+<!-- An overlay for a modal dialog which absorbs all clicks. -->
+
+<Control className="ModalOverlay">
+
+<prototype>
+    <Overlay/>
+</prototype>
+
+<style>
+/* Generic appearance */
+.ModalOverlay.generic {
+    background: black;
+    opacity: 0.25;
+}
+</style>
+
+<script>
+ModalOverlay.prototype.extend({
+    
+    initialize: function() {
+        this.genericIfClassIs( ModalOverlay );
+        
+        var self = this;
+        this.click( function( event ) {
+            /*
+             * When a ModalOverlay is invoked by a Dialog, the Popup itself
+             * will ignore mouse clicks anyway. We still absorb mouse
+             * clicks here in case the ModalOverlay were to be used in some
+             * context other than a Popup.
+             */
+            event.stopPropagation();
+        });
+    },
+
+});
+</script>
+
+</Control>

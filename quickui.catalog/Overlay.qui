@@ -16,14 +16,10 @@ A control that covers the entire viewport, typically to swallow clicks.
 
 /* TODO: Remove this test style */
 {
+    /*
     background: white;
     opacity: 0.5;
-}
-
-/* Generic appearance */
-.Overlay.generic.modal {
-    background: black;
-    opacity: 0.25;
+    */
 }
 </style>
 
@@ -32,19 +28,6 @@ Overlay.prototype.extend({
     
     initialize: function() {
         this.genericIfClassIs( Overlay );
-        
-        var self = this;
-        this.click( function( event ) {
-            if ( self.modal() ) {
-                /*
-                 * When a Overlay is invoked by a modal Popup, the Popup itself
-                 * will ignore mouse clicks anyway. We still absorb mouse
-                 * clicks here in case a Overlay were to be used in some
-                 * context other than a Popup.
-                 */
-                event.stopPropagation();
-            }
-        });
     },
     
     /*
@@ -95,11 +78,6 @@ Overlay.prototype.extend({
             .css( "z-index", targetZIndex )
             .insertBefore( $target );
     }),
-    
-    /*
-     * True if the overlay absorbs clicks rather than letting them bubble up.
-     */
-    modal: Control.chain( "applyClass/modal" ),
     
     /*
      * Restore the target element to its original condition.

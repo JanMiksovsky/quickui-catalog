@@ -6,8 +6,10 @@ Base class for modal dialogs.
 
 <prototype>
     <Popup
-        modal="true"
+        cancelOnOutsideClick="false"
+        cancelOnWindowBlur="false"
         closeOnInsideClick="false"
+        overlayClass="ModalOverlay"
     />
 </prototype>
 

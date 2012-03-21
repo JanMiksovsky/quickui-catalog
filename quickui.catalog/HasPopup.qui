@@ -66,7 +66,7 @@ HasPopup.prototype.extend({
         this.$HasPopup_content().click( function( event ) {
             if ( self.openOnClick() ) {
                 self.open();
-                event.stopPropagation();
+                //event.stopPropagation();
             }
         });
         this.$HasPopup_popup()
