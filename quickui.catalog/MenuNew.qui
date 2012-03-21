@@ -13,14 +13,13 @@
 {
     cursor: default;
     display: inline-block;
-    /* position: relative; REVIEW: Need this? */
     -moz-user-select: -moz-none;
     -webkit-user-select: none;
     user-select: none;
 }
 
 #shield {
-    display: none; /* Don't show this unless it's asked for. */
+    display: none;  /* Shield isn't shown unless it's requested. */
     left: 0;
     position: absolute;
     z-index: 0;

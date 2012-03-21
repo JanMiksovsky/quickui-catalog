@@ -16,10 +16,8 @@ A control that covers the entire viewport, typically to swallow clicks.
 
 /* TODO: Remove this test style */
 {
-    /*
     background: white;
     opacity: 0.5;
-    */
 }
 </style>
 

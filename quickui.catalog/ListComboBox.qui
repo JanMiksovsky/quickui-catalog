@@ -20,6 +20,8 @@ be strings.
 <style>
 #list {
     border: none;
+    -moz-outline: none;
+    outline: none;
 }
 #list > * {
     display: block;
