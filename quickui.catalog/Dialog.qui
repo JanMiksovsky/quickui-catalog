@@ -71,10 +71,13 @@ Dialog.prototype.extend({
 
 // Class methods
 Dialog.extend({
+    
+    /*
+     * Create and show an instance of a given dialog class.
+     */
     showDialog: function( dialogClass, properties, callbackOk, callbackCancel ) {
-        $("body")
-            .append( "<div/>" )
-            .find( ":last" )
+        
+        var dialog = dialogClass.create( properties )
             .on({
                 closed: function() {
                     if ( callbackOk ) {
@@ -86,10 +89,43 @@ Dialog.extend({
                         callbackCancel.call( $( this ).control() );
                     }
                 }
-            })
-            .control( dialogClass, properties )
-            .open();
+            });
+        
+        var maximumZIndex = Dialog._maximumZIndex();
+        if ( maximumZIndex ) {
+            // Use a z-index one higher than the highest one in use on the page.
+            dialog.css( "z-index", maximumZIndex + 1 );
+        }
+        
+        /*
+         * Add the dialog to the end of the body so that it will paint over
+         * other controls in the same stacking context.
+         */
+        $( document.body).append( dialog );
+        
+        dialog.open();
+    },
+    
+    /*
+     * Return the maximum Z-index in use on the page, or null if none is set.
+     */
+    _maximumZIndex: function()
+    {
+        var zIndices = $( "*" ).map( function( index, element ) {
+            var $element = $( element );
+            // z-index only applies if position is also set.
+            if ( $element.css("position") !== "static" ) {
+                var zIndex = parseInt( $element.css( "z-index" ) );
+                if ( zIndex ) {
+                    return zIndex;
+                }
+            }
+        });
+        return ( zIndices.length > 0 )
+            ? Math.max.apply( null, zIndices )
+            : null;
     }
+    
 });
 </script>
 

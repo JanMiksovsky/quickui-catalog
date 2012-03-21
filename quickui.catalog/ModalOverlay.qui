@@ -21,14 +21,25 @@ ModalOverlay.prototype.extend({
         this.genericIfClassIs( ModalOverlay );
         
         var self = this;
-        this.click( function( event ) {
-            /*
-             * When a ModalOverlay is invoked by a Dialog, the Popup itself
-             * will ignore mouse clicks anyway. We still absorb mouse
-             * clicks here in case the ModalOverlay were to be used in some
-             * context other than a Popup.
-             */
-            event.stopPropagation();
+        this.on({
+            
+            click: function( event ) {
+                /*
+                 * When a ModalOverlay is invoked by a Dialog, the Popup itself
+                 * will ignore mouse clicks anyway. We still absorb mouse
+                 * clicks here in case the ModalOverlay were to be used in some
+                 * context other than a Popup.
+                 */
+                event.stopPropagation();
+            },
+            
+            mousewheel: function( event) {
+                // Prevent wheel scrolls over overlay from scrolling underlying
+                // page, which is sort of disconcerting when a modal dialog
+                // is up.
+                event.preventDefault();
+            }
+            
         });
     },
 

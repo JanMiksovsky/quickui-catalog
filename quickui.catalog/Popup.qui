@@ -139,6 +139,12 @@ Popup.prototype.extend({
      */
     positionPopup: Control.property(),
     
+    /*
+     * The control to which the popup is attached. By default no target is
+     * defined. If defined, when the popup opens, the overlay shown behind
+     * the popup will also be behind the target control. This can allow the user
+     * to interact with the target control while the popup is open.
+     */
     target: Control.property(),
 
     /*
