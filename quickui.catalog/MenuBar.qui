@@ -11,6 +11,12 @@ are open. See notes in the source for the Overlay class.
 <Control className="MenuBar">
 
 <style>
+{
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 /* Subclasses can extend this style */
 .MenuBar.opened {}
 
@@ -76,15 +82,15 @@ MenuBar.prototype.extend({
             opened: function( event ) {
                 self.open();
                 // Close open menus other than the one which just opened.
-                var newMenu = $( event.target ).closest( ".Menu" ).control();
+                var newMenu = $( event.target ).closest( ".MenuNew" ).control();
                 self._closeOpenMenus( newMenu );
             }
         });
-        this.on( "mouseenter", ".Menu", function( event ) {
+        this.on( "mouseenter", ".MenuNew", function( event ) {
             if ( self.opened() ) {
                 // Riffing: Implicitly open the menu the user hovered into
                 // if it's not already open.
-                var newMenu = $( event.target ).closest( ".Menu" ).control();
+                var newMenu = $( event.target ).closest( ".MenuNew" ).control();
                 if ( newMenu && !newMenu.opened() ) {
                     newMenu.open();
                 }
@@ -98,6 +104,7 @@ MenuBar.prototype.extend({
     opened: Control.chain( "applyClass/opened" ),
     
     open: Control.iterator( function() {
+        
         if ( this.opened() ) {
             // Already open
             return;
@@ -115,7 +122,10 @@ MenuBar.prototype.extend({
     _closeOpenMenus: function( keepMenu ) {
         var openMenus = this._openMenus();
         if ( openMenus ) {
-            openMenus.not( keepMenu ).close();
+            openMenus = openMenus.not( keepMenu );
+            if ( openMenus.length > 0 ) {
+                openMenus.close();
+            }
         }
         return this;
     },
@@ -123,7 +133,7 @@ MenuBar.prototype.extend({
     /*
      * Return the currently open menus.
      */
-    _openMenus: Control.chain( "children", "filter/.Menu.opened", "control" ),
+    _openMenus: Control.chain( "children", "filter/.MenuNew.opened", "control" ),
 
     // The overlay behind the menu bar.    
     _overlay: Control.property()

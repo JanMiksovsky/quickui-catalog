@@ -187,11 +187,9 @@ Popup.prototype.extend({
             if ( outsideClick && self.cancelOnOutsideClick() ) {
                 // User clicked outside popup; implicitly cancel it.
                 self.cancel();
-                event.stopPropagation();
             } else if ( !outsideClick && self.closeOnInsideClick() ) {
                 // Use click inside popup; implicitly close it.
                 self.close();
-                event.stopPropagation();
             }
         };
         var handlerWindowBlur = function( event ) {
@@ -213,7 +211,10 @@ Popup.prototype.extend({
          * document before we wire up the document click handler.
          */
         window.setTimeout( function() {
-            $( document ).on( "click", handlerDocumentClick );
+            // Don't bind event if we managed to get closed during the timeout.
+            if ( self.opened() ) {
+                $( document ).on( "click", handlerDocumentClick );
+            }
         }, 100 );
         
         // Save references to the event handlers so we can unbind them later.
