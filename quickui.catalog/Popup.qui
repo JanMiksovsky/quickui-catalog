@@ -44,7 +44,7 @@ Popup.prototype.extend({
     
     /*
      * True if the popup should be cancelled if the user clicks outside it.
-     * Default is true.
+     * Default is true. See also the modal() property.
      */
     cancelOnOutsideClick: Control.property.bool( null, true ),
     
@@ -83,6 +83,19 @@ Popup.prototype.extend({
     {
         this.genericIfClassIs( Popup );
     },
+    
+    /*
+     * True if the popup absorbs clicks made outside the popup. The default
+     * is false. Setting this to true implicitly sets cancelOnOutsideClick()
+     * and cancelOnWindowBlur() to false.
+     */
+    modal: Control.property.bool( function( modal ) {
+        if ( modal ) {
+            this
+                .cancelOnOutsideClick( false )
+                .cancelOnWindowBlur( false );
+        }
+    }, false ),
 
     /*
      * Open the popup (show it). This raises an "opened" event.
@@ -96,7 +109,9 @@ Popup.prototype.extend({
             return this;
         }
 
-        var $blanket = Blanket.create().lift( this )
+        var $blanket = Blanket.create()
+            .lift( this )
+            .modal( this.modal() );
         this.blanket( $blanket );
         
         this

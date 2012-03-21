@@ -6,19 +6,46 @@ A "blanket" that covers the entire viewport, typically to swallow clicks.
 
 <style>
 {
-    background: black;
     cursor: default;
     position: fixed;
-    opacity: 0.2;       /* TODO: Remove */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
 }
+
+/* TODO: Remove this test style */
+{
+    background: white;
+    opacity: 0.5;
+}
+
+/* Generic appearance */
+.Blanket.generic.modal {
+    background: black;
+    opacity: 0.2;
+}
 </style>
 
 <script>
 Blanket.prototype.extend({
+    
+    initialize: function() {
+        this.genericIfClassIs( Blanket );
+        
+        var self = this;
+        this.click( function( event ) {
+            if ( self.modal() ) {
+                /*
+                 * When a Blanket is invoked by a modal Popup, the Popup itself
+                 * will ignore mouse clicks anyway. We still absorb mouse
+                 * clicks here in case a Blanket were to be used in some
+                 * context other than a Popup.
+                 */
+                event.stopPropagation();
+            }
+        });
+    },
     
     /*
      * Add the blanket to the DOM such that it ends up behind the target
@@ -70,6 +97,11 @@ Blanket.prototype.extend({
     }),
     
     /*
+     * True if the blanket absorbs clicks rather than letting them bubble up.
+     */
+    modal: Control.chain( "applyClass/modal" ),
+    
+    /*
      * Restore the target element to its original condition.
      * The blanket must be separately removed from the DOM (e.g., via a
      * call to jQuery's remove() function).
@@ -101,4 +133,4 @@ Blanket.prototype.extend({
 });
 </script>
 
-</Control>
+</Control>
