@@ -10,6 +10,7 @@
 /* Generic appearance */
 .ModalOverlay.generic {
     background: black;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)"; /* IE8 */
     opacity: 0.25;
 }
 </style>

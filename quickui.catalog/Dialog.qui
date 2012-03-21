@@ -93,7 +93,15 @@ Dialog.extend({
         
         var maximumZIndex = Dialog._maximumZIndex();
         if ( maximumZIndex ) {
-            // Use a z-index one higher than the highest one in use on the page.
+            /*
+             * Use a z-index one higher than the highest one in use on the page.
+             * 
+             * Technically speaking, we might be able to get away with using a
+             * lower z-index if we very carefully looked at the actual stacking
+             * contexts, but that would be a bunch more work, and all we care
+             * about here is making sure a transient element ends up above
+             * everything else.    
+             */
             dialog.css( "z-index", maximumZIndex + 1 );
         }
         
@@ -120,7 +128,8 @@ Dialog.extend({
                     return zIndex;
                 }
             }
-        });
+        }).get();
+        
         return ( zIndices.length > 0 )
             ? Math.max.apply( null, zIndices )
             : null;
