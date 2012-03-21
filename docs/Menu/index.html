@@ -11,7 +11,10 @@
 <link rel="stylesheet" type="text/css" href="/controls/controls.css" />
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
+<!--
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+-->
+<script type="text/javascript" src="http://localhost/projects/lib/jquery-1.7.min.js"></script>
 <script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
 <script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
@@ -28,9 +31,9 @@
 function demo() {
 
 $demo.append(
-    Menu.create()
-        .description( "New" )
-        .content([
+    MenuNew.create()
+        .content( "New" )
+        .popup([
             MenuItem.create().content( "Appointment" ),
             MenuItem.create().content( "Contact" ),
             MenuItem.create().content( "Message" ),

@@ -1,0 +1,120 @@
+<Control className="MenuNew">
+
+<prototype>
+    <HasPopup>
+        <popup>
+            <div id="shield"/> <!-- Used to obscure borders between description and content. -->
+            <div id="MenuNew_popup"/>
+        </popup>
+    </HasPopup>
+</prototype>
+
+<style>
+{
+    cursor: default;
+    display: inline-block;
+    /* position: relative; REVIEW: Need this? */
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#shield {
+    display: none; /* Don't show this unless it's asked for. */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Generic appearance */
+.MenuNew.generic {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.MenuNew.generic #HasPopup_content {
+    border: 1px solid transparent;
+    padding: 0.5em;
+}
+.MenuNew.generic #HasPopup_content:hover {
+    background: #eee;
+}
+
+.MenuNew.generic #shield {
+    background: white;  /* Same as menu's background color */
+    height: 1px;        /* Same as this menu's border-top-width */
+    left: 1px;          /* Same as this menu's border-left-width */
+}
+
+.MenuNew.generic #HasPopup_popup {
+    background: white;
+    border: 1px solid #ccc; /* IE8 */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    -moz-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    cursor: default;
+    margin: 0;
+    outline: none;
+    padding: 0.5em 0;
+}
+
+.MenuNew.opened #HasPopup_content {
+    background: white;
+    border-color: #ccc; /* IE8 */
+    border-color: rgba(0, 0, 0, 0.2);
+    border-bottom-style: none;
+}
+.MenuNew.opened #shield {
+    display: block;
+}
+</style>
+
+<script>
+MenuNew.prototype.extend({
+    
+    /*
+     * The menu's descriptive label. Clicking this will open the menu.
+     */
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined && this.inDocument() ) {
+            this._updateShield();
+        }
+        return result;
+    },
+     
+    initialize: function() {
+        
+        this._super();
+        this.genericIfClassIs( MenuNew );
+        
+        var self = this;
+        this.inDocument( function() {
+            this._updateShield();
+        });
+    },
+    
+    popup: Control.chain( "$MenuNew_popup", "content" ),
+    
+    /*
+     * The "shield" is a thin block that can be used to obscure the boundary
+     * between the content and popup so that those two elements can
+     * appear to exist on a seamless surface. For this to work, the shield
+     * needs to be (almost) as wide as the description. 
+     */
+    _updateShield: function() {
+        // We want the width of the content including padding, but not
+        // including border.
+        var $content = this.$HasPopup_content();
+        var shieldWidth = $content.width()
+            + parseInt( $content.css( "padding-left" ) )
+            + parseInt( $content.css( "padding-right" ) );
+        this.$shield().width( shieldWidth );
+    }
+    
+});
+</script>
+
+</Control>

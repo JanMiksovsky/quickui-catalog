@@ -110,7 +110,7 @@ Popup.prototype.extend({
         }
 
         var $blanket = Blanket.create()
-            .lift( this )
+            .lift( this.target() || this )
             .modal( this.modal() );
         this.blanket( $blanket );
         
@@ -142,6 +142,8 @@ Popup.prototype.extend({
      * having to create a new subclass.
      */
     positionPopup: Control.property(),
+    
+    target: Control.property(),
 
     /*
      * Take care of hiding the popup, its blanket, and raising the indicated event.

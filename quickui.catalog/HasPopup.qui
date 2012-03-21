@@ -66,6 +66,7 @@ HasPopup.prototype.extend({
         this.$HasPopup_popup().positionPopup( function() {
             self._positionPopup();
         });
+        this.$HasPopup_popup().target( this );
     },
 
     /*
