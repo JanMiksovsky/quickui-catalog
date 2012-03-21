@@ -91,9 +91,18 @@ HasPopup.prototype.extend({
     open: Control.chain( "$HasPopup_popup", "open" ),
     
     /*
-     * True if the popup is currently opened.
+     * Returns true if the popup is currently opened.
      */
-    opened: Control.chain( "applyClass/opened" ),
+    opened: function( opened ) {
+        if ( opened === undefined ) {
+            // We mirror the popup's own open state.
+            return this.$HasPopup_popup().opened();
+        } else {
+            // If we're setting this, only set our own state.
+            // The popup will have taken care of itself.
+            return this.applyClass( "opened", opened );
+        }
+    },
     
     /*
      * The class used to render the overlay behind the popup.
