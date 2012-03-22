@@ -40,9 +40,7 @@ MenuBar.prototype.extend({
         
         var $overlay = this._overlay();
         if ( $overlay ) {
-            $overlay
-                .restore()
-                .remove();
+            $overlay.remove();
             this._overlay( null );
         }
         
@@ -112,7 +110,7 @@ MenuBar.prototype.extend({
             return;
         }
         
-        var $overlay = Overlay.create().lift( this );
+        var $overlay = Overlay.create().target( this );
         this._overlay( $overlay );
         
         this.opened( true );

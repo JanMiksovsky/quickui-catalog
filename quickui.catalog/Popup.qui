@@ -143,23 +143,23 @@ Popup.prototype.extend({
      */
     _close: function( closeEventName )
     {
-        if ( !this.opened() ) {
-            // Already closed
-            return this;
-        }
-        
-        if ( closeEventName ) {
-            this.trigger( closeEventName );
-        }
-
+        // There may be cases where this function is called more than once.
+        // As a defensive measure, we clean things up even if we think we're
+        // already closed.
         if ( this._overlay() != null ) {
             this._overlay().remove();
             this._overlay( null );
         }
+        this._eventsOff();
+
+        if ( this.opened() ) {
+            if ( closeEventName ) {
+                this.trigger( closeEventName );
+            }
+            this.opened( false );
+        }
         
-        return this
-            ._eventsOff()
-            .opened( false );
+        return this;
     },
     
     /*
@@ -222,15 +222,29 @@ Popup.prototype.extend({
      * Unbind the event handlers we bound earlier.
      */
     _eventsOff: function() {
-        $( document ).off({
-            click: this._handlerDocumentClick(),
-            keydown: this._handlerDocumentKeydown()
-        });
-        $( window ).off( "blur", this._handlerWindowBlur() );
-        return this
-            ._handlerDocumentClick( null )
-            ._handlerDocumentKeydown( null )
-            ._handlerWindowBlur( null )
+        
+        // Do checks before unbinding in case this function happens to get
+        // called more than once.
+         
+        var handlerDocumentClick = this._handlerDocumentClick();
+        if ( handlerDocumentClick ) {
+            $( document ).off( "click", handlerDocumentClick );
+            this._handlerDocumentClick( null );
+        }
+        
+        var handlerDocumentKeydown = this._handlerDocumentKeydown();
+        if ( handlerDocumentKeydown ) {
+            $( document ).off( "keydown", handlerDocumentKeydown );
+            this._handlerDocumentKeydown( null );
+        }
+        
+        var handlerWindowBlur = this._handlerWindowBlur();
+        if ( handlerWindowBlur ) {
+            $( window ).off( "blur", handlerWindowBlur );
+            this._handlerWindowBlur( null );
+        }
+        
+        return this;
     },
     
     // Handler for the document click event

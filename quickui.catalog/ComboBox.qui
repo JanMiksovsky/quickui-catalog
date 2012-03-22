@@ -106,12 +106,6 @@ ComboBox.prototype.extend({
         });
         
         this.on({
-            // Open the popup when any part of the control gets focus.
-            "focusin": function( event ) {
-                if ( self.openOnFocus() && !self.opened() ) {
-                    self.open();
-                }
-            },
             // Close the popup when the control loses focus.
             "focusout": function( event ) {
                 /*
@@ -206,7 +200,7 @@ ComboBox.prototype.extend({
         this._super();
         var self = this;
         this.$ComboBox_content().on({
-            "click": function( event ) {
+            "click focusin": function( event ) {
                 if ( self.openOnFocus() && !self.opened() ) {
                     self.open();
                 }
