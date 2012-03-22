@@ -10,9 +10,9 @@ A control with a popup.
 </content>
 
 <style>
-{
-    /* TODO: Remove */
-    /* position: relative; */
+#PopupSource_content {
+    /* Ensures content stays above overlay */
+    position: relative;
 }
 </style>
 

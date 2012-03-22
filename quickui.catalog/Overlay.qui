@@ -6,12 +6,12 @@ A control that covers the entire viewport, typically to swallow clicks.
 
 <style>
 {
+    bottom: 0;
     cursor: default;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
 }
 
 /* TODO: Remove this test style */
@@ -34,82 +34,33 @@ Overlay.prototype.extend({
     },
     
     /*
-     * Add the overlay to the DOM such that it ends up behind the target
-     * element and in front of everything else (within that element's
-     * stacking context).
+     * The target of the overlay is the element which will end up visually
+     * in front of the overlay.
+     * 
+     * Setting the target adds the overlay to the DOM (or moves it, if already
+     * in the DOM) to come before the target element. The result of this is that
+     * the overlay will sit visually behind the target.
+     * 
+     * If there are elements with a z-index in the same stacking context as the
+     * target, the target should also have a z-index applied to it. The
+     * overlay will pick up this same z-index. As long as the target element
+     * visually appears in front of the other elements, so too will the overlay.
      */
-    lift: Control.iterator( function( $target ) {
+    target: Control.property( function( target ) {
         
-        var targetCss = {
-            position: $target.css( "position" ),
-            "z-index": $target.css( "z-index" )
-        };
-        
-        var targetPreviousCss = {};
-        if ( targetCss.position === "static" ) {
-            /*
-             * Give the target relative positioning so its z-index will work.
-             */
-            targetPreviousCss.position = ( targetCss.position !== "static" )
-                ? targetCss.position
-                : "";
-            $target.css( "position", "relative" );
+        if ( target === null ) {
+            // Clearing target; nothing to do right now.
+            return;
         }
         
-        var targetZIndex = parseInt( targetCss[ "z-index" ] ); 
-        if ( isNaN( targetZIndex ) ) {
-            /*
-             * The target doesn't have a z-index, so we'll temporarily assign
-             * a z-index of zero so it at least ends up above all other elements
-             * with no z-index within the target's stacking context.
-             */
-            targetPreviousCss[ "z-index" ] = ( targetCss[ "z-index" ] !== "auto" )
-                ? targetCss[ "z-index" ]
-                : "";
-            targetZIndex = 0;
-            $target.css( "z-index", targetZIndex );
+        var targetZIndex = parseInt( target.css( "z-index" ) ); 
+        if ( targetZIndex ) {
+            // Overlay gets same z-index as target.
+            this.css( "z-index", targetZIndex );
         }
         
-        /*
-         * The overlay ends up with the same z-index as the target, but at the
-         * immediately before the target's location in the DOM, so the target
-         * will appear over the overlay.
-         */
-        return this
-            ._target( $target )
-            ._targetPreviousCss( targetPreviousCss )
-            .css( "z-index", targetZIndex )
-            .insertBefore( $target );
-    }),
-    
-    /*
-     * Restore the target element to its original condition.
-     * The overlay must be separately removed from the DOM (e.g., via a
-     * call to jQuery's remove() function).
-     */
-    restore: Control.iterator( function() {
-        var $target = this._target();
-        if ( $target ) {
-            // Undo any CSS we've applied
-            var targetCss = this._targetPreviousCss();
-            if ( targetCss.position != null ) {
-                $target.css( "position", targetCss.position );
-            }
-            if ( targetCss[ "z-index" ] != null ) {
-                $target.css( "z-index", targetCss[ "z-index" ] );
-            }
-            this
-                ._target( null )
-                ._targetPreviousCss( null );
-        }
-        return this;
-    }),
-
-    // The target element the overlay is being shown behind.    
-    _target: Control.property(),
-    
-    // The saved values for any CSS properties on the target that we've touched. 
-    _targetPreviousCss: Control.property()
+        return this.insertBefore( target );
+    })
     
 });
 </script>

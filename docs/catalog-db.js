@@ -134,11 +134,6 @@ var controlRecords = [
         description: "Cross-browser gradient."
     },
     {
-        name: "HasPopup",
-        demoClass: "HasPopupDemo",
-        description: "A control with an associated Popup which will appear above or below the control."
-    },
-    {
         name: "HighlightEffects",
         demoClass: "HighlightEffectsDemo",
         description: "Apply effects on hover, which can include changing the item's size and position."
@@ -230,6 +225,11 @@ var controlRecords = [
         name: "PopupButton",
         demoClass: "PopupButtonDemo",
         description: "A button that produces a popup when clicked."
+    },
+    {
+        name: "PopupSource",
+        demoClass: "PopupSourceDemo",
+        description: "A control with an associated Popup which will appear above or below the control."
     },
     {
         name: "RadioButton",

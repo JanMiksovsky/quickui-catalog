@@ -100,7 +100,7 @@ Popup.prototype.extend({
         var overlayClass = this.overlayClass();
         if ( overlayClass ) {
             var $overlay = overlayClass.create()
-                .lift( this.target() || this );
+                .target( this.target() || this );
             this._overlay( $overlay );
         }
         
@@ -162,11 +162,8 @@ Popup.prototype.extend({
         }
 
         if ( this._overlay() != null ) {
-            // Destroy overlay
-            this._overlay()
-                .restore()
-                .remove();
-            this._overlay(null);
+            this._overlay().remove();
+            this._overlay( null );
         }
         
         return this
