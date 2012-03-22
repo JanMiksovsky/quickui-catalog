@@ -5,12 +5,12 @@ An input area with a dropdown arrow, which invokes a popup.
 <Control className="ComboBox">
 
 <prototype>
-    <HasPopup closeOnInsideClick="false" openOnClick="false">
+    <PopupSource closeOnInsideClick="false" openOnClick="false">
         <content>
             <div id="ComboBox_content"/>
             <ToggleButton id="dropdownButton">&#9660;</ToggleButton>
         </content>
-    </HasPopup>
+    </PopupSource>
 </prototype>
 
 <style>
@@ -18,11 +18,11 @@ An input area with a dropdown arrow, which invokes a popup.
     display: inline-table;
 }
 
-#HasPopup_content > * {
+#PopupSource_content > * {
     display: table-cell;
 }
 
-#HasPopup_popup {
+#PopupSource_popup {
     -moz-outline: none;
     outline: none;
 }
@@ -86,7 +86,7 @@ ComboBox.prototype.extend({
         this.genericIfClassIs( ComboBox );
         
         var self = this;
-        this.$HasPopup_popup().on({
+        this.$PopupSource_popup().on({
             "canceled": function() {
                 self.$dropdownButton().selected( false );
             },
@@ -145,7 +145,7 @@ ComboBox.prototype.extend({
         // Allow the popup container itself to receive the focus.
         // This allows clicks on the popup to still keep focus within the
         // overall ComboBox controls.
-        this.$HasPopup_popup().prop( "tabindex", -1 );
+        this.$PopupSource_popup().prop( "tabindex", -1 );
        
         if ( !this.textBoxClass() ) {
             // Set a default text box class
@@ -172,7 +172,7 @@ ComboBox.prototype.extend({
                 // Make popup at least as wide as content.
                 this.eachControl( function( index, $control ) {
                     var width = $control.outerWidth();
-                    this.$HasPopup_popup().css( "min-width", width + "px" );
+                    this.$PopupSource_popup().css( "min-width", width + "px" );
                 });
             }
             
@@ -214,7 +214,7 @@ ComboBox.prototype.extend({
             "keydown": function( event ) {
                 if ( event.which === 13 /* Enter key */
                     && self.closeOnEnter()
-                    && self.$HasPopup_popup().opened() ) {
+                    && self.$PopupSource_popup().opened() ) {
                     self.close();
                 }
             }

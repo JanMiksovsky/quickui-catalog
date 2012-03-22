@@ -1,74 +1,81 @@
 <!--
-A control with a popup menu that appears above or below it.
+A control with a popup.
 -->
 
-<Control className="HasPopup">
+<Control className="PopupSource">
     
 <content>
-    <div id="HasPopup_content" />
-    <Popup id="HasPopup_popup" />
+    <div id="PopupSource_content" />
+    <Popup id="PopupSource_popup" />
 </content>
 
 <style>
 {
-    position: relative;
+    /* TODO: Remove */
+    /* position: relative; */
 }
 </style>
 
 <script>
-HasPopup.prototype.extend({
+PopupSource.prototype.extend({
 
     /*
      * Cancels the popup.
      */    
-    cancel: Control.chain( "$HasPopup_popup", "cancel" ),
+    cancel: Control.chain( "$PopupSource_popup", "cancel" ),
 
     /*
      * True if the user can cancel an open popup by pressing the Escape key.
      * Default is true.
      */
-    cancelOnEscapeKey: Control.chain( "$HasPopup_popup", "cancelOnEscapeKey" ),
+    cancelOnEscapeKey: Control.chain( "$PopupSource_popup", "cancelOnEscapeKey" ),
 
     /*
-     * True if the popup should be cancelled if the user clicks outside it.
+     * True if the popup should be canceled if the user clicks outside it.
      * Default is true.
      */
-    cancelOnOutsideClick: Control.chain( "$HasPopup_popup", "cancelOnOutsideClick" ),
+    cancelOnOutsideClick: Control.chain( "$PopupSource_popup", "cancelOnOutsideClick" ),
+
+    /*
+     * True if the popup should be canceled if the window loses focus.
+     * Default is true.
+     */
+    cancelOnWindowBlur: Control.chain( "$PopupSource_popup", "cancelOnWindowBlur" ),
 
     /*
      * The element(s) with which the popup will be associated. By default,
      * clicking in the content will open the popup, and the popup will be
      * positioned with respect to this content.
      */
-    content: Control.chain( "$HasPopup_content", "content" ),
+    content: Control.chain( "$PopupSource_content", "content" ),
 
     /*
      * The class of the content portion.
      */
     contentClass: Control.property[ "class" ]( function( contentClass ) {
-        this.$HasPopup_content().transmute( contentClass, true, false, true );
+        this.$PopupSource_content().transmute( contentClass, true, false, true );
     }),
     
     /*
      * Close the popup normally.
      */
-    close: Control.chain( "$HasPopup_popup", "close" ),
+    close: Control.chain( "$PopupSource_popup", "close" ),
 
     /*
      * True if the popup should be closed normally if the user clicks inside
      * it. Default is true.
      */
-    closeOnInsideClick: Control.chain( "$HasPopup_popup", "closeOnInsideClick" ),
+    closeOnInsideClick: Control.chain( "$PopupSource_popup", "closeOnInsideClick" ),
 
     initialize: function()
     {
         var self = this;
-        this.$HasPopup_content().click( function( event ) {
+        this.$PopupSource_content().click( function( event ) {
             if ( self.openOnClick() ) {
                 self.open();
             }
         });
-        this.$HasPopup_popup()
+        this.$PopupSource_popup()
             .on({
                 "closed canceled": function() { self.opened( false ) },
                 opened: function() { self.opened( true ); }
@@ -76,7 +83,7 @@ HasPopup.prototype.extend({
             .positionPopup( function() {
                 self._positionPopup();
             });
-        this.$HasPopup_popup().target( this );
+        this.$PopupSource_popup().target( this );
     },
 
     /*
@@ -88,7 +95,7 @@ HasPopup.prototype.extend({
     /*
      * Open the popup.
      */
-    open: Control.chain( "$HasPopup_popup", "open" ),
+    open: Control.chain( "$PopupSource_popup", "open" ),
     
     /*
      * Returns true if the popup is currently opened.
@@ -96,7 +103,7 @@ HasPopup.prototype.extend({
     opened: function( opened ) {
         if ( opened === undefined ) {
             // We mirror the popup's own open state.
-            return this.$HasPopup_popup().opened();
+            return this.$PopupSource_popup().opened();
         } else {
             // If we're setting this, only set our own state.
             // The popup will have taken care of itself.
@@ -107,12 +114,12 @@ HasPopup.prototype.extend({
     /*
      * The class used to render the overlay behind the popup.
      */
-    overlayClass: Control.chain( "$HasPopup_popup", "overlayClass" ),
+    overlayClass: Control.chain( "$PopupSource_popup", "overlayClass" ),
     
     /*
      * The content of the popup associated with the control.
      */
-    popup: Control.chain( "$HasPopup_popup", "content" ),
+    popup: Control.chain( "$PopupSource_popup", "content" ),
     
     _positionPopup: function() {
         
@@ -127,7 +134,7 @@ HasPopup.prototype.extend({
         var bottom = top + height;
         var right = left + width;
         
-        var $popup = this.$HasPopup_popup();
+        var $popup = this.$PopupSource_popup();
         var popupHeight = $popup.outerHeight( true );
         var popupWidth = $popup.outerWidth( true );
 

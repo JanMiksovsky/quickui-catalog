@@ -9,12 +9,12 @@
             <ToggleButton>
                 Toggle
             </ToggleButton>
-            <HasPopup openOnClick="true" closeOnInsideClick="true" style="display: inline-block;">
+            <PopupSource openOnClick="true" closeOnInsideClick="true" style="display: inline-block;">
                 <BasicButton>Show popup</BasicButton>
                 <popup>
                     Popup content
                 </popup>
-            </HasPopup>
+            </PopupSource>
             <BasicButton id="button">
                 Show test dialog
             </BasicButton>

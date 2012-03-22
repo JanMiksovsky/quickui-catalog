@@ -16,11 +16,13 @@ A control that covers the entire viewport, typically to swallow clicks.
 
 /* TODO: Remove this test style */
 {
+    background: white;
     border: 4px solid yellow;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    opacity: 0.5;
 }
 </style>
 

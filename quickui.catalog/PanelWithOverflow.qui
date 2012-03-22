@@ -37,7 +37,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 }
 
 /* In the menu, contents layout switches to vertical arrangement. */
-#menuButton #HasPopup_popup > * {
+#menuButton #PopupSource_popup > * {
     display: block;
 }
 

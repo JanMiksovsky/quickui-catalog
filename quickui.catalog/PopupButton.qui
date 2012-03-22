@@ -3,10 +3,10 @@
 <Control className="PopupButton">
 
 <prototype>
-    <HasPopup contentClass="BasicButton">
+    <PopupSource contentClass="BasicButton">
         <div id="PopupButton_content"/>
         <div id="indicator">&#9660;</div>
-    </HasPopup>
+    </PopupSource>
 </prototype>
 
 <style>

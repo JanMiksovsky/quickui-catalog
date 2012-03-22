@@ -3,12 +3,12 @@
 <Control className="Menu">
 
 <prototype>
-    <HasPopup>
+    <PopupSource>
         <popup>
             <div id="shield"/> <!-- Used to obscure borders between description and content. -->
             <div id="Menu_popup"/>
         </popup>
-    </HasPopup>
+    </PopupSource>
 </prototype>
 
 <style>
@@ -38,11 +38,11 @@
     box-sizing: border-box;
 }
 
-.Menu.generic #HasPopup_content {
+.Menu.generic #PopupSource_content {
     border: 1px solid transparent;
     padding: 0.5em;
 }
-.Menu.generic #HasPopup_content:hover {
+.Menu.generic #PopupSource_content:hover {
     background: #eee;
 }
 
@@ -52,7 +52,7 @@
     top: -1px;          /* Same as border-top-width but negative */
 }
 
-.Menu.generic #HasPopup_popup {
+.Menu.generic #PopupSource_popup {
     background: white;
     border: 1px solid #ccc; /* IE8 */
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -65,7 +65,7 @@
     padding: 0.5em 0;
 }
 
-.Menu.generic.opened #HasPopup_content {
+.Menu.generic.opened #PopupSource_content {
     background: white;
     border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);
@@ -109,7 +109,7 @@ Menu.prototype.extend({
     _updateShield: function() {
         // We want the width of the content including padding, but not
         // including border.
-        var $content = this.$HasPopup_content();
+        var $content = this.$PopupSource_content();
         var shieldWidth = $content.width()
             + parseInt( $content.css( "padding-left" ) )
             + parseInt( $content.css( "padding-right" ) );

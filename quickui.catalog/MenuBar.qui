@@ -52,7 +52,7 @@ MenuBar.prototype.extend({
     }),
     
     /*
-     * The menus in the menu bar. These are typically HasPopup controls,
+     * The menus in the menu bar. These are typically PopupSource controls,
      * including subclasses like Menu. Other types of controls can be
      * safely placed in the content as well.
      */
@@ -61,7 +61,7 @@ MenuBar.prototype.extend({
         if ( content !== undefined ) {
             // Since we're managing our own overlay, we suppress the overlays
             // on the individual menus in our content.
-            var popups = this.find( ".HasPopup" ).control();
+            var popups = this.find( ".PopupSource" ).control();
             if ( popups ) {
                 popups.overlayClass( null );
             }
@@ -84,15 +84,15 @@ MenuBar.prototype.extend({
             opened: function( event ) {
                 self.open();
                 // Close open popups other than the one which just opened.
-                var newMenu = $( event.target ).closest( ".HasPopup" ).control();
+                var newMenu = $( event.target ).closest( ".PopupSource" ).control();
                 self._closeOpenPopups( newMenu );
             }
         });
-        this.on( "mouseenter", ".HasPopup", function( event ) {
+        this.on( "mouseenter", ".PopupSource", function( event ) {
             if ( self.opened() ) {
                 // Riffing: Implicitly open the popup the user hovered into
                 // if it's not already open.
-                var newMenu = $( event.target ).closest( ".HasPopup" ).control();
+                var newMenu = $( event.target ).closest( ".PopupSource" ).control();
                 if ( newMenu && !newMenu.opened() ) {
                     newMenu.open();
                 }
@@ -135,7 +135,7 @@ MenuBar.prototype.extend({
     /*
      * Return the currently open popups.
      */
-    _openPopups: Control.chain( "children", "filter/.HasPopup.opened", "control" ),
+    _openPopups: Control.chain( "children", "filter/.PopupSource.opened", "control" ),
 
     // The overlay behind the menu bar.    
     _overlay: Control.property()
