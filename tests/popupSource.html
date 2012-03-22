@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="http://quickui/release/quickui.catalog.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://quickui/release/quickui.js"></script>
+<script type="text/javascript" src="http://quickui/plugins/quickui.rehydrate.js"></script>
+<script type="text/javascript" src="http://quickui/release/quickui.catalog.js"></script>
+
+<style>
+body {
+    font-family: Helvetica, sans serif;
+    overflow: hidden;
+}
+</style>
+
+<script>
+$( function() {
+    $( ".menu" ).control( Menu ).eachControl( function( index, control ) {
+        control.popup([
+            MenuItem.create( "One" ),
+            MenuItem.create( "Two" ),
+            MenuItem.create( "Three" ),
+            MenuItem.create( "Four" ),
+            MenuSeparator.create(),
+            MenuItem.create( "An item with a long label" )
+        ]);
+    });
+});
+</script>
+
+</head>
+
+<body data-create-controls="true" data-control="Page" data-fill="true">
+
+    <div data-control="HorizontalPanels" data-constrainHeight="true">
+        
+        <div data-property="left">
+            <div data-control="VerticalPanels" data-constrainHeight="true">
+                <div data-property="top">
+                    <div class="menu">Upper Left</div>
+                </div>
+                <div data-property="bottom">
+                    <div class="menu">Lower Left</div>
+                </div>
+            </div>
+        </div>
+        
+        <h1 style="text-align: center;">PopupSource / Menu tests</h1>
+        
+        <div data-property="right">
+            <div data-control="VerticalPanels" data-constrainHeight="true">
+                <div data-property="top">
+                    <div class="menu">Lower Right</div>
+                </div>
+                <div data-property="bottom">
+                    <div class="menu">Lower Right</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>
