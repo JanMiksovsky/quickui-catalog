@@ -30,8 +30,8 @@
 #header {
     height: 30px; /* HACK */
 }
-#header > .HorizontalPanels {
-    width: inherit;
+#header > .HorizontalPanels > .panel {
+    white-space: nowrap;
 }
 
 #LateralNavigator_content {

@@ -64,10 +64,14 @@ bugs; it's just not worth using at this point.
 }
 .SimpleFlexBox.noFlexBox.horizontal {
     display: table;
+    width: 100%;
 }
 .SimpleFlexBox.noFlexBox.horizontal > * {
     display: table-cell;
     vertical-align: top;
+}
+.SimpleFlexBox.noFlexBox.horizontal > .panel {
+    width: 0;   /* Forces panel to its minimum width; not actually zero width. */
 }
 .SimpleFlexBox.noFlexBox.constrainHeight {
     display: inherit;
@@ -76,6 +80,9 @@ bugs; it's just not worth using at this point.
     display: inherit; 
     position: absolute;
     vertical-align: inherit;
+}
+.SimpleFlexBox.noFlexBox.constrainHeight > .panel {
+    width: auto;
 }
 </style>
 
