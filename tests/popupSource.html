@@ -19,16 +19,20 @@ body {
 
 <script>
 $( function() {
-    $( ".menu" ).control( Menu ).eachControl( function( index, control ) {
-        control.popup([
-            MenuItem.create( "One" ),
-            MenuItem.create( "Two" ),
-            MenuItem.create( "Three" ),
-            MenuItem.create( "Four" ),
-            MenuSeparator.create(),
-            MenuItem.create( "An item with a long label" )
-        ]);
-    });
+    $( ".menu" )
+        .control( Menu )
+        .cancelOnWindowBlur( false ) // For easier debugging
+        .eachControl( function( index, control ) {
+            // Need to give each menu its own copy of the menu items.
+            control.popup([
+                MenuItem.create( "One" ),
+                MenuItem.create( "Two" ),
+                MenuItem.create( "Three" ),
+                MenuItem.create( "Four" ),
+                MenuSeparator.create(),
+                MenuItem.create( "An item with a long label" )
+            ]);
+        });
 });
 </script>
 

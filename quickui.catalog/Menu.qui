@@ -22,12 +22,14 @@
 
 #shield {
     display: none;  /* Shield isn't shown unless it's requested. */
-    left: 0;
     position: absolute;
     z-index: 0;
 }
-.Menu.opened #shield {
-    display: block;
+#PopupSource_popup.popupAlignLeft #shield {
+    left: 0;
+}
+#PopupSource_popup.popupAlignRight #shield {
+    right: 0;
 }
 
 /* Generic appearance */
@@ -50,6 +52,9 @@
     background: white;  /* Same as menu's background color */
     height: 1px;        /* Same as this menu's border-top-width */
     top: -1px;          /* Same as border-top-width but negative */
+}
+.Menu.generic #PopupSource_popup.popupAppearsBelow #shield {
+    display: block;
 }
 
 .Menu.generic #PopupSource_popup {
