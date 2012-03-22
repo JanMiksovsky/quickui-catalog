@@ -9,13 +9,6 @@ A control with a popup.
     <Popup id="PopupSource_popup" />
 </content>
 
-<style>
-#PopupSource_content {
-    /* Ensures content stays above overlay */
-    position: relative;
-}
-</style>
-
 <script>
 PopupSource.prototype.extend({
 
@@ -83,7 +76,6 @@ PopupSource.prototype.extend({
             .positionPopup( function() {
                 self._positionPopup();
             });
-        this.$PopupSource_popup().target( this );
     },
 
     /*
