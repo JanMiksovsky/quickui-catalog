@@ -3,23 +3,8 @@
 <style>
 {
     border-top: 1px solid lightgray;
-    /* height: 1px; */
     margin: 0.5em 0;
 }
 </style>
-
-<script>
-MenuSeparator.prototype.extend({
-    initialize: function() {
-        /*
-        this.click( function( event ) {
-            // Swallow clicks so clicks on the separator don't dismiss the menu.
-            event.stopPropagation();
-            return false;
-        });
-        */
-    }
-});
-</script>
 
 </Control>
