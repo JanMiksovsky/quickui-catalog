@@ -28,18 +28,15 @@
 function demo() {
     
 $demo.append(
-    PopupButton.create()
-        .content( "Orientation" )
+    PopupButton.create( "Orientation" )
         .popup([
-            BasicButton.create()
-                .content( "Portrait" )
+            BasicButton.create( "Portrait" )
                 .css({
                     height: "100px",
                     margin: "5px",
                     width: "75px"
                 }),
-            BasicButton.create()
-                .content( "Landscape" )
+            BasicButton.create( "Landscape" )
                 .css({
                     height: "75px",
                     margin: "5px",

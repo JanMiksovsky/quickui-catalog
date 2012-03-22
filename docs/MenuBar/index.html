@@ -29,26 +29,26 @@ function demo() {
 
 $demo.append(
     MenuBar.create().content([
-        Menu.create().content( "File" ).popup([
-            MenuItem.create().content( "New" ),
+        Menu.create( "File" ).popup([
+            MenuItem.create( "New" ),
             MenuSeparator.create(),
-            MenuItem.create().content( "Open…" ),
-            MenuItem.create().content( "Save" ),
+            MenuItem.create( "Open…" ),
+            MenuItem.create( "Save" ),
             MenuSeparator.create(),
-            MenuItem.create().content( "Close" ),
+            MenuItem.create( "Close" ),
         ]),
-        Menu.create().content( "Menu" ).popup([
-            MenuItem.create().content( "Undo" ).disabled( true ),
+        Menu.create( "Menu" ).popup([
+            MenuItem.create( "Undo" ).disabled( true ),
             MenuSeparator.create(),
-            MenuItem.create().content( "Cut" ),
-            MenuItem.create().content( "Copy" ),
-            MenuItem.create().content( "Paste" ),
+            MenuItem.create( "Cut" ),
+            MenuItem.create( "Copy" ),
+            MenuItem.create( "Paste" ),
         ]),
-        Menu.create().content( "View" ).popup([
-            MenuItem.create().content( "Portrait" ),
-            MenuItem.create().content( "Landscape" ),
+        Menu.create( "View" ).popup([
+            MenuItem.create( "Portrait" ),
+            MenuItem.create( "Landscape" ),
             MenuSeparator.create(),
-            MenuItem.create().content( "Full Screen" )
+            MenuItem.create( "Full Screen" )
         ])
     ])
 );

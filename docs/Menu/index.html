@@ -28,14 +28,13 @@
 function demo() {
 
 $demo.append(
-    Menu.create()
-        .content( "New" )
+    Menu.create( "New" )
         .popup([
-            MenuItem.create().content( "Appointment" ),
-            MenuItem.create().content( "Contact" ),
-            MenuItem.create().content( "Message" ),
-            MenuItem.create().content( "Meeting" ),
-            MenuItem.create().content( "Task" )
+            MenuItem.create( "Appointment" ),
+            MenuItem.create( "Contact" ),
+            MenuItem.create( "Message" ),
+            MenuItem.create( "Meeting" ),
+            MenuItem.create( "Task" )
         ])
 );
 
