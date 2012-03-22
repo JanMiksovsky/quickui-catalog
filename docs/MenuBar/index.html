@@ -22,21 +22,35 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>Menu</title>
+<title>MenuBar</title>
 
 <script id="demo">
 function demo() {
 
 $demo.append(
-    Menu.create()
-        .content( "New" )
-        .popup([
-            MenuItem.create().content( "Appointment" ),
-            MenuItem.create().content( "Contact" ),
-            MenuItem.create().content( "Message" ),
-            MenuItem.create().content( "Meeting" ),
-            MenuItem.create().content( "Task" )
+    MenuBar.create().content([
+        Menu.create().content( "File" ).popup([
+            MenuItem.create().content( "New" ),
+            MenuSeparator.create(),
+            MenuItem.create().content( "Open…" ),
+            MenuItem.create().content( "Save" ),
+            MenuSeparator.create(),
+            MenuItem.create().content( "Close" ),
+        ]),
+        Menu.create().content( "Menu" ).popup([
+            MenuItem.create().content( "Undo" ).disabled( true ),
+            MenuSeparator.create(),
+            MenuItem.create().content( "Cut" ),
+            MenuItem.create().content( "Copy" ),
+            MenuItem.create().content( "Paste" ),
+        ]),
+        Menu.create().content( "View" ).popup([
+            MenuItem.create().content( "Portrait" ),
+            MenuItem.create().content( "Landscape" ),
+            MenuSeparator.create(),
+            MenuItem.create().content( "Full Screen" )
         ])
+    ])
 );
 
 }

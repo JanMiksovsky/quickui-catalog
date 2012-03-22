@@ -12,6 +12,7 @@ are open. See notes in the source for the Overlay class.
 
 <style>
 {
+    position: relative; /* Necessary to get overlay behind the whole menu bar */
     -moz-user-select: -moz-none;
     -webkit-user-select: none;
     user-select: none;
