@@ -5,7 +5,8 @@ A message which briefly appears on a page before automatically disappearing.
 <Control className="TransientMessage">
 
 <prototype>
-    <Popup/>
+    <!-- No overlay; the user can interact with page even while message is up. -->
+    <Popup overlayClass="" />
 </prototype>
 
 <style>
@@ -50,16 +51,8 @@ TransientMessage.prototype.extend({
     duration: Control.property(),
     
     initialize: function() {
-        
         this._super();
         this.genericIfClassIs( TransientMessage );
-        
-        var self = this;
-        this.positionPopup( function() {
-            return self.css({
-                left: ( $( window ).width() - this.outerWidth() ) / 2
-            });
-        });
     },
 
     /*
@@ -85,6 +78,16 @@ TransientMessage.prototype.extend({
         this._timeout( timeout );
         
         return this;
+    },
+    
+    /*
+     * Position the message. By default, this is center-aligned at the top
+     * of the page.
+     */
+    positionPopup: function() {
+        return this.css({
+            left: ( $( window ).width() - this.outerWidth() ) / 2
+        });
     },
 
     _fadeOut: function() {
