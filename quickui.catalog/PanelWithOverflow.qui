@@ -76,7 +76,11 @@ PanelWithOverflow.prototype.extend({
         });
         this.$menuButton().on({
             "canceled closed": function() { self._menuClosed(); },
-            "opened": function() { self._menuOpened(); }
+            "opened": function() {
+                self._menuOpened();
+                // (Re)position the popup now that it's been populated.
+                self.$menuButton().positionPopup();
+            }
         });
     },
     

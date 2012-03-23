@@ -77,7 +77,7 @@ PopupSource.prototype.extend({
                 },
                 opened: function() {
                     self
-                        ._positionPopup()
+                        .positionPopup()
                         .opened( true );
                 }
             });
@@ -118,7 +118,16 @@ PopupSource.prototype.extend({
      */
     popup: Control.chain( "$PopupSource_popup", "content" ),
     
-    _positionPopup: function() {
+    /*
+     * Position the popup with respect to the content. By default, this will
+     * position the popup below the content if the popup will fit on the page,
+     * otherwise show the popup above the content. Similarly, align the popup
+     * with the content's left edge if the popup will fit on the page,
+     * otherwise right-align it.
+     * 
+     * Subclasses can override this for custom positioning.
+     */
+    positionPopup: function() {
         
         var offset = this.offset();
         var position = this.position();
@@ -144,17 +153,17 @@ PopupSource.prototype.extend({
         var popupFitsBelow = ( bottom + popupHeight <= windowHeight + scrollTop );
         var popupFitsAbove = ( top - popupHeight >= scrollTop );
         var popupAppearsBelow = ( popupFitsBelow || !popupFitsAbove );
-        if ( !popupAppearsBelow ) {
-            popupCss.top = position.top - popupHeight;   // Show above content
-        }
+        popupCss.top = ( popupAppearsBelow )
+            ? ""                                            // Use default top
+            : popupCss.top = position.top - popupHeight;    // Show above content
         
         // Horizontally left (preferred) or right align w.r.t. content.
         var popupFitsLeftAligned = ( left + popupWidth <= windowWidth + scrollLeft );
         var popupFitsRightAligned = ( right - popupWidth >= scrollLeft );
         var popupAlignLeft = ( popupFitsLeftAligned || !popupFitsRightAligned );
-        if ( !popupAlignLeft ) {
-            popupCss.left = position.left + width - popupWidth; // Right align
-        }
+        popupCss.left = ( popupAlignLeft )
+            ? ""                                                    // Use default left
+            : popupCss.left = position.left + width - popupWidth;   // Right align
 
         $popup
             .toggleClass( "popupAppearsAbove", !popupAppearsBelow )

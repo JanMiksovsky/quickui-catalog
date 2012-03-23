@@ -18,8 +18,11 @@ Base class for popups, menus, dialogs, things that appear temporarily over other
 /* Generic appearance */
 .Popup.generic {
     background: white;
-    border: 1px solid gray;
-    box-shadow: 3px 3px 5px rgba( 0, 0, 0, 0.5 );
+    border: 1px solid #ccc; /* IE8 */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    -moz-box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
+    box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.2 );
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -103,20 +106,14 @@ Popup.prototype.extend({
             this._overlay( $overlay );
         }
         
-        this
+        return this
             ._eventsOn()
             .opened( true )
             .trigger( "opened" )
             // In case popup wants to resize anything now that it's visible.
-            .checkForSizeChange();
-        
-        // Position the popup after the layout recalc.
-        var positionPopup = this.positionPopup();
-        if ( positionPopup ) {
-            positionPopup.call( this );
-        }
-        
-        return this;
+            .checkForSizeChange()
+            // Position the popup after the layout recalc.
+            .positionPopup();
     },
     
     /*
@@ -131,12 +128,11 @@ Popup.prototype.extend({
     overlayClass: Control.property[ "class" ](),
     
     /*
-     * A callback function that will be invoked to position the popup.
-     * This is implemented as a property instead of an overrideable method
-     * so that the position logic can be set on a per-instance basis without
-     * having to create a new subclass.
+     * A function called to position the popup when it is opened. By default
+     * this has no effect. This can be overridden by subclasses for custom
+     * positioning.
      */
-    positionPopup: Control.property(),
+    positionPopup: function() {},
 
     /*
      * Take care of hiding the popup, its overlay, and raising the indicated event.
