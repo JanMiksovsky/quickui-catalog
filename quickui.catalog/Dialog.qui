@@ -8,6 +8,7 @@ Base class for modal dialogs.
     <Popup
         cancelOnOutsideClick="false"
         cancelOnWindowBlur="false"
+        cancelOnWindowResize="false"
         closeOnInsideClick="false"
         overlayClass="ModalOverlay"
     />

@@ -20,6 +20,10 @@
     user-select: none;
 }
 
+#PopupSource_content {
+    white-space: nowrap;
+}
+
 #shield {
     display: none;  /* Shield isn't shown unless it's requested. */
     position: absolute;

@@ -56,6 +56,12 @@ Popup.prototype.extend({
     cancelOnWindowBlur: Control.property.bool( null, true ),
     
     /*
+     * True if the popup should be canceled if the window changes size.
+     * Default is true.
+     */
+    cancelOnWindowResize: Control.property.bool( null, true ),
+    
+    /*
      * True if the popup should be closed normally if the user clicks inside
      * it. Default is true.
      */
@@ -188,9 +194,19 @@ Popup.prototype.extend({
                 self.cancel();
             }
         };
+        var handlerWindowResize = function( event ) {
+            if ( self.cancelOnWindowResize() ) {
+                // Cancel popup when window changes size.
+                self.cancel();
+            }
+        };
 
         $( document ).on( "keydown", handlerDocumentKeydown );
-        $( window ).on( "blur", handlerWindowBlur );
+        $( window ).on({
+            blur: handlerWindowBlur,
+            resize: handlerWindowResize,
+        });
+        
         /*
          * Wire up document click handler in a timeout. We do this because a
          * popup is often invoked in response to a click. That triggering
@@ -211,7 +227,8 @@ Popup.prototype.extend({
         return this
             ._handlerDocumentClick( handlerDocumentClick )
             ._handlerDocumentKeydown( handlerDocumentKeydown )
-            ._handlerWindowBlur( handlerWindowBlur );
+            ._handlerWindowBlur( handlerWindowBlur )
+            ._handlerWindowResize( handlerWindowResize );
     },
     
     /*
@@ -240,6 +257,12 @@ Popup.prototype.extend({
             this._handlerWindowBlur( null );
         }
         
+        var handlerWindowResize = this._handlerWindowResize();
+        if ( handlerWindowResize ) {
+            $( window ).off( "resize", handlerWindowResize );
+            this._handlerWindowResize( null );
+        }
+        
         return this;
     },
     
@@ -251,6 +274,9 @@ Popup.prototype.extend({
     
     // Handler for the window blur event
     _handlerWindowBlur: Control.property(),
+    
+    // Handler for the window resize event
+    _handlerWindowResize: Control.property(),
 
     // The Overlay control behind the popup absorbing mouse clicks.
     _overlay: Control.property()
