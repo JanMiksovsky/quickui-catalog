@@ -36,6 +36,18 @@ PopupSource.prototype.extend({
     cancelOnWindowBlur: Control.chain( "$PopupSource_popup", "cancelOnWindowBlur" ),
 
     /*
+     * True if the popup should be canceled if the window changes size.
+     * Default is true.
+     */
+    cancelOnWindowResize: Control.chain( "$PopupSource_popup", "cancelOnWindowResize" ),
+
+    /*
+     * True if the popup should be canceled if the window is scrolled.
+     * Default is true.
+     */
+    cancelOnWindowScroll: Control.chain( "$PopupSource_popup", "cancelOnWindowScroll" ),
+
+    /*
      * The element(s) with which the popup will be associated. By default,
      * clicking in the content will open the popup, and the popup will be
      * positioned with respect to this content.

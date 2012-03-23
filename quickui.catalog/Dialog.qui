@@ -9,6 +9,7 @@ Base class for modal dialogs.
         cancelOnOutsideClick="false"
         cancelOnWindowBlur="false"
         cancelOnWindowResize="false"
+        cancelOnWindowScroll="false"
         closeOnInsideClick="false"
         overlayClass="ModalOverlay"
     />

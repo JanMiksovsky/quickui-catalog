@@ -62,6 +62,12 @@ Popup.prototype.extend({
     cancelOnWindowResize: Control.property.bool( null, true ),
     
     /*
+     * True if the popup should be canceled if the window is scrolled.
+     * Default is true.
+     */
+    cancelOnWindowScroll: Control.property.bool( null, true ),
+    
+    /*
      * True if the popup should be closed normally if the user clicks inside
      * it. Default is true.
      */
@@ -179,7 +185,7 @@ Popup.prototype.extend({
             }
         };
         var handlerDocumentClick = function( event ) {
-            var outsideClick = ( $( event.target ).parents().filter( self ).length === 0 );
+            var outsideClick = self._isElementOutsideControl( event.target );
             if ( outsideClick && self.cancelOnOutsideClick() ) {
                 // User clicked outside popup; implicitly cancel it.
                 self.cancel();
@@ -200,11 +206,19 @@ Popup.prototype.extend({
                 self.cancel();
             }
         };
+        var handlerWindowScroll = function( event ) {
+            var outsideScroll = self._isElementOutsideControl( event.target );
+            if ( outsideScroll && self.cancelOnWindowScroll() ) {
+                // User scrolled outside the popup; implicitly cancel it.
+                self.cancel();
+            }
+        }
 
         $( document ).on( "keydown", handlerDocumentKeydown );
         $( window ).on({
             blur: handlerWindowBlur,
             resize: handlerWindowResize,
+            scroll: handlerWindowScroll
         });
         
         /*
@@ -228,7 +242,8 @@ Popup.prototype.extend({
             ._handlerDocumentClick( handlerDocumentClick )
             ._handlerDocumentKeydown( handlerDocumentKeydown )
             ._handlerWindowBlur( handlerWindowBlur )
-            ._handlerWindowResize( handlerWindowResize );
+            ._handlerWindowResize( handlerWindowResize )
+            ._handlerWindowScroll( handlerWindowScroll );
     },
     
     /*
@@ -263,6 +278,12 @@ Popup.prototype.extend({
             this._handlerWindowResize( null );
         }
         
+        var handlerWindowScroll = this._handlerWindowScroll();
+        if ( handlerWindowScroll ) {
+            $( window ).off( "scroll", handlerWindowScroll );
+            this._handlerWindowScroll( null );
+        }
+        
         return this;
     },
     
@@ -277,6 +298,16 @@ Popup.prototype.extend({
     
     // Handler for the window resize event
     _handlerWindowResize: Control.property(),
+    
+    // Handler for the window scroll event
+    _handlerWindowScroll: Control.property(),
+    
+    /*
+     * Return true if the indicated element is outside this control.
+     */
+    _isElementOutsideControl: function( element ) {
+        return ( $( element ).parents().filter( this ).length === 0 );
+    },
 
     // The Overlay control behind the popup absorbing mouse clicks.
     _overlay: Control.property()
