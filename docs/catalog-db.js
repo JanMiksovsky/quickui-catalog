@@ -183,6 +183,11 @@ var controlRecords = [
         description: "Shows paragraphs of placeholder text."
     },
     {
+        name: "ModalOverlay",
+        demoClass: "",
+        description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."
+    },
+    {
         name: "MonthName",
         description: "Shows the name of the month for a given date."
     },
@@ -195,6 +200,11 @@ var controlRecords = [
         name: "MultiListInlay",
         demoClass: "",
         description: "List that can have multiple items expanded to show more detail."
+    },
+    {
+        name: "Overlay",
+        demoClass: "",
+        description: "A transparent or visible layer behind a Popup."
     },
     {
         name: "PackedColumns",

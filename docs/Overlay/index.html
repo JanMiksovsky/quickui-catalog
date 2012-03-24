@@ -21,7 +21,7 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>Popup</title>
+<title>Overlay</title>
 
 </head>
 
@@ -29,18 +29,16 @@
     data-control="CatalogPageOld">
 
 <div data-property="summary">
-    Base class for popups, menus, dialogs, combo boxes, etc. —
-    things that appear temporarily over other things.
+A layer shown behind a <a data-control="CatalogLink">Popup</a> control and
+above the background UI. An overlay is responsible for absorbing mouse clicks
+outside the popup and/or providing a visual effect behind the popup (generally
+to focus user attention on the popup).
 </div>
 
 <div data-property="demo">
-    See <a data-control="CatalogLink">Dialog</a> or one of the
-    <a data-control="CatalogLink">PopupSource</a> subclasses such as 
-    <a data-control="CatalogLink">ComboBox</a> for examples.
+    The generic form of the <a data-control="CatalogLink">Dialog</a> class uses a
+    <a data-control="CatalogLink">ModalOverlay</a> to provide a "lightbox" effect.
 </div>
-
-A Popup typically uses an <a data-control="CatalogLink">Overlay</a> behind
-the popup to absorb mouse clicks and/or provide background visual effects.
 
 <p>
     This control was discussed in a
