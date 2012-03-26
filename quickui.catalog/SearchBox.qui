@@ -6,7 +6,7 @@
             <HintTextBox id="searchTerms" hint="Enter search"/>
         </textBox>
         <goButton>
-            <SampleSpriteButton id="searchButton">Search</SampleSpriteButton>
+            <BasicButton id="searchButton">Search</BasicButton>
         </goButton>
     </TextBoxWithButton>
 </content>
@@ -36,12 +36,19 @@ SearchBox.prototype.extend({
     hint: Control.chain("$searchTerms", "hint"),
 
     initialize: function() {
+        
+        if ( !this.query() ) {
+            var hostname = window.location.hostname;
+            this.query( "http://www.google.com/search?q=%s+site%3A" + hostname );
+        }
+        
         var self = this;
-        this.on("goButtonClick", function() {
+        this.on( "goButtonClick", function() {
             var searchTerms = self.$searchTerms().content();
-            var url = self.query().replace("%s", searchTerms);
+            var url = self.query().replace( "%s", searchTerms );
             window.location.href = url;
         });
+        
         this.$searchTerms().focus();
     },
     
@@ -49,8 +56,10 @@ SearchBox.prototype.extend({
      * The search query that should be executed when the user presses the "Go"
      * button. This should be string containing the sequence "%s", which will
      * be replaced with the search terms the user has entered in the text box.
+     * The default value of this property will use Google to search the
+     * current site.
      */
-    query: Control.property(null, "%s")
+    query: Control.property()
     
 });
 </script>
