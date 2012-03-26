@@ -14,20 +14,24 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 </content>
 
 <style>
-#adContainer {
+{
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    display: table;
 }
 
-/* Generic appearance */
-.AdPlaceholder.generic #container {
-    background: gray;
-    color: white;
+#container {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+}
+
+/* Generic appearance */
+.AdPlaceholder.generic {
+    background: gray;
+    color: white;
 }
 .AdPlaceholder.generic #label {
     font-weight: bold;
@@ -61,13 +65,13 @@ AdPlaceholder.prototype.extend({
         var width = parseInt( parts[0] );
         var height = parseInt( parts[1] );
         
-        this.$container().css({
-                height: height,
-                "min-height": height,
-                "min-width": width,
-                width: width
-        });
         this
+            .css({
+                    height: height,
+                    "min-height": height,
+                    "min-width": width,
+                    width: width
+            })
             .content( width + " x " + height )
             .checkForSizeChange();
             
@@ -75,7 +79,6 @@ AdPlaceholder.prototype.extend({
 
     initialize: function() {
         this.genericIfClassIs( AdPlaceholder );
-        
         if ( !this.dimensions() ) {
             // Use default size.
             this.dimensions( "300 x 250" );
