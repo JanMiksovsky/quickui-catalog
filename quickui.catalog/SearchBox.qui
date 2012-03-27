@@ -1,25 +1,30 @@
 <Control className="SearchBox">
 
-<content>
+<prototype>
     <TextBoxWithButton>
         <textBox>
-            <HintTextBox id="searchTerms" hint="Enter search"/>
+            <HintTextBox id="searchTerms" hint="Search"/>
         </textBox>
         <goButton>
-            <BasicButton id="searchButton">Search</BasicButton>
+            <img id="searchButton" src="http://quickui/resources/search_16x16.png"/>
         </goButton>
     </TextBoxWithButton>
-</content>
+</prototype>
 
 <style>
 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11pt;
+    -webkit-appearance: textfield;
 }
 
 input {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11pt;
+}
+
+#searchTerms #HintTextBox_textBox {
+    border: none;
 }
 
 #searchButton {
