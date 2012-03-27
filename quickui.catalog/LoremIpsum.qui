@@ -3,6 +3,22 @@ Generates Lorem Ipsum placeholder paragraphs.
 -->
 
 <Control className="LoremIpsum">
+    
+<style>
+/*
+ * Remove the top/bottom margins from the first/last child. It's too problematic
+ * for a host to style a control whose *children* have margins that affect
+ * things outside of the control. The host ends up having to style the control's
+ * children, which requires knowledge of the children and is therefore generally
+ * bad practice.
+ */ 
+> p:first-child {
+    margin-top: 0;
+}
+> p:last-child {
+    margin-bottom: 0;
+}
+</style>
 
 <script>
 LoremIpsum.prototype.extend({

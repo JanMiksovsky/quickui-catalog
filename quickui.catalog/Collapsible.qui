@@ -36,7 +36,7 @@ A panel that can expand and collapse.
  */
 .Collapsible.generic #Collapsible_content {
     overflow: auto;
-    padding: 0 1em;
+    padding: 1em;
 }
 .Collapsible.generic #Collapsible_content > *:first-child {
     margin-top: 0;
