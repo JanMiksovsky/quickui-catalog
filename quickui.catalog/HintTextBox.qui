@@ -15,19 +15,24 @@
 }
 
 #HintTextBox_textBox {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 1em;
     width: 100%;
 }
 
 #HintTextBox_hint {
     bottom: 0;
     color: gray;
+    left: 6px;
     height: 1.25em;
     margin: auto 0;
     position: absolute;
-    padding: 0 6px;
     overflow: hidden;
+    right: 6px;
     top: 0;
-    width: 100%;
 }
 
 </style>

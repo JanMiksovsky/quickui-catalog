@@ -1,34 +1,30 @@
 <Control className="SearchBox">
 
-<prototype>
-    <TextBoxWithButton>
-        <textBox>
-            <HintTextBox id="searchTerms" hint="Search"/>
-        </textBox>
-        <goButton>
-            <img id="searchButton" src="http://quickui/resources/search_16x16.png"/>
-        </goButton>
-    </TextBoxWithButton>
-</prototype>
+<content>
+    <HintTextBox id="SearchBox_content" hint="Search"/>
+    <div id="searchButton">
+        <img src="http://quickui/resources/search_16x16.png"/>
+    </div>
+</content>
 
 <style>
 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11pt;
-    -webkit-appearance: textfield;
+    display: table;
+    /* -webkit-appearance: textfield; */
+}
+> * {
+    display: table-cell;
+    width: 0;
 }
 
-input {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11pt;
-}
-
-#searchTerms #HintTextBox_textBox {
+#SearchBox_content input {
     border: none;
 }
 
 #searchButton {
-    margin-left: 4px;
+    height: 16px;
+    /* padding-left: 0.5em; */
+    width: 16px;
 }
 </style>
 
@@ -36,9 +32,21 @@ input {
 SearchBox.prototype.extend({
 
     /*
+     * The content of the text box.
+     */    
+    content: function(value) {
+        result = this.$SearchBox_content().content(value); 
+        if (value !== undefined) 
+        {
+            this._disableButtonIfContentEmpty();
+        }
+        return result;
+    },
+
+    /*
      * A hint to show in the text box.
      */    
-    hint: Control.chain("$searchTerms", "hint"),
+    hint: Control.chain( "$SearchBox_content", "hint" ),
 
     initialize: function() {
         
@@ -48,13 +56,18 @@ SearchBox.prototype.extend({
         }
         
         var self = this;
-        this.on( "goButtonClick", function() {
-            var searchTerms = self.$searchTerms().content();
-            var url = self.query().replace( "%s", searchTerms );
-            window.location.href = url;
+        this.$searchButton().on( "click", function() {
+            self.search();
         });
-        
-        this.$searchTerms().focus();
+        this.$SearchBox_content().on("change keydown keyup", function(event) {
+            self._disableButtonIfContentEmpty();
+            if (!self._isContentEmpty() && event.which === 13 /* Enter */)
+            {
+                self.search();
+            }
+        });
+
+        this._disableButtonIfContentEmpty();
     },
     
     /*
@@ -64,8 +77,30 @@ SearchBox.prototype.extend({
      * The default value of this property will use Google to search the
      * current site.
      */
-    query: Control.property()
+    query: Control.property(),
     
+    /*
+     * Initiate the search. If the query is undefined or null, this has no
+     * effect.
+     */
+    search: Control.iterator( function() {
+        var query = this.query();
+        if ( query ) {
+            var searchTerms = this.content();
+            var url = query.replace( "%s", searchTerms );
+            window.location.href = url;
+        }
+    }),
+
+    _disableButtonIfContentEmpty: function() {
+        // this.$searchButton().disabled( this._isContentEmpty() );
+    },
+
+    _isContentEmpty: function() {
+        var content = this.content();
+        return !( content && content.length > 0 );
+    }
+
 });
 </script>
 
