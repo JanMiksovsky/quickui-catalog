@@ -29,6 +29,9 @@
     float: right;
     padding: 3px 5px 0;
 }
+.SearchBox.disabled #searchButton {
+    opacity: 0.5;
+}
 </style>
 
 <script>
@@ -45,6 +48,8 @@ SearchBox.prototype.extend({
         }
         return result;
     },
+    
+    disabled: Control.chain( "applyClass/disabled" ),
 
     /*
      * A hint to show in the text box.
@@ -62,7 +67,9 @@ SearchBox.prototype.extend({
         
         var self = this;
         this.$searchButton().on( "click", function() {
-            self.search();
+            if ( !self.disabled() ) {
+                self.search();
+            }
         });
         this.$SearchBox_content().on("change keydown keyup", function(event) {
             self._disableButtonIfContentEmpty();
@@ -98,7 +105,7 @@ SearchBox.prototype.extend({
     }),
 
     _disableButtonIfContentEmpty: function() {
-        // this.$searchButton().disabled( this._isContentEmpty() );
+        this.disabled( this._isContentEmpty() );
     },
 
     _isContentEmpty: function() {
