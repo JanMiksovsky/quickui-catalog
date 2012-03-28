@@ -16,7 +16,6 @@
 }
 
 #HintTextBox_textBox {
-    background: transparent;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
