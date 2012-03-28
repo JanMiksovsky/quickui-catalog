@@ -9,28 +9,30 @@
 
 <style>
 {
-    border: 1px inset;
+    border: 2px inset;
+    border-color: #eee; /* Seems to match WebKit's default */
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     display: inline-block;
+    padding: 1px;
 }
 
 #SearchBox_content {
     display: block;
-    margin-left: 2px; /* So text box outline doesn't touch control border. */
     margin-right: 24px;
 }
 
 #SearchBox_content input {
     border: none;
+    padding: 0;
+    margin: 0;
 }
 
 #searchButton {
     float: right;
-    margin: 2px;
-    padding: 2px;
+    padding: 1px;
 }
 #searchIcon {
     display: block; /* Remove inline padding */
