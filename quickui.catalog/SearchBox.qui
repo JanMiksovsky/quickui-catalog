@@ -3,7 +3,7 @@
 <content>
     <HintTextBox id="SearchBox_content" hint="Search"/>
     <BasicButton id="searchButton">
-        <img id="searchIcon" src="/release/resources/search_16x16.png"/>
+        <img id="searchIcon" src="http://quickui.org/release/resources/search_16x16.png"/>
     </BasicButton>
 </content>
 
