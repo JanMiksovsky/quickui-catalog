@@ -1,41 +1,42 @@
 <Control className="SearchBox">
 
 <content>
+    <HintTextBox id="SearchBox_content" hint="Search"/>
     <BasicButton id="searchButton">
         <img id="searchIcon" src="http://quickui/resources/search_16x16.png"/>
     </BasicButton>
-    <HintTextBox id="SearchBox_content" hint="Search"/>
 </content>
 
 <style>
 {
-    border: 2px inset;
-    border-color: #eee; /* Seems to match WebKit's default */
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     display: inline-block;
-    padding: 1px;
+    position: relative;
 }
 
 #SearchBox_content {
     display: block;
-    margin-right: 24px;
 }
-
 #SearchBox_content input {
-    border: none;
-    padding: 0;
-    margin: 0;
+    margin: 0;              /* For WebKit */
+    padding-right: 1.3em;   /* Avoid overlap with icon */
 }
 
 #searchButton {
-    float: right;
-    padding: 1px;
+    bottom: 2px;
+    padding: 0;
+    position: absolute;
+    right: 2px;
+    top: 2px;
 }
 #searchIcon {
-    display: block; /* Remove inline padding */
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;         /* Remove inline padding */
+    height: 1.3em;          /* Try to scale icon to text size */
+    padding: 0.2em;
+    width: 1.3em;
 }
 
 /* Generic appearance */
