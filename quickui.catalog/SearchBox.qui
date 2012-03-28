@@ -1,9 +1,9 @@
 <Control className="SearchBox">
 
 <content>
-    <div id="searchButton">
-        <img src="http://quickui/resources/search_16x16.png"/>
-    </div>
+    <BasicButton id="searchButton">
+        <img id="searchIcon" src="http://quickui/resources/search_16x16.png"/>
+    </BasicButton>
     <HintTextBox id="SearchBox_content" hint="Search"/>
 </content>
 
@@ -14,11 +14,13 @@
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 2px;
+    display: inline-block;
 }
 
 #SearchBox_content {
-    margin-right: 26px;
+    display: block;
+    margin-left: 2px; /* So text box outline doesn't touch control border. */
+    margin-right: 24px;
 }
 
 #SearchBox_content input {
@@ -27,9 +29,18 @@
 
 #searchButton {
     float: right;
-    padding: 3px 5px 0;
+    margin: 2px;
+    padding: 2px;
 }
-.SearchBox.disabled #searchButton {
+#searchIcon {
+    display: block; /* Remove inline padding */
+}
+
+/* Generic appearance */
+.SearchBox.generic #searchButton.generic {
+    border: none;
+}
+.SearchBox.generic #searchButton.generic.disabled #searchIcon {
     opacity: 0.5;
 }
 </style>
@@ -49,8 +60,6 @@ SearchBox.prototype.extend({
         return result;
     },
     
-    disabled: Control.chain( "applyClass/disabled" ),
-
     /*
      * A hint to show in the text box.
      */    
@@ -67,9 +76,7 @@ SearchBox.prototype.extend({
         
         var self = this;
         this.$searchButton().on( "click", function() {
-            if ( !self.disabled() ) {
-                self.search();
-            }
+            self.search();
         });
         this.$SearchBox_content().on("change keydown keyup", function(event) {
             self._disableButtonIfContentEmpty();
@@ -105,7 +112,7 @@ SearchBox.prototype.extend({
     }),
 
     _disableButtonIfContentEmpty: function() {
-        this.disabled( this._isContentEmpty() );
+        this.$searchButton().disabled( this._isContentEmpty() );
     },
 
     _isContentEmpty: function() {

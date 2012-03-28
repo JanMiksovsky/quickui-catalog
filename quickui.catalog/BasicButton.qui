@@ -100,7 +100,7 @@ BasicButton.prototype.extend({
                 blur: function( event ) { self._trackBlur( event ); },
                 click: function( event ) {
                     if ( self.disabled() ) {
-                        event.stopPropagation();
+                        event.stopImmediatePropagation();
                     }
                 },
                 focus: function( event ) { self._trackFocus( event ); },

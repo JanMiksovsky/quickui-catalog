@@ -11,6 +11,7 @@
 
 {
     cursor: text;
+    display: inline-block;
     position: relative;
 }
 

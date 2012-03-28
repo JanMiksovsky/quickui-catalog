@@ -1,19 +1,11 @@
 <Control className="HintTextBoxDemo">
 
 <content>
-    <div>
-        <HintTextBox hint="Type here"/>
-    </div>
+    <HintTextBox hint="Type here"/>
 </content>
 
 <style>
-{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11pt;
-    width: 200px;
-}
-
-input {
+.HintTextBoxDemo, input {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11pt;
 }
