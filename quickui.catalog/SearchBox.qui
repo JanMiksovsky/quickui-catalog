@@ -14,10 +14,11 @@
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    padding: 0 2px;
 }
 
 #SearchBox_content {
-    margin-right: 24px;
+    margin-right: 26px;
 }
 
 #SearchBox_content input {
@@ -26,7 +27,7 @@
 
 #searchButton {
     float: right;
-    padding: 2px 4px 0;
+    padding: 3px 5px 0;
 }
 </style>
 
