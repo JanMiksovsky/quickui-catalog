@@ -5,6 +5,13 @@ lcd quickui.catalog
 cd release
 put quickui.catalog.js
 put quickui.catalog.css
+
+lcd resources
+cd resources
+mput *
+lcd ..
+cd ..
+
 lcd ..
 cd ..
 
