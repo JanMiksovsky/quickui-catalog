@@ -263,7 +263,6 @@ var controlRecords = [
     },
     {
         name: "SearchBox",
-        demoClass: "GoogleSearchBox",
         description: "A typical web search box."
     },
     {
@@ -310,11 +309,13 @@ var controlRecords = [
         demoClass: "TagDemo",
         description: "Formats its content as an XML tag."
     },
+    /*
     {
         name: "TextBoxWithButton",
         demoClass: "",
         description: "A control with a content area (usually some form of text box) and an associated \"Go\" button."
     },
+    */
     {
         name: "TextCondenser",
         demoClass: "TextCondenserDemo",
