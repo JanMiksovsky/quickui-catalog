@@ -15,6 +15,7 @@
 }
 
 #HintTextBox_textBox {
+    background: transparent;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -25,16 +26,19 @@
 
 #HintTextBox_hint {
     bottom: 0;
-    color: gray;
-    left: 6px;
+    left: 4px;
     height: 1.25em;
     margin: auto 0;
     position: absolute;
     overflow: hidden;
-    right: 6px;
+    right: 4px;
     top: 0;
 }
 
+/* Generic appearance */
+.HintTextBox.generic #HintTextBox_hint {
+    color: #aaa;
+}
 </style>
 
 <script>
@@ -43,7 +47,7 @@ HintTextBox.prototype.extend({
     /*
      * The content of the text box.
      */
-    content: Control.chain("$HintTextBox_textBox", "content", function() {
+    content: Control.chain( "$HintTextBox_textBox", "content", function() {
         this._showHintIfEmpty();
     }),
     
@@ -53,14 +57,17 @@ HintTextBox.prototype.extend({
      * text box has just acquired the keyboard focus, or if the user clicks in
      * the text box. 
      */
-    hint: Control.chain("$HintTextBox_hint", "content"),
+    hint: Control.chain( "$HintTextBox_hint", "content" ),
     
     initialize: function() {
+        
+        this.genericIfClassIs( HintTextBox );
+        
         var self = this;
         this.on({
             "click": function() { self._hideHint(); },
             "focus": function() {
-                if (!self._isTextBoxFocused())
+                if ( !self._isTextBoxFocused() )
                 {
                     self.$HintTextBox_textBox().focus();
                 }
@@ -69,18 +76,18 @@ HintTextBox.prototype.extend({
         this.$HintTextBox_textBox().on({
             "blur": function() {
                 self
-                    ._isTextBoxFocused(false)
+                    ._isTextBoxFocused( false )
                     ._showHintIfEmpty();
             },
             "keydown keyup": function() { self._showHintIfEmpty(); },
-            "focus": function() { self._isTextBoxFocused(true); }
+            "focus": function() { self._isTextBoxFocused( true ); }
         });
-        this.$HintTextBox_hint().click(function() {
+        this.$HintTextBox_hint().click( function() {
             self._hideHint();
         });
     },
     
-    _isTextBoxFocused: Control.property(null, false),
+    _isTextBoxFocused: Control.property( null, false ),
     
     _hideHint: function() {
         this.$HintTextBox_hint().hide(); 
@@ -88,7 +95,7 @@ HintTextBox.prototype.extend({
     },
     
     _showHintIfEmpty: function() {
-        this.$HintTextBox_hint().toggle(this.content().length == 0);
+        this.$HintTextBox_hint().toggle( this.content().length == 0 );
     }
     
 });

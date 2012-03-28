@@ -1,20 +1,23 @@
 <Control className="SearchBox">
 
 <content>
-    <HintTextBox id="SearchBox_content" hint="Search"/>
     <div id="searchButton">
         <img src="http://quickui/resources/search_16x16.png"/>
     </div>
+    <HintTextBox id="SearchBox_content" hint="Search"/>
 </content>
 
 <style>
 {
-    display: table;
-    /* -webkit-appearance: textfield; */
+    border: 1px inset;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
-> * {
-    display: table-cell;
-    width: 0;
+
+#SearchBox_content {
+    margin-right: 24px;
 }
 
 #SearchBox_content input {
@@ -22,9 +25,8 @@
 }
 
 #searchButton {
-    height: 16px;
-    /* padding-left: 0.5em; */
-    width: 16px;
+    float: right;
+    padding: 2px 4px 0;
 }
 </style>
 
@@ -49,6 +51,8 @@ SearchBox.prototype.extend({
     hint: Control.chain( "$SearchBox_content", "hint" ),
 
     initialize: function() {
+        
+        this.genericIfClassIs( SearchBox );
         
         if ( !this.query() ) {
             var hostname = window.location.hostname;
