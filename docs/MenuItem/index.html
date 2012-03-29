@@ -22,44 +22,23 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>Menu</title>
-
-<script id="demo">
-function demo() {
-
-$demo.append(
-    Menu.create( "New" )
-        .popup([
-            MenuItem.create( "Appointment" ),
-            MenuItem.create( "Contact" ),
-            MenuItem.create( "Meeting" ),
-            MenuItem.create( "Message" ),
-            MenuItem.create( "Task" )
-        ])
-);
-
-}
-</script>
+<title>MenuItem</title>
 
 </head>
 
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-A popup menu presenting the user a list of
-<a data-control="CatalogLink">MenuItem</a> controls representing commands. 
-A Menu control is often hosted within a
-<a data-control="CatalogLink">MenuBar</a>.
+A command in a <a data-control="CatalogLink">Menu</a>.
 </div>
 
 <p>
-The MenuItem controls in a Menu can be grouped into sections separated by
-<a data-control="CatalogLink">MenuSeparator</a> controls.
+See <a data-control="CatalogLink">Menu</a> or
+<a data-control="CatalogLink">MenuBar</a> for a demo.
 </p>
-
 <p>
-    This control was discussed in a
-    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2012/03/menubar.html">user interface blog post</a>.
+To visually arrange menu items into groups, delineate them with
+<a data-control="CatalogLink">MenuSeparator</a> controls. 
 </p>
 
 </body>

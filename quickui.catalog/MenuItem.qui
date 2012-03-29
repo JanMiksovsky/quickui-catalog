@@ -1,3 +1,5 @@
+<!-- A command in a Menu. -->
+
 <Control className="MenuItem">
 
 <prototype>

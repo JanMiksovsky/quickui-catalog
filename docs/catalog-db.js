@@ -198,6 +198,16 @@ var controlRecords = [
         description: "A row of menus."
     },
     {
+        name: "MenuItem",
+        demoClass: "",
+        description: "A command in a menu."
+    },
+    {
+        name: "MenuSeparator",
+        demoClass: "",
+        description: "A line separating commands in a menu."
+    },
+    {
         name: "ModalOverlay",
         demoClass: "",
         description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."

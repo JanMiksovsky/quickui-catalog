@@ -1,3 +1,5 @@
+<!-- A line separating the MenuItems controls in a Menu. -->
+
 <Control className="MenuSeparator">
 
 <style>
