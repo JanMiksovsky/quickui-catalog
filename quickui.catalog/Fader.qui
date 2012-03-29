@@ -37,10 +37,6 @@ if the color is not white.
 </style>
 
 <script>
-Control.prototype.extend({
-    
-});
-
 Fader.prototype.extend({
     
     content: Control.chain( "$Fader_content", "content" ),

@@ -87,6 +87,11 @@ var controlRecords = [
         description: "A text input area with a popup, which generally presents a list of choices."
     },
     {
+        name: "Control",
+        demoClass: "",
+        description: "The base class for all QuickUI controls."
+    },
+    {
         name: "DateComboBox",
         description: "Lets the user type a date or choose one from a dropdown calendar."
     },

@@ -37,7 +37,7 @@ $demo.append(
             MenuSeparator.create(),
             MenuItem.create( "Close" ),
         ]),
-        Menu.create( "Menu" ).popup([
+        Menu.create( "Edit" ).popup([
             MenuItem.create( "Undo" ).disabled( true ),
             MenuSeparator.create(),
             MenuItem.create( "Cut" ),
@@ -53,6 +53,7 @@ $demo.append(
     ])
 );
 
+// Create a place to log menu clicks.
 var $log = $( "<div/>" )
     .css({
         "font-size": "smaller",
@@ -60,6 +61,7 @@ var $log = $( "<div/>" )
     })
     .appendTo( $demo );
 
+// Log menu clicks
 $demo.on( "click", ".MenuItem", function( event ) {
     var $menuItem = $( event.target ).control();
     var $menu = $menuItem.closest( ".Menu" ).control();
@@ -75,8 +77,23 @@ $demo.on( "click", ".MenuItem", function( event ) {
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-
+A classic row of 
+<a data-control="CatalogLink">Menu</a> controls. A menu bar is typically placed
+at or near the top of an application window, and efficiently presents a large,
+easily browseable set of commands to the user.
 </div>
+
+<p>
+The primary benefit of using a MenuBar to host Menu controls is that the
+MenuBar allows "riffing": after the user has opened the first menu by clicking
+on it, the user can then open adjacent menus simply by hovering over them.
+This mirrors the behavior of menu bars in Apple OS/X and Microsoft Windows.  
+</p>
+
+<p>
+    This control was discussed in a
+    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2012/03/menubar.html">user interface blog post</a>.
+</p>
 
 </body>
 
