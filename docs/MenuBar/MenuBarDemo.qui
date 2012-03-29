@@ -1,7 +1,6 @@
 <Control className="MenuBarDemo">
 
 <content>
-    <h1>MenuBar demo</h1>
     <MenuBar>
         <Menu content="File">
             <popup>
@@ -31,30 +30,11 @@
             </popup>
         </Menu>
     </MenuBar>
-    <div id="main">
-        <LoremIpsum paragraphs="5" />
-    </div>
 </content>
 
 <style>
 {
-    background: #ebebeb;
-}
-
-.MenuBar {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-#main {
-    padding: 0 2em;
-    box-sizing: border-box;
-}
-
-.LoremIpsum {
-    background: white;
-    border: 1px solid rgba( 0, 0, 0, 0.2 );
-    padding: 0.5em;
-    box-sizing: border-box;
+    height: 225px;
 }
 </style>
 

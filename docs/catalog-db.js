@@ -183,6 +183,16 @@ var controlRecords = [
         description: "Shows paragraphs of placeholder text."
     },
     {
+        name: "Menu",
+        demoClass: "MenuDemo",
+        description: "A popup menu, often in a menu bar."
+    },
+    {
+        name: "MenuBar",
+        demoClass: "MenuBarDemo",
+        description: "A row of menus."
+    },
+    {
         name: "ModalOverlay",
         demoClass: "",
         description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."

@@ -1,0 +1,21 @@
+<Control className="MenuDemo">
+
+<content>
+    <Menu content="New">
+        <popup>
+            <MenuItem>Appointment</MenuItem>
+            <MenuItem>Contact</MenuItem>
+            <MenuItem>Meeting</MenuItem>
+            <MenuItem>Message</MenuItem>
+            <MenuItem>Task</MenuItem>
+        </popup>
+    </Menu>
+</content>
+
+<style>
+{
+    height: 200px;
+}
+</style>
+
+</Control>

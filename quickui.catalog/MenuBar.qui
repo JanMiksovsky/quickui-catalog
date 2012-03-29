@@ -24,6 +24,7 @@ are open. See notes in the source for the Overlay class.
 /* Generic appearance */
 .MenuBar.generic {
     background: white;
+    border-bottom: 1px solid #e5e5e5;
 }
 </style>
 
