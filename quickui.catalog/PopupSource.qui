@@ -46,6 +46,17 @@ PopupSource.prototype.extend({
      * Default is true.
      */
     cancelOnWindowScroll: Control.chain( "$PopupSource_popup", "cancelOnWindowScroll" ),
+    
+    /*
+     * Close the popup normally.
+     */
+    close: Control.chain( "$PopupSource_popup", "close" ),
+
+    /*
+     * True if the popup should be closed normally if the user clicks inside
+     * it. Default is true.
+     */
+    closeOnInsideClick: Control.chain( "$PopupSource_popup", "closeOnInsideClick" ),
 
     /*
      * The element(s) with which the popup will be associated. By default,
@@ -60,17 +71,6 @@ PopupSource.prototype.extend({
     contentClass: Control.property[ "class" ]( function( contentClass ) {
         this.$PopupSource_content().transmute( contentClass, true, false, true );
     }),
-    
-    /*
-     * Close the popup normally.
-     */
-    close: Control.chain( "$PopupSource_popup", "close" ),
-
-    /*
-     * True if the popup should be closed normally if the user clicks inside
-     * it. Default is true.
-     */
-    closeOnInsideClick: Control.chain( "$PopupSource_popup", "closeOnInsideClick" ),
 
     initialize: function()
     {

@@ -99,6 +99,13 @@ Menu.prototype.extend({
         this.inDocument( function() {
             this._updateShield();
         });
+        this.$PopupSource_popup().on( "click", function( event ) {
+            // Absorb clicks outside of menu items.
+            var $menuItem = $( event.target ).closest( ".MenuItem" );
+            if ( $menuItem.length === 0 ) {
+                event.stopPropagation();
+            }
+        });
     },
     
     popup: Control.chain( "$Menu_popup", "content" ),
