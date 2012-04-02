@@ -17,6 +17,10 @@ $.extend(Blog.prototype, {
         this.reload();
     },
     
+    itemClass: Control.chain( "$postList", "itemClass" ),
+    
+    mapFunction: Control.chain( "$postList", "mapFunction" ),
+    
     reload: Control.iterator( function() {
         
         if ( !this.apiKey() || !this.feed() ) {
