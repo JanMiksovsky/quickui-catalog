@@ -1,0 +1,7 @@
+<Control className="GoogleAdDemo">
+
+<content>
+    <GoogleAd/>
+</content>
+
+</Control>
