@@ -81,12 +81,27 @@ SearchBox.prototype.extend({
         this.$searchButton().on( "click", function() {
             self.search();
         });
-        this.$SearchBox_content().on("change keydown keyup", function(event) {
-            self._disableButtonIfContentEmpty();
-            if (!self._isContentEmpty() && event.which === 13 /* Enter */)
-            {
-                self.search();
-            }
+        this.$SearchBox_content().on({
+            "change keyup": function( event ) {
+                self._disableButtonIfContentEmpty();
+            },
+            keydown: function( event ) {
+                if ( !self._isContentEmpty() ) {
+                    switch ( event.which ) {
+                        
+                        case 13: /* Enter */
+                            self.search();
+                            event.stopPropagation();
+                            break;
+                            
+                        case 27: /* Escape */
+                            self.content( null );
+                            event.stopPropagation();
+                            break;
+                        
+                    }
+                }
+            } 
         });
 
         this._disableButtonIfContentEmpty();
