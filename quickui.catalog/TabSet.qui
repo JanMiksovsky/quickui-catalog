@@ -39,6 +39,7 @@ The TabSet control will resize itself to be as tall as its tallest child.
 }
 .TabSet.generic #tabButtons .BasicButton.generic {
     margin-left: 0.5em;
+    outline: none;
 }
 .TabSet.generic #tabButtons .BasicButton.generic.selected {
     border-bottom-color: white;
