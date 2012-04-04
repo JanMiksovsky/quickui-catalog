@@ -1,28 +1,38 @@
 <!-- Button base class. Handles mouse events, abstract styles. -->
 
-<Control className="BasicButton">
+<Control className="BasicButton" tag="button">
 
 <style>
 {
-    cursor: pointer;
-    display: inline-block;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    user-select: none;
+    -webkit-appearance: button; /* Corrects inability to style clickable input types in iOS */
+    cursor: pointer; /* Improves consistency */
+    font-size: 100%; /* Corrects font size not being inherited in all browsers */
+    margin: 0; /* Addresses margins set differently in IE6/7, FF3+, S5, Chrome */
+    vertical-align: baseline; /* Improves appearance and consistency in all browsers */
+    *vertical-align: middle;
 }
 
-.BasicButton.disabled {
-    cursor: default;
+/* TODO: Map disabled() property to disabled attribute */
+.BasicButton[disabled] {
+    cursor: default; /* Re-set default cursor for disabled buttons */
+}
+
+/*
+ * Removes inner padding and border in FF3+
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+ */
+.BasicButton::-moz-focus-inner {
+    border: 0;
+    padding: 0;
 }
 
 /* Generic appearance */
 .BasicButton.generic {
+    background: white;
     border: 1px solid gray;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    *box-sizing: border-box;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: sans-serif; /* Addresses font-family inconsistency between 'textarea' and other form elements. */
     padding: .25em .5em;
     white-space: nowrap;
 }
@@ -39,9 +49,8 @@
     background-color: gray;
     color: white;
 }
-.BasicButton.generic.disabled {
+.BasicButton.generic[disabled] {
     background-color: inherit;
-    color: gray;
 }
 </style>
 
