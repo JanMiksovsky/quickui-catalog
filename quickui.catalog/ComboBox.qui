@@ -15,7 +15,9 @@ An input area with a dropdown arrow, which invokes a popup.
                 <!--
                 Negative tabindex prevents tabstop, which isn't necessary here
                 as the text box portion will get the focus, and the user can
-                invoke the popup from there.
+                invoke the popup from there. E.g., ListComboBox opens the popup
+                when the Down key is pressed.
+                TODO: Promote Down key behavior from ListComboBox to this class.
                 -->
                 <ToggleButton id="dropdownButton" tabindex="-1">&#9660;</ToggleButton>
             </div>
