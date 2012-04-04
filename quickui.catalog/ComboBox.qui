@@ -7,8 +7,18 @@ An input area with a dropdown arrow, which invokes a popup.
 <prototype>
     <PopupSource closeOnInsideClick="false" openOnClick="false">
         <content>
+            
             <div id="ComboBox_content"/>
-            <ToggleButton id="dropdownButton">&#9660;</ToggleButton>
+            
+            <!-- Container for button, which would have trouble as table-cell -->
+            <div> 
+                <!--
+                Negative tabindex prevents tabstop, which isn't necessary here
+                as the text box portion will get the focus, and the user can
+                invoke the popup from there.
+                -->
+                <ToggleButton id="dropdownButton" tabindex="-1">&#9660;</ToggleButton>
+            </div>
         </content>
     </PopupSource>
 </prototype>
@@ -30,30 +40,26 @@ An input area with a dropdown arrow, which invokes a popup.
 #ComboBox_content input[type='text'] {
     border: none;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     outline: none;
     padding: 2px;
 }
 
 #dropdownButton {
+    height: 100%;
     text-align: center;
-    vertical-align: middle;
 }
 
 /* Generic appearance */
 .ComboBox.generic {
     border: 1px solid lightgray;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 .ComboBox.generic #dropdownButton {
     border: none;
     border-left: 1px solid transparent;
-    padding: 0 0.4em; /* Tighter padding that normal */
+    padding: 0 0.25em; /* Tighter padding that normal */
 }
 .ComboBox.generic:hover #dropdownButton {
     border-left-color: lightgray;

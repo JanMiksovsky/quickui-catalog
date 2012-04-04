@@ -7,6 +7,7 @@
     background: none; /* Better to start with no background than a browser-dependent one. */
     border: none; /* Many button styles don't want a border by default. */
     border-width: 0; /* IE8 thinks there's a border width even when border is none. */ 
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     cursor: pointer; /* Improves consistency */
     font-size: 100%; /* Corrects font size not being inherited in all browsers */
