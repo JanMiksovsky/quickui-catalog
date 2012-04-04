@@ -11,8 +11,6 @@ is visible at a time. The strip can be programmatically slid left and right.
 <style>
 {
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden;
     width: 0; /* Prevent anything from appearing until we've set width. */

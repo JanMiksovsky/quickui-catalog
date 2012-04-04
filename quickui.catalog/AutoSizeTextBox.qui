@@ -23,8 +23,6 @@ the expanding copy will expand the container, which in turn stretch the text box
 
 #textBox {
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 100%;
     margin: 0;
@@ -36,10 +34,8 @@ the expanding copy will expand the container, which in turn stretch the text box
 }
 
 #textCopy {
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
     visibility: hidden;
     white-space: pre-wrap; /* So lines wrap */

@@ -23,8 +23,6 @@ The user can select an item with the mouse or keyboard.
 .ListBox.generic {
     border: 1px solid lightgray;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 

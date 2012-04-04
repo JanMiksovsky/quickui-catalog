@@ -19,20 +19,16 @@ bugs; it's just not worth using at this point.
 
 <style>
 {
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     /* display: -moz-box; */
     display: -webkit-box;
     display: box;
 }
 
 > * {
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #SimpleFlexBox_content {

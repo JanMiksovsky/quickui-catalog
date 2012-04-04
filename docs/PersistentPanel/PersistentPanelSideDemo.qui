@@ -60,10 +60,8 @@
 }
 
 #text {
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     padding: 2em;
 }
 
@@ -72,10 +70,8 @@ h1 {
 }
 
 #rightPanel {
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     padding-top: 2em;
     width: 300px;
 }
