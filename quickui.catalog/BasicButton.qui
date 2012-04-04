@@ -4,6 +4,8 @@
 
 <style>
 {
+    border: none; /* Many button styles don't want a border by default. */
+    border-width: 0; /* IE8 thinks there's a border width even when border is none. */ 
     -webkit-appearance: button; /* Corrects inability to style clickable input types in iOS */
     cursor: pointer; /* Improves consistency */
     font-size: 100%; /* Corrects font size not being inherited in all browsers */
