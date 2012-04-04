@@ -12,6 +12,8 @@
 
 <style>
 {
+    display: inline-block;
+    outline: none;
     position: relative;
 }
 

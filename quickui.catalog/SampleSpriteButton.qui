@@ -8,12 +8,12 @@
 
 <style>
 {
-    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 9pt;
     padding: 0.5em 1em;
 }
 
-.SampleSpriteButton[disabled] {
+.SampleSpriteButton.disabled {
     color: #bbb;
 }
 </style>

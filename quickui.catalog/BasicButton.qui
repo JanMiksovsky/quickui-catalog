@@ -4,18 +4,19 @@
 
 <style>
 {
+    background: none; /* Better to start with no background than a browser-dependent one. */
     border: none; /* Many button styles don't want a border by default. */
     border-width: 0; /* IE8 thinks there's a border width even when border is none. */ 
-    -webkit-appearance: button; /* Corrects inability to style clickable input types in iOS */
+    box-sizing: border-box;
     cursor: pointer; /* Improves consistency */
     font-size: 100%; /* Corrects font size not being inherited in all browsers */
     margin: 0; /* Addresses margins set differently in IE6/7, FF3+, S5, Chrome */
+    overflow: visible; /* Removes inner spacing in IE8 without affecting normal text inputs */
+    text-align: left; /* Many more things behave like buttons than want to be center-aligned like a stock button. */
     vertical-align: baseline; /* Improves appearance and consistency in all browsers */
-    *vertical-align: middle;
 }
 
-/* TODO: Map disabled() property to disabled attribute */
-.BasicButton[disabled] {
+.BasicButton.disabled {
     cursor: default; /* Re-set default cursor for disabled buttons */
 }
 
@@ -32,8 +33,6 @@
 .BasicButton.generic {
     background: white;
     border: 1px solid gray;
-    *box-sizing: border-box;
-    box-sizing: border-box;
     font-family: sans-serif; /* Addresses font-family inconsistency between 'textarea' and other form elements. */
     padding: .25em .5em;
     white-space: nowrap;
@@ -51,7 +50,7 @@
     background-color: gray;
     color: white;
 }
-.BasicButton.generic[disabled] {
+.BasicButton.generic.disabled {
     background-color: inherit;
 }
 </style>
@@ -86,10 +85,10 @@ BasicButton.prototype.extend({
     },
 
     /*
-     * True if the control is disabled.
-     * This is mapped to the disabled property on the control top-level element.
-     * Setting this also applies "disabled" class in case the :disabled pseudo-class
-     * is not supported.
+     * True if the button is disabled.
+     * 
+     * Setting this also applies "disabled" class for IE8, which doesn't support
+     * the :disabled pseudo-class.
      */
     disabled: function( disabled ) {
         if ( disabled === undefined ) {
