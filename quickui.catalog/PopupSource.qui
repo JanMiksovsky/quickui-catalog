@@ -69,7 +69,18 @@ PopupSource.prototype.extend({
      * The class of the content portion.
      */
     contentClass: Control.property[ "class" ]( function( contentClass ) {
-        this.$PopupSource_content().transmute( contentClass, true, false, true );
+        /*
+         * If the content element changes (e.g., from a div to a button), we
+         * must update our element reference to point to the new element.
+         * 
+         * TODO: This facility is needed anywhere a control lets the host
+         * transmute one of the control's elements, and so should be generalized
+         * and moved into the QuickUI runtime.
+         */
+        var $newContent = this.$PopupSource_content()
+                                .transmute( contentClass, true, true, true );
+        this.referencedElement( "$PopupSource_content", $newContent );
+        var foo = 3;
     }),
 
     initialize: function()
