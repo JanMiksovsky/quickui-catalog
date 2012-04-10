@@ -12,7 +12,7 @@ digit year. If Globalize is not installed, a default date parser is used.
 </prototype>
 
 <style>
-#textBox {
+{
     width: 6em;
 }
 </style>
@@ -61,7 +61,7 @@ DateTextBox.prototype.extend({
         this.genericIfClassIs( DateTextBox );
         
         var self = this;
-        this.$textBox().blur( function() {
+        this.blur( function() {
             self._refresh();
         });
         

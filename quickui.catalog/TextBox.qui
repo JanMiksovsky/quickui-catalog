@@ -1,43 +1,30 @@
 <!--
 General purpose base class for text box controls.
 
-This simply wraps a normal input element. For now the text box is contained
-within the control. This makes it easier for controls like ComboBox to change
-their text box class; currently, Control.prototype.transmute() can't
-accommodate changing the tag of a control. If that gets fixed, then TextBox
-here could be simplified and actually have the input element be the control's
-top-level element. 
+This simply wraps a normal input element.
 -->
 
-<Control className="TextBox">
-
-<content>
-    <input id="textBox" type="text"/>    
-</content>
-
-<style>
-{
-    display: inline-block;
-}
-
-#textBox {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-}
-</style>
+<Control className="TextBox" tag="input">
 
 <script>
 TextBox.prototype.extend({
-    content: Control.chain( "$textBox", "content", function() {
-        /*
-         * Setting content programmatically generates a change event
-         * so that the UI can react accordingly.
-         */
-        this.trigger( "change" );
-    })
+    
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined ) {
+            /*
+             * Setting content programmatically generates a change event
+             * so that the UI can react accordingly.
+             */
+            this.trigger( "change" );
+        }
+        return result;
+    },
+    
+    initialize: function() {
+        this.prop( "type", "text" );
+    }
+    
 });
 </script>
 
