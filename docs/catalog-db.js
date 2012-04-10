@@ -105,7 +105,7 @@ var controlRecords = [
     },
     {
         name: "DeviceSpecific",
-        demoClass: "DeviceSpecificDemo",
+        demoClass: "", // "DeviceSpecificDemo",
         description: "Conditionally loads different content, control class, or styles depending on the type of device."
     },
     {
