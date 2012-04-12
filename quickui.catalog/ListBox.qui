@@ -73,7 +73,7 @@ ListBox.prototype.extend({
         var previousIndex = this.selectedIndex();
         var result = this._super( value );
         if ( value !== undefined && value.length > 0 ) {
-            var index = ( previousIndex >= 0 && previousIndex <= value.length )
+            var index = ( previousIndex >= 0 && previousIndex < value.length )
                 ? previousIndex     // Restore previous selection.
                 : -1;               // Nothing will be selected.
             this.selectedIndex( index );
