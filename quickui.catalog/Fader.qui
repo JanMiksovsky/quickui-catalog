@@ -6,32 +6,40 @@ if the color is not white.
 
 <Control className="Fader">
 
-<content>
-    <div id="Fader_content"/>
-    <Gradient id="gradient" direction="horizontal" />
-</content>
+<prototype>
+    <Control class="horizontal">
+        <div id="Fader_content"/>
+        <Gradient id="gradient" direction="horizontal" />
+    </Control>
+</prototype>
 
 <style>
 {
     background-color: #ffffff;
     overflow: hidden;
     position: relative;
+}
+
+#Fader_content {
     white-space: nowrap;
+}
+
+.Fader.vertical #Fader_content {
+    white-space: inherit;
 }
 
 #gradient {
     position: absolute;
+}
+.Fader.horizontal #gradient {
     height: 100%;
     right: 0;
     top: 0;
     width: 1.5em;
 }
-
 .Fader.vertical #gradient {
-    right: auto;
     bottom: 0;
     height: 1.5em;
-    top: auto;
     width: 100%;
 }
 </style>
@@ -44,11 +52,13 @@ Fader.prototype.extend({
     /*
      * The direction in which the content should fade. If "horizontal" (the
      * default), the content will fade to the right. If "vertical", the content
-     * will fade to the bottom. 
+     * will fade to the bottom.
      */
     direction: Control.property( function( direction ) {
+        var vertical = ( direction !== "horizontal" );
         this
-            .toggleClass( "vertical", direction !== "horizontal" )
+            .toggleClass( "horizontal", !vertical )
+            .toggleClass( "vertical", vertical )
             ._redraw()
             .$gradient()
                 .direction(direction);

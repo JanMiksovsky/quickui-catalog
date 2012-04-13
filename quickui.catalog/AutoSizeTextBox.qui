@@ -109,16 +109,16 @@ AutoSizeTextBox.prototype.extend({
     },
     
     /*
-     * The minimum number of lines that should be shown.
-     * The default value is 2, which creates a textarea at least two lines
-     * tall. This helps the user ascertain the ability to type multiple
-     * lines of text.
+     * The minimum number of lines that should be shown. By default, this is 1.
+     * Setting this to a higher number will ensure an empty textarea is still
+     * multiple lines tall, which lets the user intuit that the control accepts
+     * multiple lines of text.
      */
     minimumLines: Control.property.integer( function( minimumLines ) {
         if ( this.inDocument() ) {
             this._refresh();
         }
-    }, 2 ),
+    }, 1 ),
     
     /*
      * True if the text box should expose the browser's built-in spell-checking.
