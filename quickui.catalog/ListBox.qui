@@ -39,6 +39,13 @@ The user can select an item with the mouse or keyboard.
 
 <script>
 ListBox.prototype.extend({
+  
+    /*
+     * True if clicking on the list background (if there aren't enough
+     * items to fill the list's available space) will deselect the
+     * currently-selected item. Default is true.
+     */
+    deselectOnBackgroundClick: Control.property.bool( null, true ),
     
     initialize: function() {
         
@@ -54,15 +61,24 @@ ListBox.prototype.extend({
         this.attr( "tabindex", "-1" );
         
         var self = this;
-        this.on("click", function( event ) {
-                var control = self._getControlContainingElement( event.target );
-                if ( control ) {
-                    self._controlClick( control );
+        this.on({
+            click: function( event ) {
+                if ( event.target === self[0] ) {
+                    /* User clicked the list box's background. */
+                    if ( self.deselectOnBackgroundClick() ) {
+                        self.selectedControl( null );
+                    }
+                } else {
+                    var control = self._getControlContainingElement( event.target );
+                    if ( control ) {
+                        self._controlClick( control );
+                    }
                 }
-            })
-            .on("keydown", function( event ) {
+            },
+            keydown: function( event ) {
                 self._keydown( event );
-            });
+            }
+        });
     },
     
     /*
