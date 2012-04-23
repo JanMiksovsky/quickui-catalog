@@ -42,7 +42,7 @@ DateTextBox.prototype.extend({
         var dateChanged = ( previousTime !== time ); 
         if ( dateChanged ) {
             
-            var hasFocus = $.contains( this[0], document.activeElement );
+            var hasFocus = this[0] === document.activeElement;
             if ( !hasFocus ) {
                 // We updating the content only if the user isn't typing,
                 // so as not to confuse them.
