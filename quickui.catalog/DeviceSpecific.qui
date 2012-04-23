@@ -2,8 +2,14 @@
 
 <Control className="DeviceSpecific">
 
+<content>
+    <div id="placeholder"/>
+</content>
+
 <script>
 DeviceSpecific.prototype.extend({
+    
+    content: Control.chain( "$placeholder", "content" ),
 
     /*
      * The content to use when the current device is not a mobile device.
@@ -34,20 +40,23 @@ DeviceSpecific.prototype.extend({
             deviceContent = this["default"]();
         }
         
-        // Transmute, if requested. After this, we need to take care to 
-        // reference the control with the new class; "this" will be the old class. 
-        var $control = deviceClass
-            ? this.transmute( deviceClass, false, true )
-            : this;
+        var $placeholder = this.$placeholder();
         
-        // Apply device-specific content, if defined.
-        if ( deviceContent ) {
-            $control.content( deviceContent );
+        if ( deviceClass ) {
+            // Transmute as requested.
+            var $placeholder = $placeholder.transmute( deviceClass, false, true )
+            // Update the placeholder reference so it's the right class.
+            this.referencedElement( "$placeholder", $placeholder );
         }
         
-        // Apply device-specific CSS classes, if defined.
+        if ( deviceContent ) {
+            // Apply device-specific content.
+            $placeholder.content( deviceContent );
+        }
+        
         if ( deviceClasses ) {
-            $control.addClass( deviceClasses );
+            // Apply device-specific CSS classes.
+            $placeholder.addClass( deviceClasses );
         }
     },
     
