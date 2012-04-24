@@ -40,7 +40,7 @@ An input area with a dropdown arrow, which invokes a popup.
     margin-right: 1.5em; /* HACK to avoid overlapping button. Not general enough. */
 }
 
-#ComboBox_content input[type='text'] {
+#ComboBox_content[type='text'], #ComboBox_content input[type='text'] {
     border: none;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -112,7 +112,7 @@ ComboBox.prototype.extend({
                 // behavior in IE.
                 if ( !$.browser.msie ) {
                     var content = self.content();
-                    self.inputControl().focus();
+                    self.inputElement().focus();
                     self._selectText( 0, content.length );
                 }
                 self.$dropdownButton().selected( false );
@@ -162,11 +162,18 @@ ComboBox.prototype.extend({
     },
     
     /*
-     * Returns the combo box's input control. By default this is the first
-     * text input element in the content. Subclasses can override this to
-     * indicate that a different element should be used for input.
+     * Returns the combo box's input element. By default this is the content
+     * element itself (if it's a text box) or else the first text input element
+     * in the content. Subclasses can override this to indicate that a different
+     * element should be used for input.
      */
-    inputControl: function() {
+    inputElement: function() {
+        var $content = this.$ComboBox_content();
+        if ( $content[0].nodeName.toLowerCase() === "input" && $content.prop( "type" ) === "text" ) {
+            // Content itself is a text input element.
+            return $content;
+        }
+        // Return the first text input element.
         return this.$ComboBox_content().find( "input[type='text']" ).eq(0);
     },
     
@@ -204,7 +211,8 @@ ComboBox.prototype.extend({
      */
     textBoxClass: Control.property[ "class" ]( function( textBoxClass ) {
         
-        this.$ComboBox_content().transmute( textBoxClass, true );
+        var $textBox = this.$ComboBox_content().transmute( textBoxClass, true );
+        this.referencedElement( "$ComboBox_content", $textBox );
         
         // Rebind any content events we want to track.
         this._bindContentEvents();
@@ -234,17 +242,17 @@ ComboBox.prototype.extend({
      */
     _selectText: function( start, end ) {
         
-        var inputControl = this.inputControl()[0];
-        if ( !inputControl ) {
+        var inputElement = this.inputElement()[0];
+        if ( !inputElement ) {
             return; // Can't find input control.
         }
         
-        if ( inputControl.setSelectionRange ) {
+        if ( inputElement.setSelectionRange ) {
             // Mozilla/WebKit
-            inputControl.setSelectionRange( start, end );
-        } else if ( inputControl.createTextRange ) {
+            inputElement.setSelectionRange( start, end );
+        } else if ( inputElement.createTextRange ) {
             // IE
-            var range = inputControl.createTextRange();
+            var range = inputElement.createTextRange();
             range.moveStart( "character", start );
             range.moveEnd( "character", end );
             range.select();

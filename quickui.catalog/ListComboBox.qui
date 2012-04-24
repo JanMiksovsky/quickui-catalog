@@ -113,9 +113,9 @@ ListComboBox.prototype.extend({
         var result = this._super();
         
         // Give the input control focus if it doesn't already have it.
-        var inputControl = this.inputControl();
-        if ( document.activeElement !== inputControl[0] ) {
-            this.inputControl().focus();
+        var inputElement = this.inputElement();
+        if ( document.activeElement !== inputElement[0] ) {
+            this.inputElement().focus();
         }
         
         return result;
@@ -147,7 +147,7 @@ ListComboBox.prototype.extend({
         
         // See notes at _contentKeydown.
         var self = this;
-        this.inputControl().keydown( function( event ) {
+        this.inputElement().keydown( function( event ) {
             self._contentKeydown( event );
         });
     },
