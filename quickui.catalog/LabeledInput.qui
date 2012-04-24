@@ -12,6 +12,10 @@ within have the same effect as clicking the input control.
 </content>
 
 <style>
+{
+    white-space: nowrap;    /* Keep input and label on same line */
+}
+
 > input {
     margin-right: 0;    /* Don't leave unclickable gap to right of input */
 }
@@ -22,6 +26,7 @@ within have the same effect as clicking the input control.
     -khtml-user-select:none;
     -moz-user-select: none;
     -webkit-user-select: none;
+    white-space: inherit;   /* Allow wrapping */
 }
 </style>
 
