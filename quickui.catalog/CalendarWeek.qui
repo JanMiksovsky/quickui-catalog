@@ -44,7 +44,7 @@ CalendarWeek.prototype.extend({
     /*
      * The date that will be included in this week (can be any day of the week).
      */
-    date: Control.property( function() { this._refresh(); }),
+    date: Control.property.date( function() { this._refresh(); }),
 
     /*
      * Returns the control currently used to represent the given date.
