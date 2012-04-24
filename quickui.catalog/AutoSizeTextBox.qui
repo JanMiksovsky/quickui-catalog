@@ -103,8 +103,8 @@ AutoSizeTextBox.prototype.extend({
             }
         });
         
-        this.inDocument( function( $control  ) {
-            $control._refresh();
+        this.inDocument( function() {
+            this._refresh();
         });
     },
     

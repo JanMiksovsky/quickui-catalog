@@ -10,6 +10,7 @@ var controlRecords = [
     },
     {
         name: "AutoSizeTextBox",
+        demoClass: "AutoSizeTextBoxDemo",
         description: "A text area that expands to contain its text."
     },
     {

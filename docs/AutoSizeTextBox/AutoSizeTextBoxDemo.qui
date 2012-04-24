@@ -2,7 +2,7 @@
 
 <content>
     <div>Type as much text as you want:</div>
-    <AutoSizeTextBox/>
+    <AutoSizeTextBox minimumLines="2"/>
 </content>
 
 </Control>
