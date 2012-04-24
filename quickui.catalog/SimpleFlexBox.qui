@@ -117,9 +117,8 @@ SimpleFlexBox.prototype.extend({
     }),
     
     initialize: function() {
-        var self = this;
         this.inDocument( function() {
-            self._checkFlexBox();
+            this._checkFlexBox();
         });
     },
     

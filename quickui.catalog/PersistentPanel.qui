@@ -73,12 +73,12 @@ PersistentPanel.prototype.extend({
                     self._recalc();
                 }
             })
-            .inDocument( function( $control ) {
-                if ( !$control.scrollingParent() ) {
+            .inDocument( function() {
+                if ( !this.scrollingParent() ) {
                     // No scrolling parent has been set; look for one.
-                    $control.scrollingParent( $control._findScrollingParent() );
+                    this.scrollingParent( this._findScrollingParent() );
                 }
-                $control._recalc();
+                this._recalc();
             });
 
         $( window ).resize( function() {

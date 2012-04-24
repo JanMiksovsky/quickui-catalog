@@ -33,7 +33,7 @@ RotatingPagesWithDots.prototype.extend({
         var self = this;
         this
             .click( function() { self.stop(); })
-            .inDocument( function( $control ) { $control._queueRotation(); });
+            .inDocument( function() { this._queueRotation(); });
     },
     
     /*
