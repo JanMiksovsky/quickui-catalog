@@ -65,9 +65,9 @@ HighlightEffects.prototype.extend({
                 function() { self._hoverIn(); },
                 function() { self._hoverOut(); }
             )
-            .inDocument( function( $control ) {
-                $control
-                    ._originalState( $control._getCurrentState() )
+            .inDocument( function() {
+                this
+                    ._originalState( this._getCurrentState() )
                     ._recalc();
             });
     },
