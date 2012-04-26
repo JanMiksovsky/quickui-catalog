@@ -54,6 +54,8 @@
 }
 .BasicButton.generic.disabled {
     background-color: inherit;
+    border-color: #aaa;
+    color: gray;
 }
 </style>
 
