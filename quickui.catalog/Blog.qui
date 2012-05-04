@@ -7,8 +7,6 @@
 <script>
 $.extend(Blog.prototype, {
     
-    apiKey: Control.property(),
-    
     count: Control.property.integer(),
     
     feed: Control.property(),
@@ -23,12 +21,11 @@ $.extend(Blog.prototype, {
     
     reload: Control.iterator( function() {
         
-        if ( !this.apiKey() || !this.feed() ) {
+        if ( !this.feed() ) {
             return;
         }
         
         var url = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0";
-        url += this._urlParam( "key", this.apiKey() );
         url += this._urlParam( "q", this.feed() );
         url += this._urlParam( "num", this.count() );
         url += this._urlParam( "callback", "?" );
