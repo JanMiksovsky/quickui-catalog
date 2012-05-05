@@ -34,7 +34,6 @@ FlickrInterestingPhoto.prototype.extend({
              */
             var control = Control( this );
             if ( $.browser.msie && parseInt( control.width() ) === 28 ) {
-                console.log( control.width() + " " + control.height() );
                 control.css( "width", "auto" );
             }
 

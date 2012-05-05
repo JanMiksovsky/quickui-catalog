@@ -125,7 +125,6 @@ ListComboBox.prototype.extend({
     _autoComplete: function() {
         
         var content = this.content();
-        // console.log( content );
         
         var match = this._matchingItem( content );
         if ( !match ) {
