@@ -219,7 +219,6 @@ ComboBox.prototype.extend({
     }),
     
     _bindContentEvents: function() {
-        this._super();
         var self = this;
         this.$ComboBox_content().on({
             "click focusin": function( event ) {
