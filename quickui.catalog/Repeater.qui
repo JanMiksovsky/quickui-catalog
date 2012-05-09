@@ -11,11 +11,6 @@ Repeater.prototype.extend({
     content: Control.property( function( content ) {
         this._refreshContent( this.controls() );
     }),
-
-    /*
-     * The class that will be repeated.
-     */
-    controlClass: Control.property[ "class" ]( function() { this._refresh(); }),
     
     /*
      * The generated collection of controls.
@@ -42,13 +37,18 @@ Repeater.prototype.extend({
         this._refreshContent( this.controls() );
     }),
 
+    /*
+     * The class that will be repeated.
+     */
+    repeatClass: Control.property[ "class" ]( function() { this._refresh(); }),
+
     _refresh: function() {
-        var controlClass = this.controlClass();
+        var repeatClass = this.repeatClass();
         var count = this.count();
-        if ( controlClass && count > 0 ) {
+        if ( repeatClass && count > 0 ) {
             var controls = [];
             for ( var i = 0; i < count; i++ ) {
-                var $control = controlClass.create();
+                var $control = repeatClass.create();
                 controls.push( $control );
             }
             this._refreshContent( controls );

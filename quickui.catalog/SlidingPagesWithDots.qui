@@ -103,7 +103,7 @@ SlidingPagesWithDots.prototype.extend({
     /*
      * The class used to render the buttons to navigate between pages.
      */    
-    pageButtonClass: Control.chain( "$pageButtons", "controlClass" ),
+    pageButtonClass: Control.chain( "$pageButtons", "repeatClass" ),
     
     pages: Control.chain( "$pages", "pages" )
 
