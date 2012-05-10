@@ -5,7 +5,7 @@ is visible at a time. The strip can be programmatically slid left and right.
 <Control className="SlidingPages">
 
 <content>
-    <div id="SlidingPages_content"/>
+    <div ref="SlidingPages_content"/>
 </content>
 
 <style>

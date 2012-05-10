@@ -10,11 +10,11 @@ The TabSet control will resize itself to be as tall as its tallest child.
 <Control className="TabSet">
 
 <content>
-    <VerticalPanels id="tabPanels">
+    <VerticalPanels ref="tabPanels">
         <top>
-            <List id="tabButtons" itemClass="BasicButton" />
+            <List ref="tabButtons" itemClass="BasicButton" />
         </top>
-        <Switch id="TabSet_content" maximize="true" />
+        <Switch ref="TabSet_content" maximize="true" />
     </VerticalPanels>
 </content>
 

@@ -5,8 +5,8 @@
 <prototype>
     <PopupSource>
         <popup>
-            <div id="shield"/> <!-- Used to obscure borders between description and content. -->
-            <div id="Menu_popup"/>
+            <div ref="shield"/> <!-- Used to obscure borders between description and content. -->
+            <div ref="Menu_popup"/>
         </popup>
     </PopupSource>
 </prototype>

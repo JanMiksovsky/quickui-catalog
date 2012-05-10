@@ -1,9 +1,9 @@
 <Control className="MultiListBoxDemo">
 
 <content>
-    <MultiListBox id="animals" />
-    <div id="status">
-        Selected items: <span id="count">0</span>
+    <MultiListBox ref="animals" />
+    <div ref="status">
+        Selected items: <span ref="count">0</span>
     </div>
 </content>
 

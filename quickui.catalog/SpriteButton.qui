@@ -4,9 +4,9 @@
 
 <prototype>
     <BasicButton>
-        <Sprite id="backgroundLeft" />
-        <Sprite id="backgroundRight" />
-        <div id="SpriteButton_content" />
+        <Sprite ref="backgroundLeft" />
+        <Sprite ref="backgroundRight" />
+        <div ref="SpriteButton_content" />
     </BasicButton>
 </prototype>
 

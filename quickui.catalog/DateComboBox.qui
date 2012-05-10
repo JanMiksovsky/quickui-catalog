@@ -7,7 +7,7 @@ Lets user pick a date with a date-optimzed text box or a navigable month calenda
 <prototype>
     <ComboBox textBoxClass="DateTextBox">
         <popup>
-            <CalendarMonthNavigator id="navigator"/>
+            <CalendarMonthNavigator ref="navigator"/>
         </popup>
     </ComboBox>
 </prototype>

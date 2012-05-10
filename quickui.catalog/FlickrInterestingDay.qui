@@ -4,9 +4,9 @@
 
 <prototype>
     <CalendarDay>
-        <div id="FlickrInterestingDay_content"/>
-        <a id="link">
-            <img id="image"/>
+        <div ref="FlickrInterestingDay_content"/>
+        <a ref="link">
+            <img ref="image"/>
         </a>
     </CalendarDay>
 </prototype>

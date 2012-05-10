@@ -6,9 +6,9 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 <Control className="SlidingPagesWithDots">
 
 <content>
-    <SlidingPages id="pages"/>
-    <div id="buttonPanel">
-        <Repeater id="pageButtons"/>
+    <SlidingPages ref="pages"/>
+    <div ref="buttonPanel">
+        <Repeater ref="pageButtons"/>
     </div>
 </content>
 

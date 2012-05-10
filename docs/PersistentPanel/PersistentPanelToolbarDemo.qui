@@ -15,7 +15,7 @@
         </div>
         <PersistentPanel>
             <!-- This toolbar will always be visible -->
-            <div id="toolbar">
+            <div ref="toolbar">
                 This toolbar is always available:
                 <BasicButton>Button 1</BasicButton>
                 <BasicButton>Button 2</BasicButton>

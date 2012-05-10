@@ -8,8 +8,8 @@ if the color is not white.
 
 <prototype>
     <Control class="horizontal">
-        <div id="Fader_content"/>
-        <Gradient id="gradient" direction="horizontal" />
+        <div ref="Fader_content"/>
+        <Gradient ref="gradient" direction="horizontal" />
     </Control>
 </prototype>
 

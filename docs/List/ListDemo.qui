@@ -1,7 +1,7 @@
 <Control className="ListDemo">
 
 <content>
-    <List id="buttonList" itemClass="SampleSpriteButton"/>
+    <List ref="buttonList" itemClass="SampleSpriteButton"/>
 </content>
 
 <script>

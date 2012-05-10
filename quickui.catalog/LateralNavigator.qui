@@ -3,20 +3,20 @@
 <Control className="LateralNavigator">
 
 <content>
-    <div id="header">
+    <div ref="header">
         <HorizontalPanels>
             <left>
-                <BasicButton id="LateralNavigator_previousButton" class="navigatorButton" generic="false">&#9664;</BasicButton>
+                <BasicButton ref="LateralNavigator_previousButton" class="navigatorButton" generic="false">&#9664;</BasicButton>
             </left>
             <content>
-                <div id="LateralNavigator_heading"/>
+                <div ref="LateralNavigator_heading"/>
             </content>
             <right>
-                <BasicButton id="LateralNavigator_nextButton" class="navigatorButton" generic="false">&#9654;</BasicButton>
+                <BasicButton ref="LateralNavigator_nextButton" class="navigatorButton" generic="false">&#9654;</BasicButton>
             </right>
         </HorizontalPanels>
     </div>
-    <div id="LateralNavigator_content"/>
+    <div ref="LateralNavigator_content"/>
 </content>
 
 <style>

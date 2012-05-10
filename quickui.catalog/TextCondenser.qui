@@ -6,8 +6,8 @@ Shows text in a condensed font if necessary to squeeze in more text.
 
 <content>
     <!-- Flip between two copies of text text: one normal, one condensed. --> 
-    <span id="normal"/>
-    <span id="condensed"/>
+    <span ref="normal"/>
+    <span ref="condensed"/>
 </content>
 
 <style>

@@ -12,7 +12,7 @@ be strings.
 <prototype>
     <ComboBox>
         <popup>
-            <ListBox id="list"/>
+            <ListBox ref="list"/>
         </popup>
     </ComboBox>
 </prototype>

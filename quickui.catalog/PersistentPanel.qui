@@ -17,7 +17,7 @@ in a scrolling element nested within some outer scrolling element.
 <Control className="PersistentPanel">
 
 <content>
-    <div id="PersistentPanel_content"/>
+    <div ref="PersistentPanel_content"/>
 </content>
 
 <style>

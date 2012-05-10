@@ -3,10 +3,10 @@
 <Control className="CalendarMonthWithHeadings">
 
 <content>
-    <MonthName id="monthName"/>
-    <div id="monthTable">
-        <DaysOfWeek id="daysOfWeek" format="namesShort"/>
-        <CalendarMonth id="calendar"/>
+    <MonthName ref="monthName"/>
+    <div ref="monthTable">
+        <DaysOfWeek ref="daysOfWeek" format="namesShort"/>
+        <CalendarMonth ref="calendar"/>
     </div>
 </content>
 

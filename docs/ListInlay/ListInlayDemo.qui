@@ -1,7 +1,7 @@
 <Control className="ListInlayDemo">
 
 <content>
-    <ListInlay id="list"/>
+    <ListInlay ref="list"/>
 </content>
 
 <style>

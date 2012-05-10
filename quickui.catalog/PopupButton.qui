@@ -4,8 +4,8 @@
 
 <prototype>
     <PopupSource contentClass="BasicButton">
-        <div id="PopupButton_content"/>
-        <div id="indicator">&#9660;</div>
+        <div ref="PopupButton_content"/>
+        <div ref="indicator">&#9660;</div>
     </PopupSource>
 </prototype>
 

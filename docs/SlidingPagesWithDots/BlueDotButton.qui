@@ -8,7 +8,7 @@
     so that we can add some clickable padding around the visible button. Otherwise
     the dot would be too small to easily click.
     -->
-    <BasicButton id="button" generic="false"/>
+    <BasicButton ref="button" generic="false"/>
 </content>
 
 <style>

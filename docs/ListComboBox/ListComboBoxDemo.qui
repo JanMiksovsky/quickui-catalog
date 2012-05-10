@@ -1,7 +1,7 @@
 <Control className="ListComboBoxDemo">
 
 <content>
-    <ListComboBox id="comboBox"/>
+    <ListComboBox ref="comboBox"/>
 </content>
 
 <script>

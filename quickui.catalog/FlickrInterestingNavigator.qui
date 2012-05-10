@@ -15,10 +15,10 @@ per day.
         showTodayButton="false">
         <previousButtonContent>
             <span class="chevron">«</span>
-            <MonthName id="previousMonthName" class="monthButtonName" />
+            <MonthName ref="previousMonthName" class="monthButtonName" />
         </previousButtonContent>
         <nextButtonContent>
-            <MonthName id="nextMonthName" class="monthButtonName"/>
+            <MonthName ref="nextMonthName" class="monthButtonName"/>
             <span class="chevron">»</span>
         </nextButtonContent>
     </CalendarMonthNavigator>

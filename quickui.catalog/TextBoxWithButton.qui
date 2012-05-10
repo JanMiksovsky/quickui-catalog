@@ -6,8 +6,8 @@ Control with a content area (usually some form of text box) and an associated "G
 <Control className="TextBoxWithButton">
 
 <content>
-    <div id="TextBoxWithButton_textBox"/>
-    <div id="TextBoxWithButton_goButton"/>
+    <div ref="TextBoxWithButton_textBox"/>
+    <div ref="TextBoxWithButton_goButton"/>
 </content>
 
 <style>

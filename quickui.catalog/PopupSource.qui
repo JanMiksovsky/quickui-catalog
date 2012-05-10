@@ -5,8 +5,8 @@ A control with a popup.
 <Control className="PopupSource">
     
 <content>
-    <div id="PopupSource_content" />
-    <Popup id="PopupSource_popup" />
+    <div ref="PopupSource_content" />
+    <Popup ref="PopupSource_popup" />
 </content>
 
 <script>

@@ -3,8 +3,8 @@
 <Control className="HintTextBox">
 
 <content>
-    <input id="HintTextBox_textBox" type="text"/>
-    <div id="HintTextBox_hint"/>
+    <input ref="HintTextBox_textBox" type="text"/>
+    <div ref="HintTextBox_hint"/>
 </content>
 
 <style>

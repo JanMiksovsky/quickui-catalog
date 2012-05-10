@@ -8,7 +8,7 @@ within have the same effect as clicking the input control.
 <Control className="LabeledInput" tag="label">
 
 <content>
-    <input/><span id="LabeledInput_content"/>
+    <input/><span ref="LabeledInput_content"/>
 </content>
 
 <style>

@@ -2,15 +2,15 @@
     
 <prototype>
     <Page title="QuickUI Sandbox" fill="true">
-        <div id="frame">
-            <VerticalPanels id="outer" fill="true">
+        <div ref="frame">
+            <VerticalPanels ref="outer" fill="true">
         
                 <top>Outer toolbar</top>
         
-                <HorizontalPanels id="horizontal" fill="true">
+                <HorizontalPanels ref="horizontal" fill="true">
                     <left>Left pane</left>
             
-                    <VerticalPanels id="inner" fill="true">
+                    <VerticalPanels ref="inner" fill="true">
                         <top>Inner toolbar</top>
                         <LoremIpsum paragraphs="5"/>
                         <bottom>Inner footer</bottom>

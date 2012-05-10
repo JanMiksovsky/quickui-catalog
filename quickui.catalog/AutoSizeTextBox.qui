@@ -9,10 +9,10 @@ the expanding copy will expand the container, which in turn stretch the text box
 <content>
     
     <!-- Visible text box -->
-    <textarea id="textBox"/>
+    <textarea ref="textBox"/>
     
     <!-- Hidden copy of text. Use a pre tag to preserve line breaks, entities, etc. -->
-    <pre id="textCopy"/>
+    <pre ref="textCopy"/>
     
 </content>
 

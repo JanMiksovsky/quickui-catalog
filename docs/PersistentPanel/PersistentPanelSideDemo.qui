@@ -4,11 +4,11 @@
 
 <prototype>
     <Page>
-        <HorizontalPanels id="container">
+        <HorizontalPanels ref="container">
     
             <content>
                 <!-- Main (scrolling) contents -->
-                <div id="text">
+                <div ref="text">
                     <h1>
                         Scroll this page, keeping an eye on the right side.
                     </h1>
@@ -22,16 +22,16 @@
             </content>
             
             <right>
-                <div id="rightPanel">
+                <div ref="rightPanel">
 
-                    <AdPlaceholder id="ad" dimensions="Medium Rectangle"/>
+                    <AdPlaceholder ref="ad" dimensions="Medium Rectangle"/>
                     <div class="right">
                         Any content above the panel will scroll away.
                     </div>
 
                     <PersistentPanel>
                         <!-- These contents will always be visible -->
-                        <div id="important">
+                        <div ref="important">
                             This panel is persistent, so it won't scroll away.
                             This is useful for any information or controls which
                             must be visible at all times.

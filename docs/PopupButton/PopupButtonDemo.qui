@@ -3,8 +3,8 @@
 <content>
     <PopupButton content="Orientation">
         <popup>
-            <BasicButton id="buttonPortrait" content="Portrait"/>
-            <BasicButton id="buttonLandscape" content="Landscape"/>
+            <BasicButton ref="buttonPortrait" content="Portrait"/>
+            <BasicButton ref="buttonLandscape" content="Landscape"/>
         </popup>
     </PopupButton>
 </content>

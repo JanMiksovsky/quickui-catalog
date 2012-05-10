@@ -15,40 +15,40 @@
                     Popup content
                 </popup>
             </PopupSource>
-            <BasicButton id="button">
+            <BasicButton ref="button">
                 Show test dialog
             </BasicButton>
         </p>
         
-        <List id="list" itemClass="BasicButton"/>
+        <List ref="list" itemClass="BasicButton"/>
         
-        <Switch id="switch">
+        <Switch ref="switch">
             <div>Panel one</div>
             <div>Panel two</div>
             <div>Panel three</div>
         </Switch>
         
-        <TabSet id="tabSet" style="height: 100px;">
+        <TabSet ref="tabSet" style="height: 100px;">
             <Tab description="Tab A">
-                <Switch id="switchAnimals">
+                <Switch ref="switchAnimals">
                     <div>Aardvark</div>
                     <div>Ant</div>
                     <div>Anteater</div>
                 </Switch>
-                <BasicButton id="buttonChangeAnimal">Change</BasicButton>
+                <BasicButton ref="buttonChangeAnimal">Change</BasicButton>
             </Tab>
             <Tab description="Tab B">Bandicoot</Tab>
             <Tab description="Tab C">Chickadee</Tab>
         </TabSet>
         
-        <HorizontalPanels id="horiziontalPanels" style="height: 50px;">
+        <HorizontalPanels ref="horiziontalPanels" style="height: 50px;">
             <left>Left</left>
             <content>Horizontal panels</content>
             <right>Right</right>
         </HorizontalPanels>
         
         <div style="height: 200px; position: relative;">
-            <VerticalPanels id="verticalPanels" fill="true">
+            <VerticalPanels ref="verticalPanels" fill="true">
                 <top>Top</top>
                 <content>Vertical panels</content>
                 <bottom>Bottom</bottom>
@@ -62,7 +62,7 @@
             <default>You are using some unknown browser.</default>
         </BrowserSpecific>
         
-        <Control id="shifter">Plain control that's now a button</Control>
+        <Control ref="shifter">Plain control that's now a button</Control>
         
         <DeviceSpecific>
             <mobile>You're on a mobile device.</mobile>

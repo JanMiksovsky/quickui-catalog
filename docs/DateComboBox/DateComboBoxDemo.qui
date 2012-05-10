@@ -4,7 +4,7 @@
     <DateComboBox>
         <dropdownButtonContent>
             <!-- Custom icon; see notes. -->
-            <img id="calendarIcon" src="/catalog/resources/calendar_alt_fill_16x16.png"/>
+            <img ref="calendarIcon" src="/catalog/resources/calendar_alt_fill_16x16.png"/>
         </dropdownButtonContent>
     </DateComboBox>
 </content>

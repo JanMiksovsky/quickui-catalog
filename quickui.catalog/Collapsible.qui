@@ -5,8 +5,8 @@ A panel that can expand and collapse.
 <Control className="Collapsible">
 
 <content>
-    <div id="Collapsible_heading"/>
-    <div id="Collapsible_content"/>
+    <div ref="Collapsible_heading"/>
+    <div ref="Collapsible_content"/>
 </content>
 
 <style>

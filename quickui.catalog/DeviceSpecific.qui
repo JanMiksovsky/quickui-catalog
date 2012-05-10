@@ -3,7 +3,7 @@
 <Control className="DeviceSpecific">
 
 <content>
-    <div id="placeholder"/>
+    <div ref="placeholder"/>
 </content>
 
 <script>

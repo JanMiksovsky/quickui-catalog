@@ -3,8 +3,8 @@
 <Control className="PinterestPin">
 
 <content>
-    <FlickrInterestingPhoto id="photo" photoSize="m" />
-    <LoremIpsum id="text" sentences="1" />
+    <FlickrInterestingPhoto ref="photo" photoSize="m" />
+    <LoremIpsum ref="text" sentences="1" />
 </content>
 
 <style>

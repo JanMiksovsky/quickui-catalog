@@ -5,11 +5,11 @@
 <prototype>
     <LateralNavigator>
         <heading>
-            <MonthName id="monthName"/> <span id="year"/>
+            <MonthName ref="monthName"/> <span ref="year"/>
         </heading>
-        <CalendarMonthWithHeadings id="calendar" showMonthName="false" />
-        <div id="todayContainer">
-            <BasicButton id="buttonToday">Today</BasicButton>
+        <CalendarMonthWithHeadings ref="calendar" showMonthName="false" />
+        <div ref="todayContainer">
+            <BasicButton ref="buttonToday">Today</BasicButton>
         </div>
     </LateralNavigator>
 </prototype>

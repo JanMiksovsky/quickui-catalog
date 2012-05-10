@@ -9,8 +9,8 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 <Control className="PanelWithOverflow">
 
 <content>
-    <PopupButton id="menuButton" indicator="»"/>
-    <div id="PanelWithOverflow_content"/>
+    <PopupButton ref="menuButton" indicator="»"/>
+    <div ref="PanelWithOverflow_content"/>
 </content>
 
 <style>

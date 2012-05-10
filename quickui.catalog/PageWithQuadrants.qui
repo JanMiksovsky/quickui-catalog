@@ -12,14 +12,14 @@ The whole page scrolls as a unit.
 
 <prototype>
     <Page>
-        <div id="pageTable" class="table">
+        <div ref="pageTable" class="table">
             <div class="top row">
-                <div id="PageWithQuadrants_topLeft" class="top left cell"/>
-                <div id="PageWithQuadrants_topRight" class="top right cell"/>
+                <div ref="PageWithQuadrants_topLeft" class="top left cell"/>
+                <div ref="PageWithQuadrants_topRight" class="top right cell"/>
             </div>
             <div class="bottom row">
-                <div id="PageWithQuadrants_bottomLeft" class="bottom left cell"/>
-                <div id="PageWithQuadrants_bottomRight" class="bottom right cell"/>
+                <div ref="PageWithQuadrants_bottomLeft" class="bottom left cell"/>
+                <div ref="PageWithQuadrants_bottomRight" class="bottom right cell"/>
             </div>
         </div>
     </Page>

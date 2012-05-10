@@ -1,8 +1,8 @@
 <Control className="BlogPost">
 
 <content>
-    <a id="BlogPost_postTitle" target="_blank" />
-    <div id="BlogPost_content"/>
+    <a ref="BlogPost_postTitle" target="_blank" />
+    <div ref="BlogPost_content"/>
 </content>
 
 <style>

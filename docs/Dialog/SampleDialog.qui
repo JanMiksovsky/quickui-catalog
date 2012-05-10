@@ -4,7 +4,7 @@
     <Dialog>
         <h1>Sample dialog</h1>
         <LoremIpsum paragraphs="1"/>
-        <SampleSpriteButton id="buttonClose">Close</SampleSpriteButton>
+        <SampleSpriteButton ref="buttonClose">Close</SampleSpriteButton>
     </Dialog>
 </prototype>
 

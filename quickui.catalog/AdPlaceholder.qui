@@ -7,9 +7,9 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 <Control className="AdPlaceholder">
 
 <content>
-    <div id="container">
-        <div id="label">Advertisement</div>
-        <div id="AdPlaceholder_content"/>
+    <div ref="container">
+        <div ref="label">Advertisement</div>
+        <div ref="AdPlaceholder_content"/>
     </div>
 </content>
 

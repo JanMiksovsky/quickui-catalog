@@ -1,7 +1,7 @@
 <Control className="TransientMessageDemo">
 
 <content>
-    <Link id="link">Click for a message</Link>
+    <Link ref="link">Click for a message</Link>
 </content>
 
 <script>

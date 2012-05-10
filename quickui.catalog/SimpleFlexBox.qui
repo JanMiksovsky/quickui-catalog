@@ -12,9 +12,9 @@ bugs; it's just not worth using at this point.
 <Control className="SimpleFlexBox">
 
 <content>
-    <div id="SimpleFlexBox_panel1" class="panel" />
-    <div id="SimpleFlexBox_content" />
-    <div id="SimpleFlexBox_panel2" class="panel" />
+    <div ref="SimpleFlexBox_panel1" class="panel" />
+    <div ref="SimpleFlexBox_content" />
+    <div ref="SimpleFlexBox_panel2" class="panel" />
 </content>
 
 <style>

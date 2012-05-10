@@ -9,7 +9,7 @@ http://plugins.jquery.com/project/color-animation.
 <Control className="HighlightEffects">
 
 <content>
-    <div id="HighlightEffects_content"/>
+    <div ref="HighlightEffects_content"/>
 </content>
 
 <style>

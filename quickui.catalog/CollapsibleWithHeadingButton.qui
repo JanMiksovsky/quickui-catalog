@@ -8,11 +8,11 @@ the far right that indicates the panel's collapsed/expanded state.
 <prototype>
     <Collapsible>
         <heading>
-            <BasicButton id="headingButton">
-                <div id="collapsedButtonContent">+</div>
-                <div id="expandedButtonContent">−</div> <!-- Minus sign, not hyphen -->
+            <BasicButton ref="headingButton">
+                <div ref="collapsedButtonContent">+</div>
+                <div ref="expandedButtonContent">−</div> <!-- Minus sign, not hyphen -->
             </BasicButton>
-            <Fader id="CollapsibleWithHeadingButton_heading"/>
+            <Fader ref="CollapsibleWithHeadingButton_heading"/>
         </heading>
     </Collapsible>
 </prototype>

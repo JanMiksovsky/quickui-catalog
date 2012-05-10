@@ -1,7 +1,7 @@
 <Control className="Blog">
 
 <content>
-    <List id="postList" itemClass="BlogPost" mapFunction="entry" />
+    <List ref="postList" itemClass="BlogPost" mapFunction="entry" />
 </content>
 
 <script>

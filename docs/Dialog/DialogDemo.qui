@@ -1,7 +1,7 @@
 <Control className="DialogDemo">
 
 <content>
-    <Link id="dialogLink">Click for a sample dialog</Link>
+    <Link ref="dialogLink">Click for a sample dialog</Link>
 </content>
 
 <script>

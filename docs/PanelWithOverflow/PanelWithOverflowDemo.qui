@@ -1,7 +1,7 @@
 <Control className="PanelWithOverflowDemo">
 
 <content>
-    <PanelWithOverflow id="toolbar">
+    <PanelWithOverflow ref="toolbar">
         <BasicButton class="toolbarButton" generic="false" content="One"/>
         <BasicButton class="toolbarButton" generic="false" content="Two"/>
         <BasicButton class="toolbarButton" generic="false" content="Three"/>

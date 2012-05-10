@@ -1,7 +1,7 @@
 <Control className="ColorSwatchTextBox">
 
 <content>
-    <ColorSwatch id="swatch"/><input type="text" id="ColorSwatchTextBox_content"/>
+    <ColorSwatch ref="swatch"/><input type="text" ref="ColorSwatchTextBox_content"/>
 </content>
 
 <style>

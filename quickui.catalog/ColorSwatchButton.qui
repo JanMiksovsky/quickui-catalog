@@ -2,7 +2,7 @@
 
 <prototype>
     <BasicButton>
-        <ColorSwatch id="swatch"/><div id="ColorSwatchButton_content"/>
+        <ColorSwatch ref="swatch"/><div ref="ColorSwatchButton_content"/>
     </BasicButton>
 </prototype>
 

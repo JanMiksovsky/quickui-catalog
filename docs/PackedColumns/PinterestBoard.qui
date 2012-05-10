@@ -9,7 +9,7 @@
         new heights of the photos. Even though the photos vary widely in height,
         the columns always end up roughly equal in overall height.
     </p>
-    <PackedColumns id="packedColumns"/>
+    <PackedColumns ref="packedColumns"/>
 </content>
 
 <style>
