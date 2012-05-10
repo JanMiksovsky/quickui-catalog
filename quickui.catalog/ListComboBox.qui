@@ -18,12 +18,12 @@ be strings.
 </prototype>
 
 <style>
-#list {
+.list {
     border: none;
     -moz-outline: none;
     outline: none;
 }
-#list > * {
+.list > * {
     display: block;
 }
 

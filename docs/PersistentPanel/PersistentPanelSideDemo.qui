@@ -54,12 +54,12 @@
     margin: 0;
 }
 
-#container {
+.container {
     margin: 0 auto;
     width: 1024px;
 }
 
-#text {
+.text {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 2em;
@@ -69,19 +69,19 @@ h1 {
     margin-top: 0;
 }
 
-#rightPanel {
+.rightPanel {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding-top: 2em;
     width: 300px;
 }
 
-#rightPanel > * {
+.rightPanel > * {
     margin-bottom: 1em;
 }
 
-#important {
-    background: #eee;
+.important {
+    background: .eee;
     border: 1px solid gray;
     padding: 0.5em;
 }

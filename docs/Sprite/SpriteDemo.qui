@@ -25,11 +25,11 @@
     margin-bottom: 0;
 }
 
-#image {
+.image {
     cursor: pointer;
 }
 
-#sprite {
+.sprite {
     width: 89px;
 }
 </style>

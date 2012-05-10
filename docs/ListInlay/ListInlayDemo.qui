@@ -5,7 +5,7 @@
 </content>
 
 <style>
-#list {
+.list {
     height: 250px;
     overflow-y: auto;
     width: 300px;

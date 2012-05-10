@@ -19,7 +19,7 @@
     vertical-align: top;
 }
 
-#FlickrInterestingDay_content {
+.FlickrInterestingDay_content {
     color: white;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -29,11 +29,11 @@
     z-index: 1;
 }
 
-#link {
+.link {
     text-decoration: none;
 }
 
-#image {
+.image {
     border: none; /* For IE */
     display: block;
     height: 75px;
@@ -49,13 +49,13 @@
     border-color: #e5e5e5;
     padding: 3px 0 0 4px;
 }
-.FlickrInterestingDay.today #FlickrInterestingDay_content,
-.FlickrInterestingDay.future #FlickrInterestingDay_content {
+.FlickrInterestingDay.today .FlickrInterestingDay_content,
+.FlickrInterestingDay.future .FlickrInterestingDay_content {
     color: #e5e5e5;
     text-shadow: none;
 }
-.FlickrInterestingDay.today #image,
-.FlickrInterestingDay.future #image {
+.FlickrInterestingDay.today .image,
+.FlickrInterestingDay.future .image {
     visibility: hidden;
 }
 </style>

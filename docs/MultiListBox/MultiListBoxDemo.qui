@@ -12,11 +12,11 @@
     width: 200px;
 }
 
-#animals {
+.animals {
     height: 200px;
 }
 
-#status {
+.status {
     color: gray;
     font-size: smaller;
 }

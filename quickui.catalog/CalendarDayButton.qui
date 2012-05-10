@@ -12,7 +12,7 @@
 {
     padding: 0;
 }
-#button {
+.button {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: block;
@@ -24,20 +24,20 @@
 .CalendarDayButton.generic {
     padding: 0;
 }
-.CalendarDayButton.generic #button {
+.CalendarDayButton.generic .button {
     border: 1px solid transparent;
     padding: 4px;
 }
-.CalendarDayButton.generic #button:hover {
+.CalendarDayButton.generic .button:hover {
     border-color: lightgray;
 }
-.CalendarDayButton.generic.outsideRange #button {
+.CalendarDayButton.generic.outsideRange .button {
     color: #aaa;
 }
-.CalendarDayButton.generic.selected #button {
+.CalendarDayButton.generic.selected .button {
     background-color: #ddd;
 }
-.CalendarDayButton.generic.today.insideRange #button {
+.CalendarDayButton.generic.today.insideRange .button {
     color: darkred;
     font-weight: bold;
 }

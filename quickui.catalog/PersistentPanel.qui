@@ -26,17 +26,17 @@ in a scrolling element nested within some outer scrolling element.
     box-sizing: border-box;
 }
 
-#PersistentPanel_content {
+.PersistentPanel_content {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.PersistentPanel.docked #PersistentPanel_content {
+.PersistentPanel.docked .PersistentPanel_content {
     position: fixed;
 }
 
 /* Generic appearance */
-.PersistentPanel.generic #PersistentPanel_content {
+.PersistentPanel.generic .PersistentPanel_content {
     background: white;
     z-index: 1;
 }

@@ -30,11 +30,11 @@ per day.
     width: 800px;
 }
 
-#header {
+.header {
     border-bottom: 1px dotted #ddd;
     font-size: 12px;
 }
-#header #LateralNavigator_heading {
+.header .LateralNavigator_heading {
     color: #ff0084;
     text-align: center;
 }
@@ -48,7 +48,7 @@ per day.
     text-transform: uppercase;
 }
 
-#calendar {
+.calendar {
     border-collapse: collapse;
     font-size: 18px;
     font-weight: bold;

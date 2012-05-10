@@ -13,22 +13,22 @@
     position: relative;
 }
 
-#SearchBox_content {
+.SearchBox_content {
     display: block;
 }
-#SearchBox_content input {
+.SearchBox_content input {
     margin: 0;              /* For WebKit */
     padding-right: 1.3em;   /* Avoid overlap with icon */
 }
 
-#searchButton {
+.searchButton {
     bottom: 2px;
     padding: 0;
     position: absolute;
     right: 2px;
     top: 2px;
 }
-#searchIcon {
+.searchIcon {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: block;         /* Remove inline padding */
@@ -38,10 +38,10 @@
 }
 
 /* Generic appearance */
-.SearchBox.generic #searchButton.generic {
+.SearchBox.generic .searchButton.generic {
     border: none;
 }
-.SearchBox.generic #searchButton.generic.disabled #searchIcon {
+.SearchBox.generic .searchButton.generic.disabled .searchIcon {
     opacity: 0.5;
 }
 </style>

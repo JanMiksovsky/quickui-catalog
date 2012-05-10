@@ -20,24 +20,24 @@ if the color is not white.
     position: relative;
 }
 
-#Fader_content {
+.Fader_content {
     white-space: nowrap;
 }
 
-.Fader.vertical #Fader_content {
+.Fader.vertical .Fader_content {
     white-space: inherit;
 }
 
-#gradient {
+.gradient {
     position: absolute;
 }
-.Fader.horizontal #gradient {
+.Fader.horizontal .gradient {
     height: 100%;
     right: 0;
     top: 0;
     width: 1.5em;
 }
-.Fader.vertical #gradient {
+.Fader.vertical .gradient {
     bottom: 0;
     height: 1.5em;
     width: 100%;

@@ -28,12 +28,12 @@
     z-index: 0;
 }
 
-#backgroundLeft {
+.backgroundLeft {
     background-position: 0 0;
     left: 0;
 }
 
-#backgroundRight {
+.backgroundRight {
     background-position: right 0;
     /*
      * Use left: 50% instead of right: 0, as the latter doesn't work exactly right on WebKit.
@@ -41,7 +41,7 @@
     left: 50%;
 }
 
-#SpriteButton_content {
+.SpriteButton_content {
     position: relative;
 }
 </style>

@@ -10,12 +10,12 @@
 </content>
 
 <style>
-#buttonPortrait {
+.buttonPortrait {
     height: 100px;
     margin: 5px;
     width: 75px;
 }
-#buttonLandscape {
+.buttonLandscape {
     height: 75px;
     margin: 5px;
     width: 100px;

@@ -27,14 +27,14 @@
     user-select: none;
 }
 
-#header {
+.header {
     height: 30px; /* HACK */
 }
-#header > .HorizontalPanels > .panel {
+.header > .HorizontalPanels > .panel {
     white-space: nowrap;
 }
 
-#LateralNavigator_content {
+.LateralNavigator_content {
     width: 100%;
 }
 
@@ -42,7 +42,7 @@
 .LateralNavigator.generic {
     font-family: sans-serif;
 }
-.LateralNavigator.generic #LateralNavigator_heading {
+.LateralNavigator.generic .LateralNavigator_heading {
     font-weight: bold;
     margin-top: .25em; /* Hacky attempt at vertical centering */
     text-align: center;

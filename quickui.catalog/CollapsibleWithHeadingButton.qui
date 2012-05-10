@@ -18,38 +18,38 @@ the far right that indicates the panel's collapsed/expanded state.
 </prototype>
 
 <style>
-#headingButton {
+.headingButton {
     float: right;
 }
 
-#Collapsible_content {
+.Collapsible_content {
     clear: both;
 }
 
-#collapsedButtonContent {
+.collapsedButtonContent {
     display: none;
 }
-#expandedButtonContent {
+.expandedButtonContent {
     display: block;
 }
-.CollapsibleWithHeadingButton.collapsed #collapsedButtonContent {
+.CollapsibleWithHeadingButton.collapsed .collapsedButtonContent {
     display: block;
 }
-.CollapsibleWithHeadingButton.collapsed #expandedButtonContent {
+.CollapsibleWithHeadingButton.collapsed .expandedButtonContent {
     display: none;
 }
 
 /* Generic appearance */
-.CollapsibleWithHeadingButton.generic #CollapsibleWithHeadingButton_heading {
+.CollapsibleWithHeadingButton.generic .CollapsibleWithHeadingButton_heading {
     background: #e5e5e5;    /* Fader requires explicit background color. */
 }
 
-.CollapsibleWithHeadingButton.generic #headingButton {
+.CollapsibleWithHeadingButton.generic .headingButton {
     font-weight: normal;
     margin-left: 1em;
 }
 
-.CollapsibleWithHeadingButton.generic #headingButton.BasicButton.generic {
+.CollapsibleWithHeadingButton.generic .headingButton.BasicButton.generic {
     padding: 0 0.25em;
 }
 </style>

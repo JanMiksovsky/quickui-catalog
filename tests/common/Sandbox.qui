@@ -27,12 +27,12 @@
 </prototype>
 
 <style>
-#frame {
+.frame {
     height: 100%;
     position: absolute;
     width: 100%;
 }
-#outer {
+.outer {
     padding: 10px;
 }
 </style>

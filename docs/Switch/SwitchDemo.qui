@@ -15,7 +15,7 @@
 </content>
 
 <style>
-#textReadOnly {
+.textReadOnly {
     padding: 3px;
 }
 </style>

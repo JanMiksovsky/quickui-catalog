@@ -16,11 +16,11 @@ is visible at a time. The strip can be programmatically slid left and right.
     width: 0; /* Prevent anything from appearing until we've set width. */
 }
 
-#SlidingPages_content {
+.SlidingPages_content {
     position: relative; /* So we can shift it over */
     white-space: nowrap;
 }
-#SlidingPages_content > * {
+.SlidingPages_content > * {
     display: inline-block;
 }
 </style>

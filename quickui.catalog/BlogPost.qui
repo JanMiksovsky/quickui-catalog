@@ -7,7 +7,7 @@
 
 <style>
 /* Generic appearance */
-.BlogPost.generic #BlogPost_postTitle {
+.BlogPost.generic .BlogPost_postTitle {
     color: inherit;
     font-size: larger;
     font-weight: bold;

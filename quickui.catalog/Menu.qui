@@ -20,19 +20,19 @@
     user-select: none;
 }
 
-#PopupSource_content {
+.PopupSource_content {
     white-space: nowrap;
 }
 
-#shield {
+.shield {
     display: none;  /* Shield isn't shown unless it's requested. */
     position: absolute;
     z-index: 0;
 }
-#PopupSource_popup.popupAlignLeft #shield {
+.PopupSource_popup.popupAlignLeft .shield {
     left: 0;
 }
-#PopupSource_popup.popupAlignRight #shield {
+.PopupSource_popup.popupAlignRight .shield {
     right: 0;
 }
 
@@ -42,31 +42,31 @@
     box-sizing: border-box;
 }
 
-.Menu.generic #PopupSource_content {
+.Menu.generic .PopupSource_content {
     border: 1px solid transparent;
     padding: 0.5em;
 }
-.Menu.generic #PopupSource_content:hover {
+.Menu.generic .PopupSource_content:hover {
     background: #eee;
 }
 
-.Menu.generic #shield {
+.Menu.generic .shield {
     background: white;  /* Same as menu's background color */
     height: 1px;        /* Same as this menu's border-top-width */
     top: -1px;          /* Same as border-top-width but negative */
 }
-.Menu.generic #PopupSource_popup.popupAppearsBelow #shield {
+.Menu.generic .PopupSource_popup.popupAppearsBelow .shield {
     display: block;
 }
 
-.Menu.generic #PopupSource_popup {
+.Menu.generic .PopupSource_popup {
     cursor: default;
     margin: 0;
     outline: none;
     padding: 0.5em 0;
 }
 
-.Menu.generic.opened #PopupSource_content {
+.Menu.generic.opened .PopupSource_content {
     background: white;
     border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);

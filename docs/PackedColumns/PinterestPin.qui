@@ -19,12 +19,12 @@
     width: 192px;
 }
 
-#photo {
+.photo {
     margin-bottom: 10px;
     width: 100%;
 }
 
-#text p {
+.text p {
     margin: 0;
 }
 </style>

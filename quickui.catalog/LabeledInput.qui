@@ -20,7 +20,7 @@ within have the same effect as clicking the input control.
     margin-right: 0;    /* Don't leave unclickable gap to right of input */
 }
 
-#LabeledInput_content {
+.LabeledInput_content {
     padding-left: 3px;  /* Restore normal gap suppressed above */
     user-select: none;
     -khtml-user-select:none;

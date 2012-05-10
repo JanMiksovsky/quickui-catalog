@@ -19,10 +19,10 @@
 .CalendarMonthNavigator.generic .CalendarDay.selected {
     background-color: #ddd;
 }
-.CalendarMonthNavigator.generic #todayContainer {
+.CalendarMonthNavigator.generic .todayContainer {
     text-align: center;
 }
-.CalendarMonthNavigator.generic #buttonToday.generic {
+.CalendarMonthNavigator.generic .buttonToday.generic {
     border: none;
 }
 </style>

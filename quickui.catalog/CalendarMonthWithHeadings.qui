@@ -11,16 +11,16 @@
 </content>
 
 <style>
-#monthName {
+.monthName {
     display: block;
 }
 
-#monthTable {
+.monthTable {
     display: table;
     width: 100%;
 }
 
-#daysOfWeek {
+.daysOfWeek {
     display: table-header-group;
 }
 
@@ -28,12 +28,12 @@
 .CalendarMonthWithHeadings.generic {
     font-family: sans-serif;
 }
-.CalendarMonthWithHeadings.generic #monthName {
+.CalendarMonthWithHeadings.generic .monthName {
     font-weight: bold;
     padding: 4px;
     text-align: center;
 }
-.CalendarMonthWithHeadings.generic #daysOfWeek {
+.CalendarMonthWithHeadings.generic .daysOfWeek {
     font-size: smaller;
 }
 </style>

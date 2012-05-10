@@ -17,7 +17,7 @@
 </prototype>
 
 <style>
-#FlexBoxPolyfill_panel1, #FlexBoxPolyfill_panel2 {
+.FlexBoxPolyfill_panel1, .FlexBoxPolyfill_panel2 {
     background-color: #ddd;
 }
 .FlexBoxPolyfill > * {

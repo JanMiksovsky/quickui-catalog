@@ -21,17 +21,17 @@ Shows text in a condensed font if necessary to squeeze in more text.
  * will still be valid. We use position absolute on the hidden text to pull it
  * out of the flow.
  */
-#condensed {
+.condensed {
     visibility: hidden;
     position: absolute;
 }
 
-.TextCondenser.condensed #normal {
+.TextCondenser.condensed .normal {
     visibility: hidden;
     position: absolute;
 }
 
-.TextCondenser.condensed #condensed {
+.TextCondenser.condensed .condensed {
     visibility: visible;
     position: relative;
 }

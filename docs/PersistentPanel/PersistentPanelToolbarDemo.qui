@@ -46,7 +46,7 @@ p {
     margin: 0.5em 0;
 }
 
-#toolbar {
+.toolbar {
     background: #eee;
     -moz-box-shadow: 0 2px 2px #bbb;
     -webkit-box-shadow: 0 2px 2px #bbb;
@@ -54,7 +54,7 @@ p {
     padding: 0.5em 2em;
 }
 
-#toolbar .BasicButton {
+.toolbar .BasicButton {
     margin-right: 5px;
 }
 </style>

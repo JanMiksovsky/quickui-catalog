@@ -31,7 +31,7 @@ bugs; it's just not worth using at this point.
     box-sizing: border-box;
 }
 
-#SimpleFlexBox_content {
+.SimpleFlexBox_content {
     /* -moz-box-flex: 1; */
     -webkit-box-flex: 1;
     box-flex: 1;

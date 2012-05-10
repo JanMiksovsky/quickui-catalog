@@ -10,11 +10,11 @@
 </prototype>
 
 <style>
-#PopupButton_content, #indicator {
+.PopupButton_content, .indicator {
     display: inline-block;
 }
 
-#PopupButton_content {
+.PopupButton_content {
     display: none;
 }
 </style>

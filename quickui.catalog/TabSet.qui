@@ -23,25 +23,25 @@ The TabSet control will resize itself to be as tall as its tallest child.
     position: relative;
 }
 
-#tabButtons {
+.tabButtons {
     white-space: nowrap; /* So tabs don't wrap. */
 }
 
 /* Generic appearance */
-.TabSet.generic #TabSet_content {
+.TabSet.generic .TabSet_content {
     border: 1px solid gray;
     height: 100%;
 }
-.TabSet.generic #tabButtons {
+.TabSet.generic .tabButtons {
     position: relative;
     top: 1px;
     z-index: 1;
 }
-.TabSet.generic #tabButtons .BasicButton.generic {
+.TabSet.generic .tabButtons .BasicButton.generic {
     margin-left: 0.5em;
     outline: none;
 }
-.TabSet.generic #tabButtons .BasicButton.generic.selected {
+.TabSet.generic .tabButtons .BasicButton.generic.selected {
     border-bottom-color: white;
 }
 </style>
