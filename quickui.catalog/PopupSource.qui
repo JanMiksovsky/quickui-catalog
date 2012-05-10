@@ -79,7 +79,7 @@ PopupSource.prototype.extend({
          */
         var $newContent = this.$PopupSource_content()
                                 .transmute( contentClass, true, true, true );
-        this.referencedElement( "$PopupSource_content", $newContent );
+        this.referencedElement( "PopupSource_content", $newContent );
     }),
 
     initialize: function()

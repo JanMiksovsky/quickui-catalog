@@ -212,7 +212,7 @@ ComboBox.prototype.extend({
     textBoxClass: Control.property[ "class" ]( function( textBoxClass ) {
         
         var $textBox = this.$ComboBox_content().transmute( textBoxClass, true );
-        this.referencedElement( "$ComboBox_content", $textBox );
+        this.referencedElement( "ComboBox_content", $textBox );
         
         // Rebind any content events we want to track.
         this._bindContentEvents();

@@ -46,7 +46,7 @@ DeviceSpecific.prototype.extend({
             // Transmute as requested.
             var $placeholder = $placeholder.transmute( deviceClass, false, true )
             // Update the placeholder reference so it's the right class.
-            this.referencedElement( "$placeholder", $placeholder );
+            this.referencedElement( "placeholder", $placeholder );
         }
         
         if ( deviceContent ) {
