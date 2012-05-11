@@ -2,7 +2,7 @@
 Lets user pick a date with a date-optimzed text box or a navigable month calendar.
 -->
 
-<Control className="DateComboBox" generic="true">
+<Control className="DateComboBox" genericSupport="true">
 
 <prototype>
     <ComboBox textBoxClass="DateTextBox">

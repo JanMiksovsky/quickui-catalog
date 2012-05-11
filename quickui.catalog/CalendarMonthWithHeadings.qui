@@ -1,6 +1,6 @@
 <!-- Month calendar with headings for month name and year, plus days of week -->
 
-<Control className="CalendarMonthWithHeadings" generic="true">
+<Control className="CalendarMonthWithHeadings" genericSupport="true">
 
 <content>
     <MonthName ref="monthName"/>

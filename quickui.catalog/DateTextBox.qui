@@ -5,7 +5,7 @@ supported, plus modified short date formats that permit a missing year or two-
 digit year. If Globalize is not installed, a default date parser is used.
 -->
 
-<Control className="DateTextBox" generic="true">
+<Control className="DateTextBox" genericSupport="true">
 
 <prototype>
     <ValidatingTextBox/>

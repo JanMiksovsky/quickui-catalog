@@ -12,7 +12,7 @@ This is the multiple-selection variation of ListInlay.
 
 -->
 
-<Control className="MultiListInlay" generic="true">
+<Control className="MultiListInlay" genericSupport="true">
     
 <prototype>
     <MultiListBox itemClass="CollapsibleWithHeadingButton"/>

@@ -1,6 +1,6 @@
 <!-- A single day in a calendar -->
 
-<Control className="CalendarDay" generic="true">
+<Control className="CalendarDay" genericSupport="true">
 
 <style>
 /* Subclasses can extend these */

@@ -1,6 +1,6 @@
 <!-- A month in a calendar -->
 
-<Control className="CalendarMonth" generic="true">
+<Control className="CalendarMonth" genericSupport="true">
 
 <content>
     <CalendarWeek/>

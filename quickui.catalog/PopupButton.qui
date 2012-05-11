@@ -1,6 +1,6 @@
 <!-- A button that produces a popup when clicked. -->
 
-<Control className="PopupButton" generic="true">
+<Control className="PopupButton" genericSupport="true">
 
 <prototype>
     <PopupSource contentClass="BasicButton">

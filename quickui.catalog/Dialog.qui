@@ -2,7 +2,7 @@
 Base class for modal dialogs.
 -->
 
-<Control className="Dialog" generic="true">
+<Control className="Dialog" genericSupport="true">
 
 <prototype>
     <Popup

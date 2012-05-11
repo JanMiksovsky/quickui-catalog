@@ -1,4 +1,4 @@
-<Control className="ColorSwatchComboBox" generic="true">
+<Control className="ColorSwatchComboBox" genericSupport="true">
 
 <prototype>
     <ListComboBox textBoxClass="ColorSwatchTextBox" itemClass="ColorSwatchButton"/>

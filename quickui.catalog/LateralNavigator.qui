@@ -1,6 +1,6 @@
 <!-- Shows content with a heading and previous/next arrows. -->
     
-<Control className="LateralNavigator" generic="true">
+<Control className="LateralNavigator" genericSupport="true">
 
 <content>
     <div ref="header">
@@ -70,13 +70,14 @@ LateralNavigator.prototype.extend({
         this.$LateralNavigator_nextButton().click( function() {
             self.next();
         });
+        this._useGenericButtons( this.generic() );
     },
     
-    // Use generic buttons if control itself is generic.
+    
     generic: function( generic ) {
         var result = this._super( generic );
-        if ( generic !== undefined ) {
-            this.find( ".navigatorButton" ).control().generic( generic );
+        if ( generic !== undefined && this.inDocument() ) {
+            this._useGenericButtons( generic );
         }
         return result;
     },
@@ -116,7 +117,18 @@ LateralNavigator.prototype.extend({
     /*
      * Move to the previous step in the sequence.
      */
-    previous: function() {}
+    previous: function() {},
+
+    /*
+     * Use generic buttons if control itself is generic.
+     */    
+    _useGenericButtons: function( generic ) {
+        var buttons = this.find( ".navigatorButton").control();
+        if ( buttons ) {
+            buttons.generic( generic );
+        }
+    }
+
 });
 </script>
 

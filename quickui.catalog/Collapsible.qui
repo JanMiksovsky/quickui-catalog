@@ -2,7 +2,7 @@
 A panel that can expand and collapse.
 -->
 
-<Control className="Collapsible" generic="true">
+<Control className="Collapsible" genericSupport="true">
 
 <content>
     <div ref="Collapsible_heading"/>

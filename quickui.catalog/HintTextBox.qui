@@ -1,6 +1,6 @@
 <!-- A text box that shows a "hint" as to what the user should enter. -->
 
-<Control className="HintTextBox" generic="true">
+<Control className="HintTextBox" genericSupport="true">
 
 <content>
     <input ref="HintTextBox_textBox" type="text"/>

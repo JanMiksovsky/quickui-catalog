@@ -2,7 +2,7 @@
 A message which briefly appears on a page before automatically disappearing. 
 -->
 
-<Control className="TransientMessage" generic="true">
+<Control className="TransientMessage" genericSupport="true">
 
 <style>
 /* Generic appearance */
