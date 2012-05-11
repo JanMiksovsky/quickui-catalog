@@ -26,12 +26,12 @@ The user can select an item with the mouse or keyboard.
     box-sizing: border-box;
 }
 
-/* Handle common case where a button is used as a list item. */
-.ListBox.generic > .BasicButton.generic {
+/* Handle common case where a generic control (e.g., button) is used as a list item. */
+.ListBox.generic > .generic {
     border: none;
     width: 100%;
 }
-.ListBox.generic > .BasicButton.generic.selected {
+.ListBox.generic > .generic.selected {
     background: highlight;
     color: highlighttext;
 }
