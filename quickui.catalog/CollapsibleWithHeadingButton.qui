@@ -3,7 +3,7 @@ A collapsible panel whose heading region, by default, includes a button on
 the far right that indicates the panel's collapsed/expanded state.
 -->
 
-<Control className="CollapsibleWithHeadingButton">
+<Control className="CollapsibleWithHeadingButton" generic="true">
 
 <prototype>
     <Collapsible>
@@ -79,8 +79,6 @@ CollapsibleWithHeadingButton.prototype.extend({
     
     initialize: function() {
         this._super();
-        this.genericIfClassIs( CollapsibleWithHeadingButton );
-        
         var $button = this.$headingButton();
         this.$Collapsible_heading().hover(
             function hoverIn() { $button.addClass( "hovered" ); },

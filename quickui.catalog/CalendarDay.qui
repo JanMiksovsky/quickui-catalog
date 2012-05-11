@@ -1,6 +1,6 @@
 <!-- A single day in a calendar -->
 
-<Control className="CalendarDay">
+<Control className="CalendarDay" generic="true">
 
 <style>
 /* Subclasses can extend these */
@@ -73,7 +73,6 @@ CalendarDay.prototype.extend({
     initialize: function() {
         
         this._super();
-        this.genericIfClassIs( CalendarDay );
         
         var self = this;
         this.click( function( event ) {

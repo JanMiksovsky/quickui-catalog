@@ -2,7 +2,7 @@
 Lets user pick a date with a date-optimzed text box or a navigable month calendar.
 -->
 
-<Control className="DateComboBox">
+<Control className="DateComboBox" generic="true">
 
 <prototype>
     <ComboBox textBoxClass="DateTextBox">
@@ -39,7 +39,6 @@ DateComboBox.prototype.extend({
     initialize: function() {
         
         this._super();
-        this.genericIfClassIs( DateComboBox );
         
         // Sync up dates
         this.date( this.$navigator().date() );

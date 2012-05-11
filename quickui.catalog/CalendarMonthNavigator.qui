@@ -1,6 +1,6 @@
 <!-- Shows a month, allowing using to navigate months and select a date. -->
 
-<Control className="CalendarMonthNavigator">
+<Control className="CalendarMonthNavigator" generic="true">
 
 <prototype>
     <LateralNavigator>
@@ -73,7 +73,6 @@ CalendarMonthNavigator.prototype.extend({
     initialize: function() {
         
         CalendarMonthNavigator.superclass.prototype.initialize.call( this );
-        this.genericIfClassIs( CalendarMonthNavigator );
         
         var self = this;
         this.on({

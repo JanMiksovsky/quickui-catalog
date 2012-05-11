@@ -2,7 +2,7 @@
 A panel that can expand and collapse.
 -->
 
-<Control className="Collapsible">
+<Control className="Collapsible" generic="true">
 
 <content>
     <div ref="Collapsible_heading"/>
@@ -111,10 +111,7 @@ Collapsible.prototype.extend({
     heading: Control.chain( "$Collapsible_heading", "content" ),
     
     initialize: function() {
-        
         this._super();
-        this.genericIfClassIs( Collapsible );
-        
         var self = this;
         this.$Collapsible_heading().click( function() {
             if ( self.toggleOnClick() ) {

@@ -3,7 +3,7 @@ A list box that allows single selection.
 The user can select an item with the mouse or keyboard.
 -->
 
-<Control className="ListBox">
+<Control className="ListBox" generic="true">
 
 <prototype>
     <List itemClass="BasicButton" />
@@ -50,7 +50,6 @@ ListBox.prototype.extend({
     initialize: function() {
         
         this._super();
-        this.genericIfClassIs( ListBox );
         
         /*
          * Try to convince the browser that the list is focusable, but without

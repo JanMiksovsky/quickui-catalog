@@ -1,6 +1,6 @@
 <!-- A text box that shows a "hint" as to what the user should enter. -->
 
-<Control className="HintTextBox">
+<Control className="HintTextBox" generic="true">
 
 <content>
     <input ref="HintTextBox_textBox" type="text"/>
@@ -58,9 +58,7 @@ HintTextBox.prototype.extend({
     hint: Control.chain( "$HintTextBox_hint", "content" ),
     
     initialize: function() {
-        
-        this.genericIfClassIs( HintTextBox );
-        
+        this._super();
         var self = this;
         this.on({
             "click": function() { self._hideHint(); },

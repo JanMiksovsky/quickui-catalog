@@ -1,4 +1,4 @@
-<Control className="ColorSwatchComboBox">
+<Control className="ColorSwatchComboBox" generic="true">
 
 <prototype>
     <ListComboBox textBoxClass="ColorSwatchTextBox" itemClass="ColorSwatchButton"/>
@@ -17,7 +17,6 @@ ColorSwatchComboBox.prototype.extend({
     initialize: function() {
         
         this._super();
-        this.genericIfClassIs( ColorSwatchComboBox );
         
         if ( this.items() == null || this.items().length === 0 ) {
             this.items([

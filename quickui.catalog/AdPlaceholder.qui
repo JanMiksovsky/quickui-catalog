@@ -4,7 +4,7 @@ The size can be specified with either pixel dimensions or a unit name.
 See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 -->
 
-<Control className="AdPlaceholder">
+<Control className="AdPlaceholder" generic="true">
 
 <content>
     <div ref="container">
@@ -76,7 +76,6 @@ AdPlaceholder.prototype.extend({
     }),
 
     initialize: function() {
-        this.genericIfClassIs( AdPlaceholder );
         if ( !this.dimensions() ) {
             // Use default size.
             this.dimensions( "300 x 250" );

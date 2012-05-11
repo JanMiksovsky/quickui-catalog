@@ -2,7 +2,7 @@
 Base class for modal dialogs.
 -->
 
-<Control className="Dialog">
+<Control className="Dialog" generic="true">
 
 <prototype>
     <Popup
@@ -47,11 +47,6 @@ Dialog.prototype.extend({
         return this
             ._super()
             .remove();
-    },
-    
-    initialize: function() {
-        this._super();
-        this.genericIfClassIs( Dialog );
     },
     
     /*

@@ -1,6 +1,6 @@
 <!-- Shows content with a heading and previous/next arrows. -->
     
-<Control className="LateralNavigator">
+<Control className="LateralNavigator" generic="true">
 
 <content>
     <div ref="header">
@@ -63,9 +63,6 @@ LateralNavigator.prototype.extend({
     content: Control.chain( "$LateralNavigator_content", "content" ),
 
     initialize: function() {
-
-        this.genericIfClassIs( LateralNavigator );
-
         var self = this;
         this.$LateralNavigator_previousButton().click( function() {
             self.previous();

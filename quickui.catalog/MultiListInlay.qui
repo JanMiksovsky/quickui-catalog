@@ -12,7 +12,7 @@ This is the multiple-selection variation of ListInlay.
 
 -->
 
-<Control className="MultiListInlay">
+<Control className="MultiListInlay" generic="true">
     
 <prototype>
     <MultiListBox itemClass="CollapsibleWithHeadingButton"/>
@@ -23,7 +23,6 @@ MultiListInlay.prototype.extend({
     
     initialize: function() {
         this._super();
-        this.genericIfClassIs( ListInlay );
         this.mapFunction( function( item ) {
             if ( item === undefined ) {
                 return {

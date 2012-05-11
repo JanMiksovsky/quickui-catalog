@@ -3,7 +3,7 @@ Rotates once through a set of pages automatically when control is loaded.
 The rotation stops if the user clicks to navigate to a specific page.
 -->
 
-<Control className="RotatingPagesWithDots">
+<Control className="RotatingPagesWithDots" generic="true">
 
 <prototype>
     <SlidingPagesWithDots/>
@@ -26,10 +26,7 @@ The rotation stops if the user clicks to navigate to a specific page.
 RotatingPagesWithDots.prototype.extend({
     
     initialize: function() {
-        
         this._super();
-        this.genericIfClassIs( RotatingPagesWithDots );
-        
         var self = this;
         this
             .click( function() { self.stop(); })

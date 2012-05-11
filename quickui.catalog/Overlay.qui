@@ -2,7 +2,7 @@
 A control that covers the entire viewport, typically to swallow clicks.
 -->
 
-<Control className="Overlay">
+<Control className="Overlay" generic="true">
 
 <style>
 {
@@ -17,10 +17,6 @@ A control that covers the entire viewport, typically to swallow clicks.
 
 <script>
 Overlay.prototype.extend({
-    
-    initialize: function() {
-        this.genericIfClassIs( Overlay );
-    },
     
     /*
      * The target of the overlay is the element which will end up visually

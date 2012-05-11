@@ -6,7 +6,7 @@ To animate color properties, use a plugin such as Color Animation at
 http://plugins.jquery.com/project/color-animation.
 -->
 
-<Control className="HighlightEffects">
+<Control className="HighlightEffects" generic="true">
 
 <content>
     <div ref="HighlightEffects_content"/>
@@ -53,8 +53,6 @@ HighlightEffects.prototype.extend({
     }),
     
     initialize: function() {
-        
-        this.genericIfClassIs( HighlightEffects );
 
         var self = this;
         this

@@ -3,7 +3,7 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 (The conventional button representation is a dot.)
 -->
 
-<Control className="SlidingPagesWithDots">
+<Control className="SlidingPagesWithDots" generic="true">
 
 <content>
     <SlidingPages ref="pages"/>
@@ -76,7 +76,6 @@ SlidingPagesWithDots.prototype.extend({
     
     initialize: function() {
         
-        this.genericIfClassIs( SlidingPagesWithDots );
         if ( !this.pageButtonClass() ) {
             this.pageButtonClass( BasicButton );
         }

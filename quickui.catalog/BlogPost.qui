@@ -1,4 +1,4 @@
-<Control className="BlogPost">
+<Control className="BlogPost" generic="true">
 
 <content>
     <a ref="BlogPost_postTitle" target="_blank" />
@@ -25,11 +25,6 @@ BlogPost.prototype.extend({
         this.link( entry.link );
         this.content( entry.content );
     }),
-    
-    initialize: function() {
-        this._super();
-        this.genericIfClassIs( BlogPost );
-    },
     
     postTitle: Control.chain( "$BlogPost_postTitle", "content" ),
     

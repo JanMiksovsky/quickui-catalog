@@ -2,7 +2,7 @@
 A ListBox capable of multiple selection.
 -->
 
-<Control className="MultiListBox">
+<Control className="MultiListBox" generic="true">
 
 <prototype>
     <ListBox/>
@@ -10,11 +10,6 @@ A ListBox capable of multiple selection.
 
 <script>
 MultiListBox.prototype.extend({
-
-    initialize: function() {
-        this._super();
-        this.genericIfClassIs( MultiListBox );
-    },
     
     /*
      * The controls in the list which are currently selected.

@@ -1,6 +1,6 @@
 <!-- A command in a Menu. -->
 
-<Control className="MenuItem">
+<Control className="MenuItem" generic="true">
 
 <prototype>
     <BasicButton/>
@@ -32,14 +32,5 @@
     background: inherit;
 }
 </style>
-
-<script>
-MenuItem.prototype.extend({
-    initialize: function() {
-        this._super();
-        this.genericIfClassIs( MenuItem );
-    }
-});
-</script>
 
 </Control>

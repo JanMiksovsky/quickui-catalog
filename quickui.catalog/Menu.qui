@@ -1,6 +1,6 @@
 <!-- A popup menu. This is typically used in a Menu bar. -->
 
-<Control className="Menu">
+<Control className="Menu" generic="true">
 
 <prototype>
     <PopupSource>
@@ -91,7 +91,6 @@ Menu.prototype.extend({
     initialize: function() {
         
         this._super();
-        this.genericIfClassIs( Menu );
         
         var self = this;
         this.inDocument( function() {

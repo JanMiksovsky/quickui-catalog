@@ -1,6 +1,6 @@
 <!-- A month in a calendar -->
 
-<Control className="CalendarMonth">
+<Control className="CalendarMonth" generic="true">
 
 <content>
     <CalendarWeek/>
@@ -64,9 +64,6 @@ CalendarMonth.prototype.extend({
     },
     
     initialize: function() {
-        
-        this.genericIfClassIs( CalendarMonth );
-        
         if ( !this.date() ) {
             // By default, show current month.
             this.date( CalendarDay.today() );

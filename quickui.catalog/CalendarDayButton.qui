@@ -1,6 +1,6 @@
 <!-- Shows a day of the month as a button. -->
 
-<Control className="CalendarDayButton">
+<Control className="CalendarDayButton" generic="true">
 
 <prototype>
     <CalendarDay>
@@ -45,13 +45,7 @@
 
 <script>
 CalendarDayButton.prototype.extend({
-    
-    content: Control.chain( "$button", "content" ),
-    
-    initialize: function() {
-        this._super();
-        this.genericIfClassIs( CalendarDayButton );
-    }
+    content: Control.chain( "$button", "content" )
 });
 </script>
 

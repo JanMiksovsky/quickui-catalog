@@ -1,6 +1,6 @@
 <!-- Month calendar with headings for month name and year, plus days of week -->
 
-<Control className="CalendarMonthWithHeadings">
+<Control className="CalendarMonthWithHeadings" generic="true">
 
 <content>
     <MonthName ref="monthName"/>
@@ -83,9 +83,6 @@ CalendarMonthWithHeadings.prototype.extend({
     dayNameFormat: Control.chain( "$daysOfWeek", "format" ),
     
     initialize: function() {
-        
-        this.genericIfClassIs( CalendarMonthWithHeadings );
-        
         if ( !this.date() ) {
             // By default, show current month.
             this.date( CalendarDay.today() );

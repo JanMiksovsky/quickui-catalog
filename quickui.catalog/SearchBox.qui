@@ -1,4 +1,4 @@
-<Control className="SearchBox">
+<Control className="SearchBox" generic="true">
 
 <content>
     <HintTextBox ref="SearchBox_content" hint="Search"/>
@@ -67,8 +67,6 @@ SearchBox.prototype.extend({
     hint: Control.chain( "$SearchBox_content", "hint" ),
 
     initialize: function() {
-        
-        this.genericIfClassIs( SearchBox );
         
         if ( !this.query() ) {
             var hostname = window.location.hostname;

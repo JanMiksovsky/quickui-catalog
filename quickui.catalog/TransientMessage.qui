@@ -2,7 +2,7 @@
 A message which briefly appears on a page before automatically disappearing. 
 -->
 
-<Control className="TransientMessage">
+<Control className="TransientMessage" generic="true">
 
 <style>
 /* Generic appearance */
@@ -37,9 +37,6 @@ TransientMessage.prototype.extend({
     duration: Control.property(),
     
     initialize: function() {
-        
-        this.genericIfClassIs( TransientMessage );
-        
         var self = this;
         this.click( function() {
             self.close();

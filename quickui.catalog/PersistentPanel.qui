@@ -14,7 +14,7 @@ scrolling element on the page; it will not work property when placed
 in a scrolling element nested within some outer scrolling element.
 -->
 
-<Control className="PersistentPanel">
+<Control className="PersistentPanel" generic="true">
 
 <content>
     <div ref="PersistentPanel_content"/>
@@ -63,9 +63,6 @@ PersistentPanel.prototype.extend({
     docked: Control.chain( "applyClass/docked" ),
     
     initialize: function() {
-        
-        this.genericIfClassIs( PersistentPanel );
-        
         var self = this;
         this
             .on( "layout", function() {

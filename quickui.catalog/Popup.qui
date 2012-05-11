@@ -2,7 +2,7 @@
 Base class for popups, menus, dialogs, things that appear temporarily over other things.
 -->
 
-<Control className="Popup">
+<Control className="Popup" generic="true">
 
 <style>
 {
@@ -92,7 +92,6 @@ Popup.prototype.extend({
     
     initialize: function()
     {
-        this.genericIfClassIs( Popup );
         if ( this.overlayClass() === undefined ) {
             this.overlayClass( Overlay );
         }

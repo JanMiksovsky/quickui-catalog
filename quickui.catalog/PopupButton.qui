@@ -1,6 +1,6 @@
 <!-- A button that produces a popup when clicked. -->
 
-<Control className="PopupButton">
+<Control className="PopupButton" generic="true">
 
 <prototype>
     <PopupSource contentClass="BasicButton">
@@ -34,12 +34,8 @@ PopupButton.prototype.extend({
      * Content which indicates the button can be clicked to produce a popup.
      * The default indicator is a downward-pointing arrow. 
      */
-    indicator: Control.chain( "$indicator", "content" ),
-    
-    initialize: function() {
-        this._super();
-        this.genericIfClassIs( PopupButton );
-    }
+    indicator: Control.chain( "$indicator", "content" )
+
 });
 </script>
 

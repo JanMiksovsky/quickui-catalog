@@ -10,7 +10,7 @@ By default, this control expects items to be a dictionary of the form:
 
 -->
 
-<Control className="ListInlay">
+<Control className="ListInlay" generic="true">
     
 <prototype>
     <ListBox itemClass="Collapsible"/>
@@ -21,7 +21,6 @@ ListInlay.prototype.extend({
     
     initialize: function() {
         this._super();
-        this.genericIfClassIs( ListInlay );
         this.mapFunction({
             description: "heading",
             content: "content"

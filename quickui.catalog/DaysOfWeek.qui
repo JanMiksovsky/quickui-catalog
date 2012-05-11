@@ -1,6 +1,6 @@
 <!-- Heading for a 7 day week calendar, globalized. -->
 
-<Control className="DaysOfWeek">
+<Control className="DaysOfWeek" generic="true">
 
 <content>
     <div class="dayOfWeek"/>
@@ -62,7 +62,6 @@ DaysOfWeek.prototype.extend({
     }),
 
     initialize: function() {
-        this.genericIfClassIs( DaysOfWeek );
         if ( !this.format() ) {
             this.format( "namesAbbr" );
         }
