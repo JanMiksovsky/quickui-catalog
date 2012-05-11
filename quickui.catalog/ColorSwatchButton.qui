@@ -1,4 +1,4 @@
-<Control className="ColorSwatchButton" genericSupport="true">
+<Control className="ColorSwatchButton">
 
 <prototype>
     <BasicButton>

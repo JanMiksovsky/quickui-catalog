@@ -1,6 +1,6 @@
 <!-- An overlay for a modal dialog which absorbs all clicks. -->
 
-<Control className="ModalOverlay" genericSupport="true">
+<Control className="ModalOverlay">
 
 <prototype>
     <Overlay/>

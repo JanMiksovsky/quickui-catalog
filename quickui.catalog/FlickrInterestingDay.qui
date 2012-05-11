@@ -1,6 +1,6 @@
 <!-- Shows the most interesting photo on Flickr for a given day. -->
 
-<Control className="FlickrInterestingDay">
+<Control className="FlickrInterestingDay" genericSupport="false">
 
 <prototype>
     <CalendarDay>

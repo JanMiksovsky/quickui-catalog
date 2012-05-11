@@ -10,7 +10,7 @@ By default, this control expects items to be a dictionary of the form:
 
 -->
 
-<Control className="ListInlay" genericSupport="true">
+<Control className="ListInlay">
     
 <prototype>
     <ListBox itemClass="Collapsible"/>

@@ -1,6 +1,6 @@
 <!-- Shows a month, allowing using to navigate months and select a date. -->
 
-<Control className="CalendarMonthNavigator" genericSupport="true">
+<Control className="CalendarMonthNavigator">
 
 <prototype>
     <LateralNavigator>

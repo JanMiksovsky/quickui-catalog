@@ -1,6 +1,6 @@
 <!-- A command in a Menu. -->
 
-<Control className="MenuItem" genericSupport="true">
+<Control className="MenuItem">
 
 <prototype>
     <BasicButton/>

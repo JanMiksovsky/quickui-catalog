@@ -1,6 +1,6 @@
 <!-- A button which can hold a selected state. -->
 
-<Control className="ToggleButton" genericSupport="true">
+<Control className="ToggleButton">
 
 <prototype>
     <BasicButton/>
