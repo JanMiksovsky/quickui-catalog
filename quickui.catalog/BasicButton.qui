@@ -1,6 +1,6 @@
 <!-- Button base class. Handles mouse events, abstract styles. -->
 
-<Control className="BasicButton" tag="button">
+<Control className="BasicButton" tag="button" generic="true">
 
 <style>
 {
@@ -111,7 +111,6 @@ BasicButton.prototype.extend({
                 mousedown: function( event ) { self._trackMousedown( event ); },
                 mouseup: function( event ) { self._trackMouseup( event ); }
             })
-            .genericIfClassIs( BasicButton )
             .hover(
                 function( event ) { self._trackMousein( event ); },
                 function( event ) { self._trackMouseout( event ); }
