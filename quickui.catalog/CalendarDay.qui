@@ -71,14 +71,10 @@ CalendarDay.prototype.extend({
     }),
     
     initialize: function() {
-        
-        this._super();
-        
         var self = this;
         this.click( function( event ) {
             self.trigger( "dateSelected", [ self.date() ] );
         });
-        
         if ( !this.date() ) {
             this.date( CalendarDay.today() );
         }

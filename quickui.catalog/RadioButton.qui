@@ -22,7 +22,6 @@ RadioButton.prototype.extend({
     }),
     
     initialize: function() {
-        this._super();
         this.inDocument( function() {
             this._checkName();
         });

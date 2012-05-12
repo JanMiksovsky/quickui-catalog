@@ -95,9 +95,6 @@ ComboBox.prototype.extend({
     dropdownButtonContent: Control.chain( "$dropdownButton", "content" ),
     
     initialize: function() {
-        
-        this._super();
-        
         var self = this;
         this.$PopupSource_popup().on({
             "canceled": function() {

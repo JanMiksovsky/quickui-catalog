@@ -89,9 +89,6 @@ Menu.prototype.extend({
     },
      
     initialize: function() {
-        
-        this._super();
-        
         var self = this;
         this.inDocument( function() {
             this._updateShield();

@@ -78,7 +78,6 @@ CollapsibleWithHeadingButton.prototype.extend({
     heading: Control.chain( "$CollapsibleWithHeadingButton_heading", "content" ),
     
     initialize: function() {
-        this._super();
         var $button = this.$headingButton();
         this.$Collapsible_heading().hover(
             function hoverIn() { $button.addClass( "hovered" ); },

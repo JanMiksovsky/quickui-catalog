@@ -66,7 +66,6 @@ PanelWithOverflow.prototype.extend({
     }),
     
     initialize: function() {
-        this._super();
         var self = this;
         this.on( "layout sizeChanged", function() {
             self.layout();

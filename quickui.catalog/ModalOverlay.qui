@@ -19,7 +19,6 @@
 ModalOverlay.prototype.extend({
     
     initialize: function() {
-        this._super();
         var self = this;
         this.on({
             

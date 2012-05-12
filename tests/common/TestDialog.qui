@@ -12,7 +12,6 @@
 <script>
 TestDialog.prototype.extend({
     initialize: function() {
-        this._super();
         var self = this;
         this.$buttonOk().click(function() {
             self.close();

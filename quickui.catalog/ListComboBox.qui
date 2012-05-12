@@ -48,9 +48,6 @@ ListComboBox.prototype.extend({
     mapFunction: Control.chain( "$list", "mapFunction" ),
     
     initialize: function() {
-        
-        this._super();
-        
         // Clicking an item in the list puts its content into the text box portion.
         var self = this;
         this.$list().on({

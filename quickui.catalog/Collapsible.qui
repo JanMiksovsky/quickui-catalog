@@ -111,7 +111,6 @@ Collapsible.prototype.extend({
     heading: Control.chain( "$Collapsible_heading", "content" ),
     
     initialize: function() {
-        this._super();
         var self = this;
         this.$Collapsible_heading().click( function() {
             if ( self.toggleOnClick() ) {

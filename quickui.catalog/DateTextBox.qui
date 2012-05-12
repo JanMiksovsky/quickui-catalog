@@ -56,14 +56,10 @@ DateTextBox.prototype.extend({
     }),
     
     initialize: function() {
-        
-        this._super();
-        
         var self = this;
         this.blur( function() {
             self._refresh();
         });
-        
         this._updateDatePatterns();
     },
     

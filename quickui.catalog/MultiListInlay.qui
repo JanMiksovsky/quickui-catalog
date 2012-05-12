@@ -22,7 +22,6 @@ This is the multiple-selection variation of ListInlay.
 MultiListInlay.prototype.extend({
     
     initialize: function() {
-        this._super();
         this.mapFunction( function( item ) {
             if ( item === undefined ) {
                 return {

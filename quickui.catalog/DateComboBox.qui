@@ -37,9 +37,7 @@ DateComboBox.prototype.extend({
     }),
     
     initialize: function() {
-        
-        this._super();
-        
+
         // Sync up dates
         this.date( this.$navigator().date() );
 

@@ -58,7 +58,6 @@ HintTextBox.prototype.extend({
     hint: Control.chain( "$HintTextBox_hint", "content" ),
     
     initialize: function() {
-        this._super();
         var self = this;
         this.on({
             "click": function() { self._hideHint(); },

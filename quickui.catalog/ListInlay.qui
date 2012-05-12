@@ -20,7 +20,6 @@ By default, this control expects items to be a dictionary of the form:
 ListInlay.prototype.extend({
     
     initialize: function() {
-        this._super();
         this.mapFunction({
             description: "heading",
             content: "content"

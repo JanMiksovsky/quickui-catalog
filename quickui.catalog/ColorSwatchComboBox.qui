@@ -15,9 +15,6 @@
 <script>
 ColorSwatchComboBox.prototype.extend({
     initialize: function() {
-        
-        this._super();
-        
         if ( this.items() == null || this.items().length === 0 ) {
             this.items([
                 "Black",

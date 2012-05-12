@@ -22,7 +22,6 @@
 ToggleButton.prototype.extend({
     
     initialize: function() {
-        this._super();
         var self = this;
         this.click( function() {
             if ( !self.disabled() ) {
