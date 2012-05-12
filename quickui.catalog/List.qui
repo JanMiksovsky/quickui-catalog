@@ -147,7 +147,8 @@ List.prototype.extend({
 
     // Get all the items, then recreate them again (possibly as different controls).        
     _refresh: function() {
-        this.items( this.items() );
+        var items = this.isDirty() ? this.items() : this._itemsCache();
+        this.items( items );
     },
     
     /*
