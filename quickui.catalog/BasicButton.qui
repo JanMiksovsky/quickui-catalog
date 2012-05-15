@@ -1,6 +1,6 @@
 <!-- Button base class. Handles mouse events, abstract styles. -->
 
-<Control className="BasicButton" tag="button" genericSupport="true">
+<Control className="BasicButton" tag="button" genericDefault="true">
 
 <style>
 {

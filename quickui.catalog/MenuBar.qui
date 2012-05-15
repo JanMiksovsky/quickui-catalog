@@ -8,7 +8,7 @@ so that it (and its overlay) end up above all other elements when any menus
 are open. See notes in the source for the Overlay class.
 -->
 
-<Control className="MenuBar" genericSupport="true">
+<Control className="MenuBar" genericDefault="true">
 
 <style>
 {

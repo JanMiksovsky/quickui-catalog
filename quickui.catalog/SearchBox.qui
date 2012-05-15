@@ -1,4 +1,4 @@
-<Control className="SearchBox" genericSupport="true">
+<Control className="SearchBox" genericDefault="true">
 
 <content>
     <HintTextBox ref="SearchBox_content" hint="Search"/>

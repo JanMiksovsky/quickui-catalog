@@ -6,7 +6,7 @@ the most interesting photo for each day of the month; separate calls have to be 
 per day.
 -->
 
-<Control className="FlickrInterestingNavigator" genericSupport="false">
+<Control className="FlickrInterestingNavigator" genericDefault="false">
 
 <prototype>
     <CalendarMonthNavigator

@@ -1,6 +1,6 @@
 <!-- Shows content with a heading and previous/next arrows. -->
     
-<Control className="LateralNavigator" genericSupport="true">
+<Control className="LateralNavigator" genericDefault="true">
 
 <content>
     <div ref="header">

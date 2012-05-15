@@ -1,4 +1,4 @@
-<Control className="BlogPost" genericSupport="true">
+<Control className="BlogPost" genericDefault="true">
 
 <content>
     <a ref="BlogPost_postTitle" target="_blank" />
