@@ -19,6 +19,12 @@ The user can select an item with the mouse or keyboard.
     outline: none;
 }
 
+/* Optional selection highlighting. */
+.ListBox.highlightSelection > .generic.selected {
+    background: highlight;
+    color: highlighttext;
+}
+
 /* Generic appearance */
 .ListBox.generic {
     border: 1px solid lightgray;
@@ -26,15 +32,10 @@ The user can select an item with the mouse or keyboard.
     box-sizing: border-box;
     cursor: default;
 }
-
 /* Handle common case where a generic control (e.g., button) is used as a list item. */
 .ListBox.generic > .generic {
     border: none;
     width: 100%;
-}
-.ListBox.generic > .generic.selected {
-    background: highlight;
-    color: highlighttext;
 }
 </style>
 
@@ -48,9 +49,15 @@ ListBox.prototype.extend({
      */
     deselectOnBackgroundClick: Control.property.bool( null, true ),
     
+    /*
+     * True if the operating system-dependent "highlight" CSS classes should
+     * be applied to a generic selected item. Default is true.
+     */
+    highlightSelection: Control.property.bool( function( highlightSelection ) {
+        this.toggleClass( "highlightSelection", highlightSelection );
+    }),
+    
     initialize: function() {
-        
-        this._super();
         
         /*
          * Try to convince the browser that the list is focusable, but without
@@ -79,6 +86,11 @@ ListBox.prototype.extend({
                 self._keydown( event );
             }
         });
+        
+        // By default, highlight the selection.
+        if ( this.highlightSelection() === undefined ) {
+            this.highlightSelection( true );
+        }
     },
     
     /*

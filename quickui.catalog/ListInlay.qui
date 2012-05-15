@@ -13,7 +13,7 @@ By default, this control expects items to be a dictionary of the form:
 <Control className="ListInlay">
     
 <prototype>
-    <ListBox itemClass="Collapsible"/>
+    <ListBox itemClass="Collapsible" highlightSelection="false"/>
 </prototype>
 
 <script>

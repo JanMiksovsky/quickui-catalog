@@ -15,7 +15,7 @@ This is the multiple-selection variation of ListInlay.
 <Control className="MultiListInlay">
     
 <prototype>
-    <MultiListBox itemClass="CollapsibleWithHeadingButton"/>
+    <MultiListBox itemClass="CollapsibleWithHeadingButton" highlightSelection="false"/>
 </prototype>
 
 <script>
