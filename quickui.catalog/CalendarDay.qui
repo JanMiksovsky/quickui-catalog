@@ -15,7 +15,7 @@
 .CalendarDay.weekday {}
 .CalendarDay.past {}
 .CalendarDay.future {}
-.CalendarDay.insideRange {}
+.CalendarDay.insideMonth {}
 .CalendarDay.outsideRange {}
 
 /* Generic appearance */

@@ -23,7 +23,7 @@
 
 /* Subclasses can extend these */
 .week {}
-.day.insideRange {}
+.day.insideMonth {}
 .day.outsideRange {}
 </style>
 
