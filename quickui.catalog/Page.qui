@@ -13,10 +13,6 @@
 </style>
 
 <script>
-
-/*
- * General page utility functions.
- */
 Page.prototype.extend({
     
     /*
@@ -99,9 +95,7 @@ Page.extend({
  */
 Control.prototype.extend({
     
-    /*
-     * Look up the page hosting a control.
-     */
+    // Look up the page hosting a control.
     page: function() {
         // Get the containing DOM element subclassing Page that contains the element
         var pages = this.closest( ".Page" );
