@@ -6,4 +6,5 @@ quickui.catalog.*
 controlDocumentation.js
 docs.js
 docs.css
-tests/common/common.*
+test/unittests.js
+test/common/common.*
