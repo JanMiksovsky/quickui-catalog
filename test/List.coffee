@@ -37,6 +37,27 @@ $ ->
     equal $controls.eq(0).foo(), "One"
     
     
+  test "List: mapFunction with object specifying the map between item properties and control properties", ->
+    $list = List.create
+      itemClass: SimpleItem
+      mapFunction:
+        property1: "foo"
+        property2: "bar"
+      items: [
+        { property1: "One", property2: 1 }
+        { property1: "Two", property2: 2 }
+        { property1: "Three", property2: 3 }
+      ]
+    $controls = $list.children().control()
+    $c = $controls.eq(0)
+    equal $c.foo(), "One"
+    equal $c.bar(), 1
+    $list.isDirty true # Clear list's cache of items
+    item = $list.items()[0]
+    equal item.foo, "One"
+    equal item.bar, 1
+    
+    
   test "List: custom mapFunction getter/setter for object items", ->
     $list = List.create
       itemClass: SimpleItem

@@ -77,8 +77,7 @@ List.prototype.extend({
      * should pass the item to the control (e.g., by setting properties on it).
      */
     mapFunction: Control.property(
-        function() { this._refresh(); },
-        "content" // By default, items are passed to the content() property.
+        function() { this._refresh(); }
     ),
     
     _createControlsForItems: function( items ) {
@@ -93,6 +92,39 @@ List.prototype.extend({
         });
         this.content( controls );
         return this;
+    },
+    
+    /*
+     * This map function is used if the host does not provide one.
+     */
+    _defaultMapFunction: function( item ) {
+        var map;
+        if ( item === undefined ) {
+            // Getter
+            map = this.data( "_map" );
+            if ( map ) {
+                // Reconstruct an item using the previously-generated map.
+                return List._applyDictionaryMap.call( this, map );
+            } else {
+                return this.content();
+            }
+        } else {
+            // Setter
+            if ( $.isPlainObject( item ) ) {
+                // Generate a map from the item and save it for later use.
+                map = {};
+                for ( key in item ) {
+                    if ( item.hasOwnProperty( key ) ) {
+                        map[ key ] = key;
+                    }
+                }
+                this.data( "_map", map );
+                List._applyDictionaryMap.call( this, map, item );
+            } else {
+                // Map to content()
+                return this.content( item );
+            }
+        }
     },
     
     _getItemsFromControls: function() {
@@ -110,7 +142,9 @@ List.prototype.extend({
      */
     _getMapFunction: function() {
         var mapFunction = this.mapFunction();
-        if ( typeof mapFunction === "string" ) {
+        if ( mapFunction === undefined ) {
+            return this._defaultMapFunction;
+        } else if ( typeof mapFunction === "string" ) {
             // Invoke the property with the given name.
             return function( item ) {
                 return this[ mapFunction ]( item );
@@ -121,23 +155,7 @@ List.prototype.extend({
         } else {
             // Object dictionary mapping item members -> control properties.
             return function( item ) {
-                if ( item === undefined ) {
-                    // Getter
-                    var result = {};
-                    for ( key in mapFunction ) {
-                        var propertyName = mapFunction[ key ];
-                        var value = this[ propertyName ]();
-                        result[ propertyName ] = value;
-                    }
-                    return result;
-                } else {
-                    // Setter
-                    for ( key in mapFunction ) {
-                        var propertyName = mapFunction[ key ];
-                        var value = item[ key ];
-                        this[ propertyName ]( value );
-                    }
-                }
+                return List._applyDictionaryMap.call( this, mapFunction, item );
             }
         }
     },
@@ -158,6 +176,30 @@ List.prototype.extend({
     _setupControl: function( $control ) {}
 
 });
+
+List.extend({
+    
+    _applyDictionaryMap: function( map, item ) {
+        if ( item === undefined ) {
+            // Getter
+            var result = {};
+            for ( key in map ) {
+                var propertyName = map[ key ];
+                var value = this[ propertyName ]();
+                result[ propertyName ] = value;
+            }
+            return result;
+        } else {
+            // Setter
+            for ( key in map ) {
+                var propertyName = map[ key ];
+                var value = item[ key ];
+                this[ propertyName ]( value );
+            }
+        }
+    }
+
+})
 </script>
 
 </Control>
