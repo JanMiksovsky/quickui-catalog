@@ -35,6 +35,8 @@ The user can select an item with the mouse or keyboard.
 /* Handle common case where a generic control (e.g., button) is used as a list item. */
 .ListBox.generic > .generic {
     border: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
 }
 </style>
