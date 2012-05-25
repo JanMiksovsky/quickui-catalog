@@ -128,7 +128,7 @@ List.prototype.extend({
         }
         var leftoverControls = $existingControls.slice( items.length );
         if ( leftoverControls.length > 0 ) {
-            this( leftoverControls ).remove();
+            $( leftoverControls ).remove();
         }
         return this;
     },
