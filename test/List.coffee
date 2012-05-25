@@ -99,3 +99,18 @@ $ ->
     item = $list.items()[0]
     equal item.foo, "One"
     equal item.bar, 1
+
+
+  test "List: updating item reuses existing controls", ->
+    items = [
+      "One"
+      "Two"
+      "Three"
+    ]
+    $list = List.create
+      items: items
+    $first = $list.controls().eq(0)
+    items.push "Four"
+    $list.items items
+    equal $list.controls().length, 4
+    equal $list.controls().eq(0)[0], $first[0]
