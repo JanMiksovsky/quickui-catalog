@@ -155,15 +155,16 @@ ListBox.prototype.extend({
      * The index of the currently-selected control.
      */
     selectedIndex: Control.iterator( function( selectedIndex ) {
+        var controls = this.controls();
         if ( selectedIndex === undefined ) {
             var control = this.selectedControl();
             return control
-                ? this.controls().index( control )
+                ? controls.index( control )
                 : -1;
         } else {
             var index = parseInt( selectedIndex );
-            var control = ( index >= 0 )
-                ? this.controls().eq( index )
+            var control = ( index >= 0 && index < controls.length )
+                ? controls.eq( index )
                 : null;
             this.selectedControl( control );
         }
