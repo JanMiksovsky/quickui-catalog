@@ -10,6 +10,10 @@
 </prototype>
 
 <style>
+{
+    display: inline-block;
+}
+
 .PopupButton_content, .indicator {
     display: inline-block;
 }
