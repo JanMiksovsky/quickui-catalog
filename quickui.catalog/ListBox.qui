@@ -240,11 +240,23 @@ ListBox.prototype.extend({
             case 36: // Home
                 handled = this._selectFirstControl();
                 break;
+
+            case 37: // Left
+                if ( this._selectedControlIsInline() ) {
+                    handled = this._selectPreviousControl();
+                }
+                break;
             
             case 38: // Up
                 handled = event.altKey
                     ? this._selectFirstControl()
                     : this._selectPreviousControl();
+                break;
+
+            case 39: // Right
+                if ( this._selectedControlIsInline() ) {
+                    handled = this._selectNextControl();
+                }
                 break;
                 
             case 40: // Down
@@ -328,6 +340,23 @@ ListBox.prototype.extend({
             // Scroll down until control is entirely visible.
             this.scrollTop( scrollTop - ( viewPortDimensions.top - controlTop ) );
         }
+    },
+
+    /*
+     * Return true if the selected control is displayed inline.
+     */
+    _selectedControlIsInline: function() {
+        var selectedControl = this.selectedControl();
+        var inline = false;
+        if ( selectedControl ) {
+            var display = selectedControl.css( "display" );
+            inline = $.inArray( display, [
+                "inline",
+                "inline-block",
+                "inline-table"
+            ]) >= 0;
+        }
+        return inline;
     },
     
     _selectFirstControl: function() {
