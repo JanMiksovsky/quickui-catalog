@@ -36,7 +36,7 @@ ValidatingTextBox.prototype.extend({
      */
     content: function( content ) {
         var result = this._super( content );
-        if ( content !== undefined ) {
+        if ( content !== undefined && this.validateOnSet() ) {
             this.validate( true );
         }
         return result;
@@ -107,7 +107,13 @@ ValidatingTextBox.prototype.extend({
      * True if validation should be automatically be performed when the control
      * loses focus. Default is true.
      */
-    validateOnBlur: Control.property.bool( null, true )
+    validateOnBlur: Control.property.bool( null, true ),
+
+    /*
+     * True if validation should be automatically be performed when the control's
+     * content is set programmatically. Default is true.
+     */
+    validateOnSet: Control.property.bool( null, true )
 
 });
 </script>
