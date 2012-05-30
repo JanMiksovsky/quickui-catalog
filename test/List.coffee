@@ -114,3 +114,26 @@ $ ->
     $list.items items
     equal $list.controls().length, 4
     equal $list.controls().eq(0)[0], $first[0]
+
+  test "List: insert item in list with existing items", ->
+    items = [
+      "One"
+      "Two"
+    ]
+    $list = List.create
+      items: items
+    $first = $list.controls().eq(0)
+    $list.insertItemBefore "Three", 1
+    deepEqual $list.items(), [
+      "One"
+      "Three"
+      "Two"
+    ]
+    equal $list.controls().eq(0)[0], $first[0]
+
+  test "List: insert item in empty list", ->
+    $list = List.create()
+    $list.insertItemBefore "One", 0
+    deepEqual $list.items(), [
+      "One"
+    ]

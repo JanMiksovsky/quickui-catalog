@@ -31,12 +31,38 @@ List.prototype.extend({
             }
         });
     },
+
+    /*
+     * Insert a new item before the existing item at the given index.
+     */
+    insertItemBefore: function( item, index ) {
+
+        // Create the control.
+        var itemClass = this.itemClass();
+        var $control = itemClass.create();
+        var mapFunction = this._getMapFunction();
+        mapFunction.call( $control, item );
+
+        // Add the control to the list.
+        var children = this.children();
+        if ( children.length === 0 )
+        {
+            this.append( $control );
+        } else {
+            children.eq( index ).before( $control );
+        }
+
+        // Update the cached item array as well.
+        var items = this._itemsCache() || [];
+        items.splice( index, 0, item );
+        this._itemsCache( items );
+    },
     
     /*
      * True if the list's items have been changed since the controls were first created.
      */
     isDirty: Control.property.bool( null, true ),
-    
+
     /*
      * The class used to render items in the list as controls.
      */
@@ -60,9 +86,12 @@ List.prototype.extend({
             }
             return this._itemsCache();
         } else {
+            // Cache a copy of the items array. We use a copy because the array
+            // may later be manipulated withour knowledge.
+            var itemsCopy = items.slice(0);
             return this
-                ._itemsCache( items )
-                ._createControlsForItems( items )
+                ._itemsCache( itemsCopy )
+                ._createControlsForItems( itemsCopy )
                 .isDirty( false );
         }
     },
