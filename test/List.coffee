@@ -137,3 +137,17 @@ $ ->
     deepEqual $list.items(), [
       "One"
     ]
+
+  test "List: remove existing item", ->
+    items = [
+      "One"
+      "Two"
+      "Three"
+    ]
+    $list = List.create
+      items: items
+    $list.removeItemAt 1
+    deepEqual $list.items(), [
+      "One"
+      "Three"
+    ]

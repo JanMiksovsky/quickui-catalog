@@ -35,7 +35,7 @@ List.prototype.extend({
     /*
      * Insert a new item before the existing item at the given index.
      */
-    insertItemBefore: function( item, index ) {
+    insertItemBefore: Control.iterator( function( item, index ) {
 
         // Create the control.
         var itemClass = this.itemClass();
@@ -56,7 +56,7 @@ List.prototype.extend({
         var items = this._itemsCache() || [];
         items.splice( index, 0, item );
         this._itemsCache( items );
-    },
+    }),
     
     /*
      * True if the list's items have been changed since the controls were first created.
@@ -132,6 +132,19 @@ List.prototype.extend({
         // updated, the unsaved changes are thrown away.
         var items = this._itemsCache();
         this.items( items );    // Force refresh.
+    }),
+
+    /*
+     * Remove the item at the indicated index.
+     */
+    removeItemAt: Control.iterator( function( index ) {
+        var items = this._itemsCache();
+        if ( index >= 0 && index < items.length ) {
+            // Remove the control at that index.
+            this.children().eq( index ).remove();
+            // Remove our cached copy of the corresponding item.
+            items.splice( index, 1 );
+        }
     }),
     
     /*
