@@ -45,7 +45,7 @@ List.prototype.extend({
 
         // Add the control to the list.
         var children = this.children();
-        if ( children.length === 0 )
+        if ( index >= children.length )
         {
             this.append( $control );
         } else {
