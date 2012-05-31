@@ -160,10 +160,6 @@ AutoSizeTextBox.prototype.extend({
         $textCopy.css( "line-height", lineHeight + "px" );
         
         // Mirror the textarea's padding and borders on the text copy.
-        // NOTE: Firefox seems to report 0px padding for the text box, even when there
-        // appears to be 1px padding on a standard textarea. WebKit gets this right.
-        // Perhaps there's some way in Firefox to detect and correct the error, but
-        // for the time being this seems to work okay.
         var borderBottomWidth = $textBox.css( "border-bottom-width" );
         var borderLeftWidth = $textBox.css( "border-left-width" );
         var borderRigthWidth = $textBox.css( "border-right-width" );
@@ -172,6 +168,22 @@ AutoSizeTextBox.prototype.extend({
         var paddingLeft = $textBox.css( "padding-left" );
         var paddingRight = $textBox.css( "padding-right" );
         var paddingTop = $textBox.css( "padding-top" );
+        if ( $.browser.mozilla && !$textBox.is(":visible") ) {
+            // Firefox incorrectly reports the default padding for hidden textareas
+            // as 0px. If the textarea is visible, or the padding has been explicitly
+            // set, the reported padding is correct. But if we're dealing with a
+            // textarea that's currently hidden in Firefox, and the reported padding
+            // all around is 0px, we assume we've hit the Firefox padding bug and
+            // assume the actual default padding of 2px instead.
+            if ( paddingBottom === "0px" && paddingLeft === "0px"
+                && paddingRight === "0px" && paddingTop === "0px" ) {
+                paddingBottom = "2px";
+                paddingLeft = "2px";
+                paddingRight = "2px";
+                paddingTop = "2px";
+            }
+        }
+
         $textCopy.css({
             "border-bottom-width": borderBottomWidth,
             "border-left-width": borderLeftWidth,
