@@ -5,7 +5,6 @@ List tests
 $ ->
     
   class SimpleItem extends Control
-    constructor: -> return Control.coffee()
     foo: Control.property()
     bar: Control.property()
 
