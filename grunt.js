@@ -23,6 +23,6 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask( "default", "coffee watch" );
+    grunt.registerTask( "default", "coffee" );
     
 };
