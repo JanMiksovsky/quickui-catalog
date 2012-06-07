@@ -40,8 +40,7 @@ List.prototype.extend({
         // Create the control.
         var itemClass = this.itemClass();
         var $control = itemClass.create();
-        var mapFunction = this._getMapFunction();
-        mapFunction.call( $control, item );
+        this._mapAndSetup( $control, item );
 
         // Add the control to the list.
         var children = this.children();
@@ -153,25 +152,38 @@ List.prototype.extend({
      * created.
      */
     _createControlsForItems: function( items ) {
+
+        var itemsCount = items.length;
         var itemClass = this.itemClass();
         var mapFunction = this._getMapFunction();
-        var $existingControls = this.controls();
+
         // Create (or reuse) a control for each item.
+        var $existingControls = this.controls();
+        var existingControlsCount = $existingControls.length;
         var $control;
-        for ( var i = 0, length = items.length; i < length; i++ ) {
-            if ( i < $existingControls.length ) {
-                $control = $existingControls.eq( i );
-            } else {
-                $control = itemClass.create();
-                this.append( $control );
-            }
-            mapFunction.call( $control, items[i] );
-            this._setupControl( $control );
+        var i = 0;
+        for ( ; i < itemsCount && i < existingControlsCount; i++ ) {
+            $control = $existingControls.eq( i );
+            this._mapAndSetup( $control, items[i], mapFunction );
         }
+
+        // Create new controls for additional items.
+        var newControls = [];
+        for ( ; i < itemsCount; i++ ) {
+            $control = itemClass.create();
+            this._mapAndSetup( $control, items[i], mapFunction );
+            newControls.push( $control[0] );
+        }
+        if ( newControls.length > 0 ) {
+            this.append.apply( this, newControls );
+        }
+
+        // Remove leftover controls.
         var leftoverControls = $existingControls.slice( items.length );
         if ( leftoverControls.length > 0 ) {
             $( leftoverControls ).remove();
         }
+
         return this;
     },
     
@@ -215,6 +227,15 @@ List.prototype.extend({
     
     // A copy of the items the last time they were created or refreshed.
     _itemsCache: Control.property(),
+
+    // Apply the map function and let the control set itself up.
+    _mapAndSetup: function( $control, item, mapFunction ) {
+        if ( mapFunction === undefined ) {
+            mapFunction = this._getMapFunction();
+        }
+        mapFunction.call( $control, item );
+        this._setupControl( $control );
+    },
     
     /*
      * This can be extended by subclasses who want to perform per-control
