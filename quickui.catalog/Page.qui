@@ -1,6 +1,6 @@
 <!-- General base class for pages. -->
 
-<Control className="Page" genericDefault="true">
+<Control className="Page" generic="true">
 
 <style>
 .Page.fill {

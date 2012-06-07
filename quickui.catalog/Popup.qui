@@ -2,7 +2,7 @@
 Base class for popups, menus, dialogs, things that appear temporarily over other things.
 -->
 
-<Control className="Popup" genericDefault="true">
+<Control className="Popup" generic="true">
 
 <style>
 {

@@ -1,6 +1,6 @@
 <!-- A popup menu. This is typically used in a Menu bar. -->
 
-<Control className="Menu" genericDefault="true">
+<Control className="Menu" generic="true">
 
 <prototype>
     <PopupSource>

@@ -2,7 +2,7 @@
 A control that covers the entire viewport, typically to swallow clicks.
 -->
 
-<Control className="Overlay" genericDefault="true">
+<Control className="Overlay" generic="true">
 
 <style>
 {

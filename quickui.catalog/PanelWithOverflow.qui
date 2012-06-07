@@ -6,7 +6,7 @@ that don't fit invisible. When the menu button is clicked, the invisible items
 are temporarily moved to the menu, then moved back when the menu is closed. 
 -->
 
-<Control className="PanelWithOverflow" genericDefault="true">
+<Control className="PanelWithOverflow" generic="true">
 
 <content>
     <PopupButton ref="menuButton" indicator="»"/>

@@ -15,7 +15,7 @@ forgiven without requiring that the user moves the focus away.
 For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 -->
 
-<Control className="ValidatingTextBox" genericDefault="true">
+<Control className="ValidatingTextBox" generic="true">
 
 <prototype>
     <TextBox/>

@@ -1,4 +1,4 @@
-<Control className="BlogPost" genericDefault="true">
+<Control className="BlogPost" generic="true">
 
 <content>
     <a ref="BlogPost_postTitle" target="_blank" />
@@ -33,4 +33,4 @@ BlogPost.prototype.extend({
 });  
 </script>
 
-</Control>
+</Control>
