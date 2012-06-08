@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,12 +23,64 @@
 
 <title>Mode</title>
 
+<script id="demo">
+function demo() {
+
+var EditableField = Control.sub({
+    className: "EditableField",
+	inherited: {
+		content: [
+			{
+				control: Mode,
+				ref: "mode",
+				content: [
+					{
+	                    control: TextBox,
+	                    ref: "textEditable",
+	                    content: "Hello, world."
+	    			},
+					{
+	                    html: "div",
+	                    ref: "textReadOnly",
+	                    css: { padding: "3px" }
+	    			}
+				],
+				maximize: true,
+			},
+			{
+                control: RadioButton,
+                ref: "radioEdit",
+                content: "Editable",
+                checked: "true"
+    		},
+			{
+                control: RadioButton,
+                ref: "radioRead",
+                content: "Read-only"
+    		}
+		]
+	},
+    initialize: function() {
+        var self = this;
+        this.$radioEdit().click( function( event ) {
+            self.$mode().activeIndex(0);
+        });
+        this.$radioRead().click( function( event ) {
+            self.$textReadOnly().content( self.$textEditable().content() );
+            self.$mode().activeIndex( 1 );
+        });
+    }
+});
+
+$demo.append( EditableField.create() );
+
+}
+</script>
+
 </head>
 
 <body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-demoClass="ModeDemo"
-    data-demoFileMarkup="ModeDemo.qui">
+    data-control="CatalogPageNew">
 
 <div data-property="summary">
     Shows exactly one child at a time. This can be useful, for example,
