@@ -214,6 +214,11 @@ var controlRecords = [
         description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."
     },
     {
+        name: "Mode",
+        demoClass: "ModeDemo",
+        description: "Shows exactly one child at a time; useful for modes."
+    },
+    {
         name: "MonthName",
         description: "Shows the name of the month for a given date."
     },
@@ -315,11 +320,6 @@ var controlRecords = [
         name: "SpriteButton",
         demoClass: "",
         description: "A button that uses a Sprite for its background."
-    },
-    {
-        name: "Switch",
-        demoClass: "SwitchDemo",
-        description: "Shows exactly one child at a time; useful for modes."
     },
     {
         name: "Tab",

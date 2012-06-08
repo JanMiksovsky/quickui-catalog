@@ -27,9 +27,11 @@
 function demo() {
     
 // Simple Tab subclass that adds padding.
-var CustomTab = Tab.subclass({
+var CustomTab = Tab.sub({
     className: "CustomTab",
-    css: { padding: "1em" }
+    inherited: {
+        css: { padding: "1em" }
+    }
 });
 
 $demo.append(

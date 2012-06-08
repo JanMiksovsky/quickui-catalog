@@ -1,11 +1,11 @@
-<Control className="SwitchDemo">
+<Control className="ModeDemo">
 
 <content>
     
-    <Switch ref="switchMode" maximize="true">
+    <Mode ref="switchMode" maximize="true">
         <input type="text" ref="textEditable" value="Hello, world." />
         <div ref="textReadOnly" />
-    </Switch>
+    </Mode>
     
     <input type="radio" name="mode" ref="modeEdit" checked="checked" />
     <label for="modeEdit">Editable</label>
@@ -21,7 +21,7 @@
 </style>
 
 <script>
-SwitchDemo.prototype.extend({
+ModeDemo.prototype.extend({
     initialize: function() {
         var self = this;
         this.$modeEdit().click(function(event) {

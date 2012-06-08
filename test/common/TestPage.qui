@@ -22,19 +22,19 @@
         
         <List ref="list" itemClass="BasicButton"/>
         
-        <Switch ref="switch">
+        <Mode ref="switch">
             <div>Panel one</div>
             <div>Panel two</div>
             <div>Panel three</div>
-        </Switch>
+        </Mode>
         
         <TabSet ref="tabSet" style="height: 100px;">
             <Tab description="Tab A">
-                <Switch ref="switchAnimals">
+                <Mode ref="switchAnimals">
                     <div>Aardvark</div>
                     <div>Ant</div>
                     <div>Anteater</div>
-                </Switch>
+                </Mode>
                 <BasicButton ref="buttonChangeAnimal">Change</BasicButton>
             </Tab>
             <Tab description="Tab B">Bandicoot</Tab>
@@ -48,7 +48,7 @@
         </HorizontalPanels>
         
         <div style="height: 200px; position: relative;">
-            <VerticalPanels ref="verticalPanels" fill="true">
+            <VerticalPanels ref="verticalPanels">
                 <top>Top</top>
                 <content>Vertical panels</content>
                 <bottom>Bottom</bottom>
@@ -110,7 +110,7 @@ TestPage.prototype.extend({
         
         this.$tabSet().on({
             
-            // Raised by any child of a Switch inside the TabSet.
+            // Raised by any child of a Mode inside the TabSet.
             "active": function( event ) {
                 var target = event.target;
                 var s = target.nodeName.toLowerCase();
@@ -127,7 +127,7 @@ TestPage.prototype.extend({
                 console.log( "Element now active: " + s );
             },
             
-            // Raised by a Switch inside the TabSet
+            // Raised by a Mode inside the TabSet
             "activeChildChanged": function( event, index, child ) {
                 console.log( "Active child changed to: " + index );
             },

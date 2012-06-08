@@ -1,16 +1,16 @@
 <!-- Pick exactly one child to show at a time. -->
 
-<Control className="Switch">
+<Control className="Mode">
 
 <style>
 > .hidden {
     display: none !important;
 }
 
-.Switch.maximize {
+.Mode.maximize {
     position: relative;
 }
-.Switch.maximize > .hidden {
+.Mode.maximize > .hidden {
     display: inherit !important;
     position: absolute;
     top: 0;
@@ -19,7 +19,7 @@
 </style>
 
 <script>
-Switch.prototype.extend({
+Mode.prototype.extend({
     
     /*
      * The currently visible child, cast to a control (if applicable).

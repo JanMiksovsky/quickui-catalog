@@ -27,17 +27,17 @@
 function demo() {
 
 // A block of random height
-var Block = Control.subclass({
+var Block = Control.sub({
     className: "Block",
-    prototype: {
-        initialize: function() {
-            var height = 50 + Math.floor(151 * Math.random());
-            this.height( height + "px" );
+    inherited: {
+        css: {
+            border: "1px solid gray",
+            width: "100px"
         }
     },
-    css: {
-        border: "1px solid gray",
-        width: "100px"
+    initialize: function() {
+        var height = 50 + Math.floor(151 * Math.random());
+        this.height( height + "px" );
     }
 });
 
