@@ -326,7 +326,7 @@ ListBox.prototype.extend({
      * Scroll the given control into view.
      */
     _scrollToControl: function( $control ) {
-        
+
         var controlTop = $control.offset().top;
         var controlBottom = controlTop + $control.outerHeight();
 
@@ -362,6 +362,12 @@ ListBox.prototype.extend({
     _selectFirstControl: function() {
         if ( this.controls().length > 0 ) {
             this.selectedIndex( 0 );
+            /*
+             * The list will have already scrolled the first control into view,
+             * but if the list has top padding, the scroll won't be all the way
+             * at the top. So, as a special case, force it to the top.
+             */
+            this.scrollTop( 0 );
             return true;
         }
         return false;
