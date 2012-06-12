@@ -28,6 +28,11 @@ Gradient.prototype.extend({
     start: Control.property(function() { this._redraw(); }),
     
     _redraw: function() {
+
+        if ( !this.inDocument() ) {
+            return;
+        }
+        
         var direction = this.direction();
         var start = this.start();
         var end = this.end();

@@ -58,10 +58,11 @@ Fader.prototype.extend({
         var vertical = ( direction !== "horizontal" );
         this
             .toggleClass( "horizontal", !vertical )
-            .toggleClass( "vertical", vertical )
-            ._redraw()
-            .$gradient()
-                .direction(direction);
+            .toggleClass( "vertical", vertical );
+        if ( this.inDocument() ) {
+            this._redraw();
+        }
+        this.$gradient().direction(direction);
     }),
     
     initialize: function() {
