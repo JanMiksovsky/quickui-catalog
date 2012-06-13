@@ -1,6 +1,7 @@
 .externalToolBuilders
 .project
 .pydevproject
+*.sublime-*
 build
 quickui.catalog.*
 controlDocumentation.js
