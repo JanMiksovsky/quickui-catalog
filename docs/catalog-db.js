@@ -115,6 +115,16 @@ var controlRecords = [
         description: "Base class for modal dialogs"
     },
     {
+        name: "Editable",
+        demoClass: "",
+        description: "A control that supports its own in-place editing"
+    },
+    {
+        name: "EditableText",
+        demoClass: "EditableTextDemo",
+        description: "A text region which can be clicked to edit its contents."
+    },
+    {
         name: "Fader",
         demoClass: "FaderDemo",
         description: "Fades out content on the right or bottom."

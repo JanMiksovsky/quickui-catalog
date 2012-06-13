@@ -1,6 +1,6 @@
 <!-- A text region that can be clicked to edit its contents. -->
 
-<Control className="EditableTextBox">
+<Control className="EditableText">
 
 <prototype>
 	<Editable editClass="TextBox"/>
@@ -14,7 +14,7 @@
  * input, try to match the standard border and padding of input elements so that
  * contents don't appear to shift position when changing the editing state.
  */
-.EditableTextBox.generic .Editable_read {
+.EditableText.generic .Editable_read {
     border: 2px solid transparent;
     cursor: text;
     margin: 0;
@@ -22,13 +22,13 @@
     padding: 1px;
 }
 
-.EditableTextBox.generic .Editable_edit {
+.EditableText.generic .Editable_edit {
 	margin: 0;
 }
 </style>
 
 <script>
-EditableTextBox.prototype.extend({
+EditableText.prototype.extend({
 
 	/*
 	 * True if the pressing Escape in edit mode cancels edit mode.

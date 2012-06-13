@@ -1,0 +1,14 @@
+<Control className="EditableTextDemo">
+
+<content>
+	Name: <EditableText>Rachel Garcia</EditableText>
+</content>
+
+<style>
+.EditableText {
+	display: inline-block;
+	width: 200px;
+}
+</style>
+
+</Control>
