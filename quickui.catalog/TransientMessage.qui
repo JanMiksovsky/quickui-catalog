@@ -25,21 +25,26 @@ TransientMessage.prototype.extend({
      * Close display of the message normally.
      */
     close: function() {
-        return this.remove();
+        var self = this;
+        this.fadeOut( null, function() {
+            self._close();
+        });
+        return this;
     },
     
     /*
      * The time before the message begins to fade out.
      * 
-     * If undefined (the default value), the duration will be calculated
-     * from the length of the message.
+     * If undefined (the default value), the duration will be calculated from
+     * the length of the message. If negative, the message will not
+     * automatically be closed, but can be closed by invoking close().
      */
     duration: Control.property(),
     
     initialize: function() {
         var self = this;
         this.click( function() {
-            self.close();
+            self._close();
         });
     },
 
@@ -57,15 +62,17 @@ TransientMessage.prototype.extend({
             duration = 750 + ( length * 20 );
         }
         
-        var self = this;
-        var timeout = setTimeout( function() {
-            self._fadeOut();
-        }, duration );
-        this._timeout( timeout );
+        if ( duration >= 0 ) {
+            var self = this;
+            var timeout = setTimeout( function() {
+                self.close();
+            }, duration );
+            this._timeout( timeout );
+        }
         
         this
             .positionMessage()
-            .show();
+            .fadeIn(); // TODO: Investigate why this doesn't actually fade in.
         
         return this;
     },
@@ -80,11 +87,13 @@ TransientMessage.prototype.extend({
         });
     },
 
-    _fadeOut: function() {
-        var self = this;
-        this.fadeOut( null, function() {
-            self.close();
-        });
+    _close: function() {
+        var timeout = this._timeout();
+        if ( timeout) {
+            clearTimeout( timeout );
+            this._timeout( null );
+        }
+        this.remove();
     },
     
     _timeout: Control.property()
