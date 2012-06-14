@@ -224,8 +224,8 @@ var controlRecords = [
         description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."
     },
     {
-        name: "Mode",
-        demoClass: "ModeDemo",
+        name: "Modes",
+        demoClass: "ModesDemo",
         description: "Shows exactly one child at a time; useful for modes."
     },
     {

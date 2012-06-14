@@ -21,7 +21,7 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>Mode</title>
+<title>Modes</title>
 
 <script id="demo">
 function demo() {
@@ -31,7 +31,7 @@ var EditableField = Control.sub({
 	inherited: {
 		content: [
 			{
-				control: Mode,
+				control: Modes,
 				ref: "mode",
 				content: [
 					{
@@ -89,8 +89,10 @@ $demo.append( EditableField.create() );
 </div>
 
 <p>
+    For a subclass of Modes optimized for controls with two modes for reading
+    and editing, see <a data-control="CatalogLink">Editable</a>.
     The <a data-control="CatalogLink">SlidingPages</a> control is similar to
-    Mode, adding the ability to slide horizontally between pages.
+    Modes, adding the ability to slide horizontally between pages.
 </p>
 
 </body>

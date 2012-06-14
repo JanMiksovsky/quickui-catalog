@@ -3,10 +3,10 @@
 <Control className="Editable" generic="true">
 
 <prototype>
-    <Mode>
+    <Modes>
         <div ref="Editable_read" tabindex="-1" />
         <div ref="Editable_edit"/>
-    </Mode>
+    </Modes>
 </prototype>
 
 <style>
@@ -42,7 +42,8 @@ Editable.prototype.extend( {
     },
     
     /*
-     * The class of the content in edit mode.
+     * The class of the content in edit mode. This class is not instantiated
+     * until editing() is set to true for the first time.
      */
     editClass: Control.property[ "class" ]( function( editClass ) {
         if ( this.editing() ) {

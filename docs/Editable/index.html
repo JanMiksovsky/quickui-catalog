@@ -33,8 +33,15 @@ A control that supports its own in-place editing. See
 </div>
 
 <p>
-The user interface for the read and edit states can be customized by setting
-the readClass() and editClass() properties, respectively.
+The user interface for the read and edit states can be customized by setting the
+readClass() and editClass() properties, respectively. The edit control is only
+instantiated on demand, when the Editable's editing() property is set to true
+for the first time. This allows an Editable control to avoid loading extra user
+interface elements until they're actually needed.
+</p>
+<p>
+Editable gets its mode-switching behavior by deriving from
+<a data-control="CatalogLink">Modes</a>.
 </p>
 
 </body>

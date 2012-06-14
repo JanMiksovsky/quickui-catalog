@@ -22,19 +22,19 @@
         
         <List ref="list" itemClass="BasicButton"/>
         
-        <Mode ref="switch">
+        <Modes ref="modes">
             <div>Panel one</div>
             <div>Panel two</div>
             <div>Panel three</div>
-        </Mode>
+        </Modes>
         
         <TabSet ref="tabSet" style="height: 100px;">
             <Tab description="Tab A">
-                <Mode ref="switchAnimals">
+                <Modes ref="switchAnimals">
                     <div>Aardvark</div>
                     <div>Ant</div>
                     <div>Anteater</div>
-                </Mode>
+                </Modes>
                 <BasicButton ref="buttonChangeAnimal">Change</BasicButton>
             </Tab>
             <Tab description="Tab B">Bandicoot</Tab>
@@ -105,12 +105,12 @@ TestPage.prototype.extend({
         this.$list().find(".BasicButton").click(function() {
             var button = this;
             var index = self.$list().children().index(button);
-            self.$switch().activeIndex(index);
+            self.$modes().activeIndex(index);
         });
         
         this.$tabSet().on({
             
-            // Raised by any child of a Mode inside the TabSet.
+            // Raised by any child of a Modes inside the TabSet.
             "active": function( event ) {
                 var target = event.target;
                 var s = target.nodeName.toLowerCase();
@@ -127,7 +127,7 @@ TestPage.prototype.extend({
                 console.log( "Element now active: " + s );
             },
             
-            // Raised by a Mode inside the TabSet
+            // Raised by a Modes inside the TabSet
             "activeChildChanged": function( event, index, child ) {
                 console.log( "Active child changed to: " + index );
             },

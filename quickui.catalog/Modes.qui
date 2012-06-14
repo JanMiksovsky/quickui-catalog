@@ -1,16 +1,16 @@
 <!-- Pick exactly one child to show at a time. -->
 
-<Control className="Mode">
+<Control className="Modes">
 
 <style>
 > .hidden {
     display: none !important;
 }
 
-.Mode.maximize {
+.Modes.maximize {
     position: relative;
 }
-.Mode.maximize > .hidden {
+.Modes.maximize > .hidden {
     display: inherit !important;
     position: absolute;
     top: 0;
@@ -19,7 +19,7 @@
 </style>
 
 <script>
-Mode.prototype.extend({
+Modes.prototype.extend({
     
     /*
      * The currently visible child, cast to a control (if applicable).
