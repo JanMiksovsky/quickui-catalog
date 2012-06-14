@@ -2,7 +2,7 @@
 <Control className="_Version">
 <script>
 _Version.prototype.extend({
-	version: "0.9.1"
+	catalog: "0.9.1"
 });
 </script>
 </Control>
