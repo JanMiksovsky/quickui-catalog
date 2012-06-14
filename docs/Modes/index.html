@@ -26,53 +26,44 @@
 <script id="demo">
 function demo() {
 
-var EditableField = Control.sub({
-    className: "EditableField",
-	inherited: {
-		content: [
-			{
-				control: Modes,
-				ref: "mode",
-				content: [
-					{
-	                    control: TextBox,
-	                    ref: "textEditable",
-	                    content: "Hello, world."
-	    			},
-					{
-	                    html: "div",
-	                    ref: "textReadOnly",
-	                    css: { padding: "3px" }
-	    			}
-				],
-				maximize: true,
-			},
-			{
+var ResizableCalendar = Control.sub({
+    className: "ResizableCalendar",
+    inherited: {
+        content: [
+            {
                 control: RadioButton,
-                ref: "radioEdit",
-                content: "Editable",
+                ref: "radioFull",
+                content: "Full",
                 checked: "true"
-    		},
-			{
+            },
+            {
                 control: RadioButton,
-                ref: "radioRead",
-                content: "Read-only"
-    		}
-		]
-	},
+                ref: "radioCompact",
+                content: "Compact"
+            },
+            {
+                control: Modes,
+                ref: "calendarModes",
+                content: [
+                    { control: CalendarMonthNavigator },
+                    { control: DateComboBox }
+                ],
+                css: { "margin-top": "1em" }
+            },
+        ]
+    },
     initialize: function() {
         var self = this;
-        this.$radioEdit().click( function( event ) {
-            self.$mode().activeIndex(0);
+        this.$radioFull().click( function( event ) {
+            self.$calendarModes().activeIndex( 0 );
         });
-        this.$radioRead().click( function( event ) {
-            self.$textReadOnly().content( self.$textEditable().content() );
-            self.$mode().activeIndex( 1 );
+        this.$radioCompact().click( function( event ) {
+            self.$calendarModes().activeIndex( 1 );
         });
     }
 });
 
-$demo.append( EditableField.create() );
+$demo.append( ResizableCalendar.create() );
 
 }
 </script>
@@ -93,6 +84,8 @@ $demo.append( EditableField.create() );
     and editing, see <a data-control="CatalogLink">Editable</a>.
     The <a data-control="CatalogLink">SlidingPages</a> control is similar to
     Modes, adding the ability to slide horizontally between pages.
+    The <a data-control="CatalogLink">TabSet</a> controls adds a row of tab
+    buttons that govern which child of a Modes control is active.
 </p>
 
 </body>
