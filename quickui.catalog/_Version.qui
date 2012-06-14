@@ -1,0 +1,8 @@
+<!-- This file exists so we can work a version number into the catalog. -->
+<Control className="_Version">
+<script>
+_Version.prototype.extend({
+	version: "0.9.1"
+});
+</script>
+</Control>
