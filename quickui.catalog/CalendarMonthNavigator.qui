@@ -71,9 +71,6 @@ CalendarMonthNavigator.prototype.extend({
     dayNameFormat: Control.chain( "$calendar", "dayNameFormat" ),
 
     initialize: function() {
-        
-        CalendarMonthNavigator.superclass.prototype.initialize.call( this );
-        
         var self = this;
         this.on({
             "dateChanged": function( event, date ) {
@@ -130,7 +127,7 @@ CalendarMonthNavigator.prototype.extend({
         var newDate = new Date( this.date().getTime() );
         var dayOfMonth = newDate.getDate();
         newDate.setMonth( newDate.getMonth() + adjustment );
-        if ( newDate.getDate() != dayOfMonth ) {
+        if ( newDate.getDate() !== dayOfMonth ) {
             // We either overshot (tried to go from Oct 31 to "Nov 31") going
             // forward, or undershot (tried to go from Dec 31 to "Nov 31")
             // going backward. In either case, the fix is to back up to the last
