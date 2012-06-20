@@ -24,6 +24,7 @@
 }
 .CalendarDayButton.generic .button {
     border-radius: 0;
+    line-height: 1.2; /* Helps button stay same height when bold is applied */
     padding: 4px;
     text-align: right;
 }
@@ -36,6 +37,7 @@
 }
 .CalendarDayButton.generic.today.insideMonth .button {
     color: darkred;
+    font-weight: bold;
 }
 </style>
 

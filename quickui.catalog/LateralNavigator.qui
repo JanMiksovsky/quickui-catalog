@@ -44,7 +44,7 @@
 }
 .LateralNavigator.generic .LateralNavigator_heading {
     font-weight: bold;
-    margin-top: .25em; /* Hacky attempt at vertical centering */
+    padding-top: 0.25em; /* Hacky attempt at vertical centering */
     text-align: center;
 }
 .LateralNavigator.generic .navigatorButton {

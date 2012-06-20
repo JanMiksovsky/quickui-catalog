@@ -20,6 +20,7 @@
     background-color: #ddd;
 }
 .CalendarMonthNavigator.generic .todayContainer {
+    padding-top: 0.25em;
     text-align: center;
 }
 </style>
