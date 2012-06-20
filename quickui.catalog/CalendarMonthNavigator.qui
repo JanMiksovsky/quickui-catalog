@@ -9,7 +9,7 @@
         </heading>
         <CalendarMonthWithHeadings ref="calendar" showMonthName="false" />
         <div ref="todayContainer">
-            <BasicButton ref="buttonToday">Today</BasicButton>
+            <BasicButton ref="buttonToday" class="quiet">Today</BasicButton>
         </div>
     </LateralNavigator>
 </prototype>
@@ -21,9 +21,6 @@
 }
 .CalendarMonthNavigator.generic .todayContainer {
     text-align: center;
-}
-.CalendarMonthNavigator.generic .buttonToday.generic {
-    border: none;
 }
 </style>
 

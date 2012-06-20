@@ -6,13 +6,13 @@
     <div ref="header">
         <HorizontalPanels>
             <left>
-                <BasicButton ref="LateralNavigator_previousButton" class="navigatorButton" generic="false">&#9664;</BasicButton>
+                <BasicButton ref="LateralNavigator_previousButton" class="flat navigatorButton quiet">&#9664;</BasicButton>
             </left>
             <content>
                 <div ref="LateralNavigator_heading"/>
             </content>
             <right>
-                <BasicButton ref="LateralNavigator_nextButton" class="navigatorButton" generic="false">&#9654;</BasicButton>
+                <BasicButton ref="LateralNavigator_nextButton" class="navigatorButton quiet">&#9654;</BasicButton>
             </right>
         </HorizontalPanels>
     </div>
@@ -48,7 +48,6 @@
     text-align: center;
 }
 .LateralNavigator.generic .navigatorButton {
-    border: none;
     font-size: larger;
     padding: 0 0.25em;
 }
