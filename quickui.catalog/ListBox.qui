@@ -6,7 +6,7 @@ The user can select an item with the mouse or keyboard.
 <Control className="ListBox" generic="true">
 
 <prototype>
-    <List itemClass="BasicButton" />
+    <List/>
 </prototype>
 
 <style>
@@ -20,7 +20,7 @@ The user can select an item with the mouse or keyboard.
 }
 
 /* Optional selection highlighting. */
-.ListBox.highlightSelection > .generic.selected {
+.ListBox.highlightSelection > .selected {
     background: highlight;
     color: highlighttext;
 }

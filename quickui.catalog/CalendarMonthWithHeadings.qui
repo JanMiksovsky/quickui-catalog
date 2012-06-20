@@ -26,6 +26,7 @@
 
 /* Generic appearance */
 .CalendarMonthWithHeadings.generic {
+    display: inline-block;
     font-family: sans-serif;
 }
 .CalendarMonthWithHeadings.generic .monthName {
