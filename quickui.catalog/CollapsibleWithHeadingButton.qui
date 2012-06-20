@@ -80,8 +80,8 @@ CollapsibleWithHeadingButton.prototype.extend({
     initialize: function() {
         var $button = this.$headingButton();
         this.$Collapsible_heading().hover(
-            function hoverIn() { $button.addClass( "hovered" ); },
-            function hoverOut() { $button.removeClass( "hovered" ); }
+            function hoverIn() { $button.addClass( "hover" ); },
+            function hoverOut() { $button.removeClass( "hover" ); }
         );
     }
     

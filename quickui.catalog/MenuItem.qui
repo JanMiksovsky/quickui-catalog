@@ -23,13 +23,13 @@
     display: block !important;
     padding: 0.5em 1em;
 }
-.MenuItem.generic.pressed {
+.MenuItem.generic.active {
     color: inherit;
 }
-.MenuItem.generic:hover {
+.MenuItem.generic.hover {
     background: #eee;
 }
-.MenuItem.generic.disabled:hover {
+.MenuItem.generic.disabled.hover {
     background: inherit;
 }
 </style>

@@ -50,10 +50,10 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     color: #333;
 }
-.toolbarButton.focused {
+.toolbarButton.focus {
     border-color: #4d90fe;
 }
-.toolbarButton.pressed {
+.toolbarButton.active {
     background-color: #e0e0e0;
 }
 

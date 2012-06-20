@@ -66,11 +66,11 @@
 }
 
 /* 
- * We use ".hovered" as well as ":hover" so the hover state can be
+ * We use ".hover" as well as ":hover" so the hover state can be
  * programmatically applied.
  */
 .BasicButton.generic:hover,
-.BasicButton.generic.hovered {
+.BasicButton.generic.hover {
     background-color: #e6e6e6;
     background-image: -moz-linear-gradient(top, white, #eee);
     background-image: -ms-linear-gradient(top, white, #eee);
@@ -85,7 +85,7 @@
 }
 
 .BasicButton.generic:active,
-.BasicButton.generic.pressed {
+.BasicButton.generic.active {
     background-color: #d9d9d9;
     background-image: none;
     border-color: #aaa;
@@ -96,10 +96,15 @@
     outline: 0;
 }
 
-.BasicButton.generic.disabled {
-    background-color: inherit;
-    border-color: #aaa;
-    color: gray;
+.BasicButton.generic.disabled,
+.BasicButton.generic[disabled] {
+    background: whitesmoke;
+    border: 1px solid #ccc;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #999;
+    text-shadow: none;
 }
 </style>
 
@@ -111,9 +116,9 @@ BasicButton.prototype.extend({
      * This will return one of the following values:
      * 
      *  BasicButton.normal
-     *  BasicButton.hovered
-     *  BasicButton.focused
-     *  BasicButton.pressed
+     *  BasicButton.hover
+     *  BasicButton.focus
+     *  BasicButton.active
      *  BasicButton.disabled
      */
     buttonState: function() {
@@ -121,12 +126,12 @@ BasicButton.prototype.extend({
             return BasicButton.state.disabled;
         } else if ( (this.isMouseButtonDown() && this.isMouseOverControl() )
             || this.isKeyPressed()) {
-            return BasicButton.state.pressed;
+            return BasicButton.state.active;
         } else if ( this.isFocused() ) {
-            return BasicButton.state.focused;
+            return BasicButton.state.focus;
         } else if ( this.isMouseOverControl() )
         {
-            return BasicButton.state.hovered;
+            return BasicButton.state.hover;
         }
 
         return BasicButton.state.normal;
@@ -190,8 +195,8 @@ BasicButton.prototype.extend({
     
     _trackBlur: function( event ) {
         this
-            .removeClass( "focused" )
-            // Losing focus causes the button to override any key that had been pressed.
+            .removeClass( "focus" )
+            // Losing focus causes the button to override any key that had been active.
             .isKeyPressed( false )
             .isFocused( false )
             ._renderButton();
@@ -199,7 +204,7 @@ BasicButton.prototype.extend({
     
     _trackFocus: function( event ) {
         this
-            .addClass( "focused" )
+            .addClass( "focus" )
             .isFocused( true )
             ._renderButton();
     },
@@ -220,30 +225,31 @@ BasicButton.prototype.extend({
     
     _trackMousedown: function( event ) {
         this
-            .addClass( "pressed" )
+            .addClass( "active" )
             .isMouseButtonDown( true )
             ._renderButton();
     },
     
     _trackMousein: function( event ) {
         this
-            .addClass( "hovered" )
+            .addClass( "hover" )
             .isMouseOverControl( true )
             ._renderButton();
     },
     
     _trackMouseout: function(event) {
         this
-            .removeClass( "focused hovered pressed" )
+            .removeClass( "focus hover active" )
             .isMouseOverControl( false )
             ._renderButton();
     },
     
     _trackMouseup: function( event ) {
         this
-            .removeClass( "pressed" )
+            .removeClass( "active" )
             .isMouseButtonDown( false )
             ._renderButton();
+        console.log( "BasicButton: _trackMouseUp" );
     }
 
 });
@@ -254,9 +260,9 @@ BasicButton.prototype.extend({
 BasicButton.extend({
     state: {
         normal: 0,
-        hovered: 1,
-        focused: 2,
-        pressed: 3,
+        hover: 1,
+        focus: 2,
+        active: 3,
         disabled: 4
     }
 });
