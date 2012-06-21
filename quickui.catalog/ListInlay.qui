@@ -16,6 +16,13 @@ By default, this control expects items to be a dictionary of the form:
     <ListBox itemClass="Collapsible" highlightSelection="false"/>
 </prototype>
 
+<style>
+/* Generic appearance */
+.ListInlay.generic > * {
+    padding: inherit;
+}
+</style>
+
 <script>
 ListInlay.prototype.extend({
     

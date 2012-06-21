@@ -48,46 +48,42 @@ ListComboBox.prototype.extend({
     mapFunction: Control.chain( "$list", "mapFunction" ),
     
     initialize: function() {
-        // Clicking an item in the list puts its content into the text box portion.
         var self = this;
         this.$list().on({
+        
+            click: function( event ) {
+                // Clicking a list item puts its content into the text box portion.
+                var $closestItem = $( event.target ).closest( self.$list().children() );
+                if ( $closestItem ) {
+                    var itemContent = $closestItem.control().content();
+                    self
+                        .content( itemContent )
+                        .close();
+                }
+            },
             
-                click: function( event ) {
-                    var $closestItem = $( event.target ).closest( self.$list().children() );
-                    if ( $closestItem ) {
-                        var itemContent = $closestItem.control().content();
-                        self
-                            .content( itemContent )
-                            .close();
-                    }
-                },
-                
-                keydown: function( event ) {
-                    if ( event.which === 13 /* Enter */) {
-                        if ( self.opened() ) {
-                            self.close();
-                            event.stopPropagation();
-                            event.preventDefault();
-                        }
-                    }
-                },
-                
-                selectionChanged: function() {
-                    var selectedControl = self.$list().selectedControl();
-                    if ( selectedControl ) {
-                        var content = selectedControl.content();
-                        if ( content !== self.content() ) {
-                            self.content( content );
-                            self._selectText( 0, content.length );
-                        }
+            keydown: function( event ) {
+                if ( event.which === 13 /* Enter */) {
+                    if ( self.opened() ) {
+                        self.close();
+                        event.stopPropagation();
+                        event.preventDefault();
                     }
                 }
+            },
+            
+            selectionChanged: function() {
+                var selectedControl = self.$list().selectedControl();
+                if ( selectedControl ) {
+                    var content = selectedControl.content();
+                    if ( content !== self.content() ) {
+                        self.content( content );
+                        self._selectText( 0, content.length );
+                    }
+                }
+            }
                 
-            });
-        
-        if ( !this.itemClass() ) {
-             this.itemClass( BasicButton );
-        }
+        });
     },
     
     /*
