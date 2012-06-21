@@ -18,6 +18,13 @@ This is the multiple-selection variation of ListInlay.
     <MultiListBox itemClass="CollapsibleWithHeadingButton" highlightSelection="false"/>
 </prototype>
 
+<style>
+/* Generic appearance */
+.MultiListInlay.generic > * {
+    padding: inherit;
+}
+</style>
+
 <script>
 MultiListInlay.prototype.extend({
     
