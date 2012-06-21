@@ -1,37 +1,50 @@
 <!-- A command in a Menu. -->
 
-<Control className="MenuItem">
-
-<prototype>
-    <BasicButton/>
-</prototype>
+<Control className="MenuItem" generic="true">
 
 <style>
 {
     cursor: default;
-    display: block;
+    padding: 0.5em 1em;
     -moz-user-select: -moz-none;
     -webkit-user-select: none;
     user-select: none;
-    width: 100%;
     white-space: nowrap;
 }
 
 /* Generic appearance */
 .MenuItem.generic {
-    border: none;
-    display: block !important;
     padding: 0.5em 1em;
 }
-.MenuItem.generic.active {
-    color: inherit;
-}
-.MenuItem.generic.hover {
+.MenuItem.generic:hover {
     background: #eee;
 }
-.MenuItem.generic.disabled.hover {
+.MenuItem.generic.disabled {
+    color: #999;
+}
+.MenuItem.generic.disabled:hover {
     background: inherit;
 }
 </style>
+
+<script>
+MenuItem.prototype.extend({
+
+    /*
+     * True if the menu item is disabled. The default is false.
+     */
+    disabled: Control.chain( "applyClass/disabled" ),
+
+    initialize: function() {
+        var self = this;
+        this.click( function( event ) {
+            if ( self.disabled() ) {
+                return false;
+            }
+        });
+    }
+
+});
+</script>
 
 </Control>
