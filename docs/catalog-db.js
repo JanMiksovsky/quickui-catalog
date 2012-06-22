@@ -68,11 +68,6 @@ var controlRecords = [
         description: "Shows a block of a CSS color."
     },
     {
-        name: "ColorSwatchButton",
-        demoClass: "ColorSwatchButtonDemo",
-        description: "A button that shows a color's name and color swatch."
-    },
-    {
         name: "ColorSwatchComboBox",
         demoClass: "ColorSwatchComboBoxDemo",
         description: "Lets the user type a CSS color name or value, or choose one from a list."
@@ -163,6 +158,11 @@ var controlRecords = [
         name: "HorizontalPanels",
         demoClass: "HorizontalPanelsDemo",
         description: "Positions panels on the left and/or right and gives the remaining space to a main content area."
+    },
+    {
+        name: "LabeledColorSwatch",
+        demoClass: "LabeledColorSwatchDemo",
+        description: "Shows a color's name alongside a swatch of that color."
     },
     {
         name: "LabeledInput",

@@ -1,4 +1,4 @@
-<Control className="ColorSwatchButton">
+<Control className="LabeledColorSwatch">
 
 <content>
     <ColorSwatch ref="swatch"/><div ref="ColorSwatchButton_content"/>
@@ -12,7 +12,7 @@
 </style>
 
 <script>
-ColorSwatchButton.prototype.extend({
+LabeledColorSwatch.prototype.extend({
     
     /*
      * The color to show.

@@ -1,12 +1,12 @@
 <Control className="ColorSwatchComboBox">
 
 <prototype>
-    <ListComboBox textBoxClass="ColorSwatchTextBox" itemClass="ColorSwatchButton"/>
+    <ListComboBox textBoxClass="ColorSwatchTextBox" itemClass="LabeledColorSwatch"/>
 </prototype>
 
 <style>
 /* Generic appearance */
-.ColorSwatchComboBox.generic .ColorSwatchButton.generic {
+.ColorSwatchComboBox.generic .LabeledColorSwatch.generic {
     padding-left: 0;
     padding-right: 0;
 }    

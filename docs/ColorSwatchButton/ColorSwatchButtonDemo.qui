@@ -1,7 +1,0 @@
-<Control className="ColorSwatchButtonDemo">
-
-<content>
-    <ColorSwatchButton>LightSeaGreen</ColorSwatchButton>
-</content>
-
-</Control>

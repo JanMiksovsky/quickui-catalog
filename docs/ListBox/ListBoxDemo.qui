@@ -1,7 +1,7 @@
 <Control className="ListBoxDemo">
 
 <content>
-    <ListBox ref="colors" itemClass="ColorSwatchButton"/>
+    <ListBox ref="colors" itemClass="LabeledColorSwatch"/>
     <div ref="status">
         Selected color: <span ref="color"/>
     </div>
