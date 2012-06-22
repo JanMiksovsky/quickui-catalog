@@ -29,7 +29,7 @@ The TabSet control will resize itself to be as tall as its tallest child.
 
 /* Generic appearance */
 .TabSet.generic .TabSet_content {
-    border: 1px solid gray;
+    border: 1px solid #888;
     height: 100%;
 }
 .TabSet.generic .tabButtons {
@@ -38,11 +38,19 @@ The TabSet control will resize itself to be as tall as its tallest child.
     z-index: 1;
 }
 .TabSet.generic .tabButtons .BasicButton.generic {
+    background: none;
+    border-color: #bbb;
+    border-bottom-color: transparent;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color: #444;
     margin-left: 0.5em;
     outline: none;
 }
 .TabSet.generic .tabButtons .BasicButton.generic.selected {
+    border-color: #888;
     border-bottom-color: white;
+    color: inherit;
 }
 </style>
 
