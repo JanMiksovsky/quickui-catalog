@@ -2,18 +2,18 @@
 
 <content>
     <PanelWithOverflow ref="toolbar">
-        <BasicButton class="toolbarButton" generic="false" content="One"/>
-        <BasicButton class="toolbarButton" generic="false" content="Two"/>
-        <BasicButton class="toolbarButton" generic="false" content="Three"/>
-        <BasicButton class="toolbarButton" generic="false" content="Four"/>
-        <BasicButton class="toolbarButton" generic="false" content="Five"/>
-        <BasicButton class="toolbarButton" generic="false" content="Six"/>
-        <BasicButton class="toolbarButton" generic="false" content="Seven"/>
-        <BasicButton class="toolbarButton" generic="false" content="Eight"/>
-        <BasicButton class="toolbarButton" generic="false" content="Nine"/>
-        <BasicButton class="toolbarButton" generic="false" content="Ten"/>
-        <BasicButton class="toolbarButton" generic="false" content="Eleven"/>
-        <BasicButton class="toolbarButton" generic="false" content="Twelve"/>
+        <BasicButton class="toolbarButton" content="One"/>
+        <BasicButton class="toolbarButton" content="Two"/>
+        <BasicButton class="toolbarButton" content="Three"/>
+        <BasicButton class="toolbarButton" content="Four"/>
+        <BasicButton class="toolbarButton" content="Five"/>
+        <BasicButton class="toolbarButton" content="Six"/>
+        <BasicButton class="toolbarButton" content="Seven"/>
+        <BasicButton class="toolbarButton" content="Eight"/>
+        <BasicButton class="toolbarButton" content="Nine"/>
+        <BasicButton class="toolbarButton" content="Ten"/>
+        <BasicButton class="toolbarButton" content="Eleven"/>
+        <BasicButton class="toolbarButton" content="Twelve"/>
     </PanelWithOverflow>
 </content>
 
@@ -29,35 +29,16 @@
     padding: 10px;
 }
 
-.BasicButton {
-    padding: 0.5em;
-    color: #444;
-    font-size: 11px;
-    font-weight: bold;
-}
-
 .toolbarButton {
-    border-radius: 2px;
-    border: 1px solid #e5e5e5;
     margin-right: 10px;
-    padding: 0.5em 1em;
 }
 .toolbarButton:last-child {
     margin-right: 0;
 }
-.toolbarButton:hover {
-    border-color: #c6c6c6;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: #333;
-}
-.toolbarButton.focus {
-    border-color: #4d90fe;
-}
-.toolbarButton.active {
-    background-color: #e0e0e0;
-}
 
 .Popup .toolbarButton {
+    background: none;
+    border-color: transparent;
     margin-right: 0;
     margin-bottom: 5px;
 }

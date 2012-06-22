@@ -186,6 +186,14 @@ BasicButton.prototype.extend({
      * True if the mouse is currently over the button.
      */
     isMouseOverControl: Control.property.bool( null, false ),
+
+    /*
+     * True if the button's "quiet" style should be applied. The generic quiet
+     * styling shows no background or border effects in the button's normal
+     * state -- only when the user is interacting with the button -- so that
+     * the button can more easily blend in as a component of other controls.
+     */
+    quiet: Control.chain( "applyClass/quiet" ),
     
     _renderButtonState: function( buttonState ) {},
     

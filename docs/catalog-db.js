@@ -225,7 +225,7 @@ var controlRecords = [
     },
     {
         name: "Modes",
-        demoClass: "ModesDemo",
+        demoClass: "",
         description: "Shows exactly one child at a time; useful for modes."
     },
     {

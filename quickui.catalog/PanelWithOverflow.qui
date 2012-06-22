@@ -9,7 +9,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 <Control className="PanelWithOverflow" generic="true">
 
 <content>
-    <PopupButton ref="menuButton" indicator="»"/>
+    <PopupButton ref="menuButton" indicator="»" quiet="true"/>
     <div ref="PanelWithOverflow_content"/>
 </content>
 
@@ -39,11 +39,6 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 /* In the menu, contents layout switches to vertical arrangement. */
 .menuButton .PopupSource_popup > * {
     display: block;
-}
-
-/* Generic appearance */
-.PanelWithOverflow.generic .menuButton .BasicButton.generic {
-    border-color: transparent;
 }
 </style>
 
