@@ -41,7 +41,7 @@ the far right that indicates the panel's collapsed/expanded state.
 
 /* Generic appearance */
 .CollapsibleWithHeadingButton.generic .CollapsibleWithHeadingButton_heading {
-    background: #e5e5e5;    /* Fader requires explicit background color. */
+    background: #f0f0f0;    /* Fader requires explicit background color. */
 }
 
 .CollapsibleWithHeadingButton.generic .headingButton {

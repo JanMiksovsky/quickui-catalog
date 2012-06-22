@@ -24,7 +24,7 @@ A panel that can expand and collapse.
 }
 
 .Collapsible.generic .Collapsible_heading {
-    background: #e5e5e5;
+    background: #f0f0f0;
     font-weight: bold;
     padding: 0.5em 0.5em 0.5em 1em;
 }
