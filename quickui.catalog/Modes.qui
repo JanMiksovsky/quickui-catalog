@@ -113,6 +113,28 @@ Modes.prototype.extend({
      * as its tallest child, whether or not that child is currently active.
      */
     maximize: Control.chain( "applyClass/maximize" ),
+
+    /*
+     * Show the next child. If the last child is currently shown, this has no
+     * effect.
+     */
+    next: Control.iterator( function() {
+        var index = this.activeIndex();
+        if ( index < this.children().length - 1 ) {
+            this.activeIndex( index + 1 );
+        }
+    }),
+
+    /*
+     * Show the previous child. If the first child is currently shown, this has
+     * no effect.
+     */
+    previous: Control.iterator( function() {
+        var index = this.activeIndex();
+        if ( index > 0 ) {
+            this.activeIndex( index - 1 );
+        }
+    }),
     
     /*
      * The size of a child may have changed. Make the control as tall as the
