@@ -158,6 +158,10 @@ BasicButton.prototype.extend({
      * the :disabled pseudo-class.
      */
     disabled: Control.chain( "prop/disabled", function( disabled ) {
+        if ( disabled ) {
+            // Force removal of interactive states.
+            this.removeClass( "active focus hover" );
+        }
         this
             .toggleClass( "disabled", disabled )
             ._renderButton();
