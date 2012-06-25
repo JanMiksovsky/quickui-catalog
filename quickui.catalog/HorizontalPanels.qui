@@ -21,10 +21,20 @@
 .HorizontalPanels.constrainHeight .SimpleFlexBox_content {
     overflow-y: auto;
 }
+
+.HorizontalPanels.centerSides {
+    -webkit-box-align: center;
+    box-align: center;
+}
 </style>
 
 <script>
 HorizontalPanels.prototype.extend({
+
+    /*
+     * True if the side panels should be vertically centered.
+     */
+    centerSides: Control.chain( "applyClass/centerSides" ),
 
     /*
      * The content of the left panel.
