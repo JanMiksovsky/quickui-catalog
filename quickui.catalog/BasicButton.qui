@@ -59,14 +59,6 @@
     vertical-align: middle;
 }
 
-/* Opt out of border, background, etc. in the normal state. */
-.BasicButton.quiet {
-    background: none;
-    border-color: transparent;
-    box-shadow: none;
-    filter: none;
-}
-
 .BasicButton.generic:focus {
     outline: thin dotted #333 \9; /* IE 8/9 */
 }
@@ -114,6 +106,19 @@
     box-shadow: none;
     color: #999;
     text-shadow: none;
+}
+.BasicButton.generic.quiet.disabled,
+.BasicButton.generic.quiet[disabled] {
+    background: none;
+    border-color: transparent;
+}
+
+/* Opt out of border, background, etc. in the normal state. */
+.BasicButton.quiet {
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+    filter: none;
 }
 </style>
 
