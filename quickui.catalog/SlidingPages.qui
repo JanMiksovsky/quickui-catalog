@@ -38,6 +38,7 @@ SlidingPages.prototype.extend({
             this.$SlidingPages_content().animate({
                 "left": -left
             }, "fast" );
+            this.trigger( "activeChildChanged" );
         }
     }),
 
@@ -63,8 +64,30 @@ SlidingPages.prototype.extend({
             this.activeIndex(0);
         }
     },
+
+    /*
+     * Show the next child. If the last child is currently shown, this has no
+     * effect.
+     */
+    next: Control.iterator( function() {
+        var index = this.activeIndex();
+        if ( index < this.pages().length - 1 ) {
+            this.activeIndex( index + 1 );
+        }
+    }),
     
     pages: Control.chain( "$SlidingPages_content", "children" ),
+
+    /*
+     * Show the previous child. If the first child is currently shown, this has
+     * no effect.
+     */
+    previous: Control.iterator( function() {
+        var index = this.activeIndex();
+        if ( index > 0 ) {
+            this.activeIndex( index - 1 );
+        }
+    }),
     
     // Force all pages and the control itself to the maximium width of the pages.
     _adjustWidths: function() {
