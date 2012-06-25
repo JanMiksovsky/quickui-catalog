@@ -87,19 +87,6 @@ bugs; it's just not worth using at this point.
 SimpleFlexBox.prototype.extend({
     
     /*
-     * Returns true if the browser supports the CSS flexible layout module,
-     * or false if the control is using JavaScript layout logic.
-     */ 
-    browserSupportsFlexBox: function() {
-        var flexBoxVariants = [
-            "box",
-            /* "-moz-box", */
-            "-webkit-box"
-        ];
-        return $.inArray( this.css( "display" ), flexBoxVariants ) >= 0;
-    },
-    
-    /*
      * The content of the main center panel.
      */
     content: Control.chain( "$SimpleFlexBox_content", "content" ),
@@ -149,7 +136,7 @@ SimpleFlexBox.prototype.extend({
              return false;
         }
 
-        var flexBox = this.browserSupportsFlexBox();
+        var flexBox = SimpleFlexBox.usingFlexBox( this );
         var constrainHeight = this.constrainHeight();
         
         /*
@@ -251,6 +238,23 @@ SimpleFlexBox.prototype.extend({
     }
     
 });
+
+/* Class methods */
+SimpleFlexBox.extend({
+
+    /*
+     * Returns true if the given element is using the CSS flexible layout module.
+     */
+    usingFlexBox: function( $element ) {
+        var flexBoxVariants = [
+            "box",
+            /* "-moz-box", */
+            "-webkit-box"
+        ];
+        return $.inArray( $element.css( "display" ), flexBoxVariants ) >= 0;
+    }
+
+});
 </script>
 
-</Control>
+</Control>

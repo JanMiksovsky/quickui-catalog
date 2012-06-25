@@ -21,30 +21,32 @@
 .HorizontalPanels.constrainHeight .SimpleFlexBox_content {
     overflow-y: auto;
 }
-
-.HorizontalPanels.centerSides {
-    -webkit-box-align: center;
-    box-align: center;
-}
 </style>
 
 <script>
 HorizontalPanels.prototype.extend({
 
     /*
-     * True if the side panels should be vertically centered.
-     */
-    centerSides: Control.chain( "applyClass/centerSides" ),
-
-    /*
      * The content of the left panel.
      */    
     left: Control.chain( "_panel1" ),
+
+    leftClass: Control.property[ "class" ]( function( leftClass ) {
+        var $new = this.$SimpleFlexBox_panel1().transmute( leftClass, true );
+        $new.addClass( "panel" );
+        this.referencedElement( "SimpleFlexBox_panel1", $new );
+    }),
     
     /*
      * The content of the right panel.
      */
-    right: Control.chain( "_panel2" )
+    right: Control.chain( "_panel2" ),
+
+    rightClass: Control.property[ "class" ]( function( right ) {
+        var $new = this.$SimpleFlexBox_panel2().transmute( right, true );
+        $new.addClass( "panel" );
+        this.referencedElement( "SimpleFlexBox_panel2", $new );
+    })
 
 });
 </script>
