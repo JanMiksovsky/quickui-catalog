@@ -138,6 +138,11 @@ SlidingPages.extend({
             "-webkit-transition",
             "transition"
         ];
+        // HACK for IE8, in which jQuery 1.7.2 will throw an exception if we
+        // try to get the css("transition") property.
+        if ( $.browser.msie && parseInt( $.browser.version ) < 9 ) {
+            return false;
+        }
         for ( var i = 0; i < transitionProperties.length; i++ ) {
             var value = $element.css( transitionProperties[i] );
             if ( value !== undefined && value !== "" ) {
