@@ -1,0 +1,118 @@
+<!-- Contains a set of controls which can be navigated in sequence. -->
+
+<Control className="Sequence" generic="true">
+
+<script>
+Sequence.prototype.extend({
+    
+    /*
+     * The currently visible control. The getter returns the control as an
+     * instance of the appropriate control class.
+     */
+    activeControl: Control.iterator( function( activeControl ) {
+        if ( activeControl === undefined ) {
+            return this.controls().filter( ".active" ).eq(0).cast( jQuery );
+        } else {
+            
+            /*
+             * Apply a "inactive" style instead of just forcing display to none.
+             * If we did that, we would have no good way to undo the hiding.
+             * A simple .toggle(true) would set display: block, which wouldn't
+             * be what we'd want for inline elements.
+             */
+            this.controls().not( activeControl )
+                .addClass( "inactive" )
+                .removeClass( "active" );
+
+            var index = this.controls().index( activeControl );
+
+            // Tell the child it's now active, and show it.
+            $( activeControl )
+                .trigger( "active" )
+                .removeClass( "inactive" )
+                .addClass( "active" );
+            
+            this
+                // Trigger our own activeControlChanged event.
+                .trigger( "activeControlChanged", [ index, activeControl ] )
+            
+                // In case the new child changed our size.
+                .checkForSizeChange();
+            
+            return this;
+        }
+    }),
+    
+    /*
+     * The index of the currently visible child.
+     */
+    activeIndex: function( index ) {
+        if ( index === undefined ) {
+            return this.controls().index( this.activeControl() );
+        } else {
+            return this.activeControl( this.controls().eq( index ) );
+        }
+    },
+    
+    /*
+     * The array of elements that will be held; only one will be shown at a time.
+     * 
+     * If the set changes, this will attempt to preserve the one that was
+     * previously active. Otherwise, the first element is made active.
+     */
+    content: function( value ) {
+        
+        var previousControl = this.activeControl();
+        var result = this._super( value );
+        
+        if ( value !== undefined ) {
+            if ( previousControl && previousControl.parent()[0] === this[0] ) {
+                // Still have previously active child; hide other controls.
+                this.activeControl( previousControl );
+            } else {
+                this.activeIndex( 0 );
+            }
+        }
+        
+        return result;
+    },
+
+    /*
+     * The set of controls in the sequence. By default, this is the control's
+     * children.
+     */
+    controls: Control.chain( "children" ),
+    
+    initialize: function() {
+        if ( this.activeIndex() < 0 ) {
+            // Show first child by default. 
+            this.activeIndex(0);
+        }
+    },
+
+    /*
+     * Show the next child. If the last child is currently shown, this has no
+     * effect.
+     */
+    next: Control.iterator( function() {
+        var index = this.activeIndex();
+        if ( index < this.controls().length - 1 ) {
+            this.activeIndex( index + 1 );
+        }
+    }),
+
+    /*
+     * Show the previous child. If the first child is currently shown, this has
+     * no effect.
+     */
+    previous: Control.iterator( function() {
+        var index = this.activeIndex();
+        if ( index > 0 ) {
+            this.activeIndex( index - 1 );
+        }
+    }),
+
+});
+</script>
+
+</Control>

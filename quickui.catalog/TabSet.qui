@@ -89,9 +89,9 @@ TabSet.prototype.extend({
         });
         
         this.$TabSet_content().on({
-            "activeChildChanged": function( event, index, child ) {
+            "activeControlChanged": function( event, index, child ) {
                 /*
-                 * Map the Modes's activeChildChanged event to a more
+                 * Map the Modes's activeControlChanged event to a more
                  * semantically specific activeTabChanged event.
                  * 
                  * Only map active events coming from our own Modes; ignore

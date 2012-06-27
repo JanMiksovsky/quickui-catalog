@@ -68,11 +68,13 @@ SlidingPagesWithDots.prototype.extend({
     }),
     
     /*
-     * The array of elements to show as pages.
+     * The set of elements to show as pages.
      */
     content: Control.chain( "$pages", "content", function() {
-        this.$pageButtons().count( this.pages().length );
+        this.$pageButtons().count( this.controls().length );
     }),
+    
+    controls: Control.chain( "$pages", "controls" ),
     
     initialize: function() {
         
@@ -102,9 +104,7 @@ SlidingPagesWithDots.prototype.extend({
     /*
      * The class used to render the buttons to navigate between pages.
      */    
-    pageButtonClass: Control.chain( "$pageButtons", "repeatClass" ),
-    
-    pages: Control.chain( "$pages", "pages" )
+    pageButtonClass: Control.chain( "$pageButtons", "repeatClass" )
 
 });
 </script>

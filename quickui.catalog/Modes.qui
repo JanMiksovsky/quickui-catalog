@@ -2,15 +2,22 @@
 
 <Control className="Modes">
 
+<prototype>
+    <Sequence/>
+</prototype>
+
 <style>
-> .hidden {
+> .inactive {
     display: none !important;
 }
 
 .Modes.maximize {
     position: relative;
 }
-.Modes.maximize > .hidden {
+.Modes.maximize > .active {
+    visiblity: visible;
+}
+.Modes.maximize > .inactive {
     display: inherit !important;
     position: absolute;
     top: 0;
@@ -20,92 +27,15 @@
 
 <script>
 Modes.prototype.extend({
-    
-    /*
-     * The currently visible child, cast to a control (if applicable).
-     */
-    activeChild: Control.iterator( function( activeChild ) {
-        if ( activeChild === undefined ) {
-            return this.children().not( ".hidden" ).eq(0).cast( jQuery );
-        } else {
-            
-            /*
-             * Apply a "hidden" style instead of just forcing display to none.
-             * If we did that, we would have no good way to undo the hiding.
-             * A simple .toggle(true) would set display: block, which wouldn't
-             * be what we'd want for inline elements.
-             */
-            this.children().not( activeChild ).toggleClass( "hidden", true );
 
-            var activeChildIndex = this.children().index( activeChild );
-
-            // Tell the child it's now active, and show it.
-            $( activeChild )
-                .trigger( "active" )
-                .toggleClass( "hidden", false );
-            
-            this
-                // Trigger our own activeChildChanged event.
-                .trigger( "activeChildChanged", [ activeChildIndex, activeChild ] )
-            
-                // In case the new child changed our size.
-                .checkForSizeChange();
-            
-            return this;
-        }
-    }),
-    
-    /*
-     * The index of the currently visible child.
-     */
-    activeIndex: function( index ) {
-        if ( index === undefined ) {
-            return this.children().index( this.activeChild() );
-        } else {
-            return this.activeChild( this.children().eq( index ) );
-        }
-    },
-    
-    /*
-     * The array of elements that will be held; only one will be shown at a time.
-     * 
-     * If the set changes, this will attempt to preserve the one that was
-     * previously active. Otherwise, the first element is made active.
-     */
-    content: function( value ) {
-        
-        var previousChild = this.activeChild();
-        var result = this._super( value );
-        
-        if ( value !== undefined ) {
-            if ( previousChild && previousChild.parent()[0] === this[0] ) {
-                // Still have previously active child; hide other children.
-                this.activeChild( previousChild );
-            } else {
-                this.activeIndex( 0 );
-            }
-        }
-        
-        return result;
-    },
-    
     initialize: function() {
-        
         var self = this;
         this.on( "layout sizeChanged", function() {
-            self._childSizeChanged();
+            self._sizeChanged();
         });
-
-        // TODO: Call _childSizeChanged() on a window resize event too.        
         this.inDocument( function() {
-            this._childSizeChanged();
+            this._sizeChanged();
         });
-        
-        if ( this.activeIndex() < 0 ) {
-            // Show first child by default. 
-            this.activeIndex(0);
-        }
-        
     },
     
     /*
@@ -113,45 +43,23 @@ Modes.prototype.extend({
      * as its tallest child, whether or not that child is currently active.
      */
     maximize: Control.chain( "applyClass/maximize" ),
-
-    /*
-     * Show the next child. If the last child is currently shown, this has no
-     * effect.
-     */
-    next: Control.iterator( function() {
-        var index = this.activeIndex();
-        if ( index < this.children().length - 1 ) {
-            this.activeIndex( index + 1 );
-        }
-    }),
-
-    /*
-     * Show the previous child. If the first child is currently shown, this has
-     * no effect.
-     */
-    previous: Control.iterator( function() {
-        var index = this.activeIndex();
-        if ( index > 0 ) {
-            this.activeIndex( index - 1 );
-        }
-    }),
     
     /*
      * The size of a child may have changed. Make the control as tall as the
      * tallest child.
      */
-    _childSizeChanged: function() {
-        
+    _sizeChanged: function() {
+
         if ( !this.maximize() ) {
             return;
         }
         
-        var children = this.children();
-        if ( children.length === 0 ) {
+        var controls = this.controls();
+        if ( controls.length === 0 ) {
             return;
         }
         
-        var childHeights = children.map( function( index, child ) {
+        var childHeights = controls.map( function( index, child ) {
             return $( child ).outerHeight( true );
         }).get();
         
