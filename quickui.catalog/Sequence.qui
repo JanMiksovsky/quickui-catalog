@@ -55,7 +55,7 @@ Sequence.prototype.extend({
     },
     
     /*
-     * The array of elements that will be held; only one will be shown at a time.
+     * The array of elements in the sequence; only one will be shown at a time.
      * 
      * If the set changes, this will attempt to preserve the one that was
      * previously active. Otherwise, the first element is made active.
@@ -63,7 +63,11 @@ Sequence.prototype.extend({
     content: function( value ) {
         
         var previousControl = this.activeControl();
-        var result = this._super( value );
+        var container = this._container();
+        var result = ( this[0] === container[0] )
+            ? this._super( value )
+            : container.content( value );
+        
         
         if ( value !== undefined ) {
             if ( previousControl && previousControl.parent()[0] === this[0] ) {
@@ -78,10 +82,9 @@ Sequence.prototype.extend({
     },
 
     /*
-     * The set of controls in the sequence. By default, this is the control's
-     * children.
+     * The set of controls in the sequence.
      */
-    controls: Control.chain( "children" ),
+    controls: Control.chain( "_container", "children" ),
     
     initialize: function() {
         if ( this.activeIndex() < 0 ) {
@@ -111,6 +114,10 @@ Sequence.prototype.extend({
             this.activeIndex( index - 1 );
         }
     }),
+
+    _container: function() {
+        return this;
+    }
 
 });
 </script>

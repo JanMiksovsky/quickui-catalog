@@ -4,9 +4,11 @@ is visible at a time. The strip can be programmatically slid left and right.
 -->
 <Control className="SlidingPages">
 
-<content>
-    <div ref="SlidingPages_content"/>
-</content>
+<prototype>
+    <Sequence>
+        <div ref="SlidingPages_content"/>
+    </Sequence>
+</prototype>
 
 <style>
 {
@@ -33,38 +35,42 @@ SlidingPages.prototype.extend({
     /*
      * The index of the page currently being shown.
      */
-    activeIndex: Control.property.integer( function( activeIndex ) {
-        var page = this.controls().eq( activeIndex );
-        if ( page.length > 0 ) {
-            var left = page.position().left;
-            if ( SlidingPages.hasTransitions( this.$SlidingPages_content() ) ) {
-                // Use CSS animation.
-                this.$SlidingPages_content().css( "left", -left );
-            }
-            else {
-                // Fall back to jQuery animation.
-                this.$SlidingPages_content().animate({
-                    "left": -left
-                }, "fast" );
-            }
-            this.trigger( "activeControlChanged" );
+    activeIndex: function( activeIndex ) {
+        var result = this._super( activeIndex );
+        if ( activeIndex !== undefined ) {
+            var page = this.controls().eq( activeIndex );
+            if ( page.length > 0 ) {
+                var left = page.position().left;
+                if ( SlidingPages.hasTransitions( this.$SlidingPages_content() ) ) {
+                    // Use CSS animation.
+                    this.$SlidingPages_content().css( "left", -left );
+                }
+                else {
+                    // Fall back to jQuery animation.
+                    this.$SlidingPages_content().animate({
+                        "left": -left
+                    }, "fast" );
+                }
+            }            
         }
-    }),
+        return result;
+    },
 
     /*
-     * The array of elements to use as controls.
+     * The array of elements in the sequence; only one will be shown at a time.
+     * 
+     * If the set changes, this will attempt to preserve the one that was
+     * previously active. Otherwise, the first element is made active.
      */
-    content: Control.chain( "$SlidingPages_content", "content", function() {
-        this._adjustWidths();
-    }),
-    
-    /*
-     * The set of controls in the sequence.
-     */
-    controls: Control.chain( "$SlidingPages_content", "children" ),
+    content: function( content ) {
+        var result = this._super( content );
+        if ( content !== undefined ) {
+            this._adjustWidths();
+        }
+        return result;
+    },
     
     initialize: function() {
-
         var self = this;
         this
             .inDocument( function() {
@@ -73,33 +79,7 @@ SlidingPages.prototype.extend({
             .on( "layout sizeChanged", function() {
                 self._adjustWidths();
             });
-
-        if ( !this.activeIndex() ) {
-            this.activeIndex(0);
-        }
     },
-
-    /*
-     * Show the next child. If the last child is currently shown, this has no
-     * effect.
-     */
-    next: Control.iterator( function() {
-        var index = this.activeIndex();
-        if ( index < this.controls().length - 1 ) {
-            this.activeIndex( index + 1 );
-        }
-    }),
-
-    /*
-     * Show the previous child. If the first child is currently shown, this has
-     * no effect.
-     */
-    previous: Control.iterator( function() {
-        var index = this.activeIndex();
-        if ( index > 0 ) {
-            this.activeIndex( index - 1 );
-        }
-    }),
     
     // Force all controls and the control itself to the maximium width of the controls.
     _adjustWidths: function() {
@@ -124,7 +104,9 @@ SlidingPages.prototype.extend({
         if ( maxPageOuterWidth > 0 ) {
             this.width( maxPageOuterWidth );
         }
-    }
+    },
+
+    _container: Control.chain( "$SlidingPages_content" )
     
 });
 
