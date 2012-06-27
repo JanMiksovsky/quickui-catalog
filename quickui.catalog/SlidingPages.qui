@@ -18,6 +18,8 @@ is visible at a time. The strip can be programmatically slid left and right.
 
 .SlidingPages_content {
     position: relative; /* So we can shift it over */
+    -webkit-transition: 0.2s;
+    transition: 0.2s; /* Same as jQuery's "fast" */
     white-space: nowrap;
 }
 .SlidingPages_content > * {
@@ -35,9 +37,16 @@ SlidingPages.prototype.extend({
         var page = this.pages().eq( activeIndex );
         if ( page.length > 0 ) {
             var left = page.position().left;
-            this.$SlidingPages_content().animate({
-                "left": -left
-            }, "fast" );
+            if ( SlidingPages.hasTransitions( this.$SlidingPages_content() ) ) {
+                // Use CSS animation.
+                this.$SlidingPages_content().css( "left", -left );
+            }
+            else {
+                // Fall back to jQuery animation.
+                this.$SlidingPages_content().animate({
+                    "left": -left
+                }, "fast" );
+            }
             this.trigger( "activeChildChanged" );
         }
     }),
@@ -115,6 +124,30 @@ SlidingPages.prototype.extend({
     }
     
 });
+
+/*
+ * Class methods
+ */
+SlidingPages.extend({
+
+    /*
+     * Returns true if the given element has CSS transitions applied to it.
+     */
+    hasTransitions: function( $element ) {
+        transitionProperties = [
+            "-webkit-transition",
+            "transition"
+        ];
+        for ( var i = 0; i < transitionProperties.length; i++ ) {
+            var value = $element.css( transitionProperties[i] );
+            if ( value !== undefined && value !== "" ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+})
 </script>
 
 </Control>
