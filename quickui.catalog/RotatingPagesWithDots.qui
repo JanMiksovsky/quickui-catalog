@@ -1,5 +1,5 @@
 <!--
-Rotates once through a set of pages automatically when control is loaded.
+Rotates once through a set of controls automatically when control is loaded.
 The rotation stops if the user clicks to navigate to a specific page.
 -->
 
@@ -37,7 +37,7 @@ RotatingPagesWithDots.prototype.extend({
      * back to the first page and stops.
      */
     rotate: Control.iterator( function () {
-        var count = this.pages().length;
+        var count = this.controls().length;
         if ( count > 0 ) {
             
             var index = this.activeIndex();

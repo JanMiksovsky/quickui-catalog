@@ -4,10 +4,10 @@ A set of tabbed pages.
 Each child of the content will be treated as a page. If the child has a function
 called description(), that will be used as the name on the tab.
 
-The TabSet control will resize itself to be as tall as its tallest child.
+The Tabs control will resize itself to be as tall as its tallest child.
 -->
 
-<Control className="TabSet" generic="true">
+<Control className="Tabs" generic="true">
 
 <content>
     <VerticalPanels ref="tabPanels">
@@ -28,16 +28,16 @@ The TabSet control will resize itself to be as tall as its tallest child.
 }
 
 /* Generic appearance */
-.TabSet.generic .TabSet_content {
+.Tabs.generic .TabSet_content {
     border: 1px solid #888;
     height: 100%;
 }
-.TabSet.generic .tabButtons {
+.Tabs.generic .tabButtons {
     position: relative;
     top: 1px;
     z-index: 1;
 }
-.TabSet.generic .tabButtons .BasicButton.generic {
+.Tabs.generic .tabButtons .BasicButton.generic {
     background: none;
     border-color: #bbb;
     border-bottom-color: transparent;
@@ -48,7 +48,7 @@ The TabSet control will resize itself to be as tall as its tallest child.
     margin-right: 0.25em;
     outline: none;
 }
-.TabSet.generic .tabButtons .BasicButton.generic.selected {
+.Tabs.generic .tabButtons .BasicButton.generic.selected {
     border-color: #888;
     border-bottom-color: white;
     color: inherit;
@@ -56,7 +56,7 @@ The TabSet control will resize itself to be as tall as its tallest child.
 </style>
 
 <script>
-TabSet.prototype.extend({
+Tabs.prototype.extend({
     
     /*
      * The array of elements to be shown as tabs.
@@ -66,7 +66,7 @@ TabSet.prototype.extend({
     }),
 
     /*
-     * True if the TabSet should vertically fill its container.
+     * True if the Tabs should vertically fill its container.
      */    
     fill: Control.chain( "$tabPanels", "fill" ),
     

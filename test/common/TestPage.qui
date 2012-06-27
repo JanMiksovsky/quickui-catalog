@@ -28,7 +28,7 @@
             <div>Panel three</div>
         </Modes>
         
-        <TabSet ref="tabSet" style="height: 100px;">
+        <Tabs ref="Tabs" style="height: 100px;">
             <Tab description="Tab A">
                 <Modes ref="switchAnimals">
                     <div>Aardvark</div>
@@ -39,7 +39,7 @@
             </Tab>
             <Tab description="Tab B">Bandicoot</Tab>
             <Tab description="Tab C">Chickadee</Tab>
-        </TabSet>
+        </Tabs>
         
         <HorizontalPanels ref="horiziontalPanels" style="height: 50px;">
             <left>Left</left>
@@ -108,9 +108,9 @@ TestPage.prototype.extend({
             self.$modes().activeIndex(index);
         });
         
-        this.$tabSet().on({
+        this.$Tabs().on({
             
-            // Raised by any child of a Modes inside the TabSet.
+            // Raised by any child of a Modes inside the Tabs.
             "active": function( event ) {
                 var target = event.target;
                 var s = target.nodeName.toLowerCase();
@@ -127,17 +127,17 @@ TestPage.prototype.extend({
                 console.log( "Element now active: " + s );
             },
             
-            // Raised by a Modes inside the TabSet
+            // Raised by a Modes inside the Tabs
             "activeControlChanged": function( event, index, child ) {
                 console.log( "Active child changed to: " + index );
             },
             
-            // Raised by the TabSet
+            // Raised by the Tabs
             "activeTabChanged": function( event, index, tab ) {
                 console.log( "Active tab changed to: " + index );
             },
             
-            // Raised by the TabSet
+            // Raised by the Tabs
             "tabButtonClick": function( event, index, tab ) {
                 console.log( "Click on tab: " + index );
             }

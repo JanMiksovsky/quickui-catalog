@@ -21,7 +21,7 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>TabSet</title>
+<title>Tabs</title>
 
 <script id="demo">
 function demo() {
@@ -35,7 +35,7 @@ var CustomTab = Tab.sub({
 });
 
 $demo.append(
-    TabSet.create()
+    Tabs.create()
         .content([
             CustomTab.create()
                 .description( "Photo" )
@@ -64,11 +64,16 @@ tabs by clicking these buttons.
 </div>
 
 <p>
-To obtain the button labels, the TabSet inspects each content element to see if
+To obtain the button labels, the Tabs inspects each content element to see if
 it has a description() property. If so, the value of that property is used as
 the button label. For convenience, the <a data-control="CatalogLink">Tab</a>
 class has a predefined description() property, and can be used to host tabbed
 page contents, or as the basis for a custom tab control.
+</p>
+
+<p>
+This wraps a <a data-control="CatalogLink">Modes</a> control. For modal behavior
+without the tabs, use Modes directly.
 </p>
 
 </body>

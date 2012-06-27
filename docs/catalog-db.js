@@ -333,10 +333,10 @@ var controlRecords = [
     },
     {
         name: "Tab",
-        description: "A tabbed page which can be hosted in a TabSet."
+        description: "A tabbed page which can be hosted in a Tabs."
     },
     {
-        name: "TabSet",
+        name: "Tabs",
         demoClass: "TabSetDemo",
         description: "A set of pages which can be navigated by a set of tab buttons across the top."
     },
