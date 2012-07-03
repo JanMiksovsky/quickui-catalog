@@ -1,0 +1,45 @@
+@import "mixins";
+
+.NewCalendarMonthNavigator {
+  display: table;
+  .user-select(none);
+
+  .navigator {
+
+    // HACK: This rule group and the next refer directly to LateralNavigator
+    // internals. It'd be nice to redo this so we don't need to do that.
+    .panels {
+      white-space: nowrap;
+    }
+
+    .NewLateralNavigator_content {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+
+      .monthHeading {
+        .box-flex(1);
+        line-height: 1.0;
+        font-weight: bold;
+      }
+    }
+
+  }
+
+  .calendar {
+    width: 100%;
+  }
+
+  /* Generic appearance */
+  &.generic {
+    .monthHeading {
+      text-align: center;
+    }
+    .todayContainer {
+      padding-top: 0.25em;
+      text-align: center;
+    }
+  }
+
+}

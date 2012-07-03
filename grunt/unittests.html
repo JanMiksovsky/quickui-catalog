@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Unit Tests</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/qunit/git/qunit.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
+<script type="text/javascript" src="sortDependencies.js"></script>
+
+<script>
+function tests() {
+
+    test( "typical", function() {
+        var map = [
+            [ "A", "C" ],   // Forward reference
+            [ "B", "E" ],   // Forward reference
+            [ "D", null ],  // No dependency
+            [ "C", "B" ],   // Backward reference
+            [ "E", null ],  // No dependency
+            [ "F", "G" ]    // Dependent on something outside map
+        ];
+        var keys = getKeys( sortDependencies( map ) );
+        deepEqual( keys, [ "D", "E", "F", "B", "C", "A" ] );
+    });
+
+
+    test( "degenerate", function() {
+        var map = [
+            [ "A", null ],
+            [ "B", null ],
+            [ "C", null ],
+            [ "D", null ],
+            [ "E", null ]
+        ];
+        var keys = getKeys( sortDependencies( map ) );
+        deepEqual( keys, [ "A", "B", "C", "D", "E" ] );
+    });
+
+    test( "worst case", function() {
+        var map = [
+            [ "A", "B" ],
+            [ "B", "C" ],
+            [ "C", "D" ],
+            [ "D", "E" ],
+            [ "E", null ]
+        ];
+        var keys = getKeys( sortDependencies( map ) );
+        deepEqual( keys, [ "E", "D", "C", "B", "A" ] );
+    });
+
+
+    test( "circular reference", function() {
+        var map = [
+            [ "A", "B" ],
+            [ "B", "C" ],
+            [ "C", "A" ]
+        ];
+        raises( function() {
+            sortDependencies( map );
+        });
+    });
+
+
+    test( "empty", function() {
+        var map = [];
+        var keys = getKeys( sortDependencies( map ) );
+        deepEqual( keys, [] );
+    });
+
+}
+
+function getKeys( dependencies ) {
+    var keys = [];
+    for ( var i = 0; i < dependencies.length; i++ ) {
+        keys.push( dependencies[i][0] );
+    }
+    return keys;
+}
+
+$( function() {
+    tests();
+});
+</script>
+
+</head>
+
+<body>
+    <h1 id="qunit-header">sortDependencies Unit Tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+
+</html>
