@@ -5,7 +5,7 @@ layout if not.
 
 # TODO: More refactoring to share work with SimpleFlexBox.
 
-class window.NewVerticalAlign extends Control
+class window.VerticalAlign extends Control
 
   initialize: ->
     @inDocument ->

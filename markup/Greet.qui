@@ -1,7 +1,0 @@
-<Control className="Greet">
-
-<content>
-    Hello, world!
-</content>
-
-</Control>

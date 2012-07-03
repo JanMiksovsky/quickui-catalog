@@ -2,14 +2,14 @@
 Shows a month, allowing using to navigate months and select a date.
 ###
 
-class window.NewCalendarMonthNavigator extends Control
+class window.CalendarMonthNavigator extends Control
 
   inherited:
     content: [
       {
-        control: "NewLateralNavigator"
+        control: "LateralNavigator"
         ref: "navigator"
-        contentClass: "NewVerticalAlign"
+        contentClass: "VerticalAlign"
         content:
           control: "MonthAndYear", ref: "monthHeading"
       }

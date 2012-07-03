@@ -7,7 +7,7 @@ to get the most interesting photo for each day of the month; separate calls have
 to be made per day.
 ###
 
-class window.NewFlickrInterestingNavigator extends NewCalendarMonthNavigator
+class window.FlickrInterestingNavigator extends CalendarMonthNavigator
   className: "FlickrInterestingNavigator"
   inherited:
     dayClass: "FlickrInterestingDay"

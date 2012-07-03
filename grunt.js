@@ -48,14 +48,14 @@ module.exports = function(grunt) {
                     "markup/markup.js",
                     "coffee/coffee.js"
                 ],
-                dest: "quickui-catalog.js"
+                dest: "quickui.catalog.js"
             },
             css: {
                 src: [
                     "markup/markup.css",
                     "coffee/coffee.css"
                 ],
-                dest: "quickui-catalog.css"
+                dest: "quickui.catalog.css"
             }
         }
     });

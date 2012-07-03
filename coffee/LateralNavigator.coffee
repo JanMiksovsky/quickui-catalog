@@ -2,7 +2,7 @@
 Lets user navigate content by moving left (backward) and right (forward).
 ###
 
-class window.NewLateralNavigator extends Control
+class window.LateralNavigator extends Control
 
   inherited:
     content:
@@ -10,17 +10,17 @@ class window.NewLateralNavigator extends Control
       ref: "panels"
       content:
         html: "div"
-        ref: "NewLateralNavigator_content"
-      leftClass: "NewVerticalAlign"
+        ref: "LateralNavigator_content"
+      leftClass: "VerticalAlign"
       left:
         control: BasicButton
-        ref: "NewLateralNavigator_previousButton"
+        ref: "LateralNavigator_previousButton"
         class: "flat navigatorButton quiet"
         content: "&#9664;"
-      rightClass: "NewVerticalAlign"
+      rightClass: "VerticalAlign"
       right:
         control: BasicButton
-        ref: "NewLateralNavigator_nextButton"
+        ref: "LateralNavigator_nextButton"
         class: "navigatorButton quiet"
         content: "&#9654;"
       tabindex: -1 # To get keyboard events
@@ -37,26 +37,26 @@ class window.NewLateralNavigator extends Control
   canGoPrevious: -> true
 
   # The content for the current position in the sequence.
-  content: Control.chain( "$NewLateralNavigator_content", "content", ->
+  content: Control.chain( "$LateralNavigator_content", "content", ->
     @_updateButtons()
   )
 
   # The control class used to render the content.
   contentClass: Control.property.class ( contentClass ) ->
-    $new = @$NewLateralNavigator_content().transmute contentClass, true
-    @referencedElement "NewLateralNavigator_content", $new
+    $new = @$LateralNavigator_content().transmute contentClass, true
+    @referencedElement "LateralNavigator_content", $new
 
   initialize: ->
-    @$NewLateralNavigator_previousButton().click => @_previousClick()
-    @$NewLateralNavigator_nextButton().click => @_nextClick()
+    @$LateralNavigator_previousButton().click => @_previousClick()
+    @$LateralNavigator_nextButton().click => @_nextClick()
     @on
       keydown: ( event ) =>
         switch event.which
           when 37 # Left
-            if !@$NewLateralNavigator_previousButton().disabled()
+            if !@$LateralNavigator_previousButton().disabled()
               @_previousClick()
           when 39 # Right
-            if !@$NewLateralNavigator_nextButton().disabled()
+            if !@$LateralNavigator_nextButton().disabled()
               @_nextClick()
       sizeChanged: =>
         # HACK: Shouldn't need to directly reference HorizontalPanel elements.
@@ -69,20 +69,20 @@ class window.NewLateralNavigator extends Control
   next: ->
 
   # The content of the "Next" button. Default is a right-pointing arrow.
-  nextButtonContent: Control.chain "$NewLateralNavigator_nextButton", "content"
+  nextButtonContent: Control.chain "$LateralNavigator_nextButton", "content"
 
   # True if the Next button should be disabled. Default is false.
-  nextButtonDisabled: Control.chain "$NewLateralNavigator_nextButton", "disabled"
+  nextButtonDisabled: Control.chain "$LateralNavigator_nextButton", "disabled"
 
   # Move backward.
   # The default implementation does nothing.
   previous: ->
 
   # The content of the "Previous" button. Default is a left-pointing arrow.
-  previousButtonContent: Control.chain "$NewLateralNavigator_previousButton", "content"
+  previousButtonContent: Control.chain "$LateralNavigator_previousButton", "content"
 
   # True if the Previous button should be disabled. Default is false.
-  previousButtonDisabled: Control.chain "$NewLateralNavigator_previousButton", "disabled"
+  previousButtonDisabled: Control.chain "$LateralNavigator_previousButton", "disabled"
 
   _nextClick: ->
     @next()
