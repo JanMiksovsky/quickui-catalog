@@ -1,5 +1,8 @@
 class window.SequenceNavigator extends LateralNavigator
 
+  inherited:
+    contentClass: Modes
+
   canGoNext: ->
     @$LateralNavigator_content().activeIndex() < @controls().length - 1
 
