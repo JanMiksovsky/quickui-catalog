@@ -47,7 +47,6 @@
 .FlickrInterestingDay.today,
 .FlickrInterestingDay.future {
     border-color: #e5e5e5;
-    padding: 3px 0 0 4px;
 }
 .FlickrInterestingDay.today .FlickrInterestingDay_content,
 .FlickrInterestingDay.future .FlickrInterestingDay_content {
