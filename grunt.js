@@ -40,6 +40,9 @@ module.exports = function(grunt) {
         qb: {
             controls: {
                 path: "markup"
+            },
+            docs: {
+                path: "docs"
             }
         },
         concat: {

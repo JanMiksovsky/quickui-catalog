@@ -1,0 +1,24 @@
+<Control className="CarouselDemo">
+
+<content>
+    <Carousel>
+        <FlickrInterestingPhoto photoSize="t" />
+        <FlickrInterestingPhoto photoSize="t" />
+        <FlickrInterestingPhoto photoSize="t" />
+        <FlickrInterestingPhoto photoSize="t" />
+        <FlickrInterestingPhoto photoSize="t" />
+    </Carousel>
+</content>
+
+<style>
+.Carousel {
+    display: inline-block;
+}
+
+.FlickrInterestingPhoto {
+    padding: 0 1em;
+    vertical-align: middle;
+}
+</style>
+
+</Control>

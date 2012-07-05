@@ -48,6 +48,11 @@ var controlRecords = [
         description: "Shows a single week from a calendar as seven days in a row."
     },
     {
+        name: "Carousel",
+        demoClass: "CarouselDemo",
+        description: "Lets user navigate laterally between panels with a sliding transition."
+    },
+    {
         name: "CheckBox",
         demoClass: "CheckBoxDemo",
         description: "A check box with an associated label."

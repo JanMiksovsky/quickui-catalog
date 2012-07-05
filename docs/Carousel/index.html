@@ -28,12 +28,12 @@ function demo() {
 
 $demo.append(
     Carousel.create([
-        FlickrInterestingPhoto.create(),
-        FlickrInterestingPhoto.create(),
-        FlickrInterestingPhoto.create(),
-        FlickrInterestingPhoto.create(),
-        FlickrInterestingPhoto.create()
-    ])
+        FlickrInterestingPhoto.create({ photoSize: "m" }),
+        FlickrInterestingPhoto.create({ photoSize: "m" }),
+        FlickrInterestingPhoto.create({ photoSize: "m" }),
+        FlickrInterestingPhoto.create({ photoSize: "m" }),
+        FlickrInterestingPhoto.create({ photoSize: "m" })
+    ]).css( "display", "inline-block" )
 );
 
 }
@@ -44,8 +44,18 @@ $demo.append(
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-
+A <a data-control="CatalogLink">SequenceNavigator</a> that uses a
+<a data-control="CatalogLink">SlidingPages</a> control to provide a slide
+transition during navigation.
 </div>
+
+<p>
+When navigating left or right, the stock
+<a data-control="CatalogLink">SlidingPages</a> control shows the new panel
+instantly, whereas the Carousel control slides the new panel into view. The
+control uses a CSS transition when the user's browser supports that, otherwise
+it falls back to a jQuery animation.
+</p>
 
 </body>
 
