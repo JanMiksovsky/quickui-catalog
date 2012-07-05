@@ -177,7 +177,7 @@ var controlRecords = [
     {
         name: "LateralNavigator",
         demoClass: "",
-        description: "Shows content with a heading and previous/next arrows."
+        description: "Shows content with previous and next arrows on either side."
     },
     {
         name: "List",
@@ -312,6 +312,11 @@ var controlRecords = [
         description: "A typical web search box."
     },
     {
+        name: "SequenceNavigator",
+        demoClass: "",
+        description: "Lets the user navigate left and right through its contents."
+    },
+    {
         name: "SimpleFlexBox",
         demoClass: "",
         description: "Allows use of simple CSS flexbox layouts in older browsers."
@@ -371,6 +376,11 @@ var controlRecords = [
         name: "ValidatingTextBox",
         demoClass: "ValidatingTextBoxDemo",
         description: "Verifies that text box content meets some conditions."
+    },
+    {
+        name: "VerticalAlign",
+        demoClass: "VerticalAlignDemo",
+        description: "Vertically aligns arbitrary contents."
     },
     {
         name: "VerticalPanels",

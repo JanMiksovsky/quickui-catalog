@@ -1,0 +1,16 @@
+<Control className="VerticalAlignDemo">
+
+<content>
+    <VerticalAlign>
+        <BasicButton>A vertically-aligned button</BasicButton>
+    </VerticalAlign>
+</content>
+
+<style>
+.VerticalAlign {
+    border: 1px solid lightgray;
+    height: 200px;
+}
+</style>
+
+</Control>

@@ -25,6 +25,18 @@
 
 <script id="demo">
 function demo() {
+
+$demo.append(
+    VerticalAlign.create()
+        .content(
+            BasicButton.create("A vertically-aligned button")
+        )
+        .css({
+            border: "1px solid lightgray",
+            height: "200px"
+        })
+);
+
 }
 </script>
 
@@ -33,8 +45,17 @@ function demo() {
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-
+Vertically aligns arbitrary contents.
 </div>
+
+<p>
+Standard HTML doesn't provide a reliable way to vertically align arbitrary
+content. Numerous CSS tricks abound, but these generally work for only certain
+element types, or else require that the height of the container and/or its
+contents be known ahead of time. The VerticalAlign control uses the CSS
+flexbox module to position its children on browsers that support that, falling
+back to a JavaScript layout routine on legacy browsers.
+</p>
 
 </body>
 
