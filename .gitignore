@@ -12,6 +12,7 @@ node_modules
 quickui.catalog.*
 quickui-catalog.js
 quickui-catalog.css
+quidoc.js
 docs.js
 docs.css
 test/unittests.js
