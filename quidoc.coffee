@@ -10,13 +10,16 @@ regexCommentedMembers = ///
 fs = require "fs"
 path = require "path"
 
-# Walk the tree whose root is the given path, listing all files.
-ls = ( directory ) ->
-  console.log ""
+# Walk the tree whose root is the given path, listing all files. If a regex is
+# supplied, only names matching that expression are listed.
+ls = ( directory, regex ) ->
+  console?.log ""
   console?.log directory + ":"
   files = fs.readdirSync directory
   for file in files
-    console?.log file
+    match = regex is undefined or regex.test( file )
+    if match
+      console?.log file
     filePath = path.join directory, file
     stats = fs.statSync filePath
     if stats.isDirectory()
@@ -24,4 +27,4 @@ ls = ( directory ) ->
 
 args = process.argv.splice 2 # Ignore "node" and script name args
 root = if args[0]? then path.resolve args[0] else process.cwd()
-ls root
+ls root, /\.coffee$/
