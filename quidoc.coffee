@@ -12,8 +12,10 @@ walk = ( directory, fn ) ->
   files = fs.readdirSync directory
   for file in files
     filePath = path.join directory, file
-    fn filePath
-    walk filePath if fs.statSync( filePath ).isDirectory()
+    if fs.statSync( filePath ).isDirectory()
+      walk filePath, fn
+    else
+      fn filePath
 
 
 class DocsExtractor
