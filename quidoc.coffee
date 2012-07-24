@@ -39,11 +39,14 @@ class DocsExtractor
 
   # Return the comments found for members defined in the CoffeeScript source text.
   controlComments: ( source ) ->
-    comments = {}
+    comments = null
     match = @regexComments.exec source
     while match != null
       [ full, commentBlock, identifier ] = match
-      comments[ identifier ] = @commentText commentBlock
+      commentText = @commentText commentBlock
+      if commentText.length > 0
+        comments = comments || {}
+        comments[ identifier ] = commentText
       match = @regexComments.exec source
     comments
 
@@ -134,7 +137,7 @@ extractors =
   ".qui": markupDocsExtractor
 
 
-# Return the documentation for all CoffeeScript files below the given root.
+# Return the documentation for all files below the given root.
 projectDocs = ( root ) ->
   docs = {}
   walk root, ( filePath ) ->
@@ -143,9 +146,29 @@ projectDocs = ( root ) ->
     if extractor?
       source = fs.readFileSync filePath, "utf8"
       { className: className, comments: comments } = extractor.extract source
-      if className?
+      if className? and comments?
         docs[ className ] = comments
   docs
+
+
+# Return the documenation for all files below the given roots.
+projectsDocs = ( paths ) ->
+  docs = {}
+  for project in projects
+    root = path.resolve project
+    for own key, value of projectDocs root
+      docs[ key ] = value
+  sortByKeys docs
+
+
+# Return the given object with its keys sorted.
+sortByKeys = ( obj ) ->
+  keys = ( key for own key, value of obj )
+  sortedKeys = keys.sort()
+  sorted = {}
+  for key in sortedKeys
+    sorted[ key ] = obj[ key ]
+  sorted
 
 
 printDocs = ( docs ) ->
@@ -158,7 +181,8 @@ printDocs = ( docs ) ->
 
 
 # Main
-args = process.argv.splice 2 # Ignore "node" and script name args
-root = if args[0]? then path.resolve args[0] else process.cwd()
-docs = projectDocs root
+projects = process.argv.splice 2 # Ignore "node" and script name args
+if projects.length == 0
+  projects = [ process.cwd() ] # Handle current folder by default
+docs = projectsDocs projects
 printDocs docs
