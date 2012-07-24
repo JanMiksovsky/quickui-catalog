@@ -39,7 +39,6 @@ class DocsExtractor
   controlComments: ( source ) ->
     comments = {}
     match = @regexComments.exec source
-    console.log match
     while match != null
       [ full, commentBlock, identifier ] = match
       comments[ identifier ] = @commentText commentBlock
@@ -52,8 +51,9 @@ class DocsExtractor
     match = @regexCommentText.exec commentBlock
     while match != null
       [ full, lineText ] = match
+      lineText = lineText.trim()
       if lineText.length == 0
-        text += "\n\n"
+        text += "\n\n"  # Line of pure whitespace was intended as a break.
       else
         if text.length > 0 and text[ text.length - 1 ] != "\n"
           text += " "
@@ -67,7 +67,7 @@ coffeeDocsExtractor = new DocsExtractor
   className: ///
     \r?\n                     # Start of line (no indentation)
     class                     # "class" keyword
-    \s+                       # whitespace
+    \s+                       # Whitespace
     (?:window.)?              # optional "window."
     (                         # Group captures class name
       [a-zA-Z0-9\$][\w]+      # JavaScript identifier
@@ -75,10 +75,10 @@ coffeeDocsExtractor = new DocsExtractor
   ///
   comments: ///
     (                         # First group captures the comment
-      (?:                     # Non-capturing group
+      (?:                     # Non-capturing group for each comment line
         \r?\n\x20\x20# .*     # A comment line indented two spaces
       )
-      +                       # Any number of comment lines
+      +                       # Any non-zero number of comment lines
     )
     \r?\n\x20\x20             # Identifier line indented two spaces
     (                         # Second group captures the identifier
@@ -93,7 +93,7 @@ coffeeDocsExtractor = new DocsExtractor
 markupDocsExtractor = new DocsExtractor
   className: ///
     <script>                  # Opening script tag
-    \s*                       # whitespace
+    \s*                       # Whitespace
     (\w*)                     # First group captures class name
     .prototype.extend\(       # Call to extend prototype
     \s*{                      # Open curly brace
@@ -106,18 +106,25 @@ markupDocsExtractor = new DocsExtractor
     </script>                 # Closing script tag
   ///
   comments: ///
-    \s*/\*\s*\n               # First line of a JavaScript block comment
+    /\*                       # Start of JavaScript block comment
+    \s+                       # Whitespace
     (                         # First group captures the comment
-      (?:\s*\*.*\n)*          # An interior line in a block comment
+      (?:                     # Non-capturing group for each comment line
+        \s+                   
+        \*                    # A star
+        \s
+        .*                    # Contents of the comment line, up to the newline
+      )+                      # Any non-zero number of comment lines
     )
-    \s*\*/\s*\n               # Last line of a block comment
-    \s*                       # whitespace
+    \s+
+    \*/                       # End of JavaScript block comment
+    \s+                       # Whitespace (including newline)
     (                         # Second group captures the identifier
       [a-zA-Z0-9\$][\w]+      # JavaScript member identifier
     )
     :                         # Colon terminates identifier
   ///g
-  commentText: /(.*)/
+  commentText: /\s*\*\s(.*)/g
 
 
 extractors =
@@ -132,7 +139,7 @@ projectDocs = ( root ) ->
     extension = path.extname filePath
     extractor = extractors[ extension ]
     if extractor?
-      source = fs.readFileSync filePath
+      source = fs.readFileSync filePath, "utf8"
       { className: className, comments: comments } = extractor.extract source
       if className?
         docs[ className ] = comments
