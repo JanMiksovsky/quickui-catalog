@@ -20,6 +20,13 @@ Page.prototype.extend({
      */
     fill: Control.chain( "applyClass/fill" ),
 
+    initialize: function() {
+        // Force a refresh of the page title. Subclasses may want to handle the
+        // title specially (e.g., to reflect it as a heading on the page), and
+        // this gives them a chance to do that.
+        this.title( this.title() );
+    },
+    
     /*
      * The URL parameters for the current page. Read-only.
      */
