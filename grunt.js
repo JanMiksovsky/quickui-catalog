@@ -60,6 +60,12 @@ module.exports = function(grunt) {
                 ],
                 dest: "quickui.catalog.css"
             }
+        },
+        quidoc: {
+            controls: {
+                src: [ "coffee", "markup" ],
+                dest: "docs/controlDocumentation.js"
+            }
         }
     });
 

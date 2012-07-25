@@ -1,3 +1,5 @@
+# Navigates through its children.
+
 class window.SequenceNavigator extends LateralNavigator
 
   inherited:
@@ -9,7 +11,7 @@ class window.SequenceNavigator extends LateralNavigator
   canGoPrevious: ->
     @$LateralNavigator_content().activeIndex() > 0
 
-  # The set of elements being navigated
+  # The set of elements being navigated.
   controls: Control.chain "$LateralNavigator_content", "controls"
 
   initialize: ->

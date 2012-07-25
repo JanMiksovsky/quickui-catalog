@@ -1,10 +1,21 @@
 ###
-Generate doc comments from CoffeeScript source files.
-###
+Generate documenation for QuickUI controls.
 
+This scrapes CoffeeScript or QuickUI markup files to extract comments that
+apply to named control class members.
+
+This can be run directly via node, or invoked as a Grunt task.
+###
 
 fs = require "fs"
 path = require "path"
+
+# Grunt task
+module.exports = ( grunt ) ->
+  grunt.registerMultiTask "quidoc", "Generate documentation for QuickUI controls", ->
+    dest = path.resolve @data.dest
+    docs = projectsDocs @data.src
+    fs.writeFileSync dest, formatDocs docs
 
 # Walk the tree whose root is the given path, applying the given function to
 # each file.
@@ -152,7 +163,7 @@ projectDocs = ( root ) ->
 
 
 # Return the documenation for all files below the given roots.
-projectsDocs = ( paths ) ->
+projectsDocs = ( projects ) ->
   docs = {}
   for project in projects
     root = path.resolve project
@@ -178,10 +189,11 @@ formatDocs = ( docs ) ->
   var controlDocumentation = #{json};
   """
 
-
-# Main
-projects = process.argv.splice 2 # Ignore "node" and script name args
-if projects.length == 0
-  projects = [ process.cwd() ] # Handle current folder by default
-docs = projectsDocs projects
-console.log formatDocs docs
+# Handle direct invocation via node.
+scriptPath = process.argv[1]
+if path.basename( scriptPath ) == "quidoc.js"
+  projects = process.argv.splice 2 # Ignore "node" and script name args
+  if projects.length == 0
+    projects = [ process.cwd() ] # Handle current folder by default
+  docs = projectsDocs projects
+  console.log formatDocs docs
