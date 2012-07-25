@@ -1,8 +1,0 @@
-#!/bin/bash
-# Build the QuickUI Catalog documentation.
-
-# Get location of this script.
-scriptPath=$(cd ${0%/*} && echo $PWD/${0##*/})
-scriptFolder=`dirname "$scriptPath"`
-
-python $scriptFolder/quidoc.py $scriptFolder/quickui.catalog > $scriptFolder/docs/controlDocumentation.js

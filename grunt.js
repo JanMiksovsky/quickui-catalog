@@ -7,6 +7,7 @@
  * controls are built separate, and the output of both are then combined.
  *
  * This also builds the unit tests.
+ * 
  */
 
 module.exports = function(grunt) {
@@ -28,6 +29,12 @@ module.exports = function(grunt) {
             test: {
                 src: [ "test/*.coffee" ],
                 dest: "test/unittests.js",
+                options: { bare: false }
+            },
+            /* Build the quidoc Grunt task itself. */
+            tools: {
+                src: [ "grunt/quidoc.coffee" ],
+                dest: "grunt/quidoc.js",
                 options: { bare: false }
             }
         },
@@ -61,6 +68,7 @@ module.exports = function(grunt) {
                 dest: "quickui.catalog.css"
             }
         },
+        /* quidoc CoffeeScript tool needs to be built via coffee task */
         quidoc: {
             controls: {
                 src: [ "coffee", "markup" ],
@@ -71,5 +79,7 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask( "default", "coffee less qb concat" );
+
+    grunt.registerTask( "all", "default quidoc" );
     
 };
