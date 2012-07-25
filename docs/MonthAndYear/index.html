@@ -21,13 +21,13 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>MonthName</title>
+<title>MonthAndYear</title>
 
 <script id="demo">
 function demo() {
 
 $demo.append(
-    MonthName.create()
+    MonthAndYear.create()
 );
 
 }
@@ -38,14 +38,14 @@ $demo.append(
 <body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
-    Shows the name of the month for a given date. This is a component of a
-    <a data-control="CatalogLink">MonthAndYear</a> control, and in that capacity
-    appears in controls such as
-    <a data-control="CatalogLink">CalendarMonthNavigator</a>.
+Shows the month name and year for a given date. The month name
+is displayed with a <a data-control="CatalogLink">MonthName</a> control.
 </div>
 
 <p>
-    By default, this shows the name of the current month.
+This control is used as the heading for
+<a data-control="CatalogLink">CalendarMonthNavigator</a> and
+<a data-control="CatalogLink">CalendarMonthWithHeadings</a>.
 </p>
 <p>
     If the jQuery

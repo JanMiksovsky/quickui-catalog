@@ -3,7 +3,7 @@
 <Control className="CalendarMonthWithHeadings" generic="true">
 
 <content>
-    <MonthName ref="monthName"/>
+    <MonthAndYear ref="monthAndYear"/>
     <div ref="monthTable">
         <DaysOfWeek ref="daysOfWeek" format="namesShort"/>
         <CalendarMonth ref="calendar"/>
@@ -11,7 +11,7 @@
 </content>
 
 <style>
-.monthName {
+.monthAndYear {
     display: block;
 }
 
@@ -29,7 +29,7 @@
     display: inline-block;
     font-family: sans-serif;
 }
-.CalendarMonthWithHeadings.generic .monthName {
+.CalendarMonthWithHeadings.generic .monthAndYear {
     font-weight: bold;
     padding: 4px;
     text-align: center;
@@ -50,7 +50,7 @@ CalendarMonthWithHeadings.prototype.extend({
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
-            this.$monthName().culture( culture );
+            this.$monthAndYear().culture( culture );
             this.$daysOfWeek().culture( culture );
             this.$calendar().culture( culture );
             var date = this.date();
@@ -63,7 +63,7 @@ CalendarMonthWithHeadings.prototype.extend({
     
     /* The date shown in the calendar */
     date: Control.chain( "$calendar", "date", function( date ) {
-        this.$monthName().month( date.getMonth() );
+        this.$monthAndYear().date( date );
     }),
     
     /*
@@ -87,13 +87,16 @@ CalendarMonthWithHeadings.prototype.extend({
         if ( !this.date() ) {
             // By default, show current month.
             this.date( CalendarDay.today() );
+        } else {
+            // Sync month and year with calendar.
+            this.$monthAndYear().date( this.date() );
         }
     },
 
     /*
-     * True if the name of the month should be shown.
+     * True if the month name and year should be shown.
      */
-    showMonthName: Control.chain( "$monthName", "visibility" )
+    showMonthAndYear: Control.chain( "$monthAndYear", "visibility" )
     
 });
 </script>

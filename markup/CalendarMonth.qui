@@ -52,7 +52,7 @@ CalendarMonth.prototype.extend({
     /*
      * The date that will be included in this month (can be any day of the month).
      */
-    date: Control.property( function() {
+    date: Control.property.date( function() {
         this
             ._refresh()
             .trigger( "dateChanged", [ this.date() ] );

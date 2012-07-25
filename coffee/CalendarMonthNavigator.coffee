@@ -16,7 +16,7 @@ class window.CalendarMonthNavigator extends Control
       {
         control: "CalendarMonthWithHeadings"
         ref: "calendar"
-        showMonthName: false
+        showMonthAndYear: false
       }
       {
         html: "div"

@@ -16,6 +16,10 @@ class window.MonthAndYear extends Control
     result
   
   # The date whose date and year will be shown.
-  date: Control.property ( date ) ->
+  date: Control.property.date ( date ) ->
     @$monthName().month date.getMonth()
     @$year().content date.getFullYear()
+
+  initialize: ->
+    if !this.date()
+      this.date new Date()  # By default show the current month/year.

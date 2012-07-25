@@ -234,6 +234,10 @@ var controlRecords = [
         description: "Shows exactly one child at a time; useful for modes."
     },
     {
+        name: "MonthAndYear",
+        description: "Shows the month and year for a given date."
+    },
+    {
         name: "MonthName",
         description: "Shows the name of the month for a given date."
     },
