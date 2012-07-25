@@ -40,7 +40,7 @@ class DocsExtractor
     className: @controlClassName source
     comments: @controlComments source
 
-  # Return the name for the control class defined in the CoffeeScript source text.
+  # Return the name for the control class defined in the source text.
   controlClassName: ( source ) ->
     match = @regexClassName.exec source
     if match?
@@ -48,7 +48,7 @@ class DocsExtractor
     else
       null
 
-  # Return the comments found for members defined in the CoffeeScript source text.
+  # Return the comments found for members defined in the source text.
   controlComments: ( source ) ->
     comments = null
     match = @regexComments.exec source
@@ -61,12 +61,16 @@ class DocsExtractor
       match = @regexComments.exec source
     comments
 
-  # Remove the "  # " found at the start of a CoffeeScript block comment.
+  # Remove the comment indicator (e.g., "*") on interior block comment lines.
   commentText: ( commentBlock ) ->
     text = ""
     match = @regexCommentText.exec commentBlock
     while match != null
       [ full, lineText ] = match
+      if text.length > 0
+        text += "\n"
+      text += lineText
+      ###
       lineText = lineText.trim()
       if lineText.length == 0
         text += "\n\n"  # Line of pure whitespace was intended as a break.
@@ -74,6 +78,7 @@ class DocsExtractor
         if text.length > 0 and text[ text.length - 1 ] != "\n"
           text += " "
         text += lineText
+      ###
       match = @regexCommentText.exec commentBlock
     text
 
@@ -102,7 +107,7 @@ coffeeDocsExtractor = new DocsExtractor
     )
     :                         # Colon terminates identifier
   ///g
-  commentText: /\r?\n  # (.*)/g
+  commentText: /^\s*#[ ]?(.*)/gm
 
 
 # Extracts docs from QuickUI markup controls
@@ -140,7 +145,7 @@ markupDocsExtractor = new DocsExtractor
     )
     :                         # Colon terminates identifier
   ///g
-  commentText: /\s*\*\s(.*)/g
+  commentText: /^\s*\*[ ]?(.*)/gm
 
 
 extractors =
