@@ -77,7 +77,6 @@ Tabs.prototype.extend({
             });
             var $new = this.$Tabs_content().transmute( contentClass, true );
             this.referencedElement( "Tabs_content", $new );
-            this.$Tabs_content().checkForSizeChange();
             return this;
         }
     },
