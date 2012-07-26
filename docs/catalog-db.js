@@ -302,7 +302,7 @@ var controlRecords = [
         description: "Creates a certain number of instances of another control class."
     },
     {
-        name: "RotatingPagesWithDots",
+        name: "RotatingPanelsWithDots",
         demoClass: "", /* No demo; the animation would be too distracting */
         description: "Rotates once through a sequence of horizontally-arranged pages"
     },
@@ -326,13 +326,13 @@ var controlRecords = [
         description: "Allows use of simple CSS flexbox layouts in older browsers."
     },
     {
-        name: "SlidingPages",
+        name: "SlidingPanels",
         demoClass: "",
         description: "Arranges its children as page on a horizontally sliding strip."
     },
     {
-        name: "SlidingPagesWithDots",
-        demoClass: "SlidingPagesWithDotsDemo",
+        name: "SlidingPanelsWithDots",
+        demoClass: "SlidingPanelsWithDotsDemo",
         description: "Presents children on a horizontally scrolling strip, with a series of dots to navigate the pages."
     },
     {

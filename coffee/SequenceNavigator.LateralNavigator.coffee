@@ -1,4 +1,6 @@
-# Navigates through its children.
+###
+Navigates left and right through its children.
+###
 
 class window.SequenceNavigator extends LateralNavigator
 
@@ -6,13 +8,13 @@ class window.SequenceNavigator extends LateralNavigator
     contentClass: Modes
 
   canGoNext: ->
-    @$LateralNavigator_content().activeIndex() < @controls().length - 1
+    @$LateralNavigator_content().activeIndex() < @elements().length - 1
 
   canGoPrevious: ->
     @$LateralNavigator_content().activeIndex() > 0
 
   # The set of elements being navigated.
-  controls: Control.chain "$LateralNavigator_content", "controls"
+  elements: Control.chain "$LateralNavigator_content", "elements"
 
   initialize: ->
     if @contentClass() is undefined

@@ -1,12 +1,12 @@
 <!--
-Display children as controls on a sliding horizontal strip; only one page
+Display children as elements on a sliding horizontal strip; only one element
 is visible at a time. The strip can be programmatically slid left and right.
 -->
-<Control className="SlidingPages">
+<Control className="SlidingPanels">
 
 <prototype>
     <Sequence>
-        <div ref="SlidingPages_content"/>
+        <div ref="SlidingPanels_content"/>
     </Sequence>
 </prototype>
 
@@ -18,36 +18,36 @@ is visible at a time. The strip can be programmatically slid left and right.
     width: 0; /* Prevent anything from appearing until we've set width. */
 }
 
-.SlidingPages_content {
+.SlidingPanels_content {
     position: relative; /* So we can shift it over */
     -webkit-transition: 0.2s;
     transition: 0.2s; /* Same as jQuery's "fast" */
     white-space: nowrap;
 }
-.SlidingPages_content > * {
+.SlidingPanels_content > * {
     display: inline-block;
 }
 </style>
 
 <script>
-SlidingPages.prototype.extend({
+SlidingPanels.prototype.extend({
     
     /*
-     * The index of the page currently being shown.
+     * The index of the control currently being shown.
      */
     activeIndex: function( activeIndex ) {
         var result = this._super( activeIndex );
         if ( activeIndex !== undefined ) {
-            var page = this.controls().eq( activeIndex );
+            var page = this.elements().eq( activeIndex );
             if ( page.length > 0 ) {
                 var left = page.position().left;
-                if ( SlidingPages.hasTransitions( this.$SlidingPages_content() ) ) {
+                if ( SlidingPanels.hasTransitions( this.$SlidingPanels_content() ) ) {
                     // Use CSS animation.
-                    this.$SlidingPages_content().css( "left", -left );
+                    this.$SlidingPanels_content().css( "left", -left );
                 }
                 else {
                     // Fall back to jQuery animation.
-                    this.$SlidingPages_content().animate({
+                    this.$SlidingPanels_content().animate({
                         "left": -left
                     }, "fast" );
                 }
@@ -81,23 +81,23 @@ SlidingPages.prototype.extend({
             });
     },
     
-    // Force all controls and the control itself to the maximium width of the controls.
+    // Force all elements and the control itself to the maximium width of the elements.
     _adjustWidths: function() {
 
-        var controls = this.controls();
-        if ( controls.length === 0 ) {
+        var elements = this.elements();
+        if ( elements.length === 0 ) {
             return;
         }
         
-        var pageWidths = controls.map( function( index, page ) {
+        var pageWidths = elements.map( function( index, page ) {
             return $( page ).width();
         }).get();
         var maxPageWidth = Math.max.apply( this, pageWidths );
         if ( maxPageWidth > 0 ) {
-            controls.width( maxPageWidth );
+            elements.width( maxPageWidth );
         }
 
-        var pageOuterWidths = controls.map( function( index, page ) {
+        var pageOuterWidths = elements.map( function( index, page ) {
             return $( page ).outerWidth( true );
         }).get();
         var maxPageOuterWidth = Math.max.apply( this, pageOuterWidths );
@@ -106,14 +106,14 @@ SlidingPages.prototype.extend({
         }
     },
 
-    _container: Control.chain( "$SlidingPages_content" )
+    _container: Control.chain( "$SlidingPanels_content" )
     
 });
 
 /*
  * Class methods
  */
-SlidingPages.extend({
+SlidingPanels.extend({
 
     /*
      * Returns true if the given element has CSS transitions applied to it.

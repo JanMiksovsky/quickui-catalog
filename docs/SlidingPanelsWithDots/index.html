@@ -20,24 +20,29 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>LateralNavigator</title>
+<title>SlidingPanelsWithDots</title>
 
 </head>
 
-<body data-create-controls="true" data-control="CatalogPageNew">
+<body data-create-controls="true"
+    data-control="CatalogPageOld"
+    data-demoClass="SlidingPanelsWithDotsDemo"
+    data-demoFileMarkup="SlidingPanelsWithDotsDemo.qui">
 
 <div data-property="summary">
-    Shows content with previous and next arrow buttons. These buttons can be
-    used to navigate the control's child elements
-    (see <a data-control="CatalogLink">Carousel</a> or
-    <a data-control="CatalogLink">SequenceNavigator</a>) or to browse through a
-    progammable axis like time
-    (see <a data-control="CatalogLink">CalendarMonthNavigator</a>).
+    Hosts a <a data-control="CatalogLink">SlidingPanels</a> to present children on
+    a horizontally scrolling strip, and adds a set of dots — one per page —
+    which can be used to navigate to the corresponding page. This control
+    is the basis for <a data-control="CatalogLink">RotatingPanelsWithDots</a>.
 </div>
 
 <p>
-This control provides basic keyboard navigation: the Left and Right keys have
-the same effect as the previous and next arrow buttons, respectively.
+    This control was discussed in a
+    <a data-control="Link" href="http://miksovsky.blogs.com/flowstate/2011/10/slidingpageswithdots.html">user interface blog post</a>.
+</p>
+<p>
+    See <a data-control="CatalogLink">RotatingPanelsWithDots</a> for an example
+    of a subclass that adds automatic rotation.
 </p>
 
 </body>

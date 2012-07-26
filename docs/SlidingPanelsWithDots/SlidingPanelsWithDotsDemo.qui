@@ -1,12 +1,12 @@
-<Control className="SlidingPagesWithDotsDemo">
+<Control className="SlidingPanelsWithDotsDemo">
 
 <content>
-    <SlidingPagesWithDots pageButtonClass="BlueDotButton">
+    <SlidingPanelsWithDots pageButtonClass="BlueDotButton">
         <div class="page">Bird</div>
         <div class="page">Cat</div>
         <div class="page">Dog</div>
         <div class="page">Fish</div>
-    </SlidingPagesWithDots>
+    </SlidingPanelsWithDots>
 </content>
 
 <style>

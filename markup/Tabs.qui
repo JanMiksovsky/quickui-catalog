@@ -14,7 +14,7 @@ The Tabs control will resize itself to be as tall as its tallest child.
         <top>
             <List ref="tabButtons" itemClass="BasicButton" />
         </top>
-        <Modes ref="TabSet_content" maximize="true" />
+        <Modes ref="Tabs_content" maximize="true" />
     </VerticalPanels>
 </content>
 
@@ -28,7 +28,7 @@ The Tabs control will resize itself to be as tall as its tallest child.
 }
 
 /* Generic appearance */
-.Tabs.generic .TabSet_content {
+.Tabs.generic .Tabs_content {
     border: 1px solid #888;
     height: 100%;
 }
@@ -61,9 +61,18 @@ Tabs.prototype.extend({
     /*
      * The array of elements to be shown as tabs.
      */
-    content: Control.chain( "$TabSet_content", "content", function() {
+    content: Control.chain( "$Tabs_content", "content", function() {
         this._createButtons();
     }),
+
+    contentClass: function( contentClass ) {
+        if ( contentClass === undefined ) {
+            return this.$Tabs_content().controlClass();
+        } else {
+            var $new = this.$Tabs_content().transmute( contentClass, true );
+            this.referencedElement( "Tabs_content", $new );
+        }
+    },
 
     /*
      * True if the Tabs should vertically fill its container.
@@ -88,10 +97,10 @@ Tabs.prototype.extend({
             }
         });
         
-        this.$TabSet_content().on({
-            "activeControlChanged": function( event, index, child ) {
+        this.$Tabs_content().on({
+            "activeElementChanged": function( event, index, child ) {
                 /*
-                 * Map the Modes's activeControlChanged event to a more
+                 * Map the Modes's activeElementChanged event to a more
                  * semantically specific activeTabChanged event.
                  * 
                  * Only map active events coming from our own Modes; ignore
@@ -120,12 +129,12 @@ Tabs.prototype.extend({
     /*
      * The child currently shown as the selected tab.
      */
-    selectedTab: Control.chain( "$TabSet_content", "activeChild" ),
+    selectedTab: Control.chain( "$Tabs_content", "activeChild" ),
     
     /*
      * The index of the selected tab.
      */
-    selectedTabIndex: Control.chain( "$TabSet_content", "activeIndex", function( index ) {
+    selectedTabIndex: Control.chain( "$Tabs_content", "activeIndex", function( index ) {
         this.tabButtons()
             .removeClass( "selected" )    // Deselect all tab buttons.
             .eq( index )
@@ -147,7 +156,7 @@ Tabs.prototype.extend({
     /*
      * The content of the current set of tabs.
      */
-    tabs: Control.chain( "$TabSet_content", "children", "cast" ),
+    tabs: Control.chain( "$Tabs_content", "elements" ),
 
     /*
      * Called whenever the set of buttons needs to be regenerated.

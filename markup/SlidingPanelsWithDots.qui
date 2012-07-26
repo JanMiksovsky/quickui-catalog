@@ -3,10 +3,10 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 (The conventional button representation is a dot.)
 -->
 
-<Control className="SlidingPagesWithDots" generic="true">
+<Control className="SlidingPanelsWithDots" generic="true">
 
 <content>
-    <SlidingPages ref="pages"/>
+    <SlidingPanels ref="pages"/>
     <div ref="buttonPanel">
         <Repeater ref="pageButtons"/>
     </div>
@@ -27,11 +27,11 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 }
 
 /* Generic appearance */
-.SlidingPagesWithDots.generic .buttonPanel {
+.SlidingPanelsWithDots.generic .buttonPanel {
     padding: 5px;
 }
 
-.SlidingPagesWithDots.generic .pageButtons > .BasicButton {
+.SlidingPanelsWithDots.generic .pageButtons > .BasicButton {
     background: white;
     border: 1px solid #888;
     border-radius: 5px;
@@ -43,17 +43,17 @@ Show its children as sliding pages which can be navigated by clicking buttons be
     width: 10px;
 }
 
-.SlidingPagesWithDots.generic .pageButtons > .BasicButton:hover {
+.SlidingPanelsWithDots.generic .pageButtons > .BasicButton:hover {
     background: #ddd;
 }
 
-.SlidingPagesWithDots.generic .pageButtons > .BasicButton.selected {
+.SlidingPanelsWithDots.generic .pageButtons > .BasicButton.selected {
     background: #bbb;
 }
 </style>
 
 <script>
-SlidingPagesWithDots.prototype.extend({
+SlidingPanelsWithDots.prototype.extend({
     
     /*
      * The index of the page currently being shown.
@@ -71,10 +71,10 @@ SlidingPagesWithDots.prototype.extend({
      * The set of elements to show as pages.
      */
     content: Control.chain( "$pages", "content", function() {
-        this.$pageButtons().count( this.controls().length );
+        this.$pageButtons().count( this.elements().length );
     }),
     
-    controls: Control.chain( "$pages", "controls" ),
+    elements: Control.chain( "$pages", "elements" ),
     
     initialize: function() {
         

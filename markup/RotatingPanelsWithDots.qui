@@ -1,12 +1,12 @@
 <!--
-Rotates once through a set of controls automatically when control is loaded.
+Rotates once through a set of elements automatically when control is loaded.
 The rotation stops if the user clicks to navigate to a specific page.
 -->
 
-<Control className="RotatingPagesWithDots">
+<Control className="RotatingPanelsWithDots">
 
 <prototype>
-    <SlidingPagesWithDots/>
+    <SlidingPanelsWithDots/>
 </prototype>
 
 <style>
@@ -23,7 +23,7 @@ The rotation stops if the user clicks to navigate to a specific page.
 </style>
 
 <script>
-RotatingPagesWithDots.prototype.extend({
+RotatingPanelsWithDots.prototype.extend({
     
     initialize: function() {
         var self = this;
@@ -37,7 +37,7 @@ RotatingPagesWithDots.prototype.extend({
      * back to the first page and stops.
      */
     rotate: Control.iterator( function () {
-        var count = this.controls().length;
+        var count = this.elements().length;
         if ( count > 0 ) {
             
             var index = this.activeIndex();

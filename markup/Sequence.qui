@@ -1,4 +1,6 @@
-<!-- Contains a set of controls which can be navigated in sequence. -->
+<!--
+An ordered sequence of elements which can be navigated through one at a time.
+-->
 
 <Control className="Sequence" generic="true">
 
@@ -6,12 +8,12 @@
 Sequence.prototype.extend({
     
     /*
-     * The currently visible control. The getter returns the control as an
+     * The currently visible element. The getter returns the element as an
      * instance of the appropriate control class.
      */
-    activeControl: Control.iterator( function( activeControl ) {
-        if ( activeControl === undefined ) {
-            return this.controls().filter( ".active" ).eq(0).cast( jQuery );
+    activeElement: Control.iterator( function( activeElement ) {
+        if ( activeElement === undefined ) {
+            return this.elements().filter( ".active" ).eq(0).cast( jQuery );
         } else {
             
             /*
@@ -20,21 +22,21 @@ Sequence.prototype.extend({
              * A simple .toggle(true) would set display: block, which wouldn't
              * be what we'd want for inline elements.
              */
-            this.controls().not( activeControl )
+            this.elements().not( activeElement )
                 .addClass( "inactive" )
                 .removeClass( "active" );
 
-            var index = this.controls().index( activeControl );
+            var index = this.elements().index( activeElement );
 
             // Tell the child it's now active, and show it.
-            $( activeControl )
+            $( activeElement )
                 .trigger( "active" )
                 .removeClass( "inactive" )
                 .addClass( "active" );
             
             this
-                // Trigger our own activeControlChanged event.
-                .trigger( "activeControlChanged", [ index, activeControl ] )
+                // Trigger our own activeElementChanged event.
+                .trigger( "activeElementChanged", [ index, activeElement ] )
             
                 // In case the new child changed our size.
                 .checkForSizeChange();
@@ -44,13 +46,13 @@ Sequence.prototype.extend({
     }),
     
     /*
-     * The index of the currently visible child.
+     * The index of the currently visible element.
      */
     activeIndex: function( index ) {
         if ( index === undefined ) {
-            return this.controls().index( this.activeControl() );
+            return this.elements().index( this.activeElement() );
         } else {
-            return this.activeControl( this.controls().eq( index ) );
+            return this.activeElement( this.elements().eq( index ) );
         }
     },
     
@@ -62,7 +64,7 @@ Sequence.prototype.extend({
      */
     content: function( value ) {
         
-        var previousControl = this.activeControl();
+        var previousControl = this.activeElement();
         var container = this._container();
         var result = ( this[0] === container[0] )
             ? this._super( value )
@@ -71,8 +73,8 @@ Sequence.prototype.extend({
         
         if ( value !== undefined ) {
             if ( previousControl && previousControl.parent()[0] === this[0] ) {
-                // Still have previously active child; hide other controls.
-                this.activeControl( previousControl );
+                // Still have previously active child; hide other elements.
+                this.activeElement( previousControl );
             } else {
                 this.activeIndex( 0 );
             }
@@ -82,9 +84,9 @@ Sequence.prototype.extend({
     },
 
     /*
-     * The set of controls in the sequence.
+     * The set of elements in the sequence.
      */
-    controls: Control.chain( "_container", "children" ),
+    elements: Control.chain( "_container", "children", "cast" ),
     
     initialize: function() {
         if ( this.activeIndex() < 0 ) {
@@ -99,7 +101,7 @@ Sequence.prototype.extend({
      */
     next: Control.iterator( function() {
         var index = this.activeIndex();
-        if ( index < this.controls().length - 1 ) {
+        if ( index < this.elements().length - 1 ) {
             this.activeIndex( index + 1 );
         }
     }),

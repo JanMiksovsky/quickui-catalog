@@ -54,12 +54,12 @@ Modes.prototype.extend({
             return;
         }
         
-        var controls = this.controls();
-        if ( controls.length === 0 ) {
+        var elements = this.elements();
+        if ( elements.length === 0 ) {
             return;
         }
         
-        var childHeights = controls.map( function( index, child ) {
+        var childHeights = elements.map( function( index, child ) {
             return $( child ).outerHeight( true );
         }).get();
         

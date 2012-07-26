@@ -128,7 +128,7 @@ TestPage.prototype.extend({
             },
             
             // Raised by a Modes inside the Tabs
-            "activeControlChanged": function( event, index, child ) {
+            "activeElementChanged": function( event, index, child ) {
                 console.log( "Active child changed to: " + index );
             },
             

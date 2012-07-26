@@ -35,18 +35,17 @@ var CustomTab = Tab.sub({
 });
 
 $demo.append(
-    Tabs.create()
-        .content([
-            CustomTab.create()
-                .description( "Photo" )
-                .content(
-                    FlickrInterestingPhoto.create()
-                        .css( "max-width", "100%" )
-                ),
-            CustomTab.create()
-                .description( "Metadata" )
-                .content( LoremIpsum.create() )
-        ])
+    Tabs.create([
+        CustomTab.create()
+            .description( "Photo" )
+            .content(
+                FlickrInterestingPhoto.create()
+                    .css( "max-width", "100%" )
+            ),
+        CustomTab.create()
+            .description( "Metadata" )
+            .content( LoremIpsum.create() )
+    ])
 );
 
 }
