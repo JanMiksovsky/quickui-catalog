@@ -65,6 +65,9 @@ Tabs.prototype.extend({
         this._createButtons();
     }),
 
+    /*
+     * The class used to render the container for the tabbed pages.
+     */
     contentClass: function( contentClass ) {
         if ( contentClass === undefined ) {
             return this.$Tabs_content().controlClass();
