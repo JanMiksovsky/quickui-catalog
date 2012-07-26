@@ -158,6 +158,7 @@ SimpleFlexBox.prototype.extend({
          * layout properly.
          */
         this._usingFlexBox( flexBox );
+        this._childrenCheckSize();
         
         // Handle the layout events as needed.
         var handlingLayout = this._handlingLayout();
@@ -181,6 +182,7 @@ SimpleFlexBox.prototype.extend({
      * is constrained.
      */
     _layout: function() {
+
         var vertical = this._vertical();
         var measureFn = vertical ? $.prototype.outerHeight : $.prototype.outerWidth;
         var sizePanel1 = measureFn.call( this.$SimpleFlexBox_panel1(), true );
@@ -195,12 +197,25 @@ SimpleFlexBox.prototype.extend({
                 right: sizePanel2
             };
         this.$SimpleFlexBox_content().css( css );
+
+        this._childrenCheckSize();
+    },
+
+    /*
+     * If the layout of the control changes in any way, the subcontrols
+     * contained in the panels should check to see if they've changed size.
+     */
+    _childrenCheckSize: function() {
+        var $controls = this.children().children().control();
+        if ( $controls != null ) {
+            $controls.checkForSizeChange();
+        }
     },
     
     /*
      * True if we're currently handling the layout event to do manual layout.
      */
-    _handlingLayout: Control.property.bool(),
+    _handlingLayout: Control.property.bool( null, false ),
     
     /*
      * The content of the first docked panel.
