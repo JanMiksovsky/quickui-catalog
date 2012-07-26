@@ -69,7 +69,16 @@ bugs; it's just not worth using at this point.
 }
 .SimpleFlexBox.noFlexBox.horizontal > .panel {
     width: 0;   /* Forces panel to its minimum width; not actually zero width. */
+    /*
+     * In Mozilla, the contents of the main content panel end up wider than the
+     * content panel itself (likely an issue with using position: absolute
+     * within a table cell). This can cause the side panels to end up behind the
+     * main panel, rendering the contents of the side panels inaccessible. So,
+     * try to force the side panels on top of the main panel.
+     */
+    z-index: 1;
 }
+
 .SimpleFlexBox.noFlexBox.constrainHeight {
     display: inherit;
 }

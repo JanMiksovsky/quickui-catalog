@@ -15,7 +15,7 @@ class window.LateralNavigator extends Control
       left:
         control: BasicButton
         ref: "LateralNavigator_previousButton"
-        class: "flat navigatorButton quiet"
+        class: "navigatorButton quiet"
         content: "&#9664;"
       rightClass: "VerticalAlign"
       right:

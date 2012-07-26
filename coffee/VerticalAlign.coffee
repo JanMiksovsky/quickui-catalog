@@ -39,12 +39,13 @@ class window.VerticalAlign extends Control
   _handlingLayout: Control.property.bool()
 
   _layout: ->
-    @.css "padding-top", 0
+    @.css "padding-top", "" # Clear padding so it doesn't interface with calcs.
     childrenHeight = 0
     childrenHeight += $( child ).outerHeight() for child in @children()
     availableSpace = Math.max ( @height() - childrenHeight ), 0
     paddingTop = availableSpace / 2
-    @.css "padding-top", paddingTop
+    if paddingTop > 0
+      @.css "padding-top", paddingTop
 
   _usingFlexBox: ( usingFlexBox ) ->
     if usingFlexBox is undefined
