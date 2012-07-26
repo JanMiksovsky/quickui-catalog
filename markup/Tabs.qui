@@ -69,8 +69,16 @@ Tabs.prototype.extend({
         if ( contentClass === undefined ) {
             return this.$Tabs_content().controlClass();
         } else {
+            // The default Modes class sets the content's size, so clear any
+            // explicitly-set height and width.
+            this.$Tabs_content().css({
+                height: "",
+                width: ""
+            });
             var $new = this.$Tabs_content().transmute( contentClass, true );
             this.referencedElement( "Tabs_content", $new );
+            this.$Tabs_content().checkForSizeChange();
+            return this;
         }
     },
 

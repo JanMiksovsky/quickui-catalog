@@ -84,6 +84,10 @@ SlidingPanels.prototype.extend({
     // Force all elements and the control itself to the maximium width of the elements.
     _adjustWidths: function() {
 
+        if ( console ) {
+            console.log( "adjustWidths" );
+        }
+
         var elements = this.elements();
         if ( elements.length === 0 ) {
             return;
