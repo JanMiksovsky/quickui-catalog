@@ -62,25 +62,31 @@ Sequence.prototype.extend({
      * If the set changes, this will attempt to preserve the one that was
      * previously active. Otherwise, the first element is made active.
      */
-    content: function( value ) {
-        
-        var previousControl = this.activeElement();
+    content: function( content ) {
         var container = this._container();
-        var result = ( this[0] === container[0] )
-            ? this._super( value )
-            : container.content( value );
+        if ( content === undefined ) {
+            return ( this[0] === container[0] )
+                ? this._super( content )
+                : container.content( content );
+
+        } else {
         
+            // Save active element before setting content.
+            var previousControl = this.activeElement();
+
+            var result = ( this[0] === container[0] )
+                ? this._super( content )
+                : container.content( content );
         
-        if ( value !== undefined ) {
             if ( previousControl && previousControl.parent()[0] === this[0] ) {
                 // Still have previously active child; hide other elements.
                 this.activeElement( previousControl );
             } else {
                 this.activeIndex( 0 );
             }
+
+            return result;
         }
-        
-        return result;
     },
 
     /*
@@ -89,7 +95,7 @@ Sequence.prototype.extend({
     elements: Control.chain( "_container", "children", "cast" ),
     
     initialize: function() {
-        if ( this.activeIndex() < 0 ) {
+        if ( this.elements().length > 0 && this.activeIndex() < 0 ) {
             // Show first child by default. 
             this.activeIndex(0);
         }

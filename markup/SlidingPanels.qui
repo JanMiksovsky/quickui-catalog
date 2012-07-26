@@ -38,9 +38,9 @@ SlidingPanels.prototype.extend({
     activeIndex: function( activeIndex ) {
         var result = this._super( activeIndex );
         if ( activeIndex !== undefined ) {
-            var page = this.elements().eq( activeIndex );
-            if ( page.length > 0 ) {
-                var left = page.position().left;
+            var panel = this.elements().eq( activeIndex );
+            if ( panel.length > 0 ) {
+                var left = panel.position().left;
                 if ( SlidingPanels.hasTransitions( this.$SlidingPanels_content() ) ) {
                     // Use CSS animation.
                     this.$SlidingPanels_content().css( "left", -left );
@@ -89,20 +89,20 @@ SlidingPanels.prototype.extend({
             return;
         }
         
-        var pageWidths = elements.map( function( index, page ) {
-            return $( page ).width();
+        var panelWidths = elements.map( function( index, panel ) {
+            return $( panel ).width();
         }).get();
-        var maxPageWidth = Math.max.apply( this, pageWidths );
-        if ( maxPageWidth > 0 ) {
-            elements.width( maxPageWidth );
+        var maxpanelWidth = Math.max.apply( this, panelWidths );
+        if ( maxpanelWidth > 0 ) {
+            elements.width( maxpanelWidth );
         }
 
-        var pageOuterWidths = elements.map( function( index, page ) {
-            return $( page ).outerWidth( true );
+        var panelOuterWidths = elements.map( function( index, panel ) {
+            return $( panel ).outerWidth( true );
         }).get();
-        var maxPageOuterWidth = Math.max.apply( this, pageOuterWidths );
-        if ( maxPageOuterWidth > 0 ) {
-            this.width( maxPageOuterWidth );
+        var maxpanelOuterWidth = Math.max.apply( this, panelOuterWidths );
+        if ( maxpanelOuterWidth > 0 ) {
+            this.width( maxpanelOuterWidth );
         }
     },
 
