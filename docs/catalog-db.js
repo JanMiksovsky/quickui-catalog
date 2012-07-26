@@ -316,6 +316,11 @@ var controlRecords = [
         description: "A typical web search box."
     },
     {
+        name: "Sequence",
+        demoClass: "",
+        description: "An ordered sequence of elements which can be navigated through one at a time."
+    },
+    {
         name: "SequenceNavigator",
         demoClass: "",
         description: "Lets the user navigate left and right through its contents."
