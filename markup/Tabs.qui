@@ -139,7 +139,7 @@ Tabs.prototype.extend({
     /*
      * The child currently shown as the selected tab.
      */
-    selectedTab: Control.chain( "$Tabs_content", "activeChild" ),
+    selectedTab: Control.chain( "$Tabs_content", "activeElement" ),
     
     /*
      * The index of the selected tab.
