@@ -233,6 +233,9 @@ ComboBox.prototype.extend({
         });
     },
 
+    // Hint for documentation tools.
+    _requiresClasses: [ "TextBox" ],
+
     /*
      * Select the text at the indicated positions in the input control.
      */

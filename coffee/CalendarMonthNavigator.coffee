@@ -105,3 +105,6 @@ class window.CalendarMonthNavigator extends Control
     if @showSelectedDate()
       dayControl = @$calendar().dayControlForDate @date()
       dayControl.addClass "selected"
+
+  # Hint for documentation tools
+  _requiresClasses: [ "CalendarDayButton" ]

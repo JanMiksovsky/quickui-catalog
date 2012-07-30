@@ -307,7 +307,10 @@ Popup.prototype.extend({
     },
 
     // The Overlay control behind the popup absorbing mouse clicks.
-    _overlay: Control.property()
+    _overlay: Control.property(),
+
+    // Hint for documentation tools.
+    _requiresClasses: [ "Overlay" ]
 
 });
 </script>

@@ -135,7 +135,10 @@ MenuBar.prototype.extend({
     _openPopups: Control.chain( "children", "filter/.PopupSource.opened", "control" ),
 
     // The overlay behind the menu bar.    
-    _overlay: Control.property()
+    _overlay: Control.property(),
+
+    // Hint for documentation tools.
+    _requiresClasses: [ "Menu", "Overlay" ]
     
 });
 </script>

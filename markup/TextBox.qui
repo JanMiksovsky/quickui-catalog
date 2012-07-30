@@ -29,7 +29,6 @@ TextBox.prototype.extend({
      * The placeholder (hint text) shown in the text box if it's empty.
      */
     placeholder: Control.chain( "prop/placeholder" )
-
     
 });
 </script>
