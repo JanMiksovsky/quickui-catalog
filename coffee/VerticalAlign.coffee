@@ -36,7 +36,7 @@ class window.VerticalAlign extends Control
     flexBox
     
   # True if we're currently handling the layout event to do manual layout.
-  _handlingLayout: Control.property.bool()
+  _handlingLayout: Control.property.bool( null, false )
 
   _layout: ->
     @.css "padding-top", "" # Clear padding so it doesn't interface with calcs.

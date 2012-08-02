@@ -1,9 +1,29 @@
 @import "mixins";
 
 .LateralNavigator {
+
   &.generic {
     .panels {
       outline: none; /* Keyboard feedback is nice, but distracting to mouse users */
     }
+  }
+
+  /*
+  The center style currently hacks into SimpleFlexBox. Instead, SimpleFlexBox
+  should expose its own center alignment capability. Unfortunately, it's hard to
+  come up with a way to do that that works in both the constrainHeight="true"
+  and normal cases.
+  */
+  &.center {
+
+    .panels {
+        -webkit-box-align: center;
+        box-align: center;
+    }
+
+    .panels > * {
+        vertical-align: middle;
+    }
+
   }
 }

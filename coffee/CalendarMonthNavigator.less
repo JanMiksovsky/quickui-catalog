@@ -7,25 +7,17 @@
   .navigator {
     margin-bottom: 0.5em;
 
-    // HACK: This rule group and the next refer directly to LateralNavigator
-    // internals. It'd be nice to redo this so we don't need to do that.
+    // HACK: This refers directly to LateralNavigator internals. It'd be nice to
+    // redo this so we don't need to do that.
     .panels {
       white-space: nowrap;
     }
 
-    .LateralNavigator_content {
-      height: 100%;
-      left: 0;
-      position: absolute;
-      right: 0;
-
-      .monthHeading {
-        .box-flex(1);
-        line-height: 1.0;
-        font-weight: bold;
-      }
+    .monthHeading {
+      .box-flex(1);
+      line-height: 1.0;
+      font-weight: bold;
     }
-
   }
 
   .calendar {

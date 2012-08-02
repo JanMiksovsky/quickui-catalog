@@ -5,19 +5,18 @@ Lets user navigate content by moving left (backward) and right (forward).
 class window.LateralNavigator extends Control
 
   inherited:
+    class: "center"
     content:
       control: HorizontalPanels
       ref: "panels"
       content:
         html: "div"
         ref: "LateralNavigator_content"
-      leftClass: "VerticalAlign"
       left:
         control: BasicButton
         ref: "LateralNavigator_previousButton"
         class: "navigatorButton quiet"
         content: "&#9664;"
-      rightClass: "VerticalAlign"
       right:
         control: BasicButton
         ref: "LateralNavigator_nextButton"
@@ -25,6 +24,13 @@ class window.LateralNavigator extends Control
         content: "&#9654;"
       tabindex: -1 # To get keyboard events
     generic: true
+
+  # If set to "center" (the default), the main content panel and side panels
+  # will be vertically centered. If set to "top", the panels will be top-
+  # aligned.
+  align: ( align ) ->
+    @toggleClass "center", ( align == "center" )
+    @
 
   # True if it's possible to navigate forward.
   # The default implementation always returns true. Subclasses can override this

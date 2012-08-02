@@ -9,7 +9,7 @@ class window.CalendarMonthNavigator extends Control
       {
         control: "LateralNavigator"
         ref: "navigator"
-        contentClass: "VerticalAlign"
+        align: "center"
         content:
           control: "MonthAndYear", ref: "monthHeading"
       }
