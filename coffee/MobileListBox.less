@@ -1,0 +1,34 @@
+.MobileListBox {
+
+  margin: 0;
+  outline: none;
+  -webkit-padding-start: 0; // Suppress left margin
+
+  &.generic {
+    font-weight: bold;
+  }
+
+  &.generic > * {
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    padding: 0.5em;
+  }
+  
+  &.generic > .selected {
+    background: url(http://quickui.org/release/resources/mobileCheckmark.png) no-repeat right center;
+    color: #385487;
+  }
+
+  &.generic > :last-child {
+    border-bottom: none;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: inherit;
+  }
+
+}

@@ -1,0 +1,29 @@
+.MobileLinkList {
+
+  margin: 0;
+  outline: none;
+  -webkit-padding-start: 0; // Suppress left margin
+
+  > * {
+    background: url(http://quickui.org/release/resources/mobileDisclosureIndicator.png) no-repeat right center;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    padding: 0.5em;
+  }
+
+  > *:active,
+  > .selected {
+    background-color: #194fdb;
+    background-image: url(http://quickui.org/release/resources/mobileDisclosureIndicatorSelected.png);
+    color: white !important;
+  }
+
+  > :last-child {
+    border-bottom: none;
+  }
+
+  li {
+    list-style: none;
+  }
+
+}
