@@ -39,13 +39,22 @@ Page.prototype.extend({
      * window title bar, etc.
      */
     title: function( title ) {
-        if ( title === undefined ) {
-            return document.title;
+        if ( this[0] === document.body ) {
+            // This page is the document, mirror the document's title.
+            if ( title === undefined ) {
+                return document.title;
+            } else {
+                document.title = title;
+                return this;
+            }
         } else {
-            document.title = title;
-            return this;
+            // This page is not (yet) the document, keep a private copy of the title.
+            return this._title( title );
         }
-    }
+    },
+
+    // Private copy of the page's title.
+    _title: Control.property()
 
 });
 
