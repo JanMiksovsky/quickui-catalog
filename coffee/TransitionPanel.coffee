@@ -21,11 +21,20 @@ class window.TransitionPanel extends Control
         # Setting content to the same object(s), so skip transition.
         @$TransitionPanel_content().content content
       else
-        @_transitionToContent content
+        # Apply the desired transition.
+        @_applyTransition content
       @
 
-  # Transition to the indicated content
-  _transitionToContent: ( content ) ->
+  # Fade from old content to new content.
+  crossfade: ( $old, $new, callback ) ->
+    $new.fadeIn( "fast" )
+    $old.fadeOut "fast", callback
+
+  # The effect to apply. The default is "crossfade"
+  transition: Control.property( null, "crossfade" )
+
+  # Apply the desired transition.
+  _applyTransition: ( content ) ->
 
     $new = @$TransitionPanel_content()
     $old = @$TransitionPanel_old()
@@ -35,11 +44,15 @@ class window.TransitionPanel extends Control
     $old
       .append( $existingContents )
       .show()
-    # Fade in the new content.
+
+    # Insert the new content, but keep it hidden for now.
     $new
       .hide()
       .content( content )
-      .fadeIn( "fast" )
-    $old.fadeOut "fast", ->
-      # Remove the old content when we've finished fading it out.
+
+    # Invoke the transition
+    transitionFn = @[ @transition() ]
+    callback = ->
+      # Remove the old content when the transition completes.
       $existingContents.detach()
+    transitionFn.call @, $old, $new, callback
