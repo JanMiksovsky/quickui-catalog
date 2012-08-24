@@ -1,3 +1,7 @@
+/*
+ * Sorts a list of class file names so that they function properly.
+ */
+ 
 var glob = require( "glob-whatev" );
 var path = require( "path" );
 
