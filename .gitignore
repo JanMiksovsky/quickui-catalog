@@ -9,6 +9,7 @@ controlDocumentation.js
 markup/markup.js
 markup/markup.css
 node_modules
+grunt/classGraph.js
 quickui.catalog.*
 quickui-catalog.js
 quickui-catalog.css
