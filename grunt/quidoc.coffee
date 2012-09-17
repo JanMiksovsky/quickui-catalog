@@ -1,10 +1,13 @@
 ###
 Generate documenation for QuickUI controls.
 
-This scrapes CoffeeScript or QuickUI markup files to extract comments that
-apply to named control class members.
+This scrapes CoffeeScript or QuickUI markup files to extract the following:
+* Class name
+* Base class name
+* Other control classes instantiated (or otherwise used) by this class.
+* Public properties/methods and their associated comments.
 
-This can be run directly via node, or invoked as a Grunt task.
+This tool can be run directly via node, or invoked as a Grunt task.
 ###
 
 fs = require "fs"
@@ -32,24 +35,30 @@ walk = ( directory, fn ) ->
 class DocsExtractor
 
   constructor: ( regexes ) ->
+    @regexBaseClassName = regexes.baseClassName
     @regexClassName = regexes.className
     @regexComments = regexes.comments
     @regexCommentText = regexes.commentText
+    @regexRequiresClasses = regexes.requiresClasses
 
   extract: ( source ) ->
+    baseClassName: @baseClassName source
     className: @controlClassName source
-    comments: @controlComments source
+    members: @memberComments source
+    requiresClasses: @requiresClasses source
+
+  # Return the name for the control class defined in the source text.
+  baseClassName: ( source ) ->
+    match = @regexBaseClassName.exec source
+    match?[1]
 
   # Return the name for the control class defined in the source text.
   controlClassName: ( source ) ->
     match = @regexClassName.exec source
-    if match?
-      match[1]
-    else
-      null
+    match?[1]
 
   # Return the comments found for members defined in the source text.
-  controlComments: ( source ) ->
+  memberComments: ( source ) ->
     comments = null
     match = @regexComments.exec source
     while match != null
@@ -82,14 +91,32 @@ class DocsExtractor
       match = @regexCommentText.exec commentBlock
     text
 
+  # Return the array of other control classes required by this class.
+  requiresClasses: ( source ) ->
+    match = @regexRequiresClasses.exec source
+    if match?
+      JSON.parse match[1] # Return the parsed array as an array
+
 
 # Extracts docs from CoffeeScript controls
 coffeeDocsExtractor = new DocsExtractor
+  baseClassName: ///
+    \r?\n                     # Start of line (no indentation)
+    class                     # "class" keyword
+    \s+                       # Whitespace
+    [\w\.]+                   # Class name (handled separately)
+    \s+                       # Whitespace
+    extends                   # "extends" keyword
+    \s+                       # Whitespace
+    (                         # Group captures base class name
+      [a-zA-Z0-9\$][\w]+      # JavaScript identifier
+    )
+  ///
   className: ///
     \r?\n                     # Start of line (no indentation)
     class                     # "class" keyword
     \s+                       # Whitespace
-    (?:window.)?              # optional "window."
+    (?:window.)?              # Optional "window."
     (                         # Group captures class name
       [a-zA-Z0-9\$][\w]+      # JavaScript identifier
     )
@@ -108,6 +135,16 @@ coffeeDocsExtractor = new DocsExtractor
     :                         # Colon terminates identifier
   ///g
   commentText: /^\s*#[ ]?(.*)/gm
+  requiresClasses: ///
+    _requiresClasses          # Expected identifer "_requiresClasses"
+    :                         # Colon
+    \s+                       # Whitespace
+    (                         # Group captures array of required classes
+      \[                      # Opening bracket
+        [^\]]+                # Array contents -- everything but a closing bracket
+      \]                      # Closing bracket
+    )
+  ///
 
 
 # Extracts docs from QuickUI markup controls
@@ -161,9 +198,9 @@ projectDocs = ( root ) ->
     extractor = extractors[ extension ]
     if extractor?
       source = fs.readFileSync filePath, "utf8"
-      { className: className, comments: comments } = extractor.extract source
-      if className? and comments?
-        docs[ className ] = comments
+      controlDocs = extractor.extract source
+      if controlDocs.className?
+        docs[ controlDocs.className ] = controlDocs
   docs
 
 
@@ -190,7 +227,7 @@ sortByKeys = ( obj ) ->
 formatDocs = ( docs ) ->
   json =  JSON.stringify docs, null, "  "
   """
-  /* Control member documentation generated from QuickUI control source files. */
+  /* Control documentation generated from QuickUI control source files. */
   var controlDocumentation = #{json};
   """
 
