@@ -61,7 +61,10 @@ class DocsExtractor
   # setters invoked on the base class.
   content: ( source ) ->
     match = @regexes.content.exec source
-    match?[1]
+    # Return the first non-empty form of content which matched
+    for i in [1..match.length]
+      if match?[i]
+        return match?[i]
 
   # Return the name for the control class defined in the source text.
   controlClassName: ( source ) ->
@@ -98,8 +101,8 @@ class DocsExtractor
 
   # Return the array of classes both implicitly and explicitly required.
   requiresClasses: ( source ) ->
-    implicit = @implicitRequiredClasses source
-    explicit = @explicitRequiredClasses source
+    implicit = ( @implicitRequiredClasses source ) ? []
+    explicit = ( @explicitRequiredClasses source ) ? []
     requiresClasses = implicit.concat explicit
     unique = @_unique requiresClasses
     unique.sort()
@@ -143,6 +146,19 @@ coffeeDocsExtractor = new DocsExtractor
       [a-zA-Z0-9\$][\w]+      # JavaScript identifier
     )
   ///
+  content: ///
+    \r?\n                     # Start of a line
+    \s\s                      # Required indent of two spaces
+    inherited                 # Expected identifier "inherited"
+    :                         # Colon
+    (                         # Group captures content (and other base setters)
+      (?:                     # Non-capturing group for each line of content
+        \r?\n                 # Line break
+        \s\s\s\s              # Required indent of at least four spaces
+        .*                    # Additional whitespace and/or real content
+      )+
+    )
+  ///
   comments: ///
     (                         # First group captures the comment
       (?:                     # Non-capturing group for each comment line
@@ -157,19 +173,6 @@ coffeeDocsExtractor = new DocsExtractor
     :                         # Colon terminates identifier
   ///g
   commentText: /^\s*#[ ]?(.*)/gm
-  content: ///
-    \r?\n                     # Start of a line
-    \s\s                      # Required indent of two spaces
-    inherited                 # Expected identifier "inherited"
-    :                         # Colon
-    (                         # Group captures content (and other base setters)
-      (?:                     # Non-capturing group for each line of content
-        \r?\n                 # Line break
-        \s\s\s\s              # Required indent of at least four spaces
-        .*                    # Additional whitespace and/or real content
-      )+
-    )
-  ///
   referencedClasses: ///
     \r?\n                     # Start of a line
     \s+                       # Whitespace
@@ -196,6 +199,12 @@ coffeeDocsExtractor = new DocsExtractor
 
 # Extracts docs from QuickUI markup controls
 markupDocsExtractor = new DocsExtractor
+  baseClassName: ///
+    <prototype>               # Opening prototype tag
+    \s*                       # Optional whitespace
+    <                         # Open tag for base class instance
+    (\w+)                     # Group captures base class name
+  ///
   className: ///
     <script>                  # Opening script tag
     \s*                       # Whitespace
@@ -230,6 +239,44 @@ markupDocsExtractor = new DocsExtractor
     :                         # Colon terminates identifier
   ///g
   commentText: /^\s*\*[ ]?(.*)/gm
+  content: ///
+    (?:                       # Non-capturing group for first part of OR
+      <prototype>             # Opening prototype tag
+      \s*                     # Optional whitespace
+      <[^>]+>                 # Opening base class instance tag
+      (                       # Group captures content
+        [\s\S]*               # Anything up to...
+      )
+      </prototype>            # Closing prototype tag
+    )
+    |                         # OR
+    (?:                       # Non-capturing group for second part of OR
+      <content>               # Opening content tag
+      (                       # Group captures content
+        [\s\S]*               # Anything up to...
+      )
+      </content>              # Closing content tag
+    )
+  ///
+  referencedClasses: ///
+    <                         # Start tag
+    (                         # Group captures referenced class name
+      [A-Z]                   # Must start with an uppercase letter
+      \w*                     # More letters
+    )
+    .*                        # Optional tag parameters
+    >                         # End tag
+  ///g
+  requiresClasses: ///
+    _requiresClasses          # Expected identifer "_requiresClasses"
+    :                         # Colon
+    \s+                       # Whitespace
+    (                         # Group captures array of required classes
+      \[                      # Opening bracket
+        [^\]]+                # Array contents -- everything but a closing bracket
+      \]                      # Closing bracket
+    )
+  ///
 
 
 extractors =
