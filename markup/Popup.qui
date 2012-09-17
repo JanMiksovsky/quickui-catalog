@@ -310,7 +310,7 @@ Popup.prototype.extend({
     _overlay: Control.property(),
 
     // Hint for documentation tools.
-    _requiresClasses: [ "Overlay" ]
+    _requiredClasses: [ "Overlay" ]
 
 });
 </script>

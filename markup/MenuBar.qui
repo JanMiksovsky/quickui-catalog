@@ -138,7 +138,7 @@ MenuBar.prototype.extend({
     _overlay: Control.property(),
 
     // Hint for documentation tools.
-    _requiresClasses: [ "Menu", "Overlay" ]
+    _requiredClasses: [ "Menu", "Overlay" ]
     
 });
 </script>

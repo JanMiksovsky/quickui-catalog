@@ -105,7 +105,7 @@ Menu.prototype.extend({
     popup: Control.chain( "$Menu_popup", "content" ),
     
     // Hint for documentation tools.
-    _requiresClasses: [ "MenuItem" ],
+    _requiredClasses: [ "MenuItem" ],
 
     /*
      * The "shield" is a thin block that can be used to obscure the boundary

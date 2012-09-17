@@ -40,7 +40,7 @@ class DocsExtractor
     baseClassName: @baseClassName source
     className: @controlClassName source
     members: @memberComments source
-    requiresClasses: @requiresClasses source
+    requiredClasses: @requiredClasses source
 
   # Return the name for the control class defined in the source text.
   baseClassName: ( source ) ->
@@ -73,7 +73,7 @@ class DocsExtractor
 
   # Return the array of other control classes explicitly required by this class.
   explicitRequiredClasses: ( source ) ->
-    match = @regexes.requiresClasses.exec source
+    match = @regexes.explicitClasses.exec source
     if match?
       classes = JSON.parse match[1] # Parse the text into a real array
       @_unique classes
@@ -83,8 +83,8 @@ class DocsExtractor
   implicitRequiredClasses: ( source ) ->
     content = @content source
     if content
-      referencedClasses = @_matches @regexes.referencedClasses, content
-      @_unique referencedClasses
+      implicitClasses = @_matches @regexes.implicitClasses, content
+      @_unique implicitClasses
 
   # Return the comments found for members defined in the source text.
   memberComments: ( source ) ->
@@ -100,11 +100,11 @@ class DocsExtractor
     comments
 
   # Return the array of classes both implicitly and explicitly required.
-  requiresClasses: ( source ) ->
+  requiredClasses: ( source ) ->
     implicit = ( @implicitRequiredClasses source ) ? []
     explicit = ( @explicitRequiredClasses source ) ? []
-    requiresClasses = implicit.concat explicit
-    unique = @_unique requiresClasses
+    requiredClasses = implicit.concat explicit
+    unique = @_unique requiredClasses
     unique.sort()
 
   # Return the first capture group for each match of a regex against source text.
@@ -173,7 +173,17 @@ coffeeDocsExtractor = new DocsExtractor
     :                         # Colon terminates identifier
   ///g
   commentText: /^\s*#[ ]?(.*)/gm
-  referencedClasses: ///
+  explicitClasses: ///
+    _requiredClasses:          # Expected identifer "_requiredClasses:"
+    :                         # Colon
+    \s+                       # Whitespace
+    (                         # Group captures array of required classes
+      \[                      # Opening bracket
+        [^\]]+                # Array contents -- everything but a closing bracket
+      \]                      # Closing bracket
+    )
+  ///
+  implicitClasses: ///
     \r?\n                     # Start of a line
     \s+                       # Whitespace
     control                   # Expected identifer "control"
@@ -185,16 +195,6 @@ coffeeDocsExtractor = new DocsExtractor
     )
     "                         # Close quote
   ///g
-  requiresClasses: ///
-    _requiresClasses          # Expected identifer "_requiresClasses"
-    :                         # Colon
-    \s+                       # Whitespace
-    (                         # Group captures array of required classes
-      \[                      # Opening bracket
-        [^\]]+                # Array contents -- everything but a closing bracket
-      \]                      # Closing bracket
-    )
-  ///
 
 
 # Extracts docs from QuickUI markup controls
@@ -258,17 +258,8 @@ markupDocsExtractor = new DocsExtractor
       </content>              # Closing content tag
     )
   ///
-  referencedClasses: ///
-    <                         # Start tag
-    (                         # Group captures referenced class name
-      [A-Z]                   # Must start with an uppercase letter
-      \w*                     # More letters
-    )
-    .*                        # Optional tag parameters
-    >                         # End tag
-  ///g
-  requiresClasses: ///
-    _requiresClasses          # Expected identifer "_requiresClasses"
+  explicitClasses: ///
+    _requiredClasses:          # Expected identifer "_requiredClasses:"
     :                         # Colon
     \s+                       # Whitespace
     (                         # Group captures array of required classes
@@ -277,6 +268,15 @@ markupDocsExtractor = new DocsExtractor
       \]                      # Closing bracket
     )
   ///
+  implicitClasses: ///
+    <                         # Start tag
+    (                         # Group captures referenced class name
+      [A-Z]                   # Must start with an uppercase letter
+      \w*                     # More letters
+    )
+    .*                        # Optional tag parameters
+    >                         # End tag
+  ///g
 
 
 extractors =

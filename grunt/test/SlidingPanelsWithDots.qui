@@ -1,0 +1,112 @@
+<!--
+Show its children as sliding pages which can be navigated by clicking buttons below.
+(The conventional button representation is a dot.)
+-->
+
+<Control className="SlidingPanelsWithDots" generic="true">
+
+<content>
+    <SlidingPanels ref="pages"/>
+    <div ref="buttonPanel">
+        <Repeater ref="pageButtons"/>
+    </div>
+</content>
+
+<style>
+{
+    display: inline-block; /* Size to content */ 
+    overflow: hidden;
+}
+
+.buttonPanel {
+    text-align: center;
+}
+.pageButtons {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Generic appearance */
+.SlidingPanelsWithDots.generic .buttonPanel {
+    padding: 5px;
+}
+
+.SlidingPanelsWithDots.generic .pageButtons > .BasicButton {
+    background: white;
+    border: 1px solid #888;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 10px;
+    margin: 2px;
+    padding: 5px;
+    width: 10px;
+}
+
+.SlidingPanelsWithDots.generic .pageButtons > .BasicButton:hover {
+    background: #ddd;
+}
+
+.SlidingPanelsWithDots.generic .pageButtons > .BasicButton.selected {
+    background: #bbb;
+}
+</style>
+
+<script>
+SlidingPanelsWithDots.prototype.extend({
+    
+    /*
+     * The index of the page currently being shown.
+     */
+    activeIndex: Control.property( function( activeIndex ) {
+        this.$pages().activeIndex( activeIndex );
+        this.pageButtons()
+            .removeClass( "selected" )
+            .eq( activeIndex )
+                .addClass( "selected" );
+        return this;
+    }),
+    
+    /*
+     * The set of elements to show as pages.
+     */
+    content: Control.chain( "$pages", "content", function() {
+        this.$pageButtons().count( this.elements().length );
+    }),
+    
+    elements: Control.chain( "$pages", "elements" ),
+    
+    initialize: function() {
+        
+        if ( !this.pageButtonClass() ) {
+            this.pageButtonClass( BasicButton );
+        }
+
+        var self = this;
+        this.$pageButtons().click( function( event ) {
+            // Which button was clicked?
+            var pageButton = $( event.target ).closest( self.pageButtons() ).control();
+            if ( pageButton ) {
+                var index = self.pageButtons().index( pageButton );
+                if ( index >= 0 ) {
+                    self.activeIndex( index );
+                }
+            }
+        });
+        
+        if ( !this.activeIndex() ) {
+            this.activeIndex(0);
+        }
+    },
+    
+    pageButtons: Control.chain( "$pageButtons", "children" ),
+
+    /*
+     * The class used to render the buttons to navigate between pages.
+     */    
+    pageButtonClass: Control.chain( "$pageButtons", "repeatClass" )
+
+});
+</script>
+
+</Control>
