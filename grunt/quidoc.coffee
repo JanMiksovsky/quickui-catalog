@@ -50,13 +50,11 @@ class DocsExtractor
   # Remove the comment indicator (e.g., "*") on interior block comment lines.
   commentText: ( commentBlock ) ->
     text = ""
-    match = @regexes.commentText.exec commentBlock
-    while match != null
-      [ full, lineText ] = match
-      if text.length > 0
+    commentLines = @_matches @regexes.commentText, commentBlock
+    for commentLine in commentLines
+      if commentLine.length > 0
         text += "\n"
-      text += lineText
-      match = @regexes.commentText.exec commentBlock
+      text += commentLine
     text
 
   # Return the text used to define the control's content and other property
