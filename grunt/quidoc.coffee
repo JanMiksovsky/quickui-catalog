@@ -34,12 +34,7 @@ walk = ( directory, fn ) ->
 
 class DocsExtractor
 
-  constructor: ( regexes ) ->
-    @regexBaseClassName = regexes.baseClassName
-    @regexClassName = regexes.className
-    @regexComments = regexes.comments
-    @regexCommentText = regexes.commentText
-    @regexRequiresClasses = regexes.requiresClasses
+  constructor: ( @regexes ) ->
 
   extract: ( source ) ->
     baseClassName: @baseClassName source
@@ -49,54 +44,83 @@ class DocsExtractor
 
   # Return the name for the control class defined in the source text.
   baseClassName: ( source ) ->
-    match = @regexBaseClassName.exec source
+    match = @regexes.baseClassName.exec source
+    match?[1]
+
+  # Remove the comment indicator (e.g., "*") on interior block comment lines.
+  commentText: ( commentBlock ) ->
+    text = ""
+    match = @regexes.commentText.exec commentBlock
+    while match != null
+      [ full, lineText ] = match
+      if text.length > 0
+        text += "\n"
+      text += lineText
+      match = @regexes.commentText.exec commentBlock
+    text
+
+  # Return the text used to define the control's content and other property
+  # setters invoked on the base class.
+  content: ( source ) ->
+    match = @regexes.content.exec source
     match?[1]
 
   # Return the name for the control class defined in the source text.
   controlClassName: ( source ) ->
-    match = @regexClassName.exec source
+    match = @regexes.className.exec source
     match?[1]
+
+  # Return the array of other control classes explicitly required by this class.
+  explicitRequiredClasses: ( source ) ->
+    match = @regexes.requiresClasses.exec source
+    if match?
+      classes = JSON.parse match[1] # Parse the text into a real array
+      @_unique classes
+
+  # Return the array of other control classes implicitly required by this class
+  # because they're used in the class' content or other base class setters.
+  implicitRequiredClasses: ( source ) ->
+    content = @content source
+    if content
+      referencedClasses = @_matches @regexes.referencedClasses, content
+      @_unique referencedClasses
 
   # Return the comments found for members defined in the source text.
   memberComments: ( source ) ->
     comments = null
-    match = @regexComments.exec source
+    match = @regexes.comments.exec source
     while match != null
       [ full, commentBlock, identifier ] = match
       commentText = @commentText commentBlock
       if commentText.length > 0
         comments = comments || {}
         comments[ identifier ] = commentText
-      match = @regexComments.exec source
+      match = @regexes.comments.exec source
     comments
 
-  # Remove the comment indicator (e.g., "*") on interior block comment lines.
-  commentText: ( commentBlock ) ->
-    text = ""
-    match = @regexCommentText.exec commentBlock
-    while match != null
-      [ full, lineText ] = match
-      if text.length > 0
-        text += "\n"
-      text += lineText
-      ###
-      lineText = lineText.trim()
-      if lineText.length == 0
-        text += "\n\n"  # Line of pure whitespace was intended as a break.
-      else
-        if text.length > 0 and text[ text.length - 1 ] != "\n"
-          text += " "
-        text += lineText
-      ###
-      match = @regexCommentText.exec commentBlock
-    text
-
-  # Return the array of other control classes required by this class.
+  # Return the array of classes both implicitly and explicitly required.
   requiresClasses: ( source ) ->
-    match = @regexRequiresClasses.exec source
-    if match?
-      JSON.parse match[1] # Return the parsed array as an array
+    implicit = @implicitRequiredClasses source
+    explicit = @explicitRequiredClasses source
+    requiresClasses = implicit.concat explicit
+    unique = @_unique requiresClasses
+    unique.sort()
 
+  # Return the first capture group for each match of a regex against source text.
+  _matches: ( regex, source ) ->
+    matches = []
+    match = regex.exec source
+    while match?
+      matches.push match[1]
+      match = regex.exec source
+    matches
+
+  # Return the given array with duplicates removed.
+  _unique: (array) ->
+    results = []
+    for item in array
+      results.push item if results.indexOf( item ) < 0
+    results
 
 # Extracts docs from CoffeeScript controls
 coffeeDocsExtractor = new DocsExtractor
@@ -135,6 +159,31 @@ coffeeDocsExtractor = new DocsExtractor
     :                         # Colon terminates identifier
   ///g
   commentText: /^\s*#[ ]?(.*)/gm
+  content: ///
+    \r?\n                     # Start of a line
+    \s\s                      # Required indent of two spaces
+    inherited                 # Expected identifier "inherited"
+    :                         # Colon
+    (                         # Group captures content (and other base setters)
+      (?:                     # Non-capturing group for each line of content
+        \r?\n                 # Line break
+        \s\s\s\s              # Required indent of at least four spaces
+        .*                    # Additional whitespace and/or real content
+      )+
+    )
+  ///
+  referencedClasses: ///
+    \r?\n                     # Start of a line
+    \s+                       # Whitespace
+    control                   # Expected identifer "control"
+    :                         # Colon
+    \s+                       # Whitespace
+    "                         # Open quote
+    (                         # Group captures referenced class name
+      \w+                     # Class name
+    )
+    "                         # Close quote
+  ///g
   requiresClasses: ///
     _requiresClasses          # Expected identifer "_requiresClasses"
     :                         # Colon
