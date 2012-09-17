@@ -37,14 +37,22 @@ class DocsExtractor
   constructor: ( @regexes ) ->
 
   extract: ( source ) ->
-    baseClassName: @baseClassName source
-    className: @controlClassName source
-    members: @memberComments source
-    requiredClasses: @requiredClasses source
+    className = @controlClassName source
+    baseClass = @baseClass source
+    members = @memberComments source
+    requiredClasses = @requiredClasses source
+    results = { className }
+    if baseClass? and baseClass != "Control"
+      results.baseClass = baseClass
+    if members?
+      results.members = members
+    if requiredClasses?
+      results.requiredClasses = requiredClasses
+    results
 
   # Return the name for the control class defined in the source text.
-  baseClassName: ( source ) ->
-    match = @regexes.baseClassName.exec source
+  baseClass: ( source ) ->
+    match = @regexes.baseClass.exec source
     match?[1]
 
   # Remove the comment indicator (e.g., "*") on interior block comment lines.
@@ -61,10 +69,11 @@ class DocsExtractor
   # setters invoked on the base class.
   content: ( source ) ->
     match = @regexes.content.exec source
-    # Return the first non-empty form of content which matched
-    for i in [1..match.length]
-      if match?[i]
-        return match?[i]
+    if match?
+      # Return the first non-empty form of content which matched
+      for i in [1..match.length]
+        if match?[i]
+          return match?[i]
 
   # Return the name for the control class defined in the source text.
   controlClassName: ( source ) ->
@@ -106,6 +115,7 @@ class DocsExtractor
     requiredClasses = implicit.concat explicit
     unique = @_unique requiredClasses
     unique.sort()
+    if unique.length > 0 then unique else null
 
   # Return the first capture group for each match of a regex against source text.
   _matches: ( regex, source ) ->
@@ -125,7 +135,7 @@ class DocsExtractor
 
 # Extracts docs from CoffeeScript controls
 coffeeDocsExtractor = new DocsExtractor
-  baseClassName: ///
+  baseClass: ///
     \r?\n                     # Start of line (no indentation)
     class                     # "class" keyword
     \s+                       # Whitespace
@@ -199,7 +209,7 @@ coffeeDocsExtractor = new DocsExtractor
 
 # Extracts docs from QuickUI markup controls
 markupDocsExtractor = new DocsExtractor
-  baseClassName: ///
+  baseClass: ///
     <prototype>               # Opening prototype tag
     \s*                       # Optional whitespace
     <                         # Open tag for base class instance
@@ -293,8 +303,11 @@ projectDocs = ( root ) ->
     if extractor?
       source = fs.readFileSync filePath, "utf8"
       controlDocs = extractor.extract source
-      if controlDocs.className?
-        docs[ controlDocs.className ] = controlDocs
+      className = controlDocs.className
+      if className?
+        # Don't need two copies of class name in JSON output
+        delete controlDocs.className
+        docs[ className ] = controlDocs
   docs
 
 
