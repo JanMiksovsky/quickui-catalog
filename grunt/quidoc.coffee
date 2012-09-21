@@ -184,7 +184,7 @@ coffeeDocsExtractor = new DocsExtractor
   ///g
   commentText: /^\s*#[ ]?(.*)/gm
   explicitClasses: ///
-    _requiredClasses:          # Expected identifer "_requiredClasses:"
+    _requiredClasses          # Expected identifer "_requiredClasses:"
     :                         # Colon
     \s+                       # Whitespace
     (                         # Group captures array of required classes
@@ -269,7 +269,7 @@ markupDocsExtractor = new DocsExtractor
     )
   ///
   explicitClasses: ///
-    _requiredClasses:          # Expected identifer "_requiredClasses:"
+    _requiredClasses          # Expected identifer "_requiredClasses:"
     :                         # Colon
     \s+                       # Whitespace
     (                         # Group captures array of required classes
