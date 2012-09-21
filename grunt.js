@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( "grunt-contrib-less" );
     grunt.loadTasks( "grunt" );
 
-    var sortDependencies = require( "./grunt/sortDependencies.js" );
+    var sortDependencies = require( "../quickui/grunt/sortDependencies.js" );
 
     // Project configuration.
     grunt.initConfig({
