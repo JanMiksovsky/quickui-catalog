@@ -35,12 +35,6 @@ module.exports = function(grunt) {
             //     src: [ "samples/*.coffee" ],
             //     dest: ""
             // },
-            // TODO: Fold this into tools task
-            graph: {
-                src: [ "grunt/classGraph.coffee" ],
-                dest: "grunt/classGraph.js",
-                options: { bare: false }
-            },
             /* Build the quidoc Grunt task itself. */
             tools: {
                 src: [ "grunt/quidoc.coffee" ],
