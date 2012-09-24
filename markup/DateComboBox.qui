@@ -64,7 +64,10 @@ DateComboBox.prototype.extend({
     /*
      * True if the user must enter a value in this field.
      */
-    required: Control.chain( "$ComboBox_content", "required" )
+    required: Control.chain( "$ComboBox_content", "required" ),
+
+    // Hint for documentation tools.
+    _requiredClasses: [ "DateTextBox" ]
 
 });
 </script>
