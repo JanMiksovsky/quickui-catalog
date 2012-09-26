@@ -4,6 +4,10 @@ Navigates left and right through its children.
 
 class window.SequenceNavigator extends LateralNavigator
 
+  activeIndex: Control.chain( "$LateralNavigator_content", "activeIndex", ( activeIndex ) ->
+    @_updateButtons()
+  )
+
   inherited:
     contentClass: Modes
 
