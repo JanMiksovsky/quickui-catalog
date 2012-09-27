@@ -16,6 +16,20 @@ Lets user pick a date with a date-optimzed text box or a navigable month calenda
 DateComboBox.prototype.extend({
     
     /*
+     * The control's current culture.
+     */
+    culture: function( culture ) {
+        var result = this._super( culture );
+        if ( culture !== undefined ) {
+            this.$navigator().culture( culture );
+            if ( $.isFunction( this.textBox().culture ) ) {
+                this.textBox().culture( culture );
+            }
+        }
+        return result;
+    },
+
+    /*
      * The date indicated in the control.
      */
     date: Control.property( function( date ) {
