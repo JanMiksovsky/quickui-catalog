@@ -66,7 +66,14 @@ CalendarWeek.prototype.extend({
     /*
      * The class used to represent days in the week.
      */
-    dayClass: Control.chain( "$days", "transmute", function() { this._refresh(); } ),
+    dayClass: function( dayClass ) {
+        if ( dayClass === undefined ) {
+            return this.$days().constructor;
+        } else {
+            this.$days().transmute( dayClass );
+            this._refresh();
+        }
+    },
     
     initialize: function() {
         if ( !this.date() ) {
