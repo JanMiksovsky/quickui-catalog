@@ -29,8 +29,8 @@
 <script>
 CalendarMonth.prototype.extend({
 
-    $days: Control.chain( "find/.CalendarDay", "control" ),
-    $weeks: Control.chain( "children", "control" ),
+    days: Control.chain( "find/.CalendarDay", "control" ),
+    weeks: Control.chain( "children", "control" ),
     
     /*
      * The control's current culture.
@@ -38,7 +38,7 @@ CalendarMonth.prototype.extend({
     culture: function( culture ) {
         var result = this._super( culture );
         if ( culture !== undefined ) {
-            this.$weeks().culture( culture );
+            this.weeks().culture( culture );
             this._refresh();
         }
         return result;
@@ -47,7 +47,7 @@ CalendarMonth.prototype.extend({
     /*
      * The class used to represent days in the month.
      */
-    dayClass: Control.chain( "$weeks", "dayClass", function() { this._refresh(); } ),
+    dayClass: Control.chain( "weeks", "dayClass", function() { this._refresh(); } ),
 
     /*
      * The date that will be included in this month (can be any day of the month).
@@ -77,15 +77,15 @@ CalendarMonth.prototype.extend({
         // TODO: Return null if date is not within this month.
         var dayOMonth = date.getDate();
         var weeksWithDate = this.map( function( index, month ) {
-            var $weeks = $( month ).control().$weeks();
+            var weeks = $( month ).control().weeks();
             var firstDayOfMonth = new Date( date.getTime() );
             firstDayOfMonth.setDate(1);
-            var offset = $weeks.daysSinceFirstDayOfWeek( firstDayOfMonth );
+            var offset = weeks.daysSinceFirstDayOfWeek( firstDayOfMonth );
             var week = Math.floor( ( date.getDate() + offset - 1 ) / 7 );
-            return $weeks[ week ];
+            return weeks[ week ];
         });
-        var $weeksWithDate = $().add( weeksWithDate ).control();
-        return $weeksWithDate;
+        var weeksWithDate = $().add( weeksWithDate ).control();
+        return weeksWithDate;
     },
     
     _refresh: function() {
@@ -101,21 +101,21 @@ CalendarMonth.prototype.extend({
         
         // Fill in the weeks.
         var month = firstDayOfMonth.getMonth();
-        this.$weeks().eachControl( function( weekRow, $week) {
+        this.weeks().eachControl( function( weekRow, $week) {
 
             $week.date( CalendarDay.addDays( firstDayOfMonth, 7 * weekRow ) );
             
             // Hide weeks completely in another month (i.e., the next month).
             // Apply "hidden" class to preserve week's original "display" property.
-            var $days = $week.$days();
-            var firstDayOfWeek = $days.eq(0).date();
-            var lastDayOfWeek = $days.eq(6).date();
+            var days = $week.days();
+            var firstDayOfWeek = days.eq(0).date();
+            var lastDayOfWeek = days.eq(6).date();
             var isWeekInMonth = ( firstDayOfWeek.getMonth() === month || lastDayOfWeek.getMonth() === month );
             $week.toggleClass( "hidden", !isWeekInMonth );
         });
         
         // Paint days inside and outside range.
-        this.$days().eachControl( function( index, $day ) {
+        this.days().eachControl( function( index, $day ) {
             var date = $day.date();
             var insideMonth = date
                 ? ( date >= firstDayOfMonth && date <= lastDayOfMonth )

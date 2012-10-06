@@ -54,26 +54,26 @@ CalendarWeek.prototype.extend({
         var days = this.map( function( index, week ) {
             var $week = $( week ).control();
             var dayIndex = $week.daysSinceFirstDayOfWeek( date );
-            return $week.$days()[ dayIndex ];
+            return $week.days()[ dayIndex ];
         });
-        var $days = $().add( days ).control();
-        return $days;
+        var days = $().add( days ).control();
+        return days;
     },
-
-    /* The collection of day cells */
-    $days: Control.chain( "children", "control" ),
     
     /*
      * The class used to represent days in the week.
      */
     dayClass: function( dayClass ) {
         if ( dayClass === undefined ) {
-            return this.$days().constructor;
+            return this.days().constructor;
         } else {
-            this.$days().transmute( dayClass );
+            this.days().transmute( dayClass );
             this._refresh();
         }
     },
+
+    /* The collection of day cells */
+    days: Control.chain( "children", "control" ),
     
     initialize: function() {
         if ( !this.date() ) {
@@ -106,7 +106,7 @@ CalendarWeek.prototype.extend({
         var dateStart = CalendarDay.addDays( date, -this.daysSinceFirstDayOfWeek( date ) );
         
         // Fill in the date range.
-        this.$days().eachControl( function( index, $day) {
+        this.days().eachControl( function( index, $day) {
             $day.date( CalendarDay.addDays( dateStart, index ) );
         });
     }

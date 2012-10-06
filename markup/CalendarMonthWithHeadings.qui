@@ -42,8 +42,6 @@
 <script>
 CalendarMonthWithHeadings.prototype.extend({
     
-    $days: Control.chain( "$calendar", "$days" ),
-    
     /*
      * The control's current culture.
      */
@@ -70,6 +68,11 @@ CalendarMonthWithHeadings.prototype.extend({
      * The class used to represent days in the month.
      */
     dayClass: Control.chain( "$calendar", "dayClass" ),
+
+    /*
+     * The controls used for the days in the calendar.
+     */
+    days: Control.chain( "$calendar", "$days" ),
 
     /*
      * Returns the control currently showing the given date.
