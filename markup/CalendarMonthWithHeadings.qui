@@ -72,7 +72,7 @@ CalendarMonthWithHeadings.prototype.extend({
     /*
      * The controls used for the days in the calendar.
      */
-    days: Control.chain( "$calendar", "$days" ),
+    days: Control.chain( "$calendar", "days" ),
 
     /*
      * Returns the control currently showing the given date.
