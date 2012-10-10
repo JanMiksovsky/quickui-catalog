@@ -48,5 +48,5 @@ class window.FlickrInterestingNavigator extends CalendarMonthNavigator
       today = new Date()
       nextMonth.setDate 1
       @nextButtonDisabled nextMonth > today
-      @$calendar().$days().loadPhoto()
+      @$calendar().days().loadPhoto()
     result

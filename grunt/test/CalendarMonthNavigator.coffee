@@ -101,7 +101,7 @@ class window.CalendarMonthNavigator extends Control
     @date newDate
 
   _applySelection: ->
-    @$calendar().$days().removeClass "selected"
+    @$calendar().days().removeClass "selected"
     if @showSelectedDate()
       dayControl = @$calendar().dayControlForDate @date()
       dayControl.addClass "selected"
