@@ -13,6 +13,8 @@
 .CalendarDay.sunday {}
 .CalendarDay.saturday {}
 .CalendarDay.weekday {}
+.CalendarDay.firstDayOfWeek {}  /* Can vary by culture */
+.CalendarDay.lastDayOfWeek {}   /* Can vary by culture */
 .CalendarDay.past {}
 .CalendarDay.future {}
 .CalendarDay.insideMonth {}

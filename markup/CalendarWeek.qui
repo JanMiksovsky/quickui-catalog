@@ -3,13 +3,13 @@
 <Control className="CalendarWeek">
 
 <content>
+    <CalendarDay class="firstDayOfWeek" />
     <CalendarDay/>
     <CalendarDay/>
     <CalendarDay/>
     <CalendarDay/>
     <CalendarDay/>
-    <CalendarDay/>
-    <CalendarDay/>
+    <CalendarDay class="lastDayOfWeek" />
 </content>
 
 <style>
@@ -63,14 +63,17 @@ CalendarWeek.prototype.extend({
     /*
      * The class used to represent days in the week.
      */
-    dayClass: function( dayClass ) {
+    dayClass: Control.iterator( function( dayClass ) {
         if ( dayClass === undefined ) {
             return this.days().constructor;
         } else {
             this.days().transmute( dayClass );
+            var days = this.days();
+            days.eq(0).addClass( "firstDayOfWeek" );
+            days.eq(6).addClass( "lastDayOfWeek" );       
             this._refresh();
         }
-    },
+    }),
 
     /* The collection of day cells */
     days: Control.chain( "children", "control" ),
@@ -87,8 +90,8 @@ CalendarWeek.prototype.extend({
         return ( date.getDay() - firstDayOfWeek + 7 ) % 7;
     },
     
-    // Return the index of the "first day of the week" in the current culture.
-    // In English, this is 0 (Sunday), but in many places its 1 (Monday).
+    // Return the index of the "first" day of the week in the current culture.
+    // In the U.S., this is 0 (Sunday), but in many places it's 1 (Monday).
     firstDayOfWeek: function() {
         var culture = this.culture();
         return culture ? culture.calendar.firstDay : 0;
