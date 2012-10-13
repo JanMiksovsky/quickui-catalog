@@ -35,15 +35,14 @@ CalendarMonth.prototype.extend({
     /*
      * The control's current culture.
      */
-    culture: Control.iterator( function( culture ) {
-        // Can't just use "_super" because we're in an iterator.
-        var result = this.constructor.superclass.prototype.culture.call( this, culture );
+    culture: function( culture ) {
+        var result = this._super( culture );
         if ( culture !== undefined ) {
             this.weeks().culture( culture );
             this._refresh();
         }
         return result;
-    }),
+    },
 
     /*
      * The class used to represent days in the month.

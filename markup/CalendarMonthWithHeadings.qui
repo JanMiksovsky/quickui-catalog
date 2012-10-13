@@ -45,8 +45,9 @@ CalendarMonthWithHeadings.prototype.extend({
     /*
      * The control's current culture.
      */
-    culture: function( culture ) {
-        var result = this._super( culture );
+    culture: Control.iterator( function( culture ) {
+        // var result = this._super( culture );
+        var result = this.constructor.superclass.prototype.culture.call( this, culture );
         if ( culture !== undefined ) {
             this.$monthAndYear().culture( culture );
             this.$daysOfWeek().culture( culture );
@@ -57,7 +58,7 @@ CalendarMonthWithHeadings.prototype.extend({
             }
         }
         return result;
-    },
+    }),
     
     /* The date shown in the calendar */
     date: Control.chain( "$calendar", "date", function( date ) {
