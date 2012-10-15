@@ -100,15 +100,6 @@ FlickrInterestingDay.prototype.extend({
      */
     image: Control.chain( "$image", "attr/src" ),
     
-    initialize: function() {
-        if ( !this.date() ) {
-            // Default day is *yesterday* (since we need a date in the past).
-            var date = CalendarDay.today();
-            date.setDate( date.getDate() - 1 );
-            this.date( date );
-        }
-    },
-    
     /*
      * Load the photo for the given date.
      */
@@ -134,7 +125,14 @@ FlickrInterestingDay.prototype.extend({
                 + date.getDate();
             this.href( url );
         }
-    })
+    }),
+
+    // Default day is *yesterday* (since we need a date in the past).
+    _defaultDate: function() {
+        var date = CalendarDay.today();
+        date.setDate( date.getDate() - 1 );
+        return date;
+    }
 
 });
 

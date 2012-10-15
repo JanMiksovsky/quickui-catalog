@@ -78,8 +78,12 @@ CalendarDay.prototype.extend({
             self.trigger( "dateSelected", [ self.date() ] );
         });
         if ( !this.date() ) {
-            this.date( CalendarDay.today() );
+            this.date( this._defaultDate() );
         }
+    },
+
+    _defaultDate: function() {
+        return CalendarDay.today();
     }
     
 });
