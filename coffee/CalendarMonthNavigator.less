@@ -26,13 +26,23 @@
 
   /* Generic appearance */
   &.generic {
+
     .monthHeading {
       text-align: center;
     }
+
+    .calendar {
+      .CalendarDay.generic.outsideMonth {
+        visibility: visible;
+        color: #aaa;
+      }      
+    }
+
     .todayContainer {
       padding-top: 0.25em;
       text-align: center;
     }
+
   }
 
 }

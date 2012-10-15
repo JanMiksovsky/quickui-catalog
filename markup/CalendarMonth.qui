@@ -18,7 +18,7 @@
 
 /* Generic appearance */
 .CalendarDay.generic.outsideMonth {
-    color: #aaa;
+    visibility: hidden;
 }
 
 .CalendarWeek.hidden {
