@@ -1,4 +1,9 @@
-<!-- This file exists so we can work a version number into the catalog. -->
+<!--
+QuickUI catalog runtime.
+http://quickui.org/catalog
+-->
+
+<!-- This version class exists so we can work a version number into the catalog. -->
 <Control className="_Version">
 <script>
 _Version.prototype.extend({
