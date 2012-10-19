@@ -20,6 +20,9 @@ TextBox.prototype.extend({
         }
         return result;
     },
+
+    /* True if the text box is disabled. */
+    disabled: Control.chain( "prop/disabled" ),
     
     initialize: function() {
         this.prop( "type", "text" );

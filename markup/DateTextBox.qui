@@ -193,11 +193,11 @@ DateTextBox.prototype.extend({
     
     _refresh: function() {
         var date = this.date();
-        if ( !!date ) {
-            var formattedDate = this._formatDate( date );
-            if ( formattedDate !== this.content() ) {
-                this.content( formattedDate );
-            }
+        var newContent = ( date == null )
+            ? ""
+            : this._formatDate( date );
+        if ( this.content() !== newContent ) {
+            this.content( newContent );
         }
         return this;
     },

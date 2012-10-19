@@ -15,6 +15,10 @@
         <BasicButton class="toolbarButton" content="Eleven"/>
         <BasicButton class="toolbarButton" content="Twelve"/>
     </PanelWithOverflow>
+    <p style="margin: 1em;">
+        Resize this window to be narrower or wider, and the toolbar buttons
+        will overflow as necessary to remain available.
+    </p>
 </content>
 
 <style>
