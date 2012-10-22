@@ -19,7 +19,9 @@ Gradient.prototype.extend({
     end: Control.property(function() { this._redraw(); }),
     
     initialize: function() {
-        this._redraw();
+        this.inDocument( function() {
+            this._redraw();
+        });
     },
 
     /*

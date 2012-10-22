@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,14 +23,21 @@
 
 <title>ComboBox</title>
 
+<script id="demo">
+function demo() {
+
+$demo.append(
+    ComboBox.create({
+        popup: "You can populate a popup like this with choices for the user to pick."
+    })
+);
+
+}
+</script>
+
 </head>
 
-<body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-autoFocus="false"
-    data-demoClass="ComboBoxDemo"
-    data-demoFileMarkup="ComboBoxDemo.qui"
-    data-sourceFileControl="/quicommon/ComboBox.qui">
+<body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
     A text input area with a popup, which typically presents a dropdown list of

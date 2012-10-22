@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,12 +23,32 @@
 
 <title>Fader</title>
 
+<script id="demo">
+function demo() {
+
+var text = "The glass is neither half-full nor half-empty: it's twice as big as it needs to be."
+
+$demo.append(
+    Fader.create({
+        content: text,
+        width: "175px"
+    }),
+    Fader.create({
+        content: text,
+        width: "350px"
+    }),
+    Fader.create({
+        content: text
+        // No explicit width
+    })
+);
+
+}
+</script>
+
 </head>
 
-<body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-demoClass="FaderDemo"
-    data-demoFileMarkup="FaderDemo.qui">
+<body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
     Fades out content on the right or bottom instead of clipping it
