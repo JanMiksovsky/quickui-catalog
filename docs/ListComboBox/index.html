@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,13 +23,36 @@
 
 <title>ListComboBox</title>
 
+<script id="demo">
+function demo() {
+
+$demo.append(
+    ListComboBox.create({
+        items: [
+            "Canary",
+            "Cat",
+            "Cockatiel",
+            "Dog",
+            "Ferret",
+            "Finch",
+            "Fish",
+            "Guinea Pig",
+            "Hamster",
+            "Lizard",
+            "Parakeet",
+            "Parrot",
+            "Rabbit",
+            "Turtle"
+        ]
+    })
+);
+
+}
+</script>
+
 </head>
 
-<body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-autoFocus="false"
-    data-demoClass="ListComboBoxDemo"
-    data-demoFileMarkup="ListComboBoxDemo.qui">
+<body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
     A <a data-control="CatalogLink">ComboBox</a> which presents its choices as

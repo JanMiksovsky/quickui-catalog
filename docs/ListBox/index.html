@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,12 +23,48 @@
 
 <title>ListBox</title>
 
+<script id="demo">
+function demo() {
+
+var $colors = ListBox.create({
+    items: [
+        "Blue",
+        "DarkGreen",
+        "DarkBlue",
+        "DarkRed",
+        "Gold",
+        "Goldenrod",
+        "Green",
+        "LightGray",
+        "LightSeaGreen",
+        "LightSkyBlue",
+        "Red",
+        "Teal",
+        "SteelBlue",
+        "Yellow",
+        "YellowGreen"
+    ],
+    width: "200px"
+});
+var $selectedColor = $( "<span>" );
+
+$colors.on( "selectionChanged", function() {
+    var color = $colors.selectedItem();
+    $selectedColor.text( color );
+});
+
+$demo.append(
+    $colors,
+    "Selected color: ",
+    $selectedColor
+);
+
+}
+</script>
+
 </head>
 
-<body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-demoClass="ListBoxDemo"
-    data-demoFileMarkup="ListBoxDemo.qui">
+<body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
     A list of items that supports single selection and keyboard navigation.
