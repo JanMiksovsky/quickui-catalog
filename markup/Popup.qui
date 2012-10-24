@@ -303,7 +303,9 @@ Popup.prototype.extend({
      * Return true if the indicated element is outside this control.
      */
     _isElementOutsideControl: function( element ) {
-        return ( $( element ).parents().filter( this ).length === 0 );
+        var elementIsControl = ( this.index( element ) >= 0 );
+        var elementInsideControl = ( $( element ).parents().filter( this ).length > 0 );
+        return !elementIsControl && !elementInsideControl;
     },
 
     // The Overlay control behind the popup absorbing mouse clicks.
