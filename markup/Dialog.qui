@@ -46,6 +46,13 @@ Dialog.prototype.extend({
             ._super()
             .remove();
     },
+
+    initialize: function() {
+        var self = this;
+        this.on( "layout sizeChanged", function() {
+            self.positionPopup();
+        });
+    },
     
     /*
      * Position the dialog.
