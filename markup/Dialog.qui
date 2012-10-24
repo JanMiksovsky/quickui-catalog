@@ -110,6 +110,8 @@ Dialog.extend({
         $( document.body).append( dialog );
         
         dialog.open();
+
+        return dialog;
     },
     
     /*
