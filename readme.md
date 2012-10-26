@@ -3,12 +3,11 @@ This is the source for the QuickUI Catalog at http://quickui.org/catalog.
 The source for the controls in that catalog are written in two ways:
 
 1. Newer controls are written in CoffeeScript and LESS.
-2. Older controls are written in QuickUI markup (http://github.com/JanMiksovsky/quickui-markup).
+2. Older controls are written in QuickUI markup, an HTML flavor that permits
+   the use of custom tags. The plan is to eventually transition all controls
+   to CoffeeScript.
 
-The plan is to eventually transition all these controls to plain JavaScript
-and/or CoffeeScript.
-
-The output from both processes above are combined to create the top-level
+The outputs of two separate build processes are combined to create the top-level
 quickui.catalog.js and .css files. Those files can be directly included in any
 project that wants to use the QuickUI Catalog controls.
 
