@@ -23,7 +23,8 @@ Build
   npm install
   ```
 
-  One of the prerequisites, the QuickUI markup compiler, requires .NET. The
+  Until the transition from markup to CoffeeScript is complete, one of the
+  prerequisites (the QuickUI markup compiler, see above) requires .NET. The
   compiler works fine on Macs as long as Mono (http://www.mono-project.com) is
   installed.
 
