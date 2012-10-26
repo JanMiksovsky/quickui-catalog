@@ -15,6 +15,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( "grunt-contrib-coffee" );
     grunt.loadNpmTasks( "grunt-contrib-less" );
     grunt.loadNpmTasks( "quickui-markup" );
+    grunt.loadTasks( "grunt" );
 
     var sortDependencies = require( "sort-dependencies" );
 
