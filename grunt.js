@@ -12,24 +12,24 @@
 
 module.exports = function(grunt) {
 
-    grunt.loadTasks( "../quickui/grunt" );
+    grunt.loadNpmTasks( "grunt-contrib-coffee" );
     grunt.loadNpmTasks( "grunt-contrib-less" );
     grunt.loadTasks( "grunt" );
 
-    var sortDependencies = require( "../quickui/grunt/sortDependencies.js" );
+    var sortDependencies = require( "sort-dependencies" );
 
     // Project configuration.
     grunt.initConfig({
         coffee: {
             controls: {
-                src: sortDependencies.sortClassFiles( "coffee/*.coffee" ),
-                dest: "coffee/coffee.js",
-                options: { bare: false }
+                files: {
+                    "coffee/coffee.js": sortDependencies.sortFiles( "coffee/*.coffee" )
+                }
             },
             test: {
-                src: [ "test/*.coffee" ],
-                dest: "test/unittests.js",
-                options: { bare: false }
+                files: {
+                    "test/unittests.js": "test/*.coffee"
+                }
             },
             // samples: {
             //     src: [ "samples/*.coffee" ],
@@ -37,15 +37,15 @@ module.exports = function(grunt) {
             // },
             /* Build the quidoc Grunt task itself. */
             tools: {
-                src: [ "grunt/quidoc.coffee" ],
-                dest: "grunt/quidoc.js",
-                options: { bare: false }
+                files: {
+                    "grunt/quidoc.js": "grunt/quidoc.coffee"
+                }
             }
         },
         less: {
             controls: {
                 files: {
-                    "coffee/coffee.css": sortDependencies.sortClassFiles( "coffee/*.less" )
+                    "coffee/coffee.css": sortDependencies.sortFiles( "coffee/*.less" )
                 }
             }
         },
