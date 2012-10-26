@@ -75,6 +75,7 @@ JavaScript and CSS files for the catalog controls. For example:
 </p>
 
 <pre>
+&lt;link rel="stylesheet" type="text/css" href="http://quickui.org/release/quickui.css"/>
 &lt;link rel="stylesheet" type="text/css" href="http://quickui.org/release/quickui.catalog.css"/>
 
 &lt;script type="text/javascript" src="/lib/jquery-1.8.2.min.js">&lt;/script>
@@ -87,31 +88,10 @@ JavaScript and CSS files for the catalog controls. For example:
 <p>
 If you want to pick and choose which catalog controls you want to use in a
 project, or if you want to build the catalog yourself, the source for the entire
-QuickUI catalog is maintained under the MIT license on GitHub.
+QuickUI catalog is maintained under the MIT license in the
+<a href="https://github.com/JanMiksovsky/quickui-catalog">quickui-catalog</a>
+repo on GitHub. Follow the instructions there for building.
 </p>
-
-<ol>
-    <li><a href="/downloads">Download the QuickUI markup compiler.</a></li>
-    <li>
-        Clone the <a href="https://github.com/JanMiksovsky/quickui-catalog">quickui-catalog repo</a>.
-    </li>
-    <li>
-        If you want to build the whole catalog, run the "qb" tool from the top
-        level of your cloned quickui-catalog folder. This will generate the
-        full quickui-catalog.js and quickui-catalog.css.
-    </li>
-    <li>
-        To select individual controls, copy the .qui files for those controls
-        to your own QuickUI project. You'll also need to copy over any
-        base classes or other classes which the controls you want depend upon.
-        For example, if you want to use
-        <a href="/catalog/#page=ColorSwatchComboBoxAbout">ColorSwatchComboBox</a>,
-        you'll need to copy ColorSwatchComboBox.qui, as well as the file for its
-        parent class (ListComboBox.qui). For now, determining these dependencies
-        is a manual process; the plan is to eventually have those dependencies
-        tracked and resolved automatically.
-    </li>
-</ol>
 
 </body>
 
