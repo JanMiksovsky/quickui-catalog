@@ -24,9 +24,9 @@ Build
   npm install
   ```
 
-One of the prerequisites, the QuickUI markup compiler, requires .NET. The
-compiler works fine on Macs as long as Mono (http://www.mono-project.com) is
-installed.
+  One of the prerequisites, the QuickUI markup compiler, requires .NET. The
+  compiler works fine on Macs as long as Mono (http://www.mono-project.com) is
+  installed.
 
 2. Build with Grunt:
 
