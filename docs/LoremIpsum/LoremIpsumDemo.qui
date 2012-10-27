@@ -2,7 +2,6 @@
 
 <content>
     <LoremIpsum paragraphs="2"/>
-    <LoremIpsum paragraphs="2"/>
 </content>
 
 </Control>

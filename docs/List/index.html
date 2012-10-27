@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,13 +23,44 @@
 
 <title>List</title>
 
+<script id="demo">
+function demo() {
+
+// Create a list.
+var $list = List.create({
+    itemClass: SampleSpriteButton,
+    click: function( event ) {
+        // Clicking a button displays its content in an alert.
+        var button = $( event.target ).closest( ".SampleSpriteButton" ).control();
+        if ( button ) {
+            alert( button.content() );
+        }
+    }
+});
+
+// Add the list to the DOM.
+$demo.append(
+    $list
+);
+
+// Sample data.
+var data = [
+    "One",
+    "Two",
+    "Three",
+    "Four"
+];
+
+// Render each member of the array as a list item. In this case, the strings
+// will get passed to the content() property of the SampleSpriteButton class.
+$list.items( data );
+
+}
+</script>
+
 </head>
 
-<body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-demoClass="ListDemo"
-    data-demoFileMarkup="ListDemo.qui"
-    data-sourceFileControl="/quicommon/List.qui">
+<body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
     Renders each element of a JavaScript array as a QuickUI control.
