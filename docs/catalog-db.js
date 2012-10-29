@@ -307,11 +307,6 @@ var controlRecords = [
         description: "Rotates once through a sequence of horizontally-arranged pages"
     },
     {
-        name: "SampleSpriteButton",
-        demoClass: "SampleSpriteButtonDemo",
-        description: "A sample of how to create a new type of SpriteButton through subclassing."
-    },
-    {
         name: "SearchBox",
         description: "A typical web search box."
     },
@@ -347,7 +342,7 @@ var controlRecords = [
     },
     {
         name: "SpriteButton",
-        demoClass: "",
+        demoClass: "SpriteButtonDemo",
         description: "A button that uses a Sprite for its background."
     },
     {

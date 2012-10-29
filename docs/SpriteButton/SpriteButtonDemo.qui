@@ -1,0 +1,9 @@
+<Control className="SpriteButtonDemo">
+
+<content>
+    <SampleSpriteButton>Save</SampleSpriteButton>
+    <SampleSpriteButton>Don't Save</SampleSpriteButton>
+    <SampleSpriteButton disabled="true">Cancel</SampleSpriteButton>
+</content>
+
+</Control>
