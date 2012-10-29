@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
 
 <script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/thirdParty/highlight.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
 <script type="text/javascript" src="/release/quickui.js"></script>
 <script type="text/javascript" src="/release/quickui.catalog.js"></script>
 <script type="text/javascript" src="/catalog/catalog-db.js"></script>
@@ -22,12 +23,35 @@
 
 <title>SlidingPanelsWithDots</title>
 
+<script id="demo">
+function demo() {
+
+var $panels = SlidingPanelsWithDots.create({
+    pageButtonClass: BlueDotButton,
+    content: [
+        "<div class='animal'>Bird</div>",
+        "<div class='animal'>Cat</div>",
+        "<div class='animal'>Dog</div>",
+        "<div class='animal'>Fish</div>"
+    ]
+});
+
+// For demo purposes, we'll style this through code.
+$panels.find( ".animal" ).css({
+    "font-size": "48px",
+    "font-weight": "bold",
+    "padding": "20px",
+    "text-align": "center"
+});
+
+$demo.append( $panels );
+
+}
+</script>
+
 </head>
 
-<body data-create-controls="true"
-    data-control="CatalogPageOld"
-    data-demoClass="SlidingPanelsWithDotsDemo"
-    data-demoFileMarkup="SlidingPanelsWithDotsDemo.qui">
+<body data-create-controls="true" data-control="CatalogPageNew">
 
 <div data-property="summary">
     Hosts a <a data-control="CatalogLink">SlidingPanels</a> to present children on
