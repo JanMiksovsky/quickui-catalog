@@ -1,4 +1,3 @@
 <Control className="LaunchPanelWithOverflowDemo">
-Click for a <a href="/catalog/PanelWithOverflow/demo.html" target="_blank">demo in a separate window</a>,
-then resize the resulting window to see the overflow behavior.
-</Control>
+Click for a <a href="/catalog/PanelWithOverflow/demo.html" target="_blank">demo in a separate window</a>.
+</Control>
