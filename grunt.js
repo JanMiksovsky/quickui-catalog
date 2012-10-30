@@ -80,6 +80,12 @@ module.exports = function(grunt) {
                 src: [ "coffee", "markup" ],
                 dest: "docs/controlDocumentation.js"
             }
+        },
+        min: {
+            dist: {
+                src: [ "quickui.catalog.js" ],
+                dest: "quickui.catalog.min.js"
+            }
         }
     });
 
