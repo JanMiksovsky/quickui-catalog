@@ -25,13 +25,29 @@ TextBox.prototype.extend({
     disabled: Control.chain( "prop/disabled" ),
     
     initialize: function() {
-        this.prop( "type", "text" );
+        // Explicitly stamp type="text" on the control if a type hasn't been
+        // set. Chrome reports the type as "text" even if no type has actually
+        // been set, but the code below will at least upgrade that implict type
+        // to an explicit type.
+        if ( this.type() == "text" ) {
+            this.type( "text" );
+        }
     },
 
     /*
      * The placeholder (hint text) shown in the text box if it's empty.
      */
-    placeholder: Control.chain( "prop/placeholder" )
+    placeholder: Control.chain( "prop/placeholder" ),
+
+    /*
+     * True if the text box should do spell-checking.
+     */
+    spellcheck: Control.chain( "prop/spellcheck" ),
+
+    /*
+     * The type of input: "text", "email", "password", etc.
+     */
+    type: Control.chain( "prop/type" )
     
 });
 </script>
