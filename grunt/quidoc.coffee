@@ -303,6 +303,7 @@ projectDocs = ( root ) ->
     if extractor?
       source = fs.readFileSync filePath, "utf8"
       controlDocs = extractor.extract source
+      controlDocs.type = extension.slice 1
       className = controlDocs.className
       if className?
         # Don't need two copies of class name in JSON output
