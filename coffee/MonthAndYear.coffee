@@ -1,3 +1,7 @@
+###
+Shows the name of the current month and the year
+###
+
 class window.MonthAndYear extends Control
 
   inherited:
