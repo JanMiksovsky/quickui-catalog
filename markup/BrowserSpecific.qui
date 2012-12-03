@@ -12,16 +12,16 @@ BrowserSpecific.prototype.extend({
     
     initialize: function() {
         var content;
-        if ( $.browser.mozilla ) {
+        if ( Control.browser.mozilla ) {
             content = this.mozilla();
         }
-        else if ( $.browser.msie ) {
+        else if ( Control.browser.msie ) {
             content = this.msie();
         }
-        if ( $.browser.opera ) {
+        if ( Control.browser.opera ) {
             content = this.opera();
         }
-        if ( $.browser.webkit ) {
+        if ( Control.browser.webkit ) {
             content = this.webkit();
         }
         if ( content === undefined ) {

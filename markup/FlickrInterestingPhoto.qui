@@ -33,7 +33,7 @@ FlickrInterestingPhoto.prototype.extend({
              * of the image placeholder icon. 
              */
             var control = Control( this );
-            if ( $.browser.msie && parseInt( control.width() ) === 28 ) {
+            if ( Control.browser.msie && parseInt( control.width() ) === 28 ) {
                 control.css( "width", "auto" );
             }
 

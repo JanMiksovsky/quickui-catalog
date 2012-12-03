@@ -168,7 +168,7 @@ AutoSizeTextBox.prototype.extend({
         var paddingLeft = $textBox.css( "padding-left" );
         var paddingRight = $textBox.css( "padding-right" );
         var paddingTop = $textBox.css( "padding-top" );
-        if ( $.browser.mozilla && !$textBox.is(":visible") ) {
+        if ( Control.browser.mozilla && !$textBox.is(":visible") ) {
             // Firefox incorrectly reports the default padding for hidden textareas
             // as 0px. If the textarea is visible, or the padding has been explicitly
             // set, the reported padding is correct. But if we're dealing with a
@@ -204,7 +204,7 @@ AutoSizeTextBox.prototype.extend({
             // Mozilla incorrectly includes padding+border in height when
             // -moz-box-sizing is border-box. The other browsers do not,
             // so for those browsers we need to add it in.
-            if ( !$.browser.mozilla ) {
+            if ( !Control.browser.mozilla ) {
                 height += parseInt( borderTopWidth )
                         + parseInt( paddingTop )
                         + parseInt( paddingBottom )

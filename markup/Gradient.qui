@@ -45,19 +45,19 @@ Gradient.prototype.extend({
             var endColorString = this._hexColorToRgbString(end);
             var property;
             var value;
-            if ($.browser.mozilla)
+            if (Control.browser.mozilla)
             {
                 property = "background-image";
                 var position = horizontal ? "left" : "top";
                 value = "-moz-linear-gradient(" + position + ", " + startColorString + ", " + endColorString + ")";
             }
-            else if ($.browser.webkit)
+            else if (Control.browser.webkit)
             {
                 property = "background-image"; 
                 var position2 = horizontal ? "right top" : "left bottom";
                 value = "-webkit-gradient(linear, left top, " + position2 + ", from(" + startColorString + "), to(" + endColorString + "))";
             }
-            else if ($.browser.msie)
+            else if (Control.browser.msie)
             {
                 property = "filter";
                 var gradientType = horizontal ? 1 : 0;
@@ -81,7 +81,7 @@ Gradient.prototype.extend({
         var a;
         
         var rgbString;
-        if ($.browser.msie)
+        if (Control.browser.msie)
         {
             // Internet Explorer
             rgbString = hex;

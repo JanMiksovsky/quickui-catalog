@@ -156,7 +156,7 @@ SimpleFlexBox.prototype.extend({
          * Until that gets fixed, we disable flexbox support on WebKit for
          * horizontal orientation and constrained height.
          */
-        if ( $.browser.webkit && !this._vertical() && constrainHeight ) {
+        if ( Control.browser.webkit && !this._vertical() && constrainHeight ) {
             flexBox = false;
         }
 

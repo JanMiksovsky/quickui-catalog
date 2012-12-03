@@ -107,7 +107,7 @@ ComboBox.prototype.extend({
                 // being closed, IE won't hide the popup. It seems quite hard
                 // to prevent this behavior, so we simply disable the selection
                 // behavior in IE.
-                if ( !$.browser.msie ) {
+                if ( !Control.browser.msie ) {
                     var content = self.content();
                     self.inputElement().focus();
                     self._selectText( 0, content.length );

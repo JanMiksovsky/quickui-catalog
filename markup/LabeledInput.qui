@@ -62,7 +62,7 @@ LabeledInput.prototype.extend({
      */
     _type: function( type ) {
         var input = this._inputControl();        
-        if ( type !== undefined && $.browser.msie && parseInt( $.browser.version ) < 9 ) {
+        if ( type !== undefined && Control.browser.msie && parseInt( Control.browser.version ) < 9 ) {
             // IE8 can't change an input's "type" attribute.
             for ( i = 0; i < this.length; i++ ) {
                 var oldInput = input.eq(i);
