@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="http://fast.fonts.com/cssapi/72bd3277-b253-4903-97d8-6a9d18744569.css" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" />
+<link rel="stylesheet" type="text/css" href="/release/quickui.css" />
+<link rel="stylesheet" type="text/css" href="/release/quickui.catalog.css" />
+<link rel="stylesheet" type="text/css" href="/site.css" />
+<link rel="stylesheet" type="text/css" href="/controls/controls.css" />
+<link rel="stylesheet" type="text/css" href="/catalog/docs.css" />
+
+<script type="text/javascript" src="/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/ace.js"></script>
+<script type="text/javascript" src="/thirdParty/ace/mode-javascript.js"></script>
+<script type="text/javascript" src="/release/quickui.js"></script>
+<script type="text/javascript" src="/release/quickui.catalog.js"></script>
+<script type="text/javascript" src="/catalog/catalog-db.js"></script>
+<script type="text/javascript" src="/controls/controls.js"></script>
+<script type="text/javascript" src="/catalog/docs.js"></script>
+<script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
+
+<title>Log</title>
+
+<script id="demo">
+function demo() {
+
+// Wire up a text input control and a text log.
+var Terminal = Control.sub({
+    className: "Terminal",
+    inherited: {
+        content: [
+            {
+                control: Log,
+                ref: "log",
+                content: "Here's what you've typed:\n",
+                css: {
+                    "max-height": "300px",
+                    "margin-bottom": "0.5em",
+                    "overflow-y": "auto"
+                }
+            },
+            {
+                control: TextBoxWithButton,
+                ref: "textBox",
+                placeholder: "Type here"
+            }
+        ]
+    },
+    initialize: function() {
+        var self = this;
+        this.on( "goButtonClick", function() {
+            content = self.$textBox().content();
+            self.$log().writeln( content );
+            self.$textBox().content( "" ).focus();
+        });
+    }
+});
+
+$demo.append( Terminal.create() );
+
+}
+</script>
+
+</head>
+
+<body data-create-controls="true" data-control="CatalogPage">
+
+<div data-property="summary">
+Displays a growing text log showing, for example, the output of an ongoing
+process.
+</div>
+
+</body>
+
+</html>
