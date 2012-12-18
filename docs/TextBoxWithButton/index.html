@@ -26,9 +26,12 @@
 <script id="demo">
 function demo() {
 
-$demo.append(
-    TextBoxWithButton.create()
-);
+var box = TextBoxWithButton.create();
+box.on( "goButtonClick", function() {
+    TransientMessage.showMessage( "You entered: " + box.content() );
+});
+
+$demo.append( box );
 
 }
 </script>
@@ -45,6 +48,11 @@ $demo.append(
 <div data-property="demo">
     See <a data-control="CatalogLink">SearchBox</a> for a demo.
 </div>
+
+<p>
+The "Go" button will be disabled until the user enters some text. Pressing
+Enter at that point is equivalent to clicking the button.
+</p>
 
 </body>
 
