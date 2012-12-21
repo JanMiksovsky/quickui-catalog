@@ -70,7 +70,7 @@
     background: white;
     border-color: #ccc; /* IE8 */
     border-color: rgba(0, 0, 0, 0.2);
-    border-bottom-style: none;
+    border-bottom-color: transparent; /* Hides bottom border */
 }
 </style>
 
