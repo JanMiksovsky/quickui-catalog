@@ -229,9 +229,12 @@ ComboBox.prototype.extend({
                 }
             },
             "keydown": function( event ) {
-                if ( event.which === 13 /* Enter key */
-                    && self.closeOnEnter()
-                    && self.$PopupSource_popup().opened() ) {
+                var opened = self.opened();
+                if ( event.which === 13 && opened && self.closeOnEnter() ) {
+                    /* Enter key closes popup. */
+                    self.close();
+                } else if ( event.which == 9 && opened ) {
+                    /* Tabbing out of text box portion closes popup. */
                     self.close();
                 }
             }
