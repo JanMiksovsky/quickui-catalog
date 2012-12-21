@@ -44,6 +44,8 @@
 
 .Menu.generic .PopupSource_content {
     border: 1px solid transparent;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     padding: 0.5em;
 }
 .Menu.generic .PopupSource_content:hover {
@@ -76,23 +78,8 @@
 
 <script>
 Menu.prototype.extend({
-    
-    /*
-     * The menu's descriptive label. Clicking this will open the menu.
-     */
-    content: function( content ) {
-        var result = this._super( content );
-        if ( content !== undefined && this.inDocument() ) {
-            this._updateShield();
-        }
-        return result;
-    },
      
     initialize: function() {
-        var self = this;
-        this.inDocument( function() {
-            this._updateShield();
-        });
         this.$PopupSource_popup().on( "click", function( event ) {
             // Absorb clicks outside of menu items.
             var $menuItem = $( event.target ).closest( ".MenuItem" );
@@ -100,6 +87,13 @@ Menu.prototype.extend({
                 event.stopPropagation();
             }
         });
+    },
+
+    open: function() {
+        // Ensure the little shield matches the current width of the content
+        // before opening the menu.
+        this._updateShield();
+        return this._super();
     },
     
     popup: Control.chain( "$Menu_popup", "content" ),
@@ -118,8 +112,8 @@ Menu.prototype.extend({
         // including border.
         var $content = this.$PopupSource_content();
         var shieldWidth = $content.width()
-            + parseInt( $content.css( "padding-left" ) )
-            + parseInt( $content.css( "padding-right" ) );
+            + parseFloat( $content.css( "padding-left" ) )
+            + parseFloat( $content.css( "padding-right" ) );
         this.$shield().width( shieldWidth );
     }
     
