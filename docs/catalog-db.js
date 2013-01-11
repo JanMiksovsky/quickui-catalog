@@ -200,6 +200,11 @@ var controlRecords = [
         description: "List that can have a single item expanded to show more detail."
     },
     {
+        name: "Log",
+        demoClass: "",
+        description: "Displays a growing text log showing, for example, the output of an ongoing process."
+    },
+    {
         name: "LoremIpsum",
         description: "Shows paragraphs of placeholder text."
     },
@@ -359,13 +364,10 @@ var controlRecords = [
         demoClass: "TagDemo",
         description: "Formats its content as an XML tag."
     },
-    /*
     {
         name: "TextBoxWithButton",
-        demoClass: "",
         description: "A control with a content area (usually some form of text box) and an associated \"Go\" button."
     },
-    */
     {
         name: "TextCondenser",
         demoClass: "TextCondenserDemo",
