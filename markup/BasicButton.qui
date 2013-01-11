@@ -11,7 +11,6 @@
     box-sizing: border-box;
     color: inherit; /* Suppress browser's use of special button text color. */
     cursor: pointer; /* Improves consistency */
-    font-size: 100%; /* Corrects font size not being inherited in all browsers */
     margin: 0; /* Addresses margins set differently in IE6/7, FF3+, S5, Chrome */
     overflow: visible; /* Removes inner spacing in IE8 without affecting normal text inputs */
     text-align: left; /* Many more things behave like buttons than want to be center-aligned like a stock button. */
