@@ -12,7 +12,8 @@ class window.TextBoxWithButton extends Control
         control: TextBox, ref: "TextBoxWithButton_textBox"
       right:
         control: BasicButton, ref: "TextBoxWithButton_goButton", content: "Go"
-  
+    generic: true
+
   # The content of the text box.
   content: ( value ) ->
     result = @$TextBoxWithButton_textBox().content value
@@ -23,6 +24,9 @@ class window.TextBoxWithButton extends Control
   # The button shown next to the text box. This button is disabled if the
   # text box is currently empty.
   goButton: Control.chain "$TextBoxWithButton_goButton", "control"
+
+  # The content of the Go button. By default, this is the word, "Go".
+  goButtonContent: Control.chain "goButton", "content"
 
   initialize: ->
     @$TextBoxWithButton_textBox().on "change keydown keyup", ( event ) =>
@@ -43,7 +47,6 @@ class window.TextBoxWithButton extends Control
 
   # The text box
   textBox: Control.chain "$TextBoxWithButton_textBox", "control"
-
 
   _disableGoButtonIfContentEmpty: ->
     content = @content()

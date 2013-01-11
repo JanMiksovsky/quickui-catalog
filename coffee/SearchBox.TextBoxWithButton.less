@@ -1,0 +1,52 @@
+.SearchBox2 {
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+
+  // Hack
+  .SimpleFlexBox_content {
+    padding-right: 1px;
+  }
+
+  .TextBoxWithButton_textBox {
+    border: none;
+    display: block;
+
+    input {
+      margin: 0;              /* For WebKit */
+      padding-right: 1.3em;   /* Avoid overlap with icon */
+    }
+  }
+
+  .TextBoxWithButton_goButton {
+    padding: 0;
+
+    .searchIcon {
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      display: block;         /* Remove inline padding */
+      height: 1.3em;          /* Try to scale icon to text size */
+      padding: 0.2em;
+      width: 1.3em;
+    }
+  }
+
+  /* Generic appearance */
+  &.generic {
+
+    border: 1px solid lightgray;
+
+    .TextBoxWithButton_goButton.generic {
+      border: none;
+
+      &.disabled .searchIcon {
+        opacity: 0.5;
+      }
+
+    }
+
+  }
+
+}
