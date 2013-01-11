@@ -3,7 +3,7 @@ A typical web search box. Ensures search string is non-empty, and pressing
 Enter launches search.
 ###
 
-class window.SearchBox2 extends TextBoxWithButton
+class window.SearchBox extends TextBoxWithButton
 
   inherited:
     goButtonContent: [

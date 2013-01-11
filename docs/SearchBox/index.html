@@ -29,7 +29,7 @@ function demo() {
 $demo.append(
     SearchBox.create({
         query: "http://www.google.com/search?q=%s",
-        hint: "Search Google"
+        placeholder: "Search Google"
     })
 );
 
@@ -41,9 +41,9 @@ $demo.append(
 <body data-create-controls="true" data-control="CatalogPage">
 
 <div data-property="summary">
-    A typical web search box, constructed from a
-    <a data-control="CatalogLink">HintTextBox</a> and
-    <a data-control="CatalogLink">BasicButton</a> with an icon.
+    A typical web search box, based on a
+    <a data-control="CatalogLink">TextBoxWithButton</a> that executes a web
+    search when the "Go" button is pressed.
 </div>
 
 <p>
