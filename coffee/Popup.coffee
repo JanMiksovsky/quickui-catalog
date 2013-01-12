@@ -3,7 +3,7 @@ Base class for popups, menus, dialogs, things that appear temporarily over other
 things.
 ###
 
-class window.Popup2 extends Control
+class window.Popup extends Control
 
   inherited:
     generic: true
@@ -141,7 +141,7 @@ class window.Popup2 extends Control
     # immediately triggering cancelation of the popup. The use of a timeout
     # gives the triggering click a chance to bubble all the way up to the
     # document before we wire up the document click handler.
-    window.setTimeout( ->
+    window.setTimeout( =>
       if @opened()
         # Don't bind event if we managed to get closed during the timeout.
         $( document ).on "click", handlerDocumentClick
