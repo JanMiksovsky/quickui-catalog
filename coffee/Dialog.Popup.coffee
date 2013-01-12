@@ -10,7 +10,7 @@ class window.Dialog extends Popup
     cancelOnWindowResize: "false"
     cancelOnWindowScroll: "false"
     closeOnInsideClick: "false"
-    overlayClass: ModalOverlay
+    overlayClass: "ModalOverlay"
   
   # Cancel the dialog. This implicitly closes the dialog.
   cancel: ->
