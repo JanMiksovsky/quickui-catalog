@@ -303,6 +303,8 @@ projectDocs = ( root ) ->
     if extractor?
       source = fs.readFileSync filePath, "utf8"
       controlDocs = extractor.extract source
+      # During markup->CoffeeScript port, track file type
+      controlDocs.filePath = filePath
       controlDocs.type = extension.slice 1
       className = controlDocs.className
       if className?
