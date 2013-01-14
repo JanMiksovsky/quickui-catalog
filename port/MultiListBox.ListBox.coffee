@@ -1,6 +1,7 @@
-#
-#A ListBox capable of multiple selection.
-#
+###
+A ListBox capable of multiple selection.
+###
+
 window.MultiListBox = ListBox.sub(
   className: "MultiListBox"
   inherited: {}

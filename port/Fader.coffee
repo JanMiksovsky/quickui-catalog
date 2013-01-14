@@ -1,8 +1,9 @@
-#
-#Fades its content to the background color on the right/bottom edge if the
-#content is too long. Must set explicitly set the control's background-color
-#if the color is not white. 
-#
+###
+Fades its content to the background color on the right/bottom edge if the
+content is too long. Must set explicitly set the control's background-color
+if the color is not white. 
+###
+
 window.Fader = Control.sub(
   className: "Fader"
   inherited:

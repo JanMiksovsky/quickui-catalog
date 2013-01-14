@@ -1,11 +1,12 @@
-#
-#Renders a list of items in a combo box.
-#
-#The user can type arbitrary text; if they type the beginning of a list item's
-#content, the remainder of the item's content is AutoCompleted. For this to
-#work, both the control's content and the content of the list items should
-#be strings.
-#
+###
+Renders a list of items in a combo box.
+
+The user can type arbitrary text; if they type the beginning of a list item's
+content, the remainder of the item's content is AutoCompleted. For this to
+work, both the control's content and the content of the list items should
+be strings.
+###
+
 window.ListComboBox = ComboBox.sub(
   className: "ListComboBox"
   inherited:

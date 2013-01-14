@@ -1,4 +1,7 @@
-# A single day in a calendar 
+###
+A single day in a calendar 
+###
+
 window.CalendarDay = Control.sub(
   className: "CalendarDay"
   inherited:

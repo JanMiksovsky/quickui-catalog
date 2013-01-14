@@ -1,4 +1,7 @@
-# Shows the most interesting photo on Flickr for a given day. 
+###
+Shows the most interesting photo on Flickr for a given day. 
+###
+
 window.FlickrInterestingDay = CalendarDay.sub(
   className: "FlickrInterestingDay"
   inherited:

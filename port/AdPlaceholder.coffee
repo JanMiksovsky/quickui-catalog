@@ -1,8 +1,9 @@
-#
-#Shows a placeholder for a standard IAB ad unit.
-#The size can be specified with either pixel dimensions or a unit name.
-#See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
-#
+###
+Shows a placeholder for a standard IAB ad unit.
+The size can be specified with either pixel dimensions or a unit name.
+See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
+###
+
 window.AdPlaceholder = Control.sub(
   className: "AdPlaceholder"
   inherited:

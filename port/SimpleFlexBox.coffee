@@ -1,13 +1,14 @@
-#
-#A polyconstrainHeight (shim) supporting the CSS flexible box layout model on newer browsers
-#and emulating some very basic aspects of that layout model on older browsers.
-#
-#As of 3/12/12, Mozilla's flexbox support is too flaky to use. Among other
-#things, if the CSS position is set to absolute, Mozilla will report "display"
-#as "block" instead of "-moz-box" as expected, which makes it hard to tell
-#whether flexbox is even supported. Forcing the use of flexbox reveals more
-#bugs; it's just not worth using at this point.
-#
+###
+A polyconstrainHeight (shim) supporting the CSS flexible box layout model on newer browsers
+and emulating some very basic aspects of that layout model on older browsers.
+
+As of 3/12/12, Mozilla's flexbox support is too flaky to use. Among other
+things, if the CSS position is set to absolute, Mozilla will report "display"
+as "block" instead of "-moz-box" as expected, which makes it hard to tell
+whether flexbox is even supported. Forcing the use of flexbox reveals more
+bugs; it's just not worth using at this point.
+###
+
 window.SimpleFlexBox = Control.sub(
   className: "SimpleFlexBox"
   inherited:

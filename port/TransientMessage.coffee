@@ -1,6 +1,7 @@
-#
-#A message which briefly appears on a page before automatically disappearing. 
-#
+###
+A message which briefly appears on a page before automatically disappearing. 
+###
+
 window.TransientMessage = Control.sub(
   className: "TransientMessage"
   inherited:

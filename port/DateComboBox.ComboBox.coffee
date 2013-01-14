@@ -1,6 +1,7 @@
-#
-#Lets user pick a date with a date-optimzed text box or a navigable month calendar.
-#
+###
+Lets user pick a date with a date-optimzed text box or a navigable month calendar.
+###
+
 window.DateComboBox = ComboBox.sub(
   className: "DateComboBox"
   inherited:

@@ -1,4 +1,7 @@
-# A control with separate edit and read modes. 
+###
+A control with separate edit and read modes. 
+###
+
 window.Editable = Modes.sub(
   className: "Editable"
   inherited:

@@ -1,6 +1,7 @@
-#
-#A labeled radio button.
-#
+###
+A labeled radio button.
+###
+
 window.RadioButton = LabeledInput.sub(
   className: "RadioButton"
   inherited:

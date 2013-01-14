@@ -1,11 +1,12 @@
-#
-#A set of tabbed pages.
-#
-#Each child of the content will be treated as a page. If the child has a function
-#called description(), that will be used as the name on the tab.
-#
-#The Tabs control will resize itself to be as tall as its tallest child.
-#
+###
+A set of tabbed pages.
+
+Each child of the content will be treated as a page. If the child has a function
+called description(), that will be used as the name on the tab.
+
+The Tabs control will resize itself to be as tall as its tallest child.
+###
+
 window.Tabs = Control.sub(
   className: "Tabs"
   inherited:

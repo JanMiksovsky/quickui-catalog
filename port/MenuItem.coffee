@@ -1,4 +1,7 @@
-# A command in a Menu. 
+###
+A command in a Menu. 
+###
+
 window.MenuItem = Control.sub(
   className: "MenuItem"
   inherited:

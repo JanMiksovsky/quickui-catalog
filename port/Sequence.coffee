@@ -1,6 +1,7 @@
-#
-#An ordered sequence of elements which can be navigated through one at a time.
-#
+###
+An ordered sequence of elements which can be navigated through one at a time.
+###
+
 window.Sequence = Control.sub(
   className: "Sequence"
   inherited:

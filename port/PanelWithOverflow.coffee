@@ -1,10 +1,11 @@
-#
-#A panel arranging items horizontally; items that don't fit overflow into a menu.
-#
-#The basic strategy is to keep all items on the same line, but make the ones
-#that don't fit invisible. When the menu button is clicked, the invisible items
-#are temporarily moved to the menu, then moved back when the menu is closed. 
-#
+###
+A panel arranging items horizontally; items that don't fit overflow into a menu.
+
+The basic strategy is to keep all items on the same line, but make the ones
+that don't fit invisible. When the menu button is clicked, the invisible items
+are temporarily moved to the menu, then moved back when the menu is closed. 
+###
+
 window.PanelWithOverflow = Control.sub(
   className: "PanelWithOverflow"
   inherited:

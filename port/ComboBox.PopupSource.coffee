@@ -1,6 +1,7 @@
-#
-#An input area with a dropdown arrow, which invokes a popup.
-#
+###
+An input area with a dropdown arrow, which invokes a popup.
+###
+
 window.ComboBox = PopupSource.sub(
   className: "ComboBox"
   inherited:

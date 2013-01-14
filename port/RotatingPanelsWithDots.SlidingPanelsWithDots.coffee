@@ -1,7 +1,8 @@
-#
-#Rotates once through a set of elements automatically when control is loaded.
-#The rotation stops if the user clicks to navigate to a specific page.
-#
+###
+Rotates once through a set of elements automatically when control is loaded.
+The rotation stops if the user clicks to navigate to a specific page.
+###
+
 window.RotatingPanelsWithDots = SlidingPanelsWithDots.sub(
   className: "RotatingPanelsWithDots"
   inherited: {}

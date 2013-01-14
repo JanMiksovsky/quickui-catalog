@@ -1,4 +1,7 @@
-# Heading for a 7 day week calendar, globalized. 
+###
+Heading for a 7 day week calendar, globalized. 
+###
+
 window.DaysOfWeek = Control.sub(
   className: "DaysOfWeek"
   inherited:

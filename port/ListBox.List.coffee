@@ -1,7 +1,8 @@
-#
-#A list box that allows single selection.
-#The user can select an item with the mouse or keyboard.
-#
+###
+A list box that allows single selection.
+The user can select an item with the mouse or keyboard.
+###
+
 window.ListBox = List.sub(
   className: "ListBox"
   inherited:

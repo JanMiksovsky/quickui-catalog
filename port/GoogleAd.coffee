@@ -1,3 +1,7 @@
+###
+A Google advertisement.
+###
+
 window.GoogleAd = Control.sub(className: "GoogleAd")
 
 # AdSense globals 

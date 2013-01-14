@@ -1,4 +1,7 @@
-# Pick exactly one child to show at a time. 
+###
+Pick exactly one child to show at a time. 
+###
+
 window.Modes = Sequence.sub(
   className: "Modes"
   inherited: {}

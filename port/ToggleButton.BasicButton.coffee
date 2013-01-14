@@ -1,4 +1,7 @@
-# A button which can hold a selected state. 
+###
+A button which can hold a selected state. 
+###
+
 window.ToggleButton = BasicButton.sub(
   className: "ToggleButton"
   inherited: {}

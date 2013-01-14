@@ -1,12 +1,13 @@
-#
-#A standard menu bar.
-#
-#Note: The menu bar places a Overlay instance underneath itself to absorb
-#clicks outside the menu. If you're using a MenuBar on a page with elements
-#that have an explicit z-index, you'll want to give the MenuBar a higher z-index
-#so that it (and its overlay) end up above all other elements when any menus
-#are open. See notes in the source for the Overlay class.
-#
+###
+A standard menu bar.
+
+Note: The menu bar places a Overlay instance underneath itself to absorb
+clicks outside the menu. If you're using a MenuBar on a page with elements
+that have an explicit z-index, you'll want to give the MenuBar a higher z-index
+so that it (and its overlay) end up above all other elements when any menus
+are open. See notes in the source for the Overlay class.
+###
+
 window.MenuBar = Control.sub(
   className: "MenuBar"
   inherited:

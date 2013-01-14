@@ -1,10 +1,11 @@
-#
-#Apply effects on hover, which can include changing the item's size
-#and position.
-#
-#To animate color properties, use a plugin such as Color Animation at
-#http://plugins.jquery.com/project/color-animation.
-#
+###
+Apply effects on hover, which can include changing the item's size
+and position.
+
+To animate color properties, use a plugin such as Color Animation at
+http://plugins.jquery.com/project/color-animation.
+###
+
 window.HighlightEffects = Control.sub(
   className: "HighlightEffects"
   inherited:

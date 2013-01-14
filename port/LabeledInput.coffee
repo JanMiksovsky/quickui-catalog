@@ -1,9 +1,10 @@
-#
-#An input control (e.g., a check box or radio button) with an associated label.
-#
-#The control's top element is a label, which ensures that user clicks anywhere
-#within have the same effect as clicking the input control.
-#
+###
+An input control (e.g., a check box or radio button) with an associated label.
+
+The control's top element is a label, which ensures that user clicks anywhere
+within have the same effect as clicking the input control.
+###
+
 window.LabeledInput = Control.sub(
   className: "LabeledInput"
   tag: "label"

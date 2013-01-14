@@ -1,6 +1,7 @@
-#
-#Shows text in a condensed font if necessary to squeeze in more text.
-#
+###
+Shows text in a condensed font if necessary to squeeze in more text.
+###
+
 window.TextCondenser = Control.sub(
   className: "TextCondenser"
   inherited:

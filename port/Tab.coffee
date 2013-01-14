@@ -1,4 +1,7 @@
-# A control that can be used as a tab in a Tabs. 
+###
+A control that can be used as a tab in a Tabs. 
+###
+
 window.Tab = Control.sub(className: "Tab")
 Tab::extend
 

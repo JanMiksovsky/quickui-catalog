@@ -1,7 +1,8 @@
-#
-#Display children as elements on a sliding horizontal strip; only one element
-#is visible at a time. The strip can be programmatically slid left and right.
-#
+###
+Display children as elements on a sliding horizontal strip; only one element
+is visible at a time. The strip can be programmatically slid left and right.
+###
+
 window.SlidingPanels = Sequence.sub(
   className: "SlidingPanels"
   inherited:

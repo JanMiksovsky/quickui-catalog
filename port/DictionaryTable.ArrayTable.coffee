@@ -1,4 +1,7 @@
-# Renders a JavaScript dictionary as a table. 
+###
+Renders a JavaScript dictionary as a table. 
+###
+
 window.DictionaryTable = ArrayTable.sub(
   className: "DictionaryTable"
   inherited: {}

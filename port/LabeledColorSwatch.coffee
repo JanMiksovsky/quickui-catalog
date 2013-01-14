@@ -1,3 +1,7 @@
+###
+A labeled color swatch.
+###
+
 window.LabeledColorSwatch = Control.sub(
   className: "LabeledColorSwatch"
   inherited:

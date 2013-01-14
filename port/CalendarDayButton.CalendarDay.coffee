@@ -1,4 +1,7 @@
-# Shows a day of the month as a button. 
+###
+Shows a day of the month as a button. 
+###
+
 window.CalendarDayButton = CalendarDay.sub(
   className: "CalendarDayButton"
   inherited:

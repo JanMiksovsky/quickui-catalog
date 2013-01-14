@@ -1,4 +1,7 @@
-# Position a left and/or right panel on the sides of a main content panel. 
+###
+Position a left and/or right panel on the sides of a main content panel. 
+###
+
 window.HorizontalPanels = SimpleFlexBox.sub(
   className: "HorizontalPanels"
   inherited:

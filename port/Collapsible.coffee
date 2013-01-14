@@ -1,6 +1,7 @@
-#
-#A panel that can expand and collapse.
-#
+###
+A panel that can expand and collapse.
+###
+
 window.Collapsible = Control.sub(
   className: "Collapsible"
   inherited:

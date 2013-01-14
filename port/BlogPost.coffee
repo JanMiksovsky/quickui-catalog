@@ -1,3 +1,7 @@
+###
+A blog post.
+###
+
 window.BlogPost = Control.sub(
   className: "BlogPost"
   inherited:

@@ -1,9 +1,11 @@
-#
-#Text box that parses dates.
-#If Globalize is installed, all of the current culture's local date formats are
-#supported, plus modified short date formats that permit a missing year or two-
-#digit year. If Globalize is not installed, a default date parser is used.
-#
+###
+Text box that parses dates.
+
+If Globalize is installed, all of the current culture's local date formats are
+supported, plus modified short date formats that permit a missing year or two-
+digit year. If Globalize is not installed, a default date parser is used.
+###
+
 window.DateTextBox = ValidatingTextBox.sub(
   className: "DateTextBox"
   inherited: {}

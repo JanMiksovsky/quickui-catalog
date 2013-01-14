@@ -1,4 +1,7 @@
-# A button that produces a popup when clicked. 
+###
+A button that produces a popup when clicked. 
+###
+
 window.PopupButton = PopupSource.sub(
   className: "PopupButton"
   inherited:

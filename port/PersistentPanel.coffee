@@ -1,18 +1,19 @@
-#
-#A panel that can be situated in a vertically scrolling container, and which
-#will move up and down in the viewport, but will bump up against the top of
-#the viewport and remain visible instead of scrolling out of view.
-#
-#The control hosts its content within a panel that can pop out of the layout
-#flow. To faciliate styling, the control exposes background and padding
-#properties that map to the corresponding properties on this inner panel.
-#For most complex content styling, set all content elements within a single
-#div or other element and style that.
-#
-#Note: A PersistentPanel should generally be placed within the highest-level
-#scrolling element on the page; it will not work property when placed
-#in a scrolling element nested within some outer scrolling element.
-#
+###
+A panel that can be situated in a vertically scrolling container, and which
+will move up and down in the viewport, but will bump up against the top of
+the viewport and remain visible instead of scrolling out of view.
+
+The control hosts its content within a panel that can pop out of the layout
+flow. To faciliate styling, the control exposes background and padding
+properties that map to the corresponding properties on this inner panel.
+For most complex content styling, set all content elements within a single
+div or other element and style that.
+
+Note: A PersistentPanel should generally be placed within the highest-level
+scrolling element on the page; it will not work property when placed
+in a scrolling element nested within some outer scrolling element.
+###
+
 window.PersistentPanel = Control.sub(
   className: "PersistentPanel"
   inherited:

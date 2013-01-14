@@ -1,6 +1,7 @@
-#
-#Generates Lorem Ipsum placeholder paragraphs.
-#
+###
+Generates Lorem Ipsum placeholder paragraphs.
+###
+
 window.LoremIpsum = Control.sub(className: "LoremIpsum")
 LoremIpsum::extend
   initialize: ->

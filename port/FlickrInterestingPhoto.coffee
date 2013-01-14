@@ -1,11 +1,12 @@
-#
-#Shows a random photo from Flickr's Interestingness collection for a recent day.
-#By default, this can be used 100 times before it starts repeating photos.
-#
-#This gets photos from the day before yesterday in the current time zone.
-#This is done because yesterday in the current time zone may still be "today" in
-#Flickr's time zone, and Flickr doesn't make photos available for the current day. 
-#
+###
+Shows a random photo from Flickr's Interestingness collection for a recent day.
+By default, this can be used 100 times before it starts repeating photos.
+
+This gets photos from the day before yesterday in the current time zone.
+This is done because yesterday in the current time zone may still be "today" in
+Flickr's time zone, and Flickr doesn't make photos available for the current day. 
+###
+
 window.FlickrInterestingPhoto = Control.sub(
   className: "FlickrInterestingPhoto"
   tag: "img"

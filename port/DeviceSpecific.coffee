@@ -1,4 +1,7 @@
-# Load different content, control class, or styles depending on the type of device. 
+###
+Load different content, control class, or styles depending on the type of device. 
+###
+
 window.DeviceSpecific = Control.sub(
   className: "DeviceSpecific"
   inherited:

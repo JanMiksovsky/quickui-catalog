@@ -1,4 +1,9 @@
-# Button base class. Handles mouse events, abstract styles. 
+###
+Button base class.
+
+Handles mouse events, abstract styles. 
+###
+
 window.BasicButton = Control.sub(
   className: "BasicButton"
   tag: "button"

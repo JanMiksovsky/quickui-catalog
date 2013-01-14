@@ -1,4 +1,7 @@
-# A text box that shows a "hint" as to what the user should enter. 
+###
+A text box that shows a "hint" as to what the user should enter. 
+###
+
 window.HintTextBox = Control.sub(
   className: "HintTextBox"
   inherited:

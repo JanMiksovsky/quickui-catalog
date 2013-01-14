@@ -1,4 +1,7 @@
-# A text region that can be clicked to edit its contents. 
+###
+A text region that can be clicked to edit its contents. 
+###
+
 window.EditableText = Editable.sub(
   className: "EditableText"
   inherited:

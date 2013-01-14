@@ -1,10 +1,11 @@
-#
-#Pack children into columns.
-#
-#The number of columns is variable, and is determined by diving the control's
-#available width by the column width (which is taken from the width of the
-#first child).
-#
+###
+Pack children into columns.
+
+The number of columns is variable, and is determined by diving the control's
+available width by the column width (which is taken from the width of the
+first child).
+###
+
 window.PackedColumns = Control.sub(className: "PackedColumns")
 PackedColumns::extend
 

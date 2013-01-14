@@ -1,6 +1,7 @@
-#
-#Creates a set of controls, one for each item in a list.
-#
+###
+Creates a set of controls, one for each item in a list.
+###
+
 window.List = Control.sub(className: "List")
 List::extend
 

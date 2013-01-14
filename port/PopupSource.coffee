@@ -1,6 +1,7 @@
-#
-#A control with a popup.
-#
+###
+A control with a popup.
+###
+
 window.PopupSource = Control.sub(
   className: "PopupSource"
   inherited:

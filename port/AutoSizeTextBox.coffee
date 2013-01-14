@@ -1,8 +1,9 @@
-#
-#A text box that makes itself big enough to show its content.
-#This works by copying the text to a hidden div which will automatically grow in size;
-#the expanding copy will expand the container, which in turn stretch the text box.
-#
+###
+A text box that makes itself big enough to show its content.
+This works by copying the text to a hidden div which will automatically grow in size;
+the expanding copy will expand the container, which in turn stretch the text box.
+###
+
 window.AutoSizeTextBox = Control.sub(
   className: "AutoSizeTextBox"
   inherited:

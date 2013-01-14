@@ -1,4 +1,7 @@
-# General base class for pages. 
+###
+General base class for pages. 
+###
+
 window.Page = Control.sub(
   className: "Page"
   inherited:

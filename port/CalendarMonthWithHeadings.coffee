@@ -1,4 +1,7 @@
-# Month calendar with headings for month name and year, plus days of week 
+###
+Month calendar with headings for month name and year, plus days of week 
+###
+
 window.CalendarMonthWithHeadings = Control.sub(
   className: "CalendarMonthWithHeadings"
   inherited:

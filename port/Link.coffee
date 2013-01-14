@@ -1,14 +1,15 @@
-#
-#Wraps an anchor tag.
-#
-#Unlike a stock anchor tag, this will show a hand cursor even when the href
-#is empty, as is often the case with a link whose behavior is determined by
-#a click event handler.
-#
-#The link will have the "current" style if it points to the current page.
-#
-#This can also serve as a useful base class for custom link classes.
-#
+###
+Wraps an anchor tag.
+
+Unlike a stock anchor tag, this will show a hand cursor even when the href
+is empty, as is often the case with a link whose behavior is determined by
+a click event handler.
+
+The link will have the "current" style if it points to the current page.
+
+This can also serve as a useful base class for custom link classes.
+###
+
 window.Link = Control.sub(
   className: "Link"
   tag: "a"

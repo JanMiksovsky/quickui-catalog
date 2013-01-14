@@ -1,12 +1,13 @@
-#
-#A page organized into four quadrants:
-#top left: typically a logo
-#top right: typically cross-area navigation
-#bottom left: typically within-area navigation
-#bottom right: typically main page content
-#
-#The whole page scrolls as a unit.
-#
+###
+A page organized into four quadrants:
+top left: typically a logo
+top right: typically cross-area navigation
+bottom left: typically within-area navigation
+bottom right: typically main page content
+
+The whole page scrolls as a unit.
+###
+
 window.PageWithQuadrants = Page.sub(
   className: "PageWithQuadrants"
   inherited:

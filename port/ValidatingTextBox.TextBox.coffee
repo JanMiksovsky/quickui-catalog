@@ -1,19 +1,20 @@
-#
-#Validates textual input using an asymmetric validation scheme.
-#This applies a validation function while the user is typing, when the
-#control loses focus, or when a validate() method is called.
-#
-#The validation is considered asymmetric because the control behaves differently
-#in an error state than when not in an error state:
-#1. If the control is not yet in an error state, the control's validity is not
-#reflected until the focus leaves the control. That is, the input is assumed
-#to be good until the user has moved on.
-#2. If the control is already in an error state, the control's validity is
-#reflected immediately upon detecting valid input. That is, the error is
-#forgiven without requiring that the user moves the focus away.
-#
-#For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
-#
+###
+Validates textual input using an asymmetric validation scheme.
+This applies a validation function while the user is typing, when the
+control loses focus, or when a validate() method is called.
+
+The validation is considered asymmetric because the control behaves differently
+in an error state than when not in an error state:
+1. If the control is not yet in an error state, the control's validity is not
+reflected until the focus leaves the control. That is, the input is assumed
+to be good until the user has moved on.
+2. If the control is already in an error state, the control's validity is
+reflected immediately upon detecting valid input. That is, the error is
+forgiven without requiring that the user moves the focus away.
+
+For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
+###
+
 window.ValidatingTextBox = TextBox.sub(
   className: "ValidatingTextBox"
   inherited:

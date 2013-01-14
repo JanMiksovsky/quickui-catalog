@@ -1,4 +1,7 @@
-# A popup menu. This is typically used in a Menu bar. 
+###
+A popup menu. This is typically used in a Menu bar. 
+###
+
 window.Menu = PopupSource.sub(
   className: "Menu"
   inherited:

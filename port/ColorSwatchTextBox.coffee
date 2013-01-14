@@ -1,3 +1,7 @@
+###
+A text box that shows a color swatch of the currently-entered color.
+###
+
 window.ColorSwatchTextBox = Control.sub(
   className: "ColorSwatchTextBox"
   inherited:

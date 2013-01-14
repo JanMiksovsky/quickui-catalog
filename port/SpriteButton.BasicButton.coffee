@@ -1,4 +1,7 @@
-# A button that uses CSS image sprites for its background. 
+###
+A button that uses CSS image sprites for its background. 
+###
+
 window.SpriteButton = BasicButton.sub(
   className: "SpriteButton"
   inherited:

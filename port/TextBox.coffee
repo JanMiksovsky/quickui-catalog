@@ -1,8 +1,8 @@
-#
-#General purpose base class for text box controls.
-#
-#This simply wraps a normal input element.
-#
+###
+General purpose base class for text box controls.
+This simply wraps a normal input element.
+###
+
 window.TextBox = Control.sub(
   className: "TextBox"
   tag: "input"

@@ -1,3 +1,7 @@
+###
+A combo box optimized for selecting colors.
+###
+
 window.ColorSwatchComboBox = ListComboBox.sub(
   className: "ColorSwatchComboBox"
   inherited:

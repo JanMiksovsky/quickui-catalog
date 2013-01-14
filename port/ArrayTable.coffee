@@ -1,4 +1,7 @@
-# Render a JavaScript array as a table. 
+###
+Render a JavaScript array as a table. 
+###
+
 window.ArrayTable = Control.sub(className: "ArrayTable")
 
 # The array-of-arrays to show as the control's content.
