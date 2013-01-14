@@ -27,6 +27,11 @@ module.exports = function(grunt) {
                     "coffee/coffee.js": sortDependencies.sortFiles( "coffee/*.coffee" )
                 }
             },
+            port: {
+                files: {
+                    "port/port.js": sortDependencies.sortFiles( "port/*.coffee" )
+                }
+            },
             test: {
                 files: {
                     "test/unittests.js": "test/*.coffee"
@@ -48,6 +53,11 @@ module.exports = function(grunt) {
                 files: {
                     "coffee/coffee.css": sortDependencies.sortFiles( "coffee/*.less" )
                 }
+            },
+            port: {
+                files: {
+                    "port/port.css": sortDependencies.sortFiles( "port/*.less" )
+                }
             }
         },
         qb: {
@@ -61,14 +71,16 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: [
-                    "markup/markup.js",
+                    // "markup/markup.js",
+                    "port/port.js",
                     "coffee/coffee.js"
                 ],
                 dest: "quickui.catalog.js"
             },
             css: {
                 src: [
-                    "markup/markup.css",
+                    // "markup/markup.css",
+                    "port/port.css",
                     "coffee/coffee.css"
                 ],
                 dest: "quickui.catalog.css"
@@ -90,7 +102,7 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask( "default", "coffee less qb concat" );
+    grunt.registerTask( "default", "coffee less concat" );
 
     grunt.registerTask( "all", "default quidoc" );
     
