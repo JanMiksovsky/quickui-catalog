@@ -1,0 +1,36 @@
+/*** SpriteButton ***/
+
+.SpriteButton {
+    display: inline-block;
+    outline: none;
+    position: relative;
+}
+
+.SpriteButton .Sprite {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    /* 
+     * Each sprite covers half the background
+     */
+    width: 50%;
+    z-index: 0;
+}
+
+.SpriteButton .backgroundLeft {
+    background-position: 0 0;
+    left: 0;
+}
+
+.SpriteButton .backgroundRight {
+    background-position: right 0;
+    /*
+     * Use left: 50% instead of right: 0, as the latter doesn't work exactly right on WebKit.
+     */
+    left: 50%;
+}
+
+.SpriteButton .SpriteButton_content {
+    position: relative;
+}
+

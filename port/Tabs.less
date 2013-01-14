@@ -1,0 +1,37 @@
+/*** Tabs ***/
+
+.Tabs {
+    position: relative;
+}
+
+.Tabs .tabButtons {
+    white-space: nowrap; /* So tabs don't wrap. */
+}
+
+/* Generic appearance */
+.Tabs.generic .Tabs_content {
+    border: 1px solid #888;
+    height: 100%;
+}
+.Tabs.generic .tabButtons {
+    position: relative;
+    top: 1px;
+    z-index: 1;
+}
+.Tabs.generic .tabButtons .BasicButton.generic {
+    background: none;
+    border-color: #bbb;
+    border-bottom-color: transparent;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color: #444;
+    filter: none;
+    margin-right: 0.25em;
+    outline: none;
+}
+.Tabs.generic .tabButtons .BasicButton.generic.selected {
+    border-color: #888;
+    border-bottom-color: white;
+    color: inherit;
+}
+

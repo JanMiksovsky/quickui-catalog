@@ -1,0 +1,37 @@
+/*** Collapsible ***/
+
+.Collapsible .Collapsible_heading {
+    clear: both;
+    cursor: pointer;
+}
+
+/* Subclasses can add their own rules for this class. */
+.Collapsible.collapsed {}
+
+/* Generic appearance */
+.Collapsible.generic {
+    border: 1px solid lightgray;
+}
+
+.Collapsible.generic .Collapsible_heading {
+    background: #f0f0f0;
+    font-weight: bold;
+    padding: 0.5em 0.5em 0.5em 1em;
+}
+
+/*
+ * The animation seems to work better if the top/bottom padding is actually
+ * implemented as top/bottom margin on the content. So we apply left/right
+ * padding to the container, but top/bottom margin on the content.
+ */
+.Collapsible.generic .Collapsible_content {
+    overflow: auto;
+    padding: 1em;
+}
+.Collapsible.generic .Collapsible_content > *:first-child {
+    margin-top: 0;
+}
+.Collapsible.generic .Collapsible_content > *:last-child {
+    margin-bottom: 0;
+}
+

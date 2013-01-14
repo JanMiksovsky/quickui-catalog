@@ -1,0 +1,19 @@
+/*** Modes ***/
+
+.Modes > .inactive {
+    display: none !important;
+}
+
+.Modes.maximize {
+    position: relative;
+}
+.Modes.maximize > .active {
+    visiblity: visible;
+}
+.Modes.maximize > .inactive {
+    display: inherit !important;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+}
+

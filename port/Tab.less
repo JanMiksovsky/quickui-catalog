@@ -1,0 +1,15 @@
+/*** Tab ***/
+
+.Tab {
+    /*
+     * Forcing a tiny bit of padding (instead of zero) helps in the case where
+     * a surrounding Tabs is trying to determine the height of a Tab that
+     * contains a paragraph (or, presumably, other elements) that have top and
+     * bottom margins. In that case, the Tab's outerHeight() will fail to
+     * include the paragraph's margins, with the result that the Tabs can
+     * incorrectly calculate the height it needs to be. Forcing some padding
+     * seems to work around this problem.
+     */
+    padding: 1px;
+}
+

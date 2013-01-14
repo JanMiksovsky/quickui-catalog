@@ -1,0 +1,75 @@
+/*** SimpleFlexBox ***/
+
+.SimpleFlexBox {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /* display: -moz-box; */
+    display: -webkit-box;
+    display: box;
+}
+
+.SimpleFlexBox > * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative; /* So elements contained by panels can fill panels. */
+}
+
+.SimpleFlexBox .SimpleFlexBox_content {
+    /* -moz-box-flex: 1; */
+    -webkit-box-flex: 1;
+    box-flex: 1;
+}
+
+.SimpleFlexBox.horizontal {
+    /* -moz-box-orient: horizontal; */
+    -webkit-box-orient: horizontal;
+    box-orient: horizontal;
+}
+
+.SimpleFlexBox.vertical {
+    /* -moz-box-orient: vertical; */
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+}
+
+.SimpleFlexBox.constrainHeight {
+    /* This can be overridden, but seems like a useful default. */
+    height: 100%;
+}
+
+/* noFlexBox will be applied where flexbox is unsupported or known to be buggy. */
+.SimpleFlexBox.noFlexBox {
+    position: relative;
+}
+.SimpleFlexBox.noFlexBox.horizontal {
+    display: table;
+    width: 100%;
+}
+.SimpleFlexBox.noFlexBox.horizontal > * {
+    display: table-cell;
+    vertical-align: top;
+}
+.SimpleFlexBox.noFlexBox.horizontal > .panel {
+    width: 0;   /* Forces panel to its minimum width; not actually zero width. */
+    /*
+     * In Mozilla, the contents of the main content panel end up wider than the
+     * content panel itself (likely an issue with using position: absolute
+     * within a table cell). This can cause the side panels to end up behind the
+     * main panel, rendering the contents of the side panels inaccessible. So,
+     * try to force the side panels on top of the main panel.
+     */
+    z-index: 1;
+}
+
+.SimpleFlexBox.noFlexBox.constrainHeight {
+    display: inherit;
+}
+.SimpleFlexBox.noFlexBox.constrainHeight > * {
+    display: inherit; 
+    position: absolute;
+    vertical-align: inherit;
+}
+.SimpleFlexBox.noFlexBox.constrainHeight > .panel {
+    width: auto;
+}
+

@@ -1,0 +1,27 @@
+/*** TextCondenser ***/
+
+.TextCondenser {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/*
+ * To hide a copy of the text, we set its visibility to hidden so that its width
+ * will still be valid. We use position absolute on the hidden text to pull it
+ * out of the flow.
+ */
+.TextCondenser .condensed {
+    visibility: hidden;
+    position: absolute;
+}
+
+.TextCondenser.condensed .normal {
+    visibility: hidden;
+    position: absolute;
+}
+
+.TextCondenser.condensed .condensed {
+    visibility: visible;
+    position: relative;
+}
+

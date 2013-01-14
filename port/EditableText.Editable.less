@@ -1,0 +1,21 @@
+/*** EditableText ***/
+
+/* Generic appearance */
+
+/*
+ * Assuming the read portion is just a div, and the edit portion has some
+ * input, try to match the standard border and padding of input elements so that
+ * contents don't appear to shift position when changing the editing state.
+ */
+.EditableText.generic .Editable_read {
+    border: 2px solid transparent;
+    cursor: text;
+    margin: 0;
+    min-height: 2em; /* So user can still click on it if it's empty. */
+    padding: 1px;
+}
+
+.EditableText.generic .Editable_edit {
+	margin: 0;
+}
+

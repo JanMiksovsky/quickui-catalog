@@ -1,0 +1,15 @@
+/*** CalendarWeek ***/
+
+.CalendarWeek {
+    display: table-row;
+}
+.CalendarWeek > * {
+    display: table-cell;
+    width: 14.2%; /* One seventh */
+}
+
+/* Subclasses can extend these */
+.CalendarWeek .week {}
+.CalendarWeek .day.insideMonth {}
+.CalendarWeek .day.outsideRange {}
+

@@ -1,0 +1,52 @@
+/*** ComboBox ***/
+
+.ComboBox {
+    display: inline-block;
+}
+
+.ComboBox .PopupSource_content {
+    position: relative;
+}
+
+.ComboBox .PopupSource_popup {
+    outline: none;
+}
+
+.ComboBox .ComboBox_content {
+    margin-right: 1.5em; /* HACK to avoid overlapping button. Not general enough. */
+}
+
+.ComboBox .ComboBox_content[type='text'], .ComboBox .ComboBox_content input[type='text'] {
+    border: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+    padding: 2px;
+}
+
+.ComboBox .dropdownButton {
+    bottom: 0;
+    height: 100%;
+    outline: none;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+
+/* Generic appearance */
+.ComboBox.generic {
+    border: 1px solid lightgray;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.ComboBox.generic .dropdownButton {
+    border: none;
+    border-left: 1px solid transparent;
+    border-radius: 0;
+    padding: 0 0.25em; /* Tighter padding that normal */
+}
+.ComboBox.generic:hover .dropdownButton {
+    border-left-color: lightgray;
+}
+
