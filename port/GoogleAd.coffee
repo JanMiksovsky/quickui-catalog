@@ -2,7 +2,7 @@
 A Google advertisement.
 ###
 
-window.GoogleAd = Control.sub(className: "GoogleAd")
+class window.GoogleAd extends Control
 
 # AdSense globals 
 google_ad_client = undefined

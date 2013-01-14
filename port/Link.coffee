@@ -10,11 +10,11 @@ The link will have the "current" style if it points to the current page.
 This can also serve as a useful base class for custom link classes.
 ###
 
-window.Link = Control.sub(
+class window.Link extends Control
   className: "Link"
   tag: "a"
-)
-Link::extend
+
+
 
   # True if the link points to the current page.
   current: Control.chain("applyClass/current")

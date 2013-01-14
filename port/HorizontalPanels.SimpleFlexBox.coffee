@@ -2,12 +2,12 @@
 Position a left and/or right panel on the sides of a main content panel. 
 ###
 
-window.HorizontalPanels = SimpleFlexBox.sub(
+class window.HorizontalPanels extends SimpleFlexBox
   className: "HorizontalPanels"
   inherited:
     orient: "horizontal"
-)
-HorizontalPanels::extend
+
+
 
   # The content of the left panel.
   left: Control.chain("_panel1")

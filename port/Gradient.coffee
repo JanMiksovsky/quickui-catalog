@@ -3,7 +3,7 @@ Gradient. Supports the different browser-specific syntax.
 Alpha values are possible, but all colors must be specified as RGBA hex values.
 ###
 
-window.Gradient = Control.sub(className: "Gradient")
+class window.Gradient extends Control
 Gradient::extend
 
   # The direction of the gradient: "horizontal" or "vertical" (the default).

@@ -2,7 +2,7 @@
 A text box that shows a color swatch of the currently-entered color.
 ###
 
-window.ColorSwatchTextBox = Control.sub(
+class window.ColorSwatchTextBox extends Control
   className: "ColorSwatchTextBox"
   inherited:
     content: [" ",
@@ -12,8 +12,8 @@ window.ColorSwatchTextBox = Control.sub(
       html: "<input type=\"text\" />"
       ref: "ColorSwatchTextBox_content"
     , " "]
-)
-ColorSwatchTextBox::extend
+
+
 
   # The text box's content. Setting this to a color name or RGB value
   # will show a color swatch of the color with that name.

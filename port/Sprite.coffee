@@ -3,7 +3,7 @@ Very basic CSS image sprite.
 The images have to be stacked vertically, and all be the same height.
 ###
 
-window.Sprite = Control.sub(className: "Sprite")
+class window.Sprite extends Control
 Sprite::extend
 
   # The sprite image.

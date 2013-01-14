@@ -2,12 +2,12 @@
 Position a top and/or bottom panel above or below a main content panel. 
 ###
 
-window.VerticalPanels = SimpleFlexBox.sub(
+class window.VerticalPanels extends SimpleFlexBox
   className: "VerticalPanels"
   inherited:
     orient: "vertical"
-)
-VerticalPanels::extend
+
+
 
   # The content of the bottom panel.
   bottom: Control.chain("_panel2")

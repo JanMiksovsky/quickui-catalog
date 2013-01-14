@@ -2,7 +2,7 @@
 A popup menu. This is typically used in a Menu bar. 
 ###
 
-window.Menu = PopupSource.sub(
+class window.Menu extends PopupSource
   className: "Menu"
   inherited:
     popup: [" ",
@@ -15,8 +15,8 @@ window.Menu = PopupSource.sub(
       ref: "Menu_popup"
     , " "]
     generic: "true"
-)
-Menu::extend
+
+
   initialize: ->
     @$PopupSource_popup().on "click", (event) ->
       

@@ -2,7 +2,7 @@
 A control with separate edit and read modes. 
 ###
 
-window.Editable = Modes.sub(
+class window.Editable extends Modes
   className: "Editable"
   inherited:
     content: [" ",
@@ -13,8 +13,8 @@ window.Editable = Modes.sub(
       ref: "Editable_edit"
     , " "]
     generic: "true"
-)
-Editable::extend
+
+
 
   # Cancel any pending changes and revert to read mode.
   cancel: Control.iterator(->

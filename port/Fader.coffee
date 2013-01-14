@@ -4,7 +4,7 @@ content is too long. Must set explicitly set the control's background-color
 if the color is not white. 
 ###
 
-window.Fader = Control.sub(
+class window.Fader extends Control
   className: "Fader"
   inherited:
     class: "horizontal"
@@ -16,8 +16,8 @@ window.Fader = Control.sub(
       ref: "gradient"
       direction: "horizontal"
     , " "]
-)
-Fader::extend
+
+
   content: Control.chain("$Fader_content", "content")
 
   # The direction in which the content should fade. If "horizontal" (the

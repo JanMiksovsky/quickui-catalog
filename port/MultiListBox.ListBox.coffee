@@ -2,11 +2,11 @@
 A ListBox capable of multiple selection.
 ###
 
-window.MultiListBox = ListBox.sub(
+class window.MultiListBox extends ListBox
   className: "MultiListBox"
   inherited: {}
-)
-MultiListBox::extend
+
+
 
   # The controls in the list which are currently selected.
   selectedControls: Control.iterator((selectedControls) ->

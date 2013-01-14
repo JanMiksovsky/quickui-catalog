@@ -2,7 +2,7 @@
 A button that produces a popup when clicked. 
 ###
 
-window.PopupButton = PopupSource.sub(
+class window.PopupButton extends PopupSource
   className: "PopupButton"
   inherited:
     contentClass: "BasicButton"
@@ -14,8 +14,8 @@ window.PopupButton = PopupSource.sub(
       ref: "indicator"
     , " "]
     generic: "true"
-)
-PopupButton::extend
+
+
 
   # The content of the button.
   content: Control.chain("$PopupButton_content", "content", (content) ->

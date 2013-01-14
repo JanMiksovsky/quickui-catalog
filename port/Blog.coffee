@@ -2,7 +2,7 @@
 A list of blog posts.
 ###
 
-window.Blog = Control.sub(
+class window.Blog extends Control
   className: "Blog"
   inherited:
     content: [" ",

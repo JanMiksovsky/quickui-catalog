@@ -7,7 +7,7 @@ called description(), that will be used as the name on the tab.
 The Tabs control will resize itself to be as tall as its tallest child.
 ###
 
-window.Tabs = Control.sub(
+class window.Tabs extends Control
   className: "Tabs"
   inherited:
     content: [" ",
@@ -25,8 +25,8 @@ window.Tabs = Control.sub(
       , " "]
     , " "]
     generic: "true"
-)
-Tabs::extend
+
+
 
   # The array of elements to be shown as tabs.
   content: Control.chain("$Tabs_content", "content", ->

@@ -2,7 +2,7 @@
 Shows a block of a CSS color, either a color name or value. 
 ###
 
-window.ColorSwatch = Control.sub(className: "ColorSwatch")
+class window.ColorSwatch extends Control
 
 # The color to show. This will become the control's background color.
 ColorSwatch::extend color: (color) ->

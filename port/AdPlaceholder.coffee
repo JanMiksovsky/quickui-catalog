@@ -4,7 +4,7 @@ The size can be specified with either pixel dimensions or a unit name.
 See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 ###
 
-window.AdPlaceholder = Control.sub(
+class window.AdPlaceholder extends Control
   className: "AdPlaceholder"
   inherited:
     content: [" ",
@@ -19,8 +19,8 @@ window.AdPlaceholder = Control.sub(
       , " "]
     , " "]
     generic: "true"
-)
-AdPlaceholder::extend
+
+
 
   # Ad unit content. By default, this shows the unit/dimensions.
   content: Control.chain("$AdPlaceholder_content", "content")
@@ -66,4 +66,3 @@ AdPlaceholder.extend standardUnits:
   "Half Page Ad": "300 x 600"
   "Button 2": "120 x 60"
   "Micro Bar": "88 x 31"
-

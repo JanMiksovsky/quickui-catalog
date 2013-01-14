@@ -6,7 +6,7 @@ that don't fit invisible. When the menu button is clicked, the invisible items
 are temporarily moved to the menu, then moved back when the menu is closed. 
 ###
 
-window.PanelWithOverflow = Control.sub(
+class window.PanelWithOverflow extends Control
   className: "PanelWithOverflow"
   inherited:
     content: [" ",
@@ -19,8 +19,8 @@ window.PanelWithOverflow = Control.sub(
       ref: "PanelWithOverflow_content"
     , " "]
     generic: "true"
-)
-PanelWithOverflow::extend
+
+
 
   # The contents of the control.
   content: Control.chain("$PanelWithOverflow_content", "content", ->

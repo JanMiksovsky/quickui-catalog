@@ -2,7 +2,7 @@
 Generates Lorem Ipsum placeholder paragraphs.
 ###
 
-window.LoremIpsum = Control.sub(className: "LoremIpsum")
+class window.LoremIpsum extends Control
 LoremIpsum::extend
   initialize: ->
     unless LoremIpsum._usedLorem

@@ -2,12 +2,12 @@
 An ordered sequence of elements which can be navigated through one at a time.
 ###
 
-window.Sequence = Control.sub(
+class window.Sequence extends Control
   className: "Sequence"
   inherited:
     generic: "true"
-)
-Sequence::extend
+
+
 
   # The currently visible element. The getter returns the element as an
   # instance of the appropriate control class.

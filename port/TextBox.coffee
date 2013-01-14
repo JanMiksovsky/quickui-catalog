@@ -3,11 +3,11 @@ General purpose base class for text box controls.
 This simply wraps a normal input element.
 ###
 
-window.TextBox = Control.sub(
+class window.TextBox extends Control
   className: "TextBox"
   tag: "input"
-)
-TextBox::extend
+
+
   content: (content) ->
     result = @_super(content)
 

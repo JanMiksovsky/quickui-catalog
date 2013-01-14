@@ -2,7 +2,7 @@
 A blog post.
 ###
 
-window.BlogPost = Control.sub(
+class window.BlogPost extends Control
   className: "BlogPost"
   inherited:
     content: [" ",
@@ -13,8 +13,8 @@ window.BlogPost = Control.sub(
       ref: "BlogPost_content"
     , " "]
     generic: "true"
-)
-BlogPost::extend
+
+
   content: Control.chain("$BlogPost_content", "content")
   entry: Control.property((entry) ->
     @postTitle entry.title

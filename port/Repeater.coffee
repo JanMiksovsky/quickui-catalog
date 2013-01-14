@@ -2,7 +2,7 @@
 Creates a certain number of instances of another control class. 
 ###
 
-window.Repeater = Control.sub(className: "Repeater")
+class window.Repeater extends Control
 Repeater::extend
 
   # The content which will be repeated in each instance.

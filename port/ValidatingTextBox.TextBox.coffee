@@ -15,12 +15,12 @@ forgiven without requiring that the user moves the focus away.
 For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 ###
 
-window.ValidatingTextBox = TextBox.sub(
+class window.ValidatingTextBox extends TextBox
   className: "ValidatingTextBox"
   inherited:
     generic: "true"
-)
-ValidatingTextBox::extend
+
+
 
   # The control's content. Setting this implicitly performs validation.
   content: (content) ->

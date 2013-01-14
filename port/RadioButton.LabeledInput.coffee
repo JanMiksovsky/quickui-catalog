@@ -2,12 +2,12 @@
 A labeled radio button.
 ###
 
-window.RadioButton = LabeledInput.sub(
+class window.RadioButton extends LabeledInput
   className: "RadioButton"
   inherited:
     _type: "radio"
-)
-RadioButton::extend
+
+
 
   # True if the control should automatically select a name() property value
   # if no name is specified. This automatic name will match the name of other

@@ -2,12 +2,12 @@
 A text region that can be clicked to edit its contents. 
 ###
 
-window.EditableText = Editable.sub(
+class window.EditableText extends Editable
   className: "EditableText"
   inherited:
     editClass: "TextBox"
-)
-EditableText::extend
+
+
 
   # True if the pressing Escape in edit mode cancels edit mode.
   # The default is true.

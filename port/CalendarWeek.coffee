@@ -2,7 +2,7 @@
 Shows a single calendar week 
 ###
 
-window.CalendarWeek = Control.sub(
+class window.CalendarWeek extends Control
   className: "CalendarWeek"
   inherited:
     content: [
@@ -22,8 +22,8 @@ window.CalendarWeek = Control.sub(
       control: "CalendarDay"
       class: "lastDayOfWeek"
     ]
-)
-CalendarWeek::extend
+
+
 
   # The control's current culture.
   culture: (culture) ->

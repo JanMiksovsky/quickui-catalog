@@ -6,7 +6,7 @@ To animate color properties, use a plugin such as Color Animation at
 http://plugins.jquery.com/project/color-animation.
 ###
 
-window.HighlightEffects = Control.sub(
+class window.HighlightEffects extends Control
   className: "HighlightEffects"
   inherited:
     content: [" ",
@@ -14,8 +14,8 @@ window.HighlightEffects = Control.sub(
       ref: "HighlightEffects_content"
     , " "]
     generic: "true"
-)
-HighlightEffects::extend
+
+
   _originalState: Control.property()
 
   # The control's content.

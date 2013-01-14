@@ -6,11 +6,11 @@ supported, plus modified short date formats that permit a missing year or two-
 digit year. If Globalize is not installed, a default date parser is used.
 ###
 
-window.DateTextBox = ValidatingTextBox.sub(
+class window.DateTextBox extends ValidatingTextBox
   className: "DateTextBox"
   inherited: {}
-)
-DateTextBox::extend
+
+
 
   # The control's current culture.
   culture: (culture) ->

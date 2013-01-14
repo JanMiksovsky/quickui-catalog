@@ -11,13 +11,13 @@ By default, this control expects items to be a dictionary of the form:
 This is the multiple-selection variation of ListInlay.
 ###
 
-window.MultiListInlay = MultiListBox.sub(
+class window.MultiListInlay extends MultiListBox
   className: "MultiListInlay"
   inherited:
     itemClass: "CollapsibleWithHeadingButton"
     highlightSelection: "false"
-)
-MultiListInlay::extend
+
+
   initialize: ->
     @mapFunction (item) ->
       if item is undefined

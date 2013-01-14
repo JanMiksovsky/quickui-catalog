@@ -2,7 +2,7 @@
 A button that uses CSS image sprites for its background. 
 ###
 
-window.SpriteButton = BasicButton.sub(
+class window.SpriteButton extends BasicButton
   className: "SpriteButton"
   inherited:
     content: [" ",
@@ -16,8 +16,8 @@ window.SpriteButton = BasicButton.sub(
       ref: "SpriteButton_content"
     , " "]
     generic: "false"
-)
-SpriteButton::extend
+
+
 
   # The height of the sprite image, in pixels.
   cellHeight: Control.chain("css/height", (value) ->

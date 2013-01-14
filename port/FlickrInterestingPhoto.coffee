@@ -7,11 +7,11 @@ This is done because yesterday in the current time zone may still be "today" in
 Flickr's time zone, and Flickr doesn't make photos available for the current day. 
 ###
 
-window.FlickrInterestingPhoto = Control.sub(
+class window.FlickrInterestingPhoto extends Control
   className: "FlickrInterestingPhoto"
   tag: "img"
-)
-FlickrInterestingPhoto::extend
+
+
   initialize: ->
     @on "load", ->
 

@@ -9,7 +9,7 @@ whether flexbox is even supported. Forcing the use of flexbox reveals more
 bugs; it's just not worth using at this point.
 ###
 
-window.SimpleFlexBox = Control.sub(
+class window.SimpleFlexBox extends Control
   className: "SimpleFlexBox"
   inherited:
     content: [" ",
@@ -22,8 +22,8 @@ window.SimpleFlexBox = Control.sub(
       html: "<div class=\"panel\" />"
       ref: "SimpleFlexBox_panel2"
     , " "]
-)
-SimpleFlexBox::extend
+
+
 
   # The content of the main center panel.
   content: Control.chain("$SimpleFlexBox_content", "content")

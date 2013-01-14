@@ -2,7 +2,7 @@
 Shows a day of the month as a button. 
 ###
 
-window.CalendarDayButton = CalendarDay.sub(
+class window.CalendarDayButton extends CalendarDay
   className: "CalendarDayButton"
   inherited:
     content: [" ",
@@ -10,5 +10,5 @@ window.CalendarDayButton = CalendarDay.sub(
       ref: "button"
       class: "quiet"
     , " "]
-)
-CalendarDayButton::extend content: Control.chain("$button", "content")
+
+ content: Control.chain("$button", "content")

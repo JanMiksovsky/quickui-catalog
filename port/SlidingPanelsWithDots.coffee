@@ -3,7 +3,7 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 (The conventional button representation is a dot.)
 ###
 
-window.SlidingPanelsWithDots = Control.sub(
+class window.SlidingPanelsWithDots extends Control
   className: "SlidingPanelsWithDots"
   inherited:
     content: [" ",
@@ -18,8 +18,8 @@ window.SlidingPanelsWithDots = Control.sub(
       , " "]
     , " "]
     generic: "true"
-)
-SlidingPanelsWithDots::extend
+
+
 
   # The index of the page currently being shown.
   activeIndex: Control.property((activeIndex) ->

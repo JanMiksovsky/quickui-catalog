@@ -3,15 +3,15 @@ Display children as elements on a sliding horizontal strip; only one element
 is visible at a time. The strip can be programmatically slid left and right.
 ###
 
-window.SlidingPanels = Sequence.sub(
+class window.SlidingPanels extends Sequence
   className: "SlidingPanels"
   inherited:
     content: [" ",
       html: "<div />"
       ref: "SlidingPanels_content"
     , " "]
-)
-SlidingPanels::extend
+
+
 
   # The index of the control currently being shown.
   activeIndex: (activeIndex) ->

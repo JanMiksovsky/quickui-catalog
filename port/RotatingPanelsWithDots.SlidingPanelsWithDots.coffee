@@ -3,11 +3,11 @@ Rotates once through a set of elements automatically when control is loaded.
 The rotation stops if the user clicks to navigate to a specific page.
 ###
 
-window.RotatingPanelsWithDots = SlidingPanelsWithDots.sub(
+class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
   className: "RotatingPanelsWithDots"
   inherited: {}
-)
-RotatingPanelsWithDots::extend
+
+
   initialize: ->
     self = this
     @click(->

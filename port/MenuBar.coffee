@@ -8,12 +8,12 @@ so that it (and its overlay) end up above all other elements when any menus
 are open. See notes in the source for the Overlay class.
 ###
 
-window.MenuBar = Control.sub(
+class window.MenuBar extends Control
   className: "MenuBar"
   inherited:
     generic: "true"
-)
-MenuBar::extend
+
+
 
   # Close currently open any menus.
   close: Control.iterator(->

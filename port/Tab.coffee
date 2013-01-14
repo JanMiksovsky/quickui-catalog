@@ -2,7 +2,7 @@
 A control that can be used as a tab in a Tabs. 
 ###
 
-window.Tab = Control.sub(className: "Tab")
+class window.Tab extends Control
 Tab::extend
 
   # The content of the tab.

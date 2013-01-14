@@ -2,7 +2,7 @@
 Month calendar with headings for month name and year, plus days of week 
 ###
 
-window.CalendarMonthWithHeadings = Control.sub(
+class window.CalendarMonthWithHeadings extends Control
   className: "CalendarMonthWithHeadings"
   inherited:
     content: [" ",
@@ -21,8 +21,8 @@ window.CalendarMonthWithHeadings = Control.sub(
       , " "]
     , " "]
     generic: "true"
-)
-CalendarMonthWithHeadings::extend
+
+
 
   # The control's current culture.
   culture: Control.iterator((culture) ->

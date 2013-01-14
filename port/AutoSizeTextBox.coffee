@@ -4,7 +4,7 @@ This works by copying the text to a hidden div which will automatically grow in 
 the expanding copy will expand the container, which in turn stretch the text box.
 ###
 
-window.AutoSizeTextBox = Control.sub(
+class window.AutoSizeTextBox extends Control
   className: "AutoSizeTextBox"
   inherited:
     
@@ -18,8 +18,8 @@ window.AutoSizeTextBox = Control.sub(
       html: "<pre />"
       ref: "textCopy"
     , " "]
-)
-AutoSizeTextBox::extend
+
+
 
   # Resize the text box to exactly contain its content.
   autoSize: Control.iterator((addExtraLine) ->

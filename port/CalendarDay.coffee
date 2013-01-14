@@ -2,12 +2,12 @@
 A single day in a calendar 
 ###
 
-window.CalendarDay = Control.sub(
+class window.CalendarDay extends Control
   className: "CalendarDay"
   inherited:
     generic: "true"
-)
-CalendarDay::extend
+
+
   alternateMonth: Control.chain("applyClass/alternateMonth")
   firstDayOfMonth: Control.chain("applyClass/firstDayOfMonth")
   firstWeek: Control.chain("applyClass/firstWeek")

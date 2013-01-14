@@ -2,7 +2,7 @@
 Lets user pick a date with a date-optimzed text box or a navigable month calendar.
 ###
 
-window.DateComboBox = ComboBox.sub(
+class window.DateComboBox extends ComboBox
   className: "DateComboBox"
   inherited:
     textBoxClass: "DateTextBox"
@@ -10,8 +10,8 @@ window.DateComboBox = ComboBox.sub(
       control: "CalendarMonthNavigator"
       ref: "navigator"
     , " "]
-)
-DateComboBox::extend
+
+
 
   # The control's current culture.
   culture: (culture) ->

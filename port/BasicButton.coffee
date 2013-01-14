@@ -4,13 +4,13 @@ Button base class.
 Handles mouse events, abstract styles. 
 ###
 
-window.BasicButton = Control.sub(
+class window.BasicButton extends Control
   className: "BasicButton"
   tag: "button"
   inherited:
     generic: "true"
-)
-BasicButton::extend
+
+
 
   # The current state of the button. Read-only.
   # This will return one of the following values:

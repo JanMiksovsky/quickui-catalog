@@ -9,13 +9,13 @@ By default, this control expects items to be a dictionary of the form:
 }
 ###
 
-window.ListInlay = ListBox.sub(
+class window.ListInlay extends ListBox
   className: "ListInlay"
   inherited:
     itemClass: "Collapsible"
     highlightSelection: "false"
-)
-ListInlay::extend
+
+
   initialize: ->
     @mapFunction
       description: "heading"

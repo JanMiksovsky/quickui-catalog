@@ -2,7 +2,7 @@
 A control with a popup.
 ###
 
-window.PopupSource = Control.sub(
+class window.PopupSource extends Control
   className: "PopupSource"
   inherited:
     content: [" ",
@@ -12,8 +12,8 @@ window.PopupSource = Control.sub(
       control: "Popup"
       ref: "PopupSource_popup"
     , " "]
-)
-PopupSource::extend
+
+
 
   # Cancels the popup.
   cancel: Control.chain("$PopupSource_popup", "cancel")

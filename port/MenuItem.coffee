@@ -2,12 +2,12 @@
 A command in a Menu. 
 ###
 
-window.MenuItem = Control.sub(
+class window.MenuItem extends Control
   className: "MenuItem"
   inherited:
     generic: "true"
-)
-MenuItem::extend
+
+
 
   # True if the menu item is disabled. The default is false.
   disabled: Control.chain("applyClass/disabled")

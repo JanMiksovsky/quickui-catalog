@@ -6,7 +6,7 @@ available width by the column width (which is taken from the width of the
 first child).
 ###
 
-window.PackedColumns = Control.sub(className: "PackedColumns")
+class window.PackedColumns extends Control
 PackedColumns::extend
 
   # True if the columns should be centered. Default is false.

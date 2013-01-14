@@ -5,7 +5,7 @@ The control's top element is a label, which ensures that user clicks anywhere
 within have the same effect as clicking the input control.
 ###
 
-window.LabeledInput = Control.sub(
+class window.LabeledInput extends Control
   className: "LabeledInput"
   tag: "label"
   inherited:
@@ -13,8 +13,8 @@ window.LabeledInput = Control.sub(
       html: "<span />"
       ref: "LabeledInput_content"
     , " "]
-)
-LabeledInput::extend
+
+
 
   # True if the input control is checked, false if unchecked.
   checked: Control.chain("_inputControl", "prop/checked")

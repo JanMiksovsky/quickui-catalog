@@ -2,15 +2,15 @@
 Load different content, control class, or styles depending on the type of device. 
 ###
 
-window.DeviceSpecific = Control.sub(
+class window.DeviceSpecific extends Control
   className: "DeviceSpecific"
   inherited:
     content: [" ",
       html: "<div />"
       ref: "placeholder"
     , " "]
-)
-DeviceSpecific::extend
+
+
   content: Control.chain("$placeholder", "content")
 
   # The content to use when the current device is not a mobile device.

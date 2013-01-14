@@ -14,7 +14,7 @@ scrolling element on the page; it will not work property when placed
 in a scrolling element nested within some outer scrolling element.
 ###
 
-window.PersistentPanel = Control.sub(
+class window.PersistentPanel extends Control
   className: "PersistentPanel"
   inherited:
     content: [" ",
@@ -22,8 +22,8 @@ window.PersistentPanel = Control.sub(
       ref: "PersistentPanel_content"
     , " "]
     generic: "true"
-)
-PersistentPanel::extend
+
+
 
   # The content's background. See top notes.
   background: Control.chain("$PersistentPanel_content", "css/background")

@@ -3,12 +3,12 @@ A list box that allows single selection.
 The user can select an item with the mouse or keyboard.
 ###
 
-window.ListBox = List.sub(
+class window.ListBox extends List
   className: "ListBox"
   inherited:
     generic: "true"
-)
-ListBox::extend
+
+
 
   # True if clicking on the list background (if there aren't enough
   # items to fill the list's available space) will deselect the

@@ -7,15 +7,15 @@ work, both the control's content and the content of the list items should
 be strings.
 ###
 
-window.ListComboBox = ComboBox.sub(
+class window.ListComboBox extends ComboBox
   className: "ListComboBox"
   inherited:
     popup: [" ",
       control: "ListBox"
       ref: "list"
     , " "]
-)
-ListComboBox::extend
+
+
 
   # The array of items in the dropdown list. See List for details.
   items: Control.chain("$list", "items", ->

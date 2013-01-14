@@ -2,12 +2,12 @@
 General base class for pages. 
 ###
 
-window.Page = Control.sub(
+class window.Page extends Control
   className: "Page"
   inherited:
     generic: "true"
-)
-Page::extend
+
+
 
   # True if the page should fill its container. Default is false.
   fill: Control.chain("applyClass/fill")

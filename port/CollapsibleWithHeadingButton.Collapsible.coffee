@@ -3,7 +3,7 @@ A collapsible panel whose heading region, by default, includes a button on
 the far right that indicates the panel's collapsed/expanded state.
 ###
 
-window.CollapsibleWithHeadingButton = Collapsible.sub(
+class window.CollapsibleWithHeadingButton extends Collapsible
   className: "CollapsibleWithHeadingButton"
   inherited:
     heading: [" ",
@@ -22,8 +22,8 @@ window.CollapsibleWithHeadingButton = Collapsible.sub(
       control: "Fader"
       ref: "CollapsibleWithHeadingButton_heading"
     , " "]
-)
-CollapsibleWithHeadingButton::extend
+
+
 
   # The class of the heading button.
   buttonClass: Control.chain("$headingButton", "transmute")

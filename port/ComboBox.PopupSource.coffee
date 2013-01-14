@@ -2,7 +2,7 @@
 An input area with a dropdown arrow, which invokes a popup.
 ###
 
-window.ComboBox = PopupSource.sub(
+class window.ComboBox extends PopupSource
   className: "ComboBox"
   inherited:
     closeOnInsideClick: "false"
@@ -24,8 +24,8 @@ window.ComboBox = PopupSource.sub(
       content: "▼"
     , " "]
     generic: "true"
-)
-ComboBox::extend
+
+
 
   # True if the dropdown portion should automatically close if the user
   # presses Enter. Default is true.

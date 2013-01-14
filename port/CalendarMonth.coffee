@@ -2,7 +2,7 @@
 A month in a calendar 
 ###
 
-window.CalendarMonth = Control.sub(
+class window.CalendarMonth extends Control
   className: "CalendarMonth"
   inherited:
     content: [" ",
@@ -19,8 +19,8 @@ window.CalendarMonth = Control.sub(
       control: "CalendarWeek"
     , " "]
     generic: "true"
-)
-CalendarMonth::extend
+
+
   days: Control.chain("find/.CalendarDay", "control")
   weeks: Control.chain("children", "control")
 

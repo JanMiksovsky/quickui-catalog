@@ -2,7 +2,7 @@
 A text box that shows a "hint" as to what the user should enter. 
 ###
 
-window.HintTextBox = Control.sub(
+class window.HintTextBox extends Control
   className: "HintTextBox"
   inherited:
     content: [" ",
@@ -13,8 +13,8 @@ window.HintTextBox = Control.sub(
       ref: "HintTextBox_hint"
     , " "]
     generic: "true"
-)
-HintTextBox::extend
+
+
 
   # The content of the text box.
   content: Control.chain("$HintTextBox_textBox", "content", ->

@@ -2,11 +2,11 @@
 The name of the current month, globalized. 
 ###
 
-window.MonthName = Control.sub(
+class window.MonthName extends Control
   className: "MonthName"
   tag: "span"
-)
-MonthName::extend
+
+
 
   # The control's current culture.
   culture: (culture) ->

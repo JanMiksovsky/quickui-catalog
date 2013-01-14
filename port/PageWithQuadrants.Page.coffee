@@ -8,7 +8,7 @@ bottom right: typically main page content
 The whole page scrolls as a unit.
 ###
 
-window.PageWithQuadrants = Page.sub(
+class window.PageWithQuadrants extends Page
   className: "PageWithQuadrants"
   inherited:
     content: [" ",
@@ -34,8 +34,8 @@ window.PageWithQuadrants = Page.sub(
         , " "]
       , " "]
     , " "]
-)
-PageWithQuadrants::extend
+
+
   topLeft: Control.chain("$PageWithQuadrants_topLeft", "content")
   topRight: Control.chain("$PageWithQuadrants_topRight", "content")
   bottomLeft: Control.chain("$PageWithQuadrants_bottomLeft", "content")

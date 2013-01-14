@@ -2,7 +2,7 @@
 Conditionally shows contents if the given browser is in use. 
 ###
 
-window.BrowserSpecific = Control.sub(className: "BrowserSpecific")
+class window.BrowserSpecific extends Control
 BrowserSpecific::extend
 
   # Content to show if none of the specified browsers apply.

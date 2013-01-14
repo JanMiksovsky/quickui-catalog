@@ -2,12 +2,12 @@
 A message which briefly appears on a page before automatically disappearing. 
 ###
 
-window.TransientMessage = Control.sub(
+class window.TransientMessage extends Control
   className: "TransientMessage"
   inherited:
     generic: "true"
-)
-TransientMessage::extend
+
+
 
   # Close display of the message normally.
   close: ->

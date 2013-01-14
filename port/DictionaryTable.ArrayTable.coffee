@@ -2,7 +2,7 @@
 Renders a JavaScript dictionary as a table. 
 ###
 
-window.DictionaryTable = ArrayTable.sub(
+class window.DictionaryTable extends ArrayTable
   className: "DictionaryTable"
   inherited: {}
 )

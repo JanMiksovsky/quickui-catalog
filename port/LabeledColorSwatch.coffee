@@ -2,7 +2,7 @@
 A labeled color swatch.
 ###
 
-window.LabeledColorSwatch = Control.sub(
+class window.LabeledColorSwatch extends Control
   className: "LabeledColorSwatch"
   inherited:
     content: [" ",
@@ -12,8 +12,8 @@ window.LabeledColorSwatch = Control.sub(
       html: "<div />"
       ref: "ColorSwatchButton_content"
     , " "]
-)
-LabeledColorSwatch::extend
+
+
 
   # The color to show.
   color: Control.chain("$swatch", "color")

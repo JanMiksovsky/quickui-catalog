@@ -2,11 +2,11 @@
 Pick exactly one child to show at a time. 
 ###
 
-window.Modes = Sequence.sub(
+class window.Modes extends Sequence
   className: "Modes"
   inherited: {}
-)
-Modes::extend
+
+
   initialize: ->
     self = this
     @on "layout sizeChanged", ->

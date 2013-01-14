@@ -2,7 +2,7 @@
 Shows the most interesting photo on Flickr for a given day. 
 ###
 
-window.FlickrInterestingDay = CalendarDay.sub(
+class window.FlickrInterestingDay extends CalendarDay
   className: "FlickrInterestingDay"
   inherited:
     content: [" ",
@@ -17,8 +17,8 @@ window.FlickrInterestingDay = CalendarDay.sub(
       , " "]
     , " "]
     generic: "false"
-)
-FlickrInterestingDay::extend
+
+
 
   # True if the control should automatically load the photo when the date
   # is set. Default is false.

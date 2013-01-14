@@ -2,7 +2,7 @@
 Shows text in a condensed font if necessary to squeeze in more text.
 ###
 
-window.TextCondenser = Control.sub(
+class window.TextCondenser extends Control
   className: "TextCondenser"
   inherited:
     
@@ -14,8 +14,8 @@ window.TextCondenser = Control.sub(
       html: "<span />"
       ref: "condensed"
     , " "]
-)
-TextCondenser::extend
+
+
 
   # The font family to use for condensed text.
   condensedFontFamily: Control.chain("$condensed", "css/font-family")

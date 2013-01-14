@@ -2,7 +2,7 @@
 A labeled check box.
 ###
 
-window.CheckBox = LabeledInput.sub(
+class window.CheckBox extends LabeledInput
   className: "CheckBox"
   inherited:
     _type: "checkbox"

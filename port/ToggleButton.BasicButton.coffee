@@ -2,11 +2,11 @@
 A button which can hold a selected state. 
 ###
 
-window.ToggleButton = BasicButton.sub(
+class window.ToggleButton extends BasicButton
   className: "ToggleButton"
   inherited: {}
-)
-ToggleButton::extend
+
+
   initialize: ->
     self = this
     @click ->

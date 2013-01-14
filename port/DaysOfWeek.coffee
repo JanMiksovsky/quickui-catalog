@@ -2,13 +2,13 @@
 Heading for a 7 day week calendar, globalized. 
 ###
 
-window.DaysOfWeek = Control.sub(
+class window.DaysOfWeek extends Control
   className: "DaysOfWeek"
   inherited:
     content: " <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> "
     generic: "true"
-)
-DaysOfWeek::extend
+
+
 
   # The control's current culture.
   culture: (culture) ->

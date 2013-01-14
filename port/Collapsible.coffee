@@ -2,7 +2,7 @@
 A panel that can expand and collapse.
 ###
 
-window.Collapsible = Control.sub(
+class window.Collapsible extends Control
   className: "Collapsible"
   inherited:
     content: [" ",
@@ -13,8 +13,8 @@ window.Collapsible = Control.sub(
       ref: "Collapsible_content"
     , " "]
     generic: "true"
-)
-Collapsible::extend
+
+
 
   # The control's contents which can be expanded and collapsed.
   content: Control.chain("$Collapsible_content", "content")
