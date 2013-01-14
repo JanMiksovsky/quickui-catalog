@@ -3,7 +3,7 @@ A text box that shows a "hint" as to what the user should enter.
 ###
 
 class window.HintTextBox extends Control
-  className: "HintTextBox"
+
   inherited:
     content: [" ",
       html: "<input type=\"text\" />"
@@ -13,8 +13,6 @@ class window.HintTextBox extends Control
       ref: "HintTextBox_hint"
     , " "]
     generic: "true"
-
-
 
   # The content of the text box.
   content: Control.chain("$HintTextBox_textBox", "content", ->

@@ -3,10 +3,9 @@ A single day in a calendar
 ###
 
 class window.CalendarDay extends Control
-  className: "CalendarDay"
+
   inherited:
     generic: "true"
-
 
   alternateMonth: Control.chain("applyClass/alternateMonth")
   firstDayOfMonth: Control.chain("applyClass/firstDayOfMonth")

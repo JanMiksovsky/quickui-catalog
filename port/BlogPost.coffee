@@ -3,7 +3,7 @@ A blog post.
 ###
 
 class window.BlogPost extends Control
-  className: "BlogPost"
+
   inherited:
     content: [" ",
       html: "<a target=\"_blank\" />"
@@ -13,7 +13,6 @@ class window.BlogPost extends Control
       ref: "BlogPost_content"
     , " "]
     generic: "true"
-
 
   content: Control.chain("$BlogPost_content", "content")
   entry: Control.property((entry) ->

@@ -3,11 +3,9 @@ A text region that can be clicked to edit its contents.
 ###
 
 class window.EditableText extends Editable
-  className: "EditableText"
+
   inherited:
     editClass: "TextBox"
-
-
 
   # True if the pressing Escape in edit mode cancels edit mode.
   # The default is true.
@@ -27,7 +25,6 @@ class window.EditableText extends Editable
     self = this
     @on click: ->
       self.editing true  if self.editOnClick() and not self.editing()
-
 
   # True if pressing the Enter key in edit mode saves changes and switches
   # back to read mode. The default is true.

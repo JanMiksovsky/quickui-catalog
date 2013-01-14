@@ -3,11 +3,9 @@ A message which briefly appears on a page before automatically disappearing.
 ###
 
 class window.TransientMessage extends Control
-  className: "TransientMessage"
+
   inherited:
     generic: "true"
-
-
 
   # Close display of the message normally.
   close: ->
@@ -27,7 +25,6 @@ class window.TransientMessage extends Control
     self = this
     @click ->
       self._close()
-
 
   # Show the message.
   open: ->

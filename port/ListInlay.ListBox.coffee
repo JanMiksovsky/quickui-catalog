@@ -10,11 +10,10 @@ By default, this control expects items to be a dictionary of the form:
 ###
 
 class window.ListInlay extends ListBox
-  className: "ListInlay"
+
   inherited:
     itemClass: "Collapsible"
     highlightSelection: "false"
-
 
   initialize: ->
     @mapFunction

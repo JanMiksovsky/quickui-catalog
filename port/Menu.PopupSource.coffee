@@ -3,7 +3,7 @@ A popup menu. This is typically used in a Menu bar.
 ###
 
 class window.Menu extends PopupSource
-  className: "Menu"
+
   inherited:
     popup: [" ",
       html: "<div />"
@@ -15,7 +15,6 @@ class window.Menu extends PopupSource
       ref: "Menu_popup"
     , " "]
     generic: "true"
-
 
   initialize: ->
     @$PopupSource_popup().on "click", (event) ->

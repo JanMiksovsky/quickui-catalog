@@ -5,7 +5,7 @@ the expanding copy will expand the container, which in turn stretch the text box
 ###
 
 class window.AutoSizeTextBox extends Control
-  className: "AutoSizeTextBox"
+
   inherited:
     
     # Visible text box 
@@ -18,8 +18,6 @@ class window.AutoSizeTextBox extends Control
       html: "<pre />"
       ref: "textCopy"
     , " "]
-
-
 
   # Resize the text box to exactly contain its content.
   autoSize: Control.iterator((addExtraLine) ->
@@ -64,7 +62,6 @@ class window.AutoSizeTextBox extends Control
 
     @inDocument ->
       @_refresh()
-
 
   # The minimum number of lines that should be shown. By default, this is 1.
   # Setting this to a higher number will ensure an empty textarea is still

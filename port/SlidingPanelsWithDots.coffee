@@ -4,7 +4,7 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 ###
 
 class window.SlidingPanelsWithDots extends Control
-  className: "SlidingPanelsWithDots"
+
   inherited:
     content: [" ",
       control: "SlidingPanels"
@@ -18,8 +18,6 @@ class window.SlidingPanelsWithDots extends Control
       , " "]
     , " "]
     generic: "true"
-
-
 
   # The index of the page currently being shown.
   activeIndex: Control.property((activeIndex) ->

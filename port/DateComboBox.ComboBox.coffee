@@ -3,15 +3,13 @@ Lets user pick a date with a date-optimzed text box or a navigable month calenda
 ###
 
 class window.DateComboBox extends ComboBox
-  className: "DateComboBox"
+
   inherited:
     textBoxClass: "DateTextBox"
     popup: [" ",
       control: "CalendarMonthNavigator"
       ref: "navigator"
     , " "]
-
-
 
   # The control's current culture.
   culture: (culture) ->
@@ -46,7 +44,6 @@ class window.DateComboBox extends ComboBox
       dateSelected: (event, date) ->
         self.date date
         self.close()
-
 
   # The class used for the dropdown portion of the combo box.
   # By default this is a CalendarMonthNavigator, but it can be set to any

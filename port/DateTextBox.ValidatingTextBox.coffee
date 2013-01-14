@@ -7,10 +7,6 @@ digit year. If Globalize is not installed, a default date parser is used.
 ###
 
 class window.DateTextBox extends ValidatingTextBox
-  className: "DateTextBox"
-  inherited: {}
-
-
 
   # The control's current culture.
   culture: (culture) ->

@@ -3,7 +3,7 @@ A combo box optimized for selecting colors.
 ###
 
 class window.ColorSwatchComboBox extends ListComboBox
-  className: "ColorSwatchComboBox"
+
   inherited:
     textBoxClass: "ColorSwatchTextBox"
     itemClass: "LabeledColorSwatch"

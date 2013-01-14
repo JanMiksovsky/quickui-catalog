@@ -3,7 +3,7 @@ Shows a single calendar week
 ###
 
 class window.CalendarWeek extends Control
-  className: "CalendarWeek"
+
   inherited:
     content: [
       control: "CalendarDay"
@@ -22,8 +22,6 @@ class window.CalendarWeek extends Control
       control: "CalendarDay"
       class: "lastDayOfWeek"
     ]
-
-
 
   # The control's current culture.
   culture: (culture) ->

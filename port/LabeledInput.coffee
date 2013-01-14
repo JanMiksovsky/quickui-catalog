@@ -6,15 +6,13 @@ within have the same effect as clicking the input control.
 ###
 
 class window.LabeledInput extends Control
-  className: "LabeledInput"
+
   tag: "label"
   inherited:
     content: [" ", "<input />",
       html: "<span />"
       ref: "LabeledInput_content"
     , " "]
-
-
 
   # True if the input control is checked, false if unchecked.
   checked: Control.chain("_inputControl", "prop/checked")

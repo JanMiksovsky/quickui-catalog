@@ -3,7 +3,7 @@ Shows text in a condensed font if necessary to squeeze in more text.
 ###
 
 class window.TextCondenser extends Control
-  className: "TextCondenser"
+
   inherited:
     
     # Flip between two copies of text text: one normal, one condensed. 
@@ -14,8 +14,6 @@ class window.TextCondenser extends Control
       html: "<span />"
       ref: "condensed"
     , " "]
-
-
 
   # The font family to use for condensed text.
   condensedFontFamily: Control.chain("$condensed", "css/font-family")

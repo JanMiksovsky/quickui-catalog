@@ -7,7 +7,7 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 ###
 
 class window.PanelWithOverflow extends Control
-  className: "PanelWithOverflow"
+
   inherited:
     content: [" ",
       control: "PopupButton"
@@ -19,8 +19,6 @@ class window.PanelWithOverflow extends Control
       ref: "PanelWithOverflow_content"
     , " "]
     generic: "true"
-
-
 
   # The contents of the control.
   content: Control.chain("$PanelWithOverflow_content", "content", ->
@@ -46,7 +44,6 @@ class window.PanelWithOverflow extends Control
         
         # (Re)position the popup now that it's been populated.
         self.$menuButton().positionPopup()
-
 
   # Force the control to layout its contents.
   layout: Control.iterator(->

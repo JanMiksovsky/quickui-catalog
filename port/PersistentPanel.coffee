@@ -15,15 +15,13 @@ in a scrolling element nested within some outer scrolling element.
 ###
 
 class window.PersistentPanel extends Control
-  className: "PersistentPanel"
+
   inherited:
     content: [" ",
       html: "<div />"
       ref: "PersistentPanel_content"
     , " "]
     generic: "true"
-
-
 
   # The content's background. See top notes.
   background: Control.chain("$PersistentPanel_content", "css/background")
@@ -47,7 +45,6 @@ class window.PersistentPanel extends Control
 
     $(window).resize ->
       self._recalc()
-
 
   # The content's padding. See top notes.
   padding: Control.chain("$PersistentPanel_content", "css/padding")

@@ -3,7 +3,7 @@ An input area with a dropdown arrow, which invokes a popup.
 ###
 
 class window.ComboBox extends PopupSource
-  className: "ComboBox"
+
   inherited:
     closeOnInsideClick: "false"
     openOnClick: "false"
@@ -24,8 +24,6 @@ class window.ComboBox extends PopupSource
       content: "▼"
     , " "]
     generic: "true"
-
-
 
   # True if the dropdown portion should automatically close if the user
   # presses Enter. Default is true.

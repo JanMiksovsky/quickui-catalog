@@ -8,14 +8,12 @@ be strings.
 ###
 
 class window.ListComboBox extends ComboBox
-  className: "ListComboBox"
+
   inherited:
     popup: [" ",
       control: "ListBox"
       ref: "list"
     , " "]
-
-
 
   # The array of items in the dropdown list. See List for details.
   items: Control.chain("$list", "items", ->
@@ -49,7 +47,6 @@ class window.ListComboBox extends ComboBox
           if content isnt self.content()
             self.content content
             self._selectText 0, content.length
-
 
   # The class which should be used to render the list items as controls.
   itemClass: Control.property["class"]((itemClass) ->
@@ -89,7 +86,6 @@ class window.ListComboBox extends ComboBox
     self = this
     @inputElement().keydown (event) ->
       self._contentKeydown event
-
 
   # Handle a keydown event. Keydown gives the best AutoComplete performance
   # and behavior: among other things, the AutoComplete happens as soon as

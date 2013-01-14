@@ -8,9 +8,8 @@ Flickr's time zone, and Flickr doesn't make photos available for the current day
 ###
 
 class window.FlickrInterestingPhoto extends Control
-  className: "FlickrInterestingPhoto"
-  tag: "img"
 
+  tag: "img"
 
   initialize: ->
     @on "load", ->

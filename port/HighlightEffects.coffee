@@ -7,14 +7,13 @@ http://plugins.jquery.com/project/color-animation.
 ###
 
 class window.HighlightEffects extends Control
-  className: "HighlightEffects"
+
   inherited:
     content: [" ",
       html: "<div />"
       ref: "HighlightEffects_content"
     , " "]
     generic: "true"
-
 
   _originalState: Control.property()
 
@@ -48,7 +47,6 @@ class window.HighlightEffects extends Control
       self._hoverOut()
     ).inDocument ->
       @_originalState(@_getCurrentState())._recalc()
-
 
   # Get the current values of all CSS attributes which will be overwritten
   # by the effects. This snapshot is used on hover out to restore the
@@ -99,8 +97,6 @@ class window.HighlightEffects extends Control
       $(this).css
         position: "inherit"
         "z-index": "inherit"
-
-
 
   # Update the control's size to match the contents. This lets us
   # apply absolute positioning to the contents on hover while still

@@ -3,7 +3,7 @@ Shows the most interesting photo on Flickr for a given day.
 ###
 
 class window.FlickrInterestingDay extends CalendarDay
-  className: "FlickrInterestingDay"
+
   inherited:
     content: [" ",
       html: "<div />"
@@ -17,8 +17,6 @@ class window.FlickrInterestingDay extends CalendarDay
       , " "]
     , " "]
     generic: "false"
-
-
 
   # True if the control should automatically load the photo when the date
   # is set. Default is false.

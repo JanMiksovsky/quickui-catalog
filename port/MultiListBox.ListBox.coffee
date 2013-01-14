@@ -3,10 +3,6 @@ A ListBox capable of multiple selection.
 ###
 
 class window.MultiListBox extends ListBox
-  className: "MultiListBox"
-  inherited: {}
-
-
 
   # The controls in the list which are currently selected.
   selectedControls: Control.iterator((selectedControls) ->

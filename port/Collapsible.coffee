@@ -3,7 +3,7 @@ A panel that can expand and collapse.
 ###
 
 class window.Collapsible extends Control
-  className: "Collapsible"
+
   inherited:
     content: [" ",
       html: "<div />"
@@ -13,8 +13,6 @@ class window.Collapsible extends Control
       ref: "Collapsible_content"
     , " "]
     generic: "true"
-
-
 
   # The control's contents which can be expanded and collapsed.
   content: Control.chain("$Collapsible_content", "content")
@@ -65,7 +63,6 @@ class window.Collapsible extends Control
     self = this
     @$Collapsible_heading().click ->
       self.toggleCollapse()  if self.toggleOnClick()
-
 
   # Toggle the collapsed state of the control.
   #	 

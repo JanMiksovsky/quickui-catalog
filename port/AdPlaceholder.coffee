@@ -5,7 +5,7 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 ###
 
 class window.AdPlaceholder extends Control
-  className: "AdPlaceholder"
+
   inherited:
     content: [" ",
       html: "<div />"
@@ -19,8 +19,6 @@ class window.AdPlaceholder extends Control
       , " "]
     , " "]
     generic: "true"
-
-
 
   # Ad unit content. By default, this shows the unit/dimensions.
   content: Control.chain("$AdPlaceholder_content", "content")

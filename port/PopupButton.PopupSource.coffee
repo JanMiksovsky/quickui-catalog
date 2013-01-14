@@ -3,7 +3,7 @@ A button that produces a popup when clicked.
 ###
 
 class window.PopupButton extends PopupSource
-  className: "PopupButton"
+
   inherited:
     contentClass: "BasicButton"
     content: [" ",
@@ -14,8 +14,6 @@ class window.PopupButton extends PopupSource
       ref: "indicator"
     , " "]
     generic: "true"
-
-
 
   # The content of the button.
   content: Control.chain("$PopupButton_content", "content", (content) ->

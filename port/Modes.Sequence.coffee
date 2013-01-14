@@ -3,9 +3,6 @@ Pick exactly one child to show at a time.
 ###
 
 class window.Modes extends Sequence
-  className: "Modes"
-  inherited: {}
-
 
   initialize: ->
     self = this
@@ -14,7 +11,6 @@ class window.Modes extends Sequence
 
     @inDocument ->
       @_sizeChanged()
-
 
   # True if the control should always adjust its own height to be as tall
   # as its tallest child, whether or not that child is currently active.

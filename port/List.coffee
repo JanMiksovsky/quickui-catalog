@@ -21,7 +21,6 @@ List::extend
       # Assume the list is dirty.
       self.isDirty true  if self.dirtyOnChange()
 
-
   # Insert a new item before the existing item at the given index.
   insertItemBefore: Control.iterator((item, index) ->
     

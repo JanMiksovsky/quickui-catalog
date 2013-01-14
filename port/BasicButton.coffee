@@ -5,12 +5,10 @@ Handles mouse events, abstract styles.
 ###
 
 class window.BasicButton extends Control
-  className: "BasicButton"
+
   tag: "button"
   inherited:
     generic: "true"
-
-
 
   # The current state of the button. Read-only.
   # This will return one of the following values:

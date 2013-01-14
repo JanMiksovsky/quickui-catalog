@@ -4,11 +4,9 @@ The user can select an item with the mouse or keyboard.
 ###
 
 class window.ListBox extends List
-  className: "ListBox"
+
   inherited:
     generic: "true"
-
-
 
   # True if clicking on the list background (if there aren't enough
   # items to fill the list's available space) will deselect the

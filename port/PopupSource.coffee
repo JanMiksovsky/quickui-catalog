@@ -3,7 +3,7 @@ A control with a popup.
 ###
 
 class window.PopupSource extends Control
-  className: "PopupSource"
+
   inherited:
     content: [" ",
       html: "<div />"
@@ -12,8 +12,6 @@ class window.PopupSource extends Control
       control: "Popup"
       ref: "PopupSource_popup"
     , " "]
-
-
 
   # Cancels the popup.
   cancel: Control.chain("$PopupSource_popup", "cancel")
@@ -74,7 +72,6 @@ class window.PopupSource extends Control
 
       opened: ->
         self.positionPopup().opened true
-
 
   # True if the popup should open when the user clicks in the control's
   # content. Default is true. 

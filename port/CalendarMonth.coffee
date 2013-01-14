@@ -3,7 +3,7 @@ A month in a calendar
 ###
 
 class window.CalendarMonth extends Control
-  className: "CalendarMonth"
+
   inherited:
     content: [" ",
       control: "CalendarWeek"
@@ -19,7 +19,6 @@ class window.CalendarMonth extends Control
       control: "CalendarWeek"
     , " "]
     generic: "true"
-
 
   days: Control.chain("find/.CalendarDay", "control")
   weeks: Control.chain("children", "control")

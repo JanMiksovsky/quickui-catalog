@@ -4,14 +4,12 @@ is visible at a time. The strip can be programmatically slid left and right.
 ###
 
 class window.SlidingPanels extends Sequence
-  className: "SlidingPanels"
+
   inherited:
     content: [" ",
       html: "<div />"
       ref: "SlidingPanels_content"
     , " "]
-
-
 
   # The index of the control currently being shown.
   activeIndex: (activeIndex) ->

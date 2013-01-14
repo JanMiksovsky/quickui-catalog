@@ -8,7 +8,7 @@ The Tabs control will resize itself to be as tall as its tallest child.
 ###
 
 class window.Tabs extends Control
-  className: "Tabs"
+
   inherited:
     content: [" ",
       control: "VerticalPanels"
@@ -25,8 +25,6 @@ class window.Tabs extends Control
       , " "]
     , " "]
     generic: "true"
-
-
 
   # The array of elements to be shown as tabs.
   content: Control.chain("$Tabs_content", "content", ->

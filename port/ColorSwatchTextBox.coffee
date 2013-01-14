@@ -3,7 +3,7 @@ A text box that shows a color swatch of the currently-entered color.
 ###
 
 class window.ColorSwatchTextBox extends Control
-  className: "ColorSwatchTextBox"
+
   inherited:
     content: [" ",
       control: "ColorSwatch"
@@ -12,8 +12,6 @@ class window.ColorSwatchTextBox extends Control
       html: "<input type=\"text\" />"
       ref: "ColorSwatchTextBox_content"
     , " "]
-
-
 
   # The text box's content. Setting this to a color name or RGB value
   # will show a color swatch of the color with that name.

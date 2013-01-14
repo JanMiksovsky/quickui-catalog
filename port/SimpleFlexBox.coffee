@@ -10,7 +10,7 @@ bugs; it's just not worth using at this point.
 ###
 
 class window.SimpleFlexBox extends Control
-  className: "SimpleFlexBox"
+
   inherited:
     content: [" ",
       html: "<div class=\"panel\" />"
@@ -22,8 +22,6 @@ class window.SimpleFlexBox extends Control
       html: "<div class=\"panel\" />"
       ref: "SimpleFlexBox_panel2"
     , " "]
-
-
 
   # The content of the main center panel.
   content: Control.chain("$SimpleFlexBox_content", "content")
@@ -39,7 +37,6 @@ class window.SimpleFlexBox extends Control
   initialize: ->
     @inDocument ->
       @_checkFlexBox()
-
 
   # The orientation of the panels: "horizontal" or "vertical".
   orient: Control.property((orient) ->

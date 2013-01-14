@@ -3,7 +3,7 @@ Month calendar with headings for month name and year, plus days of week
 ###
 
 class window.CalendarMonthWithHeadings extends Control
-  className: "CalendarMonthWithHeadings"
+
   inherited:
     content: [" ",
       control: "MonthAndYear"
@@ -21,8 +21,6 @@ class window.CalendarMonthWithHeadings extends Control
       , " "]
     , " "]
     generic: "true"
-
-
 
   # The control's current culture.
   culture: Control.iterator((culture) ->

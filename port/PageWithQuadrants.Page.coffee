@@ -9,7 +9,7 @@ The whole page scrolls as a unit.
 ###
 
 class window.PageWithQuadrants extends Page
-  className: "PageWithQuadrants"
+
   inherited:
     content: [" ",
       html: "<div class=\"table\" />"
@@ -34,7 +34,6 @@ class window.PageWithQuadrants extends Page
         , " "]
       , " "]
     , " "]
-
 
   topLeft: Control.chain("$PageWithQuadrants_topLeft", "content")
   topRight: Control.chain("$PageWithQuadrants_topRight", "content")

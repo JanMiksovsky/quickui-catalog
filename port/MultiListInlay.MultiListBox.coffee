@@ -12,11 +12,10 @@ This is the multiple-selection variation of ListInlay.
 ###
 
 class window.MultiListInlay extends MultiListBox
-  className: "MultiListInlay"
+
   inherited:
     itemClass: "CollapsibleWithHeadingButton"
     highlightSelection: "false"
-
 
   initialize: ->
     @mapFunction (item) ->

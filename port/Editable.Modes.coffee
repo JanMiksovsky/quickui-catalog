@@ -3,7 +3,7 @@ A control with separate edit and read modes.
 ###
 
 class window.Editable extends Modes
-  className: "Editable"
+
   inherited:
     content: [" ",
       html: "<div tabindex=\"-1\" />"
@@ -13,8 +13,6 @@ class window.Editable extends Modes
       ref: "Editable_edit"
     , " "]
     generic: "true"
-
-
 
   # Cancel any pending changes and revert to read mode.
   cancel: Control.iterator(->

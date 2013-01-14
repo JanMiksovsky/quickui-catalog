@@ -3,10 +3,8 @@ The name of the current month, globalized.
 ###
 
 class window.MonthName extends Control
-  className: "MonthName"
+
   tag: "span"
-
-
 
   # The control's current culture.
   culture: (culture) ->

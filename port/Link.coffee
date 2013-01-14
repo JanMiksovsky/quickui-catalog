@@ -11,10 +11,8 @@ This can also serve as a useful base class for custom link classes.
 ###
 
 class window.Link extends Control
-  className: "Link"
+
   tag: "a"
-
-
 
   # True if the link points to the current page.
   current: Control.chain("applyClass/current")

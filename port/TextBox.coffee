@@ -4,9 +4,8 @@ This simply wraps a normal input element.
 ###
 
 class window.TextBox extends Control
-  className: "TextBox"
-  tag: "input"
 
+  tag: "input"
 
   content: (content) ->
     result = @_super(content)

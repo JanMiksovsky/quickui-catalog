@@ -9,11 +9,9 @@ are open. See notes in the source for the Overlay class.
 ###
 
 class window.MenuBar extends Control
-  className: "MenuBar"
+
   inherited:
     generic: "true"
-
-
 
   # Close currently open any menus.
   close: Control.iterator(->
@@ -62,7 +60,6 @@ class window.MenuBar extends Control
         # if it's not already open.
         newMenu = $(event.target).closest(".PopupSource").control()
         newMenu.open()  if newMenu and not newMenu.opened()
-
 
   # Returns true if any of the menu bar's menus are currently open.
   opened: Control.chain("applyClass/opened")

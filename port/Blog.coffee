@@ -3,7 +3,7 @@ A list of blog posts.
 ###
 
 class window.Blog extends Control
-  className: "Blog"
+
   inherited:
     content: [" ",
       control: "List"
@@ -11,7 +11,7 @@ class window.Blog extends Control
       itemClass: "BlogPost"
       mapFunction: "entry"
     , " "]
-)
+
 $.extend Blog::,
   count: Control.property.integer()
   feed: Control.property()

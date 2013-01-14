@@ -3,7 +3,7 @@ A labeled color swatch.
 ###
 
 class window.LabeledColorSwatch extends Control
-  className: "LabeledColorSwatch"
+
   inherited:
     content: [" ",
       control: "ColorSwatch"
@@ -12,8 +12,6 @@ class window.LabeledColorSwatch extends Control
       html: "<div />"
       ref: "ColorSwatchButton_content"
     , " "]
-
-
 
   # The color to show.
   color: Control.chain("$swatch", "color")

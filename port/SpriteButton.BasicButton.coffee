@@ -3,7 +3,7 @@ A button that uses CSS image sprites for its background.
 ###
 
 class window.SpriteButton extends BasicButton
-  className: "SpriteButton"
+
   inherited:
     content: [" ",
       control: "Sprite"
@@ -16,8 +16,6 @@ class window.SpriteButton extends BasicButton
       ref: "SpriteButton_content"
     , " "]
     generic: "false"
-
-
 
   # The height of the sprite image, in pixels.
   cellHeight: Control.chain("css/height", (value) ->

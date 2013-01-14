@@ -16,11 +16,9 @@ For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 ###
 
 class window.ValidatingTextBox extends TextBox
-  className: "ValidatingTextBox"
+
   inherited:
     generic: "true"
-
-
 
   # The control's content. Setting this implicitly performs validation.
   content: (content) ->

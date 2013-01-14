@@ -3,11 +3,9 @@ A labeled radio button.
 ###
 
 class window.RadioButton extends LabeledInput
-  className: "RadioButton"
+
   inherited:
     _type: "radio"
-
-
 
   # True if the control should automatically select a name() property value
   # if no name is specified. This automatic name will match the name of other
@@ -19,7 +17,6 @@ class window.RadioButton extends LabeledInput
   initialize: ->
     @inDocument ->
       @_checkName()
-
 
   # The text name of the radio button group.
   # 

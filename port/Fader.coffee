@@ -5,7 +5,7 @@ if the color is not white.
 ###
 
 class window.Fader extends Control
-  className: "Fader"
+
   inherited:
     class: "horizontal"
     content: [" ",
@@ -16,7 +16,6 @@ class window.Fader extends Control
       ref: "gradient"
       direction: "horizontal"
     , " "]
-
 
   content: Control.chain("$Fader_content", "content")
 
