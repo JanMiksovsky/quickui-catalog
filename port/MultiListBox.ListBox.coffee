@@ -6,10 +6,8 @@ window.MultiListBox = ListBox.sub(
   inherited: {}
 )
 MultiListBox::extend
-  
-  #
-  #     * The controls in the list which are currently selected.
-  #     
+
+  # The controls in the list which are currently selected.
   selectedControls: Control.iterator((selectedControls) ->
     if selectedControls is `undefined`
       @controls().filter ".selected"
@@ -22,10 +20,8 @@ MultiListBox::extend
 
       @trigger "selectionChanged"
   )
-  
-  #
-  #     * The indices of the currently-selected controls.
-  #     
+
+  # The indices of the currently-selected controls.
   selectedIndices: Control.iterator((selectedIndices) ->
     controls = @controls()
     if selectedIndices is `undefined`
@@ -47,10 +43,8 @@ MultiListBox::extend
           i++
       @selectedControls selectedControls
   )
-  
-  #
-  #     * The items represented by the currently-selected controls.
-  #     
+
+  # The items represented by the currently-selected controls.
   selectedItems: Control.iterator((selectedItems) ->
     if selectedItems is `undefined`
       indices = @selectedIndices()
@@ -77,11 +71,9 @@ MultiListBox::extend
           i++
       @selectedControls selectedControls
   )
-  
-  #
-  #     * Toggle the selected state of the given control (if toggle is undefined),
-  #     * or set the selected state to the indicated toggle value.
-  #     
+
+  # Toggle the selected state of the given control (if toggle is undefined),
+  # or set the selected state to the indicated toggle value.
   toggleControl: (control, toggle) ->
     toggle = toggle or not control.hasClass("selected")
     @selectControl control, toggle

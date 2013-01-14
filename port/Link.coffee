@@ -14,15 +14,11 @@ window.Link = Control.sub(
   tag: "a"
 )
 Link::extend
-  
-  #
-  #     * True if the link points to the current page.
-  #     
+
+  # True if the link points to the current page.
   current: Control.chain("applyClass/current")
-  
-  #
-  #     * The location that will be opened if the user clicks the link.
-  #     
+
+  # The location that will be opened if the user clicks the link.
   href: Control.chain("prop/href", ->
     @_checkIfCurrent()
   )
@@ -35,24 +31,18 @@ Link::extend
       # underline, and use of a hand cursor.
       @href "javascript:"
 
-  
-  #
-  #     * True if the link points to an area of the site (with sub-pages). If
-  #     * true, the link will be considered current if it points to any page within
-  #     * that area of the site. The default is false.
-  #     
+
+  # True if the link points to an area of the site (with sub-pages). If
+  # true, the link will be considered current if it points to any page within
+  # that area of the site. The default is false.
   linksToArea: Control.property(->
     @_checkIfCurrent()
   )
-  
-  #
-  #     * The target of the link.
-  #     
+
+  # The target of the link.
   target: Control.chain("prop/target")
-  
-  #
-  #     * Apply the "current" style if the link points to the page we're on.
-  #     
+
+  # Apply the "current" style if the link points to the page we're on.
   _checkIfCurrent: ->
     current = false
     localPath = @_localPath()
@@ -66,12 +56,10 @@ Link::extend
       current = (localPath is pathToMatch)
     @current current
 
-  
-  #
-  #     * Returns the pathname portion of the link (the portion after the domain)
-  #     * if the link points to a location in the current domain. Otherwise
-  #     * return null.
-  #     
+
+  # Returns the pathname portion of the link (the portion after the domain)
+  # if the link points to a location in the current domain. Otherwise
+  # return null.
   _localPath: ->
     href = @href()
     return null  unless href

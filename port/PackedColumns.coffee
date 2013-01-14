@@ -7,10 +7,8 @@
 #
 window.PackedColumns = Control.sub(className: "PackedColumns")
 PackedColumns::extend
-  
-  #
-  #     * True if the columns should be centered. Default is false.
-  #     
+
+  # True if the columns should be centered. Default is false.
   center: Control.property.bool(->
     @layout()  if @inDocument()
   )

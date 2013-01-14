@@ -9,15 +9,11 @@ window.DeviceSpecific = Control.sub(
 )
 DeviceSpecific::extend
   content: Control.chain("$placeholder", "content")
-  
-  #
-  #     * The content to use when the current device is not a mobile device.
-  #     
+
+  # The content to use when the current device is not a mobile device.
   default: Control.property()
-  
-  #
-  #     * The class of the control when the current device is not a mobile device.
-  #     
+
+  # The class of the control when the current device is not a mobile device.
   defaultClass: Control.property["class"]()
   initialize: ->
     deviceClass = undefined
@@ -46,15 +42,11 @@ DeviceSpecific::extend
     # Apply device-specific CSS classes.
     $placeholder.addClass deviceClasses  if deviceClasses
 
-  
-  #
-  #     * The content to use when the current device is a mobile device.
-  #     
+
+  # The content to use when the current device is a mobile device.
   mobile: Control.property()
-  
-  #
-  #     * The class of the control when the current device is a mobile device.
-  #     
+
+  # The class of the control when the current device is a mobile device.
   mobileClass: Control.property["class"]()
 
 

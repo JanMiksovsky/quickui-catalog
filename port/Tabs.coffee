@@ -26,17 +26,13 @@ window.Tabs = Control.sub(
     generic: "true"
 )
 Tabs::extend
-  
-  #
-  #     * The array of elements to be shown as tabs.
-  #     
+
+  # The array of elements to be shown as tabs.
   content: Control.chain("$Tabs_content", "content", ->
     @_createButtons()
   )
-  
-  #
-  #     * The class used to render the container for the tabbed pages.
-  #     
+
+  # The class used to render the container for the tabbed pages.
   contentClass: (contentClass) ->
     if contentClass is `undefined`
       @$Tabs_content().controlClass()
@@ -52,10 +48,8 @@ Tabs::extend
       @referencedElement "Tabs_content", $new
       this
 
-  
-  #
-  #     * True if the Tabs should vertically fill its container.
-  #     
+
+  # True if the Tabs should vertically fill its container.
   fill: Control.chain("$tabPanels", "fill")
   initialize: ->
     self = this
@@ -70,14 +64,12 @@ Tabs::extend
           self.selectedTabIndex index  if self.selectTabOnClick()
 
     @$Tabs_content().on activeElementChanged: (event, index, child) ->
-      
-      #
-      #                 * Map the Modes's activeElementChanged event to a more
-      #                 * semantically specific activeTabChanged event.
-      #                 * 
-      #                 * Only map active events coming from our own Modes; ignore
-      #                 * events coming from any Modes within a tab.
-      #                 
+
+      # Map the Modes's activeElementChanged event to a more
+      # semantically specific activeTabChanged event.
+      # 
+      # Only map active events coming from our own Modes; ignore
+      # events coming from any Modes within a tab.
       tab = $(event.target).filter(self.tabs())
       if tab.length > 0
         event.stopPropagation()
@@ -87,46 +79,32 @@ Tabs::extend
     # Select first tab by default.
     @selectedTabIndex 0  if @tabs().length > 0 and not @selectedTabIndex()
 
-  
-  #
-  #     * True if a tab should be selected on click; false if the showing of the
-  #     * clicked tab will be handled separately. 
-  #     
+
+  # True if a tab should be selected on click; false if the showing of the
+  # clicked tab will be handled separately. 
   selectTabOnClick: Control.property.bool(null, true)
-  
-  #
-  #     * The child currently shown as the selected tab.
-  #     
+
+  # The child currently shown as the selected tab.
   selectedTab: Control.chain("$Tabs_content", "activeElement")
-  
-  #
-  #     * The index of the selected tab.
-  #     
+
+  # The index of the selected tab.
   selectedTabIndex: Control.chain("$Tabs_content", "activeIndex", (index) ->
     # Deselect all tab buttons.
     @tabButtons().removeClass("selected").eq(index).addClass "selected" # Select the indicated button.
   )
-  
-  #
-  #     * The current set of tab button controls.
-  #     
+
+  # The current set of tab button controls.
   tabButtons: Control.chain("$tabButtons", "children")
-  
-  #
-  #     * The class which should be used to create tab buttons for the set.
-  #     
+
+  # The class which should be used to create tab buttons for the set.
   tabButtonClass: Control.chain("$tabButtons", "itemClass", ->
     @_createButtons()
   )
-  
-  #
-  #     * The content of the current set of tabs.
-  #     
+
+  # The content of the current set of tabs.
   tabs: Control.chain("$Tabs_content", "elements")
-  
-  #
-  #     * Called whenever the set of buttons needs to be regenerated.
-  #     
+
+  # Called whenever the set of buttons needs to be regenerated.
   _createButtons: ->
     return  if @tabButtonClass() is `undefined`
     

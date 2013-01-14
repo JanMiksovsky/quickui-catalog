@@ -19,19 +19,15 @@ window.SlidingPanelsWithDots = Control.sub(
     generic: "true"
 )
 SlidingPanelsWithDots::extend
-  
-  #
-  #     * The index of the page currently being shown.
-  #     
+
+  # The index of the page currently being shown.
   activeIndex: Control.property((activeIndex) ->
     @$pages().activeIndex activeIndex
     @pageButtons().removeClass("selected").eq(activeIndex).addClass "selected"
     this
   )
-  
-  #
-  #     * The set of elements to show as pages.
-  #     
+
+  # The set of elements to show as pages.
   content: Control.chain("$pages", "content", ->
     @$pageButtons().count @elements().length
   )
@@ -50,9 +46,7 @@ SlidingPanelsWithDots::extend
     @activeIndex 0  unless @activeIndex()
 
   pageButtons: Control.chain("$pageButtons", "children")
-  
-  #
-  #     * The class used to render the buttons to navigate between pages.
-  #     
+
+  # The class used to render the buttons to navigate between pages.
   pageButtonClass: Control.chain("$pageButtons", "repeatClass")
 

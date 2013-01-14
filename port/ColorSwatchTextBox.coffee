@@ -10,11 +10,9 @@ window.ColorSwatchTextBox = Control.sub(
     , " "]
 )
 ColorSwatchTextBox::extend
-  
-  #
-  #     * The text box's content. Setting this to a color name or RGB value
-  #     * will show a color swatch of the color with that name.
-  #     
+
+  # The text box's content. Setting this to a color name or RGB value
+  # will show a color swatch of the color with that name.
   content: Control.chain("$ColorSwatchTextBox_content", "content", (content) ->
     @_refresh()
   )

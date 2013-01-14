@@ -16,18 +16,14 @@ window.FlickrInterestingDay = CalendarDay.sub(
     generic: "false"
 )
 FlickrInterestingDay::extend
-  
-  #
-  #     * True if the control should automatically load the photo when the date
-  #     * is set. Default is false.
-  #     
+
+  # True if the control should automatically load the photo when the date
+  # is set. Default is false.
   autoLoad: Control.property.bool((autoLoad) ->
     @loadPhoto()  if autoLoad and not @image()?
   )
-  
-  #
-  #     * The date to show.
-  #     
+
+  # The date to show.
   date: (date) ->
     result = @_super(date)
     if date isnt `undefined`
@@ -36,20 +32,14 @@ FlickrInterestingDay::extend
     result
 
   content: Control.chain("$FlickrInterestingDay_content", "content")
-  
-  #
-  #     * The location of the Flickr page for the photo.
-  #     
+
+  # The location of the Flickr page for the photo.
   href: Control.chain("$link", "attr/href")
-  
-  #
-  #     * The location of the photo image on Flickr.
-  #     
+
+  # The location of the photo image on Flickr.
   image: Control.chain("$image", "attr/src")
-  
-  #
-  #     * Load the photo for the given date.
-  #     
+
+  # Load the photo for the given date.
   loadPhoto: Control.iterator(->
     date = @date()
     

@@ -21,26 +21,20 @@ window.CalendarWeek = Control.sub(
     ]
 )
 CalendarWeek::extend
-  
-  #
-  #     * The control's current culture.
-  #     
+
+  # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
     @_refresh()  if culture isnt `undefined`
     result
 
-  
-  #
-  #     * The date that will be included in this week (can be any day of the week).
-  #     
+
+  # The date that will be included in this week (can be any day of the week).
   date: Control.property.date(->
     @_refresh()
   )
-  
-  #
-  #     * Returns the control currently used to represent the given date.
-  #     
+
+  # Returns the control currently used to represent the given date.
   dayControlForDate: (date) ->
     
     # TODO: Return null if date is not within this week.
@@ -52,10 +46,8 @@ CalendarWeek::extend
     days = $().add(days).control()
     days
 
-  
-  #
-  #     * The class used to represent days in the week.
-  #     
+
+  # The class used to represent days in the week.
   dayClass: Control.iterator((dayClass) ->
     if dayClass is `undefined`
       @days().constructor
@@ -85,10 +77,8 @@ CalendarWeek::extend
     culture = @culture()
     (if culture then culture.calendar.firstDay else 0)
 
-  
-  #
-  #     * Set the dates on all controls in the week.
-  #     
+
+  # Set the dates on all controls in the week.
   _refresh: ->
     
     # Use midnight on the given date as a reference point.

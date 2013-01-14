@@ -4,23 +4,17 @@
 #
 window.Sprite = Control.sub(className: "Sprite")
 Sprite::extend
-  
-  #
-  #     * The sprite image.
-  #     
+
+  # The sprite image.
   image: Control.chain("css/background-image")
-  
-  #
-  #     * The height of a single cell in the sprite image, in pixels.
-  #     
+
+  # The height of a single cell in the sprite image, in pixels.
   cellHeight: Control.property((value) ->
     @css "height", value + "px"
     @_shiftBackground()
   )
-  
-  #
-  #     * The sprite cell currently shown.
-  #     
+
+  # The sprite cell currently shown.
   currentCell: Control.property((value) ->
     @_shiftBackground()
   , 0)

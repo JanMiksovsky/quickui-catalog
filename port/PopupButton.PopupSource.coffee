@@ -13,19 +13,15 @@ window.PopupButton = PopupSource.sub(
     generic: "true"
 )
 PopupButton::extend
-  
-  #
-  #     * The content of the button.
-  #     
+
+  # The content of the button.
   content: Control.chain("$PopupButton_content", "content", (content) ->
     hasContent = content and content.length > 0
     @$PopupButton_content().css "display", (if hasContent then "inline-block" else "none")
   )
-  
-  #
-  #     * Content which indicates the button can be clicked to produce a popup.
-  #     * The default indicator is a downward-pointing arrow. 
-  #     
+
+  # Content which indicates the button can be clicked to produce a popup.
+  # The default indicator is a downward-pointing arrow. 
   indicator: Control.chain("$indicator", "content")
   quiet: Control.chain("$PopupSource_content", "quiet")
 

@@ -20,10 +20,8 @@ window.CalendarMonthWithHeadings = Control.sub(
     generic: "true"
 )
 CalendarMonthWithHeadings::extend
-  
-  #
-  #     * The control's current culture.
-  #     
+
+  # The control's current culture.
   culture: Control.iterator((culture) ->
     
     # var result = this._super( culture );
@@ -41,27 +39,19 @@ CalendarMonthWithHeadings::extend
   date: Control.chain("$calendar", "date", (date) ->
     @$monthAndYear().date date
   )
-  
-  #
-  #     * The class used to represent days in the month.
-  #     
+
+  # The class used to represent days in the month.
   dayClass: Control.chain("$calendar", "dayClass")
-  
-  #
-  #     * The controls used for the days in the calendar.
-  #     
+
+  # The controls used for the days in the calendar.
   days: Control.chain("$calendar", "days")
-  
-  #
-  #     * Returns the control currently showing the given date.
-  #     
+
+  # Returns the control currently showing the given date.
   dayControlForDate: (date) ->
     @$calendar().dayControlForDate date
 
-  
-  #
-  #     * The format used to show day headings. See DaysOfWeek.
-  #     
+
+  # The format used to show day headings. See DaysOfWeek.
   dayNameFormat: Control.chain("$daysOfWeek", "format")
   initialize: ->
     unless @date()
@@ -73,9 +63,7 @@ CalendarMonthWithHeadings::extend
       # Sync month and year with calendar.
       @$monthAndYear().date @date()
 
-  
-  #
-  #     * True if the month name and year should be shown.
-  #     
+
+  # True if the month name and year should be shown.
   showMonthAndYear: Control.chain("$monthAndYear", "visibility")
 

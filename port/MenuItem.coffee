@@ -5,10 +5,8 @@ window.MenuItem = Control.sub(
     generic: "true"
 )
 MenuItem::extend
-  
-  #
-  #     * True if the menu item is disabled. The default is false.
-  #     
+
+  # True if the menu item is disabled. The default is false.
   disabled: Control.chain("applyClass/disabled")
   initialize: ->
     self = this

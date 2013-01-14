@@ -15,17 +15,13 @@ window.ListComboBox = ComboBox.sub(
     , " "]
 )
 ListComboBox::extend
-  
-  #
-  #     * The array of items in the dropdown list. See List for details.
-  #     
+
+  # The array of items in the dropdown list. See List for details.
   items: Control.chain("$list", "items", ->
     @_updateItemContents()
   )
-  
-  #
-  #     * A mapping of items to controls and back. See List for details.
-  #     
+
+  # A mapping of items to controls and back. See List for details.
   mapFunction: Control.chain("$list", "mapFunction")
   initialize: ->
     self = this
@@ -54,10 +50,8 @@ ListComboBox::extend
             self._selectText 0, content.length
 
 
-  
-  #
-  #     * The class which should be used to render the list items as controls.
-  #     
+
+  # The class which should be used to render the list items as controls.
   itemClass: Control.property["class"]((itemClass) ->
     @$list().itemClass itemClass
   )
@@ -97,16 +91,14 @@ ListComboBox::extend
       self._contentKeydown event
 
 
-  
-  #
-  #     * Handle a keydown event. Keydown gives the best AutoComplete performance
-  #     * and behavior: among other things, the AutoComplete happens as soon as
-  #     * the user begins typing. However, using keydown creates a problem that
-  #     * the input control's content won't actually reflect the effects key the
-  #     * user just pressed down. So we set a timeout to give the keydown event a
-  #     * chance to bubble up and do its work, then do our AutoComplete work
-  #     * against the resulting text.
-  #     
+
+  # Handle a keydown event. Keydown gives the best AutoComplete performance
+  # and behavior: among other things, the AutoComplete happens as soon as
+  # the user begins typing. However, using keydown creates a problem that
+  # the input control's content won't actually reflect the effects key the
+  # user just pressed down. So we set a timeout to give the keydown event a
+  # chance to bubble up and do its work, then do our AutoComplete work
+  # against the resulting text.
   _contentKeydown: (event) ->
     handled = false
     # Page Up
@@ -187,15 +179,13 @@ ListComboBox::extend
     @_timeout timeout
 
   _timeout: Control.property()
-  
-  #
-  #     * Extract a copy of all the items so we can match against them when
-  #     * the user types. We get the contents from the list's controls, rather
-  #     * than from the list's items() property, since the items could be
-  #     * arbitrary JavaScript objects. Once the list's mapFunction has mapped
-  #     * those objects into the controls, the controls' content should best
-  #     * reflect the text to map against. 
-  #     
+
+  # Extract a copy of all the items so we can match against them when
+  # the user types. We get the contents from the list's controls, rather
+  # than from the list's items() property, since the items could be
+  # arbitrary JavaScript objects. Once the list's mapFunction has mapped
+  # those objects into the controls, the controls' content should best
+  # reflect the text to map against. 
   _updateItemContents: ->
     itemContents = []
     @$list().controls().eachControl (index, $control) ->

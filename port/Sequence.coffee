@@ -7,22 +7,18 @@ window.Sequence = Control.sub(
     generic: "true"
 )
 Sequence::extend
-  
-  #
-  #     * The currently visible element. The getter returns the element as an
-  #     * instance of the appropriate control class.
-  #     
+
+  # The currently visible element. The getter returns the element as an
+  # instance of the appropriate control class.
   activeElement: Control.iterator((activeElement) ->
     if activeElement is `undefined`
       @elements().filter(".active").eq(0).cast jQuery
     else
-      
-      #
-      #             * Apply a "inactive" style instead of just forcing display to none.
-      #             * If we did that, we would have no good way to undo the hiding.
-      #             * A simple .toggle(true) would set display: block, which wouldn't
-      #             * be what we'd want for inline elements.
-      #             
+
+      # Apply a "inactive" style instead of just forcing display to none.
+      # If we did that, we would have no good way to undo the hiding.
+      # A simple .toggle(true) would set display: block, which wouldn't
+      # be what we'd want for inline elements.
       @elements().not(activeElement).addClass("inactive").removeClass "active"
       index = @elements().index(activeElement)
       
@@ -35,23 +31,19 @@ Sequence::extend
       @trigger("activeElementChanged", [index, activeElement]).checkForSizeChange()
       this
   )
-  
-  #
-  #     * The index of the currently visible element.
-  #     
+
+  # The index of the currently visible element.
   activeIndex: (index) ->
     if index is `undefined`
       @elements().index @activeElement()
     else
       @activeElement @elements().eq(index)
 
-  
-  #
-  #     * The array of elements in the sequence; only one will be shown at a time.
-  #     * 
-  #     * If the set changes, this will attempt to preserve the one that was
-  #     * previously active. Otherwise, the first element is made active.
-  #     
+
+  # The array of elements in the sequence; only one will be shown at a time.
+  # 
+  # If the set changes, this will attempt to preserve the one that was
+  # previously active. Otherwise, the first element is made active.
   content: (content) ->
     container = @_container()
     if content is `undefined`
@@ -69,30 +61,24 @@ Sequence::extend
         @activeIndex 0
       result
 
-  
-  #
-  #     * The set of elements in the sequence.
-  #     
+
+  # The set of elements in the sequence.
   elements: Control.chain("_container", "children", "cast")
   initialize: ->
     
     # Show first child by default. 
     @activeIndex 0  if @elements().length > 0 and @activeIndex() < 0
 
-  
-  #
-  #     * Show the next child. If the last child is currently shown, this has no
-  #     * effect.
-  #     
+
+  # Show the next child. If the last child is currently shown, this has no
+  # effect.
   next: Control.iterator(->
     index = @activeIndex()
     @activeIndex index + 1  if index < @elements().length - 1
   )
-  
-  #
-  #     * Show the previous child. If the first child is currently shown, this has
-  #     * no effect.
-  #     
+
+  # Show the previous child. If the first child is currently shown, this has
+  # no effect.
   previous: Control.iterator(->
     index = @activeIndex()
     @activeIndex index - 1  if index > 0

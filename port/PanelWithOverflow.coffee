@@ -20,18 +20,14 @@ window.PanelWithOverflow = Control.sub(
     generic: "true"
 )
 PanelWithOverflow::extend
-  
-  #
-  #     * The contents of the control.
-  #     
+
+  # The contents of the control.
   content: Control.chain("$PanelWithOverflow_content", "content", ->
     @checkForSizeChange()
   )
-  
-  #
-  #     * The indicator used to show when contents have overflowed
-  #     * the control's bounds.
-  #     
+
+  # The indicator used to show when contents have overflowed
+  # the control's bounds.
   indicator: Control.chain("$menuButton", "indicator", ->
     @checkForSizeChange()
   )
@@ -51,10 +47,8 @@ PanelWithOverflow::extend
         self.$menuButton().positionPopup()
 
 
-  
-  #
-  #     * Force the control to layout its contents.
-  #     
+
+  # Force the control to layout its contents.
   layout: Control.iterator(->
     
     # Don't bother laying out until we're visible, or if the popup

@@ -20,24 +20,20 @@ window.AdPlaceholder = Control.sub(
     generic: "true"
 )
 AdPlaceholder::extend
-  
-  #
-  #     * Ad unit content. By default, this shows the unit/dimensions.
-  #     
+
+  # Ad unit content. By default, this shows the unit/dimensions.
   content: Control.chain("$AdPlaceholder_content", "content")
-  
-  #
-  #     * Ad unit dimensions. Should include two values separated by an "x",
-  #     * e.g., "300 x 250". Can also be one of the following ad unit names:
-  #     * 
-  #     *      Medium Rectangle
-  #     *      Rectangle
-  #     *      Leaderboard
-  #     *      Wide Skyscraper
-  #     *      Half Page Ad
-  #     *      Button 2
-  #     *      Micro Bar
-  #     
+
+  # Ad unit dimensions. Should include two values separated by an "x",
+  # e.g., "300 x 250". Can also be one of the following ad unit names:
+  # 
+  #      Medium Rectangle
+  #      Rectangle
+  #      Leaderboard
+  #      Wide Skyscraper
+  #      Half Page Ad
+  #      Button 2
+  #      Micro Bar
   dimensions: Control.property((dimensions) ->
     s = AdPlaceholder.standardUnits[dimensions] or dimensions
     parts = s.toLowerCase().split("x")
@@ -59,8 +55,8 @@ AdPlaceholder::extend
 # Class methods
 
 #
-#     * Names of all core standard ad units as of 2/28/2011.
-#     * See http://www.iab.net/iab_products_and_industry_services/1421/1443/1452
+# Names of all core standard ad units as of 2/28/2011.
+# See http://www.iab.net/iab_products_and_industry_services/1421/1443/1452
 #     
 AdPlaceholder.extend standardUnits:
   "Medium Rectangle": "300 x 250"

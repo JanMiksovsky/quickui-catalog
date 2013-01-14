@@ -10,11 +10,9 @@ window.TextBox = Control.sub(
 TextBox::extend
   content: (content) ->
     result = @_super(content)
-    
-    #
-    #             * Setting content programmatically generates a change event
-    #             * so that the UI can react accordingly.
-    #             
+
+    # Setting content programmatically generates a change event
+    # so that the UI can react accordingly.
     @trigger "change"  if content isnt `undefined`
     result
 
@@ -29,19 +27,13 @@ TextBox::extend
     # to an explicit type.
     @type "text"  if @type() is "text"
 
-  
-  #
-  #     * The placeholder (hint text) shown in the text box if it's empty.
-  #     
+
+  # The placeholder (hint text) shown in the text box if it's empty.
   placeholder: Control.chain("prop/placeholder")
-  
-  #
-  #     * True if the text box should do spell-checking.
-  #     
+
+  # True if the text box should do spell-checking.
   spellcheck: Control.chain("prop/spellcheck")
-  
-  #
-  #     * The type of input: "text", "email", "password", etc.
-  #     
+
+  # The type of input: "text", "email", "password", etc.
   type: Control.chain("prop/type")
 

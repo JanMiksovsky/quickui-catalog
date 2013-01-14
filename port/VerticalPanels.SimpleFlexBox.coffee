@@ -5,14 +5,10 @@ window.VerticalPanels = SimpleFlexBox.sub(
     orient: "vertical"
 )
 VerticalPanels::extend
-  
-  #
-  #     * The content of the bottom panel.
-  #     
+
+  # The content of the bottom panel.
   bottom: Control.chain("_panel2")
-  
-  #
-  #     * The content of the top panel.
-  #     
+
+  # The content of the top panel.
   top: Control.chain("_panel1")
 

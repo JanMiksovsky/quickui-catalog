@@ -18,12 +18,10 @@ window.Fader = Control.sub(
 )
 Fader::extend
   content: Control.chain("$Fader_content", "content")
-  
-  #
-  #     * The direction in which the content should fade. If "horizontal" (the
-  #     * default), the content will fade to the right. If "vertical", the content
-  #     * will fade to the bottom.
-  #     
+
+  # The direction in which the content should fade. If "horizontal" (the
+  # default), the content will fade to the right. If "vertical", the content
+  # will fade to the bottom.
   direction: Control.property((direction) ->
     vertical = (direction isnt "horizontal")
     @toggleClass("horizontal", not vertical).toggleClass "vertical", vertical

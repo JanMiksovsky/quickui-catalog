@@ -23,25 +23,17 @@ window.CollapsibleWithHeadingButton = Collapsible.sub(
     , " "]
 )
 CollapsibleWithHeadingButton::extend
-  
-  #
-  #     * The class of the heading button.
-  #     
+
+  # The class of the heading button.
   buttonClass: Control.chain("$headingButton", "transmute")
-  
-  #
-  #     * The content of the heading button when the panel is collapsed.
-  #     
+
+  # The content of the heading button when the panel is collapsed.
   collapsedButtonContent: Control.chain("$collapsedButtonContent", "content")
-  
-  #
-  #     * The content of the heading button when the panel is expanded.
-  #     
+
+  # The content of the heading button when the panel is expanded.
   expandedButtonContent: Control.chain("$expandedButtonContent", "content")
-  
-  #
-  #     * The heading shown at the top of the panel.
-  #     
+
+  # The heading shown at the top of the panel.
   heading: Control.chain("$CollapsibleWithHeadingButton_heading", "content")
   initialize: ->
     $button = @$headingButton()

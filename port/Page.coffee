@@ -5,10 +5,8 @@ window.Page = Control.sub(
     generic: "true"
 )
 Page::extend
-  
-  #
-  #     * True if the page should fill its container. Default is false.
-  #     
+
+  # True if the page should fill its container. Default is false.
   fill: Control.chain("applyClass/fill")
   initialize: ->
     
@@ -17,18 +15,14 @@ Page::extend
     # this gives them a chance to do that.
     @title @title()
 
-  
-  #
-  #     * The URL parameters for the current page. Read-only.
-  #     
+
+  # The URL parameters for the current page. Read-only.
   urlParameters: ->
     Page.urlParameters()
 
-  
-  #
-  #     * The title of the page. This will generally be shown in the browser's
-  #     * window title bar, etc.
-  #     
+
+  # The title of the page. This will generally be shown in the browser's
+  # window title bar, etc.
   title: (title) ->
     if this[0] is document.body
       
@@ -49,16 +43,14 @@ Page::extend
 
 
 #
-# * Class members.
+# Class members.
 # 
 Page.extend
-  
-  #
-  #     * Start actively tracking changes in a page specified on the URL.
-  #     * For a URL like www.example.com/index.html#page=Foo, load class Foo.
-  #     * If the page then navigates to www.example.com/index.html#page=Bar, this
-  #     * will load class Bar in situ, without forcing the browser to reload the page. 
-  #     
+
+  # Start actively tracking changes in a page specified on the URL.
+  # For a URL like www.example.com/index.html#page=Foo, load class Foo.
+  # If the page then navigates to www.example.com/index.html#page=Bar, this
+  # will load class Bar in situ, without forcing the browser to reload the page. 
   trackClassFromUrl: (defaultPageClass, target) ->
     $control = Control(target or "body")
     
@@ -71,15 +63,13 @@ Page.extend
     # Trigger a page class load now.
     $(window).hashchange()
 
-  
+
+  # Return the URL parameters (after "&" and/or "#") as a JavaScript object.
+  # E.g., if the URL looks like http://www.example.com/index.html?foo=hello&bar=world
+  # then this returns the object
   #
-  #     * Return the URL parameters (after "&" and/or "#") as a JavaScript object.
-  #     * E.g., if the URL looks like http://www.example.com/index.html?foo=hello&bar=world
-  #     * then this returns the object
-  #     *
-  #     *    { foo: "hello", bar: "world" }
-  #     *
-  #     
+  #    { foo: "hello", bar: "world" }
+  #
   urlParameters: ->
     regex = /[?#&](\w+)=([^?#&]*)/g
     results = {}
@@ -93,7 +83,7 @@ Page.extend
 
 
 #
-# * General utility functions made available to all controls.
+# General utility functions made available to all controls.
 # 
 
 # Look up the page hosting a control.

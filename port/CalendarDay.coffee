@@ -15,10 +15,8 @@ CalendarDay::extend
   sunday: Control.chain("applyClass/sunday")
   today: Control.chain("applyClass/today")
   weekday: Control.chain("applyClass/weekday")
-  
-  #
-  #     * The date to show.
-  #     
+
+  # The date to show.
   date: Control.property.date((date) ->
     today = CalendarDay.today()
     dayOfWeek = date.getDay()

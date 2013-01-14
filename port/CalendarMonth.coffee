@@ -20,10 +20,8 @@ window.CalendarMonth = Control.sub(
 CalendarMonth::extend
   days: Control.chain("find/.CalendarDay", "control")
   weeks: Control.chain("children", "control")
-  
-  #
-  #     * The control's current culture.
-  #     
+
+  # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
     if culture isnt `undefined`
@@ -31,17 +29,13 @@ CalendarMonth::extend
       @_refresh()
     result
 
-  
-  #
-  #     * The class used to represent days in the month.
-  #     
+
+  # The class used to represent days in the month.
   dayClass: Control.chain("weeks", "dayClass", ->
     @_refresh()
   )
-  
-  #
-  #     * The date that will be included in this month (can be any day of the month).
-  #     
+
+  # The date that will be included in this month (can be any day of the month).
   date: Control.property.date(->
     @_refresh().trigger "dateChanged", [@date()]
   )
@@ -55,10 +49,8 @@ CalendarMonth::extend
     # By default, show current month.
     @date CalendarDay.today()  unless @date()
 
-  
-  #
-  #     * Returns the week control for the given date.
-  #     
+
+  # Returns the week control for the given date.
   weekControlForDate: (date) ->
     
     # TODO: Return null if date is not within this month.

@@ -9,15 +9,13 @@ window.ComboBox = PopupSource.sub(
     content: [" ",
       html: "<div />"
       ref: "ComboBox_content"
-    
-    #
-    #            Negative tabindex prevents tabstop, which isn't necessary here
-    #            as the text box portion will get the focus, and the user can
-    #            invoke the popup from there. E.g., ListComboBox opens the popup
-    #            when the Down key is pressed.
-    #            TODO: Promote Down key behavior from ListComboBox to this class.
-    #            
+
     , " ", " ",
+      # Negative tabindex prevents tabstop, which isn't necessary here
+      # as the text box portion will get the focus, and the user can
+      # invoke the popup from there. E.g., ListComboBox opens the popup
+      # when the Down key is pressed.
+      # TODO: Promote Down key behavior from ListComboBox to this class.
       control: "ToggleButton"
       ref: "dropdownButton"
       class: "quiet"
@@ -27,22 +25,16 @@ window.ComboBox = PopupSource.sub(
     generic: "true"
 )
 ComboBox::extend
-  
-  #
-  #     * True if the dropdown portion should automatically close if the user
-  #     * presses Enter. Default is true.
-  #     
+
+  # True if the dropdown portion should automatically close if the user
+  # presses Enter. Default is true.
   closeOnEnter: Control.property.bool(null, true)
-  
-  #
-  #     * The content of the combo box's input portion.
-  #     
+
+  # The content of the combo box's input portion.
   content: Control.chain("$ComboBox_content", "content")
-  
-  #
-  #     * The content of the dropdown button. By default, this shows a
-  #     * downward-pointing arrow.
-  #     
+
+  # The content of the dropdown button. By default, this shows a
+  # downward-pointing arrow.
   dropdownButtonContent: Control.chain("$dropdownButton", "content")
   initialize: ->
     self = this
@@ -66,20 +58,18 @@ ComboBox::extend
     
     # Close the popup when the control loses focus.
     @on focusout: (event) ->
-      
-      #
-      #                 * We want to close the popup if the focus moves completely
-      #                 * outside the combo box; i.e., is not within the input box or
-      #                 * the popup. Unfortunately, if the user clicks in the popup,
-      #                 * the input will blur before we've had a chance to even
-      #                 * register the click. And at the point the blur handler here
-      #                 * is invoked, the new activeElement is not yet known, so we
-      #                 * can't test that.  
-      #                 * 
-      #                 * Our solution is to set a timeout which will defer testing
-      #                 * of activeElement until after the normal focusout sequence
-      #                 * has completed and focus has been placed in the new control.
-      #                 
+
+      # We want to close the popup if the focus moves completely
+      # outside the combo box; i.e., is not within the input box or
+      # the popup. Unfortunately, if the user clicks in the popup,
+      # the input will blur before we've had a chance to even
+      # register the click. And at the point the blur handler here
+      # is invoked, the new activeElement is not yet known, so we
+      # can't test that.  
+      # 
+      # Our solution is to set a timeout which will defer testing
+      # of activeElement until after the normal focusout sequence
+      # has completed and focus has been placed in the new control.
       if self.opened()
         setTimeout (->
           focusInControl = $.contains(self[0], document.activeElement)
@@ -99,13 +89,11 @@ ComboBox::extend
     # Set a default text box class
     @textBoxClass TextBox  unless @textBoxClass()
 
-  
-  #
-  #     * Returns the combo box's input element. By default this is the content
-  #     * element itself (if it's a text box) or else the first text input element
-  #     * in the content. Subclasses can override this to indicate that a different
-  #     * element should be used for input.
-  #     
+
+  # Returns the combo box's input element. By default this is the content
+  # element itself (if it's a text box) or else the first text input element
+  # in the content. Subclasses can override this to indicate that a different
+  # element should be used for input.
   inputElement: ->
     $content = @$ComboBox_content()
     
@@ -115,10 +103,8 @@ ComboBox::extend
     # Return the first text input element.
     @$ComboBox_content().find("input[type='text']").eq 0
 
-  
-  #
-  #     * Open the combo box.
-  #     
+
+  # Open the combo box.
   open: ->
     unless @opened()
       if @hasClass("generic")
@@ -135,21 +121,15 @@ ComboBox::extend
       @$dropdownButton().selected true
     @_super()
 
-  
-  #
-  #     * True if the control should automatically open when it receives the
-  #     * keyboard focus. Default is true.
-  #     
+
+  # True if the control should automatically open when it receives the
+  # keyboard focus. Default is true.
   openOnFocus: Control.property.bool(null, true)
-  
-  #
-  #     * The control serving as the text box portion of the combo box.
-  #     
+
+  # The control serving as the text box portion of the combo box.
   textBox: Control.chain("$ComboBox_content", "control")
-  
-  #
-  #     * The class of the text box portion of the combo box.
-  #     
+
+  # The class of the text box portion of the combo box.
   textBoxClass: Control.property["class"]((textBoxClass) ->
     $textBox = @$ComboBox_content().transmute(textBoxClass, true)
     @referencedElement "ComboBox_content", $textBox
@@ -177,10 +157,8 @@ ComboBox::extend
   
   # Hint for documentation tools.
   _requiredClasses: ["TextBox"]
-  
-  #
-  #     * Select the text at the indicated positions in the input control.
-  #     
+
+  # Select the text at the indicated positions in the input control.
   _selectText: (start, end) ->
     inputElement = @inputElement()[0]
     return  unless inputElement # Can't find input control.

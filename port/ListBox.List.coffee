@@ -8,29 +8,23 @@ window.ListBox = List.sub(
     generic: "true"
 )
 ListBox::extend
-  
-  #
-  #     * True if clicking on the list background (if there aren't enough
-  #     * items to fill the list's available space) will deselect the
-  #     * currently-selected item. Default is true.
-  #     
+
+  # True if clicking on the list background (if there aren't enough
+  # items to fill the list's available space) will deselect the
+  # currently-selected item. Default is true.
   deselectOnBackgroundClick: Control.property.bool(null, true)
-  
-  #
-  #     * True if the operating system-dependent "highlight" CSS classes should
-  #     * be applied to a generic selected item. Default is true.
-  #     
+
+  # True if the operating system-dependent "highlight" CSS classes should
+  # be applied to a generic selected item. Default is true.
   highlightSelection: Control.property.bool((highlightSelection) ->
     @toggleClass "highlightSelection", highlightSelection
   )
   initialize: ->
-    
-    #
-    #         * Try to convince the browser that the list is focusable, but without
-    #         * forcing it into the tab order (as a positive tabindex would do).
-    #         * Firefox, Chrome, and IE seem to handle this as desired if tabindex
-    #         * is set to a negative number.
-    #         
+
+    # Try to convince the browser that the list is focusable, but without
+    # forcing it into the tab order (as a positive tabindex would do).
+    # Firefox, Chrome, and IE seem to handle this as desired if tabindex
+    # is set to a negative number.
     @attr "tabindex", "-1"
     self = this
     @on
@@ -50,10 +44,8 @@ ListBox::extend
     # By default, highlight the selection.
     @highlightSelection true  if @highlightSelection() is `undefined`
 
-  
-  #
-  #     * The array of items shown in the list box.
-  #     
+
+  # The array of items shown in the list box.
   items: (value) ->
     
     # Preserve selection index when items change 
@@ -65,23 +57,19 @@ ListBox::extend
       @selectedIndex index
     result
 
-  
-  #
-  #     * Toggles the selected state of a control in the list.
-  #     * 
-  #     * If the select parameter is true, this applies the "selected" class to the
-  #     * control, which the list uses to track which control is selected. If the
-  #     * control supports a selected() function, that will be invoked as well.
-  #     * Subclasses can perform additional manipulations here.
-  #     
+
+  # Toggles the selected state of a control in the list.
+  # 
+  # If the select parameter is true, this applies the "selected" class to the
+  # control, which the list uses to track which control is selected. If the
+  # control supports a selected() function, that will be invoked as well.
+  # Subclasses can perform additional manipulations here.
   selectControl: (control, select) ->
     control.toggleClass "selected", select
     control.selected select  if $.isFunction(control.selected)
 
-  
-  #
-  #     * The control in the list which is currently selected.
-  #     
+
+  # The control in the list which is currently selected.
   selectedControl: Control.iterator((selectedControl) ->
     if selectedControl is `undefined`
       control = @controls().filter(".selected").eq(0)
@@ -96,10 +84,8 @@ ListBox::extend
       @_scrollToControl selectedControl  if selectedControl
       @trigger "selectionChanged"  if selectedControl isnt previousControl
   )
-  
-  #
-  #     * The index of the currently-selected control.
-  #     
+
+  # The index of the currently-selected control.
   selectedIndex: Control.iterator((selectedIndex) ->
     controls = @controls()
     if selectedIndex is `undefined`
@@ -110,10 +96,8 @@ ListBox::extend
       control = (if (index >= 0 and index < controls.length) then controls.eq(index) else null)
       @selectedControl control
   )
-  
-  #
-  #     * The item represented by the currently-selected control.
-  #     
+
+  # The item represented by the currently-selected control.
   selectedItem: Control.iterator((selectedItem) ->
     if selectedItem is `undefined`
       index = @selectedIndex()
@@ -128,13 +112,11 @@ ListBox::extend
   _getControlContainingElement: (element) ->
     $(element).closest(@controls()).control()
 
-  
-  #
-  #     * Return the control that spans the given y position, or -1 if not found.
-  #     * If downward is true, move down the list of controls to find the
-  #     * first control found at the given y position; if downward is false,
-  #     * move up the list of controls to find the last control at that position. 
-  #     
+
+  # Return the control that spans the given y position, or -1 if not found.
+  # If downward is true, move down the list of controls to find the
+  # first control found at the given y position; if downward is false,
+  # move up the list of controls to find the last control at that position. 
   _getControlAtY: (y, downward) ->
     controls = @controls()
     start = (if downward then 0 else controls.length - 1)
@@ -150,10 +132,8 @@ ListBox::extend
       i += step
     -1
 
-  
-  #
-  #     * Handle a keydown event.
-  #     
+
+  # Handle a keydown event.
   _keydown: (event) ->
     handled = undefined
     switch event.which
@@ -185,10 +165,8 @@ ListBox::extend
   _pageUp: ->
     @_scrollOnePage false
 
-  
-  #
-  #     * Move by one page downward (if downward is true), or upward (if false).
-  #     
+
+  # Move by one page downward (if downward is true), or upward (if false).
   _scrollOnePage: (downward) ->
     selectedIndex = @selectedIndex()
     
@@ -211,10 +189,8 @@ ListBox::extend
       return true
     false
 
-  
-  #
-  #     * Scroll the given control into view.
-  #     
+
+  # Scroll the given control into view.
   _scrollToControl: ($control) ->
     controlTop = $control.offset().top
     controlBottom = controlTop + $control.outerHeight()
@@ -228,10 +204,8 @@ ListBox::extend
     # Scroll down until control is entirely visible.
     else @scrollTop scrollTop - (viewPortDimensions.top - controlTop)  if controlTop < viewPortDimensions.top
 
-  
-  #
-  #     * Return true if the selected control is displayed inline.
-  #     
+
+  # Return true if the selected control is displayed inline.
   _selectedControlIsInline: ->
     selectedControl = @selectedControl()
     inline = false
@@ -243,12 +217,10 @@ ListBox::extend
   _selectFirstControl: ->
     if @controls().length > 0
       @selectedIndex 0
-      
-      #
-      #             * The list will have already scrolled the first control into view,
-      #             * but if the list has top padding, the scroll won't be all the way
-      #             * at the top. So, as a special case, force it to the top.
-      #             
+
+      # The list will have already scrolled the first control into view,
+      # but if the list has top padding, the scroll won't be all the way
+      # at the top. So, as a special case, force it to the top.
       @scrollTop 0
       return true
     false

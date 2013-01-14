@@ -19,17 +19,13 @@ window.AutoSizeTextBox = Control.sub(
     , " "]
 )
 AutoSizeTextBox::extend
-  
-  #
-  #     * Resize the text box to exactly contain its content.
-  #     
+
+  # Resize the text box to exactly contain its content.
   autoSize: Control.iterator((addExtraLine) ->
-    
-    #
-    #         * We resize by copying the text box contents to the hidden copy.
-    #         * That copy will size appropriately, which will make the overall control
-    #         * the right height, which will then size the text box.
-    #         
+
+    # We resize by copying the text box contents to the hidden copy.
+    # That copy will size appropriately, which will make the overall control
+    # the right height, which will then size the text box.
     content = @$textBox().content()
     content += "\n"  if addExtraLine
     
@@ -39,10 +35,8 @@ AutoSizeTextBox::extend
     content += " "  if content.slice(-1) is "\n"
     @$textCopy().text content
   )
-  
-  #
-  #     * The content of the text box.
-  #     
+
+  # The content of the text box.
   content: Control.chain("$textBox", "content", ->
     @autoSize()
   )
@@ -57,40 +51,33 @@ AutoSizeTextBox::extend
         
         # Speculatively add a line to our copy of the text.
         #
-        #                     * We're not sure what the exact effect of typing this
-        #                     * character will be, and at this point it's not reflected
-        #                     * yet in the text box's content. We speculate that it
-        #                     * will add a line to the text and size accordingly.
-        #                     * (One other possibility is that the user's replacing
-        #                     * a selected chunk of text with a newline.) In any event,
-        #                     * once we get the keyup or change event, we'll make any
-        #                     * final adjustments.
-        #                     
+        # We're not sure what the exact effect of typing this
+        # character will be, and at this point it's not reflected
+        # yet in the text box's content. We speculate that it
+        # will add a line to the text and size accordingly.
+        # (One other possibility is that the user's replacing
+        # a selected chunk of text with a newline.) In any event,
+        # once we get the keyup or change event, we'll make any
+        # final adjustments.
         self.autoSize true  if event.which is 13
 
     @inDocument ->
       @_refresh()
 
 
-  
-  #
-  #     * The minimum number of lines that should be shown. By default, this is 1.
-  #     * Setting this to a higher number will ensure an empty textarea is still
-  #     * multiple lines tall, which lets the user intuit that the control accepts
-  #     * multiple lines of text.
-  #     
+
+  # The minimum number of lines that should be shown. By default, this is 1.
+  # Setting this to a higher number will ensure an empty textarea is still
+  # multiple lines tall, which lets the user intuit that the control accepts
+  # multiple lines of text.
   minimumLines: Control.property.integer((minimumLines) ->
     @_refresh()  if @inDocument()
   , 1)
-  
-  #
-  #     * The placeholder (hint text) shown in the text area if it's empty.
-  #     
+
+  # The placeholder (hint text) shown in the text area if it's empty.
   placeholder: Control.chain("$textBox", "prop/placeholder")
-  
-  #
-  #     * True if the text box should expose the browser's built-in spell-checking.
-  #     
+
+  # True if the text box should expose the browser's built-in spell-checking.
   spellcheck: Control.chain("$textBox", "prop/spellcheck")
   
   # For the following, we need to wait until the control's in the DOM.    

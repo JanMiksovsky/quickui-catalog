@@ -14,22 +14,16 @@ window.Collapsible = Control.sub(
     generic: "true"
 )
 Collapsible::extend
-  
-  #
-  #     * The control's contents which can be expanded and collapsed.
-  #     
+
+  # The control's contents which can be expanded and collapsed.
   content: Control.chain("$Collapsible_content", "content")
-  
-  #
-  #     * The speed of the expand/collapse animation, in milliseconds.
-  #     
+
+  # The speed of the expand/collapse animation, in milliseconds.
   duration: Control.property(null, "fast")
-  
-  #
-  #     * Get or set the control's collapsed state.
-  #     * When called as a setter, a true value collapsed the control;
-  #     * a false value expands the control.
-  #     
+
+  # Get or set the control's collapsed state.
+  # When called as a setter, a true value collapsed the control;
+  # a false value expands the control.
   collapsed: Control.iterator((value) ->
     if value is `undefined`
       
@@ -59,14 +53,12 @@ Collapsible::extend
         @trigger "collapsedChanged"
         @_collapsed value
   )
-  
-  #
-  #     * The control's heading. By default, a click anywhere within the heading
-  #     * toggles the control's collapsed state.
-  #     * 
-  #     * This can be empty if the application wants to programmatically control
-  #     * the collapsed state in some other means.
-  #     
+
+  # The control's heading. By default, a click anywhere within the heading
+  # toggles the control's collapsed state.
+  # 
+  # This can be empty if the application wants to programmatically control
+  # the collapsed state in some other means.
   heading: Control.chain("$Collapsible_heading", "content")
   initialize: ->
     self = this
@@ -74,17 +66,15 @@ Collapsible::extend
       self.toggleCollapse()  if self.toggleOnClick()
 
 
-  
-  #
-  #	 * Toggle the collapsed state of the control.
+
+  # Toggle the collapsed state of the control.
   #	 
   toggleCollapse: ->
     @collapsed not @collapsed()
 
-  
-  #
-  #	 * True if the control should toggle its state when the user clicks in
-  #	 * the heading. Default is true.
+
+  # True if the control should toggle its state when the user clicks in
+  # the heading. Default is true.
   #	 
   toggleOnClick: Control.property.bool(null, true)
   _collapsed: Control.property.bool(null, false)

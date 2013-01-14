@@ -4,10 +4,8 @@ window.MonthName = Control.sub(
   tag: "span"
 )
 MonthName::extend
-  
-  #
-  #     * The control's current culture.
-  #     
+
+  # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
     @month @month()  if culture isnt `undefined`
@@ -18,10 +16,8 @@ MonthName::extend
       today = new Date()
       @month today.getMonth()
 
-  
-  #
-  #     * The index of the month to show: 0 = January, 1 = February, etc.
-  #     
+
+  # The index of the month to show: 0 = January, 1 = February, etc.
   month: Control.property((month) ->
     culture = @culture()
     monthNameEnum = (if culture then culture.calendar.months.names else MonthName.names)

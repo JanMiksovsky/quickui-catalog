@@ -23,22 +23,16 @@ window.PersistentPanel = Control.sub(
     generic: "true"
 )
 PersistentPanel::extend
-  
-  #
-  #     * The content's background. See top notes.
-  #     
+
+  # The content's background. See top notes.
   background: Control.chain("$PersistentPanel_content", "css/background")
-  
-  #
-  #     * The control's content.
-  #     
+
+  # The control's content.
   content: Control.chain("$PersistentPanel_content", "content", ->
     @checkForSizeChange()
   )
-  
-  #
-  #     * True if the control is currently docked to the top of the viewport.
-  #     
+
+  # True if the control is currently docked to the top of the viewport.
   docked: Control.chain("applyClass/docked")
   initialize: ->
     self = this
@@ -54,17 +48,13 @@ PersistentPanel::extend
       self._recalc()
 
 
-  
-  #
-  #     * The content's padding. See top notes.
-  #     
+
+  # The content's padding. See top notes.
   padding: Control.chain("$PersistentPanel_content", "css/padding")
-  
-  #
-  #     * The parent of this control used to determine whether the control is
-  #     * in or out of view. The default value for this property is the closest
-  #     * parent element with overflow-y set to "auto" or "scroll".
-  #     
+
+  # The parent of this control used to determine whether the control is
+  # in or out of view. The default value for this property is the closest
+  # parent element with overflow-y set to "auto" or "scroll".
   scrollingParent: Control.property((scrollingParent) ->
     self = this
     $(scrollingParent).scroll ->
@@ -81,10 +71,8 @@ PersistentPanel::extend
     # to occupy the same amount of vertical space.
     @height @$PersistentPanel_content().outerHeight(true)
 
-  
-  #
-  #     * Determine which parent of the control scrolls vertically.
-  #     
+
+  # Determine which parent of the control scrolls vertically.
   _findScrollingParent: ->
     
     # By default, assume the window is what is scrolling.
@@ -93,13 +81,11 @@ PersistentPanel::extend
     i = 0
 
     while i < parents.length
-      
-      #
-      #                 * It doesn't appear possible to bind to the scroll event
-      #                 * for the document body. Instead, if the body is the
-      #                 * scrolling parent, we use the window instead, which has
-      #                 * the same effect.
-      #                 
+
+      # It doesn't appear possible to bind to the scroll event
+      # for the document body. Instead, if the body is the
+      # scrolling parent, we use the window instead, which has
+      # the same effect.
       break  if parents[i] is document.body
       overflowY = parents.eq(i).css("overflow-y")
       if overflowY is "auto" or overflowY is "scroll"
@@ -110,12 +96,10 @@ PersistentPanel::extend
       i++
     scrollingParent
 
-  
-  #
-  #     * Do the real work of the control: determine whether the panel contents
-  #     * should flow with the document, or pop out into a docked position at the
-  #     * top or bottom of the viewport.
-  #     
+
+  # Do the real work of the control: determine whether the panel contents
+  # should flow with the document, or pop out into a docked position at the
+  # top or bottom of the viewport.
   _recalc: ->
     scrollingParent = @scrollingParent()
     if scrollingParent
@@ -129,18 +113,16 @@ PersistentPanel::extend
       belowViewPort = (containerBottom > scrollBottom)
       dock = (aboveViewPort or belowViewPort)
       if dock
-        
-        #
-        #                 * Docking the content puts it outside the normal document.
-        #                 * The control (the outer container) will collapse in size,
-        #                 * which we don't want to happen -- anything below the control
-        #                 * will suddenly jump in position. To ensure smooth movement,
-        #                 * we force the control and content to match sizes.
-        #                 * 
-        #                 * We first set the content's width to match the container's
-        #                 * width. This may cause the content to change in height.
-        #                 * We then set the container's height to match the content's.
-        #                 
+
+        # Docking the content puts it outside the normal document.
+        # The control (the outer container) will collapse in size,
+        # which we don't want to happen -- anything below the control
+        # will suddenly jump in position. To ensure smooth movement,
+        # we force the control and content to match sizes.
+        # 
+        # We first set the content's width to match the container's
+        # width. This may cause the content to change in height.
+        # We then set the container's height to match the content's.
         @$PersistentPanel_content().width @width()
         @height @$PersistentPanel_content().outerHeight(true)
         css = undefined

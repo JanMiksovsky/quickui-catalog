@@ -4,17 +4,13 @@
 #
 window.Gradient = Control.sub(className: "Gradient")
 Gradient::extend
-  
-  #
-  #     * The direction of the gradient: "horizontal" or "vertical" (the default).
-  #     
+
+  # The direction of the gradient: "horizontal" or "vertical" (the default).
   direction: Control.property(->
     @_redraw()
   , "vertical")
-  
-  #
-  #     * The ending value for the gradient.
-  #     
+
+  # The ending value for the gradient.
   end: Control.property(->
     @_redraw()
   )
@@ -23,10 +19,8 @@ Gradient::extend
       @_redraw()
 
 
-  
-  #
-  #     * The starting value for the gradient.
-  #     
+
+  # The starting value for the gradient.
   start: Control.property(->
     @_redraw()
   )

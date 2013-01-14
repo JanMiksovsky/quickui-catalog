@@ -5,10 +5,9 @@ window.EditableText = Editable.sub(
     editClass: "TextBox"
 )
 EditableText::extend
-  
-  #
-  #	 * True if the pressing Escape in edit mode cancels edit mode.
-  #	 * The default is true.
+
+  # True if the pressing Escape in edit mode cancels edit mode.
+  # The default is true.
   #	 
   cancelOnEscape: Control.property(null, true)
   editing: (editing) ->
@@ -18,11 +17,9 @@ EditableText::extend
     @editControl().find("input").andSelf().focus()  if editing
     result
 
-  
-  #
-  #     * True if the control should switch to editing mode when it's clicked.
-  #     * Default is true.
-  #     
+
+  # True if the control should switch to editing mode when it's clicked.
+  # Default is true.
   editOnClick: Control.property(null, true)
   initialize: ->
     self = this
@@ -30,11 +27,9 @@ EditableText::extend
       self.editing true  if self.editOnClick() and not self.editing()
 
 
-  
-  #
-  #     * True if pressing the Enter key in edit mode saves changes and switches
-  #     * back to read mode. The default is true.
-  #     
+
+  # True if pressing the Enter key in edit mode saves changes and switches
+  # back to read mode. The default is true.
   saveOnEnter: Control.property(null, true)
   _createEditControl: ->
     result = @_super()

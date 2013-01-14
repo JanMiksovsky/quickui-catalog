@@ -11,10 +11,8 @@ window.SlidingPanels = Sequence.sub(
     , " "]
 )
 SlidingPanels::extend
-  
-  #
-  #     * The index of the control currently being shown.
-  #     
+
+  # The index of the control currently being shown.
   activeIndex: (activeIndex) ->
     result = @_super(activeIndex)
     if activeIndex isnt `undefined`
@@ -33,13 +31,11 @@ SlidingPanels::extend
           , "fast"
     result
 
-  
-  #
-  #     * The array of elements in the sequence; only one will be shown at a time.
-  #     * 
-  #     * If the set changes, this will attempt to preserve the one that was
-  #     * previously active. Otherwise, the first element is made active.
-  #     
+
+  # The array of elements in the sequence; only one will be shown at a time.
+  # 
+  # If the set changes, this will attempt to preserve the one that was
+  # previously active. Otherwise, the first element is made active.
   content: (content) ->
     result = @_super(content)
     @_adjustWidths()  if content isnt `undefined`
@@ -73,12 +69,10 @@ SlidingPanels::extend
 
 
 #
-# * Class methods
+# Class methods
 # 
 
-#
-#     * Returns true if the given element has CSS transitions applied to it.
-#     
+# Returns true if the given element has CSS transitions applied to it.
 SlidingPanels.extend hasTransitions: ($element) ->
   transitionProperties = ["-webkit-transition", "transition"]
   

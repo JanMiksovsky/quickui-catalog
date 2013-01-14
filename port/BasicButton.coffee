@@ -6,17 +6,15 @@ window.BasicButton = Control.sub(
     generic: "true"
 )
 BasicButton::extend
-  
-  #
-  #     * The current state of the button. Read-only.
-  #     * This will return one of the following values:
-  #     * 
-  #     *  BasicButton.normal
-  #     *  BasicButton.hover
-  #     *  BasicButton.focus
-  #     *  BasicButton.active
-  #     *  BasicButton.disabled
-  #     
+
+  # The current state of the button. Read-only.
+  # This will return one of the following values:
+  # 
+  #  BasicButton.normal
+  #  BasicButton.hover
+  #  BasicButton.focus
+  #  BasicButton.active
+  #  BasicButton.disabled
   buttonState: ->
     if @disabled()
       return BasicButton.state.disabled
@@ -27,13 +25,11 @@ BasicButton::extend
     else return BasicButton.state.hover  if @isMouseOverControl()
     BasicButton.state.normal
 
-  
-  #
-  #     * True if the button is disabled.
-  #     * 
-  #     * Setting this also applies "disabled" class for IE8, which doesn't support
-  #     * the :disabled pseudo-class.
-  #     
+
+  # True if the button is disabled.
+  # 
+  # Setting this also applies "disabled" class for IE8, which doesn't support
+  # the :disabled pseudo-class.
   disabled: Control.chain("prop/disabled", (disabled) ->
     
     # Force removal of interactive states.
@@ -66,33 +62,23 @@ BasicButton::extend
       self._trackMouseout event
     )._renderButton()
 
-  
-  #
-  #     * True if the button currently has the focus.
-  #     
+
+  # True if the button currently has the focus.
   isFocused: Control.property.bool(null, false)
-  
-  #
-  #     * True if the user is currently pressing down a key.
-  #     
+
+  # True if the user is currently pressing down a key.
   isKeyPressed: Control.property.bool(null, false)
-  
-  #
-  #     * True if the mouse button is currently down.
-  #     
+
+  # True if the mouse button is currently down.
   isMouseButtonDown: Control.property.bool(null, false)
-  
-  #
-  #     * True if the mouse is currently over the button.
-  #     
+
+  # True if the mouse is currently over the button.
   isMouseOverControl: Control.property.bool(null, false)
-  
-  #
-  #     * True if the button's "quiet" style should be applied. The generic quiet
-  #     * styling shows no background or border effects in the button's normal
-  #     * state -- only when the user is interacting with the button -- so that
-  #     * the button can more easily blend in as a component of other controls.
-  #     
+
+  # True if the button's "quiet" style should be applied. The generic quiet
+  # styling shows no background or border effects in the button's normal
+  # state -- only when the user is interacting with the button -- so that
+  # the button can more easily blend in as a component of other controls.
   quiet: Control.chain("applyClass/quiet")
   _renderButtonState: (buttonState) ->
 
@@ -129,7 +115,7 @@ BasicButton::extend
 
 
 #
-# * Class members
+# Class members
 # 
 BasicButton.extend state:
   normal: 0

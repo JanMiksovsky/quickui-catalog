@@ -39,9 +39,7 @@ PageWithQuadrants::extend
   topRight: Control.chain("$PageWithQuadrants_topRight", "content")
   bottomLeft: Control.chain("$PageWithQuadrants_bottomLeft", "content")
   bottomRight: Control.chain("$PageWithQuadrants_bottomRight", "content")
-  
-  #
-  #     * The main page content. This will go in the bottom right quadrant.
-  #     
+
+  # The main page content. This will go in the bottom right quadrant.
   content: Control.chain("bottomRight")
 

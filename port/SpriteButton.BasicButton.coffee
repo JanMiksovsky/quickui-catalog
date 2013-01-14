@@ -15,18 +15,14 @@ window.SpriteButton = BasicButton.sub(
     generic: "false"
 )
 SpriteButton::extend
-  
-  #
-  #     * The height of the sprite image, in pixels.
-  #     
+
+  # The height of the sprite image, in pixels.
   cellHeight: Control.chain("css/height", (value) ->
     @_sprites().cellHeight value
   )
   content: Control.chain("$SpriteButton_content", "content")
-  
-  #
-  #     * The sprite image.
-  #     
+
+  # The sprite image.
   image: Control.chain("_sprites", "image")
   _renderButtonState: (buttonState) ->
     @_sprites().currentCell buttonState

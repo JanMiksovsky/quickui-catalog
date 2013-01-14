@@ -11,10 +11,8 @@ window.DateComboBox = ComboBox.sub(
     , " "]
 )
 DateComboBox::extend
-  
-  #
-  #     * The control's current culture.
-  #     
+
+  # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
     if culture isnt `undefined`
@@ -22,10 +20,8 @@ DateComboBox::extend
       @textBox().culture culture  if $.isFunction(@textBox().culture)
     result
 
-  
-  #
-  #     * The date indicated in the control.
-  #     
+
+  # The date indicated in the control.
   date: Control.property((date) ->
     time = date and date.getTime()
     textBoxDate = @$ComboBox_content().date()
@@ -52,17 +48,13 @@ DateComboBox::extend
         self.close()
 
 
-  
-  #
-  #     * The class used for the dropdown portion of the combo box.
-  #     * By default this is a CalendarMonthNavigator, but it can be set to any
-  #     * class that exposes a date() property.
-  #     
+
+  # The class used for the dropdown portion of the combo box.
+  # By default this is a CalendarMonthNavigator, but it can be set to any
+  # class that exposes a date() property.
   navigatorClass: Control.chain("$navigator", "transmute")
-  
-  #
-  #     * True if the user must enter a value in this field.
-  #     
+
+  # True if the user must enter a value in this field.
   required: Control.chain("$ComboBox_content", "required")
   
   # Hint for documentation tools.

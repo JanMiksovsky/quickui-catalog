@@ -7,10 +7,8 @@ window.TransientMessage = Control.sub(
     generic: "true"
 )
 TransientMessage::extend
-  
-  #
-  #     * Close display of the message normally.
-  #     
+
+  # Close display of the message normally.
   close: ->
     self = this
     @fadeOut null, ->
@@ -18,14 +16,12 @@ TransientMessage::extend
 
     this
 
-  
-  #
-  #     * The time before the message begins to fade out.
-  #     * 
-  #     * If undefined (the default value), the duration will be calculated from
-  #     * the length of the message. If negative, the message will not
-  #     * automatically be closed, but can be closed by invoking close().
-  #     
+
+  # The time before the message begins to fade out.
+  # 
+  # If undefined (the default value), the duration will be calculated from
+  # the length of the message. If negative, the message will not
+  # automatically be closed, but can be closed by invoking close().
   duration: Control.property()
   initialize: ->
     self = this
@@ -33,10 +29,8 @@ TransientMessage::extend
       self._close()
 
 
-  
-  #
-  #     * Show the message.
-  #     
+
+  # Show the message.
   open: ->
     duration = @duration()
     unless duration
@@ -52,11 +46,9 @@ TransientMessage::extend
     @positionMessage().fadeIn() # TODO: Investigate why this doesn't actually fade in.
     this
 
-  
-  #
-  #     * Position the message. By default, this is center-aligned at the top
-  #     * of the page.
-  #     
+
+  # Position the message. By default, this is center-aligned at the top
+  # of the page.
   positionMessage: ->
     @css left: ($(window).width() - @outerWidth()) / 2
 
@@ -73,7 +65,7 @@ TransientMessage::extend
 # Class methods 
 
 #
-#     * Show the given content for the indicated (optional) duration.
+# Show the given content for the indicated (optional) duration.
 #     
 TransientMessage.extend showMessage: (content, duration) ->
   transientMessage = TransientMessage.create()

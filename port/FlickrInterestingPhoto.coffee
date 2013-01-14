@@ -13,23 +13,21 @@ window.FlickrInterestingPhoto = Control.sub(
 FlickrInterestingPhoto::extend
   initialize: ->
     @on "load", ->
-      
-      #
-      #             * HACK for IE. When the load event is triggered, IE reports the
-      #             * width of the img element as the width of its own little image
-      #             * placeholder icon. This stinks -- there's no way to get the
-      #             * correct width or height until sometime after the load event
-      #             * completes.
-      #             * 
-      #             * As a workaround, if we're in IE and see that the width is 28px,
-      #             * we assume we're dealing with the image placeholder icon instead
-      #             * of the real image. By forcing the width to "auto", IE reports the
-      #             * correct photo width (and height) instead.
-      #             * 
-      #             * This allows anyone listening for the layout event to get
-      #             * the correct dimensions of the photo, instead of the dimensions
-      #             * of the image placeholder icon. 
-      #             
+
+      # HACK for IE. When the load event is triggered, IE reports the
+      # width of the img element as the width of its own little image
+      # placeholder icon. This stinks -- there's no way to get the
+      # correct width or height until sometime after the load event
+      # completes.
+      # 
+      # As a workaround, if we're in IE and see that the width is 28px,
+      # we assume we're dealing with the image placeholder icon instead
+      # of the real image. By forcing the width to "auto", IE reports the
+      # correct photo width (and height) instead.
+      # 
+      # This allows anyone listening for the layout event to get
+      # the correct dimensions of the photo, instead of the dimensions
+      # of the image placeholder icon. 
       control = Control(this)
       control.css "width", "auto"  if Control.browser.msie and parseInt(control.width()) is 28
       control.checkForSizeChange()
@@ -37,35 +35,29 @@ FlickrInterestingPhoto::extend
     photo = @photo()
     @reload()  if not photo or photo.length is 0
 
-  
-  #
-  #     * Reload the photo.
-  #     
+
+  # Reload the photo.
   reload: Control.iterator(->
     self = this
     FlickrInterestingPhoto.getRandomPhoto ((photo) ->
       self.prop "src", photo
     ), @photoSize()
   )
-  
-  #
-  #     * The location of the current photo image.
-  #     
+
+  # The location of the current photo image.
   photo: Control.chain("attr/src")
-  
-  #
-  #     * The size of photo to show.
-  #     * 
-  #     * This uses the size suffixes from http://www.flickr.com/services/api/misc.urls.html
-  #     * s   small square 75x75
-  #     * t   thumbnail, 100 on longest side
-  #     * m   small, 240 on longest side
-  #     * -   medium, 500 on longest side
-  #     * z   medium 640, 640 on longest side
-  #     * o   original image, either a jpg, gif or png, depending on source format
-  #     * 
-  #     * If this property is not set, the photo will be medium size.
-  #     
+
+  # The size of photo to show.
+  # 
+  # This uses the size suffixes from http://www.flickr.com/services/api/misc.urls.html
+  # s   small square 75x75
+  # t   thumbnail, 100 on longest side
+  # m   small, 240 on longest side
+  # -   medium, 500 on longest side
+  # z   medium 640, 640 on longest side
+  # o   original image, either a jpg, gif or png, depending on source format
+  # 
+  # If this property is not set, the photo will be medium size.
   photoSize: Control.property(->
     photo = @photo()
     @reload()  if photo and photo.length > 0
@@ -74,18 +66,14 @@ FlickrInterestingPhoto::extend
 
 # Class methods
 FlickrInterestingPhoto.extend
-  
-  #
-  #     * Your Flickr API key. By default, this uses the QuickUI account API key.
-  #     * Set this to your own key before the first call to this control.
-  #     
+
+  # Your Flickr API key. By default, this uses the QuickUI account API key.
+  # Set this to your own key before the first call to this control.
   apiKey: "c3685bc8d8cefcc1d25949e4c528cbb0"
-  
-  #
-  #     * Return a (somewhat) random photo from the Interestingness collection.
-  #     * The set of photos are obtained only once per page; once the set is
-  #     * exhausted, subsequent calls will cycle through the set. 
-  #     
+
+  # Return a (somewhat) random photo from the Interestingness collection.
+  # The set of photos are obtained only once per page; once the set is
+  # exhausted, subsequent calls will cycle through the set. 
   getRandomPhoto: (callback, size) ->
     self = this
     @getFlickrInterestingPhotos().done (flickrPhotos) ->
@@ -152,11 +140,9 @@ FlickrInterestingPhoto.extend
 
     s
 
-  
-  #
-  #     * Perform a Fisher-Yates shuffle.
-  #     * From http://sedition.com/perl/javascript-fy.html
-  #     
+
+  # Perform a Fisher-Yates shuffle.
+  # From http://sedition.com/perl/javascript-fy.html
   _shuffle: (array) ->
     i = array.length - 1
 

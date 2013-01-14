@@ -13,35 +13,27 @@ LoremIpsum::extend
     content = @content()
     @_refresh()  if content and content.length is 0
 
-  
-  #
-  #     * True if the first sentence should definitely be (or not be)
-  #     * the standard "Lorem ipsum dolor sit amet..." If this is undefined,
-  #     * the first instance of this control class will start with this sentence;
-  #     * subsequent instances won't.
-  #     
+
+  # True if the first sentence should definitely be (or not be)
+  # the standard "Lorem ipsum dolor sit amet..." If this is undefined,
+  # the first instance of this control class will start with this sentence;
+  # subsequent instances won't.
   lorem: Control.property.bool(->
     @_refresh()
   )
-  
-  #
-  #     * The number of paragraphs to show. Default is one paragraph.
-  #     
+
+  # The number of paragraphs to show. Default is one paragraph.
   paragraphs: Control.property.integer((paragraphs) ->
     @_refresh()
   , 1)
-  
-  #
-  #     * A specific number of sentences to show per paragraph.
-  #     * If not set, each paragraph will have a variable number of sentences.
-  #     
+
+  # A specific number of sentences to show per paragraph.
+  # If not set, each paragraph will have a variable number of sentences.
   sentences: Control.property.integer((sentences) ->
     @_refresh()
   )
-  
-  #
-  #     * Generate a random paragraph.
-  #     
+
+  # Generate a random paragraph.
   _generateParagraph: (useLorem) ->
     
     # Default is 5 and 12 sentences per paragraph.

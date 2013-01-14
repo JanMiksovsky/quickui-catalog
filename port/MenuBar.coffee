@@ -13,10 +13,8 @@ window.MenuBar = Control.sub(
     generic: "true"
 )
 MenuBar::extend
-  
-  #
-  #     * Close currently open any menus.
-  #     
+
+  # Close currently open any menus.
   close: Control.iterator(->
     
     # Already closed
@@ -27,12 +25,10 @@ MenuBar::extend
       @_overlay null
     @_closeOpenPopups().opened false
   )
-  
-  #
-  #     * The menus in the menu bar. These are typically PopupSource controls,
-  #     * including subclasses like Menu. Other types of controls can be
-  #     * safely placed in the content as well.
-  #     
+
+  # The menus in the menu bar. These are typically PopupSource controls,
+  # including subclasses like Menu. Other types of controls can be
+  # safely placed in the content as well.
   content: (content) ->
     result = @_super(content)
     if content isnt `undefined`
@@ -67,10 +63,8 @@ MenuBar::extend
         newMenu.open()  if newMenu and not newMenu.opened()
 
 
-  
-  #
-  #     * Returns true if any of the menu bar's menus are currently open.
-  #     
+
+  # Returns true if any of the menu bar's menus are currently open.
   opened: Control.chain("applyClass/opened")
   open: Control.iterator(->
     
@@ -80,10 +74,8 @@ MenuBar::extend
     @_overlay $overlay
     @opened true
   )
-  
-  #
-  #     * Close open popups. If a keepPopup is specified, leave that menu open.
-  #     
+
+  # Close open popups. If a keepPopup is specified, leave that menu open.
   _closeOpenPopups: (keepPopup) ->
     openMenus = @_openPopups()
     if openMenus
@@ -91,10 +83,8 @@ MenuBar::extend
       openMenus.close()  if openMenus.length > 0
     this
 
-  
-  #
-  #     * Return the currently open popups.
-  #     
+
+  # Return the currently open popups.
   _openPopups: Control.chain("children", "filter/.PopupSource.opened", "control")
   
   # The overlay behind the menu bar.    

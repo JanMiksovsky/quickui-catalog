@@ -6,24 +6,20 @@ window.DaysOfWeek = Control.sub(
     generic: "true"
 )
 DaysOfWeek::extend
-  
-  #
-  #     * The control's current culture.
-  #     
+
+  # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
     @format @format()  if culture isnt `undefined`
     result
 
-  
-  #
-  #     * The format used to show the names of the day. These are defined by
-  #     * the Globalize library:
-  #     * 
-  #     *  "names": the full name, e.g. "Sunday".
-  #     *  "namesAbbreviated": an abbreviated name, e.g., "Sun".
-  #     *  "namesShort": an even shorter name, e.g., "Su".
-  #     
+
+  # The format used to show the names of the day. These are defined by
+  # the Globalize library:
+  # 
+  #  "names": the full name, e.g. "Sunday".
+  #  "namesAbbreviated": an abbreviated name, e.g., "Sun".
+  #  "namesShort": an even shorter name, e.g., "Su".
   format: Control.property((format) ->
     culture = @culture()
     dayNameEnum = (if culture then culture.calendar.days else DaysOfWeek.days)

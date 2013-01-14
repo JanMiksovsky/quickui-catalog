@@ -1,10 +1,8 @@
 # Conditionally shows contents if the given browser is in use. 
 window.BrowserSpecific = Control.sub(className: "BrowserSpecific")
 BrowserSpecific::extend
-  
-  #
-  #     * Content to show if none of the specified browsers apply.
-  #     
+
+  # Content to show if none of the specified browsers apply.
   default: Control.property()
   initialize: ->
     content = undefined
@@ -16,24 +14,16 @@ BrowserSpecific::extend
     content = this["default"]()  if content is `undefined`
     @content content
 
-  
-  #
-  #     * Content to show to Mozilla (Firefox) users.
-  #     
+
+  # Content to show to Mozilla (Firefox) users.
   mozilla: Control.property()
-  
-  #
-  #     * Content to show to Microsoft Internet Explorer users.
-  #     
+
+  # Content to show to Microsoft Internet Explorer users.
   msie: Control.property()
-  
-  #
-  #     * Content to show to Opera users.
-  #     
+
+  # Content to show to Opera users.
   opera: Control.property()
-  
-  #
-  #     * Content to show to WebKit (Chrome, Safari) users.
-  #     
+
+  # Content to show to WebKit (Chrome, Safari) users.
   webkit: Control.property()
 

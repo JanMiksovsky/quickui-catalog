@@ -20,10 +20,8 @@ window.ValidatingTextBox = TextBox.sub(
     generic: "true"
 )
 ValidatingTextBox::extend
-  
-  #
-  #     * The control's content. Setting this implicitly performs validation.
-  #     
+
+  # The control's content. Setting this implicitly performs validation.
   content: (content) ->
     result = @_super(content)
     @validate true  if content isnt `undefined` and @validateOnSet()
@@ -40,25 +38,20 @@ ValidatingTextBox::extend
 
 
   invalid: Control.chain("applyClass/invalid")
-  
-  #
-  #     * True if the text box must be non-empty to be valid.
-  #     
+
+  # True if the text box must be non-empty to be valid.
   required: Control.property.bool()
-  
-  #
-  #     * Returns true if the control's contents are valid.
-  #     * The default implementation simply looks as the required() property and,
-  #     * if true, ensures the content is non-empty.
-  #     *  
-  #     * Subclasses can override this to validate their contents. E.g.:
-  #     * 
-  #     *      valid: function() {
-  #     *          var valid = this._super();
-  #     *          valid = valid && ... Perform additional checks here ...
-  #     *          return valid;
-  #     *      }
-  #     
+
+  # Returns true if the control's contents are valid.
+  # The default implementation simply looks as the required() property and,
+  # if true, ensures the content is non-empty.
+  # Subclasses can override this to validate their contents. E.g.:
+  # 
+  #      valid: function() {
+  #          var valid = this._super();
+  #          valid = valid && ... Perform additional checks here ...
+  #          return valid;
+  #      }
   valid: ->
     valid = undefined
     if @required()
@@ -68,29 +61,23 @@ ValidatingTextBox::extend
       valid = true
     valid
 
-  
-  #
-  #     * Check to see if the control's contents are valid.
-  #     * 
-  #     * If the strict parameter is true, apply the invalid state if the contents
-  #     * are invalid. If the strict parameter is false, then the control can move
-  #     * out of the invalid state (if the contents are now valid), but won't move
-  #     * into the invalid state (even if the contents are actually invalid).
-  #     
+
+  # Check to see if the control's contents are valid.
+  # 
+  # If the strict parameter is true, apply the invalid state if the contents
+  # are invalid. If the strict parameter is false, then the control can move
+  # out of the invalid state (if the contents are now valid), but won't move
+  # into the invalid state (even if the contents are actually invalid).
   validate: Control.iterator((strict) ->
     valid = @valid()
     @invalid not valid  if strict or @invalid()
   )
-  
-  #
-  #     * True if validation should be automatically be performed when the control
-  #     * loses focus. Default is true.
-  #     
+
+  # True if validation should be automatically be performed when the control
+  # loses focus. Default is true.
   validateOnBlur: Control.property.bool(null, true)
-  
-  #
-  #     * True if validation should be automatically be performed when the control's
-  #     * content is set programmatically. Default is true.
-  #     
+
+  # True if validation should be automatically be performed when the control's
+  # content is set programmatically. Default is true.
   validateOnSet: Control.property.bool(null, true)
 

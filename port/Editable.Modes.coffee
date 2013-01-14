@@ -12,40 +12,30 @@ window.Editable = Modes.sub(
     generic: "true"
 )
 Editable::extend
-  
-  #
-  #     * Cancel any pending changes and revert to read mode.
-  #     
+
+  # Cancel any pending changes and revert to read mode.
   cancel: Control.iterator(->
     @editing false
   )
-  
-  #
-  #     * The current content in either mode.
-  #     
+
+  # The current content in either mode.
   content: (value) ->
     (if @editing() then @_editContent(value) else @_readContent(value))
 
-  
-  #
-  #     * The class of the content in edit mode. This class is not instantiated
-  #     * until editing() is set to true for the first time.
-  #     
+
+  # The class of the content in edit mode. This class is not instantiated
+  # until editing() is set to true for the first time.
   editClass: Control.property["class"]((editClass) ->
     
     # Transmute the edit control to the new class.
     @_ensureEditControl()  if @editing()
   )
-  
-  #
-  #     * The control used for editing.
-  #     
+
+  # The control used for editing.
   editControl: Control.chain("$Editable_edit")
-  
-  #
-  #     * True if the control is in edit mode, false if in read mode. By default,
-  #     * this is false.
-  #     
+
+  # True if the control is in edit mode, false if in read mode. By default,
+  # this is false.
   editing: Control.chain("applyClass/editing", (editing) ->
     if editing is `undefined`
       
@@ -76,15 +66,11 @@ Editable::extend
     $new = @$Editable_read().transmute(readClass, true)
     @referencedElement "Editable_read", $new
   )
-  
-  #
-  #     * The control used for reading.
-  #     
+
+  # The control used for reading.
   readControl: Control.chain("$Editable_read")
-  
-  #
-  #     * Save changes and return to read mode.
-  #     
+
+  # Save changes and return to read mode.
   save: Control.iterator(->
     @_readContent @_editContent()
     @editing false
@@ -100,11 +86,9 @@ Editable::extend
     $new = @$Editable_edit().transmute(editClass, true)
     @referencedElement "Editable_edit", $new
 
-  
-  #
-  #     * Make sure we have an edit control of the desired class. If not, create
-  #     * one.
-  #     
+
+  # Make sure we have an edit control of the desired class. If not, create
+  # one.
   _ensureEditControl: ->
     currentClass = @$Editable_edit().controlClass()
     desiredClass = @editClass()

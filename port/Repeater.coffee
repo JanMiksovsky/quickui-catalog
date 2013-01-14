@@ -1,41 +1,31 @@
 # Creates a certain number of instances of another control class. 
 window.Repeater = Control.sub(className: "Repeater")
 Repeater::extend
-  
-  #
-  #     * The content which will be repeated in each instance.
-  #     
+
+  # The content which will be repeated in each instance.
   content: Control.property((content) ->
     @_refreshContent @controls()
   )
-  
-  #
-  #     * The generated collection of controls.
-  #     
+
+  # The generated collection of controls.
   controls: Control.chain("children", "control")
-  
-  #
-  #     * The number of repetitions to create.
-  #     * The default count is 1.
-  #     
+
+  # The number of repetitions to create.
+  # The default count is 1.
   count: Control.property.integer(->
     @_refresh()
   , 1)
   initialize: ->
     @_refresh()  unless @controls()?
 
-  
-  #
-  #     * True if the Repeater should append "1", "2", "3", etc., after the
-  #     * content of each instance.
-  #     
+
+  # True if the Repeater should append "1", "2", "3", etc., after the
+  # content of each instance.
   increment: Control.property.bool(->
     @_refreshContent @controls()
   )
-  
-  #
-  #     * The class that will be repeated.
-  #     
+
+  # The class that will be repeated.
   repeatClass: Control.property["class"](->
     @_refresh()
   )
