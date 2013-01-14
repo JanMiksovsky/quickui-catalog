@@ -1,5 +1,5 @@
 # Conditionally shows contents if the given browser is in use. 
-BrowserSpecific = Control.sub(className: "BrowserSpecific")
+window.BrowserSpecific = Control.sub(className: "BrowserSpecific")
 BrowserSpecific::extend
   
   #

@@ -1,5 +1,5 @@
 # Renders a JavaScript dictionary as a table. 
-DictionaryTable = ArrayTable.sub(
+window.DictionaryTable = ArrayTable.sub(
   className: "DictionaryTable"
   inherited: {}
 )

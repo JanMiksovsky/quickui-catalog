@@ -9,7 +9,7 @@
 #}
 #
 #
-ListInlay = ListBox.sub(
+window.ListInlay = ListBox.sub(
   className: "ListInlay"
   inherited:
     itemClass: "Collapsible"

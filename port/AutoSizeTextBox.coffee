@@ -3,7 +3,7 @@
 #This works by copying the text to a hidden div which will automatically grow in size;
 #the expanding copy will expand the container, which in turn stretch the text box.
 #
-AutoSizeTextBox = Control.sub(
+window.AutoSizeTextBox = Control.sub(
   className: "AutoSizeTextBox"
   inherited:
     

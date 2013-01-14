@@ -1,5 +1,5 @@
 # A month in a calendar 
-CalendarMonth = Control.sub(
+window.CalendarMonth = Control.sub(
   className: "CalendarMonth"
   inherited:
     content: [" ",

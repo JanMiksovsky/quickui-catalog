@@ -1,7 +1,7 @@
 #
 #A labeled check box.
 #
-CheckBox = LabeledInput.sub(
+window.CheckBox = LabeledInput.sub(
   className: "CheckBox"
   inherited:
     _type: "checkbox"

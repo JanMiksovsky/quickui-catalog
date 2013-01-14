@@ -1,5 +1,5 @@
 # Load different content, control class, or styles depending on the type of device. 
-DeviceSpecific = Control.sub(
+window.DeviceSpecific = Control.sub(
   className: "DeviceSpecific"
   inherited:
     content: [" ",

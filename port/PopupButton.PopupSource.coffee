@@ -1,5 +1,5 @@
 # A button that produces a popup when clicked. 
-PopupButton = PopupSource.sub(
+window.PopupButton = PopupSource.sub(
   className: "PopupButton"
   inherited:
     contentClass: "BasicButton"

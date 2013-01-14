@@ -1,5 +1,5 @@
 # A text region that can be clicked to edit its contents. 
-EditableText = Editable.sub(
+window.EditableText = Editable.sub(
   className: "EditableText"
   inherited:
     editClass: "TextBox"

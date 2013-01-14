@@ -1,7 +1,7 @@
 #
 #An input area with a dropdown arrow, which invokes a popup.
 #
-ComboBox = PopupSource.sub(
+window.ComboBox = PopupSource.sub(
   className: "ComboBox"
   inherited:
     closeOnInsideClick: "false"

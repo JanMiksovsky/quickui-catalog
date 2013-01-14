@@ -1,5 +1,5 @@
 # A command in a Menu. 
-MenuItem = Control.sub(
+window.MenuItem = Control.sub(
   className: "MenuItem"
   inherited:
     generic: "true"

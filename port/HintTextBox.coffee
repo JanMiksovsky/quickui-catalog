@@ -1,5 +1,5 @@
 # A text box that shows a "hint" as to what the user should enter. 
-HintTextBox = Control.sub(
+window.HintTextBox = Control.sub(
   className: "HintTextBox"
   inherited:
     content: [" ",

@@ -1,5 +1,5 @@
 # The name of the current month, globalized. 
-MonthName = Control.sub(
+window.MonthName = Control.sub(
   className: "MonthName"
   tag: "span"
 )

@@ -1,5 +1,5 @@
 # General base class for pages. 
-Page = Control.sub(
+window.Page = Control.sub(
   className: "Page"
   inherited:
     generic: "true"

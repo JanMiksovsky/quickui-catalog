@@ -1,5 +1,5 @@
 # Button base class. Handles mouse events, abstract styles. 
-BasicButton = Control.sub(
+window.BasicButton = Control.sub(
   className: "BasicButton"
   tag: "button"
   inherited:

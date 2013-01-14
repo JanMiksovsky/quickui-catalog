@@ -1,5 +1,5 @@
 # A popup menu. This is typically used in a Menu bar. 
-Menu = PopupSource.sub(
+window.Menu = PopupSource.sub(
   className: "Menu"
   inherited:
     popup: [" ",

@@ -1,7 +1,7 @@
 #
 #Lets user pick a date with a date-optimzed text box or a navigable month calendar.
 #
-DateComboBox = ComboBox.sub(
+window.DateComboBox = ComboBox.sub(
   className: "DateComboBox"
   inherited:
     textBoxClass: "DateTextBox"

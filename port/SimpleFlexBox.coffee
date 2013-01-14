@@ -8,7 +8,7 @@
 #whether flexbox is even supported. Forcing the use of flexbox reveals more
 #bugs; it's just not worth using at this point.
 #
-SimpleFlexBox = Control.sub(
+window.SimpleFlexBox = Control.sub(
   className: "SimpleFlexBox"
   inherited:
     content: [" ",

@@ -4,7 +4,7 @@
 #The control's top element is a label, which ensures that user clicks anywhere
 #within have the same effect as clicking the input control.
 #
-LabeledInput = Control.sub(
+window.LabeledInput = Control.sub(
   className: "LabeledInput"
   tag: "label"
   inherited:

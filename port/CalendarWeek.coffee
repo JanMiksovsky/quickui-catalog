@@ -1,5 +1,5 @@
 # Shows a single calendar week 
-CalendarWeek = Control.sub(
+window.CalendarWeek = Control.sub(
   className: "CalendarWeek"
   inherited:
     content: [" ",

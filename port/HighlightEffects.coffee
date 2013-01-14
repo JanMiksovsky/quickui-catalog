@@ -5,7 +5,7 @@
 #To animate color properties, use a plugin such as Color Animation at
 #http://plugins.jquery.com/project/color-animation.
 #
-HighlightEffects = Control.sub(
+window.HighlightEffects = Control.sub(
   className: "HighlightEffects"
   inherited:
     content: [" ",

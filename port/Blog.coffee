@@ -1,4 +1,4 @@
-Blog = Control.sub(
+window.Blog = Control.sub(
   className: "Blog"
   inherited:
     content: [" ",

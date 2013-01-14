@@ -1,4 +1,4 @@
-ColorSwatchTextBox = Control.sub(
+window.ColorSwatchTextBox = Control.sub(
   className: "ColorSwatchTextBox"
   inherited:
     content: [" ",

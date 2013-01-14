@@ -1,4 +1,4 @@
-ColorSwatchComboBox = ListComboBox.sub(
+window.ColorSwatchComboBox = ListComboBox.sub(
   className: "ColorSwatchComboBox"
   inherited:
     textBoxClass: "ColorSwatchTextBox"

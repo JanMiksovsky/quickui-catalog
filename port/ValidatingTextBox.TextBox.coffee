@@ -14,7 +14,7 @@
 #
 #For more discussion: http://miksovsky.blogs.com/flowstate/2010/09/index.html.
 #
-ValidatingTextBox = TextBox.sub(
+window.ValidatingTextBox = TextBox.sub(
   className: "ValidatingTextBox"
   inherited:
     generic: "true"

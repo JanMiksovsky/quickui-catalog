@@ -1,5 +1,5 @@
 # Pick exactly one child to show at a time. 
-Modes = Sequence.sub(
+window.Modes = Sequence.sub(
   className: "Modes"
   inherited: {}
 )

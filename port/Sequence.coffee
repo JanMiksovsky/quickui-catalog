@@ -1,7 +1,7 @@
 #
 #An ordered sequence of elements which can be navigated through one at a time.
 #
-Sequence = Control.sub(
+window.Sequence = Control.sub(
   className: "Sequence"
   inherited:
     generic: "true"

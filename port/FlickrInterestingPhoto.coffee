@@ -6,7 +6,7 @@
 #This is done because yesterday in the current time zone may still be "today" in
 #Flickr's time zone, and Flickr doesn't make photos available for the current day. 
 #
-FlickrInterestingPhoto = Control.sub(
+window.FlickrInterestingPhoto = Control.sub(
   className: "FlickrInterestingPhoto"
   tag: "img"
 )

@@ -3,7 +3,7 @@
 #
 #This simply wraps a normal input element.
 #
-TextBox = Control.sub(
+window.TextBox = Control.sub(
   className: "TextBox"
   tag: "input"
 )

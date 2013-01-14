@@ -5,7 +5,7 @@
 #that don't fit invisible. When the menu button is clicked, the invisible items
 #are temporarily moved to the menu, then moved back when the menu is closed. 
 #
-PanelWithOverflow = Control.sub(
+window.PanelWithOverflow = Control.sub(
   className: "PanelWithOverflow"
   inherited:
     content: [" ",

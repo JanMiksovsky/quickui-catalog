@@ -7,7 +7,7 @@
 #so that it (and its overlay) end up above all other elements when any menus
 #are open. See notes in the source for the Overlay class.
 #
-MenuBar = Control.sub(
+window.MenuBar = Control.sub(
   className: "MenuBar"
   inherited:
     generic: "true"

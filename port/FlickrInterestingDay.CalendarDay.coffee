@@ -1,5 +1,5 @@
 # Shows the most interesting photo on Flickr for a given day. 
-FlickrInterestingDay = CalendarDay.sub(
+window.FlickrInterestingDay = CalendarDay.sub(
   className: "FlickrInterestingDay"
   inherited:
     content: [" ",

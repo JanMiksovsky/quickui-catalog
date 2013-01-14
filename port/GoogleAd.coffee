@@ -1,4 +1,4 @@
-GoogleAd = Control.sub(className: "GoogleAd")
+window.GoogleAd = Control.sub(className: "GoogleAd")
 
 # AdSense globals 
 google_ad_client = undefined

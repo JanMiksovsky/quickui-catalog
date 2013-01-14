@@ -1,5 +1,5 @@
 # Position a top and/or bottom panel above or below a main content panel. 
-VerticalPanels = SimpleFlexBox.sub(
+window.VerticalPanels = SimpleFlexBox.sub(
   className: "VerticalPanels"
   inherited:
     orient: "vertical"

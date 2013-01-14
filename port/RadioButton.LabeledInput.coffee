@@ -1,7 +1,7 @@
 #
 #A labeled radio button.
 #
-RadioButton = LabeledInput.sub(
+window.RadioButton = LabeledInput.sub(
   className: "RadioButton"
   inherited:
     _type: "radio"

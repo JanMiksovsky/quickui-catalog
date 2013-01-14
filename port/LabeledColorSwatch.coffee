@@ -1,4 +1,4 @@
-LabeledColorSwatch = Control.sub(
+window.LabeledColorSwatch = Control.sub(
   className: "LabeledColorSwatch"
   inherited:
     content: [" ",

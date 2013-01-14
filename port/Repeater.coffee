@@ -1,5 +1,5 @@
 # Creates a certain number of instances of another control class. 
-Repeater = Control.sub(className: "Repeater")
+window.Repeater = Control.sub(className: "Repeater")
 Repeater::extend
   
   #

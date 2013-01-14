@@ -2,7 +2,7 @@
 #Display children as elements on a sliding horizontal strip; only one element
 #is visible at a time. The strip can be programmatically slid left and right.
 #
-SlidingPanels = Sequence.sub(
+window.SlidingPanels = Sequence.sub(
   className: "SlidingPanels"
   inherited:
     content: [" ",

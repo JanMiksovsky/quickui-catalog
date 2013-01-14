@@ -4,7 +4,7 @@
 #supported, plus modified short date formats that permit a missing year or two-
 #digit year. If Globalize is not installed, a default date parser is used.
 #
-DateTextBox = ValidatingTextBox.sub(
+window.DateTextBox = ValidatingTextBox.sub(
   className: "DateTextBox"
   inherited: {}
 )

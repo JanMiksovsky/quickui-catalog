@@ -1,5 +1,5 @@
 # Shows a block of a CSS color, either a color name or value. 
-ColorSwatch = Control.sub(className: "ColorSwatch")
+window.ColorSwatch = Control.sub(className: "ColorSwatch")
 
 #
 #     * The color to show. This will become the control's background color.

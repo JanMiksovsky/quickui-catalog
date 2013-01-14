@@ -1,5 +1,5 @@
 # A control with separate edit and read modes. 
-Editable = Modes.sub(
+window.Editable = Modes.sub(
   className: "Editable"
   inherited:
     content: [" ",

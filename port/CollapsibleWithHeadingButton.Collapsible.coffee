@@ -2,7 +2,7 @@
 #A collapsible panel whose heading region, by default, includes a button on
 #the far right that indicates the panel's collapsed/expanded state.
 #
-CollapsibleWithHeadingButton = Collapsible.sub(
+window.CollapsibleWithHeadingButton = Collapsible.sub(
   className: "CollapsibleWithHeadingButton"
   inherited:
     heading: [" ",

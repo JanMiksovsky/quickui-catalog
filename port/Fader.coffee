@@ -3,7 +3,7 @@
 #content is too long. Must set explicitly set the control's background-color
 #if the color is not white. 
 #
-Fader = Control.sub(
+window.Fader = Control.sub(
   className: "Fader"
   inherited:
     class: "horizontal"

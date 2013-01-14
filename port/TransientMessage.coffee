@@ -1,7 +1,7 @@
 #
 #A message which briefly appears on a page before automatically disappearing. 
 #
-TransientMessage = Control.sub(
+window.TransientMessage = Control.sub(
   className: "TransientMessage"
   inherited:
     generic: "true"

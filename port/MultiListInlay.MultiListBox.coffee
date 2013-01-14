@@ -11,7 +11,7 @@
 #This is the multiple-selection variation of ListInlay.
 #
 #
-MultiListInlay = MultiListBox.sub(
+window.MultiListInlay = MultiListBox.sub(
   className: "MultiListInlay"
   inherited:
     itemClass: "CollapsibleWithHeadingButton"

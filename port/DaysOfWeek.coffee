@@ -1,5 +1,5 @@
 # Heading for a 7 day week calendar, globalized. 
-DaysOfWeek = Control.sub(
+window.DaysOfWeek = Control.sub(
   className: "DaysOfWeek"
   inherited:
     content: " <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> <div class=\"dayOfWeek\" /> "

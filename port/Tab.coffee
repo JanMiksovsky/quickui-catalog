@@ -1,5 +1,5 @@
 # A control that can be used as a tab in a Tabs. 
-Tab = Control.sub(className: "Tab")
+window.Tab = Control.sub(className: "Tab")
 Tab::extend
   
   #

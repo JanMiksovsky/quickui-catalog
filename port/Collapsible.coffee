@@ -1,7 +1,7 @@
 #
 #A panel that can expand and collapse.
 #
-Collapsible = Control.sub(
+window.Collapsible = Control.sub(
   className: "Collapsible"
   inherited:
     content: [" ",

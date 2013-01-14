@@ -1,5 +1,5 @@
 # Position a left and/or right panel on the sides of a main content panel. 
-HorizontalPanels = SimpleFlexBox.sub(
+window.HorizontalPanels = SimpleFlexBox.sub(
   className: "HorizontalPanels"
   inherited:
     orient: "horizontal"

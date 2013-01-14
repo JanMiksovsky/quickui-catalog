@@ -1,5 +1,5 @@
 # Shows a day of the month as a button. 
-CalendarDayButton = CalendarDay.sub(
+window.CalendarDayButton = CalendarDay.sub(
   className: "CalendarDayButton"
   inherited:
     content: [" ",

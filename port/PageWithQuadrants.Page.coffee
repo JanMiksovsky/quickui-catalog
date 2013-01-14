@@ -7,7 +7,7 @@
 #
 #The whole page scrolls as a unit.
 #
-PageWithQuadrants = Page.sub(
+window.PageWithQuadrants = Page.sub(
   className: "PageWithQuadrants"
   inherited:
     content: [" ",

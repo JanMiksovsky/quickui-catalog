@@ -13,7 +13,7 @@
 #scrolling element on the page; it will not work property when placed
 #in a scrolling element nested within some outer scrolling element.
 #
-PersistentPanel = Control.sub(
+window.PersistentPanel = Control.sub(
   className: "PersistentPanel"
   inherited:
     content: [" ",

@@ -6,7 +6,7 @@
 #work, both the control's content and the content of the list items should
 #be strings.
 #
-ListComboBox = ComboBox.sub(
+window.ListComboBox = ComboBox.sub(
   className: "ListComboBox"
   inherited:
     popup: [" ",

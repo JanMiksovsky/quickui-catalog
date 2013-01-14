@@ -2,7 +2,7 @@
 #Show its children as sliding pages which can be navigated by clicking buttons below.
 #(The conventional button representation is a dot.)
 #
-SlidingPanelsWithDots = Control.sub(
+window.SlidingPanelsWithDots = Control.sub(
   className: "SlidingPanelsWithDots"
   inherited:
     content: [" ",

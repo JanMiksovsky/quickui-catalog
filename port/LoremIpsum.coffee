@@ -1,7 +1,7 @@
 #
 #Generates Lorem Ipsum placeholder paragraphs.
 #
-LoremIpsum = Control.sub(className: "LoremIpsum")
+window.LoremIpsum = Control.sub(className: "LoremIpsum")
 LoremIpsum::extend
   initialize: ->
     unless LoremIpsum._usedLorem

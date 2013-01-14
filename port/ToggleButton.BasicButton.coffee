@@ -1,5 +1,5 @@
 # A button which can hold a selected state. 
-ToggleButton = BasicButton.sub(
+window.ToggleButton = BasicButton.sub(
   className: "ToggleButton"
   inherited: {}
 )

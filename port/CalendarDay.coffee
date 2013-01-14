@@ -1,5 +1,5 @@
 # A single day in a calendar 
-CalendarDay = Control.sub(
+window.CalendarDay = Control.sub(
   className: "CalendarDay"
   inherited:
     generic: "true"

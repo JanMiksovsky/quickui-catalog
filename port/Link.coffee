@@ -9,7 +9,7 @@
 #
 #This can also serve as a useful base class for custom link classes.
 #
-Link = Control.sub(
+window.Link = Control.sub(
   className: "Link"
   tag: "a"
 )

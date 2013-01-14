@@ -5,7 +5,7 @@
 #available width by the column width (which is taken from the width of the
 #first child).
 #
-PackedColumns = Control.sub(className: "PackedColumns")
+window.PackedColumns = Control.sub(className: "PackedColumns")
 PackedColumns::extend
   
   #

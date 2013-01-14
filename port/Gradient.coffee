@@ -2,7 +2,7 @@
 #Gradient. Supports the different browser-specific syntax.
 #Alpha values are possible, but all colors must be specified as RGBA hex values.
 #
-Gradient = Control.sub(className: "Gradient")
+window.Gradient = Control.sub(className: "Gradient")
 Gradient::extend
   
   #

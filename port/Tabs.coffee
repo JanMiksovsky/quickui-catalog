@@ -6,7 +6,7 @@
 #
 #The Tabs control will resize itself to be as tall as its tallest child.
 #
-Tabs = Control.sub(
+window.Tabs = Control.sub(
   className: "Tabs"
   inherited:
     content: [" ",
