@@ -2,23 +2,23 @@
 window.CalendarWeek = Control.sub(
   className: "CalendarWeek"
   inherited:
-    content: [" ",
+    content: [
       control: "CalendarDay"
       class: "firstDayOfWeek"
-    , " ",
+    ,
       control: "CalendarDay"
-    , " ",
+    ,
       control: "CalendarDay"
-    , " ",
+    ,
       control: "CalendarDay"
-    , " ",
+    ,
       control: "CalendarDay"
-    , " ",
+    ,
       control: "CalendarDay"
-    , " ",
+    ,
       control: "CalendarDay"
       class: "lastDayOfWeek"
-    , " "]
+    ]
 )
 CalendarWeek::extend
   
