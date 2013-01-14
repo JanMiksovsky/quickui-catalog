@@ -14,7 +14,6 @@ LoremIpsum::extend
     content = @content()
     @_refresh()  if content and content.length is 0
 
-
   # True if the first sentence should definitely be (or not be)
   # the standard "Lorem ipsum dolor sit amet..." If this is undefined,
   # the first instance of this control class will start with this sentence;
@@ -70,7 +69,6 @@ LoremIpsum::extend
       content.push paragraph
       i++
     @content content
-
 
 # Class members
 LoremIpsum.extend

@@ -24,7 +24,6 @@ Menu::extend
       $menuItem = $(event.target).closest(".MenuItem")
       event.stopPropagation()  if $menuItem.length is 0
 
-
   open: ->
     
     # Ensure the little shield matches the current width of the content

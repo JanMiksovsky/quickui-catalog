@@ -28,9 +28,8 @@ CalendarWeek::extend
   # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
-    @_refresh()  if culture isnt `undefined`
+    @_refresh()  if culture isnt undefined
     result
-
 
   # The date that will be included in this week (can be any day of the week).
   date: Control.property.date(->
@@ -49,10 +48,9 @@ CalendarWeek::extend
     days = $().add(days).control()
     days
 
-
   # The class used to represent days in the week.
   dayClass: Control.iterator((dayClass) ->
-    if dayClass is `undefined`
+    if dayClass is undefined
       @days().constructor
     else
       @days().transmute dayClass
@@ -80,7 +78,6 @@ CalendarWeek::extend
     culture = @culture()
     (if culture then culture.calendar.firstDay else 0)
 
-
   # Set the dates on all controls in the week.
   _refresh: ->
     
@@ -93,5 +90,4 @@ CalendarWeek::extend
     # Fill in the date range.
     @days().eachControl (index, $day) ->
       $day.date CalendarDay.addDays(dateStart, index)
-
 

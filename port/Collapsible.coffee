@@ -26,7 +26,7 @@ Collapsible::extend
   # When called as a setter, a true value collapsed the control;
   # a false value expands the control.
   collapsed: Control.iterator((value) ->
-    if value is `undefined`
+    if value is undefined
       
       # Getter
       @_collapsed()
@@ -67,12 +67,10 @@ Collapsible::extend
       self.toggleCollapse()  if self.toggleOnClick()
 
 
-
   # Toggle the collapsed state of the control.
   #	 
   toggleCollapse: ->
     @collapsed not @collapsed()
-
 
   # True if the control should toggle its state when the user clicks in
   # the heading. Default is true.

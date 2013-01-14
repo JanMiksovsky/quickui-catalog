@@ -76,7 +76,6 @@ PopupSource::extend
         self.positionPopup().opened true
 
 
-
   # True if the popup should open when the user clicks in the control's
   # content. Default is true. 
   openOnClick: Control.property.bool(null, true)
@@ -86,7 +85,7 @@ PopupSource::extend
 
   # Returns true if the popup is currently opened.
   opened: (opened) ->
-    if opened is `undefined`
+    if opened is undefined
       
       # We mirror the popup's own open state.
       @$PopupSource_popup().opened()
@@ -95,7 +94,6 @@ PopupSource::extend
       # If we're setting this, only set our own state.
       # The popup will have taken care of itself.
       @applyClass "opened", opened
-
 
   # The class used to render the overlay behind the popup.
   overlayClass: Control.chain("$PopupSource_popup", "overlayClass")

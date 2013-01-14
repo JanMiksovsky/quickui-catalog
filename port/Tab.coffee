@@ -11,9 +11,8 @@ Tab::extend
     
     # The parent (e.g., a Tabs) may want to know that the size
     # of this element has changed.
-    @checkForSizeChange()  if value isnt `undefined`
+    @checkForSizeChange()  if value isnt undefined
     result
-
 
   # The description which should be rendered in the button for the tab.
   description: Control.property()

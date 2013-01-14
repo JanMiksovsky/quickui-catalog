@@ -20,7 +20,6 @@ EditableText::extend
     @editControl().find("input").andSelf().focus()  if editing
     result
 
-
   # True if the control should switch to editing mode when it's clicked.
   # Default is true.
   editOnClick: Control.property(null, true)
@@ -28,7 +27,6 @@ EditableText::extend
     self = this
     @on click: ->
       self.editing true  if self.editOnClick() and not self.editing()
-
 
 
   # True if pressing the Enter key in edit mode saves changes and switches

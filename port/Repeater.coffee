@@ -21,7 +21,6 @@ Repeater::extend
   initialize: ->
     @_refresh()  unless @controls()?
 
-
   # True if the Repeater should append "1", "2", "3", etc., after the
   # content of each instance.
   increment: Control.property.bool(->

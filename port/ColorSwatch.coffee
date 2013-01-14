@@ -6,7 +6,7 @@ window.ColorSwatch = Control.sub(className: "ColorSwatch")
 
 # The color to show. This will become the control's background color.
 ColorSwatch::extend color: (color) ->
-  if color is `undefined`
+  if color is undefined
     @css "background-color"
   else
     # Apply white first

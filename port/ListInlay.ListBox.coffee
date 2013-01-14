@@ -21,7 +21,6 @@ ListInlay::extend
       description: "heading"
       content: "content"
 
-
   selectControl: (control, select) ->
     @_super control, select
     if select

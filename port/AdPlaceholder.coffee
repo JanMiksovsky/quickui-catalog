@@ -52,7 +52,6 @@ AdPlaceholder::extend
     # Use default size.
     @dimensions "300 x 250"  unless @dimensions()
 
-
 # Class methods
 
 #

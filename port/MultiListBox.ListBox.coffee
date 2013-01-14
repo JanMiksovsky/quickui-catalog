@@ -10,7 +10,7 @@ MultiListBox::extend
 
   # The controls in the list which are currently selected.
   selectedControls: Control.iterator((selectedControls) ->
-    if selectedControls is `undefined`
+    if selectedControls is undefined
       @controls().filter ".selected"
     else
       self = this
@@ -25,7 +25,7 @@ MultiListBox::extend
   # The indices of the currently-selected controls.
   selectedIndices: Control.iterator((selectedIndices) ->
     controls = @controls()
-    if selectedIndices is `undefined`
+    if selectedIndices is undefined
       indices = []
       i = 0
 
@@ -47,7 +47,7 @@ MultiListBox::extend
 
   # The items represented by the currently-selected controls.
   selectedItems: Control.iterator((selectedItems) ->
-    if selectedItems is `undefined`
+    if selectedItems is undefined
       indices = @selectedIndices()
       items = @items()
       selectedItems = []

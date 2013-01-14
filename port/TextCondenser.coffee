@@ -28,10 +28,8 @@ TextCondenser::extend
     @on "layout sizeChanged", ->
       self.layout()
 
-
   layout: ->
     @eachControl (index, $control) ->
       tooWide = @$normal().width() > @width()
       @applyClass "condensed", tooWide
-
 

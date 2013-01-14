@@ -12,7 +12,7 @@ Sequence::extend
   # The currently visible element. The getter returns the element as an
   # instance of the appropriate control class.
   activeElement: Control.iterator((activeElement) ->
-    if activeElement is `undefined`
+    if activeElement is undefined
       @elements().filter(".active").eq(0).cast jQuery
     else
 
@@ -35,11 +35,10 @@ Sequence::extend
 
   # The index of the currently visible element.
   activeIndex: (index) ->
-    if index is `undefined`
+    if index is undefined
       @elements().index @activeElement()
     else
       @activeElement @elements().eq(index)
-
 
   # The array of elements in the sequence; only one will be shown at a time.
   # 
@@ -47,7 +46,7 @@ Sequence::extend
   # previously active. Otherwise, the first element is made active.
   content: (content) ->
     container = @_container()
-    if content is `undefined`
+    if content is undefined
       (if (this[0] is container[0]) then @_super(content) else container.content(content))
     else
       
@@ -62,14 +61,12 @@ Sequence::extend
         @activeIndex 0
       result
 
-
   # The set of elements in the sequence.
   elements: Control.chain("_container", "children", "cast")
   initialize: ->
     
     # Show first child by default. 
     @activeIndex 0  if @elements().length > 0 and @activeIndex() < 0
-
 
   # Show the next child. If the last child is currently shown, this has no
   # effect.

@@ -16,11 +16,10 @@ DateComboBox::extend
   # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
-    if culture isnt `undefined`
+    if culture isnt undefined
       @$navigator().culture culture
       @textBox().culture culture  if $.isFunction(@textBox().culture)
     result
-
 
   # The date indicated in the control.
   date: Control.property((date) ->
@@ -47,7 +46,6 @@ DateComboBox::extend
       dateSelected: (event, date) ->
         self.date date
         self.close()
-
 
 
   # The class used for the dropdown portion of the combo box.

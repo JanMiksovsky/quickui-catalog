@@ -38,7 +38,6 @@ CalendarDay::extend
   _defaultDate: ->
     CalendarDay.today()
 
-
 # Class methods. These are general date utilities.
 CalendarDay.extend
   MILLISECONDS_IN_DAY: 24 * 60 * 60 * 1000

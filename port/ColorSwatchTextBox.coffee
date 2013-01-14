@@ -25,7 +25,6 @@ ColorSwatchTextBox::extend
     @keyup ->
       self._refresh()
 
-
   _refresh: ->
     @$swatch().color @content()
 

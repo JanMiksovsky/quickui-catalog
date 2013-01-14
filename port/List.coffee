@@ -11,7 +11,6 @@ List::extend
     itemClass = @itemClass()
     itemClass(this).children()
 
-
   # True if the control should mark itself dirty when it gets a change event.
   # The default is false.
   dirtyOnChange: Control.property.bool(null, false)
@@ -21,7 +20,6 @@ List::extend
       
       # Assume the list is dirty.
       self.isDirty true  if self.dirtyOnChange()
-
 
 
   # Insert a new item before the existing item at the given index.
@@ -59,7 +57,7 @@ List::extend
 
   # The array of items in the list.
   items: (items) ->
-    if items is `undefined`
+    if items is undefined
       @_itemsCache(@_getItemsFromControls()).isDirty false  if @isDirty()
       @_itemsCache()
     else
@@ -68,7 +66,6 @@ List::extend
       # may later be manipulated withour knowledge.
       itemsCopy = items.slice(0)
       @_itemsCache(itemsCopy)._createControlsForItems(itemsCopy).isDirty false
-
 
   # Used to map an incoming list item to property setters on the control
   # class indicated by itemClass. The map specifies a relationship between
@@ -151,7 +148,6 @@ List::extend
     $(leftoverControls).remove()  if leftoverControls.length > 0
     this
 
-
   # Reconstruct the set of items from the controls.
   _getItemsFromControls: ->
     mapFunction = @_getMapFunction()
@@ -160,13 +156,12 @@ List::extend
       mapFunction.call $control
     ).get()
 
-
   # Return a map function that can be applied to a control to get/set its
   # corresponding item. See mapFunction() for a description of the supported
   # means of identifying the map function.
   _getMapFunction: ->
     mapFunction = @mapFunction()
-    if mapFunction is `undefined`
+    if mapFunction is undefined
       
       # No map function supplied; used the default.
       List._defaultMapFunction
@@ -192,10 +187,9 @@ List::extend
   
   # Apply the map function and let the control set itself up.
   _mapAndSetup: ($control, item, mapFunction) ->
-    mapFunction = @_getMapFunction()  if mapFunction is `undefined`
+    mapFunction = @_getMapFunction()  if mapFunction is undefined
     mapFunction.call $control, item
     @_setupControl $control
-
 
   # This can be extended by subclasses who want to perform per-control
   # set-up.
@@ -212,7 +206,7 @@ List.extend
   #
   # Note: This function should be called with this = the given control.
   _applyDictionaryMap: (map, item) ->
-    if item is `undefined`
+    if item is undefined
       
       # Getter
       result = {}
@@ -229,11 +223,10 @@ List.extend
         value = item[key]
         this[propertyName] value
 
-
   # This map function is used if the host does not provide one.
   _defaultMapFunction: (item) ->
     map = undefined
-    if item is `undefined`
+    if item is undefined
       
       # Getter
       map = @data("_map")

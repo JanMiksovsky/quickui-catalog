@@ -49,7 +49,6 @@ PersistentPanel::extend
       self._recalc()
 
 
-
   # The content's padding. See top notes.
   padding: Control.chain("$PersistentPanel_content", "css/padding")
 
@@ -71,7 +70,6 @@ PersistentPanel::extend
     # the panel pops out in fixed mode, the container can continue
     # to occupy the same amount of vertical space.
     @height @$PersistentPanel_content().outerHeight(true)
-
 
   # Determine which parent of the control scrolls vertically.
   _findScrollingParent: ->
@@ -96,7 +94,6 @@ PersistentPanel::extend
         break
       i++
     scrollingParent
-
 
   # Do the real work of the control: determine whether the panel contents
   # should flow with the document, or pop out into a docked position at the

@@ -30,7 +30,6 @@ BasicButton::extend
     else return BasicButton.state.hover  if @isMouseOverControl()
     BasicButton.state.normal
 
-
   # True if the button is disabled.
   # 
   # Setting this also applies "disabled" class for IE8, which doesn't support
@@ -66,7 +65,6 @@ BasicButton::extend
     , (event) ->
       self._trackMouseout event
     )._renderButton()
-
 
   # True if the button currently has the focus.
   isFocused: Control.property.bool(null, false)
@@ -117,7 +115,6 @@ BasicButton::extend
 
   _trackMouseup: (event) ->
     @removeClass("active").isMouseButtonDown(false)._renderButton()
-
 
 #
 # Class members

@@ -33,7 +33,6 @@ Fader::extend
     @inDocument ->
       @_redraw()
 
-
   
   # Expand a color like #abc into #aabbcc.
   _expandShortHexValue: (s) ->

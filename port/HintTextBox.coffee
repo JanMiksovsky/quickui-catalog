@@ -51,7 +51,6 @@ HintTextBox::extend
     @$HintTextBox_hint().click ->
       self._hideHint()
 
-
   _isTextBoxFocused: Control.property(null, false)
 
   # The keydown event comes before the browser has processed it, so we can't
@@ -94,7 +93,6 @@ HintTextBox::extend
   _hideHint: ->
     @$HintTextBox_hint().hide()
     @$HintTextBox_textBox().focus()
-
 
   # This routine is a more careful check to see whether we should show the
   # hint or not. We can call this on blur or keyup (when, unlike keydown,

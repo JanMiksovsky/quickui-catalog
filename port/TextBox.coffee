@@ -13,7 +13,7 @@ TextBox::extend
 
     # Setting content programmatically generates a change event
     # so that the UI can react accordingly.
-    @trigger "change"  if content isnt `undefined`
+    @trigger "change"  if content isnt undefined
     result
 
   
@@ -26,7 +26,6 @@ TextBox::extend
     # been set, but the code below will at least upgrade that implict type
     # to an explicit type.
     @type "text"  if @type() is "text"
-
 
   # The placeholder (hint text) shown in the text box if it's empty.
   placeholder: Control.chain("prop/placeholder")

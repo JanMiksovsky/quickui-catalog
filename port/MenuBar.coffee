@@ -32,7 +32,7 @@ MenuBar::extend
   # safely placed in the content as well.
   content: (content) ->
     result = @_super(content)
-    if content isnt `undefined`
+    if content isnt undefined
       
       # Since we're managing our own overlay, we suppress the overlays
       # on the individual menus in our content.
@@ -64,7 +64,6 @@ MenuBar::extend
         newMenu.open()  if newMenu and not newMenu.opened()
 
 
-
   # Returns true if any of the menu bar's menus are currently open.
   opened: Control.chain("applyClass/opened")
   open: Control.iterator(->
@@ -83,7 +82,6 @@ MenuBar::extend
       openMenus = openMenus.not(keepPopup)
       openMenus.close()  if openMenus.length > 0
     this
-
 
   # Return the currently open popups.
   _openPopups: Control.chain("children", "filter/.PopupSource.opened", "control")

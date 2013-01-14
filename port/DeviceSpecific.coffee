@@ -28,8 +28,8 @@ DeviceSpecific::extend
       deviceClass = @mobileClass()
       deviceClasses = "mobile"
       deviceContent = @mobile()
-    deviceClass = @defaultClass()  if deviceClass is `undefined`
-    deviceContent = this["default"]()  if deviceContent is `undefined`
+    deviceClass = @defaultClass()  if deviceClass is undefined
+    deviceContent = this["default"]()  if deviceContent is undefined
     $placeholder = @$placeholder()
     if deviceClass
       
@@ -45,13 +45,11 @@ DeviceSpecific::extend
     # Apply device-specific CSS classes.
     $placeholder.addClass deviceClasses  if deviceClasses
 
-
   # The content to use when the current device is a mobile device.
   mobile: Control.property()
 
   # The class of the control when the current device is a mobile device.
   mobileClass: Control.property["class"]()
-
 
 # Class methods
 DeviceSpecific.extend isMobile: ->

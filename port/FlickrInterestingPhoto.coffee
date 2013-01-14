@@ -36,7 +36,6 @@ FlickrInterestingPhoto::extend
     photo = @photo()
     @reload()  if not photo or photo.length is 0
 
-
   # Reload the photo.
   reload: Control.iterator(->
     self = this
@@ -64,7 +63,6 @@ FlickrInterestingPhoto::extend
     @reload()  if photo and photo.length > 0
   )
 
-
 # Class methods
 FlickrInterestingPhoto.extend
 
@@ -82,7 +80,6 @@ FlickrInterestingPhoto.extend
       flickrPhoto = flickrPhotos[self._counter]
       photo = self.getFlickrImageSrc(flickrPhoto, size)
       callback photo
-
 
   getFlickrInterestingPhotos: ->
     unless @_promise
@@ -114,7 +111,6 @@ FlickrInterestingPhoto.extend
     $.getJSON url, (data) ->
       callback data.photos.photo  if data and data.photos
 
-
   getFlickrImageSrc: (flickrPhoto, size) ->
     sizeParam = ((if size then "_" + size else ""))
     "http://farm" + flickrPhoto.farm + ".static.flickr.com/" + flickrPhoto.server + "/" + flickrPhoto.id + "_" + flickrPhoto.secret + sizeParam + ".jpg"
@@ -140,7 +136,6 @@ FlickrInterestingPhoto.extend
       s += "&" + key + "=" + value
 
     s
-
 
   # Perform a Fisher-Yates shuffle.
   # From http://sedition.com/perl/javascript-fy.html

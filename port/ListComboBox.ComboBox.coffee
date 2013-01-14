@@ -51,7 +51,6 @@ ListComboBox::extend
             self._selectText 0, content.length
 
 
-
   # The class which should be used to render the list items as controls.
   itemClass: Control.property["class"]((itemClass) ->
     @$list().itemClass itemClass
@@ -90,7 +89,6 @@ ListComboBox::extend
     self = this
     @inputElement().keydown (event) ->
       self._contentKeydown event
-
 
 
   # Handle a keydown event. Keydown gives the best AutoComplete performance

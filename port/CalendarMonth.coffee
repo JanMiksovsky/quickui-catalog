@@ -27,11 +27,10 @@ CalendarMonth::extend
   # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
-    if culture isnt `undefined`
+    if culture isnt undefined
       @weeks().culture culture
       @_refresh()
     result
-
 
   # The class used to represent days in the month.
   dayClass: Control.chain("weeks", "dayClass", ->
@@ -51,7 +50,6 @@ CalendarMonth::extend
     
     # By default, show current month.
     @date CalendarDay.today()  unless @date()
-
 
   # Returns the week control for the given date.
   weekControlForDate: (date) ->

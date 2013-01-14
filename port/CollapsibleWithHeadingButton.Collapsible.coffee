@@ -43,4 +43,3 @@ CollapsibleWithHeadingButton::extend
     ), hoverOut = ->
       $button.removeClass "hover"
 
-

@@ -16,7 +16,6 @@ RotatingPanelsWithDots::extend
       @_queueRotation()
 
 
-
   # Rotates to the next page. When it hits the last one, it rotates
   # back to the first page and stops.
   rotate: Control.iterator(->

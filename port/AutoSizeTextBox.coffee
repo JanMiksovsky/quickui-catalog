@@ -66,7 +66,6 @@ AutoSizeTextBox::extend
       @_refresh()
 
 
-
   # The minimum number of lines that should be shown. By default, this is 1.
   # Setting this to a higher number will ensure an empty textarea is still
   # multiple lines tall, which lets the user intuit that the control accepts

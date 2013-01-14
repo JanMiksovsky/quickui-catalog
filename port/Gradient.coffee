@@ -20,7 +20,6 @@ Gradient::extend
       @_redraw()
 
 
-
   # The starting value for the gradient.
   start: Control.property(->
     @_redraw()

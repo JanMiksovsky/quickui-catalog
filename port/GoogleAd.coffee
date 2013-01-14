@@ -21,4 +21,3 @@ GoogleAd::extend initialize: ->
     # Force (re?)load of AdSense script.
     $.get "http://pagead2.googlesyndication.com/pagead/show_ads.js"
 
-

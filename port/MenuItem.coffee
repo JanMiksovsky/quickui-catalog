@@ -16,4 +16,3 @@ MenuItem::extend
     @click (event) ->
       false  if self.disabled()
 
-

@@ -15,11 +15,10 @@ DateTextBox::extend
   # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
-    if culture isnt `undefined`
+    if culture isnt undefined
       @_updateDatePatterns()
       @_refresh()
     result
-
 
   # The date indicated in the text box.
   date: Control.property.date((date) ->
@@ -42,7 +41,6 @@ DateTextBox::extend
 
     @_updateDatePatterns()
 
-
   # Returns true if the current date is valid. 
   valid: ->
     valid = @_super()
@@ -55,7 +53,6 @@ DateTextBox::extend
     # If a date is supplied, it has to be valid.
     valid = valid and !!date  if content and content.length > 0
     valid
-
 
   # Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine
   # some abbreviated date patterns.
@@ -100,13 +97,11 @@ DateTextBox::extend
       formattedDate = (date.getMonth() + 1) + @_dateSeparator() + date.getDate() + @_dateSeparator() + date.getFullYear()
     formattedDate
 
-
   # Parse the given text as a date.
   # Use the culture's parser if available, otherwise use a default parser.
   _parseDate: (text) ->
     date = (if @culture() then Globalize.parseDate(text, @_datePatterns(), @culture()) else @_parseDateDefault(text))
     date
-
 
   # Basic date parser.
   # Parses the given text as a date and return the result.
@@ -162,7 +157,6 @@ DateTextBox::extend
         )
         datePatterns = datePatterns.concat(abbreviatedDatePatterns)
     @_datePatterns datePatterns
-
 
 #
 # Class properties.

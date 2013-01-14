@@ -20,7 +20,7 @@ window.MultiListInlay = MultiListBox.sub(
 MultiListInlay::extend
   initialize: ->
     @mapFunction (item) ->
-      if item is `undefined`
+      if item is undefined
         description: @heading()
         content: @content()
       else
@@ -28,7 +28,6 @@ MultiListInlay::extend
         
         # Let ListBox manage toggling instead of Collapsible
         @toggleOnClick false  if this instanceof Collapsible
-
 
   selectControl: (control, select) ->
     @_super control, select

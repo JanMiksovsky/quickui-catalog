@@ -35,7 +35,7 @@ Tabs::extend
 
   # The class used to render the container for the tabbed pages.
   contentClass: (contentClass) ->
-    if contentClass is `undefined`
+    if contentClass is undefined
       @$Tabs_content().controlClass()
     else
       
@@ -48,7 +48,6 @@ Tabs::extend
       $new = @$Tabs_content().transmute(contentClass, true)
       @referencedElement "Tabs_content", $new
       this
-
 
   # True if the Tabs should vertically fill its container.
   fill: Control.chain("$tabPanels", "fill")
@@ -80,7 +79,6 @@ Tabs::extend
     # Select first tab by default.
     @selectedTabIndex 0  if @tabs().length > 0 and not @selectedTabIndex()
 
-
   # True if a tab should be selected on click; false if the showing of the
   # clicked tab will be handled separately. 
   selectTabOnClick: Control.property.bool(null, true)
@@ -107,7 +105,7 @@ Tabs::extend
 
   # Called whenever the set of buttons needs to be regenerated.
   _createButtons: ->
-    return  if @tabButtonClass() is `undefined`
+    return  if @tabButtonClass() is undefined
     
     # Show the description for each tab as a button.
     descriptions = @tabs().map((index, tab) ->

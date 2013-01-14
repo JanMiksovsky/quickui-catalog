@@ -90,7 +90,6 @@ ComboBox::extend
     # Set a default text box class
     @textBoxClass TextBox  unless @textBoxClass()
 
-
   # Returns the combo box's input element. By default this is the content
   # element itself (if it's a text box) or else the first text input element
   # in the content. Subclasses can override this to indicate that a different
@@ -103,7 +102,6 @@ ComboBox::extend
     
     # Return the first text input element.
     @$ComboBox_content().find("input[type='text']").eq 0
-
 
   # Open the combo box.
   open: ->
@@ -121,7 +119,6 @@ ComboBox::extend
       # pressed while popup is open.
       @$dropdownButton().selected true
     @_super()
-
 
   # True if the control should automatically open when it receives the
   # keyboard focus. Default is true.
@@ -153,7 +150,6 @@ ComboBox::extend
         
         # Tabbing out of text box portion closes popup. 
         else self.close()  if event.which is 9 and opened
-
 
   
   # Hint for documentation tools.

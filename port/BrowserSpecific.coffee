@@ -14,9 +14,8 @@ BrowserSpecific::extend
     else content = @msie()  if Control.browser.msie
     content = @opera()  if Control.browser.opera
     content = @webkit()  if Control.browser.webkit
-    content = this["default"]()  if content is `undefined`
+    content = this["default"]()  if content is undefined
     @content content
-
 
   # Content to show to Mozilla (Firefox) users.
   mozilla: Control.property()

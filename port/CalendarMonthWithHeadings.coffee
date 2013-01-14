@@ -29,7 +29,7 @@ CalendarMonthWithHeadings::extend
     
     # var result = this._super( culture );
     result = @constructor.superclass::culture.call(this, culture)
-    if culture isnt `undefined`
+    if culture isnt undefined
       @$monthAndYear().culture culture
       @$daysOfWeek().culture culture
       @$calendar().culture culture
@@ -53,7 +53,6 @@ CalendarMonthWithHeadings::extend
   dayControlForDate: (date) ->
     @$calendar().dayControlForDate date
 
-
   # The format used to show day headings. See DaysOfWeek.
   dayNameFormat: Control.chain("$daysOfWeek", "format")
   initialize: ->
@@ -65,7 +64,6 @@ CalendarMonthWithHeadings::extend
       
       # Sync month and year with calendar.
       @$monthAndYear().date @date()
-
 
   # True if the month name and year should be shown.
   showMonthAndYear: Control.chain("$monthAndYear", "visibility")

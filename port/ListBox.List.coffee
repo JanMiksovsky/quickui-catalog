@@ -43,8 +43,7 @@ ListBox::extend
 
     
     # By default, highlight the selection.
-    @highlightSelection true  if @highlightSelection() is `undefined`
-
+    @highlightSelection true  if @highlightSelection() is undefined
 
   # The array of items shown in the list box.
   items: (value) ->
@@ -52,12 +51,11 @@ ListBox::extend
     # Preserve selection index when items change 
     previousIndex = @selectedIndex()
     result = @_super(value)
-    if value isnt `undefined` and value.length > 0
+    if value isnt undefined and value.length > 0
       # Restore previous selection.
       index = (if (previousIndex >= 0 and previousIndex < value.length) then previousIndex else -1) # Nothing will be selected.
       @selectedIndex index
     result
-
 
   # Toggles the selected state of a control in the list.
   # 
@@ -69,10 +67,9 @@ ListBox::extend
     control.toggleClass "selected", select
     control.selected select  if $.isFunction(control.selected)
 
-
   # The control in the list which is currently selected.
   selectedControl: Control.iterator((selectedControl) ->
-    if selectedControl is `undefined`
+    if selectedControl is undefined
       control = @controls().filter(".selected").eq(0)
       (if control.length > 0 then control else null)
     else
@@ -89,7 +86,7 @@ ListBox::extend
   # The index of the currently-selected control.
   selectedIndex: Control.iterator((selectedIndex) ->
     controls = @controls()
-    if selectedIndex is `undefined`
+    if selectedIndex is undefined
       control = @selectedControl()
       (if control then controls.index(control) else -1)
     else
@@ -100,7 +97,7 @@ ListBox::extend
 
   # The item represented by the currently-selected control.
   selectedItem: Control.iterator((selectedItem) ->
-    if selectedItem is `undefined`
+    if selectedItem is undefined
       index = @selectedIndex()
       (if index >= 0 then @items()[index] else null)
     else
@@ -112,7 +109,6 @@ ListBox::extend
 
   _getControlContainingElement: (element) ->
     $(element).closest(@controls()).control()
-
 
   # Return the control that spans the given y position, or -1 if not found.
   # If downward is true, move down the list of controls to find the
@@ -132,7 +128,6 @@ ListBox::extend
       return i  if controlTop <= y and controlBottom >= y
       i += step
     -1
-
 
   # Handle a keydown event.
   _keydown: (event) ->
@@ -166,7 +161,6 @@ ListBox::extend
   _pageUp: ->
     @_scrollOnePage false
 
-
   # Move by one page downward (if downward is true), or upward (if false).
   _scrollOnePage: (downward) ->
     selectedIndex = @selectedIndex()
@@ -190,7 +184,6 @@ ListBox::extend
       return true
     false
 
-
   # Scroll the given control into view.
   _scrollToControl: ($control) ->
     controlTop = $control.offset().top
@@ -204,7 +197,6 @@ ListBox::extend
     
     # Scroll down until control is entirely visible.
     else @scrollTop scrollTop - (viewPortDimensions.top - controlTop)  if controlTop < viewPortDimensions.top
-
 
   # Return true if the selected control is displayed inline.
   _selectedControlIsInline: ->

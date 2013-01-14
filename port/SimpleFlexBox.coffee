@@ -41,7 +41,6 @@ SimpleFlexBox::extend
       @_checkFlexBox()
 
 
-
   # The orientation of the panels: "horizontal" or "vertical".
   orient: Control.property((orient) ->
     vertical = @_vertical()
@@ -91,7 +90,6 @@ SimpleFlexBox::extend
       @_handlingLayout false
     flexBox
 
-
   # Simulate flex behavior for the main content panel when the height
   # is constrained.
   _layout: ->
@@ -108,13 +106,11 @@ SimpleFlexBox::extend
     @$SimpleFlexBox_content().css css
     @_childrenCheckSize()
 
-
   # If the layout of the control changes in any way, the subcontrols
   # contained in the panels should check to see if they've changed size.
   _childrenCheckSize: ->
     $controls = @children().children().control()
     $controls.checkForSizeChange()  if $controls?
-
 
   # True if we're currently handling the layout event to do manual layout.
   _handlingLayout: Control.property.bool(null, false)
@@ -132,7 +128,7 @@ SimpleFlexBox::extend
   # True if the control is currently using CSS flexible box layout, and
   # false if using manual layout.
   _usingFlexBox: (usingFlexBox) ->
-    if usingFlexBox is `undefined`
+    if usingFlexBox is undefined
       not @hasClass("noFlexBox")
     else
       @toggleClass "noFlexBox", not usingFlexBox
@@ -141,7 +137,6 @@ SimpleFlexBox::extend
   # Return true if we're using vertical orientation, false if not.
   _vertical: ->
     @orient() is "vertical"
-
 
 # Class methods 
 

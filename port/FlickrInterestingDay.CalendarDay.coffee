@@ -29,7 +29,7 @@ FlickrInterestingDay::extend
   # The date to show.
   date: (date) ->
     result = @_super(date)
-    if date isnt `undefined`
+    if date isnt undefined
       @image(null).href null
       @loadPhoto()  if @autoLoad()
     result
@@ -68,7 +68,6 @@ FlickrInterestingDay::extend
     date.setDate date.getDate() - 1
     date
 
-
 # Class methods
 FlickrInterestingDay.extend
   
@@ -99,7 +98,6 @@ FlickrInterestingDay.extend
         self._cache[flickrDate] = photo
         callback photo
 
-
   getFlickrPhotos: (params, callback) ->
     baseUrl = "http://api.flickr.com/services/rest/"
     
@@ -108,7 +106,6 @@ FlickrInterestingDay.extend
     url = baseUrl + "?api_key=" + @_flickrApiKey + @_formatUrlParams(params) + "&format=json" + "&jsoncallback=?"
     $.getJSON(url).success (data) ->
       callback data.photos.photo  if data and data.photos
-
 
   getFlickrImageSrc: (flickrPhoto, size) ->
     sizeParam = ((if size then "_" + size else ""))

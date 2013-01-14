@@ -18,11 +18,9 @@ Page::extend
     # this gives them a chance to do that.
     @title @title()
 
-
   # The URL parameters for the current page. Read-only.
   urlParameters: ->
     Page.urlParameters()
-
 
   # The title of the page. This will generally be shown in the browser's
   # window title bar, etc.
@@ -30,7 +28,7 @@ Page::extend
     if this[0] is document.body
       
       # This page is the document, mirror the document's title.
-      if title is `undefined`
+      if title is undefined
         document.title
       else
         document.title = title
@@ -43,7 +41,6 @@ Page::extend
   
   # Private copy of the page's title.
   _title: Control.property()
-
 
 #
 # Class members.
@@ -66,7 +63,6 @@ Page.extend
     # Trigger a page class load now.
     $(window).hashchange()
 
-
   # Return the URL parameters (after "&" and/or "#") as a JavaScript object.
   # E.g., if the URL looks like http://www.example.com/index.html?foo=hello&bar=world
   # then this returns the object
@@ -83,7 +79,6 @@ Page.extend
       results[parameterName] = parameterValue
       match = regex.exec(window.location.href)
     results
-
 
 #
 # General utility functions made available to all controls.

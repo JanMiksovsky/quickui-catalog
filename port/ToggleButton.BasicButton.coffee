@@ -13,7 +13,6 @@ ToggleButton::extend
       self.toggleSelected()  unless self.disabled()
 
 
-
   # True if the button is currently in the selected state.
   selected: Control.chain("applyClass/selected")
 

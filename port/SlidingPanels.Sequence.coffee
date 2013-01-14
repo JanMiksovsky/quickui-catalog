@@ -16,7 +16,7 @@ SlidingPanels::extend
   # The index of the control currently being shown.
   activeIndex: (activeIndex) ->
     result = @_super(activeIndex)
-    if activeIndex isnt `undefined`
+    if activeIndex isnt undefined
       panel = @elements().eq(activeIndex)
       if panel.length > 0
         left = panel.position().left
@@ -32,14 +32,13 @@ SlidingPanels::extend
           , "fast"
     result
 
-
   # The array of elements in the sequence; only one will be shown at a time.
   # 
   # If the set changes, this will attempt to preserve the one that was
   # previously active. Otherwise, the first element is made active.
   content: (content) ->
     result = @_super(content)
-    @_adjustWidths()  if content isnt `undefined`
+    @_adjustWidths()  if content isnt undefined
     result
 
   initialize: ->
@@ -48,7 +47,6 @@ SlidingPanels::extend
       @_adjustWidths()
     ).on "layout sizeChanged", ->
       self._adjustWidths()
-
 
   
   # Force all elements and the control itself to the maximium width of the elements.
@@ -68,7 +66,6 @@ SlidingPanels::extend
 
   _container: Control.chain("$SlidingPanels_content")
 
-
 #
 # Class methods
 # 
@@ -84,7 +81,7 @@ SlidingPanels.extend hasTransitions: ($element) ->
 
   while i < transitionProperties.length
     value = $element.css(transitionProperties[i])
-    return true  if value isnt `undefined` and value isnt ""
+    return true  if value isnt undefined and value isnt ""
     i++
   false
 

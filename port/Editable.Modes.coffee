@@ -25,7 +25,6 @@ Editable::extend
   content: (value) ->
     (if @editing() then @_editContent(value) else @_readContent(value))
 
-
   # The class of the content in edit mode. This class is not instantiated
   # until editing() is set to true for the first time.
   editClass: Control.property["class"]((editClass) ->
@@ -40,7 +39,7 @@ Editable::extend
   # True if the control is in edit mode, false if in read mode. By default,
   # this is false.
   editing: Control.chain("applyClass/editing", (editing) ->
-    if editing is `undefined`
+    if editing is undefined
       
       # Getter
       @_editing()
@@ -89,7 +88,6 @@ Editable::extend
     $new = @$Editable_edit().transmute(editClass, true)
     @referencedElement "Editable_edit", $new
 
-
   # Make sure we have an edit control of the desired class. If not, create
   # one.
   _ensureEditControl: ->
@@ -101,7 +99,7 @@ Editable::extend
   # The content of the read portion 
   _readContent: (content) ->
     result = undefined
-    if content is `undefined`
+    if content is undefined
       result = @$Editable_read().content()
       
       # Convert empty jQuery array to null.

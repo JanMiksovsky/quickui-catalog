@@ -48,7 +48,6 @@ PanelWithOverflow::extend
         self.$menuButton().positionPopup()
 
 
-
   # Force the control to layout its contents.
   layout: Control.iterator(->
     

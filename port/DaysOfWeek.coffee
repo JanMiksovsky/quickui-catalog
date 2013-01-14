@@ -13,9 +13,8 @@ DaysOfWeek::extend
   # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
-    @format @format()  if culture isnt `undefined`
+    @format @format()  if culture isnt undefined
     result
-
 
   # The format used to show the names of the day. These are defined by
   # the Globalize library:
@@ -39,7 +38,6 @@ DaysOfWeek::extend
   )
   initialize: ->
     @format "namesAbbr"  unless @format()
-
 
 # Default names; used if Globalize is not loaded.
 DaysOfWeek.extend days:

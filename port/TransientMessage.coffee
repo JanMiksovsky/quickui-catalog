@@ -17,7 +17,6 @@ TransientMessage::extend
 
     this
 
-
   # The time before the message begins to fade out.
   # 
   # If undefined (the default value), the duration will be calculated from
@@ -28,7 +27,6 @@ TransientMessage::extend
     self = this
     @click ->
       self._close()
-
 
 
   # Show the message.
@@ -47,7 +45,6 @@ TransientMessage::extend
     @positionMessage().fadeIn() # TODO: Investigate why this doesn't actually fade in.
     this
 
-
   # Position the message. By default, this is center-aligned at the top
   # of the page.
   positionMessage: ->
@@ -61,7 +58,6 @@ TransientMessage::extend
     @remove()
 
   _timeout: Control.property()
-
 
 # Class methods 
 

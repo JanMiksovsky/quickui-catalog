@@ -50,7 +50,6 @@ HighlightEffects::extend
       @_originalState(@_getCurrentState())._recalc()
 
 
-
   # Get the current values of all CSS attributes which will be overwritten
   # by the effects. This snapshot is used on hover out to restore the
   # original state.
@@ -100,7 +99,6 @@ HighlightEffects::extend
       $(this).css
         position: "inherit"
         "z-index": "inherit"
-
 
 
 

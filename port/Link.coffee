@@ -32,7 +32,6 @@ Link::extend
       # underline, and use of a hand cursor.
       @href "javascript:"
 
-
   # True if the link points to an area of the site (with sub-pages). If
   # true, the link will be considered current if it points to any page within
   # that area of the site. The default is false.
@@ -56,7 +55,6 @@ Link::extend
       pathToMatch = (if @linksToArea() then pathname.substring(0, localPath.length) else pathname)
       current = (localPath is pathToMatch)
     @current current
-
 
   # Returns the pathname portion of the link (the portion after the domain)
   # if the link points to a location in the current domain. Otherwise

@@ -23,7 +23,6 @@ PackedColumns::extend
     @on "layout sizeChanged", ->
       self.layout()
 
-
   layout: ->
     children = @children()
     childCount = children.length

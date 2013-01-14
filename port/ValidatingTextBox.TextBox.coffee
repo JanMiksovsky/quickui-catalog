@@ -25,7 +25,7 @@ ValidatingTextBox::extend
   # The control's content. Setting this implicitly performs validation.
   content: (content) ->
     result = @_super(content)
-    @validate true  if content isnt `undefined` and @validateOnSet()
+    @validate true  if content isnt undefined and @validateOnSet()
     result
 
   initialize: ->
@@ -36,7 +36,6 @@ ValidatingTextBox::extend
 
       keyup: ->
         self.validate()
-
 
   invalid: Control.chain("applyClass/invalid")
 
@@ -61,7 +60,6 @@ ValidatingTextBox::extend
     else
       valid = true
     valid
-
 
   # Check to see if the control's contents are valid.
   # 

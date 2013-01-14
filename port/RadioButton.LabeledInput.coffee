@@ -21,7 +21,6 @@ RadioButton::extend
       @_checkName()
 
 
-
   # The text name of the radio button group.
   # 
   # You can set the name() of all radio buttons in the same group to the same
@@ -45,7 +44,6 @@ RadioButton::extend
       # Use sibling's name. 
       name = (if named then named.name() else RadioButton.generateUniqueName()) # Generate a name.
       @name name
-
 
 # Class members 
 RadioButton.extend
