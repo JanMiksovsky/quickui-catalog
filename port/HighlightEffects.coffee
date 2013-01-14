@@ -86,9 +86,7 @@ HighlightEffects::extend
         #                 * Map dimensions of "auto" to "0" so that the dimension can
         #                 * be animated. 
         #                 
-        when "bottom", "left"
-      , "right"
-      , "top"
+        when "bottom", "left", "right", "top"
           value = $content.css(key)
           value = "0"  if value is "auto"
         else

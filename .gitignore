@@ -6,6 +6,8 @@ build
 coffee/coffee.js
 coffee/coffee.css
 controlDocumentation.js
+docs.js
+docs.css
 markup/markup.js
 markup/markup.css
 node_modules
@@ -14,7 +16,7 @@ quickui.catalog.*
 quickui-catalog.js
 quickui-catalog.css
 quidoc.js
-docs.js
-docs.css
+port/port.js
+port/port.css
 test/unittests.js
 test/common/common.*

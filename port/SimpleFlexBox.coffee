@@ -114,13 +114,12 @@ SimpleFlexBox::extend
     measureFn = (if vertical then $::outerHeight else $::outerWidth)
     sizePanel1 = measureFn.call(@$SimpleFlexBox_panel1(), true)
     sizePanel2 = measureFn.call(@$SimpleFlexBox_panel2(), true)
-    css = (if vertical then
+    css = if vertical
       bottom: sizePanel2
       top: sizePanel1
-     else
+    else
       left: sizePanel1
       right: sizePanel2
-    )
     @$SimpleFlexBox_content().css css
     @_childrenCheckSize()
 
