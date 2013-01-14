@@ -122,6 +122,12 @@ class window.SimpleFlexBox extends Control
     @$SimpleFlexBox_panel2().checkForSizeChange()  unless @_usingFlexBox()
   )
 
+  # Returns true if the given element is using the CSS flexible layout module.
+  @usingFlexBox: ($element) ->
+    # "-moz-box", 
+    flexBoxVariants = ["box", "-webkit-box"]
+    $.inArray($element.css("display"), flexBoxVariants) >= 0
+
   # True if the control is currently using CSS flexible box layout, and
   # false if using manual layout.
   _usingFlexBox: (usingFlexBox) ->
@@ -129,18 +135,7 @@ class window.SimpleFlexBox extends Control
       not @hasClass("noFlexBox")
     else
       @toggleClass "noFlexBox", not usingFlexBox
-
   
   # Return true if we're using vertical orientation, false if not.
   _vertical: ->
     @orient() is "vertical"
-
-# Class methods 
-
-# Returns true if the given element is using the CSS flexible layout module.
-SimpleFlexBox.extend usingFlexBox: ($element) ->
-  
-  # "-moz-box", 
-  flexBoxVariants = ["box", "-webkit-box"]
-  $.inArray($element.css("display"), flexBoxVariants) >= 0
-

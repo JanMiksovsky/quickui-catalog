@@ -34,6 +34,44 @@ class window.FlickrInterestingDay extends CalendarDay
 
   content: Control.chain("$FlickrInterestingDay_content", "content")
 
+  @getInterestingPhotoForDate: (date, callback) ->
+    flickrDate = @_formatFlickrDate(date)
+    cachedPhoto = @_cache[flickrDate]
+    if cachedPhoto
+      callback cachedPhoto
+      return
+    params =
+      method: "flickr.interestingness.getList"
+      date: flickrDate
+      per_page: 1
+
+    self = this
+    @getFlickrPhotos params, (flickrPhotos) ->
+      if flickrPhotos and flickrPhotos.length > 0
+        first = flickrPhotos[0]
+        photo =
+          src: self.getFlickrImageSrc(first, "s") # Small thumbnail
+          href: self.getFlickrImageHref(first)
+
+        self._cache[flickrDate] = photo
+        callback photo
+
+  @getFlickrPhotos: (params, callback) ->
+    baseUrl = "http://api.flickr.com/services/rest/"
+    
+    # Note: JSONP in jQuery usually calls for callback=?, but the Flickr
+    # API wants jsoncallback=?. Thankfully, jQuery supports that.
+    url = baseUrl + "?api_key=" + @_flickrApiKey + @_formatUrlParams(params) + "&format=json" + "&jsoncallback=?"
+    $.getJSON(url).success (data) ->
+      callback data.photos.photo  if data and data.photos
+
+  @getFlickrImageSrc: (flickrPhoto, size) ->
+    sizeParam = ((if size then "_" + size else ""))
+    "http://farm" + flickrPhoto.farm + ".static.flickr.com/" + flickrPhoto.server + "/" + flickrPhoto.id + "_" + flickrPhoto.secret + sizeParam + ".jpg"
+
+  @getFlickrImageHref: (flickrPhoto) ->
+    "http://flickr.com/photo.gne?id=" + flickrPhoto.id
+
   # The location of the Flickr page for the photo.
   href: Control.chain("$link", "attr/href")
 
@@ -60,74 +98,31 @@ class window.FlickrInterestingDay extends CalendarDay
       @href url
   )
   
+  # Cache of photos already loaded, indexed by Flickr-style date string. 
+  @_cache: {}
+  
   # Default day is *yesterday* (since we need a date in the past).
   _defaultDate: ->
     date = CalendarDay.today()
     date.setDate date.getDate() - 1
     date
-
-# Class methods
-FlickrInterestingDay.extend
   
   # Please replace with your own API key.
-  _flickrApiKey: "c3685bc8d8cefcc1d25949e4c528cbb0"
-  
-  # Cache of photos already loaded, indexed by Flickr-style date string. 
-  _cache: {}
-  getInterestingPhotoForDate: (date, callback) ->
-    flickrDate = @_formatFlickrDate(date)
-    cachedPhoto = @_cache[flickrDate]
-    if cachedPhoto
-      callback cachedPhoto
-      return
-    params =
-      method: "flickr.interestingness.getList"
-      date: flickrDate
-      per_page: 1
-
-    self = this
-    @getFlickrPhotos params, (flickrPhotos) ->
-      if flickrPhotos and flickrPhotos.length > 0
-        first = flickrPhotos[0]
-        photo =
-          src: self.getFlickrImageSrc(first, "s") # Small thumbnail
-          href: self.getFlickrImageHref(first)
-
-        self._cache[flickrDate] = photo
-        callback photo
-
-  getFlickrPhotos: (params, callback) ->
-    baseUrl = "http://api.flickr.com/services/rest/"
-    
-    # Note: JSONP in jQuery usually calls for callback=?, but the Flickr
-    # API wants jsoncallback=?. Thankfully, jQuery supports that.
-    url = baseUrl + "?api_key=" + @_flickrApiKey + @_formatUrlParams(params) + "&format=json" + "&jsoncallback=?"
-    $.getJSON(url).success (data) ->
-      callback data.photos.photo  if data and data.photos
-
-  getFlickrImageSrc: (flickrPhoto, size) ->
-    sizeParam = ((if size then "_" + size else ""))
-    "http://farm" + flickrPhoto.farm + ".static.flickr.com/" + flickrPhoto.server + "/" + flickrPhoto.id + "_" + flickrPhoto.secret + sizeParam + ".jpg"
-
-  getFlickrImageHref: (flickrPhoto) ->
-    "http://flickr.com/photo.gne?id=" + flickrPhoto.id
-
+  @_flickrApiKey: "c3685bc8d8cefcc1d25949e4c528cbb0"
   
   # Return a date in YYYY-MM-DD format.
-  _formatFlickrDate: (date) ->
+  @_formatFlickrDate: (date) ->
     year = date.getFullYear()
     month = date.getMonth() + 1
     day = date.getDate()
     s = year + "-" + ((if (month < 10) then "0" else "")) + month + "-" + ((if (day < 10) then "0" else "")) + day
     s
 
-  
   # Convert the given params dictionary into a string that can be
   # passed on a URL.
-  _formatUrlParams: (params) ->
+  @_formatUrlParams: (params) ->
     s = ""
     $.each params, (key, value) ->
       s += "&" + key + "=" + value
 
     s
-

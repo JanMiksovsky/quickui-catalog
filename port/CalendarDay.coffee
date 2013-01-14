@@ -6,43 +6,9 @@ class window.CalendarDay extends Control
 
   inherited:
     generic: "true"
-
-  alternateMonth: Control.chain("applyClass/alternateMonth")
-  firstDayOfMonth: Control.chain("applyClass/firstDayOfMonth")
-  firstWeek: Control.chain("applyClass/firstWeek")
-  future: Control.chain("applyClass/future")
-  lastDayOfMonth: Control.chain("applyClass/lastDayOfMonth")
-  past: Control.chain("applyClass/past")
-  saturday: Control.chain("applyClass/saturday")
-  sunday: Control.chain("applyClass/sunday")
-  today: Control.chain("applyClass/today")
-  weekday: Control.chain("applyClass/weekday")
-
-  # The date to show.
-  date: Control.property.date((date) ->
-    today = CalendarDay.today()
-    dayOfWeek = date.getDay()
-    dayOfMonth = date.getDate()
-    nextDate = CalendarDay.addDays(date, 1)
-    daysFromToday = Math.round((date.getTime() - today.getTime()) / CalendarDay.MILLISECONDS_IN_DAY)
-    @past(date < today).future(date > today).firstDayOfMonth(dayOfMonth is 1).lastDayOfMonth(date.getMonth() isnt nextDate.getMonth()).firstWeek(dayOfMonth <= 7).sunday(dayOfWeek is 0).saturday(dayOfWeek is 6).weekday(dayOfWeek > 0 and dayOfWeek < 6).today(daysFromToday is 0).alternateMonth(Math.abs(date.getMonth() - today.getMonth()) % 2 is 1).content date.getDate()
-  )
-  initialize: ->
-    self = this
-    @click (event) ->
-      self.trigger "dateSelected", [self.date()]
-
-    @date @_defaultDate()  unless @date()
-
-  _defaultDate: ->
-    CalendarDay.today()
-
-# Class methods. These are general date utilities.
-CalendarDay.extend
-  MILLISECONDS_IN_DAY: 24 * 60 * 60 * 1000
   
   # Return the result of adding the specified number of days to the given date.
-  addDays: (date, days) ->
+  @addDays: (date, days) ->
     
     # Use noon hour for date math, since adding/subtracting multiples of 24 hours
     # starting from noon is guaranteed to end up on the correct date (although
@@ -55,7 +21,36 @@ CalendarDay.extend
     result.setHours date.getHours()
     result
 
-  midnightOnDate: (date) ->
+  alternateMonth: Control.chain("applyClass/alternateMonth")
+
+  # The date to show.
+  date: Control.property.date((date) ->
+    today = CalendarDay.today()
+    dayOfWeek = date.getDay()
+    dayOfMonth = date.getDate()
+    nextDate = CalendarDay.addDays(date, 1)
+    daysFromToday = Math.round((date.getTime() - today.getTime()) / CalendarDay.MILLISECONDS_IN_DAY)
+    @past(date < today).future(date > today).firstDayOfMonth(dayOfMonth is 1).lastDayOfMonth(date.getMonth() isnt nextDate.getMonth()).firstWeek(dayOfMonth <= 7).sunday(dayOfWeek is 0).saturday(dayOfWeek is 6).weekday(dayOfWeek > 0 and dayOfWeek < 6).today(daysFromToday is 0).alternateMonth(Math.abs(date.getMonth() - today.getMonth()) % 2 is 1).content date.getDate()
+  )
+
+  firstDayOfMonth: Control.chain("applyClass/firstDayOfMonth")
+
+  firstWeek: Control.chain("applyClass/firstWeek")
+
+  future: Control.chain("applyClass/future")
+
+  initialize: ->
+    self = this
+    @click (event) ->
+      self.trigger "dateSelected", [self.date()]
+
+    @date @_defaultDate()  unless @date()
+
+  lastDayOfMonth: Control.chain("applyClass/lastDayOfMonth")
+
+  @MILLISECONDS_IN_DAY: 24 * 60 * 60 * 1000
+
+  @midnightOnDate: (date) ->
     d = new Date(date.getTime())
     d.setHours 0
     d.setMinutes 0
@@ -63,6 +58,18 @@ CalendarDay.extend
     d.setMilliseconds 0
     d
 
-  today: ->
+  past: Control.chain("applyClass/past")
+
+  saturday: Control.chain("applyClass/saturday")
+
+  sunday: Control.chain("applyClass/sunday")
+
+  today: Control.chain("applyClass/today")
+
+  @today: ->
     @midnightOnDate new Date()
 
+  weekday: Control.chain("applyClass/weekday")
+
+  _defaultDate: ->
+    CalendarDay.today()

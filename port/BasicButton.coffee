@@ -81,13 +81,20 @@ class window.BasicButton extends Control
   # state -- only when the user is interacting with the button -- so that
   # the button can more easily blend in as a component of other controls.
   quiet: Control.chain("applyClass/quiet")
+
+  @state:
+    normal: 0
+    hover: 1
+    focus: 2
+    active: 3
+    disabled: 4
+
   _renderButtonState: (buttonState) ->
 
   _renderButton: ->
     @_renderButtonState @buttonState()
 
   _trackBlur: (event) ->
-    
     # Losing focus causes the button to override any key that had been active.
     @removeClass("focus").isKeyPressed(false).isFocused(false)._renderButton()
 
@@ -113,14 +120,3 @@ class window.BasicButton extends Control
 
   _trackMouseup: (event) ->
     @removeClass("active").isMouseButtonDown(false)._renderButton()
-
-#
-# Class members
-# 
-BasicButton.extend state:
-  normal: 0
-  hover: 1
-  focus: 2
-  active: 3
-  disabled: 4
-

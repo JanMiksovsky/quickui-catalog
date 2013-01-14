@@ -34,18 +34,15 @@ class window.DaysOfWeek extends Control
       $children.eq(i).content dayName
       i++
   )
+
   initialize: ->
     @format "namesAbbr"  unless @format()
-
-# Default names; used if Globalize is not loaded.
-DaysOfWeek.extend days:
   
-  # full day names
-  names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  # Default full day names. Used if Globalize is not loaded.
+  @names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   
-  # abbreviated day names
-  namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  # Default abbreviated day names. Used if Globalize is not loaded.
+  @namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   
-  # shortest day names
-  namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
-
+  # Default shortest day names. Used if Globalize is not loaded.
+  @namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]

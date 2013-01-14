@@ -47,6 +47,17 @@ class window.TransientMessage extends Control
   positionMessage: ->
     @css left: ($(window).width() - @outerWidth()) / 2
 
+  #
+  # Show the given content for the indicated (optional) duration.
+  #     
+  @showMessage: (content, duration) ->
+    transientMessage = TransientMessage.create()
+    transientMessage.content content  if content
+    transientMessage.duration duration  if duration
+    $(document.body).append transientMessage
+    transientMessage.open()
+    transientMessage
+
   _close: ->
     timeout = @_timeout()
     if timeout
@@ -55,17 +66,3 @@ class window.TransientMessage extends Control
     @remove()
 
   _timeout: Control.property()
-
-# Class methods 
-
-#
-# Show the given content for the indicated (optional) duration.
-#     
-TransientMessage.extend showMessage: (content, duration) ->
-  transientMessage = TransientMessage.create()
-  transientMessage.content content  if content
-  transientMessage.duration duration  if duration
-  $(document.body).append transientMessage
-  transientMessage.open()
-  transientMessage
-

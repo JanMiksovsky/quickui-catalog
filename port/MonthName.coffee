@@ -24,7 +24,5 @@ class window.MonthName extends Control
     @content monthNameEnum[month]
   )
 
-# Class methods
-
-# Default names, used if Globalize is not avaialble.
-MonthName.extend names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  # Default names, used if Globalize is not avaialble.
+  @names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

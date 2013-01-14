@@ -115,6 +115,32 @@ List::extend
       items.splice index, 1
   )
 
+  # Apply a simple dictionary map to the given item. The map should contain
+  # a mapping of { controlProperty: itemProperty } entries. When invoked as
+  # a setter, this invokes
+  #    control.controlProperty( item.itemProperty )
+  # When invokes as a getter, this returns a new object with keys of the form
+  #    { itemProperty: control.controlProperty() }
+  #
+  # Note: This function should be called with this = the given control.
+  @_applyDictionaryMap: (map, item) ->
+    if item is undefined
+      
+      # Getter
+      result = {}
+      for key of map
+        propertyName = map[key]
+        value = this[propertyName]()
+        result[propertyName] = value
+      result
+    else
+      
+      # Setter
+      for key of map
+        propertyName = map[key]
+        value = item[key]
+        this[propertyName] value
+
   # Create a control for each item in the items array. Subclasses can override
   # this is they want to perform additional work when controls are being
   # created.
@@ -146,6 +172,35 @@ List::extend
     leftoverControls = $existingControls.slice(items.length)
     $(leftoverControls).remove()  if leftoverControls.length > 0
     this
+
+  # This map function is used if the host does not provide one.
+  @_defaultMapFunction: (item) ->
+    map = undefined
+    if item is undefined
+      
+      # Getter
+      map = @data("_map")
+      if map
+        
+        # Reconstruct an item using the previously-generated map.
+        List._applyDictionaryMap.call this, map
+      else
+        @content()
+    else
+      
+      # Setter
+      if $.isPlainObject(item)
+        
+        # Generate a map from the item and save it for later use.
+        map = {}
+        for key of item
+          map[key] = key  if item.hasOwnProperty(key)
+        @data "_map", map
+        List._applyDictionaryMap.call this, map, item
+      else
+        
+        # Map to content()
+        @content item
 
   # Reconstruct the set of items from the controls.
   _getItemsFromControls: ->
@@ -193,61 +248,3 @@ List::extend
   # This can be extended by subclasses who want to perform per-control
   # set-up.
   _setupControl: ($control) ->
-
-List.extend
-
-  # Apply a simple dictionary map to the given item. The map should contain
-  # a mapping of { controlProperty: itemProperty } entries. When invoked as
-  # a setter, this invokes
-  #    control.controlProperty( item.itemProperty )
-  # When invokes as a getter, this returns a new object with keys of the form
-  #    { itemProperty: control.controlProperty() }
-  #
-  # Note: This function should be called with this = the given control.
-  _applyDictionaryMap: (map, item) ->
-    if item is undefined
-      
-      # Getter
-      result = {}
-      for key of map
-        propertyName = map[key]
-        value = this[propertyName]()
-        result[propertyName] = value
-      result
-    else
-      
-      # Setter
-      for key of map
-        propertyName = map[key]
-        value = item[key]
-        this[propertyName] value
-
-  # This map function is used if the host does not provide one.
-  _defaultMapFunction: (item) ->
-    map = undefined
-    if item is undefined
-      
-      # Getter
-      map = @data("_map")
-      if map
-        
-        # Reconstruct an item using the previously-generated map.
-        List._applyDictionaryMap.call this, map
-      else
-        @content()
-    else
-      
-      # Setter
-      if $.isPlainObject(item)
-        
-        # Generate a map from the item and save it for later use.
-        map = {}
-        for key of item
-          map[key] = key  if item.hasOwnProperty(key)
-        @data "_map", map
-        List._applyDictionaryMap.call this, map, item
-      else
-        
-        # Map to content()
-        @content item
-

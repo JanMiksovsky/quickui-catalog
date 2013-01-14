@@ -17,6 +17,7 @@ class window.DeviceSpecific extends Control
 
   # The class of the control when the current device is not a mobile device.
   defaultClass: Control.property["class"]()
+    
   initialize: ->
     deviceClass = undefined
     deviceClasses = undefined
@@ -44,14 +45,12 @@ class window.DeviceSpecific extends Control
     # Apply device-specific CSS classes.
     $placeholder.addClass deviceClasses  if deviceClasses
 
+  @isMobile: ->
+    userAgent = navigator.userAgent
+    userAgent.indexOf("Mobile") >= 0 and userAgent.indexOf("iPad") < 0
+
   # The content to use when the current device is a mobile device.
   mobile: Control.property()
 
   # The class of the control when the current device is a mobile device.
   mobileClass: Control.property["class"]()
-
-# Class methods
-DeviceSpecific.extend isMobile: ->
-  userAgent = navigator.userAgent
-  userAgent.indexOf("Mobile") >= 0 and userAgent.indexOf("iPad") < 0
-

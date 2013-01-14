@@ -45,22 +45,19 @@ class window.AdPlaceholder extends Control
       width: width
     ).content(width + " x " + height).checkForSizeChange()
   )
+  
   initialize: ->
     
     # Use default size.
     @dimensions "300 x 250"  unless @dimensions()
 
-# Class methods
-
-#
-# Names of all core standard ad units as of 2/28/2011.
-# See http://www.iab.net/iab_products_and_industry_services/1421/1443/1452
-#     
-AdPlaceholder.extend standardUnits:
-  "Medium Rectangle": "300 x 250"
-  Rectangle: "180 x 150"
-  Leaderboard: "728 x 90"
-  "Wide Skyscraper": "160 x 600"
-  "Half Page Ad": "300 x 600"
-  "Button 2": "120 x 60"
-  "Micro Bar": "88 x 31"
+  # Names of all core standard ad units as of 2/28/2011.
+  # See http://www.iab.net/iab_products_and_industry_services/1421/1443/1452
+  @standardUnits:
+    "Medium Rectangle": "300 x 250"
+    Rectangle: "180 x 150"
+    Leaderboard: "728 x 90"
+    "Wide Skyscraper": "160 x 600"
+    "Half Page Ad": "300 x 600"
+    "Button 2": "120 x 60"
+    "Micro Bar": "88 x 31"

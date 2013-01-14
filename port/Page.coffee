@@ -16,10 +16,6 @@ class window.Page extends Control
     # this gives them a chance to do that.
     @title @title()
 
-  # The URL parameters for the current page. Read-only.
-  urlParameters: ->
-    Page.urlParameters()
-
   # The title of the page. This will generally be shown in the browser's
   # window title bar, etc.
   title: (title) ->
@@ -36,20 +32,11 @@ class window.Page extends Control
       # This page is not (yet) the document, keep a private copy of the title.
       @_title title
 
-  
-  # Private copy of the page's title.
-  _title: Control.property()
-
-#
-# Class members.
-# 
-Page.extend
-
   # Start actively tracking changes in a page specified on the URL.
   # For a URL like www.example.com/index.html#page=Foo, load class Foo.
   # If the page then navigates to www.example.com/index.html#page=Bar, this
   # will load class Bar in situ, without forcing the browser to reload the page. 
-  trackClassFromUrl: (defaultPageClass, target) ->
+  @trackClassFromUrl: (defaultPageClass, target) ->
     $control = Control(target or "body")
     
     # Watch for changes in the URL after the hash.
@@ -61,13 +48,17 @@ Page.extend
     # Trigger a page class load now.
     $(window).hashchange()
 
+  # The URL parameters for the current page. Read-only.
+  urlParameters: ->
+    Page.urlParameters()
+
   # Return the URL parameters (after "&" and/or "#") as a JavaScript object.
   # E.g., if the URL looks like http://www.example.com/index.html?foo=hello&bar=world
   # then this returns the object
   #
   #    { foo: "hello", bar: "world" }
   #
-  urlParameters: ->
+  @urlParameters: ->
     regex = /[?#&](\w+)=([^?#&]*)/g
     results = {}
     match = regex.exec(window.location.href)
@@ -77,6 +68,9 @@ Page.extend
       results[parameterName] = parameterValue
       match = regex.exec(window.location.href)
     results
+  
+  # Private copy of the page's title.
+  _title: Control.property()
 
 #
 # General utility functions made available to all controls.
@@ -90,4 +84,3 @@ Control::extend page: ->
   
   # From the DOM element, get the associated QuickUI control.
   (if (pages.length > 0) then pages.control() else null)
-

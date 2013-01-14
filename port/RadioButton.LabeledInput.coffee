@@ -14,9 +14,13 @@ class window.RadioButton extends LabeledInput
   autoName: Control.property.bool(null, true, ->
     @_checkName()
   )
+
   initialize: ->
     @inDocument ->
       @_checkName()
+
+  @generateUniqueName: ->
+      "_group" + @_count++
 
   # The text name of the radio button group.
   # 
@@ -27,6 +31,7 @@ class window.RadioButton extends LabeledInput
   name: Control.chain("_inputControl", "prop/name", ->
     @_checkName()
   )
+  
   _checkName: ->
     if @inDocument() and @autoName() and not @name()
 
@@ -42,10 +47,4 @@ class window.RadioButton extends LabeledInput
       name = (if named then named.name() else RadioButton.generateUniqueName()) # Generate a name.
       @name name
 
-# Class members 
-RadioButton.extend
-  generateUniqueName: ->
-    "_group" + @_count++
-
-  _count: 0
-
+  @_count: 0
