@@ -50,9 +50,8 @@ class window.PersistentPanel extends Control
   # The parent of this control used to determine whether the control is
   # in or out of view. The default value for this property is the closest
   # parent element with overflow-y set to "auto" or "scroll".
-  scrollingParent: Control.property( ( scrollingParent ) ->
+  scrollingParent: Control.property ( scrollingParent ) ->
     $( scrollingParent ).scroll => @_recalc()
-  )
   
   _adjustSizes: ->
     

@@ -104,10 +104,9 @@ class window.FlickrInterestingPhoto extends Control
   # o   original image, either a jpg, gif or png, depending on source format
   # 
   # If this property is not set, the photo will be medium size.
-  photoSize: Control.property( ->
+  photoSize: Control.property ->
     photo = @photo()
     @reload()  if photo and photo.length > 0
-  )
 
   # Return a date in YYYY-MM-DD format.
   @_formatFlickrDate: ( date ) ->

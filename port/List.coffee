@@ -91,13 +91,12 @@ class window.List extends Control
   #   The indicate value will be passed to and from control.property()
   # * Otherwise, the item is passed to and from the control's content()
   #   property.
-  mapFunction: Control.property( ->
+  mapFunction: Control.property ->
     # TODO: Before storing new mapFunction, use old one to extract items
     # if the list is dirty. For now, if the mapFunction of a dirty list is
     # updated, the unsaved changes are thrown away.
     items = @_itemsCache()
     @items items # Force refresh.
-  )
 
   # Remove the item at the indicated index.
   removeItemAt: Control.iterator( ( index ) ->

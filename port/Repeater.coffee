@@ -5,9 +5,8 @@ Creates a certain number of instances of another control class.
 class window.Repeater extends Control
 
   # The content which will be repeated in each instance.
-  content: Control.property( ( content ) ->
+  content: Control.property ( content ) ->
     @_refreshContent @controls()
-  )
 
   # The generated collection of controls.
   controls: Control.chain "children", "control"

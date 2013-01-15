@@ -20,11 +20,10 @@ class window.SlidingPanelsWithDots extends Control
     generic: "true"
 
   # The index of the page currently being shown.
-  activeIndex: Control.property( ( activeIndex ) ->
+  activeIndex: Control.property ( activeIndex ) ->
     @$pages().activeIndex activeIndex
     @pageButtons().removeClass( "selected" ).eq( activeIndex ).addClass "selected"
     this
-  )
 
   # The set of elements to show as pages.
   content: Control.chain( "$pages", "content", ->

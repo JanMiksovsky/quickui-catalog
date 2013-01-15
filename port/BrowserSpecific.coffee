@@ -6,6 +6,7 @@ class window.BrowserSpecific extends Control
 
   # Content to show if none of the specified browsers apply.
   default: Control.property()
+  
   initialize: ->
     content = undefined
     if Control.browser.mozilla

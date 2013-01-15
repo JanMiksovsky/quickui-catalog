@@ -11,17 +11,17 @@ class window.Gradient extends Control
   , "vertical" )
 
   # The ending value for the gradient.
-  end: Control.property( ->
+  end: Control.property ->
     @_redraw()
-  )
+  
   initialize: ->
     @inDocument ->
       @_redraw()
 
   # The starting value for the gradient.
-  start: Control.property( ->
+  start: Control.property ->
     @_redraw()
-  )
+  
   _redraw: ->
     return  unless @inDocument()
     direction = @direction()

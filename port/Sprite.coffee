@@ -9,15 +9,15 @@ class window.Sprite extends Control
   image: Control.chain "css/background-image"
 
   # The height of a single cell in the sprite image, in pixels.
-  cellHeight: Control.property( ( value ) ->
+  cellHeight: Control.property ( value ) ->
     @css "height", value + "px"
     @_shiftBackground()
-  )
 
   # The sprite cell currently shown.
   currentCell: Control.property( ( value ) ->
     @_shiftBackground()
   , 0 )
+  
   _shiftBackground: Control.iterator( ->
     if @currentCell()? and @cellHeight()?
       y = ( @currentCell() * -@cellHeight() ) + "px"

@@ -18,6 +18,7 @@ class window.TransientMessage extends Control
   # the length of the message. If negative, the message will not
   # automatically be closed, but can be closed by invoking close().
   duration: Control.property()
+  
   initialize: ->
     @click => @_close()
 

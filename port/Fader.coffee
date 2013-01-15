@@ -22,12 +22,12 @@ class window.Fader extends Control
   # The direction in which the content should fade. If "horizontal" (the
   # default), the content will fade to the right. If "vertical", the content
   # will fade to the bottom.
-  direction: Control.property( ( direction ) ->
+  direction: Control.property ( direction ) ->
     vertical = ( direction isnt "horizontal" )
     @toggleClass( "horizontal", not vertical ).toggleClass "vertical", vertical
     @_redraw()  if @inDocument()
     @$gradient().direction direction
-  )
+
   initialize: ->
     @inDocument ->
       @_redraw()

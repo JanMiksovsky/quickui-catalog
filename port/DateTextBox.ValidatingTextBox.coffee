@@ -17,7 +17,7 @@ class window.DateTextBox extends ValidatingTextBox
     result
 
   # The date indicated in the text box.
-  date: Control.property.date( ( date ) ->
+  date: Control.property.date ( date ) ->
     previousDate = @_previousDate()
     previousTime = previousDate and previousDate.getTime()
     time = date and date.getTime()
@@ -29,7 +29,7 @@ class window.DateTextBox extends ValidatingTextBox
       # so as not to confuse them.
       @_refresh()  unless hasFocus
       @_previousDate( date ).trigger "dateChanged", [date]
-  )
+  
   initialize: ->
     @blur => @_refresh()
     @_updateDatePatterns()

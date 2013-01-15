@@ -31,12 +31,12 @@ class window.HighlightEffects extends Control
   # should generally respond quickly.
   # 
   # Set this to 0 to have effects applied instantaneously.
-  duration: Control.property( null, 100 )
+  duration: Control.property null, 100
 
   # The effects that will be applied on hover.
-  effects: Control.property( ->
+  effects: Control.property ->
     @_originalState @_getCurrentState()
-  )
+  
   initialize: ->
     @on "layout", => @_recalc()
     @hover =>

@@ -33,9 +33,8 @@ class window.Link extends Control
   # True if the link points to an area of the site (with sub-pages). If
   # true, the link will be considered current if it points to any page within
   # that area of the site. The default is false.
-  linksToArea: Control.property( ->
+  linksToArea: Control.property ->
     @_checkIfCurrent()
-  )
 
   # The target of the link.
   target: Control.chain "prop/target"

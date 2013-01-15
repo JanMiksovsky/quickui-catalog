@@ -18,7 +18,7 @@ class window.Collapsible extends Control
   content: Control.chain "$Collapsible_content", "content"
 
   # The speed of the expand/collapse animation, in milliseconds.
-  duration: Control.property( null, "fast" )
+  duration: Control.property null, "fast"
 
   # Get or set the control's collapsed state.
   # When called as a setter, a true value collapsed the control;
