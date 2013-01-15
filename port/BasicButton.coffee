@@ -68,7 +68,7 @@ class window.BasicButton extends Control
   # styling shows no background or border effects in the button's normal
   # state -- only when the user is interacting with the button -- so that
   # the button can more easily blend in as a component of other controls.
-  quiet: Control.chain( "applyClass/quiet" )
+  quiet: Control.chain "applyClass/quiet"
 
   @state:
     normal: 0

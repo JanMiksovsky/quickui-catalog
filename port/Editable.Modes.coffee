@@ -32,7 +32,7 @@ class window.Editable extends Modes
   )
 
   # The control used for editing.
-  editControl: Control.chain( "$Editable_edit" )
+  editControl: Control.chain "$Editable_edit"
 
   # True if the control is in edit mode, false if in read mode. By default,
   # this is false.
@@ -67,7 +67,7 @@ class window.Editable extends Modes
   )
 
   # The control used for reading.
-  readControl: Control.chain( "$Editable_read" )
+  readControl: Control.chain "$Editable_read"
 
   # Save changes and return to read mode.
   save: Control.iterator( ->

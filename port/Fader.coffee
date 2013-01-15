@@ -17,7 +17,7 @@ class window.Fader extends Control
       direction: "horizontal"
     ]
 
-  content: Control.chain( "$Fader_content", "content" )
+  content: Control.chain "$Fader_content", "content"
 
   # The direction in which the content should fade. If "horizontal" (the
   # default), the content will fade to the right. If "vertical", the content

@@ -8,7 +8,7 @@ class window.Page extends Control
     generic: "true"
 
   # True if the page should fill its container. Default is false.
-  fill: Control.chain( "applyClass/fill" )
+  fill: Control.chain "applyClass/fill"
   initialize: ->
     
     # Force a refresh of the page title. Subclasses may want to handle the

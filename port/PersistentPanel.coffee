@@ -24,7 +24,7 @@ class window.PersistentPanel extends Control
     generic: "true"
 
   # The content's background. See top notes.
-  background: Control.chain( "$PersistentPanel_content", "css/background" )
+  background: Control.chain "$PersistentPanel_content", "css/background"
 
   # The control's content.
   content: Control.chain( "$PersistentPanel_content", "content", ->
@@ -32,7 +32,7 @@ class window.PersistentPanel extends Control
   )
 
   # True if the control is currently docked to the top of the viewport.
-  docked: Control.chain( "applyClass/docked" )
+  docked: Control.chain "applyClass/docked"
   initialize: ->
     @on "layout", => @_recalc() if @inDocument()
 
@@ -45,7 +45,7 @@ class window.PersistentPanel extends Control
       @_recalc()
 
   # The content's padding. See top notes.
-  padding: Control.chain( "$PersistentPanel_content", "css/padding" )
+  padding: Control.chain "$PersistentPanel_content", "css/padding"
 
   # The parent of this control used to determine whether the control is
   # in or out of view. The default value for this property is the closest

@@ -59,7 +59,7 @@ class window.CalendarWeek extends Control
   )
   
   # The collection of day cells 
-  days: Control.chain( "children", "control" )
+  days: Control.chain "children", "control"
   initialize: ->
     
     # Default date range is the current week.

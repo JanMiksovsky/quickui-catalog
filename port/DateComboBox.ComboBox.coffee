@@ -45,10 +45,10 @@ class window.DateComboBox extends ComboBox
   # The class used for the dropdown portion of the combo box.
   # By default this is a CalendarMonthNavigator, but it can be set to any
   # class that exposes a date() property.
-  navigatorClass: Control.chain( "$navigator", "transmute" )
+  navigatorClass: Control.chain "$navigator", "transmute"
 
   # True if the user must enter a value in this field.
-  required: Control.chain( "$ComboBox_content", "required" )
+  required: Control.chain "$ComboBox_content", "required"
   
   # Hint for documentation tools.
   _requiredClasses: ["DateTextBox"]

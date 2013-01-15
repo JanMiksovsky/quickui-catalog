@@ -17,7 +17,7 @@ class window.TextBox extends Control
 
   
   # True if the text box is disabled. 
-  disabled: Control.chain( "prop/disabled" )
+  disabled: Control.chain "prop/disabled"
   initialize: ->
     
     # Explicitly stamp type="text" on the control if a type hasn't been
@@ -27,11 +27,11 @@ class window.TextBox extends Control
     @type "text"  if @type() is "text"
 
   # The placeholder (hint text) shown in the text box if it's empty.
-  placeholder: Control.chain( "prop/placeholder" )
+  placeholder: Control.chain "prop/placeholder"
 
   # True if the text box should do spell-checking.
-  spellcheck: Control.chain( "prop/spellcheck" )
+  spellcheck: Control.chain "prop/spellcheck"
 
   # The type of input: "text", "email", "password", etc.
-  type: Control.chain( "prop/type" )
+  type: Control.chain "prop/type"
 

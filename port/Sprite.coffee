@@ -6,7 +6,7 @@ The images have to be stacked vertically, and all be the same height.
 class window.Sprite extends Control
 
   # The sprite image.
-  image: Control.chain( "css/background-image" )
+  image: Control.chain "css/background-image"
 
   # The height of a single cell in the sprite image, in pixels.
   cellHeight: Control.property( ( value ) ->

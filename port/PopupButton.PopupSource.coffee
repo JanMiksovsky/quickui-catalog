@@ -23,6 +23,6 @@ class window.PopupButton extends PopupSource
 
   # Content which indicates the button can be clicked to produce a popup.
   # The default indicator is a downward-pointing arrow. 
-  indicator: Control.chain( "$indicator", "content" )
-  quiet: Control.chain( "$PopupSource_content", "quiet" )
+  indicator: Control.chain "$indicator", "content"
+  quiet: Control.chain "$PopupSource_content", "quiet"
 

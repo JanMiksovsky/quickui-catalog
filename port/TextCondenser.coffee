@@ -15,7 +15,7 @@ class window.TextCondenser extends Control
     ]
 
   # The font family to use for condensed text.
-  condensedFontFamily: Control.chain( "$condensed", "css/font-family" )
+  condensedFontFamily: Control.chain "$condensed", "css/font-family"
   content: Control.chain( "$normal", "content", ( content ) ->
     @$condensed().content content # Make a copy of the text.
     @checkForSizeChange()

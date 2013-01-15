@@ -72,4 +72,4 @@ class window.SlidingPanels extends Sequence
     maxpanelOuterWidth = Math.max.apply( this, panelOuterWidths )
     @width maxpanelOuterWidth  if maxpanelOuterWidth > 0
 
-  _container: Control.chain( "$SlidingPanels_content" )
+  _container: Control.chain "$SlidingPanels_content"

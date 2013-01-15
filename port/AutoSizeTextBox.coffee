@@ -70,10 +70,10 @@ class window.AutoSizeTextBox extends Control
   , 1 )
 
   # The placeholder (hint text) shown in the text area if it's empty.
-  placeholder: Control.chain( "$textBox", "prop/placeholder" )
+  placeholder: Control.chain "$textBox", "prop/placeholder"
 
   # True if the text box should expose the browser's built-in spell-checking.
-  spellcheck: Control.chain( "$textBox", "prop/spellcheck" )
+  spellcheck: Control.chain "$textBox", "prop/spellcheck"
   
   # For the following, we need to wait until the control's in the DOM.    
   _refresh: Control.iterator( ->

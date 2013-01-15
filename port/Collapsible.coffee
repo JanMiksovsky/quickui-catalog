@@ -15,7 +15,7 @@ class window.Collapsible extends Control
     generic: "true"
 
   # The control's contents which can be expanded and collapsed.
-  content: Control.chain( "$Collapsible_content", "content" )
+  content: Control.chain "$Collapsible_content", "content"
 
   # The speed of the expand/collapse animation, in milliseconds.
   duration: Control.property( null, "fast" )
@@ -56,7 +56,7 @@ class window.Collapsible extends Control
   # 
   # This can be empty if the application wants to programmatically control
   # the collapsed state in some other means.
-  heading: Control.chain( "$Collapsible_heading", "content" )
+  heading: Control.chain "$Collapsible_heading", "content"
   initialize: ->
     @$Collapsible_heading().click =>
       @toggleCollapse()  if @toggleOnClick()

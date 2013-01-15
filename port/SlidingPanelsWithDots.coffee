@@ -30,7 +30,7 @@ class window.SlidingPanelsWithDots extends Control
   content: Control.chain( "$pages", "content", ->
     @$pageButtons().count @elements().length
   )
-  elements: Control.chain( "$pages", "elements" )
+  elements: Control.chain "$pages", "elements"
   initialize: ->
     @pageButtonClass BasicButton  unless @pageButtonClass()
     @$pageButtons().click ( event ) =>
@@ -41,8 +41,8 @@ class window.SlidingPanelsWithDots extends Control
         @activeIndex index  if index >= 0
     @activeIndex 0  unless @activeIndex()
 
-  pageButtons: Control.chain( "$pageButtons", "children" )
+  pageButtons: Control.chain "$pageButtons", "children"
 
   # The class used to render the buttons to navigate between pages.
-  pageButtonClass: Control.chain( "$pageButtons", "repeatClass" )
+  pageButtonClass: Control.chain "$pageButtons", "repeatClass"
 

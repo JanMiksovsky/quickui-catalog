@@ -64,7 +64,7 @@ class window.Sequence extends Control
       result
 
   # The set of elements in the sequence.
-  elements: Control.chain( "_container", "children", "cast" )
+  elements: Control.chain "_container", "children", "cast"
   initialize: ->
     
     # Show first child by default. 

@@ -32,7 +32,7 @@ class window.FlickrInterestingDay extends CalendarDay
       @loadPhoto()  if @autoLoad()
     result
 
-  content: Control.chain( "$FlickrInterestingDay_content", "content" )
+  content: Control.chain "$FlickrInterestingDay_content", "content"
 
   @getInterestingPhotoForDate: ( date, callback ) ->
     flickrDate = @_formatFlickrDate( date )
@@ -71,10 +71,10 @@ class window.FlickrInterestingDay extends CalendarDay
     "http://flickr.com/photo.gne?id=" + flickrPhoto.id
 
   # The location of the Flickr page for the photo.
-  href: Control.chain( "$link", "attr/href" )
+  href: Control.chain "$link", "attr/href"
 
   # The location of the photo image on Flickr.
-  image: Control.chain( "$image", "attr/src" )
+  image: Control.chain "$image", "attr/src"
 
   # Load the photo for the given date.
   loadPhoto: Control.iterator( ->

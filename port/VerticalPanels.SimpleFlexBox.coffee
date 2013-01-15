@@ -8,8 +8,8 @@ class window.VerticalPanels extends SimpleFlexBox
     orient: "vertical"
 
   # The content of the bottom panel.
-  bottom: Control.chain( "_panel2" )
+  bottom: Control.chain "_panel2"
 
   # The content of the top panel.
-  top: Control.chain( "_panel1" )
+  top: Control.chain "_panel1"
 

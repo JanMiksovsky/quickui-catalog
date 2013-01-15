@@ -20,8 +20,8 @@ class window.CalendarMonth extends Control
     ]
     generic: "true"
 
-  days: Control.chain( "find/.CalendarDay", "control" )
-  weeks: Control.chain( "children", "control" )
+  days: Control.chain "find/.CalendarDay", "control"
+  weeks: Control.chain "children", "control"
 
   # The control's current culture.
   culture: ( culture ) ->

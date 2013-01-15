@@ -29,7 +29,7 @@ class window.Menu extends PopupSource
     @_updateShield()
     super()
 
-  popup: Control.chain( "$Menu_popup", "content" )
+  popup: Control.chain "$Menu_popup", "content"
   
   # Hint for documentation tools.
   _requiredClasses: ["MenuItem"]

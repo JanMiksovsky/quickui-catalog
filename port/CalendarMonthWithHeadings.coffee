@@ -42,17 +42,17 @@ class window.CalendarMonthWithHeadings extends Control
   )
 
   # The class used to represent days in the month.
-  dayClass: Control.chain( "$calendar", "dayClass" )
+  dayClass: Control.chain "$calendar", "dayClass"
 
   # The controls used for the days in the calendar.
-  days: Control.chain( "$calendar", "days" )
+  days: Control.chain "$calendar", "days"
 
   # Returns the control currently showing the given date.
   dayControlForDate: ( date ) ->
     @$calendar().dayControlForDate date
 
   # The format used to show day headings. See DaysOfWeek.
-  dayNameFormat: Control.chain( "$daysOfWeek", "format" )
+  dayNameFormat: Control.chain "$daysOfWeek", "format"
   initialize: ->
     unless @date()
       
@@ -64,5 +64,5 @@ class window.CalendarMonthWithHeadings extends Control
       @$monthAndYear().date @date()
 
   # True if the month name and year should be shown.
-  showMonthAndYear: Control.chain( "$monthAndYear", "visibility" )
+  showMonthAndYear: Control.chain "$monthAndYear", "visibility"
 

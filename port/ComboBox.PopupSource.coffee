@@ -29,11 +29,11 @@ class window.ComboBox extends PopupSource
   closeOnEnter: Control.property.bool( null, true )
 
   # The content of the combo box's input portion.
-  content: Control.chain( "$ComboBox_content", "content" )
+  content: Control.chain "$ComboBox_content", "content"
 
   # The content of the dropdown button. By default, this shows a
   # downward-pointing arrow.
-  dropdownButtonContent: Control.chain( "$dropdownButton", "content" )
+  dropdownButtonContent: Control.chain "$dropdownButton", "content"
   initialize: ->
     @$PopupSource_popup().on
       canceled: =>
@@ -119,7 +119,7 @@ class window.ComboBox extends PopupSource
   openOnFocus: Control.property.bool( null, true )
 
   # The control serving as the text box portion of the combo box.
-  textBox: Control.chain( "$ComboBox_content", "control" )
+  textBox: Control.chain "$ComboBox_content", "control"
 
   # The class of the text box portion of the combo box.
   textBoxClass: Control.property.class( ( textBoxClass ) ->

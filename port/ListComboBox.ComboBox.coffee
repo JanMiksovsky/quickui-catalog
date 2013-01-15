@@ -21,7 +21,7 @@ class window.ListComboBox extends ComboBox
   )
 
   # A mapping of items to controls and back. See List for details.
-  mapFunction: Control.chain( "$list", "mapFunction" )
+  mapFunction: Control.chain "$list", "mapFunction"
   initialize: ->
     @$list().on
 

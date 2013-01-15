@@ -31,7 +31,7 @@ class window.ValidatingTextBox extends TextBox
       blur: => @validate true if @validateOnBlur()
       keyup: => @validate()
 
-  invalid: Control.chain( "applyClass/invalid" )
+  invalid: Control.chain "applyClass/invalid"
 
   # True if the text box must be non-empty to be valid.
   required: Control.property.bool()

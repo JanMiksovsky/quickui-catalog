@@ -57,7 +57,7 @@ class window.MenuBar extends Control
         newMenu.open()  if newMenu and not newMenu.opened()
 
   # Returns true if any of the menu bar's menus are currently open.
-  opened: Control.chain( "applyClass/opened" )
+  opened: Control.chain "applyClass/opened"
   open: Control.iterator( ->
     
     # Already open
@@ -76,7 +76,7 @@ class window.MenuBar extends Control
     this
 
   # Return the currently open popups.
-  _openPopups: Control.chain( "children", "filter/.PopupSource.opened", "control" )
+  _openPopups: Control.chain "children", "filter/.PopupSource.opened", "control"
   
   # The overlay behind the menu bar.    
   _overlay: Control.property()

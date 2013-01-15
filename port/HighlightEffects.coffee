@@ -23,7 +23,7 @@ class window.HighlightEffects extends Control
   )
 
   # The CSS to apply to the content in the normal state.
-  contentCss: Control.chain( "$HighlightEffects_content", "css" )
+  contentCss: Control.chain "$HighlightEffects_content", "css"
 
   # The speed with which animations are applied.
   # 

@@ -8,7 +8,7 @@ class window.HorizontalPanels extends SimpleFlexBox
     orient: "horizontal"
 
   # The content of the left panel.
-  left: Control.chain( "_panel1" )
+  left: Control.chain "_panel1"
   leftClass: Control.property.class( ( leftClass ) ->
     $new = @$SimpleFlexBox_panel1().transmute( leftClass, true )
     $new.addClass "panel"
@@ -16,7 +16,7 @@ class window.HorizontalPanels extends SimpleFlexBox
   )
 
   # The content of the right panel.
-  right: Control.chain( "_panel2" )
+  right: Control.chain "_panel2"
   rightClass: Control.property.class( ( right ) ->
     $new = @$SimpleFlexBox_panel2().transmute( right, true )
     $new.addClass "panel"

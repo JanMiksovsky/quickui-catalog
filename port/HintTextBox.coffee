@@ -23,7 +23,7 @@ class window.HintTextBox extends Control
   # type there. This hint is hidden if: the text box has content, the
   # text box has just acquired the keyboard focus, or if the user clicks in
   # the text box. 
-  hint: Control.chain( "$HintTextBox_hint", "content" )
+  hint: Control.chain "$HintTextBox_hint", "content"
   initialize: ->
     @on
       click: => @_hideHint()

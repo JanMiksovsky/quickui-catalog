@@ -21,7 +21,7 @@ class window.CalendarDay extends Control
     result.setHours date.getHours()
     result
 
-  alternateMonth: Control.chain( "applyClass/alternateMonth" )
+  alternateMonth: Control.chain "applyClass/alternateMonth"
 
   # The date to show.
   date: Control.property.date( ( date ) ->
@@ -33,17 +33,17 @@ class window.CalendarDay extends Control
     @past( date < today ).future( date > today ).firstDayOfMonth( dayOfMonth is 1 ).lastDayOfMonth( date.getMonth() isnt nextDate.getMonth() ).firstWeek( dayOfMonth <= 7 ).sunday( dayOfWeek is 0 ).saturday( dayOfWeek is 6 ).weekday( dayOfWeek > 0 and dayOfWeek < 6 ).today( daysFromToday is 0 ).alternateMonth( Math.abs( date.getMonth() - today.getMonth() ) % 2 is 1 ).content date.getDate()
   )
 
-  firstDayOfMonth: Control.chain( "applyClass/firstDayOfMonth" )
+  firstDayOfMonth: Control.chain "applyClass/firstDayOfMonth"
 
-  firstWeek: Control.chain( "applyClass/firstWeek" )
+  firstWeek: Control.chain "applyClass/firstWeek"
 
-  future: Control.chain( "applyClass/future" )
+  future: Control.chain "applyClass/future"
 
   initialize: ->
     @click ( event ) => @trigger "dateSelected", [@date()]
     @date @_defaultDate()  unless @date()
 
-  lastDayOfMonth: Control.chain( "applyClass/lastDayOfMonth" )
+  lastDayOfMonth: Control.chain "applyClass/lastDayOfMonth"
 
   @MILLISECONDS_IN_DAY: 24 * 60 * 60 * 1000
 
@@ -55,18 +55,18 @@ class window.CalendarDay extends Control
     d.setMilliseconds 0
     d
 
-  past: Control.chain( "applyClass/past" )
+  past: Control.chain "applyClass/past"
 
-  saturday: Control.chain( "applyClass/saturday" )
+  saturday: Control.chain "applyClass/saturday"
 
-  sunday: Control.chain( "applyClass/sunday" )
+  sunday: Control.chain "applyClass/sunday"
 
-  today: Control.chain( "applyClass/today" )
+  today: Control.chain "applyClass/today"
 
   @today: ->
     @midnightOnDate new Date()
 
-  weekday: Control.chain( "applyClass/weekday" )
+  weekday: Control.chain "applyClass/weekday"
 
   _defaultDate: ->
     CalendarDay.today()

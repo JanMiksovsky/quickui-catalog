@@ -23,16 +23,16 @@ class window.CollapsibleWithHeadingButton extends Collapsible
     ]
 
   # The class of the heading button.
-  buttonClass: Control.chain( "$headingButton", "transmute" )
+  buttonClass: Control.chain "$headingButton", "transmute"
 
   # The content of the heading button when the panel is collapsed.
-  collapsedButtonContent: Control.chain( "$collapsedButtonContent", "content" )
+  collapsedButtonContent: Control.chain "$collapsedButtonContent", "content"
 
   # The content of the heading button when the panel is expanded.
-  expandedButtonContent: Control.chain( "$expandedButtonContent", "content" )
+  expandedButtonContent: Control.chain "$expandedButtonContent", "content"
 
   # The heading shown at the top of the panel.
-  heading: Control.chain( "$CollapsibleWithHeadingButton_heading", "content" )
+  heading: Control.chain "$CollapsibleWithHeadingButton_heading", "content"
   initialize: ->
     $button = @$headingButton()
     @$Collapsible_heading().hover =>

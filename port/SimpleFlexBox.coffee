@@ -24,7 +24,7 @@ class window.SimpleFlexBox extends Control
     ]
 
   # The content of the main center panel.
-  content: Control.chain( "$SimpleFlexBox_content", "content" )
+  content: Control.chain "$SimpleFlexBox_content", "content"
 
   # Set this to true if you have styled the control to constrain its
   # height, e.g., with absolute positioning or a hard pixel height. 

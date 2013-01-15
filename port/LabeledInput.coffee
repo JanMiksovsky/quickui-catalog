@@ -17,19 +17,19 @@ class window.LabeledInput extends Control
     ]
 
   # True if the input control is checked, false if unchecked.
-  checked: Control.chain( "_inputControl", "prop/checked" )
+  checked: Control.chain "_inputControl", "prop/checked"
 
   # The label for the input control.
   # This can be arbitrary content, not just text.
-  content: Control.chain( "$LabeledInput_content", "content" )
+  content: Control.chain "$LabeledInput_content", "content"
 
   # True if the input control should be disabled.
-  disabled: Control.chain( "_inputControl", "prop/disabled" )
+  disabled: Control.chain "_inputControl", "prop/disabled"
 
   # Return the input control.
   # We restrict our search to direct children, in case the label also
   # includes input controls.
-  _inputControl: Control.chain( "children", "filter/input" )
+  _inputControl: Control.chain "children", "filter/input"
 
   # Sets the input control's type.
   # This is set in subclasses CheckBox and RadioButton.

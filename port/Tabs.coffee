@@ -48,7 +48,7 @@ class window.Tabs extends Control
       this
 
   # True if the Tabs should vertically fill its container.
-  fill: Control.chain( "$tabPanels", "fill" )
+  fill: Control.chain "$tabPanels", "fill"
 
   initialize: ->
     @$tabButtons().click ( event ) =>
@@ -77,7 +77,7 @@ class window.Tabs extends Control
   selectTabOnClick: Control.property.bool( null, true )
 
   # The child currently shown as the selected tab.
-  selectedTab: Control.chain( "$Tabs_content", "activeElement" )
+  selectedTab: Control.chain "$Tabs_content", "activeElement"
 
   # The index of the selected tab.
   selectedTabIndex: Control.chain( "$Tabs_content", "activeIndex", ( index ) ->
@@ -86,7 +86,7 @@ class window.Tabs extends Control
   )
 
   # The current set of tab button controls.
-  tabButtons: Control.chain( "$tabButtons", "children" )
+  tabButtons: Control.chain "$tabButtons", "children"
 
   # The class which should be used to create tab buttons for the set.
   tabButtonClass: Control.chain( "$tabButtons", "itemClass", ->
@@ -94,7 +94,7 @@ class window.Tabs extends Control
   )
 
   # The content of the current set of tabs.
-  tabs: Control.chain( "$Tabs_content", "elements" )
+  tabs: Control.chain "$Tabs_content", "elements"
 
   # Called whenever the set of buttons needs to be regenerated.
   _createButtons: ->

@@ -14,12 +14,12 @@ class window.BlogPost extends Control
     ]
     generic: "true"
 
-  content: Control.chain( "$BlogPost_content", "content" )
+  content: Control.chain "$BlogPost_content", "content"
   entry: Control.property( ( entry ) ->
     @postTitle entry.title
     @link entry.link
     @content entry.content
   )
-  postTitle: Control.chain( "$BlogPost_postTitle", "content" )
-  link: Control.chain( "$BlogPost_postTitle", "prop/href" )
+  postTitle: Control.chain "$BlogPost_postTitle", "content"
+  link: Control.chain "$BlogPost_postTitle", "prop/href"
 

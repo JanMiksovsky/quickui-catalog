@@ -10,7 +10,7 @@ class window.Repeater extends Control
   )
 
   # The generated collection of controls.
-  controls: Control.chain( "children", "control" )
+  controls: Control.chain "children", "control"
 
   # The number of repetitions to create.
   # The default count is 1.

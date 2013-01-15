@@ -15,7 +15,7 @@ class window.Link extends Control
   tag: "a"
 
   # True if the link points to the current page.
-  current: Control.chain( "applyClass/current" )
+  current: Control.chain "applyClass/current"
 
   # The location that will be opened if the user clicks the link.
   href: Control.chain( "prop/href", ->
@@ -38,7 +38,7 @@ class window.Link extends Control
   )
 
   # The target of the link.
-  target: Control.chain( "prop/target" )
+  target: Control.chain "prop/target"
 
   # Apply the "current" style if the link points to the page we're on.
   _checkIfCurrent: ->
