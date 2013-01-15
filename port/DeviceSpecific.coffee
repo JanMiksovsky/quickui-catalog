@@ -16,7 +16,7 @@ class window.DeviceSpecific extends Control
   default: Control.property()
 
   # The class of the control when the current device is not a mobile device.
-  defaultClass: Control.property["class"]()
+  defaultClass: Control.property.class()
     
   initialize: ->
     deviceClass = undefined
@@ -53,4 +53,4 @@ class window.DeviceSpecific extends Control
   mobile: Control.property()
 
   # The class of the control when the current device is a mobile device.
-  mobileClass: Control.property["class"]()
+  mobileClass: Control.property.class()

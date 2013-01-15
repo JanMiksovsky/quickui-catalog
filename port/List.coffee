@@ -46,7 +46,7 @@ List::extend
   isDirty: Control.property.bool(null, true)
 
   # The class used to render items in the list as controls.
-  itemClass: Control.property["class"](->
+  itemClass: Control.property.class(->
     
     # Get the existing items.
     items = (if @isDirty() then @items() else @_itemsCache())

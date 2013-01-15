@@ -49,7 +49,7 @@ class window.PopupSource extends Control
   content: Control.chain("$PopupSource_content", "content")
 
   # The class of the content portion.
-  contentClass: Control.property["class"]((contentClass) ->
+  contentClass: Control.property.class((contentClass) ->
 
     # If the content element changes (e.g., from a div to a button), we
     # must update our element reference to point to the new element.

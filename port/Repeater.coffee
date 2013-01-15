@@ -28,7 +28,7 @@ Repeater::extend
   )
 
   # The class that will be repeated.
-  repeatClass: Control.property["class"](->
+  repeatClass: Control.property.class(->
     @_refresh()
   )
   _refresh: ->

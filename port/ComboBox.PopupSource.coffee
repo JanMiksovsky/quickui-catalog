@@ -126,7 +126,7 @@ class window.ComboBox extends PopupSource
   textBox: Control.chain("$ComboBox_content", "control")
 
   # The class of the text box portion of the combo box.
-  textBoxClass: Control.property["class"]((textBoxClass) ->
+  textBoxClass: Control.property.class((textBoxClass) ->
     $textBox = @$ComboBox_content().transmute(textBoxClass, true)
     @referencedElement "ComboBox_content", $textBox
     

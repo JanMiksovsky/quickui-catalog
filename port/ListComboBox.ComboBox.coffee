@@ -49,7 +49,7 @@ class window.ListComboBox extends ComboBox
             self._selectText 0, content.length
 
   # The class which should be used to render the list items as controls.
-  itemClass: Control.property["class"]((itemClass) ->
+  itemClass: Control.property.class((itemClass) ->
     @$list().itemClass itemClass
   )
   open: ->

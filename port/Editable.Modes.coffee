@@ -25,7 +25,7 @@ class window.Editable extends Modes
 
   # The class of the content in edit mode. This class is not instantiated
   # until editing() is set to true for the first time.
-  editClass: Control.property["class"]((editClass) ->
+  editClass: Control.property.class((editClass) ->
     
     # Transmute the edit control to the new class.
     @_ensureEditControl()  if @editing()
@@ -62,7 +62,7 @@ class window.Editable extends Modes
   )
   
   # The class of the content in read mode. 
-  readClass: Control.property["class"]((readClass) ->
+  readClass: Control.property.class((readClass) ->
     $new = @$Editable_read().transmute(readClass, true)
     @referencedElement "Editable_read", $new
   )
