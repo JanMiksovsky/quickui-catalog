@@ -25,27 +25,21 @@ class window.ListBox extends List
     # Firefox, Chrome, and IE seem to handle this as desired if tabindex
     # is set to a negative number.
     @attr "tabindex", "-1"
-    self = this
     @on
-      click: (event) ->
+      click: (event) =>
         if event.target is self[0]
-          
           # User clicked the list box's background. 
-          self.selectedControl null  if self.deselectOnBackgroundClick()
+          @selectedControl null  if @deselectOnBackgroundClick()
         else
-          control = self._getControlContainingElement(event.target)
-          self._controlClick control  if control
-
-      keydown: (event) ->
-        self._keydown event
-
+          control = @_getControlContainingElement(event.target)
+          @_controlClick control  if control
+      keydown: (event) => @_keydown event
     
     # By default, highlight the selection.
     @highlightSelection true  if @highlightSelection() is undefined
 
   # The array of items shown in the list box.
   items: (value) ->
-    
     # Preserve selection index when items change 
     previousIndex = @selectedIndex()
     result = @_super(value)
@@ -73,10 +67,8 @@ class window.ListBox extends List
     else
       previousControl = @selectedControl()
       selectedElement = (if selectedControl then selectedControl[0] else null)
-      self = this
-      @controls().eachControl (index, control) ->
-        self.selectControl control, control[0] is selectedElement
-
+      @controls().eachControl (index, control) =>
+        @selectControl control, control[0] is selectedElement
       @_scrollToControl selectedControl  if selectedControl
       @trigger "selectionChanged"  if selectedControl isnt previousControl
   )

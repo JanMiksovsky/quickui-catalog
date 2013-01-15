@@ -9,12 +9,10 @@ class window.MultiListBox extends ListBox
     if selectedControls is undefined
       @controls().filter ".selected"
     else
-      self = this
-      @controls().eachControl (index, control) ->
+      @controls().eachControl (index, control) =>
         filter = selectedControls.filter(control)
         select = (filter and filter.length > 0)
-        self.selectControl control, select
-
+        @selectControl control, select
       @trigger "selectionChanged"
   )
 

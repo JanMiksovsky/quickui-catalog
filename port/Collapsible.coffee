@@ -35,14 +35,12 @@ class window.Collapsible extends Control
         
         # Animate if in document.
         result = (if value then "hide" else "show")
-        self = this
         @$Collapsible_content().animate
           height: result
           opacity: result
-        , @duration(), null, ->
-          
+        , @duration(), null, =>
           # Wait until animation completes to apply collapsed style. 
-          self.toggleClass "collapsed", value
+          @toggleClass "collapsed", value
 
       else
         
@@ -60,9 +58,8 @@ class window.Collapsible extends Control
   # the collapsed state in some other means.
   heading: Control.chain("$Collapsible_heading", "content")
   initialize: ->
-    self = this
-    @$Collapsible_heading().click ->
-      self.toggleCollapse()  if self.toggleOnClick()
+    @$Collapsible_heading().click =>
+      @toggleCollapse()  if @toggleOnClick()
 
   # Toggle the collapsed state of the control.
   #	 

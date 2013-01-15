@@ -26,10 +26,9 @@ $.extend Blog::,
     url += @_urlParam("q", @feed())
     url += @_urlParam("num", @count())
     url += @_urlParam("callback", "?")
-    self = this
-    $.getJSON(url).success (data) ->
+    $.getJSON(url).success (data) =>
       entries = (if (data.responseData and data.responseData.feed and data.responseData.feed.entries) then data.responseData.feed.entries else null)
-      self._entries entries
+      @_entries entries
 
   )
   _entries: Control.chain("$postList", "items")

@@ -25,29 +25,16 @@ class window.HintTextBox extends Control
   # the text box. 
   hint: Control.chain("$HintTextBox_hint", "content")
   initialize: ->
-    self = this
     @on
-      click: ->
-        self._hideHint()
-
-      focus: ->
-        self.$HintTextBox_textBox().focus()  unless self._isTextBoxFocused()
-
+      click: => @_hideHint()
+      focus: =>
+        @$HintTextBox_textBox().focus()  unless @_isTextBoxFocused()
     @$HintTextBox_textBox().on
-      blur: ->
-        self._isTextBoxFocused(false)._showHintIfEmpty()
-
-      focus: ->
-        self._isTextBoxFocused true
-
-      keydown: (event) ->
-        self._handleKeydown event
-
-      keyup: ->
-        self._showHintIfEmpty()
-
-    @$HintTextBox_hint().click ->
-      self._hideHint()
+      blur: => @_isTextBoxFocused(false)._showHintIfEmpty()
+      focus: => @_isTextBoxFocused true
+      keydown: (event) => @_handleKeydown event
+      keyup: => @_showHintIfEmpty()
+    @$HintTextBox_hint().click => @_hideHint()
 
   _isTextBoxFocused: Control.property(null, false)
 

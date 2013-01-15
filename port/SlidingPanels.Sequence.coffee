@@ -42,24 +42,20 @@ class window.SlidingPanels extends Sequence
   # Returns true if the given element has CSS transitions applied to it.
   @hasTransitions: ($element) ->
     transitionProperties = ["-webkit-transition", "transition"]
-  
-  # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we
-  # try to get the css("transition") property.
-  return false  if Control.browser.msie and parseInt(Control.browser.version) < 9
-  i = 0
-
-  while i < transitionProperties.length
-    value = $element.css(transitionProperties[i])
-    return true  if value isnt undefined and value isnt ""
-    i++
-  false
+    if Control.browser.msie and parseInt(Control.browser.version) < 9
+      # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we
+      # try to get the css("transition") property.
+      return false
+    i = 0
+    while i < transitionProperties.length
+      value = $element.css(transitionProperties[i])
+      return true  if value isnt undefined and value isnt ""
+      i++
+    false
 
   initialize: ->
-    self = this
-    @inDocument(->
-      @_adjustWidths()
-    ).on "layout sizeChanged", ->
-      self._adjustWidths()
+    @inDocument -> @_adjustWidths()
+    @on "layout sizeChanged", => @_adjustWidths()
   
   # Force all elements and the control itself to the maximium width of the elements.
   _adjustWidths: ->

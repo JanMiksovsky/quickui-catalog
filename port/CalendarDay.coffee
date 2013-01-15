@@ -40,10 +40,7 @@ class window.CalendarDay extends Control
   future: Control.chain("applyClass/future")
 
   initialize: ->
-    self = this
-    @click (event) ->
-      self.trigger "dateSelected", [self.date()]
-
+    @click (event) => @trigger "dateSelected", [@date()]
     @date @_defaultDate()  unless @date()
 
   lastDayOfMonth: Control.chain("applyClass/lastDayOfMonth")

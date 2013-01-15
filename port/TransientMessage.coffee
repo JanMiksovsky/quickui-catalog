@@ -9,11 +9,8 @@ class window.TransientMessage extends Control
 
   # Close display of the message normally.
   close: ->
-    self = this
-    @fadeOut null, ->
-      self._close()
-
-    this
+    @fadeOut null, => @_close()
+    @
 
   # The time before the message begins to fade out.
   # 
@@ -22,9 +19,7 @@ class window.TransientMessage extends Control
   # automatically be closed, but can be closed by invoking close().
   duration: Control.property()
   initialize: ->
-    self = this
-    @click ->
-      self._close()
+    @click => @_close()
 
   # Show the message.
   open: ->
@@ -34,9 +29,8 @@ class window.TransientMessage extends Control
       length = (if (typeof content is "string") then content.length else $(content).text().length)
       duration = 750 + (length * 20)
     if duration >= 0
-      self = this
-      timeout = setTimeout(->
-        self.close()
+      timeout = setTimeout( =>
+        @close()
       , duration)
       @_timeout timeout
     @positionMessage().fadeIn() # TODO: Investigate why this doesn't actually fade in.

@@ -27,13 +27,9 @@ class window.ValidatingTextBox extends TextBox
     result
 
   initialize: ->
-    self = this
     @on
-      blur: ->
-        self.validate true  if self.validateOnBlur()
-
-      keyup: ->
-        self.validate()
+      blur: => @validate true if @validateOnBlur()
+      keyup: => @validate()
 
   invalid: Control.chain("applyClass/invalid")
 
@@ -77,4 +73,3 @@ class window.ValidatingTextBox extends TextBox
   # True if validation should be automatically be performed when the control's
   # content is set programmatically. Default is true.
   validateOnSet: Control.property.bool(null, true)
-

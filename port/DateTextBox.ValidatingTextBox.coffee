@@ -8,9 +8,6 @@ digit year. If Globalize is not installed, a default date parser is used.
 
 class window.DateTextBox extends ValidatingTextBox
 
-  # Date separator, used when Globalize is not present.
-  @"/": "/"
-
   # The control's current culture.
   culture: (culture) ->
     result = @_super(culture)
@@ -34,10 +31,7 @@ class window.DateTextBox extends ValidatingTextBox
       @_previousDate(date).trigger "dateChanged", [date]
   )
   initialize: ->
-    self = this
-    @blur ->
-      self._refresh()
-
+    @blur => @_refresh()
     @_updateDatePatterns()
 
   # Returns true if the current date is valid. 
@@ -156,3 +150,7 @@ class window.DateTextBox extends ValidatingTextBox
         )
         datePatterns = datePatterns.concat(abbreviatedDatePatterns)
     @_datePatterns datePatterns
+
+
+# Date separator, used when Globalize is not present.
+DateTextBox[ "/" ] = "/"

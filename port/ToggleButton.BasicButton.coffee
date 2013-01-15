@@ -5,9 +5,7 @@ A button which can hold a selected state.
 class window.ToggleButton extends BasicButton
 
   initialize: ->
-    self = this
-    @click ->
-      self.toggleSelected()  unless self.disabled()
+    @click => @toggleSelected() unless @disabled()
 
   # True if the button is currently in the selected state.
   selected: Control.chain("applyClass/selected")
@@ -15,4 +13,3 @@ class window.ToggleButton extends BasicButton
   # Toggle the button's selected state.
   toggleSelected: (value) ->
     @selected value or not @selected()
-

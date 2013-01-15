@@ -5,7 +5,6 @@ Shows text in a condensed font if necessary to squeeze in more text.
 class window.TextCondenser extends Control
 
   inherited:
-    
     # Flip between two copies of text text: one normal, one condensed. 
     content: [" ", " ",
       html: "<span />"
@@ -21,13 +20,11 @@ class window.TextCondenser extends Control
     @$condensed().content content # Make a copy of the text.
     @checkForSizeChange()
   )
+  
   initialize: ->
-    self = this
-    @on "layout sizeChanged", ->
-      self.layout()
+    @on "layout sizeChanged", => @layout()
 
   layout: ->
     @eachControl (index, $control) ->
       tooWide = @$normal().width() > @width()
       @applyClass "condensed", tooWide
-

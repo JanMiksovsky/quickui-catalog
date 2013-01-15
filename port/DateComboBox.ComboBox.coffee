@@ -36,14 +36,11 @@ class window.DateComboBox extends ComboBox
     @date @$navigator().date()
     
     # Changing text updates navigator, and vice versa.
-    self = this
     @on
-      dateChanged: (event, date) ->
-        self.date date
-
-      dateSelected: (event, date) ->
-        self.date date
-        self.close()
+      dateChanged: (event, date) => @date date
+      dateSelected: (event, date) =>
+        @date date
+        @close()
 
   # The class used for the dropdown portion of the combo box.
   # By default this is a CalendarMonthNavigator, but it can be set to any

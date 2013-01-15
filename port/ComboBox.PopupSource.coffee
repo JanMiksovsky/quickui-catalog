@@ -36,24 +36,21 @@ class window.ComboBox extends PopupSource
   # downward-pointing arrow.
   dropdownButtonContent: Control.chain("$dropdownButton", "content")
   initialize: ->
-    self = this
     @$PopupSource_popup().on
-      canceled: ->
-        self.$dropdownButton().selected false
+      canceled: =>
+        @$dropdownButton().selected false
 
-      closed: ->
-        
+      closed: =>
         # Closing the popup leaves the text selected.
         # HACK for IE: If we set focus to the input while the popup is
         # being closed, IE won't hide the popup. It seems quite hard
         # to prevent this behavior, so we simply disable the selection
         # behavior in IE.
         unless Control.browser.msie
-          content = self.content()
-          self.inputElement().focus()
-          self._selectText 0, content.length
-        self.$dropdownButton().selected false
-
+          content = @content()
+          @inputElement().focus()
+          @_selectText 0, content.length
+        @$dropdownButton().selected false
     
     # Close the popup when the control loses focus.
     @on focusout: (event) ->
@@ -69,15 +66,15 @@ class window.ComboBox extends PopupSource
       # Our solution is to set a timeout which will defer testing
       # of activeElement until after the normal focusout sequence
       # has completed and focus has been placed in the new control.
-      if self.opened()
-        setTimeout (->
+      if @opened()
+        setTimeout (=>
           focusInControl = $.contains(self[0], document.activeElement)
           # Still open?
-          self.cancel()  if not focusInControl and self.opened()
+          @cancel()  if not focusInControl and @opened()
         ), 1
 
-    @$dropdownButton().click (event) ->
-      self.open()
+    @$dropdownButton().click (event) =>
+      @open()
 
     
     # Allow the popup container itself to receive the focus.
@@ -134,20 +131,16 @@ class window.ComboBox extends PopupSource
     @_bindContentEvents()
   )
   _bindContentEvents: ->
-    self = this
     @$ComboBox_content().on
-      "click focusin": (event) ->
-        self.open()  if self.openOnFocus() and not self.opened()
-
-      keydown: (event) ->
-        opened = self.opened()
-        if event.which is 13 and opened and self.closeOnEnter()
-          
+      "click focusin": (event) =>
+        @open()  if @openOnFocus() and not @opened()
+      keydown: (event) =>
+        opened = @opened()
+        if event.which is 13 and opened and @closeOnEnter()
           # Enter key closes popup. 
-          self.close()
-        
+          @close()
         # Tabbing out of text box portion closes popup. 
-        else self.close()  if event.which is 9 and opened
+        else @close()  if event.which is 9 and opened
 
   
   # Hint for documentation tools.

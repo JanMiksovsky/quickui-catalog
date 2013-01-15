@@ -9,11 +9,9 @@ class window.EditableText extends Editable
 
   # True if the pressing Escape in edit mode cancels edit mode.
   # The default is true.
-  #	 
   cancelOnEscape: Control.property(null, true)
   editing: (editing) ->
     result = @_super(editing)
-    
     # Switching to edit mode; put focus in the text box.
     @editControl().find("input").andSelf().focus()  if editing
     result
@@ -22,33 +20,27 @@ class window.EditableText extends Editable
   # Default is true.
   editOnClick: Control.property(null, true)
   initialize: ->
-    self = this
-    @on click: ->
-      self.editing true  if self.editOnClick() and not self.editing()
+    @click =>
+      @editing true if @editOnClick() and not @editing()
 
   # True if pressing the Enter key in edit mode saves changes and switches
   # back to read mode. The default is true.
   saveOnEnter: Control.property(null, true)
   _createEditControl: ->
     result = @_super()
-    
     # Wire up events bound to input elements.
-    self = this
     @editControl().find("input").andSelf().on
-      blur: ->
-        
+      blur: =>
         # Implicitly save when control loses focus.
-        self.save()  if self.editing()
-
-      keydown: (event) ->
-        if self.editing()
+        @save()  if @editing()
+      keydown: (event) =>
+        if @editing()
           switch event.which
             when 13 # Enter
-              if self.saveOnEnter()
-                self.save()
+              if @saveOnEnter()
+                @save()
                 event.preventDefault()
             when 27 # Escape
-              self.cancel()  if self.cancelOnEscape()
-
+              @cancel()  if @cancelOnEscape()
+              
     result
-

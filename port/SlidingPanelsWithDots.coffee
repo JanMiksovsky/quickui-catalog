@@ -33,15 +33,12 @@ class window.SlidingPanelsWithDots extends Control
   elements: Control.chain("$pages", "elements")
   initialize: ->
     @pageButtonClass BasicButton  unless @pageButtonClass()
-    self = this
-    @$pageButtons().click (event) ->
-      
+    @$pageButtons().click (event) =>
       # Which button was clicked?
-      pageButton = $(event.target).closest(self.pageButtons()).control()
+      pageButton = $(event.target).closest(@pageButtons()).control()
       if pageButton
-        index = self.pageButtons().index(pageButton)
-        self.activeIndex index  if index >= 0
-
+        index = @pageButtons().index(pageButton)
+        @activeIndex index  if index >= 0
     @activeIndex 0  unless @activeIndex()
 
   pageButtons: Control.chain("$pageButtons", "children")

@@ -40,12 +40,11 @@ class window.AutoSizeTextBox extends Control
     @autoSize()
   )
   initialize: ->
-    self = this
     @$textBox().on
-      "change keyup": (event) ->
-        self.autoSize()
+      "change keyup": (event) =>
+        @autoSize()
 
-      keypress: (event) ->
+      keypress: (event) =>
         # Enter 
         
         # Speculatively add a line to our copy of the text.
@@ -58,7 +57,7 @@ class window.AutoSizeTextBox extends Control
         # a selected chunk of text with a newline.) In any event,
         # once we get the keyup or change event, we'll make any
         # final adjustments.
-        self.autoSize true  if event.which is 13
+        @autoSize true  if event.which is 13
 
     @inDocument ->
       @_refresh()

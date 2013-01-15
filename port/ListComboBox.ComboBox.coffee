@@ -23,30 +23,29 @@ class window.ListComboBox extends ComboBox
   # A mapping of items to controls and back. See List for details.
   mapFunction: Control.chain("$list", "mapFunction")
   initialize: ->
-    self = this
     @$list().on
-      click: (event) ->
-        
+
+      click: (event) =>
         # Clicking a list item puts its content into the text box portion.
-        $closestItem = $(event.target).closest(self.$list().children())
+        $closestItem = $(event.target).closest(@$list().children())
         if $closestItem
           itemContent = $closestItem.control().content()
-          self.content(itemContent).close()
+          @content(itemContent).close()
 
-      keydown: (event) ->
+      keydown: (event) =>
         if event.which is 13 # Enter
-          if self.opened()
-            self.close()
+          if @opened()
+            @close()
             event.stopPropagation()
             event.preventDefault()
 
-      selectionChanged: ->
-        selectedControl = self.$list().selectedControl()
+      selectionChanged: =>
+        selectedControl = @$list().selectedControl()
         if selectedControl
           content = selectedControl.content()
-          if content isnt self.content()
-            self.content content
-            self._selectText 0, content.length
+          if content isnt @content()
+            @content content
+            @_selectText 0, content.length
 
   # The class which should be used to render the list items as controls.
   itemClass: Control.property.class((itemClass) ->
@@ -83,9 +82,7 @@ class window.ListComboBox extends ComboBox
     @_super()
     
     # See notes at _contentKeydown.
-    self = this
-    @inputElement().keydown (event) ->
-      self._contentKeydown event
+    @inputElement().keydown (event) => @_contentKeydown event
 
   # Handle a keydown event. Keydown gives the best AutoComplete performance
   # and behavior: among other things, the AutoComplete happens as soon as
@@ -100,13 +97,11 @@ class window.ListComboBox extends ComboBox
     # Page Down
     # Up
     navigationKeys = [33, 34, 38, 40] # Down
-    self = this
     
     # Do AutoComplete on Space, or characters from zero (0) and up,
     # ignoring any combinations that involve Alt or Ctrl.
     if (event.which is 32 or event.which >= 48) and not (event.altKey or event.ctrlKey or event.metaKey)
-      @_setTimeout ->
-        self._autoComplete()
+      @_setTimeout => @_autoComplete()
 
     else if @opened() and $.inArray(event.which, navigationKeys) >= 0
       
@@ -116,8 +111,7 @@ class window.ListComboBox extends ComboBox
     else if event.which is 8 or event.which is 46
       
       # On Backspace or Delete, clear list select if text is empty.
-      @_setTimeout ->
-        self._selectTextInList()
+      @_setTimeout => @_selectTextInList()
 
     else if event.which is 40
       
@@ -169,7 +163,6 @@ class window.ListComboBox extends ComboBox
     clearTimeout timeout  if timeout
     
     # Queue a new timeout.
-    self = this
     timeout = window.setTimeout(callback, 50)
     @_timeout timeout
 

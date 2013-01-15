@@ -38,14 +38,12 @@ class window.HighlightEffects extends Control
     @_originalState @_getCurrentState()
   )
   initialize: ->
-    self = this
-    @on("layout", ->
-      self._recalc()
-    ).hover(->
-      self._hoverIn()
-    , ->
-      self._hoverOut()
-    ).inDocument ->
+    @on "layout", => @_recalc()
+    @hover =>
+      @_hoverIn()
+    , =>
+      @_hoverOut()
+    @inDocument ->
       @_originalState(@_getCurrentState())._recalc()
 
   # Get the current values of all CSS attributes which will be overwritten

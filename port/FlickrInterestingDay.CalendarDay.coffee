@@ -44,16 +44,14 @@ class window.FlickrInterestingDay extends CalendarDay
       method: "flickr.interestingness.getList"
       date: flickrDate
       per_page: 1
-
-    self = this
-    @getFlickrPhotos params, (flickrPhotos) ->
+    @getFlickrPhotos params, (flickrPhotos) =>
       if flickrPhotos and flickrPhotos.length > 0
         first = flickrPhotos[0]
         photo =
-          src: self.getFlickrImageSrc(first, "s") # Small thumbnail
-          href: self.getFlickrImageHref(first)
+          src: @getFlickrImageSrc(first, "s") # Small thumbnail
+          href: @getFlickrImageHref(first)
 
-        self._cache[flickrDate] = photo
+        @_cache[flickrDate] = photo
         callback photo
 
   @getFlickrPhotos: (params, callback) ->
@@ -84,14 +82,10 @@ class window.FlickrInterestingDay extends CalendarDay
     
     # Flickr only has a photo for dates entirely in the past (not for today).
     if date and date < CalendarDay.today()
-      self = this
-      FlickrInterestingDay.getInterestingPhotoForDate date, (photo) ->
-        
+      FlickrInterestingDay.getInterestingPhotoForDate date, (photo) =>
         # Double-check we got a photo, and also check that the date
         # hasn't been changed since the photo was requested.
-        self.image photo.src  if photo and date is self.date()
-
-      
+        @image photo.src  if photo and date is @date()
       # Clicking the day navigates to list of the day's interesting photos.
       baseUrl = "http://www.flickr.com/explore/interesting/"
       url = baseUrl + date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
@@ -124,5 +118,4 @@ class window.FlickrInterestingDay extends CalendarDay
     s = ""
     $.each params, (key, value) ->
       s += "&" + key + "=" + value
-
     s

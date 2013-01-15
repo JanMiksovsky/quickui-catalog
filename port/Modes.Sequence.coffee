@@ -5,12 +5,8 @@ Pick exactly one child to show at a time.
 class window.Modes extends Sequence
 
   initialize: ->
-    self = this
-    @on "layout sizeChanged", ->
-      self._sizeChanged()
-
-    @inDocument ->
-      @_sizeChanged()
+    @on "layout sizeChanged", => @_sizeChanged()
+    @inDocument -> @_sizeChanged()
 
   # True if the control should always adjust its own height to be as tall
   # as its tallest child, whether or not that child is currently active.

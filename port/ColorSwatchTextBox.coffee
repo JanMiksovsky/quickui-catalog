@@ -19,9 +19,7 @@ class window.ColorSwatchTextBox extends Control
     @_refresh()
   )
   initialize: ->
-    self = this
-    @keyup ->
-      self._refresh()
+    @keyup => @_refresh()
 
   _refresh: ->
     @$swatch().color @content()

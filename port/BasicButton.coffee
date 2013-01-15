@@ -39,30 +39,18 @@ class window.BasicButton extends Control
     @toggleClass("disabled", disabled)._renderButton()
   )
   initialize: ->
-    self = this
-    @on(
-      blur: (event) ->
-        self._trackBlur event
-
-      focus: (event) ->
-        self._trackFocus event
-
-      keydown: (event) ->
-        self._trackKeydown event
-
-      keyup: (event) ->
-        self._trackKeyup event
-
-      mousedown: (event) ->
-        self._trackMousedown event
-
-      mouseup: (event) ->
-        self._trackMouseup event
-    ).hover((event) ->
-      self._trackMousein event
-    , (event) ->
-      self._trackMouseout event
-    )._renderButton()
+    @on
+      blur: (event) => @_trackBlur event
+      focus: (event) => @_trackFocus event
+      keydown: (event) => @_trackKeydown event
+      keyup: (event) => @_trackKeyup event
+      mousedown: (event) => @_trackMousedown event
+      mouseup: (event) => @_trackMouseup event
+    @hover (event) =>
+      @_trackMousein event
+    , (event) =>
+      @_trackMouseout event
+    @_renderButton()
 
   # True if the button currently has the focus.
   isFocused: Control.property.bool(null, false)

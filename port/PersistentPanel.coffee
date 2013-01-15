@@ -34,17 +34,15 @@ class window.PersistentPanel extends Control
   # True if the control is currently docked to the top of the viewport.
   docked: Control.chain("applyClass/docked")
   initialize: ->
-    self = this
-    @on("layout", ->
-      self._recalc()  if self.inDocument()
-    ).inDocument ->
-      
+    @on "layout", => @_recalc() if @inDocument()
+
+    @inDocument ->
       # No scrolling parent has been set; look for one.
       @scrollingParent @_findScrollingParent()  unless @scrollingParent()
       @_recalc()
 
-    $(window).resize ->
-      self._recalc()
+    $(window).resize =>
+      @_recalc()
 
   # The content's padding. See top notes.
   padding: Control.chain("$PersistentPanel_content", "css/padding")
@@ -53,11 +51,9 @@ class window.PersistentPanel extends Control
   # in or out of view. The default value for this property is the closest
   # parent element with overflow-y set to "auto" or "scroll".
   scrollingParent: Control.property((scrollingParent) ->
-    self = this
-    $(scrollingParent).scroll ->
-      self._recalc()
-
+    $(scrollingParent).scroll => @_recalc()
   )
+  
   _adjustSizes: ->
     
     # Make the panel the same width as the container.

@@ -49,31 +49,26 @@ class window.Tabs extends Control
 
   # True if the Tabs should vertically fill its container.
   fill: Control.chain("$tabPanels", "fill")
+
   initialize: ->
-    self = this
-    @$tabButtons().click (event) ->
-      tabButtonCssClass = "." + self.tabButtonClass()::className
+    @$tabButtons().click (event) =>
+      tabButtonCssClass = "." + @tabButtonClass()::className
       tabButton = $(event.target).closest(tabButtonCssClass).control()
       if tabButton
-        index = self.tabButtons().index(tabButton)
+        index = @tabButtons().index(tabButton)
         if index >= 0
-          tab = self.tabs()[index]
-          self.trigger "tabButtonClick", [index, tab]
-          self.selectedTabIndex index  if self.selectTabOnClick()
-
-    @$Tabs_content().on activeElementChanged: (event, index, child) ->
-
-      # Map the Modes's activeElementChanged event to a more
-      # semantically specific activeTabChanged event.
-      # 
-      # Only map active events coming from our own Modes; ignore
-      # events coming from any Modes within a tab.
-      tab = $(event.target).filter(self.tabs())
+          tab = @tabs()[index]
+          @trigger "tabButtonClick", [index, tab]
+          @selectedTabIndex index  if @selectTabOnClick()
+    @$Tabs_content().on activeElementChanged: (event, index, child) =>
+      # Map the Modes's activeElementChanged event to a more semantically
+      # specific activeTabChanged event. Only map active events coming from our
+      # own Modes; ignore events coming from any Modes within a tab.
+      tab = $(event.target).filter(@tabs())
       if tab.length > 0
         event.stopPropagation()
-        self.trigger "activeTabChanged", [index, child]
+        @trigger "activeTabChanged", [index, child]
 
-    
     # Select first tab by default.
     @selectedTabIndex 0  if @tabs().length > 0 and not @selectedTabIndex()
 

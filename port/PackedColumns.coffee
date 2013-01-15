@@ -19,9 +19,7 @@ PackedColumns::extend
     result
 
   initialize: ->
-    self = this
-    @on "layout sizeChanged", ->
-      self.layout()
+    @on "layout sizeChanged", => @layout()
 
   layout: ->
     children = @children()

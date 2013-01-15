@@ -43,11 +43,10 @@ class window.FlickrInterestingPhoto extends Control
   # The set of photos are obtained only once per page; once the set is
   # exhausted, subsequent calls will cycle through the set. 
   @getRandomPhoto: (callback, size) ->
-    self = this
-    @getFlickrInterestingPhotos().done (flickrPhotos) ->
-      self._counter = (if (self._counter >= 0) then (self._counter + 1) % flickrPhotos.length else 0)
-      flickrPhoto = flickrPhotos[self._counter]
-      photo = self.getFlickrImageSrc(flickrPhoto, size)
+    @getFlickrInterestingPhotos().done (flickrPhotos) =>
+      @_counter = (if (@_counter >= 0) then (@_counter + 1) % flickrPhotos.length else 0)
+      flickrPhoto = flickrPhotos[@_counter]
+      photo = @getFlickrImageSrc(flickrPhoto, size)
       callback photo
 
   @getFlickrInterestingPhotos: ->
@@ -63,13 +62,10 @@ class window.FlickrInterestingPhoto extends Control
         method: "flickr.interestingness.getList"
         date: flickrDate
         per_page: 100
-
-      self = this
-      @getFlickrPhotos params, (flickrPhotos) ->
-        
+      @getFlickrPhotos params, (flickrPhotos) =>
         # Shuffle the photos before returning them.
-        self._shuffle flickrPhotos
-        self._flickrPhotos = flickrPhotos
+        @_shuffle flickrPhotos
+        @_flickrPhotos = flickrPhotos
         deferred.resolve flickrPhotos
 
     @_promise
@@ -89,9 +85,8 @@ class window.FlickrInterestingPhoto extends Control
 
   # Reload the photo.
   reload: Control.iterator(->
-    self = this
-    FlickrInterestingPhoto.getRandomPhoto ((photo) ->
-      self.prop "src", photo
+    FlickrInterestingPhoto.getRandomPhoto ((photo) =>
+      @prop "src", photo
     ), @photoSize()
   )
 
@@ -128,7 +123,6 @@ class window.FlickrInterestingPhoto extends Control
     s = ""
     $.each params, (key, value) ->
       s += "&" + key + "=" + value
-
     s
 
   # Perform a Fisher-Yates shuffle.

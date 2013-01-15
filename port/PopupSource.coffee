@@ -61,17 +61,12 @@ class window.PopupSource extends Control
     @referencedElement "PopupSource_content", $newContent
   )
   initialize: ->
-    self = this
-    @$PopupSource_content().click (event) ->
-      self.open()  if self.openOnClick()
-
+    @$PopupSource_content().click (event) => @open() if @openOnClick()
     @$PopupSource_popup().on
-      "closed canceled": ->
-        self.$PopupSource_popup().removeClass "popupAppearsAbove popupAppearsBelow popupAlignLeft popupAlignRight"
-        self.opened false
-
-      opened: ->
-        self.positionPopup().opened true
+      "closed canceled": =>
+        @$PopupSource_popup().removeClass "popupAppearsAbove popupAppearsBelow popupAlignLeft popupAlignRight"
+        @opened false
+      opened: => @positionPopup().opened true
 
   # True if the popup should open when the user clicks in the control's
   # content. Default is true. 

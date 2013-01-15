@@ -31,19 +31,13 @@ class window.PanelWithOverflow extends Control
     @checkForSizeChange()
   )
   initialize: ->
-    self = this
-    @on "layout sizeChanged", ->
-      self.layout()
-
+    @on "layout sizeChanged", => @layout()
     @$menuButton().on
-      "canceled closed": ->
-        self._menuClosed()
-
-      opened: ->
-        self._menuOpened()
-        
+      "canceled closed": => @_menuClosed()
+      opened: =>
+        @_menuOpened()
         # (Re)position the popup now that it's been populated.
-        self.$menuButton().positionPopup()
+        @$menuButton().positionPopup()
 
   # Force the control to layout its contents.
   layout: Control.iterator(->

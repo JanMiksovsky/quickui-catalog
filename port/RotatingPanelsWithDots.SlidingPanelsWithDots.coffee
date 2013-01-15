@@ -6,11 +6,8 @@ The rotation stops if the user clicks to navigate to a specific page.
 class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
 
   initialize: ->
-    self = this
-    @click(->
-      self.stop()
-    ).inDocument ->
-      @_queueRotation()
+    @click => @stop()
+    @inDocument -> @_queueRotation()
 
   # Rotates to the next page. When it hits the last one, it rotates
   # back to the first page and stops.
@@ -35,9 +32,8 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
   )
   _queueRotation: ->
     rotationInterval = @rotationInterval()
-    self = this
-    @_timeout setTimeout(->
-      self.rotate()
+    @_timeout setTimeout( =>
+      @rotate()
     , rotationInterval)
 
   _timeout: Control.property()

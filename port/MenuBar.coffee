@@ -39,23 +39,18 @@ class window.MenuBar extends Control
     result
 
   initialize: ->
-    self = this
     @on
-      "closed canceled": (event) ->
-        
+      "closed canceled": (event) =>
         # No longer any open popups.
-        self.close()  unless self._openPopups()?
-
-      opened: (event) ->
-        self.open()
-        
+        @close()  unless @_openPopups()?
+      opened: (event) =>
+        @open()
         # Close open popups other than the one which just opened.
         newMenu = $(event.target).closest(".PopupSource").control()
-        self._closeOpenPopups newMenu
+        @_closeOpenPopups newMenu
 
-    @on "mouseenter", ".PopupSource", (event) ->
-      if self.opened()
-        
+    @on "mouseenter", ".PopupSource", (event) =>
+      if @opened()
         # Riffing: Implicitly open the popup the user hovered into
         # if it's not already open.
         newMenu = $(event.target).closest(".PopupSource").control()

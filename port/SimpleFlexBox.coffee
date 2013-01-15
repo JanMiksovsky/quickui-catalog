@@ -77,10 +77,7 @@ class window.SimpleFlexBox extends Control
     handlingLayout = @_handlingLayout()
     needLayout = not flexBox and constrainHeight
     if needLayout and not handlingLayout
-      self = this
-      @on "layout sizeChanged", ->
-        self._layout()
-
+      @on "layout sizeChanged", => @_layout()
       @_handlingLayout true
     else if not needLayout and handlingLayout
       @off "layout sizeChanged"
