@@ -11,7 +11,7 @@ class window.EditableText extends Editable
   # The default is true.
   cancelOnEscape: Control.property(null, true)
   editing: (editing) ->
-    result = @_super(editing)
+    result = super editing
     # Switching to edit mode; put focus in the text box.
     @editControl().find("input").andSelf().focus()  if editing
     result
@@ -27,7 +27,7 @@ class window.EditableText extends Editable
   # back to read mode. The default is true.
   saveOnEnter: Control.property(null, true)
   _createEditControl: ->
-    result = @_super()
+    result = super()
     # Wire up events bound to input elements.
     @editControl().find("input").andSelf().on
       blur: =>

@@ -8,7 +8,7 @@ class window.MonthName extends Control
 
   # The control's current culture.
   culture: (culture) ->
-    result = @_super(culture)
+    result = super culture
     @month @month()  if culture isnt undefined
     result
 

@@ -8,7 +8,7 @@ class window.TextBox extends Control
   tag: "input"
 
   content: (content) ->
-    result = @_super(content)
+    result = super content
 
     # Setting content programmatically generates a change event
     # so that the UI can react accordingly.

@@ -25,7 +25,7 @@ class window.CalendarMonth extends Control
 
   # The control's current culture.
   culture: (culture) ->
-    result = @_super(culture)
+    result = super culture
     if culture isnt undefined
       @weeks().culture culture
       @_refresh()

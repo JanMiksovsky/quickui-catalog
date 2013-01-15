@@ -13,7 +13,7 @@ class window.DateComboBox extends ComboBox
 
   # The control's current culture.
   culture: (culture) ->
-    result = @_super(culture)
+    result = super culture
     if culture isnt undefined
       @$navigator().culture culture
       @textBox().culture culture  if $.isFunction(@textBox().culture)

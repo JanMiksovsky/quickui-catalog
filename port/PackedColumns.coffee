@@ -13,7 +13,7 @@ class window.PackedColumns extends Control
     @layout()  if @inDocument()
   )
   content: (value) ->
-    result = @_super(value)
+    result = super value
     @checkForSizeChange()
     result
 

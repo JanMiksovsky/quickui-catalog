@@ -26,7 +26,7 @@ class window.FlickrInterestingDay extends CalendarDay
 
   # The date to show.
   date: (date) ->
-    result = @_super(date)
+    result = super date
     if date isnt undefined
       @image(null).href null
       @loadPhoto()  if @autoLoad()

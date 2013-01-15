@@ -112,7 +112,7 @@ class window.ComboBox extends PopupSource
       # openOnFocus true, in which case we should ensure button looks
       # pressed while popup is open.
       @$dropdownButton().selected true
-    @_super()
+    super()
 
   # True if the control should automatically open when it receives the
   # keyboard focus. Default is true.

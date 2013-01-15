@@ -13,7 +13,7 @@ class window.SlidingPanels extends Sequence
 
   # The index of the control currently being shown.
   activeIndex: (activeIndex) ->
-    result = @_super(activeIndex)
+    result = super activeIndex
     if activeIndex isnt undefined
       panel = @elements().eq(activeIndex)
       if panel.length > 0
@@ -35,7 +35,7 @@ class window.SlidingPanels extends Sequence
   # If the set changes, this will attempt to preserve the one that was
   # previously active. Otherwise, the first element is made active.
   content: (content) ->
-    result = @_super(content)
+    result = super content
     @_adjustWidths()  if content isnt undefined
     result
 

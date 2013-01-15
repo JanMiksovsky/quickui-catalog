@@ -27,7 +27,7 @@ class window.Menu extends PopupSource
     # Ensure the little shield matches the current width of the content
     # before opening the menu.
     @_updateShield()
-    @_super()
+    super()
 
   popup: Control.chain("$Menu_popup", "content")
   

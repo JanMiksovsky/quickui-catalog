@@ -29,7 +29,7 @@ class window.MenuBar extends Control
   # including subclasses like Menu. Other types of controls can be
   # safely placed in the content as well.
   content: (content) ->
-    result = @_super(content)
+    result = super content
     if content isnt undefined
       
       # Since we're managing our own overlay, we suppress the overlays

@@ -57,7 +57,7 @@ class window.ListComboBox extends ComboBox
     content = @content()
     index = $.inArray(content, @_itemContents())
     @$list().selectedIndex index  if index >= 0
-    result = @_super()
+    result = super()
     
     # Give the input control focus if it doesn't already have it.
     inputElement = @inputElement()
@@ -79,7 +79,7 @@ class window.ListComboBox extends ComboBox
     @_selectTextInList()
 
   _bindContentEvents: ->
-    @_super()
+    super()
     
     # See notes at _contentKeydown.
     @inputElement().keydown (event) => @_contentKeydown event

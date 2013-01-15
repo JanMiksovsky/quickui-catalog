@@ -25,7 +25,7 @@ class window.CalendarWeek extends Control
 
   # The control's current culture.
   culture: (culture) ->
-    result = @_super(culture)
+    result = super culture
     @_refresh()  if culture isnt undefined
     result
 

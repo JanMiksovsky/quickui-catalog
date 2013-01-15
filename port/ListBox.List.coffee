@@ -42,7 +42,7 @@ class window.ListBox extends List
   items: (value) ->
     # Preserve selection index when items change 
     previousIndex = @selectedIndex()
-    result = @_super(value)
+    result = super value
     if value isnt undefined and value.length > 0
       # Restore previous selection.
       index = (if (previousIndex >= 0 and previousIndex < value.length) then previousIndex else -1) # Nothing will be selected.

@@ -10,9 +10,21 @@ class window.DaysOfWeek extends Control
 
   # The control's current culture.
   culture: (culture) ->
-    result = @_super(culture)
+    result = super culture
     @format @format()  if culture isnt undefined
     result
+  
+  # Defaults used if Globalize is not loaded.
+  @days:
+
+    # Full day names
+    names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+    # Abbreviated day names
+    namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  
+    # Shortest day names
+    namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
 
   # The format used to show the names of the day. These are defined by
   # the Globalize library:
@@ -36,13 +48,4 @@ class window.DaysOfWeek extends Control
   )
 
   initialize: ->
-    @format "namesAbbr"  unless @format()
-  
-  # Default full day names. Used if Globalize is not loaded.
-  @names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  
-  # Default abbreviated day names. Used if Globalize is not loaded.
-  @namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  
-  # Default shortest day names. Used if Globalize is not loaded.
-  @namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    @format "namesAbbr" unless @format()

@@ -6,7 +6,7 @@ class window.Tab extends Control
 
   # The content of the tab.
   content: (value) ->
-    result = @_super(value)
+    result = super value
     
     # The parent (e.g., a Tabs) may want to know that the size
     # of this element has changed.

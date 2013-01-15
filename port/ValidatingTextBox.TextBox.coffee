@@ -22,7 +22,7 @@ class window.ValidatingTextBox extends TextBox
 
   # The control's content. Setting this implicitly performs validation.
   content: (content) ->
-    result = @_super(content)
+    result = super content
     @validate true  if content isnt undefined and @validateOnSet()
     result
 

@@ -45,14 +45,18 @@ class window.Sequence extends Control
   content: (content) ->
     container = @_container()
     if content is undefined
-      (if (this[0] is container[0]) then @_super(content) else container.content(content))
+      if this[0] is container[0]
+        super content
+      else
+        container.content content
     else
-      
       # Save active element before setting content.
       previousControl = @activeElement()
-      result = (if (this[0] is container[0]) then @_super(content) else container.content(content))
+      result = if this[0] is container[0]
+        super content
+      else
+        container.content content
       if previousControl and previousControl.parent()[0] is this[0]
-        
         # Still have previously active child; hide other elements.
         @activeElement previousControl
       else

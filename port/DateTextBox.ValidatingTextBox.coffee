@@ -10,7 +10,7 @@ class window.DateTextBox extends ValidatingTextBox
 
   # The control's current culture.
   culture: (culture) ->
-    result = @_super(culture)
+    result = super culture
     if culture isnt undefined
       @_updateDatePatterns()
       @_refresh()
@@ -36,7 +36,7 @@ class window.DateTextBox extends ValidatingTextBox
 
   # Returns true if the current date is valid. 
   valid: ->
-    valid = @_super()
+    valid = super()
     
     # Convert content text to a date.
     content = @content()
