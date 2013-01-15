@@ -4,7 +4,7 @@ A standard menu bar.
 Note: The menu bar places a Overlay instance underneath itself to absorb
 clicks outside the menu. If you're using a MenuBar on a page with elements
 that have an explicit z-index, you'll want to give the MenuBar a higher z-index
-so that it (and its overlay) end up above all other elements when any menus
+so that it ( and its overlay ) end up above all other elements when any menus
 are open. See notes in the source for the Overlay class.
 ###
 
@@ -14,7 +14,7 @@ class window.MenuBar extends Control
     generic: "true"
 
   # Close currently open any menus.
-  close: Control.iterator(->
+  close: Control.iterator( ->
     
     # Already closed
     return  unless @opened()
@@ -28,55 +28,55 @@ class window.MenuBar extends Control
   # The menus in the menu bar. These are typically PopupSource controls,
   # including subclasses like Menu. Other types of controls can be
   # safely placed in the content as well.
-  content: (content) ->
+  content: ( content ) ->
     result = super content
     if content isnt undefined
       
       # Since we're managing our own overlay, we suppress the overlays
       # on the individual menus in our content.
-      popups = @find(".PopupSource").control()
+      popups = @find( ".PopupSource" ).control()
       popups.overlayClass null  if popups
     result
 
   initialize: ->
     @on
-      "closed canceled": (event) =>
+      "closed canceled": ( event ) =>
         # No longer any open popups.
         @close()  unless @_openPopups()?
-      opened: (event) =>
+      opened: ( event ) =>
         @open()
         # Close open popups other than the one which just opened.
-        newMenu = $(event.target).closest(".PopupSource").control()
+        newMenu = $( event.target ).closest( ".PopupSource" ).control()
         @_closeOpenPopups newMenu
 
-    @on "mouseenter", ".PopupSource", (event) =>
+    @on "mouseenter", ".PopupSource", ( event ) =>
       if @opened()
         # Riffing: Implicitly open the popup the user hovered into
         # if it's not already open.
-        newMenu = $(event.target).closest(".PopupSource").control()
+        newMenu = $( event.target ).closest( ".PopupSource" ).control()
         newMenu.open()  if newMenu and not newMenu.opened()
 
   # Returns true if any of the menu bar's menus are currently open.
-  opened: Control.chain("applyClass/opened")
-  open: Control.iterator(->
+  opened: Control.chain( "applyClass/opened" )
+  open: Control.iterator( ->
     
     # Already open
     return  if @opened()
-    $overlay = Overlay.create().target(this)
+    $overlay = Overlay.create().target( this )
     @_overlay $overlay
     @opened true
   )
 
   # Close open popups. If a keepPopup is specified, leave that menu open.
-  _closeOpenPopups: (keepPopup) ->
+  _closeOpenPopups: ( keepPopup ) ->
     openMenus = @_openPopups()
     if openMenus
-      openMenus = openMenus.not(keepPopup)
+      openMenus = openMenus.not( keepPopup )
       openMenus.close()  if openMenus.length > 0
     this
 
   # Return the currently open popups.
-  _openPopups: Control.chain("children", "filter/.PopupSource.opened", "control")
+  _openPopups: Control.chain( "children", "filter/.PopupSource.opened", "control" )
   
   # The overlay behind the menu bar.    
   _overlay: Control.property()

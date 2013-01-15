@@ -26,12 +26,12 @@ class window.TransientMessage extends Control
     duration = @duration()
     unless duration
       content = @content()
-      length = (if (typeof content is "string") then content.length else $(content).text().length)
-      duration = 750 + (length * 20)
+      length = ( if ( typeof content is "string" ) then content.length else $( content ).text().length )
+      duration = 750 + ( length * 20 )
     if duration >= 0
-      timeout = setTimeout( =>
+      timeout = setTimeout(  =>
         @close()
-      , duration)
+      , duration )
       @_timeout timeout
     @positionMessage().fadeIn() # TODO: Investigate why this doesn't actually fade in.
     this
@@ -39,16 +39,16 @@ class window.TransientMessage extends Control
   # Position the message. By default, this is center-aligned at the top
   # of the page.
   positionMessage: ->
-    @css left: ($(window).width() - @outerWidth()) / 2
+    @css left: ( $( window ).width() - @outerWidth() ) / 2
 
   #
   # Show the given content for the indicated (optional) duration.
   #     
-  @showMessage: (content, duration) ->
+  @showMessage: ( content, duration ) ->
     transientMessage = TransientMessage.create()
     transientMessage.content content  if content
     transientMessage.duration duration  if duration
-    $(document.body).append transientMessage
+    $( document.body ).append transientMessage
     transientMessage.open()
     transientMessage
 

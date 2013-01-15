@@ -11,4 +11,4 @@ class window.CalendarDayButton extends CalendarDay
       class: "quiet"
     ]
 
- content: Control.chain("$button", "content")
+ content: Control.chain( "$button", "content" )

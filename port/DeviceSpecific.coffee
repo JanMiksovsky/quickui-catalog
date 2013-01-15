@@ -10,7 +10,7 @@ class window.DeviceSpecific extends Control
       ref: "placeholder"
     ]
 
-  content: Control.chain("$placeholder", "content")
+  content: Control.chain( "$placeholder", "content" )
 
   # The content to use when the current device is not a mobile device.
   default: Control.property()
@@ -34,7 +34,7 @@ class window.DeviceSpecific extends Control
     if deviceClass
       
       # Transmute as requested.
-      $placeholder = $placeholder.transmute(deviceClass, false, true)
+      $placeholder = $placeholder.transmute( deviceClass, false, true )
       
       # Update the placeholder reference so it's the right class.
       @referencedElement "placeholder", $placeholder
@@ -47,7 +47,7 @@ class window.DeviceSpecific extends Control
 
   @isMobile: ->
     userAgent = navigator.userAgent
-    userAgent.indexOf("Mobile") >= 0 and userAgent.indexOf("iPad") < 0
+    userAgent.indexOf( "Mobile" ) >= 0 and userAgent.indexOf( "iPad" ) < 0
 
   # The content to use when the current device is a mobile device.
   mobile: Control.property()

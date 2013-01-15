@@ -24,15 +24,15 @@ class window.PersistentPanel extends Control
     generic: "true"
 
   # The content's background. See top notes.
-  background: Control.chain("$PersistentPanel_content", "css/background")
+  background: Control.chain( "$PersistentPanel_content", "css/background" )
 
   # The control's content.
-  content: Control.chain("$PersistentPanel_content", "content", ->
+  content: Control.chain( "$PersistentPanel_content", "content", ->
     @checkForSizeChange()
   )
 
   # True if the control is currently docked to the top of the viewport.
-  docked: Control.chain("applyClass/docked")
+  docked: Control.chain( "applyClass/docked" )
   initialize: ->
     @on "layout", => @_recalc() if @inDocument()
 
@@ -41,17 +41,17 @@ class window.PersistentPanel extends Control
       @scrollingParent @_findScrollingParent()  unless @scrollingParent()
       @_recalc()
 
-    $(window).resize =>
+    $( window ).resize =>
       @_recalc()
 
   # The content's padding. See top notes.
-  padding: Control.chain("$PersistentPanel_content", "css/padding")
+  padding: Control.chain( "$PersistentPanel_content", "css/padding" )
 
   # The parent of this control used to determine whether the control is
   # in or out of view. The default value for this property is the closest
   # parent element with overflow-y set to "auto" or "scroll".
-  scrollingParent: Control.property((scrollingParent) ->
-    $(scrollingParent).scroll => @_recalc()
+  scrollingParent: Control.property( ( scrollingParent ) ->
+    $( scrollingParent ).scroll => @_recalc()
   )
   
   _adjustSizes: ->
@@ -62,7 +62,7 @@ class window.PersistentPanel extends Control
     # Make the container the same height as the panel, so that when
     # the panel pops out in fixed mode, the container can continue
     # to occupy the same amount of vertical space.
-    @height @$PersistentPanel_content().outerHeight(true)
+    @height @$PersistentPanel_content().outerHeight( true )
 
   # Determine which parent of the control scrolls vertically.
   _findScrollingParent: ->
@@ -79,7 +79,7 @@ class window.PersistentPanel extends Control
       # scrolling parent, we use the window instead, which has
       # the same effect.
       break  if parents[i] is document.body
-      overflowY = parents.eq(i).css("overflow-y")
+      overflowY = parents.eq( i ).css( "overflow-y" )
       if overflowY is "auto" or overflowY is "scroll"
         
         # Found a parent that explicitly asks for scrolling; use that.
@@ -94,15 +94,15 @@ class window.PersistentPanel extends Control
   _recalc: ->
     scrollingParent = @scrollingParent()
     if scrollingParent
-      isScrollingParentWindow = (scrollingParent is window)
-      $scrollingParent = $(scrollingParent)
+      isScrollingParentWindow = ( scrollingParent is window )
+      $scrollingParent = $( scrollingParent )
       scrollTop = $scrollingParent.scrollTop()
       containerTop = @position().top
-      aboveViewPort = (containerTop < scrollTop)
+      aboveViewPort = ( containerTop < scrollTop )
       scrollBottom = scrollTop + $scrollingParent.height()
       containerBottom = containerTop + @height()
-      belowViewPort = (containerBottom > scrollBottom)
-      dock = (aboveViewPort or belowViewPort)
+      belowViewPort = ( containerBottom > scrollBottom )
+      dock = ( aboveViewPort or belowViewPort )
       if dock
 
         # Docking the content puts it outside the normal document.
@@ -115,13 +115,13 @@ class window.PersistentPanel extends Control
         # width. This may cause the content to change in height.
         # We then set the container's height to match the content's.
         @$PersistentPanel_content().width @width()
-        @height @$PersistentPanel_content().outerHeight(true)
+        @height @$PersistentPanel_content().outerHeight( true )
         css = undefined
-        viewPortTop = (if isScrollingParentWindow then 0 else $scrollingParent.offset().top)
+        viewPortTop = ( if isScrollingParentWindow then 0 else $scrollingParent.offset().top )
         if aboveViewPort
           css = top: viewPortTop + "px"
         else
-          viewPortBottom = (if isScrollingParentWindow then 0 else viewPortTop + $scrollingParent.height())
+          viewPortBottom = ( if isScrollingParentWindow then 0 else viewPortTop + $scrollingParent.height() )
           css = bottom: viewPortBottom
         @$PersistentPanel_content().css css
       else

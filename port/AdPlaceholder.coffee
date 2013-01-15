@@ -21,7 +21,7 @@ class window.AdPlaceholder extends Control
     generic: "true"
 
   # Ad unit content. By default, this shows the unit/dimensions.
-  content: Control.chain("$AdPlaceholder_content", "content")
+  content: Control.chain( "$AdPlaceholder_content", "content" )
 
   # Ad unit dimensions. Should include two values separated by an "x",
   # e.g., "300 x 250". Can also be one of the following ad unit names:
@@ -33,17 +33,17 @@ class window.AdPlaceholder extends Control
   #      Half Page Ad
   #      Button 2
   #      Micro Bar
-  dimensions: Control.property((dimensions) ->
+  dimensions: Control.property( ( dimensions ) ->
     s = AdPlaceholder.standardUnits[dimensions] or dimensions
-    parts = s.toLowerCase().split("x")
-    width = parseInt(parts[0])
-    height = parseInt(parts[1])
-    @css(
+    parts = s.toLowerCase().split( "x" )
+    width = parseInt( parts[0] )
+    height = parseInt( parts[1] )
+    @css( 
       height: height
       "min-height": height
       "min-width": width
       width: width
-    ).content(width + " x " + height).checkForSizeChange()
+    ).content( width + " x " + height ).checkForSizeChange()
   )
   
   initialize: ->

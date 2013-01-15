@@ -5,7 +5,7 @@ A control that can be used as a tab in a Tabs.
 class window.Tab extends Control
 
   # The content of the tab.
-  content: (value) ->
+  content: ( value ) ->
     result = super value
     
     # The parent (e.g., a Tabs) may want to know that the size

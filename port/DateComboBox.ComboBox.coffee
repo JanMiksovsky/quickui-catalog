@@ -12,15 +12,15 @@ class window.DateComboBox extends ComboBox
     ]
 
   # The control's current culture.
-  culture: (culture) ->
+  culture: ( culture ) ->
     result = super culture
     if culture isnt undefined
       @$navigator().culture culture
-      @textBox().culture culture  if $.isFunction(@textBox().culture)
+      @textBox().culture culture  if $.isFunction( @textBox().culture )
     result
 
   # The date indicated in the control.
-  date: Control.property((date) ->
+  date: Control.property( ( date ) ->
     time = date and date.getTime()
     textBoxDate = @$ComboBox_content().date()
     @$ComboBox_content().date date  if not textBoxDate or textBoxDate.getTime() isnt time
@@ -37,18 +37,18 @@ class window.DateComboBox extends ComboBox
     
     # Changing text updates navigator, and vice versa.
     @on
-      dateChanged: (event, date) => @date date
-      dateSelected: (event, date) =>
+      dateChanged: ( event, date ) => @date date
+      dateSelected: ( event, date ) =>
         @date date
         @close()
 
   # The class used for the dropdown portion of the combo box.
   # By default this is a CalendarMonthNavigator, but it can be set to any
   # class that exposes a date() property.
-  navigatorClass: Control.chain("$navigator", "transmute")
+  navigatorClass: Control.chain( "$navigator", "transmute" )
 
   # True if the user must enter a value in this field.
-  required: Control.chain("$ComboBox_content", "required")
+  required: Control.chain( "$ComboBox_content", "required" )
   
   # Hint for documentation tools.
   _requiredClasses: ["DateTextBox"]

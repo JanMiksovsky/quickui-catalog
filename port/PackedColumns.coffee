@@ -2,17 +2,17 @@
 Pack children into columns.
 
 The number of columns is variable, and is determined by diving the control's
-available width by the column width (which is taken from the width of the
-first child).
+available width by the column width ( which is taken from the width of the
+first child ).
 ###
 
 class window.PackedColumns extends Control
 
   # True if the columns should be centered. Default is false.
-  center: Control.property.bool(->
+  center: Control.property.bool( ->
     @layout()  if @inDocument()
   )
-  content: (value) ->
+  content: ( value ) ->
     result = super value
     @checkForSizeChange()
     result
@@ -26,16 +26,16 @@ class window.PackedColumns extends Control
     return  if childCount is 0
     
     # Infer column width and inter-child margins from first child.
-    firstChild = children.eq(0)
+    firstChild = children.eq( 0 )
     columnWidth = firstChild.outerWidth()
     return  if columnWidth is 0 # No width; perhaps child will load later.
-    marginRight = parseInt(firstChild.css("margin-right"))
-    marginBottom = parseInt(firstChild.css("margin-bottom"))
+    marginRight = parseInt( firstChild.css( "margin-right" ) )
+    marginBottom = parseInt( firstChild.css( "margin-bottom" ) )
     availableWidth = @width()
-    columns = Math.max(Math.floor((availableWidth + marginRight) / (columnWidth + marginRight)), 1)
-    consumedWidth = columns * columnWidth + (columns - 1) * marginRight
-    leftover = Math.max(availableWidth - consumedWidth, 0)
-    offsetX = (if @center() then leftover / 2 else 0)
+    columns = Math.max( Math.floor( ( availableWidth + marginRight ) / ( columnWidth + marginRight ) ), 1 )
+    consumedWidth = columns * columnWidth + ( columns - 1 ) * marginRight
+    leftover = Math.max( availableWidth - consumedWidth, 0 )
+    offsetX = ( if @center() then leftover / 2 else 0 )
     columnHeight = []
     childIndex = 0
 
@@ -51,9 +51,9 @@ class window.PackedColumns extends Control
         column++
       
       # Add the current child to the shortest column
-      x = shortestColumn * (columnWidth + marginRight) + offsetX
+      x = shortestColumn * ( columnWidth + marginRight ) + offsetX
       y = columnHeight[shortestColumn] or 0
-      child = children.eq(childIndex)
+      child = children.eq( childIndex )
       child.css
         left: x
         top: y

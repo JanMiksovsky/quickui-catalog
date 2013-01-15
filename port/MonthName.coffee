@@ -7,7 +7,7 @@ class window.MonthName extends Control
   tag: "span"
 
   # The control's current culture.
-  culture: (culture) ->
+  culture: ( culture ) ->
     result = super culture
     @month @month()  if culture isnt undefined
     result
@@ -18,9 +18,9 @@ class window.MonthName extends Control
       @month today.getMonth()
 
   # The index of the month to show: 0 = January, 1 = February, etc.
-  month: Control.property((month) ->
+  month: Control.property( ( month ) ->
     culture = @culture()
-    monthNameEnum = (if culture then culture.calendar.months.names else MonthName.names)
+    monthNameEnum = ( if culture then culture.calendar.months.names else MonthName.names )
     @content monthNameEnum[month]
   )
 

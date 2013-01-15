@@ -1,5 +1,5 @@
 ###
-A polyconstrainHeight (shim) supporting the CSS flexible box layout model on newer browsers
+A polyconstrainHeight ( shim ) supporting the CSS flexible box layout model on newer browsers
 and emulating some very basic aspects of that layout model on older browsers.
 
 As of 3/12/12, Mozilla's flexbox support is too flaky to use. Among other
@@ -24,14 +24,14 @@ class window.SimpleFlexBox extends Control
     ]
 
   # The content of the main center panel.
-  content: Control.chain("$SimpleFlexBox_content", "content")
+  content: Control.chain( "$SimpleFlexBox_content", "content" )
 
   # Set this to true if you have styled the control to constrain its
   # height, e.g., with absolute positioning or a hard pixel height. 
   # (Unfortunately, there doesn't seem to be a way to programmatically
   # determine whether the control has had its height styled.) The default
   # is false.
-  constrainHeight: Control.chain("applyClass/constrainHeight", ->
+  constrainHeight: Control.chain( "applyClass/constrainHeight", ->
     @trigger "layout"  unless @_checkFlexBox()
   )
   initialize: ->
@@ -39,12 +39,12 @@ class window.SimpleFlexBox extends Control
       @_checkFlexBox()
 
   # The orientation of the panels: "horizontal" or "vertical".
-  orient: Control.property((orient) ->
+  orient: Control.property( ( orient ) ->
     vertical = @_vertical()
     @toggleClass "horizontal", not vertical
     @toggleClass "vertical", vertical
     @_checkFlexBox()
-  , "horizontal")
+  , "horizontal" )
 
   # See if we can use the CSS flexible layout module (preferred), whether
   # we can use other flexbox-less styling for layout, or whether we need to
@@ -55,7 +55,7 @@ class window.SimpleFlexBox extends Control
     # Detection of flexbox support requires styles, which means the
     # control has to be in the DOM.
     return false  unless @inDocument()
-    flexBox = SimpleFlexBox.usingFlexBox(this)
+    flexBox = SimpleFlexBox.usingFlexBox( this )
     constrainHeight = @constrainHeight()
 
     # WebKit has a bug preventing use of overflow: auto in combination with
@@ -88,9 +88,9 @@ class window.SimpleFlexBox extends Control
   # is constrained.
   _layout: ->
     vertical = @_vertical()
-    measureFn = (if vertical then $::outerHeight else $::outerWidth)
-    sizePanel1 = measureFn.call(@$SimpleFlexBox_panel1(), true)
-    sizePanel2 = measureFn.call(@$SimpleFlexBox_panel2(), true)
+    measureFn = ( if vertical then $::outerHeight else $::outerWidth )
+    sizePanel1 = measureFn.call( @$SimpleFlexBox_panel1(), true )
+    sizePanel2 = measureFn.call( @$SimpleFlexBox_panel2(), true )
     css = if vertical
       bottom: sizePanel2
       top: sizePanel1
@@ -107,29 +107,29 @@ class window.SimpleFlexBox extends Control
     $controls.checkForSizeChange()  if $controls?
 
   # True if we're currently handling the layout event to do manual layout.
-  _handlingLayout: Control.property.bool(null, false)
+  _handlingLayout: Control.property.bool( null, false )
 
   # The content of the first docked panel.
-  _panel1: Control.chain("$SimpleFlexBox_panel1", "content", ->
+  _panel1: Control.chain( "$SimpleFlexBox_panel1", "content", ->
     @$SimpleFlexBox_panel1().checkForSizeChange()  unless @_usingFlexBox()
   )
 
   # The content of the second docked.
-  _panel2: Control.chain("$SimpleFlexBox_panel2", "content", ->
+  _panel2: Control.chain( "$SimpleFlexBox_panel2", "content", ->
     @$SimpleFlexBox_panel2().checkForSizeChange()  unless @_usingFlexBox()
   )
 
   # Returns true if the given element is using the CSS flexible layout module.
-  @usingFlexBox: ($element) ->
+  @usingFlexBox: ( $element ) ->
     # "-moz-box", 
     flexBoxVariants = ["box", "-webkit-box"]
-    $.inArray($element.css("display"), flexBoxVariants) >= 0
+    $.inArray( $element.css( "display" ), flexBoxVariants ) >= 0
 
   # True if the control is currently using CSS flexible box layout, and
   # false if using manual layout.
-  _usingFlexBox: (usingFlexBox) ->
+  _usingFlexBox: ( usingFlexBox ) ->
     if usingFlexBox is undefined
-      not @hasClass("noFlexBox")
+      not @hasClass( "noFlexBox" )
     else
       @toggleClass "noFlexBox", not usingFlexBox
   

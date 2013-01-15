@@ -18,15 +18,15 @@ class window.SpriteButton extends BasicButton
     generic: "false"
 
   # The height of the sprite image, in pixels.
-  cellHeight: Control.chain("css/height", (value) ->
+  cellHeight: Control.chain( "css/height", ( value ) ->
     @_sprites().cellHeight value
   )
-  content: Control.chain("$SpriteButton_content", "content")
+  content: Control.chain( "$SpriteButton_content", "content" )
 
   # The sprite image.
-  image: Control.chain("_sprites", "image")
-  _renderButtonState: (buttonState) ->
+  image: Control.chain( "_sprites", "image" )
+  _renderButtonState: ( buttonState ) ->
     @_sprites().currentCell buttonState
 
-  _sprites: Control.chain("children", "filter/.Sprite", "cast")
+  _sprites: Control.chain( "children", "filter/.Sprite", "cast" )
 

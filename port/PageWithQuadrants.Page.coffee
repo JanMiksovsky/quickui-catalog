@@ -35,11 +35,11 @@ class window.PageWithQuadrants extends Page
       ]
     ]
 
-  topLeft: Control.chain("$PageWithQuadrants_topLeft", "content")
-  topRight: Control.chain("$PageWithQuadrants_topRight", "content")
-  bottomLeft: Control.chain("$PageWithQuadrants_bottomLeft", "content")
-  bottomRight: Control.chain("$PageWithQuadrants_bottomRight", "content")
+  topLeft: Control.chain( "$PageWithQuadrants_topLeft", "content" )
+  topRight: Control.chain( "$PageWithQuadrants_topRight", "content" )
+  bottomLeft: Control.chain( "$PageWithQuadrants_bottomLeft", "content" )
+  bottomRight: Control.chain( "$PageWithQuadrants_bottomRight", "content" )
 
   # The main page content. This will go in the bottom right quadrant.
-  content: Control.chain("bottomRight")
+  content: Control.chain( "bottomRight" )
 

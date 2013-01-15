@@ -21,7 +21,7 @@ class window.ValidatingTextBox extends TextBox
     generic: "true"
 
   # The control's content. Setting this implicitly performs validation.
-  content: (content) ->
+  content: ( content ) ->
     result = super content
     @validate true  if content isnt undefined and @validateOnSet()
     result
@@ -31,7 +31,7 @@ class window.ValidatingTextBox extends TextBox
       blur: => @validate true if @validateOnBlur()
       keyup: => @validate()
 
-  invalid: Control.chain("applyClass/invalid")
+  invalid: Control.chain( "applyClass/invalid" )
 
   # True if the text box must be non-empty to be valid.
   required: Control.property.bool()
@@ -61,15 +61,15 @@ class window.ValidatingTextBox extends TextBox
   # are invalid. If the strict parameter is false, then the control can move
   # out of the invalid state (if the contents are now valid), but won't move
   # into the invalid state (even if the contents are actually invalid).
-  validate: Control.iterator((strict) ->
+  validate: Control.iterator( ( strict ) ->
     valid = @valid()
     @invalid not valid  if strict or @invalid()
   )
 
   # True if validation should be automatically be performed when the control
   # loses focus. Default is true.
-  validateOnBlur: Control.property.bool(null, true)
+  validateOnBlur: Control.property.bool( null, true )
 
   # True if validation should be automatically be performed when the control's
   # content is set programmatically. Default is true.
-  validateOnSet: Control.property.bool(null, true)
+  validateOnSet: Control.property.bool( null, true )

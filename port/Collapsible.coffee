@@ -15,15 +15,15 @@ class window.Collapsible extends Control
     generic: "true"
 
   # The control's contents which can be expanded and collapsed.
-  content: Control.chain("$Collapsible_content", "content")
+  content: Control.chain( "$Collapsible_content", "content" )
 
   # The speed of the expand/collapse animation, in milliseconds.
-  duration: Control.property(null, "fast")
+  duration: Control.property( null, "fast" )
 
   # Get or set the control's collapsed state.
   # When called as a setter, a true value collapsed the control;
   # a false value expands the control.
-  collapsed: Control.iterator((value) ->
+  collapsed: Control.iterator( ( value ) ->
     if value is undefined
       
       # Getter
@@ -34,7 +34,7 @@ class window.Collapsible extends Control
       if @inDocument()
         
         # Animate if in document.
-        result = (if value then "hide" else "show")
+        result = ( if value then "hide" else "show" )
         @$Collapsible_content().animate
           height: result
           opacity: result
@@ -45,7 +45,7 @@ class window.Collapsible extends Control
       else
         
         # Not in document, animation won't work.
-        @toggleClass("collapsed", value).$Collapsible_content().toggle not value
+        @toggleClass( "collapsed", value ).$Collapsible_content().toggle not value
       if @_collapsed() isnt value
         @trigger "collapsedChanged"
         @_collapsed value
@@ -56,7 +56,7 @@ class window.Collapsible extends Control
   # 
   # This can be empty if the application wants to programmatically control
   # the collapsed state in some other means.
-  heading: Control.chain("$Collapsible_heading", "content")
+  heading: Control.chain( "$Collapsible_heading", "content" )
   initialize: ->
     @$Collapsible_heading().click =>
       @toggleCollapse()  if @toggleOnClick()
@@ -69,6 +69,6 @@ class window.Collapsible extends Control
   # True if the control should toggle its state when the user clicks in
   # the heading. Default is true.
   #	 
-  toggleOnClick: Control.property.bool(null, true)
-  _collapsed: Control.property.bool(null, false)
+  toggleOnClick: Control.property.bool( null, true )
+  _collapsed: Control.property.bool( null, false )
 

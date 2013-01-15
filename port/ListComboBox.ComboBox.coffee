@@ -16,23 +16,23 @@ class window.ListComboBox extends ComboBox
     ]
 
   # The array of items in the dropdown list. See List for details.
-  items: Control.chain("$list", "items", ->
+  items: Control.chain( "$list", "items", ->
     @_updateItemContents()
   )
 
   # A mapping of items to controls and back. See List for details.
-  mapFunction: Control.chain("$list", "mapFunction")
+  mapFunction: Control.chain( "$list", "mapFunction" )
   initialize: ->
     @$list().on
 
-      click: (event) =>
+      click: ( event ) =>
         # Clicking a list item puts its content into the text box portion.
-        $closestItem = $(event.target).closest(@$list().children())
+        $closestItem = $( event.target ).closest( @$list().children() )
         if $closestItem
           itemContent = $closestItem.control().content()
-          @content(itemContent).close()
+          @content( itemContent ).close()
 
-      keydown: (event) =>
+      keydown: ( event ) =>
         if event.which is 13 # Enter
           if @opened()
             @close()
@@ -48,14 +48,14 @@ class window.ListComboBox extends ComboBox
             @_selectText 0, content.length
 
   # The class which should be used to render the list items as controls.
-  itemClass: Control.property.class((itemClass) ->
+  itemClass: Control.property.class( ( itemClass ) ->
     @$list().itemClass itemClass
   )
   open: ->
     
     # See if current text is in the list and, if so, select it.
     content = @content()
-    index = $.inArray(content, @_itemContents())
+    index = $.inArray( content, @_itemContents() )
     @$list().selectedIndex index  if index >= 0
     result = super()
     
@@ -68,7 +68,7 @@ class window.ListComboBox extends ComboBox
   # Try to auto-complete the current text against the item contents.
   _autoComplete: ->
     content = @content()
-    match = @_matchingItem(content)
+    match = @_matchingItem( content )
     unless match
       @$list().selectedControl null
       return
@@ -82,7 +82,7 @@ class window.ListComboBox extends ComboBox
     super()
     
     # See notes at _contentKeydown.
-    @inputElement().keydown (event) => @_contentKeydown event
+    @inputElement().keydown ( event ) => @_contentKeydown event
 
   # Handle a keydown event. Keydown gives the best AutoComplete performance
   # and behavior: among other things, the AutoComplete happens as soon as
@@ -91,7 +91,7 @@ class window.ListComboBox extends ComboBox
   # user just pressed down. So we set a timeout to give the keydown event a
   # chance to bubble up and do its work, then do our AutoComplete work
   # against the resulting text.
-  _contentKeydown: (event) ->
+  _contentKeydown: ( event ) ->
     handled = false
     # Page Up
     # Page Down
@@ -100,10 +100,10 @@ class window.ListComboBox extends ComboBox
     
     # Do AutoComplete on Space, or characters from zero (0) and up,
     # ignoring any combinations that involve Alt or Ctrl.
-    if (event.which is 32 or event.which >= 48) and not (event.altKey or event.ctrlKey or event.metaKey)
+    if ( event.which is 32 or event.which >= 48 ) and not ( event.altKey or event.ctrlKey or event.metaKey )
       @_setTimeout => @_autoComplete()
 
-    else if @opened() and $.inArray(event.which, navigationKeys) >= 0
+    else if @opened() and $.inArray( event.which, navigationKeys ) >= 0
       
       # Forward navigation keys to opened list.
       @$list().trigger event
@@ -130,7 +130,7 @@ class window.ListComboBox extends ComboBox
   
   # Return the item whose prefix matches the given string, ignoring case.
   # Return null if not found.
-  _matchingItem: (s) ->
+  _matchingItem: ( s ) ->
     length = s.length
     if length > 0
       lower = s.toLowerCase()
@@ -140,7 +140,7 @@ class window.ListComboBox extends ComboBox
 
       while i < itemCount
         itemContent = itemContents[i]
-        return itemContent  if length <= itemContent.length and itemContent.substr(0, length).toLowerCase() is lower
+        return itemContent  if length <= itemContent.length and itemContent.substr( 0, length ).toLowerCase() is lower
         i++
     null
 
@@ -150,20 +150,20 @@ class window.ListComboBox extends ComboBox
   _selectTextInList: ->
     if @opened()
       content = @content()
-      index = $.inArray(content, @_itemContents())
+      index = $.inArray( content, @_itemContents() )
       @$list().selectedIndex index
 
   
   # Arrange for a callback to be performed via a timeout.
   # See notes at _contentKeydown.
-  _setTimeout: (callback) ->
+  _setTimeout: ( callback ) ->
     
     # Cancel any pending AutoComplete timeout.
     timeout = @_timeout()
     clearTimeout timeout  if timeout
     
     # Queue a new timeout.
-    timeout = window.setTimeout(callback, 50)
+    timeout = window.setTimeout( callback, 50 )
     @_timeout timeout
 
   _timeout: Control.property()
@@ -176,7 +176,7 @@ class window.ListComboBox extends ComboBox
   # reflect the text to map against. 
   _updateItemContents: ->
     itemContents = []
-    @$list().controls().eachControl (index, $control) ->
+    @$list().controls().eachControl ( index, $control ) ->
       itemContents.push $control.content()
 
     @_itemContents itemContents

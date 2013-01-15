@@ -16,10 +16,10 @@ class window.Menu extends PopupSource
     generic: "true"
 
   initialize: ->
-    @$PopupSource_popup().on "click", (event) ->
+    @$PopupSource_popup().on "click", ( event ) ->
       
       # Absorb clicks outside of menu items.
-      $menuItem = $(event.target).closest(".MenuItem")
+      $menuItem = $( event.target ).closest( ".MenuItem" )
       event.stopPropagation()  if $menuItem.length is 0
 
   open: ->
@@ -29,7 +29,7 @@ class window.Menu extends PopupSource
     @_updateShield()
     super()
 
-  popup: Control.chain("$Menu_popup", "content")
+  popup: Control.chain( "$Menu_popup", "content" )
   
   # Hint for documentation tools.
   _requiredClasses: ["MenuItem"]
@@ -43,6 +43,6 @@ class window.Menu extends PopupSource
     # We want the width of the content including padding, but not
     # including border.
     $content = @$PopupSource_content()
-    shieldWidth = $content.width() + parseFloat($content.css("padding-left")) + parseFloat($content.css("padding-right"))
+    shieldWidth = $content.width() + parseFloat( $content.css( "padding-left" ) ) + parseFloat( $content.css( "padding-right" ) )
     @$shield().width shieldWidth
 

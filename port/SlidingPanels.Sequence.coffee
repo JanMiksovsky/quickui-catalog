@@ -12,13 +12,13 @@ class window.SlidingPanels extends Sequence
     ]
 
   # The index of the control currently being shown.
-  activeIndex: (activeIndex) ->
+  activeIndex: ( activeIndex ) ->
     result = super activeIndex
     if activeIndex isnt undefined
-      panel = @elements().eq(activeIndex)
+      panel = @elements().eq( activeIndex )
       if panel.length > 0
         left = panel.position().left
-        if SlidingPanels.hasTransitions(@$SlidingPanels_content())
+        if SlidingPanels.hasTransitions( @$SlidingPanels_content() )
           
           # Use CSS animation.
           @$SlidingPanels_content().css "left", -left
@@ -34,21 +34,21 @@ class window.SlidingPanels extends Sequence
   # 
   # If the set changes, this will attempt to preserve the one that was
   # previously active. Otherwise, the first element is made active.
-  content: (content) ->
+  content: ( content ) ->
     result = super content
     @_adjustWidths()  if content isnt undefined
     result
 
   # Returns true if the given element has CSS transitions applied to it.
-  @hasTransitions: ($element) ->
+  @hasTransitions: ( $element ) ->
     transitionProperties = ["-webkit-transition", "transition"]
-    if Control.browser.msie and parseInt(Control.browser.version) < 9
+    if Control.browser.msie and parseInt( Control.browser.version ) < 9
       # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we
       # try to get the css("transition") property.
       return false
     i = 0
     while i < transitionProperties.length
-      value = $element.css(transitionProperties[i])
+      value = $element.css( transitionProperties[i] )
       return true  if value isnt undefined and value isnt ""
       i++
     false
@@ -61,15 +61,15 @@ class window.SlidingPanels extends Sequence
   _adjustWidths: ->
     elements = @elements()
     return  if elements.length is 0
-    panelWidths = elements.map((index, panel) ->
-      $(panel).width()
+    panelWidths = elements.map( ( index, panel ) ->
+      $( panel ).width()
     ).get()
-    maxpanelWidth = Math.max.apply(this, panelWidths)
+    maxpanelWidth = Math.max.apply( this, panelWidths )
     elements.width maxpanelWidth  if maxpanelWidth > 0
-    panelOuterWidths = elements.map((index, panel) ->
-      $(panel).outerWidth true
+    panelOuterWidths = elements.map( ( index, panel ) ->
+      $( panel ).outerWidth true
     ).get()
-    maxpanelOuterWidth = Math.max.apply(this, panelOuterWidths)
+    maxpanelOuterWidth = Math.max.apply( this, panelOuterWidths )
     @width maxpanelOuterWidth  if maxpanelOuterWidth > 0
 
-  _container: Control.chain("$SlidingPanels_content")
+  _container: Control.chain( "$SlidingPanels_content" )

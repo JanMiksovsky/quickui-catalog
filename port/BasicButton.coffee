@@ -21,7 +21,7 @@ class window.BasicButton extends Control
   buttonState: ->
     if @disabled()
       return BasicButton.state.disabled
-    else if (@isMouseButtonDown() and @isMouseOverControl()) or @isKeyPressed()
+    else if ( @isMouseButtonDown() and @isMouseOverControl() ) or @isKeyPressed()
       return BasicButton.state.active
     else if @isFocused()
       return BasicButton.state.focus
@@ -32,43 +32,43 @@ class window.BasicButton extends Control
   # 
   # Setting this also applies "disabled" class for IE8, which doesn't support
   # the :disabled pseudo-class.
-  disabled: Control.chain("prop/disabled", (disabled) ->
+  disabled: Control.chain( "prop/disabled", ( disabled ) ->
     
     # Force removal of interactive states.
     @removeClass "active focus hover"  if disabled
-    @toggleClass("disabled", disabled)._renderButton()
+    @toggleClass( "disabled", disabled )._renderButton()
   )
   initialize: ->
     @on
-      blur: (event) => @_trackBlur event
-      focus: (event) => @_trackFocus event
-      keydown: (event) => @_trackKeydown event
-      keyup: (event) => @_trackKeyup event
-      mousedown: (event) => @_trackMousedown event
-      mouseup: (event) => @_trackMouseup event
-    @hover (event) =>
+      blur: ( event ) => @_trackBlur event
+      focus: ( event ) => @_trackFocus event
+      keydown: ( event ) => @_trackKeydown event
+      keyup: ( event ) => @_trackKeyup event
+      mousedown: ( event ) => @_trackMousedown event
+      mouseup: ( event ) => @_trackMouseup event
+    @hover ( event ) =>
       @_trackMousein event
-    , (event) =>
+    , ( event ) =>
       @_trackMouseout event
     @_renderButton()
 
   # True if the button currently has the focus.
-  isFocused: Control.property.bool(null, false)
+  isFocused: Control.property.bool( null, false )
 
   # True if the user is currently pressing down a key.
-  isKeyPressed: Control.property.bool(null, false)
+  isKeyPressed: Control.property.bool( null, false )
 
   # True if the mouse button is currently down.
-  isMouseButtonDown: Control.property.bool(null, false)
+  isMouseButtonDown: Control.property.bool( null, false )
 
   # True if the mouse is currently over the button.
-  isMouseOverControl: Control.property.bool(null, false)
+  isMouseOverControl: Control.property.bool( null, false )
 
   # True if the button's "quiet" style should be applied. The generic quiet
   # styling shows no background or border effects in the button's normal
   # state -- only when the user is interacting with the button -- so that
   # the button can more easily blend in as a component of other controls.
-  quiet: Control.chain("applyClass/quiet")
+  quiet: Control.chain( "applyClass/quiet" )
 
   @state:
     normal: 0
@@ -77,34 +77,34 @@ class window.BasicButton extends Control
     active: 3
     disabled: 4
 
-  _renderButtonState: (buttonState) ->
+  _renderButtonState: ( buttonState ) ->
 
   _renderButton: ->
     @_renderButtonState @buttonState()
 
-  _trackBlur: (event) ->
+  _trackBlur: ( event ) ->
     # Losing focus causes the button to override any key that had been active.
-    @removeClass("focus").isKeyPressed(false).isFocused(false)._renderButton()
+    @removeClass( "focus" ).isKeyPressed( false ).isFocused( false )._renderButton()
 
-  _trackFocus: (event) ->
-    @addClass("focus").isFocused(true)._renderButton()
+  _trackFocus: ( event ) ->
+    @addClass( "focus" ).isFocused( true )._renderButton()
 
-  _trackKeydown: (event) ->
+  _trackKeydown: ( event ) ->
     # Space 
     # Enter 
-    @isKeyPressed(true)._renderButton()  if event.which is 32 or event.which is 13
+    @isKeyPressed( true )._renderButton()  if event.which is 32 or event.which is 13
 
-  _trackKeyup: (event) ->
-    @isKeyPressed(false)._renderButton()
+  _trackKeyup: ( event ) ->
+    @isKeyPressed( false )._renderButton()
 
-  _trackMousedown: (event) ->
-    @addClass("active").isMouseButtonDown(true)._renderButton()
+  _trackMousedown: ( event ) ->
+    @addClass( "active" ).isMouseButtonDown( true )._renderButton()
 
-  _trackMousein: (event) ->
-    @addClass("hover").isMouseOverControl(true)._renderButton()
+  _trackMousein: ( event ) ->
+    @addClass( "hover" ).isMouseOverControl( true )._renderButton()
 
-  _trackMouseout: (event) ->
-    @removeClass("focus hover active").isMouseOverControl(false)._renderButton()
+  _trackMouseout: ( event ) ->
+    @removeClass( "focus hover active" ).isMouseOverControl( false )._renderButton()
 
-  _trackMouseup: (event) ->
-    @removeClass("active").isMouseButtonDown(false)._renderButton()
+  _trackMouseup: ( event ) ->
+    @removeClass( "active" ).isMouseButtonDown( false )._renderButton()

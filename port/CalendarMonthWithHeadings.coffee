@@ -23,10 +23,10 @@ class window.CalendarMonthWithHeadings extends Control
     generic: "true"
 
   # The control's current culture.
-  culture: Control.iterator((culture) ->
+  culture: Control.iterator( ( culture ) ->
     
     # var result = this._super( culture );
-    result = @constructor.superclass::culture.call(this, culture)
+    result = @constructor.superclass::culture.call( this, culture )
     if culture isnt undefined
       @$monthAndYear().culture culture
       @$daysOfWeek().culture culture
@@ -37,22 +37,22 @@ class window.CalendarMonthWithHeadings extends Control
   )
   
   # The date shown in the calendar 
-  date: Control.chain("$calendar", "date", (date) ->
+  date: Control.chain( "$calendar", "date", ( date ) ->
     @$monthAndYear().date date
   )
 
   # The class used to represent days in the month.
-  dayClass: Control.chain("$calendar", "dayClass")
+  dayClass: Control.chain( "$calendar", "dayClass" )
 
   # The controls used for the days in the calendar.
-  days: Control.chain("$calendar", "days")
+  days: Control.chain( "$calendar", "days" )
 
   # Returns the control currently showing the given date.
-  dayControlForDate: (date) ->
+  dayControlForDate: ( date ) ->
     @$calendar().dayControlForDate date
 
   # The format used to show day headings. See DaysOfWeek.
-  dayNameFormat: Control.chain("$daysOfWeek", "format")
+  dayNameFormat: Control.chain( "$daysOfWeek", "format" )
   initialize: ->
     unless @date()
       
@@ -64,5 +64,5 @@ class window.CalendarMonthWithHeadings extends Control
       @$monthAndYear().date @date()
 
   # True if the month name and year should be shown.
-  showMonthAndYear: Control.chain("$monthAndYear", "visibility")
+  showMonthAndYear: Control.chain( "$monthAndYear", "visibility" )
 

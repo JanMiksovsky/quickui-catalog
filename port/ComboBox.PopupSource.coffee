@@ -26,14 +26,14 @@ class window.ComboBox extends PopupSource
 
   # True if the dropdown portion should automatically close if the user
   # presses Enter. Default is true.
-  closeOnEnter: Control.property.bool(null, true)
+  closeOnEnter: Control.property.bool( null, true )
 
   # The content of the combo box's input portion.
-  content: Control.chain("$ComboBox_content", "content")
+  content: Control.chain( "$ComboBox_content", "content" )
 
   # The content of the dropdown button. By default, this shows a
   # downward-pointing arrow.
-  dropdownButtonContent: Control.chain("$dropdownButton", "content")
+  dropdownButtonContent: Control.chain( "$dropdownButton", "content" )
   initialize: ->
     @$PopupSource_popup().on
       canceled: =>
@@ -52,27 +52,28 @@ class window.ComboBox extends PopupSource
         @$dropdownButton().selected false
     
     # Close the popup when the control loses focus.
-    @on focusout: (event) ->
+    @on
+      focusout: ( event ) =>
+        # We want to close the popup if the focus moves completely
+        # outside the combo box; i.e., is not within the input box or
+        # the popup. Unfortunately, if the user clicks in the popup,
+        # the input will blur before we've had a chance to even
+        # register the click. And at the point the blur handler here
+        # is invoked, the new activeElement is not yet known, so we
+        # can't test that.  
+        # 
+        # Our solution is to set a timeout which will defer testing
+        # of activeElement until after the normal focusout sequence
+        # has completed and focus has been placed in the new control.
+        if @opened()
+          setTimeout( =>
+            focusInControl = $.contains( self[0], document.activeElement )
+            # Still open?
+            @cancel()  if not focusInControl and @opened()
+          , 1 )
+          return # Avoid implicitly returning timeout.
 
-      # We want to close the popup if the focus moves completely
-      # outside the combo box; i.e., is not within the input box or
-      # the popup. Unfortunately, if the user clicks in the popup,
-      # the input will blur before we've had a chance to even
-      # register the click. And at the point the blur handler here
-      # is invoked, the new activeElement is not yet known, so we
-      # can't test that.  
-      # 
-      # Our solution is to set a timeout which will defer testing
-      # of activeElement until after the normal focusout sequence
-      # has completed and focus has been placed in the new control.
-      if @opened()
-        setTimeout (=>
-          focusInControl = $.contains(self[0], document.activeElement)
-          # Still open?
-          @cancel()  if not focusInControl and @opened()
-        ), 1
-
-    @$dropdownButton().click (event) =>
+    @$dropdownButton().click ( event ) =>
       @open()
 
     
@@ -92,18 +93,18 @@ class window.ComboBox extends PopupSource
     $content = @$ComboBox_content()
     
     # Content itself is a text input element.
-    return $content  if $content[0].nodeName.toLowerCase() is "input" and $content.prop("type") is "text"
+    return $content  if $content[0].nodeName.toLowerCase() is "input" and $content.prop( "type" ) is "text"
     
     # Return the first text input element.
-    @$ComboBox_content().find("input[type='text']").eq 0
+    @$ComboBox_content().find( "input[type='text']" ).eq 0
 
   # Open the combo box.
   open: ->
     unless @opened()
-      if @hasClass("generic")
+      if @hasClass( "generic" )
         
         # Make popup at least as wide as content.
-        @eachControl (index, $control) ->
+        @eachControl ( index, $control ) =>
           width = $control.outerWidth()
           @$PopupSource_popup().css "min-width", width + "px"
 
@@ -116,14 +117,14 @@ class window.ComboBox extends PopupSource
 
   # True if the control should automatically open when it receives the
   # keyboard focus. Default is true.
-  openOnFocus: Control.property.bool(null, true)
+  openOnFocus: Control.property.bool( null, true )
 
   # The control serving as the text box portion of the combo box.
-  textBox: Control.chain("$ComboBox_content", "control")
+  textBox: Control.chain( "$ComboBox_content", "control" )
 
   # The class of the text box portion of the combo box.
-  textBoxClass: Control.property.class((textBoxClass) ->
-    $textBox = @$ComboBox_content().transmute(textBoxClass, true)
+  textBoxClass: Control.property.class( ( textBoxClass ) ->
+    $textBox = @$ComboBox_content().transmute( textBoxClass, true )
     @referencedElement "ComboBox_content", $textBox
     
     # Rebind any content events we want to track.
@@ -131,9 +132,9 @@ class window.ComboBox extends PopupSource
   )
   _bindContentEvents: ->
     @$ComboBox_content().on
-      "click focusin": (event) =>
+      "click focusin": ( event ) =>
         @open()  if @openOnFocus() and not @opened()
-      keydown: (event) =>
+      keydown: ( event ) =>
         opened = @opened()
         if event.which is 13 and opened and @closeOnEnter()
           # Enter key closes popup. 
@@ -146,7 +147,7 @@ class window.ComboBox extends PopupSource
   _requiredClasses: ["TextBox"]
 
   # Select the text at the indicated positions in the input control.
-  _selectText: (start, end) ->
+  _selectText: ( start, end ) ->
     inputElement = @inputElement()[0]
     return  unless inputElement # Can't find input control.
     if inputElement.setSelectionRange

@@ -6,12 +6,12 @@ Alpha values are possible, but all colors must be specified as RGBA hex values.
 class window.Gradient extends Control
 
   # The direction of the gradient: "horizontal" or "vertical" (the default).
-  direction: Control.property(->
+  direction: Control.property( ->
     @_redraw()
-  , "vertical")
+  , "vertical" )
 
   # The ending value for the gradient.
-  end: Control.property(->
+  end: Control.property( ->
     @_redraw()
   )
   initialize: ->
@@ -19,7 +19,7 @@ class window.Gradient extends Control
       @_redraw()
 
   # The starting value for the gradient.
-  start: Control.property(->
+  start: Control.property( ->
     @_redraw()
   )
   _redraw: ->
@@ -28,33 +28,33 @@ class window.Gradient extends Control
     start = @start()
     end = @end()
     if direction and start and end
-      horizontal = (direction is "horizontal")
-      startColorString = @_hexColorToRgbString(start)
-      endColorString = @_hexColorToRgbString(end)
+      horizontal = ( direction is "horizontal" )
+      startColorString = @_hexColorToRgbString( start )
+      endColorString = @_hexColorToRgbString( end )
       property = undefined
       value = undefined
       if Control.browser.mozilla
         property = "background-image"
-        position = (if horizontal then "left" else "top")
-        value = "-moz-linear-gradient(" + position + ", " + startColorString + ", " + endColorString + ")"
+        position = ( if horizontal then "left" else "top" )
+        value = "-moz-linear-gradient( " + position + ", " + startColorString + ", " + endColorString + " )"
       else if Control.browser.webkit
         property = "background-image"
-        position2 = (if horizontal then "right top" else "left bottom")
-        value = "-webkit-gradient(linear, left top, " + position2 + ", from(" + startColorString + "), to(" + endColorString + "))"
+        position2 = ( if horizontal then "right top" else "left bottom" )
+        value = "-webkit-gradient( linear, left top, " + position2 + ", from( " + startColorString + " ), to( " + endColorString + " ) )"
       else if Control.browser.msie
         property = "filter"
-        gradientType = (if horizontal then 1 else 0)
-        value = "progid:DXImageTransform.Microsoft.gradient(gradientType=" + gradientType + ", startColorStr=" + startColorString + ", endColorStr=" + endColorString + ")"
+        gradientType = ( if horizontal then 1 else 0 )
+        value = "progid:DXImageTransform.Microsoft.gradient( gradientType=" + gradientType + ", startColorStr=" + startColorString + ", endColorStr=" + endColorString + " )"
       @css property, value
 
   
   # Convert a hex color like #00ff00 to "rgb(0, 255, 0)" 
-  _hexColorToRgbString: (hex) ->
+  _hexColorToRgbString: ( hex ) ->
     
     # Remove "#"
-    hex = hex.substring(1)  if hex.substr(0, 1) is "#"
-    hasAlpha = (hex.length is 8)
-    color = parseInt(hex, 16)
+    hex = hex.substring( 1 )  if hex.substr( 0, 1 ) is "#"
+    hasAlpha = ( hex.length is 8 )
+    color = parseInt( hex, 16 )
     a = undefined
     rgbString = undefined
     if Control.browser.msie
@@ -64,23 +64,23 @@ class window.Gradient extends Control
       if hasAlpha
         
         # Move alpha to front, from RGBA to ARGB.
-        a = rgbString.slice(6)
-        rgbString = a + rgbString.substr(0, 6)
+        a = rgbString.slice( 6 )
+        rgbString = a + rgbString.substr( 0, 6 )
       rgbString = "#" + rgbString
     else
       
       # WebKit, Mozilla
-      colorStringType = (if hasAlpha then "rgba" else "rgb")
+      colorStringType = ( if hasAlpha then "rgba" else "rgb" )
       alphaString = ""
       if hasAlpha
         
         # Convert alpha from hex to decimal.
-        a = (color & 0xFF) / 255
+        a = ( color & 0xFF ) / 255
         alphaString = "," + a
         color = color >> 8
-      r = (color >> 16) & 0xFF
-      g = (color >> 8) & 0xFF
+      r = ( color >> 16 ) & 0xFF
+      g = ( color >> 8 ) & 0xFF
       b = color & 0xFF
-      rgbString = colorStringType + "(" + r + "," + g + "," + b + alphaString + ")"
+      rgbString = colorStringType + "( " + r + "," + g + "," + b + alphaString + " )"
     rgbString
 

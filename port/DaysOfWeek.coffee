@@ -9,7 +9,7 @@ class window.DaysOfWeek extends Control
     generic: "true"
 
   # The control's current culture.
-  culture: (culture) ->
+  culture: ( culture ) ->
     result = super culture
     @format @format()  if culture isnt undefined
     result
@@ -32,18 +32,18 @@ class window.DaysOfWeek extends Control
   #  "names": the full name, e.g. "Sunday".
   #  "namesAbbreviated": an abbreviated name, e.g., "Sun".
   #  "namesShort": an even shorter name, e.g., "Su".
-  format: Control.property((format) ->
+  format: Control.property( ( format ) ->
     culture = @culture()
-    dayNameEnum = (if culture then culture.calendar.days else DaysOfWeek.days)
+    dayNameEnum = ( if culture then culture.calendar.days else DaysOfWeek.days )
     dayNames = dayNameEnum[format]
-    firstDay = (if culture then culture.calendar.firstDay else 0)
+    firstDay = ( if culture then culture.calendar.firstDay else 0 )
     $children = @children()
     i = 0
 
     while i < dayNames.length
-      day = (i + firstDay) % 7
+      day = ( i + firstDay ) % 7
       dayName = dayNames[day]
-      $children.eq(i).content dayName
+      $children.eq( i ).content dayName
       i++
   )
 

@@ -19,7 +19,7 @@ class window.AutoSizeTextBox extends Control
     ]
 
   # Resize the text box to exactly contain its content.
-  autoSize: Control.iterator((addExtraLine) ->
+  autoSize: Control.iterator( ( addExtraLine ) ->
 
     # We resize by copying the text box contents to the hidden copy.
     # That copy will size appropriately, which will make the overall control
@@ -30,20 +30,20 @@ class window.AutoSizeTextBox extends Control
     # See if last line of content ends in a newline (extra or otherwise).
     
     # Add an extra space so that the last line will get fully rendered.
-    content += " "  if content.slice(-1) is "\n"
+    content += " "  if content.slice( -1 ) is "\n"
     @$textCopy().text content
   )
 
   # The content of the text box.
-  content: Control.chain("$textBox", "content", ->
+  content: Control.chain( "$textBox", "content", ->
     @autoSize()
   )
   initialize: ->
     @$textBox().on
-      "change keyup": (event) =>
+      "change keyup": ( event ) =>
         @autoSize()
 
-      keypress: (event) =>
+      keypress: ( event ) =>
         # Enter 
         
         # Speculatively add a line to our copy of the text.
@@ -65,54 +65,54 @@ class window.AutoSizeTextBox extends Control
   # Setting this to a higher number will ensure an empty textarea is still
   # multiple lines tall, which lets the user intuit that the control accepts
   # multiple lines of text.
-  minimumLines: Control.property.integer((minimumLines) ->
+  minimumLines: Control.property.integer( ( minimumLines ) ->
     @_refresh()  if @inDocument()
-  , 1)
+  , 1 )
 
   # The placeholder (hint text) shown in the text area if it's empty.
-  placeholder: Control.chain("$textBox", "prop/placeholder")
+  placeholder: Control.chain( "$textBox", "prop/placeholder" )
 
   # True if the text box should expose the browser's built-in spell-checking.
-  spellcheck: Control.chain("$textBox", "prop/spellcheck")
+  spellcheck: Control.chain( "$textBox", "prop/spellcheck" )
   
   # For the following, we need to wait until the control's in the DOM.    
-  _refresh: Control.iterator(->
+  _refresh: Control.iterator( ->
     $textBox = @$textBox()
     $textCopy = @$textCopy()
     
     # Copy the control's font to the textarea and text copy.
     # This ensures both end up with the same text metrics.
     @children().css
-      "font-family": @css("font-family")
-      "font-size": @css("font-size")
-      "font-style": @css("font-style")
-      "font-weight": @css("font-weight")
+      "font-family": @css( "font-family" )
+      "font-size": @css( "font-size" )
+      "font-style": @css( "font-style" )
+      "font-weight": @css( "font-weight" )
 
     
     # Try to get the text box's line height. Unfortunately some browsers
     # return the useful value "normal", in which case we have to make
     # an estimate based on font size.
-    lineHeight = parseInt($textBox.css("line-height"))
-    if isNaN(lineHeight)
+    lineHeight = parseInt( $textBox.css( "line-height" ) )
+    if isNaN( lineHeight )
       
       # line-height values like "normal" don't give us a measurement
       # we can use. We fall back to estimating a line height
       # based on font size. We then apply this to both the text box
       # and the copy so they both have the same font-size.
-      lineHeight = Math.floor(parseInt($textBox.css("font-size")) * 1.25)
+      lineHeight = Math.floor( parseInt( $textBox.css( "font-size" ) ) * 1.25 )
       $textBox.css "line-height", lineHeight + "px"
     $textCopy.css "line-height", lineHeight + "px"
     
     # Mirror the textarea's padding and borders on the text copy.
-    borderBottomWidth = $textBox.css("border-bottom-width")
-    borderLeftWidth = $textBox.css("border-left-width")
-    borderRigthWidth = $textBox.css("border-right-width")
-    borderTopWidth = $textBox.css("border-top-width")
-    paddingBottom = $textBox.css("padding-bottom")
-    paddingLeft = $textBox.css("padding-left")
-    paddingRight = $textBox.css("padding-right")
-    paddingTop = $textBox.css("padding-top")
-    if Control.browser.mozilla and not $textBox.is(":visible")
+    borderBottomWidth = $textBox.css( "border-bottom-width" )
+    borderLeftWidth = $textBox.css( "border-left-width" )
+    borderRigthWidth = $textBox.css( "border-right-width" )
+    borderTopWidth = $textBox.css( "border-top-width" )
+    paddingBottom = $textBox.css( "padding-bottom" )
+    paddingLeft = $textBox.css( "padding-left" )
+    paddingRight = $textBox.css( "padding-right" )
+    paddingTop = $textBox.css( "padding-top" )
+    if Control.browser.mozilla and not $textBox.is( ":visible" )
       
       # Firefox incorrectly reports the default padding for hidden textareas
       # as 0px. If the textarea is visible, or the padding has been explicitly
@@ -144,7 +144,7 @@ class window.AutoSizeTextBox extends Control
       # Mozilla incorrectly includes padding+border in height when
       # -moz-box-sizing is border-box. The other browsers do not,
       # so for those browsers we need to add it in.
-      height += parseInt(borderTopWidth) + parseInt(paddingTop) + parseInt(paddingBottom) + parseInt(borderBottomWidth)  unless Control.browser.mozilla
+      height += parseInt( borderTopWidth ) + parseInt( paddingTop ) + parseInt( paddingBottom ) + parseInt( borderBottomWidth )  unless Control.browser.mozilla
       @$textCopy().css "min-height", height + "px"
   )
 

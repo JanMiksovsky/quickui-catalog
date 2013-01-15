@@ -15,7 +15,7 @@ class window.HintTextBox extends Control
     generic: "true"
 
   # The content of the text box.
-  content: Control.chain("$HintTextBox_textBox", "content", ->
+  content: Control.chain( "$HintTextBox_textBox", "content", ->
     @_showHintIfEmpty()
   )
 
@@ -23,20 +23,20 @@ class window.HintTextBox extends Control
   # type there. This hint is hidden if: the text box has content, the
   # text box has just acquired the keyboard focus, or if the user clicks in
   # the text box. 
-  hint: Control.chain("$HintTextBox_hint", "content")
+  hint: Control.chain( "$HintTextBox_hint", "content" )
   initialize: ->
     @on
       click: => @_hideHint()
       focus: =>
         @$HintTextBox_textBox().focus()  unless @_isTextBoxFocused()
     @$HintTextBox_textBox().on
-      blur: => @_isTextBoxFocused(false)._showHintIfEmpty()
+      blur: => @_isTextBoxFocused( false )._showHintIfEmpty()
       focus: => @_isTextBoxFocused true
-      keydown: (event) => @_handleKeydown event
+      keydown: ( event ) => @_handleKeydown event
       keyup: => @_showHintIfEmpty()
     @$HintTextBox_hint().click => @_hideHint()
 
-  _isTextBoxFocused: Control.property(null, false)
+  _isTextBoxFocused: Control.property( null, false )
 
   # The keydown event comes before the browser has processed it, so we can't
   # tell at this point for sure what the final text is. However, we can
@@ -46,7 +46,7 @@ class window.HintTextBox extends Control
   # text is non-empty, we'll hide the hint now. In special cases, we defer
   # hiding the hint until the keyup event, when we can check the final text
   # that includes the result of the key.
-  _handleKeydown: (event) ->
+  _handleKeydown: ( event ) ->
     # Backspace
     # Tab
     # Shift
@@ -73,7 +73,7 @@ class window.HintTextBox extends Control
     keysOfUnknownEffect = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 93, 144, 145, 182, 183] # Calculator
     
     # Probably a text key. Preemptively hide the hint.
-    @$HintTextBox_hint().hide()  if $.inArray(event.which, keysOfUnknownEffect) < 0
+    @$HintTextBox_hint().hide()  if $.inArray( event.which, keysOfUnknownEffect ) < 0
 
   _hideHint: ->
     @$HintTextBox_hint().hide()

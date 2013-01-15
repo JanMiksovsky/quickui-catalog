@@ -15,8 +15,8 @@ class window.TextCondenser extends Control
     ]
 
   # The font family to use for condensed text.
-  condensedFontFamily: Control.chain("$condensed", "css/font-family")
-  content: Control.chain("$normal", "content", (content) ->
+  condensedFontFamily: Control.chain( "$condensed", "css/font-family" )
+  content: Control.chain( "$normal", "content", ( content ) ->
     @$condensed().content content # Make a copy of the text.
     @checkForSizeChange()
   )
@@ -25,6 +25,6 @@ class window.TextCondenser extends Control
     @on "layout sizeChanged", => @layout()
 
   layout: ->
-    @eachControl (index, $control) ->
+    @eachControl ( index, $control ) ->
       tooWide = @$normal().width() > @width()
       @applyClass "condensed", tooWide

@@ -8,7 +8,7 @@ class window.Page extends Control
     generic: "true"
 
   # True if the page should fill its container. Default is false.
-  fill: Control.chain("applyClass/fill")
+  fill: Control.chain( "applyClass/fill" )
   initialize: ->
     
     # Force a refresh of the page title. Subclasses may want to handle the
@@ -18,7 +18,7 @@ class window.Page extends Control
 
   # The title of the page. This will generally be shown in the browser's
   # window title bar, etc.
-  title: (title) ->
+  title: ( title ) ->
     if this[0] is document.body
       
       # This page is the document, mirror the document's title.
@@ -36,17 +36,17 @@ class window.Page extends Control
   # For a URL like www.example.com/index.html#page=Foo, load class Foo.
   # If the page then navigates to www.example.com/index.html#page=Bar, this
   # will load class Bar in situ, without forcing the browser to reload the page. 
-  @trackClassFromUrl: (defaultPageClass, target) ->
-    $control = Control(target or "body")
+  @trackClassFromUrl: ( defaultPageClass, target ) ->
+    $control = Control( target or "body" )
     
     # Watch for changes in the URL after the hash.
-    $(window).hashchange ->
+    $( window ).hashchange ->
       pageClass = Page.urlParameters().page or defaultPageClass
       $control.transmute pageClass
 
     
     # Trigger a page class load now.
-    $(window).hashchange()
+    $( window ).hashchange()
 
   # The URL parameters for the current page. Read-only.
   urlParameters: ->
@@ -59,14 +59,14 @@ class window.Page extends Control
   #    { foo: "hello", bar: "world" }
   #
   @urlParameters: ->
-    regex = /[?#&](\w+)=([^?#&]*)/g
+    regex = /[?#&]( \w+ )=( [^?#&]* )/g
     results = {}
-    match = regex.exec(window.location.href)
+    match = regex.exec( window.location.href )
     while match?
       parameterName = match[1]
       parameterValue = match[2]
       results[parameterName] = parameterValue
-      match = regex.exec(window.location.href)
+      match = regex.exec( window.location.href )
     results
   
   # Private copy of the page's title.
@@ -79,7 +79,7 @@ class window.Page extends Control
 Control::page = ->
   
   # Get the containing DOM element subclassing Page that contains the element
-  pages = @closest(".Page")
+  pages = @closest( ".Page" )
   
   # From the DOM element, get the associated QuickUI control.
-  (if (pages.length > 0) then pages.control() else null)
+  ( if ( pages.length > 0 ) then pages.control() else null )

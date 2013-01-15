@@ -18,12 +18,12 @@ class window.HighlightEffects extends Control
   _originalState: Control.property()
 
   # The control's content.
-  content: Control.chain("$HighlightEffects_content", "content", ->
+  content: Control.chain( "$HighlightEffects_content", "content", ->
     @_recalc()  if @inDocument()
   )
 
   # The CSS to apply to the content in the normal state.
-  contentCss: Control.chain("$HighlightEffects_content", "css")
+  contentCss: Control.chain( "$HighlightEffects_content", "css" )
 
   # The speed with which animations are applied.
   # 
@@ -31,10 +31,10 @@ class window.HighlightEffects extends Control
   # should generally respond quickly.
   # 
   # Set this to 0 to have effects applied instantaneously.
-  duration: Control.property(null, 100)
+  duration: Control.property( null, 100 )
 
   # The effects that will be applied on hover.
-  effects: Control.property(->
+  effects: Control.property( ->
     @_originalState @_getCurrentState()
   )
   initialize: ->
@@ -44,7 +44,7 @@ class window.HighlightEffects extends Control
     , =>
       @_hoverOut()
     @inDocument ->
-      @_originalState(@_getCurrentState())._recalc()
+      @_originalState( @_getCurrentState() )._recalc()
 
   # Get the current values of all CSS attributes which will be overwritten
   # by the effects. This snapshot is used on hover out to restore the
@@ -62,24 +62,24 @@ class window.HighlightEffects extends Control
         # properties empty. So, use the properties of one of the
         # border sides as a proxy for the overall border properties.
         when "border-color"
-          value = $content.css("border-top-color")
+          value = $content.css( "border-top-color" )
         when "border-width"
-          value = $content.css("border-top-width")
+          value = $content.css( "border-top-width" )
 
         # Map dimensions of "auto" to "0" so that the dimension can
         # be animated. 
         when "bottom", "left", "right", "top"
-          value = $content.css(key)
+          value = $content.css( key )
           value = "0"  if value is "auto"
         else
-          value = $content.css(key)
+          value = $content.css( key )
       currentState[key] = value
     currentState
 
   _hoverIn: ->
     # In case this was doing its _hoverOut animation
     # In front of any element doing _hoverOut
-    @$HighlightEffects_content().stop().css(
+    @$HighlightEffects_content().stop().css( 
       position: "absolute"
       "z-index": "2"
     ).animate @effects(), @duration()
@@ -89,10 +89,10 @@ class window.HighlightEffects extends Control
     # In case this was doing its _hoverIn animation
     
     # Show in front of peer elements, but behind _hoverIn element.
-    @$HighlightEffects_content().stop().css("z-index": "1").animate savedState, @duration(), null, ->
+    @$HighlightEffects_content().stop().css( "z-index": "1" ).animate savedState, @duration(), null, ->
       
       # Restore normal positioning when animation completes.
-      $(this).css
+      $( this ).css
         position: "inherit"
         "z-index": "inherit"
 

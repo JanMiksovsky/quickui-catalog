@@ -15,10 +15,10 @@ class window.Link extends Control
   tag: "a"
 
   # True if the link points to the current page.
-  current: Control.chain("applyClass/current")
+  current: Control.chain( "applyClass/current" )
 
   # The location that will be opened if the user clicks the link.
-  href: Control.chain("prop/href", ->
+  href: Control.chain( "prop/href", ->
     @_checkIfCurrent()
   )
   initialize: ->
@@ -33,12 +33,12 @@ class window.Link extends Control
   # True if the link points to an area of the site (with sub-pages). If
   # true, the link will be considered current if it points to any page within
   # that area of the site. The default is false.
-  linksToArea: Control.property(->
+  linksToArea: Control.property( ->
     @_checkIfCurrent()
   )
 
   # The target of the link.
-  target: Control.chain("prop/target")
+  target: Control.chain( "prop/target" )
 
   # Apply the "current" style if the link points to the page we're on.
   _checkIfCurrent: ->
@@ -50,8 +50,8 @@ class window.Link extends Control
       # Area link: Current if it matches on the left.
       
       # Normal link: Current if the whole path matches. 
-      pathToMatch = (if @linksToArea() then pathname.substring(0, localPath.length) else pathname)
-      current = (localPath is pathToMatch)
+      pathToMatch = ( if @linksToArea() then pathname.substring( 0, localPath.length ) else pathname )
+      current = ( localPath is pathToMatch )
     @current current
 
   # Returns the pathname portion of the link (the portion after the domain)
@@ -64,5 +64,5 @@ class window.Link extends Control
     
     # Does left portion of link match origin?
     # Include last slash in origin
-    pathname = (if (href.substring(0, origin.length) is origin) then href.substring(origin.length - 1) else href)
+    pathname = ( if ( href.substring( 0, origin.length ) is origin ) then href.substring( origin.length - 1 ) else href )
 
