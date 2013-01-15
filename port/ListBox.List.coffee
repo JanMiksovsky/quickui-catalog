@@ -27,7 +27,7 @@ class window.ListBox extends List
     @attr "tabindex", "-1"
     @on
       click: ( event ) =>
-        if event.target is self[0]
+        if event.target is @[0]
           # User clicked the list box's background. 
           @selectedControl null  if @deselectOnBackgroundClick()
         else
