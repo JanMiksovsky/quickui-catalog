@@ -12,9 +12,10 @@ class window.Blog extends Control
       mapFunction: "entry"
     , " "]
 
-$.extend Blog::,
   count: Control.property.integer()
+
   feed: Control.property()
+
   initialize: ->
     @reload()
 

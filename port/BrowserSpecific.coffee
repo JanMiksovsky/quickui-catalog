@@ -3,7 +3,6 @@ Conditionally shows contents if the given browser is in use.
 ###
 
 class window.BrowserSpecific extends Control
-BrowserSpecific::extend
 
   # Content to show if none of the specified browsers apply.
   default: Control.property()
@@ -28,4 +27,3 @@ BrowserSpecific::extend
 
   # Content to show to WebKit (Chrome, Safari) users.
   webkit: Control.property()
-

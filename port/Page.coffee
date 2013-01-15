@@ -73,11 +73,10 @@ class window.Page extends Control
   _title: Control.property()
 
 #
-# General utility functions made available to all controls.
-# 
-
 # Look up the page hosting a control.
-Control::extend page: ->
+# This is a general utility function made available to all controls.
+# 
+Control::page = ->
   
   # Get the containing DOM element subclassing Page that contains the element
   pages = @closest(".Page")

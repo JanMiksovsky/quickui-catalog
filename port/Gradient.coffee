@@ -4,7 +4,6 @@ Alpha values are possible, but all colors must be specified as RGBA hex values.
 ###
 
 class window.Gradient extends Control
-Gradient::extend
 
   # The direction of the gradient: "horizontal" or "vertical" (the default).
   direction: Control.property(->

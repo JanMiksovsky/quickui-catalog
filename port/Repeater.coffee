@@ -3,7 +3,6 @@ Creates a certain number of instances of another control class.
 ###
 
 class window.Repeater extends Control
-Repeater::extend
 
   # The content which will be repeated in each instance.
   content: Control.property((content) ->

@@ -4,7 +4,6 @@ The images have to be stacked vertically, and all be the same height.
 ###
 
 class window.Sprite extends Control
-Sprite::extend
 
   # The sprite image.
   image: Control.chain("css/background-image")

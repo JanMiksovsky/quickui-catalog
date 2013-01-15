@@ -7,7 +7,6 @@ first child).
 ###
 
 class window.PackedColumns extends Control
-PackedColumns::extend
 
   # True if the columns should be centered. Default is false.
   center: Control.property.bool(->

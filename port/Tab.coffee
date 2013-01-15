@@ -3,7 +3,6 @@ A control that can be used as a tab in a Tabs.
 ###
 
 class window.Tab extends Control
-Tab::extend
 
   # The content of the tab.
   content: (value) ->
