@@ -9,15 +9,14 @@ class window.AutoSizeTextBox extends Control
   inherited:
     
     # Visible text box 
-    content: [" ", " ",
+    content: [
       html: "<textarea />"
       ref: "textBox"
-    
-    # Hidden copy of text. Use a pre tag to preserve line breaks, entities, etc. 
-    , " ", " ",
+    ,
+      # Hidden copy of text. Use a pre tag to preserve line breaks, entities, etc. 
       html: "<pre />"
       ref: "textCopy"
-    , " "]
+    ]
 
   # Resize the text box to exactly contain its content.
   autoSize: Control.iterator((addExtraLine) ->

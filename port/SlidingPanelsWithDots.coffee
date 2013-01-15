@@ -6,17 +6,17 @@ Show its children as sliding pages which can be navigated by clicking buttons be
 class window.SlidingPanelsWithDots extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "SlidingPanels"
       ref: "pages"
-    , " ",
+    ,
       html: "<div />"
       ref: "buttonPanel"
-      content: [" ",
+      content: [
         control: "Repeater"
         ref: "pageButtons"
-      , " "]
-    , " "]
+      ]
+    ]
     generic: "true"
 
   # The index of the page currently being shown.

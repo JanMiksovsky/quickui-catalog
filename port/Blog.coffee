@@ -5,12 +5,12 @@ A list of blog posts.
 class window.Blog extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "List"
       ref: "postList"
       itemClass: "BlogPost"
       mapFunction: "entry"
-    , " "]
+    ]
 
   count: Control.property.integer()
 

@@ -17,10 +17,10 @@ in a scrolling element nested within some outer scrolling element.
 class window.PersistentPanel extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "PersistentPanel_content"
-    , " "]
+    ]
     generic: "true"
 
   # The content's background. See top notes.

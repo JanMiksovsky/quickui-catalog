@@ -5,13 +5,13 @@ A panel that can expand and collapse.
 class window.Collapsible extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "Collapsible_heading"
-    , " ",
+    ,
       html: "<div />"
       ref: "Collapsible_content"
-    , " "]
+    ]
     generic: "true"
 
   # The control's contents which can be expanded and collapsed.

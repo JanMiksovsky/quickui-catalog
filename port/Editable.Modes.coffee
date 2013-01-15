@@ -5,13 +5,13 @@ A control with separate edit and read modes.
 class window.Editable extends Modes
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div tabindex=\"-1\" />"
       ref: "Editable_read"
-    , " ",
+    ,
       html: "<div />"
       ref: "Editable_edit"
-    , " "]
+    ]
     generic: "true"
 
   # Cancel any pending changes and revert to read mode.

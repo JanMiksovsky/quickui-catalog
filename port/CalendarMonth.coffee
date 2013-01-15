@@ -5,19 +5,19 @@ A month in a calendar
 class window.CalendarMonth extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "CalendarWeek"
-    , " ",
+    ,
       control: "CalendarWeek"
-    , " ",
+    ,
       control: "CalendarWeek"
-    , " ",
+    ,
       control: "CalendarWeek"
-    , " ",
+    ,
       control: "CalendarWeek"
-    , " ",
+    ,
       control: "CalendarWeek"
-    , " "]
+    ]
     generic: "true"
 
   days: Control.chain("find/.CalendarDay", "control")

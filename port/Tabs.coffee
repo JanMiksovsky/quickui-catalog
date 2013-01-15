@@ -10,20 +10,20 @@ The Tabs control will resize itself to be as tall as its tallest child.
 class window.Tabs extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "VerticalPanels"
       ref: "tabPanels"
-      top: [" ",
+      top: [
         control: "List"
         ref: "tabButtons"
         itemClass: "BasicButton"
-      , " "]
-      content: [" ", " ",
+      ]
+      content: [
         control: "Modes"
         ref: "Tabs_content"
         maximize: "true"
-      , " "]
-    , " "]
+      ]
+    ]
     generic: "true"
 
   # The array of elements to be shown as tabs.

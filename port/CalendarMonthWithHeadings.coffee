@@ -5,21 +5,21 @@ Month calendar with headings for month name and year, plus days of week
 class window.CalendarMonthWithHeadings extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "MonthAndYear"
       ref: "monthAndYear"
-    , " ",
+    ,
       html: "<div />"
       ref: "monthTable"
-      content: [" ",
+      content: [
         control: "DaysOfWeek"
         ref: "daysOfWeek"
         format: "namesShort"
-      , " ",
+      , 
         control: "CalendarMonth"
         ref: "calendar"
-      , " "]
-    , " "]
+      ]
+    ]
     generic: "true"
 
   # The control's current culture.

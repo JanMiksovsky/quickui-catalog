@@ -6,22 +6,21 @@ the far right that indicates the panel's collapsed/expanded state.
 class window.CollapsibleWithHeadingButton extends Collapsible
 
   inherited:
-    heading: [" ",
+    heading: [
       control: "BasicButton"
       ref: "headingButton"
-      content: [" ",
+      content: [
         html: "<div>+</div>"
         ref: "collapsedButtonContent"
-      , " ",
+      , 
+        # Minus sign, not hyphen 
         html: "<div>−</div>"
         ref: "expandedButtonContent"
-      
-      # Minus sign, not hyphen 
-      , " ", " "]
-    , " ",
+      ]
+    ,
       control: "Fader"
       ref: "CollapsibleWithHeadingButton_heading"
-    , " "]
+    ]
 
   # The class of the heading button.
   buttonClass: Control.chain("$headingButton", "transmute")

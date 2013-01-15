@@ -9,15 +9,15 @@ are temporarily moved to the menu, then moved back when the menu is closed.
 class window.PanelWithOverflow extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "PopupButton"
       ref: "menuButton"
       indicator: "»"
       quiet: "true"
-    , " ",
+    ,
       html: "<div />"
       ref: "PanelWithOverflow_content"
-    , " "]
+    ]
     generic: "true"
 
   # The contents of the control.

@@ -7,11 +7,10 @@ class window.ComboBox extends PopupSource
   inherited:
     closeOnInsideClick: "false"
     openOnClick: "false"
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "ComboBox_content"
-
-    , " ", " ",
+    ,
       # Negative tabindex prevents tabstop, which isn't necessary here
       # as the text box portion will get the focus, and the user can
       # invoke the popup from there. E.g., ListComboBox opens the popup
@@ -22,7 +21,7 @@ class window.ComboBox extends PopupSource
       class: "quiet"
       tabindex: "-1"
       content: "▼"
-    , " "]
+    ]
     generic: "true"
 
   # True if the dropdown portion should automatically close if the user

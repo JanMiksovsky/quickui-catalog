@@ -9,10 +9,12 @@ class window.LabeledInput extends Control
 
   tag: "label"
   inherited:
-    content: [" ", "<input />",
+    content: [
+      "<input />"
+    ,
       html: "<span />"
       ref: "LabeledInput_content"
-    , " "]
+    ]
 
   # True if the input control is checked, false if unchecked.
   checked: Control.chain("_inputControl", "prop/checked")

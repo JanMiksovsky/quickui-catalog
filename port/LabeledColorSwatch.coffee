@@ -5,13 +5,13 @@ A labeled color swatch.
 class window.LabeledColorSwatch extends Control
 
   inherited:
-    content: [" ",
+    content: [
       control: "ColorSwatch"
       ref: "swatch"
     ,
       html: "<div />"
       ref: "ColorSwatchButton_content"
-    , " "]
+    ]
 
   # The color to show.
   color: Control.chain("$swatch", "color")

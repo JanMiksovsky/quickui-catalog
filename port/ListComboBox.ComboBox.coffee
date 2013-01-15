@@ -10,10 +10,10 @@ be strings.
 class window.ListComboBox extends ComboBox
 
   inherited:
-    popup: [" ",
+    popup: [
       control: "ListBox"
       ref: "list"
-    , " "]
+    ]
 
   # The array of items in the dropdown list. See List for details.
   items: Control.chain("$list", "items", ->

@@ -12,16 +12,16 @@ bugs; it's just not worth using at this point.
 class window.SimpleFlexBox extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div class=\"panel\" />"
       ref: "SimpleFlexBox_panel1"
-    , " ",
+    ,
       html: "<div />"
       ref: "SimpleFlexBox_content"
-    , " ",
+    ,
       html: "<div class=\"panel\" />"
       ref: "SimpleFlexBox_panel2"
-    , " "]
+    ]
 
   # The content of the main center panel.
   content: Control.chain("$SimpleFlexBox_content", "content")

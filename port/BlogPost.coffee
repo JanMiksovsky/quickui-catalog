@@ -5,13 +5,13 @@ A blog post.
 class window.BlogPost extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<a target=\"_blank\" />"
       ref: "BlogPost_postTitle"
-    , " ",
+    ,
       html: "<div />"
       ref: "BlogPost_content"
-    , " "]
+    ]
     generic: "true"
 
   content: Control.chain("$BlogPost_content", "content")

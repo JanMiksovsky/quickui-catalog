@@ -11,29 +11,29 @@ The whole page scrolls as a unit.
 class window.PageWithQuadrants extends Page
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div class=\"table\" />"
       ref: "pageTable"
-      content: [" ",
+      content: [
         html: "<div class=\"top row\" />"
-        content: [" ",
+        content: [
           html: "<div class=\"top left cell\" />"
           ref: "PageWithQuadrants_topLeft"
-        , " ",
+        , 
           html: "<div class=\"top right cell\" />"
           ref: "PageWithQuadrants_topRight"
-        , " "]
-      , " ",
+        ]
+      , 
         html: "<div class=\"bottom row\" />"
-        content: [" ",
+        content: [
           html: "<div class=\"bottom left cell\" />"
           ref: "PageWithQuadrants_bottomLeft"
-        , " ",
+        , 
           html: "<div class=\"bottom right cell\" />"
           ref: "PageWithQuadrants_bottomRight"
-        , " "]
-      , " "]
-    , " "]
+        ]
+      ]
+    ]
 
   topLeft: Control.chain("$PageWithQuadrants_topLeft", "content")
   topRight: Control.chain("$PageWithQuadrants_topRight", "content")

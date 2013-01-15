@@ -5,10 +5,10 @@ Load different content, control class, or styles depending on the type of device
 class window.DeviceSpecific extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "placeholder"
-    , " "]
+    ]
 
   content: Control.chain("$placeholder", "content")
 

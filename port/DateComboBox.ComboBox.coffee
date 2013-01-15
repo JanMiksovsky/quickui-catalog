@@ -6,10 +6,10 @@ class window.DateComboBox extends ComboBox
 
   inherited:
     textBoxClass: "DateTextBox"
-    popup: [" ",
+    popup: [
       control: "CalendarMonthNavigator"
       ref: "navigator"
-    , " "]
+    ]
 
   # The control's current culture.
   culture: (culture) ->

@@ -6,13 +6,13 @@ class window.PopupButton extends PopupSource
 
   inherited:
     contentClass: "BasicButton"
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "PopupButton_content"
-    , " ",
+    ,
       html: "<div>▼</div>"
       ref: "indicator"
-    , " "]
+    ]
     generic: "true"
 
   # The content of the button.

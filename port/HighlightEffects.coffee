@@ -9,10 +9,10 @@ http://plugins.jquery.com/project/color-animation.
 class window.HighlightEffects extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "HighlightEffects_content"
-    , " "]
+    ]
     generic: "true"
 
   _originalState: Control.property()

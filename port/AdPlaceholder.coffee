@@ -7,17 +7,17 @@ See IAB "Ad Unit Guidelines" at http://www.iab.net for dimensions and names.
 class window.AdPlaceholder extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "container"
-      content: [" ",
+      content: [
         html: "<div>Advertisement</div>"
         ref: "label"
-      , " ",
+      , 
         html: "<div />"
         ref: "AdPlaceholder_content"
-      , " "]
-    , " "]
+      ]
+    ]
     generic: "true"
 
   # Ad unit content. By default, this shows the unit/dimensions.

@@ -8,14 +8,14 @@ class window.Fader extends Control
 
   inherited:
     class: "horizontal"
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "Fader_content"
-    , " ",
+    ,
       control: "Gradient"
       ref: "gradient"
       direction: "horizontal"
-    , " "]
+    ]
 
   content: Control.chain("$Fader_content", "content")
 

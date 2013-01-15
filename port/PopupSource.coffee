@@ -5,13 +5,13 @@ A control with a popup.
 class window.PopupSource extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<div />"
       ref: "PopupSource_content"
-    , " ",
+    ,
       control: "Popup"
       ref: "PopupSource_popup"
-    , " "]
+    ]
 
   # Cancels the popup.
   cancel: Control.chain("$PopupSource_popup", "cancel")

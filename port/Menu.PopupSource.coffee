@@ -5,15 +5,14 @@ A popup menu. This is typically used in a Menu bar.
 class window.Menu extends PopupSource
 
   inherited:
-    popup: [" ",
+    popup: [
       html: "<div />"
       ref: "shield"
-    
-    # Used to obscure borders between description and content. 
-    , " ", " ",
+    ,
+      # Used to obscure borders between description and content. 
       html: "<div />"
       ref: "Menu_popup"
-    , " "]
+    ]
     generic: "true"
 
   initialize: ->

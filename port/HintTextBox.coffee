@@ -5,13 +5,13 @@ A text box that shows a "hint" as to what the user should enter.
 class window.HintTextBox extends Control
 
   inherited:
-    content: [" ",
+    content: [
       html: "<input type=\"text\" />"
       ref: "HintTextBox_textBox"
-    , " ",
+    ,
       html: "<div />"
       ref: "HintTextBox_hint"
-    , " "]
+    ]
     generic: "true"
 
   # The content of the text box.
