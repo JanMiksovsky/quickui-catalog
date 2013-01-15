@@ -51,7 +51,7 @@ class window.ComboBox extends PopupSource
           @_selectText 0, content.length
         @$dropdownButton().selected false
     
-    # Close the popup when the control loses focus.
+    # # Close the popup when the control loses focus.
     @on
       focusout: ( event ) =>
         # We want to close the popup if the focus moves completely
@@ -66,16 +66,15 @@ class window.ComboBox extends PopupSource
         # of activeElement until after the normal focusout sequence
         # has completed and focus has been placed in the new control.
         if @opened()
-          setTimeout( =>
-            focusInControl = $.contains( self[0], document.activeElement )
+          setTimeout =>
+            focusInControl = $.contains( @[0], document.activeElement )
             # Still open?
-            @cancel()  if not focusInControl and @opened()
-          , 1 )
-          return # Avoid implicitly returning timeout.
+            if not focusInControl and @opened()
+              @cancel()
+          , 1
 
     @$dropdownButton().click ( event ) =>
       @open()
-
     
     # Allow the popup container itself to receive the focus.
     # This allows clicks on the popup to still keep focus within the
