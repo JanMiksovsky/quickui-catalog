@@ -84,11 +84,10 @@ class window.FlickrInterestingPhoto extends Control
     "http://flickr.com/photo.gne?id=" + flickrPhoto.id
 
   # Reload the photo.
-  reload: Control.iterator( ->
+  reload: Control.iterator ->
     FlickrInterestingPhoto.getRandomPhoto( ( photo ) =>
       @prop "src", photo
     , @photoSize() )
-  )
 
   # The location of the current photo image.
   photo: Control.chain "attr/src"

@@ -11,25 +11,24 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
 
   # Rotates to the next page. When it hits the last one, it rotates
   # back to the first page and stops.
-  rotate: Control.iterator( ->
+  rotate: Control.iterator ->
     count = @elements().length
     if count > 0
       index = @activeIndex()
       index = ( index + 1 ) % count
       @activeIndex index
       @_queueRotation()  if index > 0
-  )
 
   # Interval between rotation animations. This does not include the duration
   # of the sliding animation. The default value is 1000 (one second).
   rotationInterval: Control.property.integer( null, 1000 )
 
   # Stop the rotation in progress.
-  stop: Control.iterator( ->
+  stop: Control.iterator ->
     clearTimeout @_timeout()
     @_timeout null
     this
-  )
+
   _queueRotation: ->
     rotationInterval = @rotationInterval()
     @_timeout setTimeout(  =>

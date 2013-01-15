@@ -72,17 +72,16 @@ class window.Sequence extends Control
 
   # Show the next child. If the last child is currently shown, this has no
   # effect.
-  next: Control.iterator( ->
+  next: Control.iterator ->
     index = @activeIndex()
     @activeIndex index + 1  if index < @elements().length - 1
-  )
 
   # Show the previous child. If the first child is currently shown, this has
   # no effect.
-  previous: Control.iterator( ->
+  previous: Control.iterator ->
     index = @activeIndex()
     @activeIndex index - 1  if index > 0
-  )
+  
   _container: ->
     this
 

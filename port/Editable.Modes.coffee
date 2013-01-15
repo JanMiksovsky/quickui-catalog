@@ -15,9 +15,8 @@ class window.Editable extends Modes
     generic: "true"
 
   # Cancel any pending changes and revert to read mode.
-  cancel: Control.iterator( ->
+  cancel: Control.iterator ->
     @editing false
-  )
 
   # The current content in either mode.
   content: ( value ) ->
@@ -70,10 +69,9 @@ class window.Editable extends Modes
   readControl: Control.chain "$Editable_read"
 
   # Save changes and return to read mode.
-  save: Control.iterator( ->
+  save: Control.iterator ->
     @_readContent @_editContent()
     @editing false
-  )
   
   # The content of the edit portion 
   _editContent: ( content ) ->

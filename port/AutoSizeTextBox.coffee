@@ -19,7 +19,7 @@ class window.AutoSizeTextBox extends Control
     ]
 
   # Resize the text box to exactly contain its content.
-  autoSize: Control.iterator( ( addExtraLine ) ->
+  autoSize: Control.iterator ( addExtraLine ) ->
 
     # We resize by copying the text box contents to the hidden copy.
     # That copy will size appropriately, which will make the overall control
@@ -32,7 +32,6 @@ class window.AutoSizeTextBox extends Control
     # Add an extra space so that the last line will get fully rendered.
     content += " "  if content.slice( -1 ) is "\n"
     @$textCopy().text content
-  )
 
   # The content of the text box.
   content: Control.chain( "$textBox", "content", ->

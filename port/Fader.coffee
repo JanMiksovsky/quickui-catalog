@@ -50,11 +50,11 @@ class window.Fader extends Control
     s = "0" + s  if s.length is 1
     s
 
-  _redraw: Control.iterator( ->
+  _redraw: Control.iterator ->
     backgroundColor = @css( "background-color" )
     backgroundHex = ( if ( backgroundColor.length is 4 ) then @_expandShortHexValue( backgroundColor ) else ( if ( backgroundColor.substr( 0, 3 ).toLowerCase() is "rgb" ) then @_rgbStringToHexColor( backgroundColor ) else backgroundColor ) )
     @$gradient().start( backgroundHex + "00" ).end backgroundHex
-  )
+  
   _rgbStringToHexColor: ( rgbString ) ->
     rgb = rgbString.match( /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/ )
     "#" + @_hexByte( rgb[1] ) + @_hexByte( rgb[2] ) + @_hexByte( rgb[3] )

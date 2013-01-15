@@ -77,7 +77,7 @@ class window.FlickrInterestingDay extends CalendarDay
   image: Control.chain "$image", "attr/src"
 
   # Load the photo for the given date.
-  loadPhoto: Control.iterator( ->
+  loadPhoto: Control.iterator ->
     date = @date()
     
     # Flickr only has a photo for dates entirely in the past (not for today).
@@ -90,7 +90,6 @@ class window.FlickrInterestingDay extends CalendarDay
       baseUrl = "http://www.flickr.com/explore/interesting/"
       url = baseUrl + date.getFullYear() + "/" + ( date.getMonth() + 1 ) + "/" + date.getDate()
       @href url
-  )
   
   # Cache of photos already loaded, indexed by Flickr-style date string. 
   @_cache: {}

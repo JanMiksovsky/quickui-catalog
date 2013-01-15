@@ -18,7 +18,7 @@ class window.Sprite extends Control
     @_shiftBackground()
   , 0 )
   
-  _shiftBackground: Control.iterator( ->
+  _shiftBackground: Control.iterator ->
     if @currentCell()? and @cellHeight()?
       y = ( @currentCell() * -@cellHeight() ) + "px"
       if Control.browser.mozilla
@@ -32,5 +32,3 @@ class window.Sprite extends Control
         
         # Not Firefox
         @css "background-position-y", y
-  )
-

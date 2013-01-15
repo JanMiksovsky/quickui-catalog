@@ -40,7 +40,7 @@ class window.PanelWithOverflow extends Control
         @$menuButton().positionPopup()
 
   # Force the control to layout its contents.
-  layout: Control.iterator( ->
+  layout: Control.iterator ->
     
     # Don't bother laying out until we're visible, or if the popup
     # is currently open. The latter case, while it'd be nice to support,
@@ -74,19 +74,17 @@ class window.PanelWithOverflow extends Control
         break
       i--
     @$menuButton().toggle showMenu
-  )
-  _menuClosed: Control.iterator( ->
+  
+  _menuClosed: Control.iterator ->
     
     # Return the overflow menu's children to the main content area.
     $overflowed = @$menuButton().popup()
     @$PanelWithOverflow_content().append $overflowed
     @layout()
-  )
-  _menuOpened: Control.iterator( ->
+  
+  _menuOpened: Control.iterator ->
     
     # Temporarily move the overflowed items into the menu.
     content = @$PanelWithOverflow_content().content()
     $overflowed = $( content ).filter( ".overflowed" )
     @$menuButton().popup $overflowed
-  )
-

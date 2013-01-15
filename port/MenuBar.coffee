@@ -14,16 +14,15 @@ class window.MenuBar extends Control
     generic: "true"
 
   # Close currently open any menus.
-  close: Control.iterator( ->
-    
-    # Already closed
-    return  unless @opened()
+  close: Control.iterator ->    
+    unless @opened()
+      # Already closed
+      return
     $overlay = @_overlay()
     if $overlay
       $overlay.remove()
       @_overlay null
     @_closeOpenPopups().opened false
-  )
 
   # The menus in the menu bar. These are typically PopupSource controls,
   # including subclasses like Menu. Other types of controls can be
@@ -58,14 +57,13 @@ class window.MenuBar extends Control
 
   # Returns true if any of the menu bar's menus are currently open.
   opened: Control.chain "applyClass/opened"
-  open: Control.iterator( ->
-    
-    # Already open
-    return  if @opened()
+  open: Control.iterator ->
+    if @opened()
+      # Already open
+      return
     $overlay = Overlay.create().target( this )
     @_overlay $overlay
     @opened true
-  )
 
   # Close open popups. If a keepPopup is specified, leave that menu open.
   _closeOpenPopups: ( keepPopup ) ->
