@@ -44,7 +44,6 @@ class window.Page extends Control
       pageClass = Page.urlParameters().page or defaultPageClass
       $control.transmute pageClass
 
-    
     # Trigger a page class load now.
     $( window ).hashchange()
 
@@ -59,7 +58,7 @@ class window.Page extends Control
   #    { foo: "hello", bar: "world" }
   #
   @urlParameters: ->
-    regex = /[ ?#&]( \w+ )=( [^?#& ]* )/g
+    regex = /[?#&](\w+)=([^?#&]*)/g
     results = {}
     match = regex.exec window.location.href
     while match?

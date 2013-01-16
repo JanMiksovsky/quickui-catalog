@@ -84,4 +84,3 @@ class window.Sequence extends Control
   
   _container: ->
     this
-

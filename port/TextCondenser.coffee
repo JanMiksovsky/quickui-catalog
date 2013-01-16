@@ -7,10 +7,10 @@ class window.TextCondenser extends Control
   inherited:
     # Flip between two copies of text text: one normal, one condensed. 
     content: [
-      html: "<span />"
+      html: "<span/>"
       ref: "normal"
     ,
-      html: "<span />"
+      html: "<span/>"
       ref: "condensed"
     ]
 

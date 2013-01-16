@@ -74,4 +74,3 @@ class window.MultiListBox extends ListBox
 
   _controlClick: ( control ) ->
     @toggleControl control
-

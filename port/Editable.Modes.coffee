@@ -28,8 +28,9 @@ class window.Editable extends Modes
   # The class of the content in edit mode. This class is not instantiated
   # until editing() is set to true for the first time.
   editClass: Control.property.class ( editClass ) ->
-    # Transmute the edit control to the new class.
-    @_ensureEditControl()  if @editing()
+    if @editing()
+      # Transmute the edit control to the new class.
+      @_ensureEditControl()
 
   # The control used for editing.
   editControl: Control.chain "$Editable_edit"
@@ -83,16 +84,18 @@ class window.Editable extends Modes
   _ensureEditControl: ->
     currentClass = @$Editable_edit().controlClass()
     desiredClass = @editClass()
-    @_createEditControl()  if desiredClass isnt currentClass
+    if desiredClass isnt currentClass
+      @_createEditControl()
   
   # The content of the read portion 
   _readContent: ( content ) ->
-    result = undefined
     if content is undefined
       result = @$Editable_read().content()
-      # Convert empty jQuery array to null.
-      result = null  if result instanceof jQuery and result.length is 0
+      if result instanceof jQuery and result.length == 0
+        # Convert empty jQuery array to null.
+        null
+      else
+        result
     else
       @$Editable_read().content content
-      result = this
-    result
+      @

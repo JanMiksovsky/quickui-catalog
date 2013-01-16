@@ -15,7 +15,6 @@ class window.TextBox extends Control
     @trigger "change"  if content isnt undefined
     result
 
-  
   # True if the text box is disabled. 
   disabled: Control.chain "prop/disabled"
   initialize: ->
@@ -34,4 +33,3 @@ class window.TextBox extends Control
 
   # The type of input: "text", "email", "password", etc.
   type: Control.chain "prop/type"
-

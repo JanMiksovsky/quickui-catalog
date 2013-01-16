@@ -12,4 +12,3 @@ class window.VerticalPanels extends SimpleFlexBox
 
   # The content of the top panel.
   top: Control.chain "_panel1"
-

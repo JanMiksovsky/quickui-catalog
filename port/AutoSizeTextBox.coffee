@@ -7,15 +7,12 @@ the expanding copy will expand the container, which in turn stretch the text box
 class window.AutoSizeTextBox extends Control
 
   inherited:
-    
-    # Visible text box 
     content: [
-      html: "<textarea />"
-      ref: "textBox"
+      # Visible text box 
+      html: "<textarea/>", ref: "textBox"
     ,
       # Hidden copy of text. Use a pre tag to preserve line breaks, entities, etc. 
-      html: "<pre />"
-      ref: "textCopy"
+      html: "<pre/>", ref: "textCopy"
     ]
 
   # Resize the text box to exactly contain its content.
@@ -25,12 +22,14 @@ class window.AutoSizeTextBox extends Control
     # That copy will size appropriately, which will make the overall control
     # the right height, which will then size the text box.
     content = @$textBox().content()
-    content += "\n"  if addExtraLine
+    if addExtraLine
+      content += "\n"
     
     # See if last line of content ends in a newline (extra or otherwise).
-    
-    # Add an extra space so that the last line will get fully rendered.
-    content += " "  if content.slice( -1 ) is "\n"
+    if content.slice( -1 ) is "\n"
+      # Add an extra space so that the last line will get fully rendered.
+      content += " "
+
     @$textCopy().text content
 
   # The content of the text box.
@@ -51,7 +50,7 @@ class window.AutoSizeTextBox extends Control
         # a selected chunk of text with a newline.) In any event,
         # once we get the keyup or change event, we'll make any
         # final adjustments.
-        if event.which is 13 # Enter 
+        if event.which == 13 # Enter 
           @autoSize true
 
     @inDocument ->
@@ -62,7 +61,8 @@ class window.AutoSizeTextBox extends Control
   # multiple lines tall, which lets the user intuit that the control accepts
   # multiple lines of text.
   minimumLines: Control.property.integer( ( minimumLines ) ->
-    @_refresh()  if @inDocument()
+    if @inDocument()
+      @_refresh()
   , 1 )
 
   # The placeholder (hint text) shown in the text area if it's empty.
@@ -89,12 +89,11 @@ class window.AutoSizeTextBox extends Control
     # an estimate based on font size.
     lineHeight = parseInt $textBox.css "line-height"
     if isNaN lineHeight
-      
       # line-height values like "normal" don't give us a measurement
       # we can use. We fall back to estimating a line height
       # based on font size. We then apply this to both the text box
       # and the copy so they both have the same font-size.
-      lineHeight = Math.floor( parseInt( $textBox.css( "font-size" ) ) * 1.25 )
+      lineHeight = Math.floor parseInt( $textBox.css( "font-size" ) ) * 1.25
       $textBox.css "line-height", lineHeight + "px"
     $textCopy.css "line-height", lineHeight + "px"
     
@@ -107,8 +106,7 @@ class window.AutoSizeTextBox extends Control
     paddingLeft = $textBox.css "padding-left"
     paddingRight = $textBox.css "padding-right"
     paddingTop = $textBox.css "padding-top"
-    if Control.browser.mozilla and not $textBox.is( ":visible" )
-      
+    if Control.browser.mozilla and not $textBox.is ":visible"      
       # Firefox incorrectly reports the default padding for hidden textareas
       # as 0px. If the textarea is visible, or the padding has been explicitly
       # set, the reported padding is correct. But if we're dealing with a
@@ -120,6 +118,7 @@ class window.AutoSizeTextBox extends Control
         paddingLeft = "2px"
         paddingRight = "2px"
         paddingTop = "2px"
+
     $textCopy.css
       "border-bottom-width": borderBottomWidth
       "border-left-width": borderLeftWidth
@@ -132,10 +131,8 @@ class window.AutoSizeTextBox extends Control
 
     minimumLines = @minimumLines()
     if minimumLines
-      
       # Convert the number of lines into a minimum height.
       height = minimumLines * lineHeight
-      
       unless Control.browser.mozilla
         # Mozilla incorrectly includes padding+border in height when
         # -moz-box-sizing is border-box. The other browsers do not,

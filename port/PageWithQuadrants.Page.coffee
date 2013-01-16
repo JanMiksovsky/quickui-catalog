@@ -42,4 +42,3 @@ class window.PageWithQuadrants extends Page
 
   # The main page content. This will go in the bottom right quadrant.
   content: Control.chain "bottomRight"
-

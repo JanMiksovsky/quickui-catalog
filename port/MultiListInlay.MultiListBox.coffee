@@ -4,8 +4,8 @@ A list whose selected items can show additional information.
 By default, this control expects items to be a dictionary of the form:
 
 {
-   description: ( content, usually a single line, that's always visible )
-   content: ( expanded content that appears when an item is selected )
+  description: ( content, usually a single line, that's always visible )
+  content: ( expanded content that appears when an item is selected )
 }
 
 This is the multiple-selection variation of ListInlay.
@@ -31,4 +31,3 @@ class window.MultiListInlay extends MultiListBox
   selectControl: ( control, select ) ->
     @_super control, select
     control.collapsed not select
-

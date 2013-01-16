@@ -53,8 +53,8 @@ $ ->
     equal $c.bar(), 1
     $list.isDirty true # Clear list's cache of items
     item = $list.items()[0]
-    equal item.foo, "One"
-    equal item.bar, 1
+    equal item.property1, "One"
+    equal item.property2, 1
     
     
   test "List: custom mapFunction getter/setter for object items", ->

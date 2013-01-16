@@ -11,8 +11,7 @@ class window.ListComboBox extends ComboBox
 
   inherited:
     popup: [
-      control: "ListBox"
-      ref: "list"
+      control: "ListBox", ref: "list"
     ]
 
   # The array of items in the dropdown list. See List for details.
@@ -33,7 +32,7 @@ class window.ListComboBox extends ComboBox
           @content( itemContent ).close()
 
       keydown: ( event ) =>
-        if event.which is 13 # Enter
+        if event.which == 13 # Enter
           if @opened()
             @close()
             event.stopPropagation()
@@ -43,7 +42,7 @@ class window.ListComboBox extends ComboBox
         selectedControl = @$list().selectedControl()
         if selectedControl
           content = selectedControl.content()
-          if content isnt @content()
+          if content != @content()
             @content content
             @_selectText 0, content.length
 
@@ -52,18 +51,18 @@ class window.ListComboBox extends ComboBox
     @$list().itemClass itemClass
 
   open: ->
-    
     # See if current text is in the list and, if so, select it.
     content = @content()
     index = $.inArray content, @_itemContents()
-    @$list().selectedIndex index  if index >= 0
+    if index >= 0
+      @$list().selectedIndex index
     result = super()
-    
+
     # Give the input control focus if it doesn't already have it.
     inputElement = @inputElement()
-    @inputElement().focus()  if document.activeElement isnt inputElement[0]
+    if document.activeElement isnt inputElement[0]
+      inputElement.focus()
     result
-
   
   # Try to auto-complete the current text against the item contents.
   _autoComplete: ->
@@ -73,14 +72,12 @@ class window.ListComboBox extends ComboBox
       @$list().selectedControl null
       return
     @content match
-    
     # Select the auto-completed text.
     @_selectText content.length, match.length
     @_selectTextInList()
 
   _bindContentEvents: ->
     super()
-    
     # See notes at _contentKeydown.
     @inputElement().keydown ( event ) => @_contentKeydown event
 
@@ -92,36 +89,36 @@ class window.ListComboBox extends ComboBox
   # chance to bubble up and do its work, then do our AutoComplete work
   # against the resulting text.
   _contentKeydown: ( event ) ->
+
     handled = false
-    # Page Up
-    # Page Down
-    # Up
-    navigationKeys = [ 33, 34, 38, 40 ] # Down
-    
+    navigationKeys = [
+      33 # Page Up
+      34 # Page Down
+      38 # Up
+      40 # Down
+    ]
+   
     # Do AutoComplete on Space, or characters from zero (0) and up,
     # ignoring any combinations that involve Alt or Ctrl.
-    if ( event.which is 32 or event.which >= 48 ) and not ( event.altKey or event.ctrlKey or event.metaKey )
+    if ( event.which == 32 or event.which >= 48 ) and \
+     not ( event.altKey or event.ctrlKey or event.metaKey )
       @_setTimeout => @_autoComplete()
-
     else if @opened() and $.inArray( event.which, navigationKeys ) >= 0
-      
       # Forward navigation keys to opened list.
       @$list().trigger event
       handled = true
-    else if event.which is 8 or event.which is 46
-      
+    else if event.which == 8 or event.which == 46
       # On Backspace or Delete, clear list select if text is empty.
       @_setTimeout => @_selectTextInList()
-
-    else if event.which is 40
-      
+    else if event.which == 40
       # Pressing Down when list is closed will open list.
       @open()
-      
       # If the input text is empty, select the first list item.
       content = @content()
-      @$list().selectedIndex 0  if not content? or content.length is 0
+      if not content? or content.length == 0
+        @$list().selectedIndex 0
       handled = true
+
     if handled
       event.stopPropagation()
       event.preventDefault()
@@ -134,17 +131,11 @@ class window.ListComboBox extends ComboBox
     length = s.length
     if length > 0
       lower = s.toLowerCase()
-      itemContents = @_itemContents()
-      i = 0
-      itemCount = itemContents.length
-
-      while i < itemCount
-        itemContent = itemContents[i]
-        return itemContent  if length <= itemContent.length and itemContent.substr( 0, length ).toLowerCase() is lower
-        i++
+      for itemContent in @_itemContents()
+        if length <= itemContent.length and itemContent.substr( 0, length ).toLowerCase() == lower
+          return itemContent
     null
 
-  
   # Select the current input text in the list if it's there.
   # Clear the list selection if the text is not found.
   _selectTextInList: ->
@@ -153,15 +144,12 @@ class window.ListComboBox extends ComboBox
       index = $.inArray content, @_itemContents()
       @$list().selectedIndex index
 
-  
   # Arrange for a callback to be performed via a timeout.
   # See notes at _contentKeydown.
   _setTimeout: ( callback ) ->
-    
     # Cancel any pending AutoComplete timeout.
     timeout = @_timeout()
     clearTimeout timeout  if timeout
-    
     # Queue a new timeout.
     timeout = window.setTimeout callback, 50
     @_timeout timeout

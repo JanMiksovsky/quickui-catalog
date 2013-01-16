@@ -6,8 +6,7 @@ class window.DeviceSpecific extends Control
 
   inherited:
     content: [
-      html: "<div/>"
-      ref: "placeholder"
+      html: "<div/>", ref: "placeholder"
     ]
 
   content: Control.chain "$placeholder", "content"
@@ -28,22 +27,23 @@ class window.DeviceSpecific extends Control
       deviceClass = @mobileClass()
       deviceClasses = "mobile"
       deviceContent = @mobile()
-    deviceClass = @defaultClass()  if deviceClass is undefined
-    deviceContent = this[ "default" ]()  if deviceContent is undefined
+    if deviceClass is undefined
+      deviceClass = @defaultClass()
+    if deviceContent is undefined
+      deviceContent = @default()
     $placeholder = @$placeholder()
+
     if deviceClass
-      
       # Transmute as requested.
       $placeholder = $placeholder.transmute deviceClass, false, true
-      
       # Update the placeholder reference so it's the right class.
       @referencedElement "placeholder", $placeholder
-    
-    # Apply device-specific content.
-    $placeholder.content deviceContent  if deviceContent
-    
-    # Apply device-specific CSS classes.
-    $placeholder.addClass deviceClasses  if deviceClasses
+    if deviceContent
+      # Apply device-specific content.
+      $placeholder.content deviceContent
+    if deviceClasses
+      # Apply device-specific CSS classes.
+      $placeholder.addClass deviceClasses
 
   @isMobile: ->
     userAgent = navigator.userAgent

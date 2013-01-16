@@ -46,4 +46,3 @@ class window.SlidingPanelsWithDots extends Control
 
   # The class used to render the buttons to navigate between pages.
   pageButtonClass: Control.chain "$pageButtons", "repeatClass"
-

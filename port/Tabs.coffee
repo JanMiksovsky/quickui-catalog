@@ -112,4 +112,3 @@ class window.Tabs extends Control
     
     # Ensure the indicated button is shown as selected.
     @selectedTabIndex selectedTabIndex  if selectedTabIndex?
-

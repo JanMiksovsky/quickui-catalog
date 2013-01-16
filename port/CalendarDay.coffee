@@ -9,14 +9,12 @@ class window.CalendarDay extends Control
   
   # Return the result of adding the specified number of days to the given date.
   @addDays: ( date, days ) ->
-    
     # Use noon hour for date math, since adding/subtracting multiples of 24 hours
     # starting from noon is guaranteed to end up on the correct date (although
     # the hours might have changed).
     noon = new Date date.getTime()
     noon.setHours 11
-    result = new Date( noon.getTime() + ( days * @MILLISECONDS_IN_DAY ) )
-    
+    result = new Date noon.getTime() + ( days * @MILLISECONDS_IN_DAY )
     # Restore original hours
     result.setHours date.getHours()
     result
@@ -29,8 +27,18 @@ class window.CalendarDay extends Control
     dayOfWeek = date.getDay()
     dayOfMonth = date.getDate()
     nextDate = CalendarDay.addDays date, 1
-    daysFromToday = Math.round( ( date.getTime() - today.getTime() ) / CalendarDay.MILLISECONDS_IN_DAY )
-    @past( date < today ).future( date > today ).firstDayOfMonth( dayOfMonth is 1 ).lastDayOfMonth( date.getMonth() isnt nextDate.getMonth() ).firstWeek( dayOfMonth <= 7 ).sunday( dayOfWeek is 0 ).saturday( dayOfWeek is 6 ).weekday( dayOfWeek > 0 and dayOfWeek < 6 ).today( daysFromToday is 0 ).alternateMonth( Math.abs( date.getMonth() - today.getMonth() ) % 2 is 1 ).content date.getDate()
+    daysFromToday = Math.round ( date.getTime() - today.getTime() ) / CalendarDay.MILLISECONDS_IN_DAY
+    @past date < today
+    @future date > today
+    @firstDayOfMonth dayOfMonth is 1
+    @lastDayOfMonth date.getMonth() isnt nextDate.getMonth()
+    @firstWeek dayOfMonth <= 7
+    @sunday dayOfWeek is 0
+    @saturday dayOfWeek is 6
+    @weekday dayOfWeek > 0 and dayOfWeek < 6
+    @today daysFromToday is 0
+    @alternateMonth Math.abs( date.getMonth() - today.getMonth() ) % 2 is 1
+    @content date.getDate()
 
   firstDayOfMonth: Control.chain "applyClass/firstDayOfMonth"
 
@@ -40,7 +48,8 @@ class window.CalendarDay extends Control
 
   initialize: ->
     @click ( event ) => @trigger "dateSelected", [ @date() ]
-    @date @_defaultDate()  unless @date()
+    unless @date()
+      @date @_defaultDate()
 
   lastDayOfMonth: Control.chain "applyClass/lastDayOfMonth"
 

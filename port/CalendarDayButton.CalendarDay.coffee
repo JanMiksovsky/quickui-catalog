@@ -6,9 +6,7 @@ class window.CalendarDayButton extends CalendarDay
 
   inherited:
     content: [
-      control: "BasicButton"
-      ref: "button"
-      class: "quiet"
+      control: "BasicButton", ref: "button", class: "quiet"
     ]
 
- content: Control.chain "$button", "content"
+  content: Control.chain "$button", "content"

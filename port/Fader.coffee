@@ -9,12 +9,9 @@ class window.Fader extends Control
   inherited:
     class: "horizontal"
     content: [
-      html: "<div/>"
-      ref: "Fader_content"
+      html: "<div/>", ref: "Fader_content"
     ,
-      control: "Gradient"
-      ref: "gradient"
-      direction: "horizontal"
+      control: "Gradient", ref: "gradient", direction: "horizontal"
     ]
 
   content: Control.chain "$Fader_content", "content"
@@ -24,8 +21,10 @@ class window.Fader extends Control
   # will fade to the bottom.
   direction: Control.property ( direction ) ->
     vertical = ( direction isnt "horizontal" )
-    @toggleClass( "horizontal", not vertical ).toggleClass "vertical", vertical
-    @_redraw()  if @inDocument()
+    @toggleClass "horizontal", not vertical
+    @toggleClass "vertical", vertical
+    if @inDocument()
+      @_redraw()
     @$gradient().direction direction
 
   initialize: ->
@@ -36,23 +35,28 @@ class window.Fader extends Control
   _expandShortHexValue: ( s ) ->
     shortHex = s.slice( 1 ) # Remove "#"
     longHex = ""
-    i = 0
-
-    while i < shortHex.length
+    for i in [ 0 .. shortHex.length - 1 ]
       c = shortHex[i]
       longHex += c + c
-      i++
     "#" + longHex
 
   _hexByte: ( n ) ->
-    s = ( new Number( n & 0xFF ) ).toString( 16 )
-    s = "0" + s  if s.length is 1
+    s = ( new Number( n & 0xFF ) ).toString 16
+    if s.length == 1
+      s = "0" + s
     s
 
   _redraw: Control.iterator ->
     backgroundColor = @css "background-color"
-    backgroundHex = ( if ( backgroundColor.length is 4 ) then @_expandShortHexValue( backgroundColor ) else ( if ( backgroundColor.substr( 0, 3 ).toLowerCase() is "rgb" ) then @_rgbStringToHexColor( backgroundColor ) else backgroundColor ) )
-    @$gradient().start( backgroundHex + "00" ).end backgroundHex
+    backgroundHex = if backgroundColor.length == 4
+      @_expandShortHexValue backgroundColor
+    else if backgroundColor.substr( 0, 3 ).toLowerCase() == "rgb"
+      @_rgbStringToHexColor backgroundColor
+    else
+      backgroundColor
+    @$gradient()
+      .start( backgroundHex + "00" )
+      .end( backgroundHex )
   
   _rgbStringToHexColor: ( rgbString ) ->
     rgb = rgbString.match( /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/ )

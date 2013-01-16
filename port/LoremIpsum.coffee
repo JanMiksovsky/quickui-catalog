@@ -11,7 +11,7 @@ class window.LoremIpsum extends Control
       @lorem true
       LoremIpsum._usedLorem = true
     content = @content()
-    @_refresh()  if content and content.length is 0
+    @_refresh()  if content and content.length == 0
 
   # True if the first sentence should definitely be (or not be)
   # the standard "Lorem ipsum dolor sit amet..." If this is undefined,

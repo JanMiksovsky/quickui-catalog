@@ -11,10 +11,14 @@ class window.BrowserSpecific extends Control
     content = undefined
     if Control.browser.mozilla
       content = @mozilla()
-    else content = @msie()  if Control.browser.msie
-    content = @opera()  if Control.browser.opera
-    content = @webkit()  if Control.browser.webkit
-    content = this[ "default" ]()  if content is undefined
+    else if Control.browser.msie
+      content = @msie()
+    else if Control.browser.opera
+      content = @opera()
+    else if Control.browser.webkit
+      content = @webkit()
+    if content is undefined
+      content = @default()
     @content content
 
   # Content to show to Mozilla (Firefox) users.

@@ -63,4 +63,3 @@ class window.Repeater extends Control
       else instanceContent = i + 1  if increment
       $control.content instanceContent  if instanceContent
       i++
-

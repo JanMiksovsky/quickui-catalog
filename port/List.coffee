@@ -16,8 +16,9 @@ class window.List extends Control
 
   initialize: ->
     @change ( event ) =>
-      # Assume the list is dirty.
-      @isDirty true  if @dirtyOnChange()
+      if @dirtyOnChange()
+        # Assume the list is dirty.
+        @isDirty true
 
   # Insert a new item before the existing item at the given index.
   insertItemBefore: Control.iterator ( item, index ) ->
@@ -35,7 +36,7 @@ class window.List extends Control
       children.eq( index ).before $control
     
     # Update the cached item array as well.
-    items = @_itemsCache() or []
+    items = @_itemsCache() ? []
     items.splice index, 0, item
     @_itemsCache items
 
@@ -45,22 +46,27 @@ class window.List extends Control
   # The class used to render items in the list as controls.
   itemClass: Control.property.class( ->    
     # Get the existing items.
-    items = if @isDirty() then @items() else @_itemsCache()
-    # Throw out the existing controls.
-    @empty().items items # Create new controls.
+    items = if @isDirty()
+      @items()
+    else
+      @_itemsCache()
+    @empty() # Throw out the existing controls.
+    @items items # Create new controls.
   , Control )
 
   # The array of items in the list.
   items: ( items ) ->
     if items is undefined
-      @_itemsCache( @_getItemsFromControls() ).isDirty false  if @isDirty()
+      if @isDirty()
+        @_itemsCache( @_getItemsFromControls() ).isDirty false
       @_itemsCache()
     else
-      
-      # Cache a copy of the items array. We use a copy because the array
-      # may later be manipulated withour knowledge.
+      # Cache a copy of the items array. We use a copy because the array may
+      # later be manipulated withour knowledge.
       itemsCopy = items.slice 0
-      @_itemsCache( itemsCopy )._createControlsForItems( itemsCopy ).isDirty false
+      @_itemsCache itemsCopy
+      @_createControlsForItems itemsCopy
+      @isDirty false
 
   # Used to map an incoming list item to property setters on the control
   # class indicated by itemClass. The map specifies a relationship between
@@ -101,15 +107,13 @@ class window.List extends Control
   removeItemAt: Control.iterator ( index ) ->
     items = @_itemsCache()
     if index >= 0 and index < items.length
-      
       # Remove the control at that index.
       @children().eq( index ).remove()
-      
       # Remove our cached copy of the corresponding item.
       items.splice index, 1
 
   # Apply a simple dictionary map to the given item. The map should contain
-  # a mapping of { controlProperty: itemProperty } entries. When invoked as
+  # a mapping of { itemProperty: controlProperty } entries. When invoked as
   # a setter, this invokes
   #    control.controlProperty( item.itemProperty )
   # When invokes as a getter, this returns a new object with keys of the form
@@ -118,21 +122,15 @@ class window.List extends Control
   # Note: This function should be called with this = the given control.
   @_applyDictionaryMap: ( map, item ) ->
     if item is undefined
-      
       # Getter
       result = {}
-      for key of map
-        propertyName = map[ key ]
-        value = this[ propertyName ]()
-        result[ propertyName ] = value
+      for itemProperty, controlProperty of map
+        result[ itemProperty ] = @[ controlProperty ]()
       result
     else
-      
       # Setter
-      for key of map
-        propertyName = map[ key ]
-        value = item[ key ]
-        this[ propertyName ] value
+      for itemProperty, controlProperty of map
+        @[ controlProperty ]( item[ itemProperty ] )
 
   # Create a control for each item in the items array. Subclasses can override
   # this is they want to perform additional work when controls are being
@@ -159,39 +157,36 @@ class window.List extends Control
       @_mapAndSetup $control, items[i], mapFunction
       newControls.push $control[0]
       i++
-    @append.apply this, newControls  if newControls.length > 0
+    if newControls.length > 0
+      @append.apply @, newControls
     
     # Remove leftover controls.
     leftoverControls = $existingControls.slice items.length
-    $( leftoverControls ).remove()  if leftoverControls.length > 0
-    this
+    if leftoverControls.length > 0
+      $( leftoverControls ).remove()
+    @
 
   # This map function is used if the host does not provide one.
   @_defaultMapFunction: ( item ) ->
     map = undefined
     if item is undefined
-      
       # Getter
       map = @data "_map"
-      if map
-        
+      if map?
         # Reconstruct an item using the previously-generated map.
-        List._applyDictionaryMap.call this, map
+        List._applyDictionaryMap.call @, map
       else
         @content()
     else
-      
       # Setter
       if $.isPlainObject item
-        
         # Generate a map from the item and save it for later use.
         map = {}
-        for key of item
-          map[ key ] = key  if item.hasOwnProperty key
+        for key of item when item.hasOwnProperty key
+          map[ key ] = key
         @data "_map", map
-        List._applyDictionaryMap.call this, map, item
+        List._applyDictionaryMap.call @, map, item
       else
-        
         # Map to content()
         @content item
 
@@ -206,32 +201,26 @@ class window.List extends Control
   _getMapFunction: ->
     mapFunction = @mapFunction()
     if mapFunction is undefined
-      
       # No map function supplied; used the default.
       List._defaultMapFunction
     else if typeof mapFunction is "string"
-      
       # The map function should invoke the property with the given name.
-      ( item ) ->
-        this[ mapFunction ] item
+      ( item ) -> @[ mapFunction ] item
     else if $.isFunction mapFunction
-      
       # An explicit map function has been supplied; use that.
       mapFunction
     else
-      
       # An dictionary map has been supplied; return a function that
       # lets it map item members -> control properties and vice versa.
-      ( item ) ->
-        List._applyDictionaryMap.call this, mapFunction, item
-
+      ( item ) -> List._applyDictionaryMap.call @, mapFunction, item
   
   # A copy of the items the last time they were created or refreshed.
   _itemsCache: Control.property()
   
   # Apply the map function and let the control set itself up.
   _mapAndSetup: ( $control, item, mapFunction ) ->
-    mapFunction = @_getMapFunction()  if mapFunction is undefined
+    if mapFunction is undefined
+      mapFunction = @_getMapFunction()
     mapFunction.call $control, item
     @_setupControl $control
 

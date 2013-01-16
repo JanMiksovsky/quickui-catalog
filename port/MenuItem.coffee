@@ -12,4 +12,3 @@ class window.MenuItem extends Control
 
   initialize: ->
     @click ( event ) => false if @disabled()
-

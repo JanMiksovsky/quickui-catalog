@@ -7,8 +7,7 @@ class window.DateComboBox extends ComboBox
   inherited:
     textBoxClass: "DateTextBox"
     popup: [
-      control: "CalendarMonthNavigator"
-      ref: "navigator"
+      control: "CalendarMonthNavigator", ref: "navigator"
     ]
 
   # The control's current culture.
@@ -16,25 +15,24 @@ class window.DateComboBox extends ComboBox
     result = super culture
     if culture isnt undefined
       @$navigator().culture culture
-      @textBox().culture culture  if $.isFunction( @textBox().culture )
+      if $.isFunction @textBox().culture
+        @textBox().culture culture
     result
 
   # The date indicated in the control.
-  date: Control.property ( date ) ->
+  date: Control.property.date ( date ) ->
     time = date and date.getTime()
     textBoxDate = @$ComboBox_content().date()
-    @$ComboBox_content().date date  if not textBoxDate or textBoxDate.getTime() isnt time
-    
+    if not textBoxDate or textBoxDate.getTime() isnt time
+      @$ComboBox_content().date date
     # Navigator can only handle non-null dates.
-    if date
+    if date?
       navigatorDate = @$navigator().date()
       @$navigator().date date  if not navigatorDate or navigatorDate.getTime() isnt time
 
   initialize: ->
-    
     # Sync up dates
     @date @$navigator().date()
-    
     # Changing text updates navigator, and vice versa.
     @on
       dateChanged: ( event, date ) => @date date
@@ -52,4 +50,3 @@ class window.DateComboBox extends ComboBox
   
   # Hint for documentation tools.
   _requiredClasses: [ "DateTextBox" ]
-

@@ -17,41 +17,44 @@ class window.FlickrInterestingPhoto extends Control
 
   initialize: ->
     @on "load", ->
-
-      # HACK for IE. When the load event is triggered, IE reports the
-      # width of the img element as the width of its own little image
-      # placeholder icon. This stinks -- there's no way to get the
-      # correct width or height until sometime after the load event
-      # completes.
+      # HACK for IE. When the load event is triggered, IE reports the width of
+      # the img element as the width of its own little image placeholder icon.
+      # This stinks -- there's no way to get the correct width or height until
+      # sometime after the load event completes.
       # 
-      # As a workaround, if we're in IE and see that the width is 28px,
-      # we assume we're dealing with the image placeholder icon instead
-      # of the real image. By forcing the width to "auto", IE reports the
-      # correct photo width (and height) instead.
+      # As a workaround, if we're in IE and see that the width is 28px, we
+      # assume we're dealing with the image placeholder icon instead of the real
+      # image. By forcing the width to "auto", IE reports the correct photo
+      # width (and height) instead.
       # 
-      # This allows anyone listening for the layout event to get
-      # the correct dimensions of the photo, instead of the dimensions
-      # of the image placeholder icon. 
+      # This allows anyone listening for the layout event to get the correct
+      # dimensions of the photo, instead of the dimensions of the image
+      # placeholder icon.
       control = Control this
-      control.css "width", "auto"  if Control.browser.msie and parseInt( control.width() ) is 28
+      if Control.browser.msie and parseInt( control.width() ) == 28
+        control.css "width", "auto"
       control.checkForSizeChange()
 
     photo = @photo()
-    @reload()  if not photo or photo.length is 0
+    if not photo? or photo.length == 0
+      @reload()
 
   # Return a (somewhat) random photo from the Interestingness collection.
   # The set of photos are obtained only once per page; once the set is
   # exhausted, subsequent calls will cycle through the set. 
   @getRandomPhoto: ( callback, size ) ->
     @getFlickrInterestingPhotos().done ( flickrPhotos ) =>
-      @_counter = if @_counter >= 0 then ( @_counter + 1 ) % flickrPhotos.length else 0
+      @_counter = if @_counter >= 0
+        ( @_counter + 1 ) % flickrPhotos.length
+      else
+        0
       flickrPhoto = flickrPhotos[ @_counter ]
-      photo = @getFlickrImageSrc( flickrPhoto, size )
+      photo = @getFlickrImageSrc flickrPhoto, size
       callback photo
 
   @getFlickrInterestingPhotos: ->
     unless @_promise
-      # This is the first request for photos.             
+      # This is the first request for photos.
       deferred = new jQuery.Deferred()
       @_promise = deferred.promise()
       day = new Date()
@@ -72,7 +75,8 @@ class window.FlickrInterestingPhoto extends Control
     baseUrl = "http://api.flickr.com/services/rest/"
     url = baseUrl + "?api_key=" + @apiKey + @_formatUrlParams( params ) + "&format=json" + "&jsoncallback=?"
     $.getJSON url, ( data ) ->
-      callback data.photos.photo  if data and data.photos
+      if data and data.photos
+        callback data.photos.photo
 
   @getFlickrImageSrc: ( flickrPhoto, size ) ->
     sizeParam = if size then "_" + size else ""
@@ -102,16 +106,15 @@ class window.FlickrInterestingPhoto extends Control
   # 
   # If this property is not set, the photo will be medium size.
   photoSize: Control.property ->
-    photo = @photo()
-    @reload()  if photo and photo.length > 0
+    if @photo()?.length > 0
+      @reload()
 
   # Return a date in YYYY-MM-DD format.
   @_formatFlickrDate: ( date ) ->
     year = date.getFullYear()
     month = date.getMonth() + 1
     day = date.getDate()
-    s = year + "-" + ( ( if ( month < 10 ) then "0" else "" ) ) + month + "-" + ( ( if ( day < 10 ) then "0" else "" ) ) + day
-    s
+    year + "-" + ( if month < 10 then "0" else "" ) + month + "-" + ( if day < 10 then "0" else "" ) + day
   
   # Convert the given params dictionary into a string that can be
   # passed on a URL.
@@ -122,10 +125,8 @@ class window.FlickrInterestingPhoto extends Control
   # Perform a Fisher-Yates shuffle.
   # From http://sedition.com/perl/javascript-fy.html
   @_shuffle: ( array ) ->
-    i = array.length - 1
-    while i >= 0
+    for i in [ array.length - 1 .. 0 ]
       j = Math.floor Math.random() * ( i + 1 )
       temp = array[i]
-      array[ i] = array[j ]
+      array[ i] = array[j]
       array[j] = temp
-      i--

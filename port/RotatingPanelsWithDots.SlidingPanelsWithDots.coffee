@@ -36,4 +36,3 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
     , rotationInterval
 
   _timeout: Control.property()
-

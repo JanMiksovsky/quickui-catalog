@@ -45,9 +45,9 @@ class window.CalendarMonth extends Control
     @weekControlForDate( date ).dayControlForDate date
 
   initialize: ->
-    
-    # By default, show current month.
-    @date CalendarDay.today()  unless @date()
+    unless @date()?
+      # By default, show current month.
+      @date CalendarDay.today()
 
   # Returns the week control for the given date.
   weekControlForDate: ( date ) ->

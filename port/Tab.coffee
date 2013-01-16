@@ -15,4 +15,3 @@ class window.Tab extends Control
 
   # The description which should be rendered in the button for the tab.
   description: Control.property()
-

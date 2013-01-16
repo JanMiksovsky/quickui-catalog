@@ -81,4 +81,3 @@ class window.MenuBar extends Control
   
   # Hint for documentation tools.
   _requiredClasses: [ "Menu", "Overlay" ]
-

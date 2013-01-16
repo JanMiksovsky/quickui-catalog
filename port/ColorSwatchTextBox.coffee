@@ -6,11 +6,9 @@ class window.ColorSwatchTextBox extends Control
 
   inherited:
     content: [
-      control: "ColorSwatch"
-      ref: "swatch"
+      control: "ColorSwatch", ref: "swatch"
     ,
-      html: "<input type=\"text\" />"
-      ref: "ColorSwatchTextBox_content"
+      html: "<input type=\"text\" />", ref: "ColorSwatchTextBox_content"
     ]
 
   # The text box's content. Setting this to a color name or RGB value
@@ -24,4 +22,3 @@ class window.ColorSwatchTextBox extends Control
 
   _refresh: ->
     @$swatch().color @content()
-

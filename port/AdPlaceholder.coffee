@@ -31,8 +31,9 @@ class window.AdPlaceholder extends Control
   #      Half Page Ad
   #      Button 2
   #      Micro Bar
+  #
   dimensions: Control.property ( dimensions ) ->
-    s = AdPlaceholder.standardUnits[ dimensions ] or dimensions
+    s = AdPlaceholder.standardUnits[ dimensions ] ? dimensions
     parts = s.toLowerCase().split "x"
     width = parseInt parts[0]
     height = parseInt parts[1]
@@ -45,8 +46,8 @@ class window.AdPlaceholder extends Control
     @checkForSizeChange()
   
   initialize: ->
-    # Use default size.
-    @dimensions "300 x 250"  unless @dimensions()
+    unless @dimensions()
+      @dimensions "300 x 250" # Use default size.
 
   # Names of all core standard ad units as of 2/28/2011.
   # See http://www.iab.net/iab_products_and_industry_services/1421/1443/1452

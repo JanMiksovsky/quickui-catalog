@@ -7,19 +7,14 @@ class window.CollapsibleWithHeadingButton extends Collapsible
 
   inherited:
     heading: [
-      control: "BasicButton"
-      ref: "headingButton"
-      content: [
-        html: "<div>+</div>"
-        ref: "collapsedButtonContent"
+      control: "BasicButton", ref: "headingButton", content: [
+        html: "<div>+</div>", ref: "collapsedButtonContent"
       , 
         # Minus sign, not hyphen 
-        html: "<div>−</div>"
-        ref: "expandedButtonContent"
+        html: "<div>−</div>", ref: "expandedButtonContent"
       ]
     ,
-      control: "Fader"
-      ref: "CollapsibleWithHeadingButton_heading"
+      control: "Fader", ref: "CollapsibleWithHeadingButton_heading"
     ]
 
   # The class of the heading button.
@@ -33,9 +28,9 @@ class window.CollapsibleWithHeadingButton extends Collapsible
 
   # The heading shown at the top of the panel.
   heading: Control.chain "$CollapsibleWithHeadingButton_heading", "content"
+
   initialize: ->
     $button = @$headingButton()
-    @$Collapsible_heading().hover =>
-      $button.addClass "hover"
-    , =>
-      $button.removeClass "hover"
+    @$Collapsible_heading().on
+      mouseenter: => $button.addClass "hover"
+      mouseleave: => $button.removeClass "hover"

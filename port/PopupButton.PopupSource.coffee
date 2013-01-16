@@ -25,4 +25,3 @@ class window.PopupButton extends PopupSource
   # The default indicator is a downward-pointing arrow. 
   indicator: Control.chain "$indicator", "content"
   quiet: Control.chain "$PopupSource_content", "quiet"
-

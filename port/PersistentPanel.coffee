@@ -133,4 +133,3 @@ class window.PersistentPanel extends Control
 
         @css "height", ""
       @docked dock
-

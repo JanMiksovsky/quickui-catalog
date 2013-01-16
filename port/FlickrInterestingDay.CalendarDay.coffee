@@ -6,14 +6,10 @@ class window.FlickrInterestingDay extends CalendarDay
 
   inherited:
     content: [
-      html: "<div/>"
-      ref: "FlickrInterestingDay_content"
+      html: "<div/>", ref: "FlickrInterestingDay_content"
     ,
-      html: "<a />"
-      ref: "link"
-      content: [
-        html: "<img />"
-        ref: "image"
+      html: "<a/>", ref: "link", content: [
+        html: "<img/>", ref: "image"
       ]
     ]
     generic: "false"
@@ -21,14 +17,16 @@ class window.FlickrInterestingDay extends CalendarDay
   # True if the control should automatically load the photo when the date
   # is set. Default is false.
   autoLoad: Control.property.bool ( autoLoad ) ->
-    @loadPhoto()  if autoLoad and not @image()?
+    if autoLoad and not @image()?
+      @loadPhoto()
 
   # The date to show.
   date: ( date ) ->
     result = super date
     if date isnt undefined
       @image( null ).href null
-      @loadPhoto()  if @autoLoad()
+      if @autoLoad()
+        @loadPhoto()
     result
 
   content: Control.chain "$FlickrInterestingDay_content", "content"
@@ -54,19 +52,19 @@ class window.FlickrInterestingDay extends CalendarDay
 
   @getFlickrPhotos: ( params, callback ) ->
     baseUrl = "http://api.flickr.com/services/rest/"
-    
     # Note: JSONP in jQuery usually calls for callback=?, but the Flickr
     # API wants jsoncallback=?. Thankfully, jQuery supports that.
     url = baseUrl + "?api_key=" + @_flickrApiKey + @_formatUrlParams( params ) + "&format=json" + "&jsoncallback=?"
-    $.getJSON( url ).success ( data ) ->
-      callback data.photos.photo  if data and data.photos
+    $.getJSON( url ).success ( data ) =>
+      if data and data.photos
+        callback data.photos.photo
 
   @getFlickrImageSrc: ( flickrPhoto, size ) ->
     sizeParam = if size then "_" + size else ""
     "http://farm" + flickrPhoto.farm + ".static.flickr.com/" + flickrPhoto.server + "/" + flickrPhoto.id + "_" + flickrPhoto.secret + sizeParam + ".jpg"
 
   @getFlickrImageHref: ( flickrPhoto ) ->
-    "http://flickr.com/photo.gne?id=" + flickrPhoto.id
+    "http://flickr.com/photo.gne?id=#{flickrPhoto.id}"
 
   # The location of the Flickr page for the photo.
   href: Control.chain "$link", "attr/href"
@@ -77,13 +75,13 @@ class window.FlickrInterestingDay extends CalendarDay
   # Load the photo for the given date.
   loadPhoto: Control.iterator ->
     date = @date()
-    
     # Flickr only has a photo for dates entirely in the past (not for today).
     if date and date < CalendarDay.today()
       FlickrInterestingDay.getInterestingPhotoForDate date, ( photo ) =>
         # Double-check we got a photo, and also check that the date
         # hasn't been changed since the photo was requested.
-        @image photo.src  if photo and date is @date()
+        if photo and date is @date()
+          @image photo.src
       # Clicking the day navigates to list of the day's interesting photos.
       baseUrl = "http://www.flickr.com/explore/interesting/"
       url = baseUrl + date.getFullYear() + "/" + ( date.getMonth() + 1 ) + "/" + date.getDate()
@@ -106,8 +104,7 @@ class window.FlickrInterestingDay extends CalendarDay
     year = date.getFullYear()
     month = date.getMonth() + 1
     day = date.getDate()
-    s = year + "-" + ( ( if ( month < 10 ) then "0" else "" ) ) + month + "-" + ( ( if ( day < 10 ) then "0" else "" ) ) + day
-    s
+    year + "-" + ( if month < 10 then "0" else "" ) + month + "-" + ( if day < 10 then "0" else "" ) + day
 
   # Convert the given params dictionary into a string that can be
   # passed on a URL.

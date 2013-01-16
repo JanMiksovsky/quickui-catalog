@@ -10,10 +10,9 @@ class window.LabeledInput extends Control
   tag: "label"
   inherited:
     content: [
-      "<input />"
+      "<input/>"
     ,
-      html: "<span />"
-      ref: "LabeledInput_content"
+      html: "<span/>", ref: "LabeledInput_content"
     ]
 
   # True if the input control is checked, false if unchecked.
@@ -27,27 +26,23 @@ class window.LabeledInput extends Control
   disabled: Control.chain "_inputControl", "prop/disabled"
 
   # Return the input control.
-  # We restrict our search to direct children, in case the label also
-  # includes input controls.
+  # We restrict our search to direct children, in case the label also includes
+  # input controls.
   _inputControl: Control.chain "children", "filter/input"
 
   # Sets the input control's type.
   # This is set in subclasses CheckBox and RadioButton.
   _type: ( type ) ->
     input = @_inputControl()
-    if type isnt undefined and Control.browser.msie and parseInt( Control.browser.version ) < 9      
+    if type? and Control.browser.msie and parseInt( Control.browser.version ) < 9      
       # IE8 can't change an input's "type" attribute.
-      i = 0
-      while i < @length
-        oldInput = input.eq i
-        # Create a new input to replace the existing one.
+      # Create new input(s) to replace the existing input(s).
+      for oldInput in input.segments()
         newInput = $( "<input type='" + type + "'/>" ).prop
           # Copy old input's properties to new one.
           checked: oldInput.prop "checked"
           disabled: oldInput.prop "disabled"
         oldInput.replaceWith newInput
-        i++
       this
     else
       input.prop "type", type
-

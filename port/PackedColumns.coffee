@@ -23,12 +23,12 @@ class window.PackedColumns extends Control
   layout: ->
     children = @children()
     childCount = children.length
-    return  if childCount is 0
+    return  if childCount == 0
     
     # Infer column width and inter-child margins from first child.
     firstChild = children.eq( 0 )
     columnWidth = firstChild.outerWidth()
-    return  if columnWidth is 0 # No width; perhaps child will load later.
+    return  if columnWidth == 0 # No width; perhaps child will load later.
     marginRight = parseInt firstChild.css "margin-right"
     marginBottom = parseInt firstChild.css "margin-bottom"
     availableWidth = @width()
@@ -60,4 +60,3 @@ class window.PackedColumns extends Control
 
       columnHeight[ shortestColumn ] = y + child.outerHeight() + marginBottom
       childIndex++
-

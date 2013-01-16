@@ -5,11 +5,8 @@ An input area with a dropdown arrow, which invokes a popup.
 class window.ComboBox extends PopupSource
 
   inherited:
-    closeOnInsideClick: "false"
-    openOnClick: "false"
     content: [
-      html: "<div/>"
-      ref: "ComboBox_content"
+      html: "<div/>", ref: "ComboBox_content"
     ,
       # Negative tabindex prevents tabstop, which isn't necessary here
       # as the text box portion will get the focus, and the user can
@@ -22,7 +19,9 @@ class window.ComboBox extends PopupSource
       tabindex: "-1"
       content: "▼"
     ]
+    closeOnInsideClick: "false"
     generic: "true"
+    openOnClick: "false"
 
   # True if the dropdown portion should automatically close if the user
   # presses Enter. Default is true.
@@ -38,7 +37,6 @@ class window.ComboBox extends PopupSource
     @$PopupSource_popup().on
       canceled: =>
         @$dropdownButton().selected false
-
       closed: =>
         # Closing the popup leaves the text selected.
         # HACK for IE: If we set focus to the input while the popup is
@@ -51,9 +49,10 @@ class window.ComboBox extends PopupSource
           @_selectText 0, content.length
         @$dropdownButton().selected false
     
-    # # Close the popup when the control loses focus.
     @on
       focusout: ( event ) =>
+        # Close the popup when the control loses focus.
+        #
         # We want to close the popup if the focus moves completely
         # outside the combo box; i.e., is not within the input box or
         # the popup. Unfortunately, if the user clicks in the popup,
@@ -67,7 +66,7 @@ class window.ComboBox extends PopupSource
         # has completed and focus has been placed in the new control.
         if @opened()
           setTimeout =>
-            focusInControl = $.contains( @[0], document.activeElement )
+            focusInControl = $.contains @[0], document.activeElement
             # Still open?
             if not focusInControl and @opened()
               @cancel()
@@ -90,10 +89,9 @@ class window.ComboBox extends PopupSource
   # element should be used for input.
   inputElement: ->
     $content = @$ComboBox_content()
-    
-    # Content itself is a text input element.
-    return $content  if $content[0].nodeName.toLowerCase() is "input" and $content.prop( "type" ) is "text"
-    
+    if $content[0].nodeName.toLowerCase() is "input" and $content.prop( "type" ) is "text"
+      # Content itself is a text input element.
+      return $content
     # Return the first text input element.
     @$ComboBox_content().find( "input[ type='text' ]" ).eq 0
 
@@ -105,7 +103,6 @@ class window.ComboBox extends PopupSource
         for control in @segments()
           width = control.outerWidth()
           control.$PopupSource_popup().css "min-width", width + "px"
-      
       # User may have invoked popup by clicking in text box with
       # openOnFocus true, in which case we should ensure button looks
       # pressed while popup is open.
@@ -129,15 +126,16 @@ class window.ComboBox extends PopupSource
   _bindContentEvents: ->
     @$ComboBox_content().on
       "click focusin": ( event ) =>
-        @open()  if @openOnFocus() and not @opened()
+        if @openOnFocus() and not @opened()
+          @open()
       keydown: ( event ) =>
         opened = @opened()
-        if event.which is 13 and opened and @closeOnEnter()
+        if event.which == 13 and opened and @closeOnEnter()
           # Enter key closes popup. 
           @close()
-        # Tabbing out of text box portion closes popup. 
-        else @close()  if event.which is 9 and opened
-
+        else if event.which == 9 and opened
+          # Tabbing out of text box portion closes popup. 
+          @close()
   
   # Hint for documentation tools.
   _requiredClasses: [ "TextBox" ]
@@ -145,16 +143,14 @@ class window.ComboBox extends PopupSource
   # Select the text at the indicated positions in the input control.
   _selectText: ( start, end ) ->
     inputElement = @inputElement()[0]
-    return  unless inputElement # Can't find input control.
+    unless inputElement?
+      return # Can't find input control.
     if inputElement.setSelectionRange
-      
       # Mozilla/WebKit
       inputElement.setSelectionRange start, end
     else if inputElement.createTextRange
-      
       # IE
       range = inputElement.createTextRange()
       range.moveStart "character", start
       range.moveEnd "character", end
       range.select()
-

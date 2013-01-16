@@ -6,11 +6,9 @@ class window.BlogPost extends Control
 
   inherited:
     content: [
-      html: "<a target=\"_blank\" />"
-      ref: "BlogPost_postTitle"
+      html: "<a target=\"_blank\" />", ref: "BlogPost_postTitle"
     ,
-      html: "<div/>"
-      ref: "BlogPost_content"
+      html: "<div/>", ref: "BlogPost_content"
     ]
     generic: "true"
 
@@ -23,4 +21,3 @@ class window.BlogPost extends Control
   
   postTitle: Control.chain "$BlogPost_postTitle", "content"
   link: Control.chain "$BlogPost_postTitle", "prop/href"
-

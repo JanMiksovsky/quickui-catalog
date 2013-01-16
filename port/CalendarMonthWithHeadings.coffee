@@ -6,18 +6,12 @@ class window.CalendarMonthWithHeadings extends Control
 
   inherited:
     content: [
-      control: "MonthAndYear"
-      ref: "monthAndYear"
+      control: "MonthAndYear", ref: "monthAndYear"
     ,
-      html: "<div/>"
-      ref: "monthTable"
-      content: [
-        control: "DaysOfWeek"
-        ref: "daysOfWeek"
-        format: "namesShort"
+      html: "<div/>", ref: "monthTable",  content: [
+        control: "DaysOfWeek", ref: "daysOfWeek", format: "namesShort"
       , 
-        control: "CalendarMonth"
-        ref: "calendar"
+        control: "CalendarMonth", ref: "calendar"
       ]
     ]
     generic: "true"
@@ -52,12 +46,12 @@ class window.CalendarMonthWithHeadings extends Control
   # The format used to show day headings. See DaysOfWeek.
   dayNameFormat: Control.chain "$daysOfWeek", "format"
   initialize: ->
-    unless @date()      
-      # By default, show current month.
-      @date CalendarDay.today()
-    else
+    if @date()?
       # Sync month and year with calendar.
       @$monthAndYear().date @date()
-
+    else
+      # By default, show current month.
+      @date CalendarDay.today()
+    
   # True if the month name and year should be shown.
   showMonthAndYear: Control.chain "$monthAndYear", "visibility"

@@ -31,4 +31,3 @@ class window.SpriteButton extends BasicButton
     @_sprites().currentCell buttonState
 
   _sprites: Control.chain "children", "filter/.Sprite", "cast"
-

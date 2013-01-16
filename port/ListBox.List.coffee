@@ -29,14 +29,17 @@ class window.ListBox extends List
       click: ( event ) =>
         if event.target is @[0]
           # User clicked the list box's background. 
-          @selectedControl null  if @deselectOnBackgroundClick()
+          if @deselectOnBackgroundClick()
+            @selectedControl null
         else
           control = @_getControlContainingElement event.target
-          @_controlClick control  if control
+          if control?
+            @_controlClick control
       keydown: ( event ) => @_keydown event
     
-    # By default, highlight the selection.
-    @highlightSelection true  if @highlightSelection() is undefined
+    if @highlightSelection() is undefined
+      # By default, highlight the selection.
+      @highlightSelection true
 
   # The array of items shown in the list box.
   items: ( value ) ->
@@ -75,9 +78,11 @@ class window.ListBox extends List
       previousControl = @selectedControl()
       selectedElement = if selectedControl then selectedControl[0] else null
       for control in @controls().segments()
-        @selectControl control, control[0] is selectedElement
-      @_scrollToControl selectedControl  if selectedControl
-      @trigger "selectionChanged"  if selectedControl isnt previousControl
+        @selectControl control, ( control[0] is selectedElement )
+      if selectedControl?
+        @_scrollToControl selectedControl
+      if selectedControl isnt previousControl
+        @trigger "selectionChanged"
 
   # The index of the currently-selected control.
   selectedIndex: Control.iterator ( selectedIndex ) ->
@@ -90,7 +95,10 @@ class window.ListBox extends List
         -1
     else
       index = parseInt selectedIndex
-      control = if ( index >= 0 and index < controls.length ) then controls.eq( index ) else null
+      control = if index >= 0 and index < controls.length
+        controls.eq( index )
+      else
+        null
       @selectedControl control
 
   # The item represented by the currently-selected control.
@@ -121,12 +129,12 @@ class window.ListBox extends List
     end = if downward then controls.length else 0
     step = if downward then 1 else -1
     i = start
-
     while i isnt end
       $control = controls.eq i
       controlTop = Math.round $control.offset().top
       controlBottom = controlTop + $control.outerHeight()
-      return i  if controlTop <= y and controlBottom >= y
+      if controlTop <= y and controlBottom >= y
+        return i
       i += step
     -1
 
@@ -143,13 +151,21 @@ class window.ListBox extends List
       when 36 # Home
         handled = @_selectFirstControl()
       when 37 # Left
-        handled = @_selectPreviousControl()  if @_selectedControlIsInline()
+        if @_selectedControlIsInline()
+          handled = @_selectPreviousControl()
       when 38 # Up
-        handled = if event.altKey then @_selectFirstControl() else @_selectPreviousControl()
+        handled = if event.altKey
+          @_selectFirstControl()
+        else
+          @_selectPreviousControl()
       when 39 # Right
-        handled = @_selectNextControl()  if @_selectedControlIsInline()
+        if @_selectedControlIsInline()
+          handled = @_selectNextControl()
       when 40 # Down
-        handled = if event.altKey then @_selectLastControl() else @_selectNextControl()
+        handled = if event.altKey
+          @_selectLastControl()
+        else
+          @_selectNextControl()
       else
         handled = false
     if handled
@@ -170,20 +186,22 @@ class window.ListBox extends List
     viewPortDimensions = @_viewPortDimensions()
     edge = if downward then viewPortDimensions.bottom else viewPortDimensions.top
     index = @_getControlAtY edge, downward
-    if index >= 0 and selectedIndex is index
-      
+    if index >= 0 and selectedIndex == index
       # The control at that edge is already selected.
       # Move one page further down/up.
       delta = if downward then viewPortDimensions.height else -viewPortDimensions.height
       index = @_getControlAtY edge + delta, downward
     
-    # Would have scrolled too far in that direction.
-    # Just select the last/first control.
-    index = ( if downward then @controls().length - 1 else 0 )  if index < 0
-    if index isnt @selectedIndex()
+    if index < 0
+      # Would have scrolled too far in that direction.
+      # Just select the last/first control.
+      index = ( if downward then @controls().length - 1 else 0 )
+
+    if index != @selectedIndex()
       @selectedIndex index
-      return true
-    false
+      true
+    else
+      false
 
   # Scroll the given control into view.
   _scrollToControl: ( $control ) ->
@@ -192,57 +210,60 @@ class window.ListBox extends List
     viewPortDimensions = @_viewPortDimensions()
     scrollTop = @scrollTop()
     if controlBottom > viewPortDimensions.bottom
-      
       # Scroll up until control is entirely visible.
       @scrollTop scrollTop + controlBottom - viewPortDimensions.bottom
-    
-    # Scroll down until control is entirely visible.
-    else @scrollTop scrollTop - ( viewPortDimensions.top - controlTop )  if controlTop < viewPortDimensions.top
+    else if controlTop < viewPortDimensions.top
+      # Scroll down until control is entirely visible.
+      @scrollTop scrollTop - ( viewPortDimensions.top - controlTop )
 
   # Return true if the selected control is displayed inline.
   _selectedControlIsInline: ->
     selectedControl = @selectedControl()
-    inline = false
-    if selectedControl
+    if selectedControl?
       display = selectedControl.css "display"
-      inline = $.inArray( display, [ "inline", "inline-block", "inline-table" ] ) >= 0
-    inline
+      ( $.inArray( display, [ "inline", "inline-block", "inline-table" ] ) >= 0 )
+    else
+      false
 
   _selectFirstControl: ->
     if @controls().length > 0
       @selectedIndex 0
-
       # The list will have already scrolled the first control into view,
       # but if the list has top padding, the scroll won't be all the way
       # at the top. So, as a special case, force it to the top.
       @scrollTop 0
-      return true
-    false
+      true
+    else
+      false
 
   _selectLastControl: ->
     if @controls().length > 0
       @selectedIndex @controls().length - 1
-      return true
-    false
+      true
+    else
+      false
 
   _selectNextControl: ->
     index = @selectedIndex() + 1
     if index < @controls().length
       @selectedIndex index
-      return true
-    false
+      true
+    else
+      false
 
   _selectPreviousControl: ->
     index = @selectedIndex() - 1
     if index >= 0 and @controls().length > 0
       @selectedIndex index
-      return true
-    false
+      true
+    else
+      false
 
   _viewPortDimensions: ->
     viewPortTop = @offset().top
     viewPortHeight = @height()
-    top: viewPortTop
-    height: viewPortHeight
-    bottom: viewPortTop + viewPortHeight
-
+    {
+      top: viewPortTop
+      height: viewPortHeight
+      bottom: viewPortTop + viewPortHeight      
+    }

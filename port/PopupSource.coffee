@@ -133,4 +133,3 @@ class window.PopupSource extends Control
     popupCss.left = if ( popupAlignLeft ) then "" else popupCss.left = position.left + width - popupWidth # Right align
     $popup.toggleClass( "popupAppearsAbove", not popupAppearsBelow ).toggleClass( "popupAppearsBelow", popupAppearsBelow ).toggleClass( "popupAlignLeft", popupAlignLeft ).toggleClass( "popupAlignRight", not popupAlignLeft ).css popupCss
     this
-

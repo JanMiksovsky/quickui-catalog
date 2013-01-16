@@ -19,7 +19,7 @@ class window.Menu extends PopupSource
     @$PopupSource_popup().on "click", ( event ) ->      
       # Absorb clicks outside of menu items.
       $menuItem = $( event.target ).closest( ".MenuItem" )
-      event.stopPropagation()  if $menuItem.length is 0
+      event.stopPropagation()  if $menuItem.length == 0
 
   open: ->
     
@@ -44,4 +44,3 @@ class window.Menu extends PopupSource
     $content = @$PopupSource_content()
     shieldWidth = $content.width() + parseFloat( $content.css( "padding-left" ) ) + parseFloat( $content.css( "padding-right" ) )
     @$shield().width shieldWidth
-

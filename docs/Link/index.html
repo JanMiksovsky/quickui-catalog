@@ -21,17 +21,15 @@
 <script type="text/javascript" src="/catalog/docs.js"></script>
 <script type="text/javascript" src="/catalog/controlDocumentation.js"></script>
 
-<title>Gradient</title>
+<title>Link</title>
 
 <script id="demo">
 function demo() {
 
 $demo.append(
-    Gradient.create({
-        height: "100px",
-        width: "100px",
-        start: "#800000",
-        end: "#f0f0f0"
+    Link.create({
+        content: "QuickUI home page",
+        href: "http://quickui.org"
     })
 );
 
@@ -43,11 +41,7 @@ $demo.append(
 <body data-create-controls="true" data-control="CatalogPage">
 
 <div data-property="summary">
-    Cross-browser gradient. The Gradient control presents an abstract
-    representation of a horizontal or vertical linear gradient that invokes the
-    browser's native gradient CSS support, freeing the developer from having to
-    remember the specific per-browser syntax. Perhaps more importantly, the
-    gradient can be programmatically changed at run-time.
+
 </div>
 
 </body>

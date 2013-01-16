@@ -67,21 +67,14 @@ class window.CalendarWeek extends Control
   # Return the index of the "first" day of the week in the current culture.
   # In the U.S., this is 0 ( Sunday ), but in many places it's 1 (Monday).
   firstDayOfWeek: ->
-    culture = @culture()
-    if culture
-      culture.calendar.firstDay
-    else
-      0
+    @culture()?.calendar.firstDay ? 0
 
   # Set the dates on all controls in the week.
   _refresh: ->
-    
     # Use midnight on the given date as a reference point.
     date = CalendarDay.midnightOnDate @date()
-    
     # Get the first day of the week containing this date (e.g., Sunday).
     dateStart = CalendarDay.addDays date, -@daysSinceFirstDayOfWeek( date )
-    
     # Fill in the date range.
     for day, i in @days().segments()
       day.date CalendarDay.addDays dateStart, i

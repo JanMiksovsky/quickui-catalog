@@ -6,11 +6,9 @@ class window.LabeledColorSwatch extends Control
 
   inherited:
     content: [
-      control: "ColorSwatch"
-      ref: "swatch"
+      control: "ColorSwatch", ref: "swatch"
     ,
-      html: "<div/>"
-      ref: "ColorSwatchButton_content"
+      html: "<div/>", ref: "ColorSwatchButton_content"
     ]
 
   # The color to show.

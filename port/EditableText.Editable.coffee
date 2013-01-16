@@ -13,8 +13,9 @@ class window.EditableText extends Editable
 
   editing: ( editing ) ->
     result = super editing
-    # Switching to edit mode; put focus in the text box.
-    @editControl().find( "input" ).addBack().focus()  if editing
+    if editing
+      # Switching to edit mode; put focus in the text box.
+      @editControl().find( "input" ).addBack().focus()
     result
 
   # True if the control should switch to editing mode when it's clicked.
@@ -23,7 +24,8 @@ class window.EditableText extends Editable
 
   initialize: ->
     @click =>
-      @editing true if @editOnClick() and not @editing()
+      if @editOnClick() and not @editing()
+        @editing true
 
   # True if pressing the Enter key in edit mode saves changes and switches
   # back to read mode. The default is true.
@@ -34,8 +36,8 @@ class window.EditableText extends Editable
     # Wire up events bound to input elements.
     @editControl().find( "input" ).addBack().on
       blur: =>
-        # Implicitly save when control loses focus.
-        @save()  if @editing()
+        if @editing()
+          @save() # Implicitly save when control loses focus.
       keydown: ( event ) =>
         if @editing()
           switch event.which
@@ -45,5 +47,4 @@ class window.EditableText extends Editable
                 event.preventDefault()
             when 27 # Escape
               @cancel()  if @cancelOnEscape()
-              
     result

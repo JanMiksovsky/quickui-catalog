@@ -6,11 +6,9 @@ class window.HintTextBox extends Control
 
   inherited:
     content: [
-      html: "<input type=\"text\" />"
-      ref: "HintTextBox_textBox"
+      html: "<input type=\"text\" />", ref: "HintTextBox_textBox"
     ,
-      html: "<div/>"
-      ref: "HintTextBox_hint"
+      html: "<div/>", ref: "HintTextBox_hint"
     ]
     generic: "true"
 
@@ -28,7 +26,8 @@ class window.HintTextBox extends Control
     @on
       click: => @_hideHint()
       focus: =>
-        @$HintTextBox_textBox().focus()  unless @_isTextBoxFocused()
+        unless @_isTextBoxFocused()
+          @$HintTextBox_textBox().focus()
     @$HintTextBox_textBox().on
       blur: => @_isTextBoxFocused( false )._showHintIfEmpty()
       focus: => @_isTextBoxFocused true
@@ -47,33 +46,35 @@ class window.HintTextBox extends Control
   # hiding the hint until the keyup event, when we can check the final text
   # that includes the result of the key.
   _handleKeydown: ( event ) ->
-    # Backspace
-    # Tab
-    # Shift
-    # Ctrl
-    # Alt
-    # Pause/Break
-    # Caps Lock
-    # Esc
-    # Page Up
-    # Page Down
-    # End
-    # Home
-    # Left
-    # Up
-    # Right
-    # Down
-    # Insert
-    # Delete
-    # Windows
-    # Context menu
-    # Num lock
-    # Scroll lock
-    # Computer
-    keysOfUnknownEffect = [ 8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 93, 144, 145, 182, 183 ] # Calculator
-    
-    # Probably a text key. Preemptively hide the hint.
-    @$HintTextBox_hint().hide()  if $.inArray( event.which, keysOfUnknownEffect ) < 0
+    keysOfUnknownEffect = [
+      8   # Backspace
+      9   # Tab
+      16  # Shift
+      17  # Ctrl
+      18  # Alt
+      19  # Pause/Break
+      20  # Caps Lock
+      27  # Esc
+      33  # Page Up
+      34  # Page Down
+      35  # End
+      36  # Home
+      37  # Left
+      38  # Up
+      39  # Right
+      40  # Down
+      45  # Insert
+      46  # Delete
+      91  # Windows
+      93  # Context menu
+      144 # Num lock
+      145 # Scroll lock
+      182 # Computer
+      183 # Calculator
+    ]
+    if $.inArray( event.which, keysOfUnknownEffect ) < 0
+      # Probably a text key. Preemptively hide the hint.
+      @$HintTextBox_hint().hide()
 
   _hideHint: ->
     @$HintTextBox_hint().hide()
@@ -83,5 +84,4 @@ class window.HintTextBox extends Control
   # hint or not. We can call this on blur or keyup (when, unlike keydown,
   # the final state of the text is known).
   _showHintIfEmpty: ->
-    @$HintTextBox_hint().toggle @content().length is 0
-
+    @$HintTextBox_hint().toggle ( @content().length == 0 )
