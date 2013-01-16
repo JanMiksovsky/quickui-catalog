@@ -112,7 +112,5 @@ class window.FlickrInterestingDay extends CalendarDay
   # Convert the given params dictionary into a string that can be
   # passed on a URL.
   @_formatUrlParams: ( params ) ->
-    s = ""
-    $.each params, ( key, value ) ->
-      s += "&" + key + "=" + value
-    s
+    formattedParams = ( "&#{key}=#{value}" for key, value of params )
+    formattedParams.join ""
