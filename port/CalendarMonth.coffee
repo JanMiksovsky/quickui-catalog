@@ -77,22 +77,21 @@ class window.CalendarMonth extends Control
     
     # Fill in the weeks.
     month = firstDayOfMonth.getMonth()
-    @weeks().eachControl ( weekRow, $week ) ->
-      $week.date CalendarDay.addDays firstDayOfMonth, 7 * weekRow
-      
+    for week, i in @weeks().segments()
+      week.date CalendarDay.addDays firstDayOfMonth, 7 * i      
       # Hide weeks completely in another month (i.e., the next month).
       # Apply "hidden" class to preserve week's original "display" property.
-      days = $week.days()
+      days = week.days()
       firstDayOfWeek = days.eq( 0 ).date()
       lastDayOfWeek = days.eq( 6 ).date()
       isWeekInMonth = ( firstDayOfWeek.getMonth() is month or lastDayOfWeek.getMonth() is month )
-      $week.toggleClass "hidden", not isWeekInMonth
+      week.toggleClass "hidden", not isWeekInMonth
     
     # Paint days inside and outside range.
-    @days().eachControl ( index, $day ) ->
-      date = $day.date()
+    for day in @days().segments()
+      date = day.date()
       insideMonth = ( date? and date >= firstDayOfMonth and date <= lastDayOfMonth )
-      $day.toggleClass "insideMonth", insideMonth
-      $day.toggleClass "outsideMonth", not insideMonth
+      day.toggleClass "insideMonth", insideMonth
+      day.toggleClass "outsideMonth", not insideMonth
 
     this

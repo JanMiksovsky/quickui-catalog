@@ -74,7 +74,7 @@ class window.ListBox extends List
     else
       previousControl = @selectedControl()
       selectedElement = if selectedControl then selectedControl[0] else null
-      @controls().eachControl ( index, control ) =>
+      for control in @controls().segments()
         @selectControl control, control[0] is selectedElement
       @_scrollToControl selectedControl  if selectedControl
       @trigger "selectionChanged"  if selectedControl isnt previousControl

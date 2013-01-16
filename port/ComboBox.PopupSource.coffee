@@ -101,12 +101,10 @@ class window.ComboBox extends PopupSource
   open: ->
     unless @opened()
       if @hasClass "generic"
-        
         # Make popup at least as wide as content.
-        @eachControl ( index, $control ) =>
-          width = $control.outerWidth()
-          @$PopupSource_popup().css "min-width", width + "px"
-
+        for control in @segments()
+          width = control.outerWidth()
+          control.$PopupSource_popup().css "min-width", width + "px"
       
       # User may have invoked popup by clicking in text box with
       # openOnFocus true, in which case we should ensure button looks

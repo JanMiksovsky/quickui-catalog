@@ -85,5 +85,5 @@ class window.CalendarWeek extends Control
     dateStart = CalendarDay.addDays date, -@daysSinceFirstDayOfWeek( date )
     
     # Fill in the date range.
-    @days().eachControl ( index, $day ) ->
-      $day.date CalendarDay.addDays dateStart, index
+    for day, i in @days().segments()
+      day.date CalendarDay.addDays dateStart, i

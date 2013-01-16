@@ -175,9 +175,6 @@ class window.ListComboBox extends ComboBox
   # those objects into the controls, the controls' content should best
   # reflect the text to map against. 
   _updateItemContents: ->
-    itemContents = []
-    @$list().controls().eachControl ( index, $control ) ->
-      itemContents.push $control.content()
-
+    controls = @$list().controls()
+    itemContents = ( control.content() for control in controls.segments() )
     @_itemContents itemContents
-

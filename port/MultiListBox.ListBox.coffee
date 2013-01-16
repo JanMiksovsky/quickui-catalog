@@ -9,7 +9,7 @@ class window.MultiListBox extends ListBox
     if selectedControls is undefined
       @controls().filter ".selected"
     else
-      @controls().eachControl ( index, control ) =>
+      for control in @controls().segments()
         filter = selectedControls.filter control
         select = ( filter and filter.length > 0 )
         @selectControl control, select
