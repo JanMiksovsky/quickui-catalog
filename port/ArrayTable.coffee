@@ -8,11 +8,11 @@ class window.ArrayTable extends Control
   # 
   # A row will be created for each outer array item, and a cell for each item
   # in the inner arrays.     
-  content: Control.property ( outerArray ) ->
-    rows = $.map outerArray, ( innerArray, index ) ->
-      cells = $.map innerArray, ( item, index ) ->
+  content: Control.property ( array ) ->
+    rows = ( for innerArray in array
+      cells = ( for item in innerArray
         Control( "<div/>" ).content item
-      row = $( "<div/>" )
-      row.append.apply row, cells
-      row
+      )
+      Control( "<div/>" ).content cells
+    )
     Control( this ).content rows

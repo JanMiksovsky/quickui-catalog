@@ -35,14 +35,12 @@ class window.CalendarWeek extends Control
 
   # Returns the control currently used to represent the given date.
   dayControlForDate: ( date ) ->
-    
     # TODO: Return null if date is not within this week.
-    days = @map ( index, week ) ->
-      $week = $( week ).control()
-      dayIndex = $week.daysSinceFirstDayOfWeek date
-      $week.days()[dayIndex]
-    days = $().add( days ).control()
-    days
+    days = ( for week in @segments() 
+      dayIndex = week.daysSinceFirstDayOfWeek date
+      week.days()[dayIndex]
+    )
+    $().add( days ).control()
 
   # The class used to represent days in the week.
   dayClass: Control.iterator ( dayClass ) ->

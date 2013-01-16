@@ -143,14 +143,11 @@ class window.DateTextBox extends ValidatingTextBox
     datePatterns = null
     culture = @culture()
     if culture
-      
       # Update our date patterns based on the new culture.
       abbreviatedDatePatterns = @_abbreviatedDatePatterns( culture )
       if abbreviatedDatePatterns.length > 0
-        
         # Add our abbreviated patterns to all the culture's patterns.
-        datePatterns = $.map @culture().calendar.patterns, ( pattern, name ) ->
-          pattern
+        datePatterns = ( pattern for name, pattern of culture.calendar.patterns )
         datePatterns = datePatterns.concat abbreviatedDatePatterns
     @_datePatterns datePatterns
 

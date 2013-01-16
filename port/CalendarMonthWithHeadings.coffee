@@ -25,7 +25,7 @@ class window.CalendarMonthWithHeadings extends Control
   # The control's current culture.
   culture: Control.iterator ( culture ) ->
     # Inside iterator, so can't simply do result = super culture
-    result = @constructor.__super__.culture culture
+    result = @constructor.__super__.culture.call @, culture
     if culture isnt undefined
       @$monthAndYear().culture culture
       @$daysOfWeek().culture culture

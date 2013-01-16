@@ -51,18 +51,16 @@ class window.CalendarMonth extends Control
 
   # Returns the week control for the given date.
   weekControlForDate: ( date ) ->
-    
     # TODO: Return null if date is not within this month.
-    dayOMonth = date.getDate()
-    weeksWithDate = @map ( index, month ) ->
-      weeks = $( month ).control().weeks()
+    weeksWithDate = ( for month in @segments()
+      weeks = month.weeks()
       firstDayOfMonth = new Date date.getTime()
       firstDayOfMonth.setDate 1
-      offset = weeks.daysSinceFirstDayOfWeek( firstDayOfMonth )
-      week = Math.floor ( date.getDate() + offset - 1 ) / 7
-      weeks[week]
-    weeksWithDate = $().add( weeksWithDate ).control()
-    weeksWithDate
+      offset = weeks.daysSinceFirstDayOfWeek firstDayOfMonth
+      weekIndex = Math.floor ( date.getDate() + offset - 1 ) / 7
+      weeks[weekIndex]
+    )
+    $().add( weeksWithDate ).control()
 
   _refresh: ->
     
