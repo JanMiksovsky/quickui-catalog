@@ -198,10 +198,7 @@ class window.List extends Control
   # Reconstruct the set of items from the controls.
   _getItemsFromControls: ->
     mapFunction = @_getMapFunction()
-    @controls().map( ( index, element ) ->
-      $control = $( element ).control()
-      mapFunction.call $control
-    ).get()
+    ( mapFunction.call control for control in @controls().segments() )
 
   # Return a map function that can be applied to a control to get/set its
   # corresponding item. See mapFunction() for a description of the supported

@@ -15,12 +15,10 @@ class window.Modes extends Sequence
   # The size of a child may have changed. Make the control as tall as the
   # tallest child.
   _sizeChanged: ->
-    return  unless @maximize()
     elements = @elements()
-    return  if elements.length is 0
-    childHeights = elements.map( ( index, child ) ->
-      $( child ).outerHeight true
-    ).get()
-    maxChildHeight = Math.max.apply this, childHeights
-    @height maxChildHeight  if maxChildHeight > 0
-
+    unless @maximize() and elements.length > 0
+      return
+    childHeights = ( element.outerHeight true for element in elements.segments() )
+    maxChildHeight = Math.max childHeights...
+    if maxChildHeight > 0
+      @height maxChildHeight

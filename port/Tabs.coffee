@@ -101,11 +101,12 @@ class window.Tabs extends Control
     return  if @tabButtonClass() is undefined
     
     # Show the description for each tab as a button.
-    descriptions = @tabs().map( ( index, tab ) ->
-      $tab = $( tab ).control()
-      description = if ( $tab and $.isFunction( $tab.description ) ) then $tab.description() else ""
-      description
-    ).get()
+    descriptions = ( for tab in @tabs().segments()
+      if tab? and $.isFunction tab.description
+        tab.description()
+      else
+        ""
+    )
     @$tabButtons().items descriptions
     selectedTabIndex = @selectedTabIndex()
     

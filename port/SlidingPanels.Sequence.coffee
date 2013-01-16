@@ -60,16 +60,15 @@ class window.SlidingPanels extends Sequence
   # Force all elements and the control itself to the maximium width of the elements.
   _adjustWidths: ->
     elements = @elements()
-    return  if elements.length is 0
-    panelWidths = elements.map( ( index, panel ) ->
-      $( panel ).width()
-    ).get()
-    maxpanelWidth = Math.max.apply this, panelWidths
-    elements.width maxpanelWidth  if maxpanelWidth > 0
-    panelOuterWidths = elements.map( ( index, panel ) ->
-      $( panel ).outerWidth true
-    ).get()
-    maxpanelOuterWidth = Math.max.apply this, panelOuterWidths
-    @width maxpanelOuterWidth  if maxpanelOuterWidth > 0
+    if elements.length == 0
+      return
+    panelWidths = ( panel.width() for panel in elements.segments() )
+    maxPanelWidth = Math.max panelWidths...
+    if maxPanelWidth > 0
+      elements.width maxPanelWidth
+    panelOuterWidths = ( panel.outerWidth true for panel in elements.segments() )
+    maxPanelOuterWidth = Math.max panelOuterWidths...
+    if maxPanelOuterWidth > 0
+      @width maxPanelOuterWidth
 
   _container: Control.chain "$SlidingPanels_content"
