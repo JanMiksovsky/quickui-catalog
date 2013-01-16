@@ -14,7 +14,7 @@ class window.EditableText extends Editable
   editing: ( editing ) ->
     result = super editing
     # Switching to edit mode; put focus in the text box.
-    @editControl().find( "input" ).andSelf().focus()  if editing
+    @editControl().find( "input" ).addBack().focus()  if editing
     result
 
   # True if the control should switch to editing mode when it's clicked.
@@ -32,7 +32,7 @@ class window.EditableText extends Editable
   _createEditControl: ->
     result = super()
     # Wire up events bound to input elements.
-    @editControl().find( "input" ).andSelf().on
+    @editControl().find( "input" ).addBack().on
       blur: =>
         # Implicitly save when control loses focus.
         @save()  if @editing()
