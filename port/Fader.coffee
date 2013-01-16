@@ -56,4 +56,4 @@ class window.Fader extends Control
   
   _rgbStringToHexColor: ( rgbString ) ->
     rgb = rgbString.match( /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/ )
-    "#" + @_hexByte( rgb[1] ) + @_hexByte( rgb[2] ) + @_hexByte( rgb[3] )
+    "#" + @_hexByte( rgb[ 1] ) + @_hexByte( rgb[2] ) + @_hexByte( rgb[3 ] )

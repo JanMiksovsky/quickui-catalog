@@ -27,7 +27,7 @@ class window.Sequence extends Control
       # Trigger our own activeElementChanged event.
       
       # In case the new child changed our size.
-      @trigger( "activeElementChanged", [index, activeElement] ).checkForSizeChange()
+      @trigger( "activeElementChanged", [ index, activeElement ] ).checkForSizeChange()
       this
 
   # The index of the currently visible element.
@@ -44,18 +44,18 @@ class window.Sequence extends Control
   content: ( content ) ->
     container = @_container()
     if content is undefined
-      if this[0] is container[0]
+      if this[ 0] is container[0 ]
         super content
       else
         container.content content
     else
       # Save active element before setting content.
       previousControl = @activeElement()
-      result = if this[0] is container[0]
+      result = if this[ 0] is container[0 ]
         super content
       else
         container.content content
-      if previousControl and previousControl.parent()[0] is this[0]
+      if previousControl and previousControl.parent()[ 0] is this[0 ]
         # Still have previously active child; hide other elements.
         @activeElement previousControl
       else

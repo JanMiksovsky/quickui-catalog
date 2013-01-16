@@ -35,7 +35,7 @@ class window.FlickrInterestingDay extends CalendarDay
 
   @getInterestingPhotoForDate: ( date, callback ) ->
     flickrDate = @_formatFlickrDate date
-    cachedPhoto = @_cache[flickrDate]
+    cachedPhoto = @_cache[ flickrDate ]
     if cachedPhoto
       callback cachedPhoto
       return
@@ -49,7 +49,7 @@ class window.FlickrInterestingDay extends CalendarDay
         photo =
           src: @getFlickrImageSrc first, "s" # Small thumbnail
           href: @getFlickrImageHref first
-        @_cache[flickrDate] = photo
+        @_cache[ flickrDate ] = photo
         callback photo
 
   @getFlickrPhotos: ( params, callback ) ->

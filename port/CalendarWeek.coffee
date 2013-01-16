@@ -38,7 +38,7 @@ class window.CalendarWeek extends Control
     # TODO: Return null if date is not within this week.
     days = ( for week in @segments() 
       dayIndex = week.daysSinceFirstDayOfWeek date
-      week.days()[dayIndex]
+      week.days()[ dayIndex ]
     )
     $().add( days ).control()
 

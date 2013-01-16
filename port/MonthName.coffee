@@ -21,7 +21,7 @@ class window.MonthName extends Control
   month: Control.property ( month ) ->
     culture = @culture()
     monthNameEnum = if culture then culture.calendar.months.names else MonthName.names
-    @content monthNameEnum[month]
+    @content monthNameEnum[ month ]
 
   # Default names, used if Globalize is not avaialble.
-  @names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  @names: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]

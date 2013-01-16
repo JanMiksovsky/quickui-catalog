@@ -98,7 +98,7 @@ class window.ListBox extends List
     if selectedItem is undefined
       index = @selectedIndex()
       if index >= 0
-        @items()[index]
+        @items()[ index ]
       else
         null
     else
@@ -205,7 +205,7 @@ class window.ListBox extends List
     inline = false
     if selectedControl
       display = selectedControl.css "display"
-      inline = $.inArray( display, ["inline", "inline-block", "inline-table"] ) >= 0
+      inline = $.inArray( display, [ "inline", "inline-block", "inline-table" ] ) >= 0
     inline
 
   _selectFirstControl: ->

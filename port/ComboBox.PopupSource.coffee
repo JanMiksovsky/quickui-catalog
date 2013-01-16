@@ -95,7 +95,7 @@ class window.ComboBox extends PopupSource
     return $content  if $content[0].nodeName.toLowerCase() is "input" and $content.prop( "type" ) is "text"
     
     # Return the first text input element.
-    @$ComboBox_content().find( "input[type='text']" ).eq 0
+    @$ComboBox_content().find( "input[ type='text' ]" ).eq 0
 
   # Open the combo box.
   open: ->
@@ -140,7 +140,7 @@ class window.ComboBox extends PopupSource
 
   
   # Hint for documentation tools.
-  _requiredClasses: ["TextBox"]
+  _requiredClasses: [ "TextBox" ]
 
   # Select the text at the indicated positions in the input control.
   _selectText: ( start, end ) ->

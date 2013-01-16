@@ -80,5 +80,5 @@ class window.MenuBar extends Control
   _overlay: Control.property()
   
   # Hint for documentation tools.
-  _requiredClasses: ["Menu", "Overlay"]
+  _requiredClasses: [ "Menu", "Overlay" ]
 

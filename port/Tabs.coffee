@@ -57,8 +57,8 @@ class window.Tabs extends Control
       if tabButton
         index = @tabButtons().index tabButton
         if index >= 0
-          tab = @tabs()[index]
-          @trigger "tabButtonClick", [index, tab]
+          tab = @tabs()[ index ]
+          @trigger "tabButtonClick", [ index, tab ]
           @selectedTabIndex index  if @selectTabOnClick()
     @$Tabs_content().on activeElementChanged: ( event, index, child ) =>
       # Map the Modes's activeElementChanged event to a more semantically
@@ -67,7 +67,7 @@ class window.Tabs extends Control
       tab = $( event.target ).filter @tabs()
       if tab.length > 0
         event.stopPropagation()
-        @trigger "activeTabChanged", [index, child]
+        @trigger "activeTabChanged", [ index, child ]
 
     # Select first tab by default.
     @selectedTabIndex 0  if @tabs().length > 0 and not @selectedTabIndex()

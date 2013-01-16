@@ -18,13 +18,13 @@ class window.DaysOfWeek extends Control
   @days:
 
     # Full day names
-    names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    names: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
 
     # Abbreviated day names
-    namesAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    namesAbbr: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ]
   
     # Shortest day names
-    namesShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    namesShort: [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]
 
   # The format used to show the names of the day. These are defined by
   # the Globalize library:
@@ -35,13 +35,13 @@ class window.DaysOfWeek extends Control
   format: Control.property ( format ) ->
     culture = @culture()
     dayNameEnum = if culture then culture.calendar.days else DaysOfWeek.days
-    dayNames = dayNameEnum[format]
+    dayNames = dayNameEnum[ format ]
     firstDay = if culture then culture.calendar.firstDay else 0
     $children = @children()
     i = 0
     while i < dayNames.length
       day = ( i + firstDay ) % 7
-      dayName = dayNames[day]
+      dayName = dayNames[ day ]
       $children.eq( i ).content dayName
       i++
 

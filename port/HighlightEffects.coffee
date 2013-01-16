@@ -73,7 +73,7 @@ class window.HighlightEffects extends Control
           value = "0"  if value is "auto"
         else
           value = $content.css key
-      currentState[key] = value
+      currentState[ key ] = value
     currentState
 
   _hoverIn: ->

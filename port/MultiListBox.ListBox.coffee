@@ -33,7 +33,7 @@ class window.MultiListBox extends ListBox
 
         while i < selectedIndices.length
           index = selectedIndices[i]
-          selectedControls.push controls[index]
+          selectedControls.push controls[ index ]
           i++
       @selectedControls selectedControls
 
@@ -60,7 +60,7 @@ class window.MultiListBox extends ListBox
         while i < selectedItems.length
           item = selectedItems[i]
           index = $.inArray item, items
-          selectedControls.push controls[index]  if index >= 0
+          selectedControls.push controls[ index ]  if index >= 0
           i++
       @selectedControls selectedControls
 

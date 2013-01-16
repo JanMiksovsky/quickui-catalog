@@ -122,7 +122,7 @@ class window.SimpleFlexBox extends Control
   # Returns true if the given element is using the CSS flexible layout module.
   @usingFlexBox: ( $element ) ->
     # "-moz-box", 
-    flexBoxVariants = ["box", "-webkit-box"]
+    flexBoxVariants = [ "box", "-webkit-box" ]
     $.inArray( $element.css( "display" ), flexBoxVariants ) >= 0
 
   # True if the control is currently using CSS flexible box layout, and

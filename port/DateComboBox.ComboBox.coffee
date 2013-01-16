@@ -51,5 +51,5 @@ class window.DateComboBox extends ComboBox
   required: Control.chain "$ComboBox_content", "required"
   
   # Hint for documentation tools.
-  _requiredClasses: ["DateTextBox"]
+  _requiredClasses: [ "DateTextBox" ]
 

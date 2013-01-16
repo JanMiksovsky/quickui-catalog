@@ -45,7 +45,7 @@ class window.FlickrInterestingPhoto extends Control
   @getRandomPhoto: ( callback, size ) ->
     @getFlickrInterestingPhotos().done ( flickrPhotos ) =>
       @_counter = if @_counter >= 0 then ( @_counter + 1 ) % flickrPhotos.length else 0
-      flickrPhoto = flickrPhotos[@_counter]
+      flickrPhoto = flickrPhotos[ @_counter ]
       photo = @getFlickrImageSrc( flickrPhoto, size )
       callback photo
 
@@ -126,6 +126,6 @@ class window.FlickrInterestingPhoto extends Control
     while i >= 0
       j = Math.floor Math.random() * ( i + 1 )
       temp = array[i]
-      array[i] = array[j]
+      array[ i] = array[j ]
       array[j] = temp
       i--

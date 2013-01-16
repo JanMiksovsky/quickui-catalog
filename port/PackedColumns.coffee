@@ -46,18 +46,18 @@ class window.PackedColumns extends Control
       column = 1
 
       while column < columns
-        height = columnHeight[column] or 0
-        shortestColumn = column  if height < columnHeight[shortestColumn]
+        height = columnHeight[ column ] or 0
+        shortestColumn = column  if height < columnHeight[ shortestColumn ]
         column++
       
       # Add the current child to the shortest column
       x = shortestColumn * ( columnWidth + marginRight ) + offsetX
-      y = columnHeight[shortestColumn] or 0
+      y = columnHeight[ shortestColumn ] or 0
       child = children.eq childIndex
       child.css
         left: x
         top: y
 
-      columnHeight[shortestColumn] = y + child.outerHeight() + marginBottom
+      columnHeight[ shortestColumn ] = y + child.outerHeight() + marginBottom
       childIndex++
 

@@ -31,7 +31,7 @@ class window.Menu extends PopupSource
   popup: Control.chain "$Menu_popup", "content"
   
   # Hint for documentation tools.
-  _requiredClasses: ["MenuItem"]
+  _requiredClasses: [ "MenuItem" ]
 
   # The "shield" is a thin block that can be used to obscure the boundary
   # between the content and popup so that those two elements can

@@ -28,7 +28,7 @@ class window.DateTextBox extends ValidatingTextBox
       # We updating the content only if the user isn't typing,
       # so as not to confuse them.
       @_refresh()  unless hasFocus
-      @_previousDate( date ).trigger "dateChanged", [date]
+      @_previousDate( date ).trigger "dateChanged", [ date ]
   
   initialize: ->
     @blur => @_refresh()
@@ -66,7 +66,7 @@ class window.DateTextBox extends ValidatingTextBox
       patterns.push shortPattern.replace fullYearPlaceholder, "yy"
     
     # Try removing separator + year, then try removing year + separator.
-    separator = calendar["/"]
+    separator = calendar[ "/" ]
     separatorThenYear = separator + fullYearPlaceholder
     yearThenSeparator = fullYearPlaceholder + separator
     if shortPattern.indexOf( separatorThenYear ) >= 0
@@ -80,7 +80,7 @@ class window.DateTextBox extends ValidatingTextBox
   _dateSeparator: ->
     culture = @culture()
     calendar = ( if culture then culture.calendar else DateTextBox )
-    calendar["/"]
+    calendar[ "/" ]
 
   _formatDate: ( date ) ->
     culture = @culture()
@@ -117,7 +117,7 @@ class window.DateTextBox extends ValidatingTextBox
       
       # Convert short year to long year
       fullYear = currentYear.substring( 0, 2 ) + parts[2]
-      munged = parts[0] + dateSeparator + parts[1] + dateSeparator + fullYear
+      munged = parts[ 0] + dateSeparator + parts[1 ] + dateSeparator + fullYear
     else
       
       # Parse as is
@@ -153,4 +153,4 @@ class window.DateTextBox extends ValidatingTextBox
 
 
 # Date separator, used when Globalize is not present.
-DateTextBox[ "/" ] = "/"
+DateTextBox[  "/"  ] = "/"

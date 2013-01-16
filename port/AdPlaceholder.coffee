@@ -34,7 +34,7 @@ class window.AdPlaceholder extends Control
   #      Button 2
   #      Micro Bar
   dimensions: Control.property ( dimensions ) ->
-    s = AdPlaceholder.standardUnits[dimensions] or dimensions
+    s = AdPlaceholder.standardUnits[ dimensions ] or dimensions
     parts = s.toLowerCase().split "x"
     width = parseInt parts[0]
     height = parseInt parts[1]

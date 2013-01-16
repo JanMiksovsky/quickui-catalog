@@ -59,13 +59,13 @@ class window.Page extends Control
   #    { foo: "hello", bar: "world" }
   #
   @urlParameters: ->
-    regex = /[?#&]( \w+ )=( [^?#&]* )/g
+    regex = /[ ?#&]( \w+ )=( [^?#& ]* )/g
     results = {}
     match = regex.exec window.location.href
     while match?
       parameterName = match[1]
       parameterValue = match[2]
-      results[parameterName] = parameterValue
+      results[ parameterName ] = parameterValue
       match = regex.exec window.location.href
     results
   

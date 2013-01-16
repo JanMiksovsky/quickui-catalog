@@ -41,7 +41,7 @@ class window.SlidingPanels extends Sequence
 
   # Returns true if the given element has CSS transitions applied to it.
   @hasTransitions: ( $element ) ->
-    transitionProperties = ["-webkit-transition", "transition"]
+    transitionProperties = [ "-webkit-transition", "transition" ]
     if Control.browser.msie and parseInt( Control.browser.version ) < 9
       # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we
       # try to get the css("transition") property.

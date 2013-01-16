@@ -70,7 +70,7 @@ class window.HintTextBox extends Control
     # Num lock
     # Scroll lock
     # Computer
-    keysOfUnknownEffect = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 93, 144, 145, 182, 183] # Calculator
+    keysOfUnknownEffect = [ 8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 93, 144, 145, 182, 183 ] # Calculator
     
     # Probably a text key. Preemptively hide the hint.
     @$HintTextBox_hint().hide()  if $.inArray( event.which, keysOfUnknownEffect ) < 0

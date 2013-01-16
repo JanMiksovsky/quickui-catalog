@@ -38,7 +38,7 @@ class window.CalendarMonth extends Control
 
   # The date that will be included in this month (can be any day of the month).
   date: Control.property.date ->
-    @_refresh().trigger "dateChanged", [@date()]
+    @_refresh().trigger "dateChanged", [ @date() ]
   
   # Return the day control for the given date.
   dayControlForDate: ( date ) ->
@@ -58,7 +58,7 @@ class window.CalendarMonth extends Control
       firstDayOfMonth.setDate 1
       offset = weeks.daysSinceFirstDayOfWeek firstDayOfMonth
       weekIndex = Math.floor ( date.getDate() + offset - 1 ) / 7
-      weeks[weekIndex]
+      weeks[ weekIndex ]
     )
     $().add( weeksWithDate ).control()
 

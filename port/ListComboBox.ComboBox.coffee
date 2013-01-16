@@ -96,7 +96,7 @@ class window.ListComboBox extends ComboBox
     # Page Up
     # Page Down
     # Up
-    navigationKeys = [33, 34, 38, 40] # Down
+    navigationKeys = [ 33, 34, 38, 40 ] # Down
     
     # Do AutoComplete on Space, or characters from zero (0) and up,
     # ignoring any combinations that involve Alt or Ctrl.

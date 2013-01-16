@@ -9,5 +9,5 @@ class window.ColorSwatchComboBox extends ListComboBox
     itemClass: "LabeledColorSwatch"
 
  initialize: ->
-  @items ["Black", "Blue", "Gray", "Green", "Red", "Orange", "Pink", "Purple", "Yellow"]  if not @items()? or @items().length is 0
+  @items [ "Black", "Blue", "Gray", "Green", "Red", "Orange", "Pink", "Purple", "Yellow" ]  if not @items()? or @items().length is 0
 

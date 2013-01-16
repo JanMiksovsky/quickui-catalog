@@ -122,17 +122,17 @@ class window.List extends Control
       # Getter
       result = {}
       for key of map
-        propertyName = map[key]
-        value = this[propertyName]()
-        result[propertyName] = value
+        propertyName = map[ key ]
+        value = this[ propertyName ]()
+        result[ propertyName ] = value
       result
     else
       
       # Setter
       for key of map
-        propertyName = map[key]
-        value = item[key]
-        this[propertyName] value
+        propertyName = map[ key ]
+        value = item[ key ]
+        this[ propertyName ] value
 
   # Create a control for each item in the items array. Subclasses can override
   # this is they want to perform additional work when controls are being
@@ -187,7 +187,7 @@ class window.List extends Control
         # Generate a map from the item and save it for later use.
         map = {}
         for key of item
-          map[key] = key  if item.hasOwnProperty key
+          map[ key ] = key  if item.hasOwnProperty key
         @data "_map", map
         List._applyDictionaryMap.call this, map, item
       else
@@ -213,7 +213,7 @@ class window.List extends Control
       
       # The map function should invoke the property with the given name.
       ( item ) ->
-        this[mapFunction] item
+        this[ mapFunction ] item
     else if $.isFunction mapFunction
       
       # An explicit map function has been supplied; use that.

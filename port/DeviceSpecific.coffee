@@ -29,7 +29,7 @@ class window.DeviceSpecific extends Control
       deviceClasses = "mobile"
       deviceContent = @mobile()
     deviceClass = @defaultClass()  if deviceClass is undefined
-    deviceContent = this["default"]()  if deviceContent is undefined
+    deviceContent = this[ "default" ]()  if deviceContent is undefined
     $placeholder = @$placeholder()
     if deviceClass
       
