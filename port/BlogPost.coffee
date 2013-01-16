@@ -9,7 +9,7 @@ class window.BlogPost extends Control
       html: "<a target=\"_blank\" />"
       ref: "BlogPost_postTitle"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "BlogPost_content"
     ]
     generic: "true"

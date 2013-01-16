@@ -10,7 +10,7 @@ class window.HighlightEffects extends Control
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "HighlightEffects_content"
     ]
     generic: "true"

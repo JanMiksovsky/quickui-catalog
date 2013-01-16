@@ -6,7 +6,7 @@ class window.FlickrInterestingDay extends CalendarDay
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "FlickrInterestingDay_content"
     ,
       html: "<a />"

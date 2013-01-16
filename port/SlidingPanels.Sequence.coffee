@@ -7,7 +7,7 @@ class window.SlidingPanels extends Sequence
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "SlidingPanels_content"
     ]
 

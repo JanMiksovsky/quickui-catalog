@@ -15,7 +15,7 @@ class window.PanelWithOverflow extends Control
       indicator: "»"
       quiet: "true"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "PanelWithOverflow_content"
     ]
     generic: "true"

@@ -6,7 +6,7 @@ class window.DeviceSpecific extends Control
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "placeholder"
     ]
 

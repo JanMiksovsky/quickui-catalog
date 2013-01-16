@@ -6,11 +6,11 @@ class window.Menu extends PopupSource
 
   inherited:
     popup: [
-      html: "<div />"
+      html: "<div/>"
       ref: "shield"
     ,
       # Used to obscure borders between description and content. 
-      html: "<div />"
+      html: "<div/>"
       ref: "Menu_popup"
     ]
     generic: "true"

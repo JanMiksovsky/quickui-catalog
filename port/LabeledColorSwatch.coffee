@@ -9,7 +9,7 @@ class window.LabeledColorSwatch extends Control
       control: "ColorSwatch"
       ref: "swatch"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "ColorSwatchButton_content"
     ]
 

@@ -9,7 +9,7 @@ class window.Fader extends Control
   inherited:
     class: "horizontal"
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "Fader_content"
     ,
       control: "Gradient"

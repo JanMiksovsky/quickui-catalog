@@ -10,7 +10,7 @@ class window.SlidingPanelsWithDots extends Control
       control: "SlidingPanels"
       ref: "pages"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "buttonPanel"
       content: [
         control: "Repeater"

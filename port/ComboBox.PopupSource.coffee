@@ -8,7 +8,7 @@ class window.ComboBox extends PopupSource
     closeOnInsideClick: "false"
     openOnClick: "false"
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "ComboBox_content"
     ,
       # Negative tabindex prevents tabstop, which isn't necessary here

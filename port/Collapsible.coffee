@@ -6,10 +6,10 @@ class window.Collapsible extends Control
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "Collapsible_heading"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "Collapsible_content"
     ]
     generic: "true"

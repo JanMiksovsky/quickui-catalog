@@ -8,14 +8,12 @@ class window.AdPlaceholder extends Control
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "container"
       content: [
-        html: "<div>Advertisement</div>"
-        ref: "label"
+        html: "<div>Advertisement</div>", ref: "label"
       , 
-        html: "<div />"
-        ref: "AdPlaceholder_content"
+        html: "<div/>", ref: "AdPlaceholder_content"
       ]
     ]
     generic: "true"

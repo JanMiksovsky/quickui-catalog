@@ -16,7 +16,7 @@ class window.SimpleFlexBox extends Control
       html: "<div class=\"panel\" />"
       ref: "SimpleFlexBox_panel1"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "SimpleFlexBox_content"
     ,
       html: "<div class=\"panel\" />"

@@ -9,7 +9,7 @@ class window.Editable extends Modes
       html: "<div tabindex=\"-1\" />"
       ref: "Editable_read"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "Editable_edit"
     ]
     generic: "true"

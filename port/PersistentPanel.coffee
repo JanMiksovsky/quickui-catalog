@@ -18,7 +18,7 @@ class window.PersistentPanel extends Control
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "PersistentPanel_content"
     ]
     generic: "true"

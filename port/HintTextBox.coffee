@@ -9,7 +9,7 @@ class window.HintTextBox extends Control
       html: "<input type=\"text\" />"
       ref: "HintTextBox_textBox"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "HintTextBox_hint"
     ]
     generic: "true"

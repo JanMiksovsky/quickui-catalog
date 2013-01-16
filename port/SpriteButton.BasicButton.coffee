@@ -12,7 +12,7 @@ class window.SpriteButton extends BasicButton
       control: "Sprite"
       ref: "backgroundRight"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "SpriteButton_content"
     ]
     generic: "false"

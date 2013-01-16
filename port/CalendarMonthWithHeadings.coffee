@@ -9,7 +9,7 @@ class window.CalendarMonthWithHeadings extends Control
       control: "MonthAndYear"
       ref: "monthAndYear"
     ,
-      html: "<div />"
+      html: "<div/>"
       ref: "monthTable"
       content: [
         control: "DaysOfWeek"

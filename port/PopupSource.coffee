@@ -6,7 +6,7 @@ class window.PopupSource extends Control
 
   inherited:
     content: [
-      html: "<div />"
+      html: "<div/>"
       ref: "PopupSource_content"
     ,
       control: "Popup"
