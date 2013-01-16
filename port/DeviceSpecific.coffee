@@ -34,7 +34,7 @@ class window.DeviceSpecific extends Control
     if deviceClass
       
       # Transmute as requested.
-      $placeholder = $placeholder.transmute( deviceClass, false, true )
+      $placeholder = $placeholder.transmute deviceClass, false, true
       
       # Update the placeholder reference so it's the right class.
       @referencedElement "placeholder", $placeholder

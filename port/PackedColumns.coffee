@@ -29,13 +29,13 @@ class window.PackedColumns extends Control
     firstChild = children.eq( 0 )
     columnWidth = firstChild.outerWidth()
     return  if columnWidth is 0 # No width; perhaps child will load later.
-    marginRight = parseInt( firstChild.css( "margin-right" ) )
-    marginBottom = parseInt( firstChild.css( "margin-bottom" ) )
+    marginRight = parseInt firstChild.css "margin-right"
+    marginBottom = parseInt firstChild.css "margin-bottom"
     availableWidth = @width()
-    columns = Math.max( Math.floor( ( availableWidth + marginRight ) / ( columnWidth + marginRight ) ), 1 )
+    columns = Math.max Math.floor( ( availableWidth + marginRight ) / ( columnWidth + marginRight ) ), 1
     consumedWidth = columns * columnWidth + ( columns - 1 ) * marginRight
-    leftover = Math.max( availableWidth - consumedWidth, 0 )
-    offsetX = ( if @center() then leftover / 2 else 0 )
+    leftover = Math.max availableWidth - consumedWidth, 0
+    offsetX = if @center() then leftover / 2 else 0
     columnHeight = []
     childIndex = 0
 
@@ -53,7 +53,7 @@ class window.PackedColumns extends Control
       # Add the current child to the shortest column
       x = shortestColumn * ( columnWidth + marginRight ) + offsetX
       y = columnHeight[shortestColumn] or 0
-      child = children.eq( childIndex )
+      child = children.eq childIndex
       child.css
         left: x
         top: y

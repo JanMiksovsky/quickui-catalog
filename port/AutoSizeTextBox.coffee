@@ -37,16 +37,12 @@ class window.AutoSizeTextBox extends Control
   content: Control.chain( "$textBox", "content", ->
     @autoSize()
   )
+  
   initialize: ->
     @$textBox().on
-      "change keyup": ( event ) =>
-        @autoSize()
-
+      "change keyup": ( event ) => @autoSize()
       keypress: ( event ) =>
-        # Enter 
-        
         # Speculatively add a line to our copy of the text.
-        #
         # We're not sure what the exact effect of typing this
         # character will be, and at this point it's not reflected
         # yet in the text box's content. We speculate that it
@@ -55,7 +51,8 @@ class window.AutoSizeTextBox extends Control
         # a selected chunk of text with a newline.) In any event,
         # once we get the keyup or change event, we'll make any
         # final adjustments.
-        @autoSize true  if event.which is 13
+        if event.which is 13 # Enter 
+          @autoSize true
 
     @inDocument ->
       @_refresh()
@@ -75,24 +72,23 @@ class window.AutoSizeTextBox extends Control
   spellcheck: Control.chain "$textBox", "prop/spellcheck"
   
   # For the following, we need to wait until the control's in the DOM.    
-  _refresh: Control.iterator( ->
+  _refresh: Control.iterator ->
     $textBox = @$textBox()
     $textCopy = @$textCopy()
     
     # Copy the control's font to the textarea and text copy.
     # This ensures both end up with the same text metrics.
     @children().css
-      "font-family": @css( "font-family" )
-      "font-size": @css( "font-size" )
-      "font-style": @css( "font-style" )
-      "font-weight": @css( "font-weight" )
-
+      "font-family": @css "font-family"
+      "font-size": @css "font-size"
+      "font-style": @css "font-style"
+      "font-weight": @css "font-weight"
     
     # Try to get the text box's line height. Unfortunately some browsers
     # return the useful value "normal", in which case we have to make
     # an estimate based on font size.
-    lineHeight = parseInt( $textBox.css( "line-height" ) )
-    if isNaN( lineHeight )
+    lineHeight = parseInt $textBox.css "line-height"
+    if isNaN lineHeight
       
       # line-height values like "normal" don't give us a measurement
       # we can use. We fall back to estimating a line height
@@ -103,14 +99,14 @@ class window.AutoSizeTextBox extends Control
     $textCopy.css "line-height", lineHeight + "px"
     
     # Mirror the textarea's padding and borders on the text copy.
-    borderBottomWidth = $textBox.css( "border-bottom-width" )
-    borderLeftWidth = $textBox.css( "border-left-width" )
-    borderRigthWidth = $textBox.css( "border-right-width" )
-    borderTopWidth = $textBox.css( "border-top-width" )
-    paddingBottom = $textBox.css( "padding-bottom" )
-    paddingLeft = $textBox.css( "padding-left" )
-    paddingRight = $textBox.css( "padding-right" )
-    paddingTop = $textBox.css( "padding-top" )
+    borderBottomWidth = $textBox.css "border-bottom-width"
+    borderLeftWidth = $textBox.css "border-left-width"
+    borderRigthWidth = $textBox.css "border-right-width"
+    borderTopWidth = $textBox.css "border-top-width"
+    paddingBottom = $textBox.css "padding-bottom"
+    paddingLeft = $textBox.css "padding-left"
+    paddingRight = $textBox.css "padding-right"
+    paddingTop = $textBox.css "padding-top"
     if Control.browser.mozilla and not $textBox.is( ":visible" )
       
       # Firefox incorrectly reports the default padding for hidden textareas
@@ -140,10 +136,9 @@ class window.AutoSizeTextBox extends Control
       # Convert the number of lines into a minimum height.
       height = minimumLines * lineHeight
       
-      # Mozilla incorrectly includes padding+border in height when
-      # -moz-box-sizing is border-box. The other browsers do not,
-      # so for those browsers we need to add it in.
-      height += parseInt( borderTopWidth ) + parseInt( paddingTop ) + parseInt( paddingBottom ) + parseInt( borderBottomWidth )  unless Control.browser.mozilla
+      unless Control.browser.mozilla
+        # Mozilla incorrectly includes padding+border in height when
+        # -moz-box-sizing is border-box. The other browsers do not,
+        # so for those browsers we need to add it in.
+        height += parseInt( borderTopWidth ) + parseInt( paddingTop ) + parseInt( paddingBottom ) + parseInt( borderBottomWidth )
       @$textCopy().css "min-height", height + "px"
-  )
-

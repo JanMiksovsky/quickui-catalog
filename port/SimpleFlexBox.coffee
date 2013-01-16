@@ -55,7 +55,7 @@ class window.SimpleFlexBox extends Control
     # Detection of flexbox support requires styles, which means the
     # control has to be in the DOM.
     return false  unless @inDocument()
-    flexBox = SimpleFlexBox.usingFlexBox( this )
+    flexBox = SimpleFlexBox.usingFlexBox this
     constrainHeight = @constrainHeight()
 
     # WebKit has a bug preventing use of overflow: auto in combination with
@@ -88,9 +88,9 @@ class window.SimpleFlexBox extends Control
   # is constrained.
   _layout: ->
     vertical = @_vertical()
-    measureFn = ( if vertical then $::outerHeight else $::outerWidth )
-    sizePanel1 = measureFn.call( @$SimpleFlexBox_panel1(), true )
-    sizePanel2 = measureFn.call( @$SimpleFlexBox_panel2(), true )
+    measureFn = if vertical then $::outerHeight else $::outerWidth
+    sizePanel1 = measureFn.call @$SimpleFlexBox_panel1(), true
+    sizePanel2 = measureFn.call @$SimpleFlexBox_panel2(), true
     css = if vertical
       bottom: sizePanel2
       top: sizePanel1
@@ -129,7 +129,7 @@ class window.SimpleFlexBox extends Control
   # false if using manual layout.
   _usingFlexBox: ( usingFlexBox ) ->
     if usingFlexBox is undefined
-      not @hasClass( "noFlexBox" )
+      not @hasClass "noFlexBox"
     else
       @toggleClass "noFlexBox", not usingFlexBox
   

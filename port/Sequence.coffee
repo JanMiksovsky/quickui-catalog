@@ -9,7 +9,7 @@ class window.Sequence extends Control
 
   # The currently visible element. The getter returns the element as an
   # instance of the appropriate control class.
-  activeElement: Control.iterator( ( activeElement ) ->
+  activeElement: Control.iterator ( activeElement ) ->
     if activeElement is undefined
       @elements().filter( ".active" ).eq( 0 ).cast jQuery
     else
@@ -29,14 +29,13 @@ class window.Sequence extends Control
       # In case the new child changed our size.
       @trigger( "activeElementChanged", [index, activeElement] ).checkForSizeChange()
       this
-  )
 
   # The index of the currently visible element.
   activeIndex: ( index ) ->
     if index is undefined
       @elements().index @activeElement()
     else
-      @activeElement @elements().eq( index )
+      @activeElement @elements().eq index
 
   # The array of elements in the sequence; only one will be shown at a time.
   # 

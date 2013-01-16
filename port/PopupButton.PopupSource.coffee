@@ -18,7 +18,7 @@ class window.PopupButton extends PopupSource
   # The content of the button.
   content: Control.chain( "$PopupButton_content", "content", ( content ) ->
     hasContent = content and content.length > 0
-    @$PopupButton_content().css "display", ( if hasContent then "inline-block" else "none" )
+    @$PopupButton_content().css "display", if hasContent then "inline-block" else "none"
   )
 
   # Content which indicates the button can be clicked to produce a popup.

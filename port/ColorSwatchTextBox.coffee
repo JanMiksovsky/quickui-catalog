@@ -18,6 +18,7 @@ class window.ColorSwatchTextBox extends Control
   content: Control.chain( "$ColorSwatchTextBox_content", "content", ( content ) ->
     @_refresh()
   )
+    
   initialize: ->
     @keyup => @_refresh()
 

@@ -61,12 +61,12 @@ class window.Page extends Control
   @urlParameters: ->
     regex = /[?#&]( \w+ )=( [^?#&]* )/g
     results = {}
-    match = regex.exec( window.location.href )
+    match = regex.exec window.location.href
     while match?
       parameterName = match[1]
       parameterValue = match[2]
       results[parameterName] = parameterValue
-      match = regex.exec( window.location.href )
+      match = regex.exec window.location.href
     results
   
   # Private copy of the page's title.
@@ -79,7 +79,10 @@ class window.Page extends Control
 Control::page = ->
   
   # Get the containing DOM element subclassing Page that contains the element
-  pages = @closest( ".Page" )
+  pages = @closest ".Page"
   
   # From the DOM element, get the associated QuickUI control.
-  ( if ( pages.length > 0 ) then pages.control() else null )
+  if pages.length > 0
+    pages.control()
+  else
+    null

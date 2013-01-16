@@ -31,9 +31,9 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
 
   _queueRotation: ->
     rotationInterval = @rotationInterval()
-    @_timeout setTimeout(  =>
+    @_timeout setTimeout =>
       @rotate()
-    , rotationInterval )
+    , rotationInterval
 
   _timeout: Control.property()
 

@@ -100,7 +100,7 @@ class window.ComboBox extends PopupSource
   # Open the combo box.
   open: ->
     unless @opened()
-      if @hasClass( "generic" )
+      if @hasClass "generic"
         
         # Make popup at least as wide as content.
         @eachControl ( index, $control ) =>
@@ -122,13 +122,12 @@ class window.ComboBox extends PopupSource
   textBox: Control.chain "$ComboBox_content", "control"
 
   # The class of the text box portion of the combo box.
-  textBoxClass: Control.property.class( ( textBoxClass ) ->
-    $textBox = @$ComboBox_content().transmute( textBoxClass, true )
+  textBoxClass: Control.property.class ( textBoxClass ) ->
+    $textBox = @$ComboBox_content().transmute textBoxClass, true
     @referencedElement "ComboBox_content", $textBox
-    
     # Rebind any content events we want to track.
     @_bindContentEvents()
-  )
+  
   _bindContentEvents: ->
     @$ComboBox_content().on
       "click focusin": ( event ) =>

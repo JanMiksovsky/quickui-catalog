@@ -16,19 +16,19 @@ class window.Repeater extends Control
   count: Control.property.integer( ->
     @_refresh()
   , 1 )
+
   initialize: ->
     @_refresh()  unless @controls()?
 
   # True if the Repeater should append "1", "2", "3", etc., after the
   # content of each instance.
-  increment: Control.property.bool( ->
+  increment: Control.property.bool ->
     @_refreshContent @controls()
-  )
 
   # The class that will be repeated.
-  repeatClass: Control.property.class( ->
+  repeatClass: Control.property.class ->
     @_refresh()
-  )
+
   _refresh: ->
     repeatClass = @repeatClass()
     count = @count()

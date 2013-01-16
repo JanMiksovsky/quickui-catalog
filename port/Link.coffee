@@ -21,11 +21,11 @@ class window.Link extends Control
   href: Control.chain( "prop/href", ->
     @_checkIfCurrent()
   )
+  
   initialize: ->
     if @href()
       @_checkIfCurrent()
-    else
-      
+    else      
       # Set a placeholder href which will force the display of an
       # underline, and use of a hand cursor.
       @href "javascript:"
@@ -49,7 +49,7 @@ class window.Link extends Control
       # Area link: Current if it matches on the left.
       
       # Normal link: Current if the whole path matches. 
-      pathToMatch = ( if @linksToArea() then pathname.substring( 0, localPath.length ) else pathname )
+      pathToMatch = if @linksToArea() then pathname.substring( 0, localPath.length ) else pathname
       current = ( localPath is pathToMatch )
     @current current
 

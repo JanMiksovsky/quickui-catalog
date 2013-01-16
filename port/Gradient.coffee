@@ -29,21 +29,21 @@ class window.Gradient extends Control
     end = @end()
     if direction and start and end
       horizontal = ( direction is "horizontal" )
-      startColorString = @_hexColorToRgbString( start )
-      endColorString = @_hexColorToRgbString( end )
+      startColorString = @_hexColorToRgbString start
+      endColorString = @_hexColorToRgbString end
       property = undefined
       value = undefined
       if Control.browser.mozilla
         property = "background-image"
-        position = ( if horizontal then "left" else "top" )
+        position = if horizontal then "left" else "top"
         value = "-moz-linear-gradient( " + position + ", " + startColorString + ", " + endColorString + " )"
       else if Control.browser.webkit
         property = "background-image"
-        position2 = ( if horizontal then "right top" else "left bottom" )
+        position2 = if horizontal then "right top" else "left bottom"
         value = "-webkit-gradient( linear, left top, " + position2 + ", from( " + startColorString + " ), to( " + endColorString + " ) )"
       else if Control.browser.msie
         property = "filter"
-        gradientType = ( if horizontal then 1 else 0 )
+        gradientType = if horizontal then 1 else 0
         value = "progid:DXImageTransform.Microsoft.gradient( gradientType=" + gradientType + ", startColorStr=" + startColorString + ", endColorStr=" + endColorString + " )"
       @css property, value
 
@@ -54,23 +54,21 @@ class window.Gradient extends Control
     # Remove "#"
     hex = hex.substring( 1 )  if hex.substr( 0, 1 ) is "#"
     hasAlpha = ( hex.length is 8 )
-    color = parseInt( hex, 16 )
+    color = parseInt hex, 16
     a = undefined
     rgbString = undefined
-    if Control.browser.msie
-      
+    if Control.browser.msie      
       # Internet Explorer
       rgbString = hex
       if hasAlpha
         
         # Move alpha to front, from RGBA to ARGB.
-        a = rgbString.slice( 6 )
-        rgbString = a + rgbString.substr( 0, 6 )
+        a = rgbString.slice 6
+        rgbString = a + rgbString.substr 0, 6
       rgbString = "#" + rgbString
     else
-      
       # WebKit, Mozilla
-      colorStringType = ( if hasAlpha then "rgba" else "rgb" )
+      colorStringType = if hasAlpha then "rgba" else "rgb"
       alphaString = ""
       if hasAlpha
         

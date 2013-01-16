@@ -32,12 +32,12 @@ class window.BasicButton extends Control
   # 
   # Setting this also applies "disabled" class for IE8, which doesn't support
   # the :disabled pseudo-class.
-  disabled: Control.chain( "prop/disabled", ( disabled ) ->
-    
+  disabled: Control.chain( "prop/disabled", ( disabled ) ->    
     # Force removal of interactive states.
     @removeClass "active focus hover"  if disabled
     @toggleClass( "disabled", disabled )._renderButton()
   )
+  
   initialize: ->
     @on
       blur: ( event ) => @_trackBlur event

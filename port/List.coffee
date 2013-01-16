@@ -13,13 +13,14 @@ class window.List extends Control
   # True if the control should mark itself dirty when it gets a change event.
   # The default is false.
   dirtyOnChange: Control.property.bool( null, false )
+
   initialize: ->
     @change ( event ) =>
       # Assume the list is dirty.
       @isDirty true  if @dirtyOnChange()
 
   # Insert a new item before the existing item at the given index.
-  insertItemBefore: Control.iterator( ( item, index ) ->
+  insertItemBefore: Control.iterator ( item, index ) ->
     
     # Create the control.
     itemClass = @itemClass()
@@ -37,16 +38,14 @@ class window.List extends Control
     items = @_itemsCache() or []
     items.splice index, 0, item
     @_itemsCache items
-  )
 
   # True if the list's items have been changed since the controls were first created.
   isDirty: Control.property.bool( null, true )
 
   # The class used to render items in the list as controls.
-  itemClass: Control.property.class( ->
-    
+  itemClass: Control.property.class( ->    
     # Get the existing items.
-    items = ( if @isDirty() then @items() else @_itemsCache() )
+    items = if @isDirty() then @items() else @_itemsCache()
     # Throw out the existing controls.
     @empty().items items # Create new controls.
   , Control )
@@ -60,7 +59,7 @@ class window.List extends Control
       
       # Cache a copy of the items array. We use a copy because the array
       # may later be manipulated withour knowledge.
-      itemsCopy = items.slice( 0 )
+      itemsCopy = items.slice 0
       @_itemsCache( itemsCopy )._createControlsForItems( itemsCopy ).isDirty false
 
   # Used to map an incoming list item to property setters on the control
@@ -99,7 +98,7 @@ class window.List extends Control
     @items items # Force refresh.
 
   # Remove the item at the indicated index.
-  removeItemAt: Control.iterator( ( index ) ->
+  removeItemAt: Control.iterator ( index ) ->
     items = @_itemsCache()
     if index >= 0 and index < items.length
       
@@ -108,7 +107,6 @@ class window.List extends Control
       
       # Remove our cached copy of the corresponding item.
       items.splice index, 1
-  )
 
   # Apply a simple dictionary map to the given item. The map should contain
   # a mapping of { controlProperty: itemProperty } entries. When invoked as
@@ -150,7 +148,7 @@ class window.List extends Control
     $control = undefined
     i = 0
     while i < itemsCount and i < existingControlsCount
-      $control = $existingControls.eq( i )
+      $control = $existingControls.eq i
       @_mapAndSetup $control, items[i], mapFunction
       i++
     
@@ -164,7 +162,7 @@ class window.List extends Control
     @append.apply this, newControls  if newControls.length > 0
     
     # Remove leftover controls.
-    leftoverControls = $existingControls.slice( items.length )
+    leftoverControls = $existingControls.slice items.length
     $( leftoverControls ).remove()  if leftoverControls.length > 0
     this
 
@@ -174,7 +172,7 @@ class window.List extends Control
     if item is undefined
       
       # Getter
-      map = @data( "_map" )
+      map = @data "_map"
       if map
         
         # Reconstruct an item using the previously-generated map.
@@ -184,12 +182,12 @@ class window.List extends Control
     else
       
       # Setter
-      if $.isPlainObject( item )
+      if $.isPlainObject item
         
         # Generate a map from the item and save it for later use.
         map = {}
         for key of item
-          map[key] = key  if item.hasOwnProperty( key )
+          map[key] = key  if item.hasOwnProperty key
         @data "_map", map
         List._applyDictionaryMap.call this, map, item
       else
@@ -219,7 +217,7 @@ class window.List extends Control
       # The map function should invoke the property with the given name.
       ( item ) ->
         this[mapFunction] item
-    else if $.isFunction( mapFunction )
+    else if $.isFunction mapFunction
       
       # An explicit map function has been supplied; use that.
       mapFunction

@@ -20,7 +20,7 @@ class window.MonthName extends Control
   # The index of the month to show: 0 = January, 1 = February, etc.
   month: Control.property ( month ) ->
     culture = @culture()
-    monthNameEnum = ( if culture then culture.calendar.months.names else MonthName.names )
+    monthNameEnum = if culture then culture.calendar.months.names else MonthName.names
     @content monthNameEnum[month]
 
   # Default names, used if Globalize is not avaialble.

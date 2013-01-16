@@ -34,9 +34,9 @@ class window.DaysOfWeek extends Control
   #  "namesShort": an even shorter name, e.g., "Su".
   format: Control.property ( format ) ->
     culture = @culture()
-    dayNameEnum = ( if culture then culture.calendar.days else DaysOfWeek.days )
+    dayNameEnum = if culture then culture.calendar.days else DaysOfWeek.days
     dayNames = dayNameEnum[format]
-    firstDay = ( if culture then culture.calendar.firstDay else 0 )
+    firstDay = if culture then culture.calendar.firstDay else 0
     $children = @children()
     i = 0
     while i < dayNames.length

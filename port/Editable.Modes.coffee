@@ -20,15 +20,16 @@ class window.Editable extends Modes
 
   # The current content in either mode.
   content: ( value ) ->
-    ( if @editing() then @_editContent( value ) else @_readContent( value ) )
+    if @editing()
+      @_editContent value
+    else
+      @_readContent value
 
   # The class of the content in edit mode. This class is not instantiated
   # until editing() is set to true for the first time.
-  editClass: Control.property.class( ( editClass ) ->
-    
+  editClass: Control.property.class ( editClass ) ->
     # Transmute the edit control to the new class.
     @_ensureEditControl()  if @editing()
-  )
 
   # The control used for editing.
   editControl: Control.chain "$Editable_edit"
@@ -37,11 +38,9 @@ class window.Editable extends Modes
   # this is false.
   editing: Control.chain( "applyClass/editing", ( editing ) ->
     if editing is undefined
-      
       # Getter
       @_editing()
-    else
-      
+    else      
       # Setter
       @eachControl =>
         if editing
@@ -60,10 +59,9 @@ class window.Editable extends Modes
   )
   
   # The class of the content in read mode. 
-  readClass: Control.property.class( ( readClass ) ->
-    $new = @$Editable_read().transmute( readClass, true )
+  readClass: Control.property.class ( readClass ) ->
+    $new = @$Editable_read().transmute readClass, true
     @referencedElement "Editable_read", $new
-  )
 
   # The control used for reading.
   readControl: Control.chain "$Editable_read"
@@ -80,7 +78,7 @@ class window.Editable extends Modes
 
   _createEditControl: ->
     editClass = @editClass()
-    $new = @$Editable_edit().transmute( editClass, true )
+    $new = @$Editable_edit().transmute editClass, true
     @referencedElement "Editable_edit", $new
 
   # Make sure we have an edit control of the desired class. If not, create

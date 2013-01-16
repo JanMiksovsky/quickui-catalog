@@ -9,6 +9,7 @@ class window.MenuItem extends Control
 
   # True if the menu item is disabled. The default is false.
   disabled: Control.chain "applyClass/disabled"
+
   initialize: ->
     @click ( event ) => false if @disabled()
 

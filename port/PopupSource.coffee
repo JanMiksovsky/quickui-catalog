@@ -49,7 +49,7 @@ class window.PopupSource extends Control
   content: Control.chain "$PopupSource_content", "content"
 
   # The class of the content portion.
-  contentClass: Control.property.class( ( contentClass ) ->
+  contentClass: Control.property.class ( contentClass ) ->
 
     # If the content element changes (e.g., from a div to a button), we
     # must update our element reference to point to the new element.
@@ -57,9 +57,9 @@ class window.PopupSource extends Control
     # TODO: This facility is needed anywhere a control lets the host
     # transmute one of the control's elements, and so should be generalized
     # and moved into the QuickUI runtime.
-    $newContent = @$PopupSource_content().transmute( contentClass, true, true, true )
+    $newContent = @$PopupSource_content().transmute contentClass, true, true, true
     @referencedElement "PopupSource_content", $newContent
-  )
+  
   initialize: ->
     @$PopupSource_content().click ( event ) => @open() if @openOnClick()
     @$PopupSource_popup().on
@@ -103,15 +103,15 @@ class window.PopupSource extends Control
   positionPopup: ->
     offset = @offset()
     position = @position()
-    top = Math.round( offset.top )
-    left = Math.round( offset.left )
+    top = Math.round offset.top
+    left = Math.round offset.left
     height = @outerHeight()
     width = @outerWidth()
     bottom = top + height
     right = left + width
     $popup = @$PopupSource_popup()
-    popupHeight = $popup.outerHeight( true )
-    popupWidth = $popup.outerWidth( true )
+    popupHeight = $popup.outerHeight true
+    popupWidth = $popup.outerWidth true
     scrollTop = $( document ).scrollTop()
     scrollLeft = $( document ).scrollLeft()
     windowHeight = $( window ).height()
@@ -123,14 +123,14 @@ class window.PopupSource extends Control
     popupFitsAbove = ( top - popupHeight >= scrollTop )
     popupAppearsBelow = ( popupFitsBelow or not popupFitsAbove )
     # Use default top
-    popupCss.top = ( if ( popupAppearsBelow ) then "" else popupCss.top = position.top - popupHeight ) # Show above content
+    popupCss.top = if ( popupAppearsBelow ) then "" else popupCss.top = position.top - popupHeight # Show above content
     
     # Horizontally left (preferred) or right align w.r.t. content.
     popupFitsLeftAligned = ( left + popupWidth <= windowWidth + scrollLeft )
     popupFitsRightAligned = ( right - popupWidth >= scrollLeft )
     popupAlignLeft = ( popupFitsLeftAligned or not popupFitsRightAligned )
     # Use default left
-    popupCss.left = ( if ( popupAlignLeft ) then "" else popupCss.left = position.left + width - popupWidth ) # Right align
+    popupCss.left = if ( popupAlignLeft ) then "" else popupCss.left = position.left + width - popupWidth # Right align
     $popup.toggleClass( "popupAppearsAbove", not popupAppearsBelow ).toggleClass( "popupAppearsBelow", popupAppearsBelow ).toggleClass( "popupAlignLeft", popupAlignLeft ).toggleClass( "popupAlignRight", not popupAlignLeft ).css popupCss
     this
 

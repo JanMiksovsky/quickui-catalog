@@ -23,7 +23,7 @@ class window.Collapsible extends Control
   # Get or set the control's collapsed state.
   # When called as a setter, a true value collapsed the control;
   # a false value expands the control.
-  collapsed: Control.iterator( ( value ) ->
+  collapsed: Control.iterator ( value ) ->
     if value is undefined
       
       # Getter
@@ -34,7 +34,7 @@ class window.Collapsible extends Control
       if @inDocument()
         
         # Animate if in document.
-        result = ( if value then "hide" else "show" )
+        result = if value then "hide" else "show"
         @$Collapsible_content().animate
           height: result
           opacity: result
@@ -45,11 +45,11 @@ class window.Collapsible extends Control
       else
         
         # Not in document, animation won't work.
-        @toggleClass( "collapsed", value ).$Collapsible_content().toggle not value
+        @toggleClass( "collapsed", value )
+        @$Collapsible_content().toggle not value
       if @_collapsed() isnt value
         @trigger "collapsedChanged"
         @_collapsed value
-  )
 
   # The control's heading. By default, a click anywhere within the heading
   # toggles the control's collapsed state.

@@ -15,10 +15,10 @@ class window.SlidingPanels extends Sequence
   activeIndex: ( activeIndex ) ->
     result = super activeIndex
     if activeIndex isnt undefined
-      panel = @elements().eq( activeIndex )
+      panel = @elements().eq activeIndex
       if panel.length > 0
         left = panel.position().left
-        if SlidingPanels.hasTransitions( @$SlidingPanels_content() )
+        if SlidingPanels.hasTransitions @$SlidingPanels_content()
           
           # Use CSS animation.
           @$SlidingPanels_content().css "left", -left
@@ -48,7 +48,7 @@ class window.SlidingPanels extends Sequence
       return false
     i = 0
     while i < transitionProperties.length
-      value = $element.css( transitionProperties[i] )
+      value = $element.css transitionProperties[i]
       return true  if value isnt undefined and value isnt ""
       i++
     false
@@ -64,12 +64,12 @@ class window.SlidingPanels extends Sequence
     panelWidths = elements.map( ( index, panel ) ->
       $( panel ).width()
     ).get()
-    maxpanelWidth = Math.max.apply( this, panelWidths )
+    maxpanelWidth = Math.max.apply this, panelWidths
     elements.width maxpanelWidth  if maxpanelWidth > 0
     panelOuterWidths = elements.map( ( index, panel ) ->
       $( panel ).outerWidth true
     ).get()
-    maxpanelOuterWidth = Math.max.apply( this, panelOuterWidths )
+    maxpanelOuterWidth = Math.max.apply this, panelOuterWidths
     @width maxpanelOuterWidth  if maxpanelOuterWidth > 0
 
   _container: Control.chain "$SlidingPanels_content"

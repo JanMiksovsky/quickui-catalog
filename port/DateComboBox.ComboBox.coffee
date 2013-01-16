@@ -20,7 +20,7 @@ class window.DateComboBox extends ComboBox
     result
 
   # The date indicated in the control.
-  date: Control.property( ( date ) ->
+  date: Control.property ( date ) ->
     time = date and date.getTime()
     textBoxDate = @$ComboBox_content().date()
     @$ComboBox_content().date date  if not textBoxDate or textBoxDate.getTime() isnt time
@@ -29,7 +29,7 @@ class window.DateComboBox extends ComboBox
     if date
       navigatorDate = @$navigator().date()
       @$navigator().date date  if not navigatorDate or navigatorDate.getTime() isnt time
-  )
+
   initialize: ->
     
     # Sync up dates

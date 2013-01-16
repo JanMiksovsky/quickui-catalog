@@ -21,6 +21,6 @@ class window.Modes extends Sequence
     childHeights = elements.map( ( index, child ) ->
       $( child ).outerHeight true
     ).get()
-    maxChildHeight = Math.max.apply( this, childHeights )
+    maxChildHeight = Math.max.apply this, childHeights
     @height maxChildHeight  if maxChildHeight > 0
 

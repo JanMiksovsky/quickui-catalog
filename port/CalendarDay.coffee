@@ -13,7 +13,7 @@ class window.CalendarDay extends Control
     # Use noon hour for date math, since adding/subtracting multiples of 24 hours
     # starting from noon is guaranteed to end up on the correct date (although
     # the hours might have changed).
-    noon = new Date( date.getTime() )
+    noon = new Date date.getTime()
     noon.setHours 11
     result = new Date( noon.getTime() + ( days * @MILLISECONDS_IN_DAY ) )
     
@@ -24,14 +24,13 @@ class window.CalendarDay extends Control
   alternateMonth: Control.chain "applyClass/alternateMonth"
 
   # The date to show.
-  date: Control.property.date( ( date ) ->
+  date: Control.property.date ( date ) ->
     today = CalendarDay.today()
     dayOfWeek = date.getDay()
     dayOfMonth = date.getDate()
-    nextDate = CalendarDay.addDays( date, 1 )
+    nextDate = CalendarDay.addDays date, 1
     daysFromToday = Math.round( ( date.getTime() - today.getTime() ) / CalendarDay.MILLISECONDS_IN_DAY )
     @past( date < today ).future( date > today ).firstDayOfMonth( dayOfMonth is 1 ).lastDayOfMonth( date.getMonth() isnt nextDate.getMonth() ).firstWeek( dayOfMonth <= 7 ).sunday( dayOfWeek is 0 ).saturday( dayOfWeek is 6 ).weekday( dayOfWeek > 0 and dayOfWeek < 6 ).today( daysFromToday is 0 ).alternateMonth( Math.abs( date.getMonth() - today.getMonth() ) % 2 is 1 ).content date.getDate()
-  )
 
   firstDayOfMonth: Control.chain "applyClass/firstDayOfMonth"
 
@@ -48,7 +47,7 @@ class window.CalendarDay extends Control
   @MILLISECONDS_IN_DAY: 24 * 60 * 60 * 1000
 
   @midnightOnDate: ( date ) ->
-    d = new Date( date.getTime() )
+    d = new Date date.getTime()
     d.setHours 0
     d.setMinutes 0
     d.setSeconds 0

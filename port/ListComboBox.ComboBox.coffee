@@ -27,7 +27,7 @@ class window.ListComboBox extends ComboBox
 
       click: ( event ) =>
         # Clicking a list item puts its content into the text box portion.
-        $closestItem = $( event.target ).closest( @$list().children() )
+        $closestItem = $( event.target ).closest @$list().children()
         if $closestItem
           itemContent = $closestItem.control().content()
           @content( itemContent ).close()
@@ -48,14 +48,14 @@ class window.ListComboBox extends ComboBox
             @_selectText 0, content.length
 
   # The class which should be used to render the list items as controls.
-  itemClass: Control.property.class( ( itemClass ) ->
+  itemClass: Control.property.class ( itemClass ) ->
     @$list().itemClass itemClass
-  )
+
   open: ->
     
     # See if current text is in the list and, if so, select it.
     content = @content()
-    index = $.inArray( content, @_itemContents() )
+    index = $.inArray content, @_itemContents()
     @$list().selectedIndex index  if index >= 0
     result = super()
     
@@ -68,7 +68,7 @@ class window.ListComboBox extends ComboBox
   # Try to auto-complete the current text against the item contents.
   _autoComplete: ->
     content = @content()
-    match = @_matchingItem( content )
+    match = @_matchingItem content
     unless match
       @$list().selectedControl null
       return
@@ -150,7 +150,7 @@ class window.ListComboBox extends ComboBox
   _selectTextInList: ->
     if @opened()
       content = @content()
-      index = $.inArray( content, @_itemContents() )
+      index = $.inArray content, @_itemContents()
       @$list().selectedIndex index
 
   
@@ -163,7 +163,7 @@ class window.ListComboBox extends ComboBox
     clearTimeout timeout  if timeout
     
     # Queue a new timeout.
-    timeout = window.setTimeout( callback, 50 )
+    timeout = window.setTimeout callback, 50
     @_timeout timeout
 
   _timeout: Control.property()

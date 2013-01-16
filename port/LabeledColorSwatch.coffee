@@ -21,4 +21,3 @@ class window.LabeledColorSwatch extends Control
   content: Control.chain( "$ColorSwatchButton_content", "content", ( content ) ->
     @$swatch().color content
   )
-

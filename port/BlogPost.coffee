@@ -15,6 +15,7 @@ class window.BlogPost extends Control
     generic: "true"
 
   content: Control.chain "$BlogPost_content", "content"
+
   entry: Control.property ( entry ) ->
     @postTitle entry.title
     @link entry.link

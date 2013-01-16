@@ -40,7 +40,7 @@ class window.DateTextBox extends ValidatingTextBox
     
     # Convert content text to a date.
     content = @content()
-    date = @_parseDate( content )
+    date = @_parseDate content
     @date date
     
     # If a date is supplied, it has to be valid.
@@ -61,15 +61,16 @@ class window.DateTextBox extends ValidatingTextBox
     shortPattern = calendar.patterns.d
     fullYearPlaceholder = "yyyy"
     
-    # Try replacing full four-digit year with short two-digit year.
-    patterns.push shortPattern.replace( fullYearPlaceholder, "yy" )  if shortPattern.indexOf( fullYearPlaceholder )
+    if shortPattern.indexOf fullYearPlaceholder
+      # Try replacing full four-digit year with short two-digit year.
+      patterns.push shortPattern.replace fullYearPlaceholder, "yy"
     
     # Try removing separator + year, then try removing year + separator.
     separator = calendar["/"]
     separatorThenYear = separator + fullYearPlaceholder
     yearThenSeparator = fullYearPlaceholder + separator
     if shortPattern.indexOf( separatorThenYear ) >= 0
-      patterns.push shortPattern.replace( separatorThenYear, "" )
+      patterns.push shortPattern.replace separatorThenYear, ""
     else patterns.push shortPattern.replace( yearThenSeparator, "" )  if shortPattern.indexOf( yearThenSeparator ) >= 0
     patterns
 
@@ -85,7 +86,7 @@ class window.DateTextBox extends ValidatingTextBox
     culture = @culture()
     formattedDate = undefined
     if culture
-      formattedDate = Globalize.format( date, culture.calendar.patterns.d, culture )
+      formattedDate = Globalize.format date, culture.calendar.patterns.d, culture
     else
       formattedDate = ( date.getMonth() + 1 ) + @_dateSeparator() + date.getDate() + @_dateSeparator() + date.getFullYear()
     formattedDate
@@ -105,7 +106,7 @@ class window.DateTextBox extends ValidatingTextBox
   _parseDateDefault: ( text ) ->
     return null  if text is ""
     dateSeparator = @_dateSeparator()
-    parts = text.split( dateSeparator )
+    parts = text.split dateSeparator
     currentYear = ( new Date() ).getFullYear().toString()
     munged = undefined
     if parts.length is 2
@@ -121,8 +122,11 @@ class window.DateTextBox extends ValidatingTextBox
       
       # Parse as is
       munged = text
-    milliseconds = Date.parse( munged )
-    date = ( if isNaN( milliseconds ) then null else new Date( milliseconds ) )
+    milliseconds = Date.parse munged
+    date = if isNaN milliseconds
+      null
+    else
+      new Date milliseconds
     date
 
   _refresh: ->
@@ -145,10 +149,9 @@ class window.DateTextBox extends ValidatingTextBox
       if abbreviatedDatePatterns.length > 0
         
         # Add our abbreviated patterns to all the culture's patterns.
-        datePatterns = $.map( @culture().calendar.patterns, ( pattern, name ) ->
+        datePatterns = $.map @culture().calendar.patterns, ( pattern, name ) ->
           pattern
-        )
-        datePatterns = datePatterns.concat( abbreviatedDatePatterns )
+        datePatterns = datePatterns.concat abbreviatedDatePatterns
     @_datePatterns datePatterns
 
 

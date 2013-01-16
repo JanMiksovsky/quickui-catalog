@@ -30,6 +30,7 @@ class window.PanelWithOverflow extends Control
   indicator: Control.chain( "$menuButton", "indicator", ->
     @checkForSizeChange()
   )
+
   initialize: ->
     @on "layout sizeChanged", => @layout()
     @$menuButton().on
@@ -54,7 +55,7 @@ class window.PanelWithOverflow extends Control
     i = $children.length - 1
 
     while i > 0
-      $child = $children.eq( i )
+      $child = $children.eq i
       
       # Look at right edge, not counting right margin
       marginLeft = parseInt( $child.css( "margin-left" ) ) or 0
@@ -66,7 +67,7 @@ class window.PanelWithOverflow extends Control
           
           # Turn on menu, and allocate room for it.
           showMenu = true
-          availableWidth -= @$menuButton().outerWidth( true )
+          availableWidth -= @$menuButton().outerWidth true
       else
         
         # Everything to the left fits.
@@ -86,5 +87,5 @@ class window.PanelWithOverflow extends Control
     
     # Temporarily move the overflowed items into the menu.
     content = @$PanelWithOverflow_content().content()
-    $overflowed = $( content ).filter( ".overflowed" )
+    $overflowed = $( content ).filter ".overflowed"
     @$menuButton().popup $overflowed

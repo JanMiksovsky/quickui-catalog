@@ -27,12 +27,12 @@ class window.TransientMessage extends Control
     duration = @duration()
     unless duration
       content = @content()
-      length = ( if ( typeof content is "string" ) then content.length else $( content ).text().length )
+      length = if ( typeof content is "string" ) then content.length else $( content ).text().length
       duration = 750 + ( length * 20 )
     if duration >= 0
-      timeout = setTimeout(  =>
+      timeout = setTimeout =>
         @close()
-      , duration )
+      , duration
       @_timeout timeout
     @positionMessage().fadeIn() # TODO: Investigate why this doesn't actually fade in.
     this

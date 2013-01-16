@@ -61,7 +61,7 @@ class window.MenuBar extends Control
     if @opened()
       # Already open
       return
-    $overlay = Overlay.create().target( this )
+    $overlay = Overlay.create().target this
     @_overlay $overlay
     @opened true
 
@@ -69,7 +69,7 @@ class window.MenuBar extends Control
   _closeOpenPopups: ( keepPopup ) ->
     openMenus = @_openPopups()
     if openMenus
-      openMenus = openMenus.not( keepPopup )
+      openMenus = openMenus.not keepPopup
       openMenus.close()  if openMenus.length > 0
     this
 

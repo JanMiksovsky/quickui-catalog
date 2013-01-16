@@ -44,7 +44,7 @@ class window.RadioButton extends LabeledInput
           false
 
       # Use sibling's name. 
-      name = ( if named then named.name() else RadioButton.generateUniqueName() ) # Generate a name.
+      name = if named then named.name() else RadioButton.generateUniqueName() # Generate a name.
       @name name
 
   @_count: 0

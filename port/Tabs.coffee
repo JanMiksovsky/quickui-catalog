@@ -43,7 +43,7 @@ class window.Tabs extends Control
         height: ""
         width: ""
 
-      $new = @$Tabs_content().transmute( contentClass, true )
+      $new = @$Tabs_content().transmute contentClass, true
       @referencedElement "Tabs_content", $new
       this
 
@@ -55,7 +55,7 @@ class window.Tabs extends Control
       tabButtonCssClass = "." + @tabButtonClass()::className
       tabButton = $( event.target ).closest( tabButtonCssClass ).control()
       if tabButton
-        index = @tabButtons().index( tabButton )
+        index = @tabButtons().index tabButton
         if index >= 0
           tab = @tabs()[index]
           @trigger "tabButtonClick", [index, tab]
@@ -64,7 +64,7 @@ class window.Tabs extends Control
       # Map the Modes's activeElementChanged event to a more semantically
       # specific activeTabChanged event. Only map active events coming from our
       # own Modes; ignore events coming from any Modes within a tab.
-      tab = $( event.target ).filter( @tabs() )
+      tab = $( event.target ).filter @tabs()
       if tab.length > 0
         event.stopPropagation()
         @trigger "activeTabChanged", [index, child]
@@ -103,7 +103,7 @@ class window.Tabs extends Control
     # Show the description for each tab as a button.
     descriptions = @tabs().map( ( index, tab ) ->
       $tab = $( tab ).control()
-      description = ( if ( $tab and $.isFunction( $tab.description ) ) then $tab.description() else "" )
+      description = if ( $tab and $.isFunction( $tab.description ) ) then $tab.description() else ""
       description
     ).get()
     @$tabButtons().items descriptions

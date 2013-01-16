@@ -20,9 +20,8 @@ class window.FlickrInterestingDay extends CalendarDay
 
   # True if the control should automatically load the photo when the date
   # is set. Default is false.
-  autoLoad: Control.property.bool( ( autoLoad ) ->
+  autoLoad: Control.property.bool ( autoLoad ) ->
     @loadPhoto()  if autoLoad and not @image()?
-  )
 
   # The date to show.
   date: ( date ) ->
@@ -35,7 +34,7 @@ class window.FlickrInterestingDay extends CalendarDay
   content: Control.chain "$FlickrInterestingDay_content", "content"
 
   @getInterestingPhotoForDate: ( date, callback ) ->
-    flickrDate = @_formatFlickrDate( date )
+    flickrDate = @_formatFlickrDate date
     cachedPhoto = @_cache[flickrDate]
     if cachedPhoto
       callback cachedPhoto
@@ -48,9 +47,8 @@ class window.FlickrInterestingDay extends CalendarDay
       if flickrPhotos and flickrPhotos.length > 0
         first = flickrPhotos[0]
         photo =
-          src: @getFlickrImageSrc( first, "s" ) # Small thumbnail
-          href: @getFlickrImageHref( first )
-
+          src: @getFlickrImageSrc first, "s" # Small thumbnail
+          href: @getFlickrImageHref first
         @_cache[flickrDate] = photo
         callback photo
 
@@ -64,7 +62,7 @@ class window.FlickrInterestingDay extends CalendarDay
       callback data.photos.photo  if data and data.photos
 
   @getFlickrImageSrc: ( flickrPhoto, size ) ->
-    sizeParam = ( ( if size then "_" + size else "" ) )
+    sizeParam = if size then "_" + size else ""
     "http://farm" + flickrPhoto.farm + ".static.flickr.com/" + flickrPhoto.server + "/" + flickrPhoto.id + "_" + flickrPhoto.secret + sizeParam + ".jpg"
 
   @getFlickrImageHref: ( flickrPhoto ) ->

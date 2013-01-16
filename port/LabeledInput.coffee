@@ -35,20 +35,16 @@ class window.LabeledInput extends Control
   # This is set in subclasses CheckBox and RadioButton.
   _type: ( type ) ->
     input = @_inputControl()
-    if type isnt undefined and Control.browser.msie and parseInt( Control.browser.version ) < 9
-      
+    if type isnt undefined and Control.browser.msie and parseInt( Control.browser.version ) < 9      
       # IE8 can't change an input's "type" attribute.
       i = 0
       while i < @length
-        oldInput = input.eq( i )
-        
+        oldInput = input.eq i
         # Create a new input to replace the existing one.
-        newInput = $( "<input type='" + type + "'/>" ).prop( 
-          
+        newInput = $( "<input type='" + type + "'/>" ).prop
           # Copy old input's properties to new one.
-          checked: oldInput.prop( "checked" )
-          disabled: oldInput.prop( "disabled" )
-        )
+          checked: oldInput.prop "checked"
+          disabled: oldInput.prop "disabled"
         oldInput.replaceWith newInput
         i++
       this

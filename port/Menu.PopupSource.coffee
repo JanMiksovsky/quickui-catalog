@@ -16,8 +16,7 @@ class window.Menu extends PopupSource
     generic: "true"
 
   initialize: ->
-    @$PopupSource_popup().on "click", ( event ) ->
-      
+    @$PopupSource_popup().on "click", ( event ) ->      
       # Absorb clicks outside of menu items.
       $menuItem = $( event.target ).closest( ".MenuItem" )
       event.stopPropagation()  if $menuItem.length is 0

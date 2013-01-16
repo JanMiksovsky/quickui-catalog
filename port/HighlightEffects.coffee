@@ -62,24 +62,24 @@ class window.HighlightEffects extends Control
         # properties empty. So, use the properties of one of the
         # border sides as a proxy for the overall border properties.
         when "border-color"
-          value = $content.css( "border-top-color" )
+          value = $content.css "border-top-color"
         when "border-width"
-          value = $content.css( "border-top-width" )
+          value = $content.css "border-top-width"
 
         # Map dimensions of "auto" to "0" so that the dimension can
         # be animated. 
         when "bottom", "left", "right", "top"
-          value = $content.css( key )
+          value = $content.css key
           value = "0"  if value is "auto"
         else
-          value = $content.css( key )
+          value = $content.css key
       currentState[key] = value
     currentState
 
   _hoverIn: ->
     # In case this was doing its _hoverOut animation
     # In front of any element doing _hoverOut
-    @$HighlightEffects_content().stop().css( 
+    @$HighlightEffects_content().stop().css(
       position: "absolute"
       "z-index": "2"
     ).animate @effects(), @duration()

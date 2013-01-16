@@ -31,7 +31,6 @@ class window.Fader extends Control
   initialize: ->
     @inDocument ->
       @_redraw()
-
   
   # Expand a color like #abc into #aabbcc.
   _expandShortHexValue: ( s ) ->
@@ -51,7 +50,7 @@ class window.Fader extends Control
     s
 
   _redraw: Control.iterator ->
-    backgroundColor = @css( "background-color" )
+    backgroundColor = @css "background-color"
     backgroundHex = ( if ( backgroundColor.length is 4 ) then @_expandShortHexValue( backgroundColor ) else ( if ( backgroundColor.substr( 0, 3 ).toLowerCase() is "rgb" ) then @_rgbStringToHexColor( backgroundColor ) else backgroundColor ) )
     @$gradient().start( backgroundHex + "00" ).end backgroundHex
   

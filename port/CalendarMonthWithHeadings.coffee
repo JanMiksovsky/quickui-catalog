@@ -23,9 +23,8 @@ class window.CalendarMonthWithHeadings extends Control
     generic: "true"
 
   # The control's current culture.
-  culture: Control.iterator( ( culture ) ->
-    
-    # var result = this._super( culture );
+  culture: Control.iterator ( culture ) ->
+    # Inside iterator, so can't do simply result = super culture
     result = @constructor.superclass::culture.call( this, culture )
     if culture isnt undefined
       @$monthAndYear().culture culture
@@ -34,7 +33,6 @@ class window.CalendarMonthWithHeadings extends Control
       date = @date()
       @date date  if date
     result
-  )
   
   # The date shown in the calendar 
   date: Control.chain( "$calendar", "date", ( date ) ->
@@ -54,15 +52,12 @@ class window.CalendarMonthWithHeadings extends Control
   # The format used to show day headings. See DaysOfWeek.
   dayNameFormat: Control.chain "$daysOfWeek", "format"
   initialize: ->
-    unless @date()
-      
+    unless @date()      
       # By default, show current month.
       @date CalendarDay.today()
     else
-      
       # Sync month and year with calendar.
       @$monthAndYear().date @date()
 
   # True if the month name and year should be shown.
   showMonthAndYear: Control.chain "$monthAndYear", "visibility"
-

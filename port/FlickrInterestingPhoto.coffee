@@ -32,7 +32,7 @@ class window.FlickrInterestingPhoto extends Control
       # This allows anyone listening for the layout event to get
       # the correct dimensions of the photo, instead of the dimensions
       # of the image placeholder icon. 
-      control = Control( this )
+      control = Control this
       control.css "width", "auto"  if Control.browser.msie and parseInt( control.width() ) is 28
       control.checkForSizeChange()
 
@@ -44,20 +44,19 @@ class window.FlickrInterestingPhoto extends Control
   # exhausted, subsequent calls will cycle through the set. 
   @getRandomPhoto: ( callback, size ) ->
     @getFlickrInterestingPhotos().done ( flickrPhotos ) =>
-      @_counter = ( if ( @_counter >= 0 ) then ( @_counter + 1 ) % flickrPhotos.length else 0 )
+      @_counter = if @_counter >= 0 then ( @_counter + 1 ) % flickrPhotos.length else 0
       flickrPhoto = flickrPhotos[@_counter]
       photo = @getFlickrImageSrc( flickrPhoto, size )
       callback photo
 
   @getFlickrInterestingPhotos: ->
     unless @_promise
-      
       # This is the first request for photos.             
       deferred = new jQuery.Deferred()
       @_promise = deferred.promise()
       day = new Date()
       day.setDate day.getDate() - 2 # Day before yesterday
-      flickrDate = @_formatFlickrDate( day )
+      flickrDate = @_formatFlickrDate day
       params =
         method: "flickr.interestingness.getList"
         date: flickrDate
@@ -67,7 +66,6 @@ class window.FlickrInterestingPhoto extends Control
         @_shuffle flickrPhotos
         @_flickrPhotos = flickrPhotos
         deferred.resolve flickrPhotos
-
     @_promise
 
   @getFlickrPhotos: ( params, callback ) ->
@@ -77,7 +75,7 @@ class window.FlickrInterestingPhoto extends Control
       callback data.photos.photo  if data and data.photos
 
   @getFlickrImageSrc: ( flickrPhoto, size ) ->
-    sizeParam = ( ( if size then "_" + size else "" ) )
+    sizeParam = if size then "_" + size else ""
     "http://farm" + flickrPhoto.farm + ".static.flickr.com/" + flickrPhoto.server + "/" + flickrPhoto.id + "_" + flickrPhoto.secret + sizeParam + ".jpg"
 
   @getFlickrImageHref: ( flickrPhoto ) ->
@@ -127,9 +125,8 @@ class window.FlickrInterestingPhoto extends Control
   # From http://sedition.com/perl/javascript-fy.html
   @_shuffle: ( array ) ->
     i = array.length - 1
-
     while i >= 0
-      j = Math.floor( Math.random() * ( i + 1 ) )
+      j = Math.floor Math.random() * ( i + 1 )
       temp = array[i]
       array[i] = array[j]
       array[j] = temp

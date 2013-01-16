@@ -61,10 +61,9 @@ class window.ValidatingTextBox extends TextBox
   # are invalid. If the strict parameter is false, then the control can move
   # out of the invalid state (if the contents are now valid), but won't move
   # into the invalid state (even if the contents are actually invalid).
-  validate: Control.iterator( ( strict ) ->
+  validate: Control.iterator ( strict ) ->
     valid = @valid()
     @invalid not valid  if strict or @invalid()
-  )
 
   # True if validation should be automatically be performed when the control
   # loses focus. Default is true.
