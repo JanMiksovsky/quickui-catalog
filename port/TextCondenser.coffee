@@ -25,7 +25,6 @@ class window.TextCondenser extends Control
   initialize: ->
     @on "layout sizeChanged", => @layout()
 
-  layout: ->
-    @eachControl ( index, $control ) ->
-      tooWide = @$normal().width() > @width()
-      @applyClass "condensed", tooWide
+  layout: Control.iterator ->
+    tooWide = @$normal().width() > @width()
+    @applyClass "condensed", tooWide

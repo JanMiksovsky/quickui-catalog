@@ -31,20 +31,19 @@ class window.RadioButton extends LabeledInput
   name: Control.chain( "_inputControl", "prop/name", ->
     @_checkName()
   )
-  
+
+  # Ensure the radio button ends up with a name.  
   _checkName: ->
     if @inDocument() and @autoName() and not @name()
-
       # Pick a name.
       # First look for an autonamed sibling.
-      named = undefined
-      @siblings().eachControl ( index, control ) ->
-        if control instanceof RadioButton and control.autoName() and control.name()
-          named = control
-          false
-
-      # Use sibling's name. 
-      name = if named then named.name() else RadioButton.generateUniqueName() # Generate a name.
+      name = undefined
+      for sibling in @siblings().segments()
+        if sibling instanceof RadioButton and sibling.autoName() and sibling.name()
+          name = sibling.name() # Use sibling's name.
+          break
+      if not name?
+        name = RadioButton.generateUniqueName() # Generate a name.
       @name name
 
   @_count: 0

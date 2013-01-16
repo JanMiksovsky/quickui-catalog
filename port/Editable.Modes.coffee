@@ -42,20 +42,17 @@ class window.Editable extends Modes
       @_editing()
     else      
       # Setter
-      @eachControl =>
+      for control in @segments()
         if editing
-          
           # Switch to edit mode.
-          
           # Copy content from read to edit mode.
           # This will create the edit control if necessary.
-          @_editContent @_readContent()
-          @activeElement @$Editable_edit()
+          control._editContent control._readContent()
+          control.activeElement control.$Editable_edit()
         else
-          
           # Switch to read mode.
-          @activeElement @$Editable_read()
-          @readControl().focus()
+          control.activeElement control.$Editable_read()
+          control.readControl().focus()
   )
   
   # The class of the content in read mode. 
