@@ -83,6 +83,7 @@ class window.ListBox extends List
         @_scrollToControl selectedControl
       if selectedControl isnt previousControl
         @trigger "selectionChanged"
+      @
 
   # The index of the currently-selected control.
   selectedIndex: Control.iterator ( selectedIndex ) ->
@@ -100,7 +101,8 @@ class window.ListBox extends List
       else
         null
       @selectedControl control
-
+      @
+      
   # The item represented by the currently-selected control.
   selectedItem: Control.iterator ( selectedItem ) ->
     if selectedItem is undefined

@@ -20,8 +20,8 @@ class window.CalendarMonth extends Control
     ]
     generic: "true"
 
+  # The controls for the days in the month.
   days: Control.chain "find/.CalendarDay", "control"
-  weeks: Control.chain "children", "control"
 
   # The control's current culture.
   culture: ( culture ) ->
@@ -61,6 +61,9 @@ class window.CalendarMonth extends Control
       weeks[ weekIndex ]
     )
     $().add( weeksWithDate ).control()
+
+  # The controls for the weeks in the month.
+  weeks: Control.chain "children", "control"
 
   _refresh: ->
     

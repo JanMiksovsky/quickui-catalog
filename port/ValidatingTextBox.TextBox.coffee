@@ -66,7 +66,8 @@ class window.ValidatingTextBox extends TextBox
     valid = @valid()
     if strict or @invalid()
       @invalid not valid
-
+    @
+    
   # True if validation should be automatically be performed when the control
   # loses focus. Default is true.
   validateOnBlur: Control.property.bool( null, true )

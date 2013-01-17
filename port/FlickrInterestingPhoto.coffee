@@ -90,7 +90,8 @@ class window.FlickrInterestingPhoto extends Control
     FlickrInterestingPhoto.getRandomPhoto( ( photo ) =>
       @prop "src", photo
     , @photoSize() )
-
+    @
+    
   # The location of the current photo image.
   photo: Control.chain "attr/src"
 

@@ -34,6 +34,8 @@ class window.AutoSizeTextBox extends Control
 
     @$textCopy().text content
 
+    @
+
   # The content of the text box.
   content: Control.chain( "$textBox", "content", ->
     @autoSize()
@@ -139,3 +141,5 @@ class window.AutoSizeTextBox extends Control
         # we need to add it in.
         height += parseInt( borderTopWidth ) + parseInt( paddingTop ) + parseInt( paddingBottom ) + parseInt( borderBottomWidth )
       @$textCopy().css "min-height", height + "px"
+
+    @

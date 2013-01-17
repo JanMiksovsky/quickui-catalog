@@ -19,6 +19,7 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
       @activeIndex index
       if index > 0
         @_queueRotation()
+    @
 
   # Interval between rotation animations. This does not include the duration of
   # the sliding animation. The default value is 1000 (one second).

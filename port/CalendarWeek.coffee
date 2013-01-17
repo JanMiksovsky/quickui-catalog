@@ -52,6 +52,7 @@ class window.CalendarWeek extends Control
       days.eq( 0 ).addClass "firstDayOfWeek"
       days.eq( 6 ).addClass "lastDayOfWeek"
       @_refresh()
+      @
   
   # The collection of day cells 
   days: Control.chain "children", "control"

@@ -39,6 +39,7 @@ class window.List extends Control
     items = @_itemsCache() ? []
     items.splice index, 0, item
     @_itemsCache items
+    @
 
   # True if the list's items have been changed since the controls were first created.
   isDirty: Control.property.bool( null, true )
@@ -111,7 +112,8 @@ class window.List extends Control
       @children().eq( index ).remove()
       # Remove our cached copy of the corresponding item.
       items.splice index, 1
-
+    @
+    
   # Apply a simple dictionary map to the given item. The map should contain a
   # mapping of { itemProperty: controlProperty } entries. When invoked as a
   # setter, this invokes

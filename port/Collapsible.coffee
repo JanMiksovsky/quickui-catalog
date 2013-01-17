@@ -43,6 +43,8 @@ class window.Collapsible extends Control
       if @_collapsed() isnt value
         @trigger "collapsedChanged"
         @_collapsed value
+      
+      @
 
   # The control's heading. By default, a click anywhere within the heading
   # toggles the control's collapsed state. This can be empty if the application

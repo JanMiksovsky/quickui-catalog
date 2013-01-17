@@ -71,6 +71,7 @@ class window.PanelWithOverflow extends Control
         break
 
     @$menuButton().toggle showMenu
+    @
   
   _menuClosed: Control.iterator ->
     # Return the overflow menu's children to the main content area.
@@ -83,3 +84,4 @@ class window.PanelWithOverflow extends Control
     content = @$PanelWithOverflow_content().content()
     $overflowed = $( content ).filter ".overflowed"
     @$menuButton().popup $overflowed
+    @

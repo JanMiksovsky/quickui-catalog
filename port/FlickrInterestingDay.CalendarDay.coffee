@@ -86,7 +86,8 @@ class window.FlickrInterestingDay extends CalendarDay
       baseUrl = "http://www.flickr.com/explore/interesting/"
       url = baseUrl + date.getFullYear() + "/" + ( date.getMonth() + 1 ) + "/" + date.getDate()
       @href url
-  
+    @
+    
   # Cache of photos already loaded, indexed by Flickr-style date string. 
   @_cache: {}
   
