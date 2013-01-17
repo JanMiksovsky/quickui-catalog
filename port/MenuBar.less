@@ -1,18 +1,19 @@
 /*** MenuBar ***/
 
 .MenuBar {
-    position: relative; /* Necessary to get overlay behind the whole menu bar */
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    user-select: none;
-}
 
-/* Subclasses can extend this style */
-.MenuBar.opened {}
+  position: relative; /* Necessary to get overlay behind the whole menu bar */
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  user-select: none;
 
-/* Generic appearance */
-.MenuBar.generic {
+  /* Subclasses can extend this style */
+  &.opened {}
+
+  /* Generic appearance */
+  &.generic {
     background: white;
     border-bottom: 1px solid #e5e5e5;
-}
+  }
 
+}

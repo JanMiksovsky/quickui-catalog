@@ -1,33 +1,41 @@
 /*** CalendarDayButton ***/
 
-.CalendarDayButton .button {
+.CalendarDayButton {
+
+  .button {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: block;
     height: 100%;
     width: 100%;
-}
+  }
 
-/* Generic appearance */
-.CalendarDayButton.generic {
+  /* Generic appearance */
+  &.generic {
+
     border: none;
     padding: 0;
-}
-.CalendarDayButton.generic .button {
-    border-radius: 0;
-    line-height: 1.2; /* Helps button stay same height when bold is applied */
-    padding: 4px;
-    text-align: right;
-}
-.CalendarDayButton.generic.outsideMonth .button {
-    color: #bbb;
-}
-.CalendarDayButton.generic.selected .button {
-    background-color: #ddd;
-    font-weight: bold;
-}
-.CalendarDayButton.generic.today.insideMonth .button {
-    color: darkred;
-    font-weight: bold;
-}
 
+    .button {
+      border-radius: 0;
+      line-height: 1.2; /* Helps button stay same height when bold is applied */
+      padding: 4px;
+      text-align: right;
+    }
+
+    &.outsideMonth .button {
+      color: #bbb;
+    }
+
+    &.selected .button {
+      background-color: #ddd;
+      font-weight: bold;
+    }
+    
+    &.today.insideMonth .button {
+      color: darkred;
+      font-weight: bold;
+    }
+  }
+
+}

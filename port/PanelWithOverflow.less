@@ -1,29 +1,32 @@
 /*** PanelWithOverflow ***/
 
 .PanelWithOverflow {
-    position: relative;
-}
 
-.PanelWithOverflow .PanelWithOverflow_content {
+  position: relative;
+
+  .PanelWithOverflow_content {
     position: relative; /* Simplifies layout calcs */
     overflow: hidden;
     white-space: nowrap;
-}
 
-/* By default, contents are arranged in inline layout */
-.PanelWithOverflow .PanelWithOverflow_content > * {
-    display: inline-block;
-}
-.PanelWithOverflow .PanelWithOverflow_content > .overflowed {
-    visibility: hidden;
-}
+    /* By default, contents are arranged in inline layout */
+    & > * {
+      display: inline-block;
+    }
+    & > .overflowed {
+      visibility: hidden;
+    }
+  }
 
-.PanelWithOverflow .menuButton {
+  .menuButton {
     float: right;
-}
 
-/* In the menu, contents layout switches to vertical arrangement. */
-.PanelWithOverflow .menuButton .PopupSource_popup > * {
-    display: block;
-}
+    /* In the menu, contents layout switches to vertical arrangement. */
+    .PopupSource_popup > * {
+      display: block;
+    }
+    
+  }
 
+
+}

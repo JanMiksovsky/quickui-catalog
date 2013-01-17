@@ -1,16 +1,24 @@
 /*** ListComboBox ***/
 
-.ListComboBox .list {
+.ListComboBox {
+
+  .list {
+
     border: none;
     -moz-outline: none;
     outline: none;
-}
-.ListComboBox .list > * {
-    display: block;
-}
 
-/* Generic appearance */
-.ListComboBox.generic .BasicButton {
-    border: none;
-}
+    & > * {
+      display: block;
+    }
 
+  }
+
+  /* Generic appearance */
+  &.generic {
+    .BasicButton {
+      border: none;
+    }
+  }
+
+}

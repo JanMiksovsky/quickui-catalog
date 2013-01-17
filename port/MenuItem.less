@@ -1,25 +1,30 @@
 /*** MenuItem ***/
 
 .MenuItem {
-    cursor: default;
-    padding: 0.5em 1em;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    user-select: none;
-    white-space: nowrap;
-}
 
-/* Generic appearance */
-.MenuItem.generic {
-    padding: 0.5em 1em;
-}
-.MenuItem.generic:hover {
-    background: #eee;
-}
-.MenuItem.generic.disabled {
-    color: #999;
-}
-.MenuItem.generic.disabled:hover {
-    background: inherit;
-}
+  cursor: default;
+  padding: 0.5em 1em;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
 
+  /* Generic appearance */
+  &.generic {
+
+    padding: 0.5em 1em;
+
+    &:hover {
+      background: #eee;
+    }
+
+    &.disabled {
+      color: #999;
+      &:hover {
+        background: inherit;
+      }
+    }
+
+  }
+
+}

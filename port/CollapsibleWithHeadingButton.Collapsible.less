@@ -1,37 +1,48 @@
 /*** CollapsibleWithHeadingButton ***/
 
-.CollapsibleWithHeadingButton .headingButton {
+.CollapsibleWithHeadingButton {
+
+  .headingButton {
     float: right;
-}
+  }
 
-.CollapsibleWithHeadingButton .Collapsible_content {
+  .Collapsible_content {
     clear: both;
-}
+  }
 
-.CollapsibleWithHeadingButton .collapsedButtonContent {
+  .collapsedButtonContent {
     display: none;
-}
-.CollapsibleWithHeadingButton .expandedButtonContent {
+  }
+  .expandedButtonContent {
     display: block;
-}
-.CollapsibleWithHeadingButton.collapsed .collapsedButtonContent {
-    display: block;
-}
-.CollapsibleWithHeadingButton.collapsed .expandedButtonContent {
-    display: none;
-}
+  }
 
-/* Generic appearance */
-.CollapsibleWithHeadingButton.generic .CollapsibleWithHeadingButton_heading {
-    background: #f0f0f0;    /* Fader requires explicit background color. */
-}
+  &.collapsed {
+    .collapsedButtonContent {
+      display: block;
+    }
+    .expandedButtonContent {
+      display: none;
+    }
+  }
 
-.CollapsibleWithHeadingButton.generic .headingButton {
-    font-weight: normal;
-    margin-left: 1em;
-}
+  /* Generic appearance */
+  &.generic {
 
-.CollapsibleWithHeadingButton.generic .headingButton.BasicButton.generic {
-    padding: 0 0.25em;
-}
+    .CollapsibleWithHeadingButton_heading {
+      background: #f0f0f0;  /* Fader requires explicit background color. */
+    }
 
+    .headingButton {
+      font-weight: normal;
+      margin-left: 1em;
+
+      &.BasicButton.generic {
+        padding: 0 0.25em;
+      }
+      
+    }
+
+  }
+
+}

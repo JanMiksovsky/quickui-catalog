@@ -1,15 +1,20 @@
 /*** CalendarMonth ***/
 
 .CalendarMonth {
-    display: table-row-group;
-}
 
-/* Generic appearance */
-.CalendarMonth .CalendarDay.generic.outsideMonth {
-    visibility: hidden;
-}
+  display: table-row-group;
 
-.CalendarMonth .CalendarWeek.hidden {
+  /* Generic appearance */
+  &.generic {
+
+    .CalendarDay.generic.outsideMonth {
+      visibility: hidden;
+    }
+    
+  }
+
+  .CalendarWeek.hidden {
     display: none;
-}
+  }
 
+}

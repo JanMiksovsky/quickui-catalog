@@ -1,12 +1,16 @@
 /*** ArrayTable ***/
 
 .ArrayTable {
-    display: table;
-}
-.ArrayTable > * {
-    display: table-row;
-}
-.ArrayTable > * > * {
-    display: table-cell;
-}
 
+  display: table;
+
+  & > * {
+    display: table-row;
+
+    & > * {
+      display: table-cell;
+    }
+    
+  }
+
+}

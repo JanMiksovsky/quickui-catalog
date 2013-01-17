@@ -1,31 +1,35 @@
 /*** CalendarDay ***/
 
-/* Subclasses can extend these */
-.CalendarDay {}
-.CalendarDay.alternateMonth {}
-.CalendarDay.firstWeek {}
-.CalendarDay.firstDayOfMonth {}
-.CalendarDay.lastDayOfMonth {}
-.CalendarDay.today {}
-.CalendarDay.sunday {}
-.CalendarDay.saturday {}
-.CalendarDay.weekday {}
-.CalendarDay.firstDayOfWeek {}  /* Can vary by culture */
-.CalendarDay.lastDayOfWeek {}   /* Can vary by culture */
-.CalendarDay.past {}
-.CalendarDay.future {}
-.CalendarDay.insideMonth {}
-.CalendarDay.outsideRange {}
+.CalendarDay {
 
-/* Generic appearance */
-.CalendarDay.generic {
+  /* Subclasses can extend these */
+  &.alternateMonth {}
+  &.firstWeek {}
+  &.firstDayOfMonth {}
+  &.lastDayOfMonth {}
+  &.today {}
+  &.sunday {}
+  &.saturday {}
+  &.weekday {}
+  &.firstDayOfWeek {}  /* Can vary by culture */
+  &.lastDayOfWeek {}   /* Can vary by culture */
+  &.past {}
+  &.future {}
+  &.insideMonth {}
+  &.outsideRange {}
+
+  /* Generic appearance */
+  &.generic {
+
     border: 1px solid transparent;
     font-family: sans-serif;
     padding: 4px;
     text-align: right;
-}
-.CalendarDay.generic.today {
-    color: darkred;
-    font-weight: bold;
-}
 
+    &.today {
+      color: darkred;
+      font-weight: bold;
+    }
+  }
+
+}

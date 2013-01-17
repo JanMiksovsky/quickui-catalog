@@ -1,65 +1,74 @@
 /*** Menu ***/
 
 .Menu {
-    cursor: default;
-    display: inline-block;
-    -moz-user-select: -moz-none;
-    -webkit-user-select: none;
-    user-select: none;
-}
 
-.Menu .PopupSource_content {
+  cursor: default;
+  display: inline-block;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  .PopupSource_content {
     white-space: nowrap;
-}
+  }
 
-.Menu .shield {
+  .shield {
     display: none;  /* Shield isn't shown unless it's requested. */
     position: absolute;
     z-index: 0;
-}
-.Menu .PopupSource_popup.popupAlignLeft .shield {
+  }
+
+  .PopupSource_popup.popupAlignLeft .shield {
     left: 0;
-}
-.Menu .PopupSource_popup.popupAlignRight .shield {
+  }
+
+  .PopupSource_popup.popupAlignRight .shield {
     right: 0;
-}
+  }
 
-/* Generic appearance */
-.Menu.generic {
+  /* Generic appearance */
+  &.generic {
+
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-}
 
-.Menu.generic .PopupSource_content {
-    border: 1px solid transparent;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0.5em;
-}
-.Menu.generic .PopupSource_content:hover {
-    background: #eee;
-}
+    .PopupSource_content {
 
-.Menu.generic .shield {
-    background: white;  /* Same as menu's background color */
-    height: 1px;        /* Same as this menu's border-top-width */
-    top: -1px;          /* Same as border-top-width but negative */
-}
-.Menu.generic .PopupSource_popup.popupAppearsBelow .shield {
-    display: block;
-}
+      border: 1px solid transparent;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0.5em;
 
-.Menu.generic .PopupSource_popup {
-    cursor: default;
-    margin: 0;
-    outline: none;
-    padding: 0.5em 0;
-}
+      &:hover {
+        background: #eee;
+      }
+      
+    }
 
-.Menu.generic.opened .PopupSource_content {
-    background: white;
-    border-color: #ccc; /* IE8 */
-    border-color: rgba(0, 0, 0, 0.2);
-    border-bottom-color: transparent; /* Hides bottom border */
-}
+    .shield {
+      background: white;  /* Same as menu's background color */
+      height: 1px;    /* Same as this menu's border-top-width */
+      top: -1px;      /* Same as border-top-width but negative */
+    }
 
+    .PopupSource_popup.popupAppearsBelow .shield {
+      display: block;
+    }
+
+    .PopupSource_popup {
+      cursor: default;
+      margin: 0;
+      outline: none;
+      padding: 0.5em 0;
+    }
+
+    &.opened .PopupSource_content {
+      background: white;
+      border-color: #ccc; /* IE8 */
+      border-color: rgba(0, 0, 0, 0.2);
+      border-bottom-color: transparent; /* Hides bottom border */
+    }
+
+  }
+
+}

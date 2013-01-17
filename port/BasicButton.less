@@ -1,38 +1,39 @@
 /*** BasicButton ***/
 
 .BasicButton {
-    background: none; /* Better to start with no background than a browser-dependent one. */
-    border: none; /* Many button styles don't want a border by default. */
-    border-width: 0; /* IE8 thinks there's a border width even when border is none. */ 
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    color: inherit; /* Suppress browser's use of special button text color. */
-    cursor: pointer; /* Improves consistency */
-    margin: 0; /* Addresses margins set differently in IE6/7, FF3+, S5, Chrome */
-    overflow: visible; /* Removes inner spacing in IE8 without affecting normal text inputs */
-    text-align: left; /* Many more things behave like buttons than want to be center-aligned like a stock button. */
-    vertical-align: baseline; /* Improves appearance and consistency in all browsers */
-}
 
-.BasicButton.disabled {
+  background: none; /* Better to start with no background than a browser-dependent one. */
+  border: none; /* Many button styles don't want a border by default. */
+  border-width: 0; /* IE8 thinks there's a border width even when border is none. */ 
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: inherit; /* Suppress browser's use of special button text color. */
+  cursor: pointer; /* Improves consistency */
+  margin: 0; /* Addresses margins set differently in IE6/7, FF3+, S5, Chrome */
+  overflow: visible; /* Removes inner spacing in IE8 without affecting normal text inputs */
+  text-align: left; /* Many more things behave like buttons than want to be center-aligned like a stock button. */
+  vertical-align: baseline; /* Improves appearance and consistency in all browsers */
+
+  &.disabled {
     cursor: default; /* Re-set default cursor for disabled buttons */
-}
+  }
 
-/*
- * Removes inner padding and border in FF3+
- * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
- */
-.BasicButton::-moz-focus-inner {
+  /*
+   * Removes inner padding and border in FF3+
+   * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+   */
+  &::-moz-focus-inner {
     border: 0;
     padding: 0;
-}
+  }
 
-/*
- * Generic apperance
- * By design, this is fairly plain, with just a bit of 3D, in order to fit in
- * reasonably well in many contexts. Inspired by Twitter Bootstrap's buttons.
- */
-.BasicButton.generic {
+  /*
+   * Generic apperance
+   * By design, this is fairly plain, with just a bit of 3D, in order to fit in
+   * reasonably well in many contexts. Inspired by Twitter Bootstrap's buttons.
+   */
+  &.generic {
+
     background: whitesmoke;
     background-image: -moz-linear-gradient(top, white, #e6e6e6);
     background-image: -ms-linear-gradient(top, white, #e6e6e6);
@@ -53,67 +54,69 @@
     text-shadow: 0 1px 1px rgba(255,255,255,.75);
     white-space: nowrap;
     vertical-align: middle;
-}
 
-.BasicButton.generic:focus {
-    outline: thin dotted #333 \9; /* IE 8/9 */
-}
+    &:focus {
+      outline: thin dotted #333 \9; /* IE 8/9 */
+    }
 
-/* 
- * We use ".hover" as well as ":hover" so the hover state can be
- * programmatically applied.
- */
-.BasicButton.generic:hover,
-.BasicButton.generic.hover {
-    background-color: #e6e6e6;
-    background-image: -moz-linear-gradient(top, white, #eee);
-    background-image: -ms-linear-gradient(top, white, #eee);
-    background-image: -webkit-linear-gradient(top, white, #eee);
-    background-image: linear-gradient(top, white, #eee);
-    border-bottom-color: #ccc;
-    border-left-color: #ddd;
-    border-right-color: #ddd;
-    border-top-color: #e0e0e0;
-    color: #222;
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=white, endColorstr=#eeeeee);
-    text-shadow: 0 1px 3px white;
-}
+    /* 
+     * We use ".hover" as well as ":hover" so the hover state can be
+     * programmatically applied.
+     */
+    &:hover,
+    &.hover {
+      background-color: #e6e6e6;
+      background-image: -moz-linear-gradient(top, white, #eee);
+      background-image: -ms-linear-gradient(top, white, #eee);
+      background-image: -webkit-linear-gradient(top, white, #eee);
+      background-image: linear-gradient(top, white, #eee);
+      border-bottom-color: #ccc;
+      border-left-color: #ddd;
+      border-right-color: #ddd;
+      border-top-color: #e0e0e0;
+      color: #222;
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=white, endColorstr=#eeeeee);
+      text-shadow: 0 1px 3px white;
+    }
 
-.BasicButton.generic:active,
-.BasicButton.generic.active {
-    background-color: #d9d9d9;
-    background-color: #d0d0d0 \9; /* IE 8/9 */
-    background-image: none;
-    border-color: #aaa;
-    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-    box-shadow: inset 0 1px 4px 2gba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-    color: #111;
-    filter: none;
-    outline: 0;
-}
+    &:active,
+    &.active {
+      background-color: #d9d9d9;
+      background-color: #d0d0d0 \9; /* IE 8/9 */
+      background-image: none;
+      border-color: #aaa;
+      -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 1px 4px 2gba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+      color: #111;
+      filter: none;
+      outline: 0;
+    }
 
-.BasicButton.generic.disabled,
-.BasicButton.generic[disabled] {
-    background: whitesmoke;
-    border: 1px solid #ccc;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #999;
-    text-shadow: none;
-}
-.BasicButton.generic.quiet.disabled,
-.BasicButton.generic.quiet[disabled] {
+    &.disabled,
+    &[disabled] {
+      background: whitesmoke;
+      border: 1px solid #ccc;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #999;
+      text-shadow: none;
+    }
+    &.quiet.disabled,
+    &.quiet[disabled] {
+      background: none;
+      border-color: transparent;
+    }
+
+  }
+
+  /* Opt out of border, background, etc. in the normal state. */
+  &.quiet {
     background: none;
     border-color: transparent;
-}
-
-/* Opt out of border, background, etc. in the normal state. */
-.BasicButton.quiet {
-    background: none;
-    border-color: transparent;
     box-shadow: none;
     filter: none;
-}
+  }
 
+}

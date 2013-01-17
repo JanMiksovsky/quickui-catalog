@@ -1,32 +1,35 @@
 /*** ListBox ***/
 
 .ListBox {
-    overflow-y: auto;
-}
 
-.ListBox > * {
+  overflow-y: auto;
+
+  & > * {
     display: block;
     outline: none;
-}
+  }
 
-/* Optional selection highlighting. */
-.ListBox.highlightSelection > .selected {
+  /* Optional selection highlighting. */
+  &.highlightSelection > .selected {
     background: highlight;
     color: highlighttext;
-}
+  }
 
-/* Generic appearance */
-.ListBox.generic {
+  /* Generic appearance */
+  &.generic {
+
     border: 1px solid lightgray;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     cursor: default;
-}
-/* Handle common case where a generic control (e.g., button) is used as a list item. */
-.ListBox.generic > * {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0.25em;
-    width: 100%;
-}
 
+    /* Handle common case where a generic control (e.g., button) is used as a list item. */
+    & > * {
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0.25em;
+      width: 100%;
+    }
+  }
+
+}

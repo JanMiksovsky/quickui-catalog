@@ -1,13 +1,18 @@
 /*** Editable ***/
 
-.Editable > * {
+.Editable {
+
+  & > * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
-}
+  }
 
-/* Generic appearance */
-.Editable.generic .Editable_read {
-    outline: none;
-}
+  /* Generic appearance */
+  &.generic {
+    .Editable_read {
+      outline: none;
+    }
+  }
 
+}

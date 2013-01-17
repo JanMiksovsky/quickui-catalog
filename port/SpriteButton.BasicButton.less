@@ -1,12 +1,12 @@
 /*** SpriteButton ***/
 
 .SpriteButton {
-    display: inline-block;
-    outline: none;
-    position: relative;
-}
 
-.SpriteButton .Sprite {
+  display: inline-block;
+  outline: none;
+  position: relative;
+
+  .Sprite {
     height: 100%;
     position: absolute;
     top: 0;
@@ -15,22 +15,23 @@
      */
     width: 50%;
     z-index: 0;
-}
+  }
 
-.SpriteButton .backgroundLeft {
+  .backgroundLeft {
     background-position: 0 0;
     left: 0;
-}
+  }
 
-.SpriteButton .backgroundRight {
+  .backgroundRight {
     background-position: right 0;
     /*
      * Use left: 50% instead of right: 0, as the latter doesn't work exactly right on WebKit.
      */
     left: 50%;
-}
+  }
 
-.SpriteButton .SpriteButton_content {
+  .SpriteButton_content {
     position: relative;
-}
+  }
 
+}

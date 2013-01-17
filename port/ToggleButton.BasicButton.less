@@ -1,12 +1,18 @@
 /*** ToggleButton ***/
 
-/* Generic appearance */
+.ToggleButton {
 
-.ToggleButton.generic.selected {
-    background: lightgray;
-    border-color: gray;
-}
-.ToggleButton.generic.selected:hover {
-    background-color: #888;
-}
+  /* Generic appearance */
+  &.generic {
 
+    &.selected {
+      background: lightgray;
+      border-color: gray;
+      &:hover {
+        background-color: #888;
+      }
+    }
+    
+  }
+
+}

@@ -1,19 +1,19 @@
 /*** HintTextBox ***/
 
 .HintTextBox {
-    cursor: text;
-    display: inline-block;
-    position: relative;
-}
 
-.HintTextBox .HintTextBox_textBox {
+  cursor: text;
+  display: inline-block;
+  position: relative;
+
+  .HintTextBox_textBox {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-size: 1em;
     width: 100%;
-}
+  }
 
-.HintTextBox .HintTextBox_hint {
+  .HintTextBox_hint {
     bottom: 0;
     left: 4px;
     height: 1.25em;
@@ -22,10 +22,13 @@
     overflow: hidden;
     right: 4px;
     top: 0;
-}
+  }
 
-/* Generic appearance */
-.HintTextBox.generic .HintTextBox_hint {
-    color: #aaa;
-}
+  /* Generic appearance */
+  &.generic {
+    .HintTextBox_hint {
+      color: #aaa;
+    }
+  }
 
+}

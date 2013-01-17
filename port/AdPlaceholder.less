@@ -1,23 +1,25 @@
-/*** AdPlaceholder ***/
-
 .AdPlaceholder {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    display: table;
-}
+  
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
 
-.AdPlaceholder .container {
+  .container {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-}
+  }
 
-/* Generic appearance */
-.AdPlaceholder.generic {
+  /* Generic appearance */
+  &.generic {
+    
     background: gray;
     color: white;
-}
-.AdPlaceholder.generic .label {
-    font-weight: bold;
-}
 
+    .label {
+      font-weight: bold;
+    }
+
+  }
+
+}

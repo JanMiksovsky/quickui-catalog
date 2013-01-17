@@ -1,19 +1,23 @@
 /*** SlidingPanels ***/
 
 .SlidingPanels {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow: hidden;
-    width: 0; /* Prevent anything from appearing until we've set width. */
-}
 
-.SlidingPanels .SlidingPanels_content {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 0; /* Prevent anything from appearing until we've set width. */
+
+  .SlidingPanels_content {
+
     position: relative; /* So we can shift it over */
     -webkit-transition: 0.2s;
     transition: 0.2s; /* Same as jQuery's "fast" */
     white-space: nowrap;
-}
-.SlidingPanels .SlidingPanels_content > * {
-    display: inline-block;
-}
 
+    & > * {
+      display: inline-block;
+    }
+
+  }
+
+}

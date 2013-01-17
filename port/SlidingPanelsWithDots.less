@@ -1,40 +1,47 @@
 /*** SlidingPanelsWithDots ***/
 
 .SlidingPanelsWithDots {
-    display: inline-block; /* Size to content */ 
-    overflow: hidden;
-}
 
-.SlidingPanelsWithDots .buttonPanel {
+  display: inline-block; /* Size to content */ 
+  overflow: hidden;
+
+  .buttonPanel {
     text-align: center;
-}
-.SlidingPanelsWithDots .pageButtons {
+  }
+
+  .pageButtons {
     display: inline-block;
     margin: 0 auto;
-}
+  }
 
-/* Generic appearance */
-.SlidingPanelsWithDots.generic .buttonPanel {
-    padding: 5px;
-}
+  /* Generic appearance */
+  &.generic {
 
-.SlidingPanelsWithDots.generic .pageButtons > .BasicButton {
-    background: white;
-    border: 1px solid #888;
-    border-radius: 5px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 10px;
-    margin: 2px;
-    padding: 5px;
-    width: 10px;
-}
+    .buttonPanel {
+      padding: 5px;
+    }
 
-.SlidingPanelsWithDots.generic .pageButtons > .BasicButton:hover {
-    background: #ddd;
-}
+    .pageButtons > .BasicButton {
+      background: white;
+      border: 1px solid #888;
+      border-radius: 5px;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      height: 10px;
+      margin: 2px;
+      padding: 5px;
+      width: 10px;
 
-.SlidingPanelsWithDots.generic .pageButtons > .BasicButton.selected {
-    background: #bbb;
-}
+      &:hover {
+        background: #ddd;
+      }
 
+      &.selected {
+        background: #bbb;
+      }
+
+    }
+
+  }
+
+}

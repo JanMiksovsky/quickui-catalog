@@ -1,31 +1,37 @@
 /*** Fader ***/
 
 .Fader {
-    background-color: #ffffff;
-    overflow: hidden;
-    position: relative;
-}
 
-.Fader .Fader_content {
+  background-color: #ffffff;
+  overflow: hidden;
+  position: relative;
+
+  .Fader_content {
     white-space: nowrap;
-}
+  }
 
-.Fader.vertical .Fader_content {
-    white-space: inherit;
-}
-
-.Fader .gradient {
+  .gradient {
     position: absolute;
-}
-.Fader.horizontal .gradient {
-    height: 100%;
-    right: 0;
-    top: 0;
-    width: 1.5em;
-}
-.Fader.vertical .gradient {
-    bottom: 0;
-    height: 1.5em;
-    width: 100%;
-}
+  }
 
+  &.horizontal {
+    .gradient {
+      height: 100%;
+      right: 0;
+      top: 0;
+      width: 1.5em;
+    }
+  }
+
+  &.vertical {
+    .Fader_content {
+      white-space: inherit;
+    }
+    .gradient {
+      bottom: 0;
+      height: 1.5em;
+      width: 100%;
+    }
+  }
+
+}

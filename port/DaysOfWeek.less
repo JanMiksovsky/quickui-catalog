@@ -1,11 +1,16 @@
 /*** DaysOfWeek ***/
 
-.DaysOfWeek .dayOfWeek {
+.DaysOfWeek {
+
+  .dayOfWeek {
     display: table-cell;
-}
+  }
 
-/* Generic appearance */
-.DaysOfWeek.generic .dayOfWeek {
-    text-align: center;
-}
+  /* Generic appearance */
+  &.generic {
+    .dayOfWeek {
+      text-align: center;
+    }
+  }
 
+}

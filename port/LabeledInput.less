@@ -1,19 +1,20 @@
 /*** LabeledInput ***/
 
 .LabeledInput {
-    white-space: nowrap;    /* Keep input and label on same line */
-}
 
-.LabeledInput > input {
-    margin-right: 0;    /* Don't leave unclickable gap to right of input */
-}
+  white-space: nowrap;  /* Keep input and label on same line */
 
-.LabeledInput .LabeledInput_content {
+  & > input {
+    margin-right: 0;  /* Don't leave unclickable gap to right of input */
+  }
+
+  .LabeledInput_content {
     padding-left: 3px;  /* Restore normal gap suppressed above */
     user-select: none;
     -khtml-user-select:none;
     -moz-user-select: none;
     -webkit-user-select: none;
     white-space: inherit;   /* Allow wrapping */
-}
+  }
 
+}
