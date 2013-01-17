@@ -7,18 +7,16 @@ class window.PopupButton extends PopupSource
   inherited:
     contentClass: "BasicButton"
     content: [
-      html: "<div/>"
-      ref: "PopupButton_content"
+      html: "<div/>", ref: "PopupButton_content"
     ,
-      html: "<div>▼</div>"
-      ref: "indicator"
+      html: "<div>▼</div>", ref: "indicator"
     ]
     generic: "true"
 
   # The content of the button.
   content: Control.chain( "$PopupButton_content", "content", ( content ) ->
-    hasContent = content and content.length > 0
-    @$PopupButton_content().css "display", if hasContent then "inline-block" else "none"
+    display = if content?.length > 0 then "inline-block" else "none"
+    @$PopupButton_content().css "display", display
   )
 
   # Content which indicates the button can be clicked to produce a popup.

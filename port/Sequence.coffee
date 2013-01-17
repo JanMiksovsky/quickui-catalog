@@ -13,22 +13,26 @@ class window.Sequence extends Control
     if activeElement is undefined
       @elements().filter( ".active" ).eq( 0 ).cast jQuery
     else
-
-      # Apply a "inactive" style instead of just forcing display to none.
-      # If we did that, we would have no good way to undo the hiding.
-      # A simple .toggle(true) would set display: block, which wouldn't
-      # be what we'd want for inline elements.
-      @elements().not( activeElement ).addClass( "inactive" ).removeClass "active"
+      # Apply a "inactive" style instead of just forcing display to none. If we
+      # did that, we would have no good way to undo the hiding. A simple
+      # .toggle(true) would set display: block, which wouldn't be what we'd want
+      # for inline elements.
+      @elements().not( activeElement )
+        .addClass( "inactive" )
+        .removeClass "active"
       index = @elements().index( activeElement )
       
       # Tell the child it's now active, and show it.
-      $( activeElement ).trigger( "active" ).removeClass( "inactive" ).addClass "active"
+      $( activeElement )
+        .trigger( "active" )
+        .removeClass( "inactive" )
+        .addClass "active"
       
       # Trigger our own activeElementChanged event.
-      
-      # In case the new child changed our size.
-      @trigger( "activeElementChanged", [ index, activeElement ] ).checkForSizeChange()
-      this
+      @trigger "activeElementChanged", [ index, activeElement ]
+
+      @checkForSizeChange() # In case the new child changed our size.
+      @
 
   # The index of the currently visible element.
   activeIndex: ( index ) ->
@@ -44,18 +48,18 @@ class window.Sequence extends Control
   content: ( content ) ->
     container = @_container()
     if content is undefined
-      if this[ 0] is container[0 ]
+      if this[0] is container[0]
         super content
       else
         container.content content
     else
       # Save active element before setting content.
       previousControl = @activeElement()
-      result = if this[ 0] is container[0 ]
+      result = if this[0] is container[0]
         super content
       else
         container.content content
-      if previousControl and previousControl.parent()[ 0] is this[0 ]
+      if previousControl?.parent()[0] is this[0]
         # Still have previously active child; hide other elements.
         @activeElement previousControl
       else
@@ -66,21 +70,23 @@ class window.Sequence extends Control
   elements: Control.chain "_container", "children", "cast"
   
   initialize: ->
-    
-    # Show first child by default. 
-    @activeIndex 0  if @elements().length > 0 and @activeIndex() < 0
+    if @elements().length > 0 and @activeIndex() < 0
+      # Show first child by default. 
+      @activeIndex 0
 
   # Show the next child. If the last child is currently shown, this has no
   # effect.
   next: Control.iterator ->
     index = @activeIndex()
-    @activeIndex index + 1  if index < @elements().length - 1
+    if index < @elements().length - 1
+      @activeIndex index + 1
 
   # Show the previous child. If the first child is currently shown, this has
   # no effect.
   previous: Control.iterator ->
     index = @activeIndex()
-    @activeIndex index - 1  if index > 0
+    if index > 0
+      @activeIndex index - 1
   
   _container: ->
     this

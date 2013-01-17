@@ -14,14 +14,10 @@ class window.Tabs extends Control
       control: "VerticalPanels"
       ref: "tabPanels"
       top: [
-        control: "List"
-        ref: "tabButtons"
-        itemClass: "BasicButton"
+        control: "List", ref: "tabButtons", itemClass: "BasicButton"
       ]
       content: [
-        control: "Modes"
-        ref: "Tabs_content"
-        maximize: "true"
+        control: "Modes", ref: "Tabs_content", maximize: "true"
       ]
     ]
     generic: "true"
@@ -36,21 +32,20 @@ class window.Tabs extends Control
     if contentClass is undefined
       @$Tabs_content().controlClass()
     else
-      
       # The default Modes class sets the content's size, so clear any
       # explicitly-set height and width.
       @$Tabs_content().css
         height: ""
         width: ""
-
       $new = @$Tabs_content().transmute contentClass, true
       @referencedElement "Tabs_content", $new
-      this
+      @
 
   # True if the Tabs should vertically fill its container.
   fill: Control.chain "$tabPanels", "fill"
 
   initialize: ->
+
     @$tabButtons().click ( event ) =>
       tabButtonCssClass = "." + @tabButtonClass()::className
       tabButton = $( event.target ).closest( tabButtonCssClass ).control()
@@ -59,7 +54,9 @@ class window.Tabs extends Control
         if index >= 0
           tab = @tabs()[ index ]
           @trigger "tabButtonClick", [ index, tab ]
-          @selectedTabIndex index  if @selectTabOnClick()
+          if @selectTabOnClick()
+            @selectedTabIndex index
+
     @$Tabs_content().on activeElementChanged: ( event, index, child ) =>
       # Map the Modes's activeElementChanged event to a more semantically
       # specific activeTabChanged event. Only map active events coming from our
@@ -69,8 +66,9 @@ class window.Tabs extends Control
         event.stopPropagation()
         @trigger "activeTabChanged", [ index, child ]
 
-    # Select first tab by default.
-    @selectedTabIndex 0  if @tabs().length > 0 and not @selectedTabIndex()
+    if @tabs().length > 0 and not @selectedTabIndex()
+      # Select first tab by default.
+      @selectedTabIndex 0
 
   # True if a tab should be selected on click; false if the showing of the
   # clicked tab will be handled separately. 
@@ -98,7 +96,7 @@ class window.Tabs extends Control
 
   # Called whenever the set of buttons needs to be regenerated.
   _createButtons: ->
-    return  if @tabButtonClass() is undefined
+    return if @tabButtonClass() is undefined
     
     # Show the description for each tab as a button.
     descriptions = ( for tab in @tabs().segments()
@@ -108,7 +106,8 @@ class window.Tabs extends Control
         ""
     )
     @$tabButtons().items descriptions
-    selectedTabIndex = @selectedTabIndex()
     
-    # Ensure the indicated button is shown as selected.
-    @selectedTabIndex selectedTabIndex  if selectedTabIndex?
+    selectedTabIndex = @selectedTabIndex()
+    if selectedTabIndex?
+      # Ensure the indicated button is shown as selected.
+      @selectedTabIndex selectedTabIndex

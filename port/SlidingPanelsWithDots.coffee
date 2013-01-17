@@ -22,8 +22,11 @@ class window.SlidingPanelsWithDots extends Control
   # The index of the page currently being shown.
   activeIndex: Control.property ( activeIndex ) ->
     @$pages().activeIndex activeIndex
-    @pageButtons().removeClass( "selected" ).eq( activeIndex ).addClass "selected"
-    this
+    @pageButtons()
+      .removeClass( "selected" )
+      .eq( activeIndex )
+      .addClass "selected"
+    @
 
   # The set of elements to show as pages.
   content: Control.chain( "$pages", "content", ->
@@ -39,7 +42,8 @@ class window.SlidingPanelsWithDots extends Control
       pageButton = $( event.target ).closest( @pageButtons() ).control()
       if pageButton
         index = @pageButtons().index pageButton
-        @activeIndex index  if index >= 0
+        if index >= 0
+          @activeIndex index
     @activeIndex 0  unless @activeIndex()
 
   pageButtons: Control.chain "$pageButtons", "children"

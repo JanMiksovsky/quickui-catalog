@@ -6,11 +6,9 @@ class window.PopupSource extends Control
 
   inherited:
     content: [
-      html: "<div/>"
-      ref: "PopupSource_content"
+      html: "<div/>", ref: "PopupSource_content"
     ,
-      control: "Popup"
-      ref: "PopupSource_popup"
+      control: "Popup", ref: "PopupSource_popup"
     ]
 
   # Cancels the popup.
@@ -50,18 +48,19 @@ class window.PopupSource extends Control
 
   # The class of the content portion.
   contentClass: Control.property.class ( contentClass ) ->
-
-    # If the content element changes (e.g., from a div to a button), we
-    # must update our element reference to point to the new element.
+    # If the content element changes (e.g., from a div to a button), we must
+    # update our element reference to point to the new element.
     # 
-    # TODO: This facility is needed anywhere a control lets the host
-    # transmute one of the control's elements, and so should be generalized
-    # and moved into the QuickUI runtime.
+    # TODO: This facility is needed anywhere a control lets the host transmute
+    # one of the control's elements, and so should be generalized and moved into
+    # the QuickUI runtime.
     $newContent = @$PopupSource_content().transmute contentClass, true, true, true
     @referencedElement "PopupSource_content", $newContent
   
   initialize: ->
-    @$PopupSource_content().click ( event ) => @open() if @openOnClick()
+    @$PopupSource_content().click ( event ) =>
+      if @openOnClick()
+        @open()
     @$PopupSource_popup().on
       "closed canceled": =>
         @$PopupSource_popup().removeClass "popupAppearsAbove popupAppearsBelow popupAlignLeft popupAlignRight"
@@ -78,11 +77,9 @@ class window.PopupSource extends Control
   # Returns true if the popup is currently opened.
   opened: ( opened ) ->
     if opened is undefined
-      
       # We mirror the popup's own open state.
       @$PopupSource_popup().opened()
     else
-      
       # If we're setting this, only set our own state.
       # The popup will have taken care of itself.
       @applyClass "opened", opened
@@ -95,9 +92,9 @@ class window.PopupSource extends Control
 
   # Position the popup with respect to the content. By default, this will
   # position the popup below the content if the popup will fit on the page,
-  # otherwise show the popup above the content. Similarly, align the popup
-  # with the content's left edge if the popup will fit on the page,
-  # otherwise right-align it.
+  # otherwise show the popup above the content. Similarly, align the popup with
+  # the content's left edge if the popup will fit on the page, otherwise right-
+  # align it.
   # 
   # Subclasses can override this for custom positioning.
   positionPopup: ->
@@ -122,14 +119,26 @@ class window.PopupSource extends Control
     popupFitsBelow = ( bottom + popupHeight <= windowHeight + scrollTop )
     popupFitsAbove = ( top - popupHeight >= scrollTop )
     popupAppearsBelow = ( popupFitsBelow or not popupFitsAbove )
-    # Use default top
-    popupCss.top = if ( popupAppearsBelow ) then "" else popupCss.top = position.top - popupHeight # Show above content
+
+    popupCss.top = if popupAppearsBelow
+      "" # Use default top
+    else
+      position.top - popupHeight # Show above content
     
     # Horizontally left (preferred) or right align w.r.t. content.
     popupFitsLeftAligned = ( left + popupWidth <= windowWidth + scrollLeft )
     popupFitsRightAligned = ( right - popupWidth >= scrollLeft )
     popupAlignLeft = ( popupFitsLeftAligned or not popupFitsRightAligned )
-    # Use default left
-    popupCss.left = if ( popupAlignLeft ) then "" else popupCss.left = position.left + width - popupWidth # Right align
-    $popup.toggleClass( "popupAppearsAbove", not popupAppearsBelow ).toggleClass( "popupAppearsBelow", popupAppearsBelow ).toggleClass( "popupAlignLeft", popupAlignLeft ).toggleClass( "popupAlignRight", not popupAlignLeft ).css popupCss
-    this
+
+    popupCss.left = if popupAlignLeft
+      "" # Use default left
+    else
+      position.left + width - popupWidth # Right align
+
+    $popup
+      .toggleClass( "popupAppearsAbove", not popupAppearsBelow )
+      .toggleClass( "popupAppearsBelow", popupAppearsBelow )
+      .toggleClass( "popupAlignLeft", popupAlignLeft )
+      .toggleClass( "popupAlignRight", not popupAlignLeft )
+      .css popupCss
+    @

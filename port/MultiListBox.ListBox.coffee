@@ -9,8 +9,9 @@ class window.MultiListBox extends ListBox
     if selectedControls is undefined
       @controls().filter ".selected"
     else
+      $selectedControls = $ selectedControls
       for control in @controls().segments()
-        filter = selectedControls.filter control
+        filter = $selectedControls.filter control
         select = ( filter and filter.length > 0 )
         @selectControl control, select
       @trigger "selectionChanged"
@@ -19,58 +20,29 @@ class window.MultiListBox extends ListBox
   selectedIndices: Control.iterator ( selectedIndices ) ->
     controls = @controls()
     if selectedIndices is undefined
-      indices = []
-      i = 0
-
-      while i < controls.length
-        indices.push i  if controls.eq( i ).hasClass "selected" 
-        i++
-      indices
+      ( i for i in [ 0 .. controls.length - 1 ] when controls.eq( i ).hasClass "selected" )
     else
-      selectedControls = []
-      if selectedIndices
-        i = 0
-
-        while i < selectedIndices.length
-          index = selectedIndices[i]
-          selectedControls.push controls[ index ]
-          i++
+      selectedControls = ( controls[ index ] for index in selectedIndices ? [] )
       @selectedControls selectedControls
 
   # The items represented by the currently-selected controls.
   selectedItems: Control.iterator ( selectedItems ) ->
+    items = @items()
     if selectedItems is undefined
-      indices = @selectedIndices()
-      items = @items()
-      selectedItems = []
-      i = 0
-
-      while i < indices.length
-        index = indices[i]
-        selectedItems.push items[i]
-        i++
-      selectedItems
+      ( items[ index ] for index in @selectedIndices() )
     else
-      selectedControls = []
-      if selectedItems
-        controls = @controls()
-        items = @items()
-        i = 0
-
-        while i < selectedItems.length
-          item = selectedItems[i]
-          index = $.inArray item, items
-          selectedControls.push controls[ index ]  if index >= 0
-          i++
+      controls = @controls()
+      selectedIndices = ( $.inArray( item, items ) for item in selectedItems ? [] )
+      selectedControls = ( controls[ index ] for index in selectedIndices when index >= 0 )
       @selectedControls selectedControls
 
   # Toggle the selected state of the given control (if toggle is undefined),
   # or set the selected state to the indicated toggle value.
   toggleControl: ( control, toggle ) ->
-    toggle = toggle or not control.hasClass "selected"
+    toggle = toggle ? not control.hasClass "selected"
     @selectControl control, toggle
     @trigger "selectionChanged"
-    this
+    @
 
   _controlClick: ( control ) ->
     @toggleControl control

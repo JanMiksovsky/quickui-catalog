@@ -9,7 +9,8 @@ class window.MonthName extends Control
   # The control's current culture.
   culture: ( culture ) ->
     result = super culture
-    @month @month()  if culture isnt undefined
+    if culture isnt undefined
+      @month @month()
     result
 
   initialize: ->
@@ -24,4 +25,17 @@ class window.MonthName extends Control
     @content monthNameEnum[ month ]
 
   # Default names, used if Globalize is not avaialble.
-  @names: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+  @names: [
+    "January"
+    "February"
+    "March"
+    "April"
+    "May"
+    "June"
+    "July"
+    "August"
+    "September"
+    "October"
+    "November"
+    "December"
+  ]

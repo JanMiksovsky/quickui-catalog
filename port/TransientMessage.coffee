@@ -47,8 +47,10 @@ class window.TransientMessage extends Control
   #     
   @showMessage: ( content, duration ) ->
     transientMessage = TransientMessage.create()
-    transientMessage.content content  if content
-    transientMessage.duration duration  if duration
+    if content
+      transientMessage.content content
+    if duration
+      transientMessage.duration duration
     $( document.body ).append transientMessage
     transientMessage.open()
     transientMessage

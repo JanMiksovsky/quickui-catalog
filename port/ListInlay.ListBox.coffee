@@ -12,8 +12,8 @@ By default, this control expects items to be a dictionary of the form:
 class window.ListInlay extends ListBox
 
   inherited:
-    itemClass: "Collapsible"
     highlightSelection: "false"
+    itemClass: "Collapsible"
 
   initialize: ->
     @mapFunction
@@ -21,13 +21,12 @@ class window.ListInlay extends ListBox
       content: "content"
 
   selectControl: ( control, select ) ->
-    @_super control, select
+    super control, select
     if select
       control.toggleCollapse()
     else
       control.collapsed true
 
   _setupControl: ( control ) ->
-    
     # Let ListBox manage toggling instead of Collapsible
     control.toggleOnClick false

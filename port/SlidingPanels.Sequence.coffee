@@ -7,8 +7,7 @@ class window.SlidingPanels extends Sequence
 
   inherited:
     content: [
-      html: "<div/>"
-      ref: "SlidingPanels_content"
+      html: "<div/>", ref: "SlidingPanels_content"
     ]
 
   # The index of the control currently being shown.
@@ -19,11 +18,9 @@ class window.SlidingPanels extends Sequence
       if panel.length > 0
         left = panel.position().left
         if SlidingPanels.hasTransitions @$SlidingPanels_content()
-          
           # Use CSS animation.
           @$SlidingPanels_content().css "left", -left
         else
-          
           # Fall back to jQuery animation.
           @$SlidingPanels_content().animate
             left: -left
@@ -36,21 +33,20 @@ class window.SlidingPanels extends Sequence
   # previously active. Otherwise, the first element is made active.
   content: ( content ) ->
     result = super content
-    @_adjustWidths()  if content isnt undefined
+    if content isnt undefined
+      @_adjustWidths()
     result
 
   # Returns true if the given element has CSS transitions applied to it.
   @hasTransitions: ( $element ) ->
-    transitionProperties = [ "-webkit-transition", "transition" ]
     if Control.browser.msie and parseInt( Control.browser.version ) < 9
-      # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we
-      # try to get the css("transition") property.
+      # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we try to
+      # get the css("transition") property.
       return false
-    i = 0
-    while i < transitionProperties.length
-      value = $element.css transitionProperties[i]
-      return true  if value isnt undefined and value isnt ""
-      i++
+    for transitionProperty in [ "-webkit-transition", "transition" ]
+      value = $element.css transitionProperty
+      if value isnt undefined and value != ""
+        return true
     false
 
   initialize: ->
@@ -60,8 +56,7 @@ class window.SlidingPanels extends Sequence
   # Force all elements and the control itself to the maximium width of the elements.
   _adjustWidths: ->
     elements = @elements()
-    if elements.length == 0
-      return
+    return if elements.length == 0
     panelWidths = ( panel.width() for panel in elements.segments() )
     maxPanelWidth = Math.max panelWidths...
     if maxPanelWidth > 0

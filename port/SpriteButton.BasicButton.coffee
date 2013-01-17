@@ -6,14 +6,11 @@ class window.SpriteButton extends BasicButton
 
   inherited:
     content: [
-      control: "Sprite"
-      ref: "backgroundLeft"
+      control: "Sprite", ref: "backgroundLeft"
     ,
-      control: "Sprite"
-      ref: "backgroundRight"
+      control: "Sprite", ref: "backgroundRight"
     ,
-      html: "<div/>"
-      ref: "SpriteButton_content"
+      html: "<div/>", ref: "SpriteButton_content"
     ]
     generic: "false"
 

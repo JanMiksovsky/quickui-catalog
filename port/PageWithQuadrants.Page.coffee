@@ -12,25 +12,19 @@ class window.PageWithQuadrants extends Page
 
   inherited:
     content: [
-      html: "<div class=\"table\" />"
-      ref: "pageTable"
+      html: "<div class=\"table\" />", ref: "pageTable"
       content: [
         html: "<div class=\"top row\" />"
         content: [
-          html: "<div class=\"top left cell\" />"
-          ref: "PageWithQuadrants_topLeft"
+          html: "<div class=\"top left cell\" />", ref: "PageWithQuadrants_topLeft"
         , 
-          html: "<div class=\"top right cell\" />"
-          ref: "PageWithQuadrants_topRight"
+          html: "<div class=\"top right cell\" />", ref: "PageWithQuadrants_topRight"
         ]
       , 
-        html: "<div class=\"bottom row\" />"
-        content: [
-          html: "<div class=\"bottom left cell\" />"
-          ref: "PageWithQuadrants_bottomLeft"
+        html: "<div class=\"bottom row\" />", content: [
+          html: "<div class=\"bottom left cell\" />", ref: "PageWithQuadrants_bottomLeft"
         , 
-          html: "<div class=\"bottom right cell\" />"
-          ref: "PageWithQuadrants_bottomRight"
+          html: "<div class=\"bottom right cell\" />", ref: "PageWithQuadrants_bottomRight"
         ]
       ]
     ]

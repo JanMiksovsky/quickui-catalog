@@ -10,7 +10,8 @@ class window.PackedColumns extends Control
 
   # True if the columns should be centered. Default is false.
   center: Control.property.bool( ->
-    @layout()  if @inDocument()
+    if @inDocument()
+      @layout()
   )
   content: ( value ) ->
     result = super value
@@ -21,14 +22,16 @@ class window.PackedColumns extends Control
     @on "layout sizeChanged", => @layout()
 
   layout: ->
+
     children = @children()
-    childCount = children.length
-    return  if childCount == 0
+    unless children.length > 0
+      return
     
     # Infer column width and inter-child margins from first child.
-    firstChild = children.eq( 0 )
+    firstChild = children.eq 0
     columnWidth = firstChild.outerWidth()
-    return  if columnWidth == 0 # No width; perhaps child will load later.
+    if columnWidth == 0
+      return # No width; perhaps child will load later.
     marginRight = parseInt firstChild.css "margin-right"
     marginBottom = parseInt firstChild.css "margin-bottom"
     availableWidth = @width()
@@ -37,26 +40,19 @@ class window.PackedColumns extends Control
     leftover = Math.max availableWidth - consumedWidth, 0
     offsetX = if @center() then leftover / 2 else 0
     columnHeight = []
-    childIndex = 0
-
-    while childIndex < childCount
+    for child in children.segments()
       
       # Find shortest column
       shortestColumn = 0
-      column = 1
-
-      while column < columns
+      for column in [ 1 .. columns - 1 ]
         height = columnHeight[ column ] or 0
-        shortestColumn = column  if height < columnHeight[ shortestColumn ]
-        column++
+        if height < columnHeight[ shortestColumn ]
+          shortestColumn = column
       
       # Add the current child to the shortest column
       x = shortestColumn * ( columnWidth + marginRight ) + offsetX
-      y = columnHeight[ shortestColumn ] or 0
-      child = children.eq childIndex
+      y = columnHeight[ shortestColumn ] ? 0
       child.css
         left: x
         top: y
-
       columnHeight[ shortestColumn ] = y + child.outerHeight() + marginBottom
-      childIndex++

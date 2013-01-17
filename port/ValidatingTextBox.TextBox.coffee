@@ -23,12 +23,15 @@ class window.ValidatingTextBox extends TextBox
   # The control's content. Setting this implicitly performs validation.
   content: ( content ) ->
     result = super content
-    @validate true  if content isnt undefined and @validateOnSet()
+    if content isnt undefined and @validateOnSet()
+      @validate true
     result
 
   initialize: ->
     @on
-      blur: => @validate true if @validateOnBlur()
+      blur: =>
+        if @validateOnBlur()
+          @validate true
       keyup: => @validate()
 
   invalid: Control.chain "applyClass/invalid"
@@ -46,14 +49,12 @@ class window.ValidatingTextBox extends TextBox
   #          valid = valid && ... Perform additional checks here ...
   #          return valid;
   #      }
+  #
   valid: ->
-    valid = undefined
     if @required()
-      content = @content()
-      valid = !!content and content.length > 0
+      ( @content()?.length > 0 )
     else
-      valid = true
-    valid
+      true
 
   # Check to see if the control's contents are valid.
   # 
@@ -63,7 +64,8 @@ class window.ValidatingTextBox extends TextBox
   # into the invalid state (even if the contents are actually invalid).
   validate: Control.iterator ( strict ) ->
     valid = @valid()
-    @invalid not valid  if strict or @invalid()
+    if strict or @invalid()
+      @invalid not valid
 
   # True if validation should be automatically be performed when the control
   # loses focus. Default is true.

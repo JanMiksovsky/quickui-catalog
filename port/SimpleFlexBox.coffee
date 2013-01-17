@@ -13,14 +13,11 @@ class window.SimpleFlexBox extends Control
 
   inherited:
     content: [
-      html: "<div class=\"panel\" />"
-      ref: "SimpleFlexBox_panel1"
+      html: "<div class=\"panel\" />", ref: "SimpleFlexBox_panel1"
     ,
-      html: "<div/>"
-      ref: "SimpleFlexBox_content"
+      html: "<div/>", ref: "SimpleFlexBox_content"
     ,
-      html: "<div class=\"panel\" />"
-      ref: "SimpleFlexBox_panel2"
+      html: "<div class=\"panel\" />", ref: "SimpleFlexBox_panel2"
     ]
 
   # The content of the main center panel.
@@ -32,7 +29,8 @@ class window.SimpleFlexBox extends Control
   # determine whether the control has had its height styled.) The default
   # is false.
   constrainHeight: Control.chain( "applyClass/constrainHeight", ->
-    @trigger "layout"  unless @_checkFlexBox()
+    unless @_checkFlexBox()
+      @trigger "layout"
   )
   initialize: ->
     @inDocument ->
@@ -52,9 +50,10 @@ class window.SimpleFlexBox extends Control
   # Return true if we're using flexbox, false if not.  
   _checkFlexBox: ->
 
-    # Detection of flexbox support requires styles, which means the
-    # control has to be in the DOM.
-    return false  unless @inDocument()
+    unless @inDocument()
+      # Detection of flexbox support requires styles, which means the control
+      # has to be in the DOM.
+      return false
     flexBox = SimpleFlexBox.usingFlexBox this
     constrainHeight = @constrainHeight()
 
@@ -64,7 +63,8 @@ class window.SimpleFlexBox extends Control
     # See http://code.google.com/p/chromium/issues/detail?id=118004.
     # Until that gets fixed, we disable flexbox support on WebKit for
     # horizontal orientation and constrained height.
-    flexBox = false  if Control.browser.webkit and not @_vertical() and constrainHeight
+    if Control.browser.webkit and not @_vertical() and constrainHeight
+      flexBox = false
 
     # We have to set the noFlexBox class before the layout event handler
     # gets bound; binding forces an initial layout handler call, which will
@@ -103,26 +103,30 @@ class window.SimpleFlexBox extends Control
   # If the layout of the control changes in any way, the subcontrols
   # contained in the panels should check to see if they've changed size.
   _childrenCheckSize: ->
-    $controls = @children().children().control()
-    $controls.checkForSizeChange()  if $controls?
+    @children().children().control()?.checkForSizeChange()
 
   # True if we're currently handling the layout event to do manual layout.
   _handlingLayout: Control.property.bool( null, false )
 
   # The content of the first docked panel.
   _panel1: Control.chain( "$SimpleFlexBox_panel1", "content", ->
-    @$SimpleFlexBox_panel1().checkForSizeChange()  unless @_usingFlexBox()
+    unless @_usingFlexBox()
+      @$SimpleFlexBox_panel1().checkForSizeChange()
   )
 
   # The content of the second docked.
   _panel2: Control.chain( "$SimpleFlexBox_panel2", "content", ->
-    @$SimpleFlexBox_panel2().checkForSizeChange()  unless @_usingFlexBox()
+    unless @_usingFlexBox()
+      @$SimpleFlexBox_panel2().checkForSizeChange()
   )
 
   # Returns true if the given element is using the CSS flexible layout module.
   @usingFlexBox: ( $element ) ->
-    # "-moz-box", 
-    flexBoxVariants = [ "box", "-webkit-box" ]
+    flexBoxVariants = [
+      "box"
+      # "-moz-box", 
+      "-webkit-box"
+    ]
     $.inArray( $element.css( "display" ), flexBoxVariants ) >= 0
 
   # True if the control is currently using CSS flexible box layout, and

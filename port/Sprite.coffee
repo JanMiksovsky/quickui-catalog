@@ -22,13 +22,11 @@ class window.Sprite extends Control
     if @currentCell()? and @cellHeight()?
       y = ( @currentCell() * -@cellHeight() ) + "px"
       if Control.browser.mozilla
-        
         # Firefox 3.5.x doesn't support background-position-y,
         # use background-position instead.
         backgroundPosition = @css( "background-position" ).split( " " )
         backgroundPosition[1] = y
         @css "background-position", backgroundPosition.join( " " )
       else
-        
         # Not Firefox
         @css "background-position-y", y

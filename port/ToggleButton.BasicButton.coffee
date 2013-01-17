@@ -12,4 +12,4 @@ class window.ToggleButton extends BasicButton
 
   # Toggle the button's selected state.
   toggleSelected: ( value ) ->
-    @selected value or not @selected()
+    @selected value ? not @selected()

@@ -7,11 +7,9 @@ class window.TextCondenser extends Control
   inherited:
     # Flip between two copies of text text: one normal, one condensed. 
     content: [
-      html: "<span/>"
-      ref: "normal"
+      html: "<span/>", ref: "normal"
     ,
-      html: "<span/>"
-      ref: "condensed"
+      html: "<span/>", ref: "condensed"
     ]
 
   # The font family to use for condensed text.
@@ -26,5 +24,5 @@ class window.TextCondenser extends Control
     @on "layout sizeChanged", => @layout()
 
   layout: Control.iterator ->
-    tooWide = @$normal().width() > @width()
+    tooWide = ( @$normal().width() > @width() )
     @applyClass "condensed", tooWide

@@ -42,7 +42,7 @@ class window.RadioButton extends LabeledInput
         if sibling instanceof RadioButton and sibling.autoName() and sibling.name()
           name = sibling.name() # Use sibling's name.
           break
-      if not name?
+      unless name?
         name = RadioButton.generateUniqueName() # Generate a name.
       @name name
 

@@ -6,7 +6,7 @@ class window.Repeater extends Control
 
   # The content which will be repeated in each instance.
   content: Control.property ( content ) ->
-    @_refreshContent @controls()
+    @_refreshContent()
 
   # The generated collection of controls.
   controls: Control.chain "children", "control"
@@ -18,12 +18,13 @@ class window.Repeater extends Control
   , 1 )
 
   initialize: ->
-    @_refresh()  unless @controls()?
+    unless @controls()?
+      @_refresh()
 
   # True if the Repeater should append "1", "2", "3", etc., after the
   # content of each instance.
   increment: Control.property.bool ->
-    @_refreshContent @controls()
+    @_refreshContent()
 
   # The class that will be repeated.
   repeatClass: Control.property.class ->
@@ -32,34 +33,23 @@ class window.Repeater extends Control
   _refresh: ->
     repeatClass = @repeatClass()
     count = @count()
-    if repeatClass and count > 0
-      controls = []
-      i = 0
-
-      while i < count
-        $control = repeatClass.create()
-        controls.push $control
-        i++
+    if repeatClass? and count > 0
+      controls = Control ( repeatClass.create() for i in [ 0 .. count - 1 ] )
       @_refreshContent controls
-    
-    # Use base .content() property since we've overridden it.
-    Control( this ).content controls
+      # Use base .content() property since we've overridden it.
+      Control( this ).content controls
 
   _refreshContent: ( controls ) ->
-    return  unless controls?
+    controls = controls ? @controls()
+    # TODO: if content is jQuery object, should clone elements. 
     content = @content()
     increment = @increment()
-    i = 0
-
-    while i < controls.length
-      $control = $( controls[i] ).control()
-      
-      # TODO: if content is jQuery object, should clone elements. 
-      instanceContent = undefined
-      if content and increment
-        instanceContent = content + " " + ( i + 1 )
+    for control, index in controls.segments()
+      instanceContent = if content and increment
+        content + " " + ( index + 1 )
       else if content
-        instanceContent = content
-      else instanceContent = i + 1  if increment
-      $control.content instanceContent  if instanceContent
-      i++
+        content
+      else if increment
+        index + 1
+      if instanceContent
+        control.content instanceContent

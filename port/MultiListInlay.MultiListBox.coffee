@@ -14,8 +14,8 @@ This is the multiple-selection variation of ListInlay.
 class window.MultiListInlay extends MultiListBox
 
   inherited:
-    itemClass: "CollapsibleWithHeadingButton"
     highlightSelection: "false"
+    itemClass: "CollapsibleWithHeadingButton"
 
   initialize: ->
     @mapFunction ( item ) ->
@@ -24,10 +24,10 @@ class window.MultiListInlay extends MultiListBox
         content: @content()
       else
         @heading( item.description ).content item.content
-        
-        # Let ListBox manage toggling instead of Collapsible
-        @toggleOnClick false  if this instanceof Collapsible
+        if this instanceof Collapsible
+          # Let ListBox manage toggling instead of Collapsible
+          @toggleOnClick false
 
   selectControl: ( control, select ) ->
-    @_super control, select
+    super control, select
     control.collapsed not select

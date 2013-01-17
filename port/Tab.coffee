@@ -6,11 +6,11 @@ class window.Tab extends Control
 
   # The content of the tab.
   content: ( value ) ->
-    result = super value
-    
-    # The parent (e.g., a Tabs) may want to know that the size
-    # of this element has changed.
-    @checkForSizeChange()  if value isnt undefined
+    result = super value  
+    if value isnt undefined
+      # The parent (e.g., a Tabs) may want to know that the size
+      # of this element has changed.
+      @checkForSizeChange()
     result
 
   # The description which should be rendered in the button for the tab.

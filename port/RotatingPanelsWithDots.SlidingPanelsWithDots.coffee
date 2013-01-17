@@ -17,7 +17,8 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
       index = @activeIndex()
       index = ( index + 1 ) % count
       @activeIndex index
-      @_queueRotation()  if index > 0
+      if index > 0
+        @_queueRotation()
 
   # Interval between rotation animations. This does not include the duration
   # of the sliding animation. The default value is 1000 (one second).
@@ -27,7 +28,7 @@ class window.RotatingPanelsWithDots extends SlidingPanelsWithDots
   stop: Control.iterator ->
     clearTimeout @_timeout()
     @_timeout null
-    this
+    @
 
   _queueRotation: ->
     rotationInterval = @rotationInterval()

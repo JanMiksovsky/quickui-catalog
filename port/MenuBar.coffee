@@ -30,18 +30,19 @@ class window.MenuBar extends Control
   content: ( content ) ->
     result = super content
     if content isnt undefined
-      
-      # Since we're managing our own overlay, we suppress the overlays
-      # on the individual menus in our content.
+      # Since we're managing our own overlay, we suppress the overlays on the
+      # individual menus in our content.
       popups = @find( ".PopupSource" ).control()
-      popups.overlayClass null  if popups
+      if popups
+        popups.overlayClass null
     result
 
   initialize: ->
     @on
       "closed canceled": ( event ) =>
-        # No longer any open popups.
-        @close()  unless @_openPopups()?
+        unless @_openPopups()?
+          # No longer any open popups.
+          @close()
       opened: ( event ) =>
         @open()
         # Close open popups other than the one which just opened.
@@ -50,10 +51,11 @@ class window.MenuBar extends Control
 
     @on "mouseenter", ".PopupSource", ( event ) =>
       if @opened()
-        # Riffing: Implicitly open the popup the user hovered into
-        # if it's not already open.
+        # Riffing: Implicitly open the popup the user hovered into if it's not
+        # already open.
         newMenu = $( event.target ).closest( ".PopupSource" ).control()
-        newMenu.open()  if newMenu and not newMenu.opened()
+        if newMenu and not newMenu.opened()
+          newMenu.open()
 
   # Returns true if any of the menu bar's menus are currently open.
   opened: Control.chain "applyClass/opened"
@@ -70,7 +72,8 @@ class window.MenuBar extends Control
     openMenus = @_openPopups()
     if openMenus
       openMenus = openMenus.not keepPopup
-      openMenus.close()  if openMenus.length > 0
+      if openMenus.length > 0
+        openMenus.close()
     this
 
   # Return the currently open popups.

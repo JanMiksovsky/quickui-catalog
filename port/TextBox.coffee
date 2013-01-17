@@ -9,21 +9,21 @@ class window.TextBox extends Control
 
   content: ( content ) ->
     result = super content
-
-    # Setting content programmatically generates a change event
-    # so that the UI can react accordingly.
-    @trigger "change"  if content isnt undefined
+    if content isnt undefined
+      # Setting content programmatically generates a change event
+      # so that the UI can react accordingly.
+      @trigger "change"
     result
 
   # True if the text box is disabled. 
   disabled: Control.chain "prop/disabled"
   initialize: ->
-    
-    # Explicitly stamp type="text" on the control if a type hasn't been
-    # set. Chrome reports the type as "text" even if no type has actually
-    # been set, but the code below will at least upgrade that implict type
-    # to an explicit type.
-    @type "text"  if @type() is "text"
+    if @type() is "text"
+      # Explicitly stamp type="text" on the control if a type hasn't been set.
+      # Chrome reports the type as "text" even if no type has actually been set,
+      # but the code below will at least upgrade that implict type to an
+      # explicit type.
+      @type "text"
 
   # The placeholder (hint text) shown in the text box if it's empty.
   placeholder: Control.chain "prop/placeholder"
