@@ -68,10 +68,10 @@ class window.List extends Control
       @_createControlsForItems itemsCopy
       @isDirty false
 
-  # Used to map an incoming list item to property setters on the control
-  # class indicated by itemClass. The map specifies a relationship between
-  # control property getter/setter functions and the item. This map
-  # can take several forms:
+  # Used to map an incoming list item to property setters on the control class
+  # indicated by itemClass. The map specifies a relationship between control
+  # property getter/setter functions and the item. This map can take several
+  # forms:
   #
   # 1. A simple string like "foo". This indicates that the item itself
   #    should be passed to the control property called foo().
@@ -97,9 +97,9 @@ class window.List extends Control
   # * Otherwise, the item is passed to and from the control's content()
   #   property.
   mapFunction: Control.property ->
-    # TODO: Before storing new mapFunction, use old one to extract items
-    # if the list is dirty. For now, if the mapFunction of a dirty list is
-    # updated, the unsaved changes are thrown away.
+    # TODO: Before storing new mapFunction, use old one to extract items if the
+    # list is dirty. For now, if the mapFunction of a dirty list is updated, the
+    # unsaved changes are thrown away.
     items = @_itemsCache()
     @items items # Force refresh.
 
@@ -112,9 +112,9 @@ class window.List extends Control
       # Remove our cached copy of the corresponding item.
       items.splice index, 1
 
-  # Apply a simple dictionary map to the given item. The map should contain
-  # a mapping of { itemProperty: controlProperty } entries. When invoked as
-  # a setter, this invokes
+  # Apply a simple dictionary map to the given item. The map should contain a
+  # mapping of { itemProperty: controlProperty } entries. When invoked as a
+  # setter, this invokes
   #    control.controlProperty( item.itemProperty )
   # When invokes as a getter, this returns a new object with keys of the form
   #    { itemProperty: control.controlProperty() }
@@ -210,8 +210,8 @@ class window.List extends Control
       # An explicit map function has been supplied; use that.
       mapFunction
     else
-      # An dictionary map has been supplied; return a function that
-      # lets it map item members -> control properties and vice versa.
+      # An dictionary map has been supplied; return a function that lets it map
+      # item members -> control properties and vice versa.
       ( item ) -> List._applyDictionaryMap.call @, mapFunction, item
   
   # A copy of the items the last time they were created or refreshed.
@@ -224,6 +224,5 @@ class window.List extends Control
     mapFunction.call $control, item
     @_setupControl $control
 
-  # This can be extended by subclasses who want to perform per-control
-  # set-up.
+  # This can be extended by subclasses who want to perform per-control set-up.
   _setupControl: ( $control ) ->

@@ -24,13 +24,13 @@ class window.Link extends Control
     if @href()
       @_checkIfCurrent()
     else      
-      # Set a placeholder href which will force the display of an
-      # underline, and use of a hand cursor.
+      # Set a placeholder href which will force the display of an underline, and
+      # use of a hand cursor.
       @href "javascript:"
 
-  # True if the link points to an area of the site (with sub-pages). If
-  # true, the link will be considered current if it points to any page within
-  # that area of the site. The default is false.
+  # True if the link points to an area of the site (with sub-pages). If true,
+  # the link will be considered current if it points to any page within that
+  # area of the site. The default is false.
   linksToArea: Control.property ->
     @_checkIfCurrent()
 

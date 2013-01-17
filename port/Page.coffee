@@ -11,13 +11,13 @@ class window.Page extends Control
   fill: Control.chain "applyClass/fill"
 
   initialize: ->
-    # Force a refresh of the page title. Subclasses may want to handle the
-    # title specially (e.g., to reflect it as a heading on the page), and
-    # this gives them a chance to do that.
+    # Force a refresh of the page title. Subclasses may want to handle the title
+    # specially (e.g., to reflect it as a heading on the page), and this gives
+    # them a chance to do that.
     @title @title()
 
-  # The title of the page. This will generally be shown in the browser's
-  # window title bar, etc.
+  # The title of the page. This will generally be shown in the browser's window
+  # title bar, etc.
   title: ( title ) ->
     if this[0] is document.body
       # This page is the document, mirror the document's title.
@@ -32,8 +32,8 @@ class window.Page extends Control
 
   # Start actively tracking changes in a page specified on the URL.
   # For a URL like www.example.com/index.html#page=Foo, load class Foo.
-  # If the page then navigates to www.example.com/index.html#page=Bar, this
-  # will load class Bar in situ, without forcing the browser to reload the page. 
+  # If the page then navigates to www.example.com/index.html#page=Bar, this will
+  # load class Bar in situ, without forcing the browser to reload the page.
   @trackClassFromUrl: ( defaultPageClass, target ) ->
     # Watch for changes in the URL after the hash.
     $control = Control( target ? "body" )
@@ -48,7 +48,8 @@ class window.Page extends Control
     Page.urlParameters()
 
   # Return the URL parameters (after "&" and/or "#") as a JavaScript object.
-  # E.g., if the URL looks like http://www.example.com/index.html?foo=hello&bar=world
+  # E.g., if the URL looks like
+  # http://www.example.com/index.html?foo=hello&bar=world
   # then this returns the object
   #
   #    { foo: "hello", bar: "world" }

@@ -67,9 +67,9 @@ class window.BasicButton extends Control
   isMouseOverControl: Control.property.bool( null, false )
 
   # True if the button's "quiet" style should be applied. The generic quiet
-  # styling shows no background or border effects in the button's normal
-  # state -- only when the user is interacting with the button -- so that
-  # the button can more easily blend in as a component of other controls.
+  # styling shows no background or border effects in the button's normal state
+  # -- only when the user is interacting with the button -- so that the button
+  # can more easily blend in as a component of other controls.
   quiet: Control.chain "applyClass/quiet"
 
   @state:

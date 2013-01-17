@@ -21,8 +21,8 @@ class window.Menu extends PopupSource
         event.stopPropagation()
 
   open: ->
-    # Ensure the little shield matches the current width of the content
-    # before opening the menu.
+    # Ensure the little shield matches the current width of the content before
+    # opening the menu.
     @_updateShield()
     super()
 

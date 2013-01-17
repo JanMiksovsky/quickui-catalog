@@ -17,10 +17,9 @@ class window.HintTextBox extends Control
     @_showHintIfEmpty()
   )
 
-  # The "hint" shown within the text box that suggests what the user should
-  # type there. This hint is hidden if: the text box has content, the
-  # text box has just acquired the keyboard focus, or if the user clicks in
-  # the text box. 
+  # The "hint" shown within the text box that suggests what the user should type
+  # there. This hint is hidden if: the text box has content, the text box has
+  # just acquired the keyboard focus, or if the user clicks in the text box.
   hint: Control.chain "$HintTextBox_hint", "content"
   initialize: ->
     @on
@@ -39,12 +38,12 @@ class window.HintTextBox extends Control
 
   # The keydown event comes before the browser has processed it, so we can't
   # tell at this point for sure what the final text is. However, we can
-  # speculate as to whether the result of the key will add or remove text.
-  # Most keys will add a character to the text box, in which case we'll end
-  # up removing the hint; rather than waiting for keyup to check whether the
-  # text is non-empty, we'll hide the hint now. In special cases, we defer
-  # hiding the hint until the keyup event, when we can check the final text
-  # that includes the result of the key.
+  # speculate as to whether the result of the key will add or remove text. Most
+  # keys will add a character to the text box, in which case we'll end up
+  # removing the hint; rather than waiting for keyup to check whether the text
+  # is non-empty, we'll hide the hint now. In special cases, we defer hiding the
+  # hint until the keyup event, when we can check the final text that includes
+  # the result of the key.
   _handleKeydown: ( event ) ->
     keysOfUnknownEffect = [
       8   # Backspace
@@ -80,8 +79,8 @@ class window.HintTextBox extends Control
     @$HintTextBox_hint().hide()
     @$HintTextBox_textBox().focus()
 
-  # This routine is a more careful check to see whether we should show the
-  # hint or not. We can call this on blur or keyup (when, unlike keydown,
-  # the final state of the text is known).
+  # This routine is a more careful check to see whether we should show the hint
+  # or not. We can call this on blur or keyup (when, unlike keydown, the final
+  # state of the text is known).
   _showHintIfEmpty: ->
     @$HintTextBox_hint().toggle ( @content().length == 0 )

@@ -8,22 +8,22 @@ class window.ListBox extends List
   inherited:
     generic: "true"
 
-  # True if clicking on the list background (if there aren't enough
-  # items to fill the list's available space) will deselect the
-  # currently-selected item. Default is true.
+  # True if clicking on the list background (if there aren't enough items to
+  # fill the list's available space) will deselect the currently-selected item.
+  # Default is true.
   deselectOnBackgroundClick: Control.property.bool( null, true )
 
-  # True if the operating system-dependent "highlight" CSS classes should
-  # be applied to a generic selected item. Default is true.
+  # True if the operating system-dependent "highlight" CSS classes should be
+  # applied to a generic selected item. Default is true.
   highlightSelection: Control.property.bool ( highlightSelection ) ->
     @toggleClass "highlightSelection", highlightSelection
 
   initialize: ->
 
     # Try to convince the browser that the list is focusable, but without
-    # forcing it into the tab order (as a positive tabindex would do).
-    # Firefox, Chrome, and IE seem to handle this as desired if tabindex
-    # is set to a negative number.
+    # forcing it into the tab order (as a positive tabindex would do). Firefox,
+    # Chrome, and IE seem to handle this as desired if tabindex is set to a
+    # negative number.
     @attr "tabindex", "-1"
     @on
       click: ( event ) =>
@@ -119,10 +119,10 @@ class window.ListBox extends List
   _getControlContainingElement: ( element ) ->
     $( element ).closest( @controls() ).control()
 
-  # Return the control that spans the given y position, or -1 if not found.
-  # If downward is true, move down the list of controls to find the
-  # first control found at the given y position; if downward is false,
-  # move up the list of controls to find the last control at that position. 
+  # Return the control that spans the given y position, or -1 if not found. If
+  # downward is true, move down the list of controls to find the first control
+  # found at the given y position; if downward is false, move up the list of
+  # controls to find the last control at that position.
   _getControlAtY: ( y, downward ) ->
     controls = @controls()
     start = if downward then 0 else controls.length - 1
@@ -228,9 +228,9 @@ class window.ListBox extends List
   _selectFirstControl: ->
     if @controls().length > 0
       @selectedIndex 0
-      # The list will have already scrolled the first control into view,
-      # but if the list has top padding, the scroll won't be all the way
-      # at the top. So, as a special case, force it to the top.
+      # The list will have already scrolled the first control into view, but if
+      # the list has top padding, the scroll won't be all the way at the top.
+      # So, as a special case, force it to the top.
       @scrollTop 0
       true
     else

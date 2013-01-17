@@ -25,8 +25,8 @@ class window.MenuBar extends Control
     @_closeOpenPopups().opened false
 
   # The menus in the menu bar. These are typically PopupSource controls,
-  # including subclasses like Menu. Other types of controls can be
-  # safely placed in the content as well.
+  # including subclasses like Menu. Other types of controls can be safely placed
+  # in the content as well.
   content: ( content ) ->
     result = super content
     if content isnt undefined

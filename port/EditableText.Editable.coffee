@@ -27,8 +27,8 @@ class window.EditableText extends Editable
       if @editOnClick() and not @editing()
         @editing true
 
-  # True if pressing the Enter key in edit mode saves changes and switches
-  # back to read mode. The default is true.
+  # True if pressing the Enter key in edit mode saves changes and switches back
+  # to read mode. The default is true.
   saveOnEnter: Control.property( null, true )
   
   _createEditControl: ->

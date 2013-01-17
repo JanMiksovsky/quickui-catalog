@@ -18,9 +18,8 @@ class window.Collapsible extends Control
   # The speed of the expand/collapse animation, in milliseconds.
   duration: Control.property null, "fast"
 
-  # Get or set the control's collapsed state.
-  # When called as a setter, a true value collapsed the control;
-  # a false value expands the control.
+  # Get or set the control's collapsed state. When called as a setter, a true
+  # value collapsed the control; a false value expands the control.
   collapsed: Control.iterator ( value ) ->
     if value is undefined
       # Getter
@@ -58,9 +57,8 @@ class window.Collapsible extends Control
   toggleCollapse: ->
     @collapsed not @collapsed()
 
-  # True if the control should toggle its state when the user clicks in
-  # the heading. Default is true.
-  #	 
+  # True if the control should toggle its state when the user clicks in the
+  # heading. Default is true.
   toggleOnClick: Control.property.bool( null, true )
 
   _collapsed: Control.property.bool( null, false )

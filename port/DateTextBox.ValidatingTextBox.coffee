@@ -46,14 +46,13 @@ class window.DateTextBox extends ValidatingTextBox
       valid = valid and !!date
     valid
 
-  # Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine
-  # some abbreviated date patterns.
+  # Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine some
+  # abbreviated date patterns.
   # 
-  # The first abbreviated pattern uses a short two-digit year ("M/d/yy")
-  # instead of a full four-digit year. The second pattern omits the year
-  # ("M/d"). These patterns are determined by looking for a full year
-  # placeholder ( "yyyy" ) and the culture's date separator ("/") immediately
-  # before or after the year.
+  # The first abbreviated pattern uses a short two-digit year ("M/d/yy") instead
+  # of a full four-digit year. The second pattern omits the year ("M/d"). These
+  # patterns are determined by looking for a full year placeholder ( "yyyy" )
+  # and the culture's date separator ("/") immediately before or after the year.
   _abbreviatedDatePatterns: ( culture ) ->
     patterns = []
     calendar = culture.calendar
@@ -99,11 +98,11 @@ class window.DateTextBox extends ValidatingTextBox
 
   # Basic date parser.
   #
-  # Parses the given text as a date and return the result.
-  # Returns null if the text couldn't be parsed.
+  # Parses the given text as a date and return the result. Returns null if the
+  # text couldn't be parsed.
   # 
-  # This handles the formats supported by the standard Date.parse(),
-  # as well as handling a short year ("1/1/12") or missing year ("1/1").
+  # This handles the formats supported by the standard Date.parse(), as well as
+  # handling a short year ("1/1/12") or missing year ("1/1").
   _parseDateDefault: ( text ) ->
     if text is ""
       return null
@@ -132,8 +131,8 @@ class window.DateTextBox extends ValidatingTextBox
 
   _previousDate: Control.property.date()
 
-  # If the culture's been set, we amend the list of support date patterns
-  # to include some abbreviated patterns.
+  # If the culture's been set, we amend the list of support date patterns to
+  # include some abbreviated patterns.
   _updateDatePatterns: ->
     datePatterns = null
     culture = @culture()

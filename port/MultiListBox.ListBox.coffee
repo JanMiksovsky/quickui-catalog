@@ -36,8 +36,8 @@ class window.MultiListBox extends ListBox
       selectedControls = ( controls[ index ] for index in selectedIndices when index >= 0 )
       @selectedControls selectedControls
 
-  # Toggle the selected state of the given control (if toggle is undefined),
-  # or set the selected state to the indicated toggle value.
+  # Toggle the selected state of the given control (if toggle is undefined), or
+  # set the selected state to the indicated toggle value.
   toggleControl: ( control, toggle ) ->
     toggle = toggle ? not control.hasClass "selected"
     @selectControl control, toggle

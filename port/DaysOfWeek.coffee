@@ -59,8 +59,8 @@ class window.DaysOfWeek extends Control
       "Sa"
     ]
 
-  # The format used to show the names of the day. These are defined by
-  # the Globalize library:
+  # The format used to show the names of the day. These are defined by the
+  # Globalize library:
   # 
   #  "names": the full name, e.g. "Sunday".
   #  "namesAbbr": an abbreviated name, e.g., "Sun".

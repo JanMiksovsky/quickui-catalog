@@ -21,8 +21,8 @@ class window.Repeater extends Control
     unless @controls()?
       @_refresh()
 
-  # True if the Repeater should append "1", "2", "3", etc., after the
-  # content of each instance.
+  # True if the Repeater should append "1", "2", "3", etc., after the content of
+  # each instance.
   increment: Control.property.bool ->
     @_refreshContent()
 

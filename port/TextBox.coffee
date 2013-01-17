@@ -10,8 +10,8 @@ class window.TextBox extends Control
   content: ( content ) ->
     result = super content
     if content isnt undefined
-      # Setting content programmatically generates a change event
-      # so that the UI can react accordingly.
+      # Setting content programmatically generates a change event so that the UI
+      # can react accordingly.
       @trigger "change"
     result
 

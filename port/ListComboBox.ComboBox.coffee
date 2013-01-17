@@ -81,13 +81,13 @@ class window.ListComboBox extends ComboBox
     # See notes at _contentKeydown.
     @inputElement().keydown ( event ) => @_contentKeydown event
 
-  # Handle a keydown event. Keydown gives the best AutoComplete performance
-  # and behavior: among other things, the AutoComplete happens as soon as
-  # the user begins typing. However, using keydown creates a problem that
-  # the input control's content won't actually reflect the effects key the
-  # user just pressed down. So we set a timeout to give the keydown event a
-  # chance to bubble up and do its work, then do our AutoComplete work
-  # against the resulting text.
+  # Handle a keydown event. Keydown gives the best AutoComplete performance and
+  # behavior: among other things, the AutoComplete happens as soon as the user
+  # begins typing. However, using keydown creates a problem that the input
+  # control's content won't actually reflect the effects key the user just
+  # pressed down. So we set a timeout to give the keydown event a chance to
+  # bubble up and do its work, then do our AutoComplete work against the
+  # resulting text.
   _contentKeydown: ( event ) ->
 
     handled = false
@@ -98,8 +98,8 @@ class window.ListComboBox extends ComboBox
       40 # Down
     ]
    
-    # Do AutoComplete on Space, or characters from zero (0) and up,
-    # ignoring any combinations that involve Alt or Ctrl.
+    # Do AutoComplete on Space, or characters from zero (0) and up, ignoring any
+    # combinations that involve Alt or Ctrl.
     if ( event.which == 32 or event.which >= 48 ) and \
      not ( event.altKey or event.ctrlKey or event.metaKey )
       @_setTimeout => @_autoComplete()
@@ -156,12 +156,11 @@ class window.ListComboBox extends ComboBox
 
   _timeout: Control.property()
 
-  # Extract a copy of all the items so we can match against them when
-  # the user types. We get the contents from the list's controls, rather
-  # than from the list's items() property, since the items could be
-  # arbitrary JavaScript objects. Once the list's mapFunction has mapped
-  # those objects into the controls, the controls' content should best
-  # reflect the text to map against. 
+  # Extract a copy of all the items so we can match against them when the user
+  # types. We get the contents from the list's controls, rather than from the
+  # list's items() property, since the items could be arbitrary JavaScript
+  # objects. Once the list's mapFunction has mapped those objects into the
+  # controls, the controls' content should best reflect the text to map against.
   _updateItemContents: ->
     controls = @$list().controls()
     itemContents = ( control.content() for control in controls.segments() )

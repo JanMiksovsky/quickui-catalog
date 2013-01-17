@@ -71,7 +71,7 @@ class window.Tabs extends Control
       @selectedTabIndex 0
 
   # True if a tab should be selected on click; false if the showing of the
-  # clicked tab will be handled separately. 
+  # clicked tab will be handled separately.
   selectTabOnClick: Control.property.bool( null, true )
 
   # The child currently shown as the selected tab.

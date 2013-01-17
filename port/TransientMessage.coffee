@@ -14,9 +14,9 @@ class window.TransientMessage extends Control
 
   # The time before the message begins to fade out.
   # 
-  # If undefined (the default value), the duration will be calculated from
-  # the length of the message. If negative, the message will not
-  # automatically be closed, but can be closed by invoking close().
+  # If undefined (the default value), the duration will be calculated from the
+  # length of the message. If negative, the message will not automatically be
+  # closed, but can be closed by invoking close().
   duration: Control.property()
   
   initialize: ->
@@ -37,14 +37,12 @@ class window.TransientMessage extends Control
     @positionMessage().fadeIn() # TODO: Investigate why this doesn't actually fade in.
     this
 
-  # Position the message. By default, this is center-aligned at the top
-  # of the page.
+  # Position the message. By default, this is center-aligned at the top of the
+  # page.
   positionMessage: ->
     @css left: ( $( window ).width() - @outerWidth() ) / 2
 
-  #
   # Show the given content for the indicated (optional) duration.
-  #     
   @showMessage: ( content, duration ) ->
     transientMessage = TransientMessage.create()
     if content

@@ -14,8 +14,8 @@ class window.FlickrInterestingDay extends CalendarDay
     ]
     generic: "false"
 
-  # True if the control should automatically load the photo when the date
-  # is set. Default is false.
+  # True if the control should automatically load the photo when the date is
+  # set. Default is false.
   autoLoad: Control.property.bool ( autoLoad ) ->
     if autoLoad and not @image()?
       @loadPhoto()
@@ -52,8 +52,8 @@ class window.FlickrInterestingDay extends CalendarDay
 
   @getFlickrPhotos: ( params, callback ) ->
     baseUrl = "http://api.flickr.com/services/rest/"
-    # Note: JSONP in jQuery usually calls for callback=?, but the Flickr
-    # API wants jsoncallback=?. Thankfully, jQuery supports that.
+    # Note: JSONP in jQuery usually calls for callback=?, but the Flickr API
+    # wants jsoncallback=?. Thankfully, jQuery supports that.
     url = baseUrl + "?api_key=" + @_flickrApiKey + @_formatUrlParams( params ) + "&format=json" + "&jsoncallback=?"
     $.getJSON( url ).success ( data ) =>
       if data and data.photos
@@ -78,8 +78,8 @@ class window.FlickrInterestingDay extends CalendarDay
     # Flickr only has a photo for dates entirely in the past (not for today).
     if date and date < CalendarDay.today()
       FlickrInterestingDay.getInterestingPhotoForDate date, ( photo ) =>
-        # Double-check we got a photo, and also check that the date
-        # hasn't been changed since the photo was requested.
+        # Double-check we got a photo, and also check that the date hasn't been
+        # changed since the photo was requested.
         if photo and date is @date()
           @image photo.src
       # Clicking the day navigates to list of the day's interesting photos.
@@ -106,8 +106,8 @@ class window.FlickrInterestingDay extends CalendarDay
     day = date.getDate()
     year + "-" + ( if month < 10 then "0" else "" ) + month + "-" + ( if day < 10 then "0" else "" ) + day
 
-  # Convert the given params dictionary into a string that can be
-  # passed on a URL.
+  # Convert the given params dictionary into a string that can be passed on a
+  # URL.
   @_formatUrlParams: ( params ) ->
     formattedParams = ( "&#{key}=#{value}" for key, value of params )
     formattedParams.join ""

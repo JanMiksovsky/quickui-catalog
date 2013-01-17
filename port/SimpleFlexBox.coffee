@@ -23,11 +23,10 @@ class window.SimpleFlexBox extends Control
   # The content of the main center panel.
   content: Control.chain "$SimpleFlexBox_content", "content"
 
-  # Set this to true if you have styled the control to constrain its
-  # height, e.g., with absolute positioning or a hard pixel height. 
-  # (Unfortunately, there doesn't seem to be a way to programmatically
-  # determine whether the control has had its height styled.) The default
-  # is false.
+  # Set this to true if you have styled the control to constrain its height,
+  # e.g., with absolute positioning or a hard pixel height.  (Unfortunately,
+  # there doesn't seem to be a way to programmatically determine whether the
+  # control has had its height styled.) The default is false.
   constrainHeight: Control.chain( "applyClass/constrainHeight", ->
     unless @_checkFlexBox()
       @trigger "layout"
@@ -44,10 +43,10 @@ class window.SimpleFlexBox extends Control
     @_checkFlexBox()
   , "horizontal" )
 
-  # See if we can use the CSS flexible layout module (preferred), whether
-  # we can use other flexbox-less styling for layout, or whether we need to
-  # do manual layout. For the latter, start a layout event handler.
-  # Return true if we're using flexbox, false if not.  
+  # See if we can use the CSS flexible layout module (preferred), whether we can
+  # use other flexbox-less styling for layout, or whether we need to do manual
+  # layout. For the latter, start a layout event handler. Return true if we're
+  # using flexbox, false if not.
   _checkFlexBox: ->
 
     unless @inDocument()
@@ -58,18 +57,16 @@ class window.SimpleFlexBox extends Control
     constrainHeight = @constrainHeight()
 
     # WebKit has a bug preventing use of overflow: auto in combination with
-    # -webkit-box-orient: horizontal, which will often come up when
-    # constraining height.
-    # See http://code.google.com/p/chromium/issues/detail?id=118004.
-    # Until that gets fixed, we disable flexbox support on WebKit for
-    # horizontal orientation and constrained height.
+    # -webkit-box-orient: horizontal, which will often come up when constraining
+    # height. See http://code.google.com/p/chromium/issues/detail?id=118004.
+    # Until that gets fixed, we disable flexbox support on WebKit for horizontal
+    # orientation and constrained height.
     if Control.browser.webkit and not @_vertical() and constrainHeight
       flexBox = false
 
-    # We have to set the noFlexBox class before the layout event handler
-    # gets bound; binding forces an initial layout handler call, which will
-    # need the noFlexBox class to be applied in order to calculate the
-    # layout properly.
+    # We have to set the noFlexBox class before the layout event handler gets
+    # bound; binding forces an initial layout handler call, which will need the
+    # noFlexBox class to be applied in order to calculate the layout properly.
     @_usingFlexBox flexBox
     @_childrenCheckSize()
     
@@ -84,8 +81,8 @@ class window.SimpleFlexBox extends Control
       @_handlingLayout false
     flexBox
 
-  # Simulate flex behavior for the main content panel when the height
-  # is constrained.
+  # Simulate flex behavior for the main content panel when the height is
+  # constrained.
   _layout: ->
     vertical = @_vertical()
     measureFn = if vertical then $::outerHeight else $::outerWidth
@@ -100,8 +97,8 @@ class window.SimpleFlexBox extends Control
     @$SimpleFlexBox_content().css css
     @_childrenCheckSize()
 
-  # If the layout of the control changes in any way, the subcontrols
-  # contained in the panels should check to see if they've changed size.
+  # If the layout of the control changes in any way, the subcontrols contained
+  # in the panels should check to see if they've changed size.
   _childrenCheckSize: ->
     @children().children().control()?.checkForSizeChange()
 
@@ -129,8 +126,8 @@ class window.SimpleFlexBox extends Control
     ]
     $.inArray( $element.css( "display" ), flexBoxVariants ) >= 0
 
-  # True if the control is currently using CSS flexible box layout, and
-  # false if using manual layout.
+  # True if the control is currently using CSS flexible box layout, and false if
+  # using manual layout.
   _usingFlexBox: ( usingFlexBox ) ->
     if usingFlexBox is undefined
       not @hasClass "noFlexBox"

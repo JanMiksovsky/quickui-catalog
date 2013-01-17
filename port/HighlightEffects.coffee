@@ -26,8 +26,8 @@ class window.HighlightEffects extends Control
 
   # The speed with which animations are applied.
   # 
-  # This uses a faster default than $.animate(), since hover animations
-  # should generally respond quickly.
+  # This uses a faster default than $.animate(), since hover animations should
+  # generally respond quickly.
   # 
   # Set this to 0 to have effects applied instantaneously.
   duration: Control.property null, 100
@@ -45,18 +45,18 @@ class window.HighlightEffects extends Control
       @_originalState @_getCurrentState()
       @_recalc()
 
-  # Get the current values of all CSS attributes which will be overwritten
-  # by the effects. This snapshot is used on hover out to restore the
-  # original state.
+  # Get the current values of all CSS attributes which will be overwritten by
+  # the effects. This snapshot is used on hover out to restore the original
+  # state.
   _getCurrentState: ->
     currentState = {}
     $content = @$HighlightEffects_content()
     for key of @effects()
       currentState[ key ] = switch key
-        # When border properties are applied, they may get split up
-        # into border-<side> properties, leaving the overall border
-        # properties empty. So, use the properties of one of the
-        # border sides as a proxy for the overall border properties.
+        # When border properties are applied, they may get split up into
+        # border-<side> properties, leaving the overall border properties empty.
+        # So, use the properties of one of the border sides as a proxy for the
+        # overall border properties.
         when "border-color"
           $content.css "border-top-color"
         when "border-width"
@@ -92,9 +92,9 @@ class window.HighlightEffects extends Control
           position: "inherit"
           "z-index": "inherit"
 
-  # Update the control's size to match the contents. This lets us
-  # apply absolute positioning to the contents on hover while still
-  # preserving room for the content in the normal document flow.
+  # Update the control's size to match the contents. This lets us apply absolute
+  # positioning to the contents on hover while still preserving room for the
+  # content in the normal document flow.
   _recalc: ->
     @height @$HighlightEffects_content().outerHeight()
     @width @$HighlightEffects_content().outerWidth()

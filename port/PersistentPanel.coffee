@@ -59,9 +59,9 @@ class window.PersistentPanel extends Control
   _adjustSizes: ->
     # Make the panel the same width as the container.
     @$PersistentPanel_content().width @width()
-    # Make the container the same height as the panel, so that when
-    # the panel pops out in fixed mode, the container can continue
-    # to occupy the same amount of vertical space.
+    # Make the container the same height as the panel, so that when the panel
+    # pops out in fixed mode, the container can continue to occupy the same
+    # amount of vertical space.
     @height @$PersistentPanel_content().outerHeight true
 
   # Determine which parent of the control scrolls vertically.
@@ -81,9 +81,9 @@ class window.PersistentPanel extends Control
         break
     scrollingParent
 
-  # Do the real work of the control: determine whether the panel contents
-  # should flow with the document, or pop out into a docked position at the
-  # top or bottom of the viewport.
+  # Do the real work of the control: determine whether the panel contents should
+  # flow with the document, or pop out into a docked position at the top or
+  # bottom of the viewport.
   _recalc: ->
     scrollingParent = @scrollingParent()
     return unless scrollingParent?

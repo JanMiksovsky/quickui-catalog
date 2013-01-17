@@ -8,8 +8,8 @@ class window.Tab extends Control
   content: ( value ) ->
     result = super value  
     if value isnt undefined
-      # The parent (e.g., a Tabs) may want to know that the size
-      # of this element has changed.
+      # The parent (e.g., a Tabs) may want to know that the size of this element
+      # has changed.
       @checkForSizeChange()
     result
 

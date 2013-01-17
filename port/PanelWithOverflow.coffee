@@ -24,8 +24,8 @@ class window.PanelWithOverflow extends Control
     @checkForSizeChange()
   )
 
-  # The indicator used to show when contents have overflowed
-  # the control's bounds.
+  # The indicator used to show when contents have overflowed the control's
+  # bounds.
   indicator: Control.chain( "$menuButton", "indicator", ->
     @checkForSizeChange()
   )

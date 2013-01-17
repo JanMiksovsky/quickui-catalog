@@ -7,8 +7,8 @@ class window.Sequence extends Control
   inherited:
     generic: "true"
 
-  # The currently visible element. The getter returns the element as an
-  # instance of the appropriate control class.
+  # The currently visible element. The getter returns the element as an instance
+  # of the appropriate control class.
   activeElement: Control.iterator ( activeElement ) ->
     if activeElement is undefined
       @elements().filter( ".active" ).eq( 0 ).cast jQuery

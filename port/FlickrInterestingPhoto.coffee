@@ -9,8 +9,8 @@ Flickr's time zone, and Flickr doesn't make photos available for the current day
 
 class window.FlickrInterestingPhoto extends Control
 
-  # Your Flickr API key. By default, this uses the QuickUI account API key.
-  # Set this to your own key before the first call to this control.
+  # Your Flickr API key. By default, this uses the QuickUI account API key. Set
+  # this to your own key before the first call to this control.
   @apiKey: "c3685bc8d8cefcc1d25949e4c528cbb0"
 
   tag: "img"
@@ -39,9 +39,9 @@ class window.FlickrInterestingPhoto extends Control
     if not photo? or photo.length == 0
       @reload()
 
-  # Return a (somewhat) random photo from the Interestingness collection.
-  # The set of photos are obtained only once per page; once the set is
-  # exhausted, subsequent calls will cycle through the set. 
+  # Return a (somewhat) random photo from the Interestingness collection. The
+  # set of photos are obtained only once per page; once the set is exhausted,
+  # subsequent calls will cycle through the set.
   @getRandomPhoto: ( callback, size ) ->
     @getFlickrInterestingPhotos().done ( flickrPhotos ) =>
       @_counter = if @_counter >= 0
@@ -116,8 +116,8 @@ class window.FlickrInterestingPhoto extends Control
     day = date.getDate()
     year + "-" + ( if month < 10 then "0" else "" ) + month + "-" + ( if day < 10 then "0" else "" ) + day
   
-  # Convert the given params dictionary into a string that can be
-  # passed on a URL.
+  # Convert the given params dictionary into a string that can be passed on a
+  # URL.
   @_formatUrlParams: ( params ) ->
     formattedParams = ( "&#{key}=#{value}" for key, value of params )
     formattedParams.join ""

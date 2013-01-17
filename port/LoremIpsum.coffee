@@ -6,17 +6,17 @@ class window.LoremIpsum extends Control
 
   initialize: ->
     unless LoremIpsum._usedLorem
-      # This is the first LoremIpsum control instance, so it gets
-      # the special lead sentence by default.
+      # This is the first LoremIpsum control instance, so it gets the special
+      # lead sentence by default.
       @lorem true
       LoremIpsum._usedLorem = true
     if @content()?.length == 0
       @_refresh()
 
-  # True if the first sentence should definitely be (or not be)
-  # the standard "Lorem ipsum dolor sit amet..." If this is undefined,
-  # the first instance of this control class will start with this sentence;
-  # subsequent instances won't.
+  # True if the first sentence should definitely be (or not be) the standard
+  # "Lorem ipsum dolor sit amet..." If this is undefined, the first instance of
+  # this control class will start with this sentence; subsequent instances
+  # won't.
   lorem: Control.property.bool ->
     @_refresh()
 

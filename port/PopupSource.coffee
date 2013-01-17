@@ -41,9 +41,9 @@ class window.PopupSource extends Control
   # it. Default is true.
   closeOnInsideClick: Control.chain "$PopupSource_popup", "closeOnInsideClick"
 
-  # The element(s) with which the popup will be associated. By default,
-  # clicking in the content will open the popup, and the popup will be
-  # positioned with respect to this content.
+  # The element(s) with which the popup will be associated. By default, clicking
+  # in the content will open the popup, and the popup will be positioned with
+  # respect to this content.
   content: Control.chain "$PopupSource_content", "content"
 
   # The class of the content portion.

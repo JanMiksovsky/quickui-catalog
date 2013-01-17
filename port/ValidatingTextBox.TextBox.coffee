@@ -40,9 +40,9 @@ class window.ValidatingTextBox extends TextBox
   required: Control.property.bool()
 
   # Returns true if the control's contents are valid.
-  # The default implementation simply looks as the required() property and,
-  # if true, ensures the content is non-empty.
-  # Subclasses can override this to validate their contents. E.g.:
+  # The default implementation simply looks as the required() property and, if
+  # true, ensures the content is non-empty. Subclasses can override this to
+  # validate their contents. E.g.:
   # 
   #      valid: function() {
   #          var valid = this._super();
@@ -58,10 +58,10 @@ class window.ValidatingTextBox extends TextBox
 
   # Check to see if the control's contents are valid.
   # 
-  # If the strict parameter is true, apply the invalid state if the contents
-  # are invalid. If the strict parameter is false, then the control can move
-  # out of the invalid state (if the contents are now valid), but won't move
-  # into the invalid state (even if the contents are actually invalid).
+  # If the strict parameter is true, apply the invalid state if the contents are
+  # invalid. If the strict parameter is false, then the control can move out of
+  # the invalid state (if the contents are now valid), but won't move into the
+  # invalid state (even if the contents are actually invalid).
   validate: Control.iterator ( strict ) ->
     valid = @valid()
     if strict or @invalid()
