@@ -41,9 +41,9 @@ class window.DateTextBox extends ValidatingTextBox
     content = @content()
     date = @_parseDate content
     @date date
-    if content and content.length > 0
+    if content?.length > 0
       # If a date is supplied, it has to be valid.
-      valid = valid and !!date
+      valid = valid and date?
     valid
 
   # Use a culture's "short date" pattern (e.g., "M/d/yyyy") to determine some
@@ -124,9 +124,12 @@ class window.DateTextBox extends ValidatingTextBox
 
   _refresh: ->
     date = @date()
-    newContent = if date? then @_formatDate( date ) else ""
-    if @content() isnt newContent
-      @content newContent
+    if date?
+      # The user entered a valid date; show it in its canonical formatted form.
+      formattedDate = @_formatDate date
+      unless @content() == formattedDate
+        # Prefer the canonical form over what the user typed.
+        @content formattedDate
     @
 
   _previousDate: Control.property.date()
