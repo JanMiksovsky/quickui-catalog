@@ -62,9 +62,13 @@ module.exports = function(grunt) {
                 ],
                 dest: "quickui.catalog.css"
             },
-            demos: {
+            demoJs: {
                 src: [ "docs/*/*.js" ],
                 dest: "docs/demos.js"
+            },
+            demoCss: {
+                src: [ "docs/*/*.css" ],
+                dest: "docs/demos.css"
             }
         },
         less: {

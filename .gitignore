@@ -6,9 +6,8 @@ build
 controls/controls.js
 controls/controls.css
 controlDocumentation.js
+docs/demos.css
 docs/demos.js
-docs/docs.js
-docs/docs.css
 markup/markup.js
 markup/markup.css
 node_modules
