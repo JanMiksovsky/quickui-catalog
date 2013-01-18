@@ -1,8 +1,0 @@
-<Control className="BasicButtonDemo">
-
-<content>
-    <BasicButton>OK</BasicButton>
-    <BasicButton>Cancel</BasicButton>
-</content>
-
-</Control>

@@ -1,7 +1,0 @@
-<Control className="FlickrInterestingDayDemo">
-
-<content>
-    <FlickrInterestingDay autoLoad="true"/>
-</content>
-
-</Control>

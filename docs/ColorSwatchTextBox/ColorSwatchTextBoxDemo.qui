@@ -1,7 +1,0 @@
-<Control className="ColorSwatchTextBoxDemo">
-
-<content>
-    <ColorSwatchTextBox content="LightSeaGreen"/>
-</content>
-
-</Control>

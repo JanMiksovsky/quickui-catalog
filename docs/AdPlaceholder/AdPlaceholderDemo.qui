@@ -1,7 +1,0 @@
-<Control className="AdPlaceholderDemo">
-
-<content>
-    <AdPlaceholder dimensions="Button 2"/>
-</content>
-
-</Control>

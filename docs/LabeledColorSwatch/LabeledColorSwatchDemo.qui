@@ -1,7 +1,0 @@
-<Control className="LabeledColorSwatchDemo">
-
-<content>
-    <LabeledColorSwatch>LightSeaGreen</LabeledColorSwatch>
-</content>
-
-</Control>

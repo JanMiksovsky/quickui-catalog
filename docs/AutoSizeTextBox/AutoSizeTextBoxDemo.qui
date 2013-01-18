@@ -1,8 +1,0 @@
-<Control className="AutoSizeTextBoxDemo">
-
-<content>
-    <div>Type as much text as you want:</div>
-    <AutoSizeTextBox minimumLines="2"/>
-</content>
-
-</Control>
