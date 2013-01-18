@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         coffee: {
             controls: {
                 files: {
-                    "coffee/coffee.js": sortDependencies.sortFiles( "coffee/*.coffee" )
+                    "quickui.catalog.js": sortDependencies.sortFiles( "controls/*.coffee" )
                 }
             },
             test: {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
         less: {
             controls: {
                 files: {
-                    "coffee/coffee.css": sortDependencies.sortFiles( "coffee/*.less" )
+                    "quickui.catalog.css": sortDependencies.sortFiles( "controls/*.less" )
                 }
             }
         },
@@ -58,26 +58,10 @@ module.exports = function(grunt) {
                 path: "docs"
             }
         },
-        concat: {
-            js: {
-                src: [
-                    // "markup/markup.js",
-                    "coffee/coffee.js"
-                ],
-                dest: "quickui.catalog.js"
-            },
-            css: {
-                src: [
-                    // "markup/markup.css",
-                    "coffee/coffee.css"
-                ],
-                dest: "quickui.catalog.css"
-            }
-        },
         /* quidoc CoffeeScript tool needs to be built via coffee task */
         quidoc: {
             controls: {
-                src: [ "coffee" ],
+                src: [ "controls" ],
                 dest: "docs/controlDocumentation.js"
             }
         },
@@ -90,7 +74,7 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask( "default", "coffee less concat" );
+    grunt.registerTask( "default", "coffee less" );
 
     grunt.registerTask( "all", "default quidoc" );
     
