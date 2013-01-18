@@ -7,18 +7,18 @@ class window.LateralNavigator extends Control
   inherited:
     class: "center"
     content:
-      control: HorizontalPanels
+      control: "HorizontalPanels"
       ref: "panels"
       content:
         html: "div"
         ref: "LateralNavigator_content"
       left:
-        control: BasicButton
+        control: "BasicButton"
         ref: "LateralNavigator_previousButton"
         class: "navigatorButton quiet"
         content: "&#9664;"
       right:
-        control: BasicButton
+        control: "BasicButton"
         ref: "LateralNavigator_nextButton"
         class: "navigatorButton quiet"
         content: "&#9654;"

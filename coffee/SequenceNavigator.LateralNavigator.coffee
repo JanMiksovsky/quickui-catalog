@@ -9,7 +9,7 @@ class window.SequenceNavigator extends LateralNavigator
   )
 
   inherited:
-    contentClass: Modes
+    contentClass: "Modes"
 
   canGoNext: ->
     @$LateralNavigator_content().activeIndex() < @elements().length - 1

@@ -27,11 +27,6 @@ module.exports = function(grunt) {
                     "coffee/coffee.js": sortDependencies.sortFiles( "coffee/*.coffee" )
                 }
             },
-            port: {
-                files: {
-                    "port/port.js": sortDependencies.sortFiles( "port/*.coffee" )
-                }
-            },
             test: {
                 files: {
                     "test/unittests.js": "test/*.coffee"
@@ -53,11 +48,6 @@ module.exports = function(grunt) {
                 files: {
                     "coffee/coffee.css": sortDependencies.sortFiles( "coffee/*.less" )
                 }
-            },
-            port: {
-                files: {
-                    "port/port.css": sortDependencies.sortFiles( "port/*.less" )
-                }
             }
         },
         qb: {
@@ -72,7 +62,6 @@ module.exports = function(grunt) {
             js: {
                 src: [
                     // "markup/markup.js",
-                    "port/port.js",
                     "coffee/coffee.js"
                 ],
                 dest: "quickui.catalog.js"
@@ -80,7 +69,6 @@ module.exports = function(grunt) {
             css: {
                 src: [
                     // "markup/markup.css",
-                    "port/port.css",
                     "coffee/coffee.css"
                 ],
                 dest: "quickui.catalog.css"
@@ -89,7 +77,7 @@ module.exports = function(grunt) {
         /* quidoc CoffeeScript tool needs to be built via coffee task */
         quidoc: {
             controls: {
-                src: [ "coffee", "markup" ],
+                src: [ "coffee" ],
                 dest: "docs/controlDocumentation.js"
             }
         },

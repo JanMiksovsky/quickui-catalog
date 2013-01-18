@@ -6,7 +6,7 @@ class window.MonthAndYear extends Control
 
   inherited:
     content: [
-      { control: MonthName, ref: "monthName" }
+      { control: "MonthName", ref: "monthName" }
       " "
       { html: "span", ref: "year" }
     ]
