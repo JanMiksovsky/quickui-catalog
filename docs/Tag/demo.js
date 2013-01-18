@@ -1,4 +1,4 @@
-function demo() {
+function demoTag() {
 
 $demo.append(
     "Here's a reference to the ",

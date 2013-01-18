@@ -1,4 +1,4 @@
-function demo() {
+function demoPackedColumns() {
 
 // A block of random height
 var Block = Control.sub({

@@ -1,4 +1,4 @@
-function MonthName() {
+function demoMonthName() {
 
 $demo.append(
     MonthName.create()

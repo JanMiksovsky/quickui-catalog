@@ -1,4 +1,4 @@
-function demo() {
+function demoPersistentPanel() {
 
 $demo.append( "*** DEMO GOES HERE ***");
 

@@ -1,4 +1,4 @@
-function demo() {
+function demoRotatingPanelsWithDots() {
 
 // A sample of a given font.
 var FontSample = Control.sub({
