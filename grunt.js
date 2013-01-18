@@ -14,7 +14,6 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks( "grunt-contrib-coffee" );
     grunt.loadNpmTasks( "grunt-contrib-less" );
-    grunt.loadNpmTasks( "quickui-markup" );
     grunt.loadTasks( "grunt" );
 
     var sortDependencies = require( "sort-dependencies" );
@@ -76,14 +75,6 @@ module.exports = function(grunt) {
                 files: {
                     "controls/controls.css": sortDependencies.sortFiles( "controls/*.less" )
                 }
-            }
-        },
-        qb: {
-            controls: {
-                path: "markup"
-            },
-            docs: {
-                path: "docs"
             }
         },
         /* quidoc CoffeeScript tool needs to be built via coffee task */
