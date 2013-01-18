@@ -24,7 +24,10 @@ module.exports = function(grunt) {
         coffee: {
             controls: {
                 files: {
-                    "quickui.catalog.js": sortDependencies.sortFiles( "controls/*.coffee" )
+                    "controls/controls.js": sortDependencies.sortFiles( "controls/*.coffee" )
+                },
+                options: {
+                    bare: true
                 }
             },
             test: {
@@ -43,10 +46,27 @@ module.exports = function(grunt) {
                 }
             }
         },
+        concat: {
+            js: {
+                src: [
+                    "controls/intro.js",         // Start of function wrapper
+                    "controls/controls.js",
+                    "controls/outro.js"          // End of function wrapper.
+                ],
+                dest: "quickui.catalog.js"
+            },
+            css: {
+                src: [
+                    "controls/intro.css",
+                    "controls/controls.css",
+                ],
+                dest: "quickui.catalog.css"
+            }
+        },
         less: {
             controls: {
                 files: {
-                    "quickui.catalog.css": sortDependencies.sortFiles( "controls/*.less" )
+                    "controls/controls.css": sortDependencies.sortFiles( "controls/*.less" )
                 }
             }
         },
@@ -74,7 +94,7 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask( "default", "coffee less" );
+    grunt.registerTask( "default", "coffee less concat" );
 
     grunt.registerTask( "all", "default quidoc" );
     

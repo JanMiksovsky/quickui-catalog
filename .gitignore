@@ -3,8 +3,8 @@
 *.sublime-*
 
 build
-coffee/coffee.js
-coffee/coffee.css
+controls/controls.js
+controls/controls.css
 controlDocumentation.js
 docs.js
 docs.css
@@ -16,7 +16,5 @@ quickui.catalog.*
 quickui-catalog.js
 quickui-catalog.css
 quidoc.js
-port/port.js
-port/port.css
 test/unittests.js
 test/common/common.*
