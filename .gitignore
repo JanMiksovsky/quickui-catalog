@@ -8,13 +8,9 @@ controls/controls.css
 controlDocumentation.js
 docs/demos.css
 docs/demos.js
-markup/markup.js
-markup/markup.css
 node_modules
-grunt/classGraph.js
-quickui.catalog.*
-quickui-catalog.js
-quickui-catalog.css
+quickui.catalog.js
+quickui.catalog.css
 quidoc.js
 test/unittests.js
 test/common/common.*

@@ -1,7 +1,7 @@
 ###
 Generate documenation for QuickUI controls.
 
-This scrapes CoffeeScript or QuickUI markup files to extract the following:
+This scrapes CoffeeScript files to extract the following:
 * Class name
 * Base class name
 * Other control classes instantiated (or otherwise used) by this class.
@@ -207,91 +207,8 @@ coffeeDocsExtractor = new DocsExtractor
   ///g
 
 
-# Extracts docs from QuickUI markup controls
-markupDocsExtractor = new DocsExtractor
-  baseClass: ///
-    <prototype>               # Opening prototype tag
-    \s*                       # Optional whitespace
-    <                         # Open tag for base class instance
-    (\w+)                     # Group captures base class name
-  ///
-  className: ///
-    <script>                  # Opening script tag
-    \s*                       # Whitespace
-    (\w*)                     # First group captures class name
-    .prototype.extend\(       # Call to extend prototype
-    \s*{                      # Open curly brace
-    (                         # Second group captures script contents
-      [\s\S]*                 # Anything, including newlines
-    )
-    }                         # Close curly brace
-    \s*\)                     # Close call to extend prototype
-    [\s\S]*                   # Anything, including newlines
-    </script>                 # Closing script tag
-  ///
-  comments: ///
-    /\*                       # Start of JavaScript block comment
-    \s+                       # Whitespace
-    (                         # First group captures the comment
-      (?:                     # Non-capturing group for each comment line
-        \s+                   
-        \*                    # A star
-        \s
-        .*                    # Contents of the comment line, up to the newline
-      )+                      # Any non-zero number of comment lines
-    )
-    \s+
-    \*/                       # End of JavaScript block comment
-    \s+                       # Whitespace (including newline)
-    (                         # Second group captures the identifier
-      [a-zA-Z0-9\$][\w]+      # JavaScript member identifier
-    )
-    :                         # Colon terminates identifier
-  ///g
-  commentText: /^\s*\*[ ]?(.*)/gm
-  content: ///
-    (?:                       # Non-capturing group for first part of OR
-      <prototype>             # Opening prototype tag
-      \s*                     # Optional whitespace
-      <[^>]+>                 # Opening base class instance tag
-      (                       # Group captures content
-        [\s\S]*               # Anything up to...
-      )
-      </prototype>            # Closing prototype tag
-    )
-    |                         # OR
-    (?:                       # Non-capturing group for second part of OR
-      <content>               # Opening content tag
-      (                       # Group captures content
-        [\s\S]*               # Anything up to...
-      )
-      </content>              # Closing content tag
-    )
-  ///
-  explicitClasses: ///
-    _requiredClasses          # Expected identifer "_requiredClasses:"
-    :                         # Colon
-    \s+                       # Whitespace
-    (                         # Group captures array of required classes
-      \[                      # Opening bracket
-        [^\]]+                # Array contents -- everything but a closing bracket
-      \]                      # Closing bracket
-    )
-  ///
-  implicitClasses: ///
-    <                         # Start tag
-    (                         # Group captures referenced class name
-      [A-Z]                   # Must start with an uppercase letter
-      \w*                     # More letters
-    )
-    .*                        # Optional tag parameters
-    >                         # End tag
-  ///g
-
-
 extractors =
   ".coffee": coffeeDocsExtractor
-  ".qui": markupDocsExtractor
 
 
 # Return the documentation for all files below the given root.

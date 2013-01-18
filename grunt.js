@@ -95,6 +95,6 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask( "default", "coffee less concat" );
 
-    grunt.registerTask( "all", "default quidoc" );
+    grunt.registerTask( "all", "coffee:tools default quidoc" );
     
 };
