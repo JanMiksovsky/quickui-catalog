@@ -1,5 +1,7 @@
-function demo() {
+function demoFlickrInterestingNavigator() {
 
-
+$demo.append(
+    FlickrInterestingNavigator.create()
+);
 
 }

@@ -17,13 +17,11 @@ var controlRecords = [
     {
         name: "BasicButton",
         demoClass: "BasicButtonDemo",
-        demoFunction: null,
         description: "Base class for buttons, handling mouse and disabled states."
     },
     {
         name: "BrowserSpecific",
         demoClass: "BrowserSpecificDemo",
-        demoFunction: null,
         description: "Conditionally shows contents if the given browser is in use."
     },
     {

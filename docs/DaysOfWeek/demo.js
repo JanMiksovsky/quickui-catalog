@@ -1,5 +1,7 @@
-function demo() {
+function demoDaysOfWeek() {
 
-
+$demo.append(
+    DaysOfWeek.create()
+);
 
 }

@@ -1,5 +1,7 @@
-function demo() {
+function demoCalendarMonthWithHeadings() {
 
-
+$demo.append(
+    CalendarMonthWithHeadings.create()
+);
 
 }

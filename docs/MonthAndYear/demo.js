@@ -1,5 +1,7 @@
-function demo() {
+function demoMonthAndYear() {
 
-
+$demo.append(
+    MonthAndYear.create()
+);
 
 }

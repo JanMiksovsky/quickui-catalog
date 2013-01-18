@@ -1,5 +1,7 @@
-function demo() {
+function demoLabeledColorSwatch() {
 
-
+$demo.append(
+    LabeledColorSwatch.create( "LightSeaGreen" )
+);
 
 }

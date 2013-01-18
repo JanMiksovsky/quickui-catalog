@@ -1,5 +1,7 @@
-function demo() {
+function demoCalendarWeek() {
 
-
+$demo.append(
+    CalendarWeek.create()
+);
 
 }
