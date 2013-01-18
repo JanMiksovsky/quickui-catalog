@@ -18,6 +18,7 @@ var $colors = ListBox.create({
         "Yellow",
         "YellowGreen"
     ],
+    height: "200px",
     width: "200px"
 });
 var $selectedColor = $( "<span>" );

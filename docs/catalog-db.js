@@ -5,23 +5,19 @@
 var controlRecords = [
     {
         name: "AdPlaceholder",
-        demoClass: "AdPlaceholderDemo",
         demoFunction: "demoTileAdPlaceholder",
         description: "Placeholder for a standard advertising unit"
     },
     {
         name: "AutoSizeTextBox",
-        demoClass: "AutoSizeTextBoxDemo",
         description: "A text area that expands to contain its text."
     },
     {
         name: "BasicButton",
-        demoClass: "BasicButtonDemo",
         description: "Base class for buttons, handling mouse and disabled states."
     },
     {
         name: "BrowserSpecific",
-        demoClass: "BrowserSpecificDemo",
         description: "Conditionally shows contents if the given browser is in use."
     },
     {
@@ -50,47 +46,40 @@ var controlRecords = [
     },
     {
         name: "Carousel",
-        demoClass: "CarouselDemo",
+        demoFunction: "demoTileCarousel",
         description: "Lets user navigate laterally between panels with a sliding transition."
     },
     {
         name: "CheckBox",
-        demoClass: "CheckBoxDemo",
         description: "A check box with an associated label."
     },
     {
         name: "Collapsible",
-        demoClass: "CollapsibleDemo",
         description: "A panel that can be toggled between collapsed and expanded states."
     },
     {
         name: "CollapsibleWithHeadingButton",
-        demoClass: "CollapsibleWithHeadingButtonDemo",
         description: "A collapsible panel whose heading region includes a button that reflects the collapsed state."
     },
     {
         name: "ColorSwatch",
-        demoClass: "ColorSwatchDemo",
         description: "Shows a block of a CSS color."
     },
     {
         name: "ColorSwatchComboBox",
-        demoClass: "ColorSwatchComboBoxDemo",
         description: "Lets the user type a CSS color name or value, or choose one from a list."
     },
     {
         name: "ColorSwatchTextBox",
-        demoClass: "ColorSwatchTextBoxDemo",
         description: "Lets the user type a CSS color name or value."
     },
     {
         name: "ComboBox",
-        demoClass: "ComboBoxDemo",
         description: "A text input area with a popup, which generally presents a list of choices."
     },
     {
         name: "Control",
-        demoClass: "",
+        demoFunction: null,
         description: "The base class for all QuickUI controls."
     },
     {
@@ -107,136 +96,121 @@ var controlRecords = [
     },
     {
         name: "DeviceSpecific",
-        demoClass: "", // "DeviceSpecificDemo",
+        demoFunction: null,
         description: "Conditionally loads different content, control class, or styles depending on the type of device."
     },
     {
         name: "Dialog",
-        demoClass: "DialogDemo",
         description: "Base class for modal dialogs"
     },
     {
         name: "Editable",
-        demoClass: "",
+        demoFunction: null,
         description: "A control that supports its own in-place editing"
     },
     {
         name: "EditableText",
-        demoClass: "EditableTextDemo",
         description: "A text region which can be clicked to edit its contents."
     },
     {
         name: "Fader",
-        demoClass: "FaderDemo",
         description: "Fades out content on the right or bottom."
     },
     {
         name: "FlickrInterestingDay",
-        demoClass: "FlickrInterestingDayDemo",
         description: "Shows the most interesting photo on Flickr for a given day."
     },
     {
         name: "FlickrInterestingNavigator",
-        demoClass: "",
+        demoFunction: null,
         description: "Navigates the Interestingness photo collection on Flickr by month."
     },
     {
         name: "FlickrInterestingPhoto",
-        demoClass: "",
+        demoFunction: null,
         description: "Shows a random recent photo from Flickr's Interestingness collection."
     },
     {
         name: "Gradient",
-        demoClass: "GradientDemo",
         description: "Cross-browser gradient."
     },
     {
         name: "HighlightEffects",
-        demoClass: "HighlightEffectsDemo",
         description: "Apply effects on hover, which can include changing the item's size and position."
     },
     {
         name: "HintTextBox",
-        demoClass: "HintTextBoxDemo",
         description: "A text box that displays a hint (placeholder) when the text box is empty."
     },
     {
         name: "HorizontalPanels",
-        demoClass: "HorizontalPanelsDemo",
         description: "Positions panels on the left and/or right and gives the remaining space to a main content area."
     },
     {
         name: "LabeledColorSwatch",
-        demoClass: "LabeledColorSwatchDemo",
         description: "Shows a color's name alongside a swatch of that color."
     },
     {
         name: "LabeledInput",
-        demoClass: "",
+        demoFunction: null,
         description: "An HTML input control with an associated clickable label."                    
     },
     {
         name: "LateralNavigator",
-        demoClass: "",
+        demoFunction: null,
         description: "Shows content with previous and next arrows on either side."
     },
     {
         name: "List",
-        demoClass: "ListDemo",
         description: "Renders each element of a JavaScript array as a QuickUI control."
     },
     {
         name: "ListBox",
-        demoClass: "ListBoxDemo",
         description: "A list that supports single selection and keyboard navigation."
     },
     {
         name: "ListComboBox",
-        demoClass: "ListComboBoxDemo",
         description: "A ComboBox which presents its choices as a dropdown list."
     },
     {
         name: "ListInlay",
-        demoClass: "ListInlayDemo",
         description: "List that can have a single item expanded to show more detail."
     },
     {
         name: "Log",
-        demoClass: "",
         description: "Displays a growing text log showing, for example, the output of an ongoing process."
     },
     {
         name: "LoremIpsum",
+        demoFunction: "demoTileLoremIpsum",
         description: "Shows paragraphs of placeholder text."
     },
     {
         name: "Menu",
-        demoClass: "MenuDemo",
         description: "A popup menu, often in a menu bar."
     },
     {
         name: "MenuBar",
-        demoClass: "MenuBarDemo",
         description: "A row of menus."
     },
     {
         name: "MenuItem",
-        demoClass: "",
+        demoFunction: null,
         description: "A command in a menu."
     },
     {
         name: "MenuSeparator",
-        demoClass: "",
+        demoFunction: null,
         description: "A line separating commands in a menu."
     },
     {
         name: "ModalOverlay",
-        demoClass: "",
+        demoFunction: null,
         description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."
     },
     {
         name: "Modes",
-        demoClass: "",
+        demoFunction: null,
         description: "Shows exactly one child at a time; useful for modes."
     },
     {
@@ -249,67 +223,62 @@ var controlRecords = [
     },
     {
         name: "MultiListBox",
-        demoClass: "MultiListBoxDemo",
         description: "A list that supports multiple selection."
     },
     {
         name: "MultiListInlay",
-        demoClass: "",
+        demoFunction: null,
         description: "List that can have multiple items expanded to show more detail."
     },
     {
         name: "Overlay",
-        demoClass: "",
+        demoFunction: null,
         description: "A transparent or visible layer behind a Popup."
     },
     {
         name: "PackedColumns",
-        demoClass: "",
+        demoFunction: null,
         description: "Packs its children into a dynamic number of columns of roughly equal height."
     },
     {
         name: "Page",
-        demoClass: "",
+        demoFunction: null,
         description: "Base class for the overall top-level control for a page."
     },
     {
         name: "PanelWithOverflow",
-        demoClass: "LaunchPanelWithOverflowDemo",
+        demoFunction: "demoTilePanelWithOverflow",
         description: "Allows any items which don't fit to overflow into a dropdown menu."
     },
     {
         name: "PersistentPanel",
-        demoClass: "PersistentPanelDemo",
+        demoFunction: "demoTilePersistentPanel",
         description: "A panel whose contents will bump up against the top or bottom of a scrolling parent so as to remain always visible."
     },
     {
         name: "Popup",
-        demoClass: "",
+        demoFunction: null,
         description: "Base class for popups, menus, dialogs — things that appear temporarily over other things."
     },
     {
         name: "PopupButton",
-        demoClass: "PopupButtonDemo",
         description: "A button that produces a popup when clicked."
     },
     {
         name: "PopupSource",
-        demoClass: "PopupSourceDemo",
         description: "A control with an associated Popup which will appear above or below the control."
     },
     {
         name: "RadioButton",
-        demoClass: "RadioButtonDemo",
         description: "A radio button with an associated label."
     },
     {
         name: "Repeater",
-        demoClass: "RepeaterDemo",
         description: "Creates a certain number of instances of another control class."
     },
     {
         name: "RotatingPanelsWithDots",
-        demoClass: "", /* No demo; the animation would be too distracting */
+        demoFunction: null, /* No demo; the animation would be too distracting */
         description: "Rotates once through a sequence of horizontally-arranged pages"
     },
     {
@@ -318,37 +287,34 @@ var controlRecords = [
     },
     {
         name: "Sequence",
-        demoClass: "",
+        demoFunction: null,
         description: "An ordered sequence of elements which can be navigated through one at a time."
     },
     {
         name: "SequenceNavigator",
-        demoClass: "",
+        demoFunction: null,
         description: "Lets the user navigate left and right through its contents."
     },
     {
         name: "SimpleFlexBox",
-        demoClass: "",
+        demoFunction: null,
         description: "Allows use of simple CSS flexbox layouts in older browsers."
     },
     {
         name: "SlidingPanels",
-        demoClass: "",
+        demoFunction: null,
         description: "Arranges its children as page on a horizontally sliding strip."
     },
     {
         name: "SlidingPanelsWithDots",
-        demoClass: "SlidingPanelsWithDotsDemo",
         description: "Presents children on a horizontally scrolling strip, with a series of dots to navigate the pages."
     },
     {
         name: "Sprite",
-        demoClass: "SpriteDemo",
         description: "A basic CSS sprite."
     },
     {
         name: "SpriteButton",
-        demoClass: "SpriteButtonDemo",
         description: "A button that uses a Sprite for its background."
     },
     {
@@ -357,12 +323,11 @@ var controlRecords = [
     },
     {
         name: "Tabs",
-        demoClass: "TabsDemo",
+        demoFunction: "demoTileTabs",
         description: "A set of pages which can be navigated by a set of tab buttons across the top."
     },
     {
         name: "Tag",
-        demoClass: "TagDemo",
         description: "Formats its content as an XML tag."
     },
     {
@@ -371,27 +336,22 @@ var controlRecords = [
     },
     {
         name: "TextCondenser",
-        demoClass: "TextCondenserDemo",
         description: "Switches to a condensed font when necessary to squeeze in more text."
     },
     {
         name: "TransientMessage",
-        demoClass: "TransientMessageDemo",
         description: "A message which briefly appears on a page before automatically disappearing."
     },
     {
         name: "ValidatingTextBox",
-        demoClass: "ValidatingTextBoxDemo",
         description: "Verifies that text box content meets some conditions."
     },
     {
         name: "VerticalAlign",
-        demoClass: "VerticalAlignDemo",
         description: "Vertically aligns arbitrary contents."
     },
     {
         name: "VerticalPanels",
-        demoClass: "VerticalPanelsDemo",
         description: "Positions panels on the top and/or bottom and gives the remaining space to a main content area."
     }
 ];

@@ -19,8 +19,65 @@
 
 <title>PersistentPanel Toolbar Demo</title>
 
+<style>
+body {
+    margin: 0;
+}
+
+.normal {
+    max-width: 600px;
+    padding: 1em 2em;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+.toolbar {
+    background: #eee;
+    -moz-box-shadow: 0 2px 2px #bbb;
+    -webkit-box-shadow: 0 2px 2px #bbb;
+    box-shadow: 0 2px 2px #bbb;
+    padding: 0.5em 2em;
+}
+
+.toolbar .BasicButton {
+    margin-right: 5px;
+}
+</style>
+
 </head>
 
-<body data-create-controls="true" data-control="PersistentPanelToolbarDemo"/>
+<body data-create-controls="true" data-control="Page">
+
+    <!-- These contents will scroll -->
+    <div class="normal">
+        <div data-control="AdPlaceholder" data-dimensions="Leaderboard"></div>
+        <p>
+            This area above the persistent panel (here, a toolbar) can hold
+            content that should be initially visible, but which can later
+            scroll out of the way. Examples: ads, top navigation.
+        </p>
+    </div>
+
+    <div data-control="PersistentPanel">
+        <!-- This toolbar will always be visible -->
+        <div class="toolbar">
+            This toolbar is always available:
+            <div data-control="BasicButton">Button 1</div>
+            <div data-control="BasicButton">Button 2</div>
+            <div data-control="BasicButton">Button 3</div>
+        </div>
+    </div>
+
+    <!-- This content will scroll under the toolbar -->
+    <div class="normal">
+        <h1>
+            Scroll this page, keeping an eye on the toolbar.
+        </h1>
+        <div data-control="LoremIpsum" data-paragraphs="30"/>
+    </div>
+
+</body>
 
 </html>

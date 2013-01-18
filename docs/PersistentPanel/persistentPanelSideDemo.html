@@ -19,8 +19,93 @@
 
 <title>PersistentPanel Side Demo</title>
 
+<style>
+body {
+    margin: 0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+.text {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2em;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.rightPanel {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-top: 2em;
+    width: 300px;
+}
+
+.rightPanel > * {
+    margin-bottom: 1em;
+}
+
+.important {
+    background: .eee;
+    border: 1px solid gray;
+    padding: 0.5em;
+}
+
+.FlickrInterestingPhoto {
+    float: left;
+    margin: 0 1em 1em 0;
+    width: 50% !important;
+}
+</style>
+
 </head>
 
-<body data-create-controls="true" data-control="PersistentPanelSideDemo"/>
+<body data-create-controls="true" data-control="Page"/>
+    <div data-control="HorizontalPanels" class="container">
+
+        <!-- Main (scrolling) contents -->
+        <div class="text">
+            <h1>
+                Scroll this page, keeping an eye on the right side.
+            </h1>
+            <div data-control="FlickrInterestingPhoto"></div>
+            <div data-control="LoremIpsum" data-paragraphs="8"></div>
+            <div data-control="FlickrInterestingPhoto"></div>
+            <div data-control="LoremIpsum" data-paragraphs="8"></div>
+            <div data-control="FlickrInterestingPhoto"></div>
+            <div data-control="LoremIpsum" data-paragraphs="8"></div>
+        </div>
+        
+        <div data-property="right">
+            <div class="rightPanel">
+
+                <div data-control="AdPlaceholder" class="ad" data-dimensions="Medium Rectangle"></div>
+                <div class="right">
+                    Any content above the panel will scroll away.
+                </div>
+
+                <div data-control="PersistentPanel">
+                    <!-- These contents will always be visible -->
+                    <div class="important">
+                        This panel is persistent, so it won't scroll away.
+                        This is useful for any information or controls which
+                        must be visible at all times.
+                    </div>
+                </div>
+                
+                <div class="right">
+                    Any content below the panel will also scroll away.
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</body>
 
 </html>

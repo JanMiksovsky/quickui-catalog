@@ -18,6 +18,7 @@ var $animals = MultiListBox.create({
         "Teal",
         "Turtle"
     ],
+    height: "200px",
     width: "200px"
 });
 var $count = $( "<span>" );

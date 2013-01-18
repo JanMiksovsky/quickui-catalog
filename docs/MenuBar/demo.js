@@ -1,5 +1,15 @@
 function demoMenuBar() {
 
+// Create a place to log menu clicks.
+var $log = Log.create()
+    .css({
+        background: "white",
+        border: "none",
+        "font-family": "Helvetica, Arial, sans-serif",
+        "font-size": "smaller",
+        "min-height": "200px"
+    } );
+
 $demo.append(
     MenuBar.create().content([
         Menu.create( "File" ).popup([
@@ -23,23 +33,16 @@ $demo.append(
             MenuSeparator.create(),
             MenuItem.create( "Full Screen" )
         ])
-    ])
+    ]),
+    $log
 );
-
-// Create a place to log menu clicks.
-var $log = $( "<div/>" )
-    .css({
-        "font-size": "smaller",
-        padding: "0.5em"
-    })
-    .appendTo( $demo );
 
 // Log menu clicks
 $demo.on( "click", ".MenuItem", function( event ) {
     var $menuItem = $( event.target ).control();
     var $menu = $menuItem.closest( ".Menu" ).control();
     var description = $menu.content() + " / " + $menuItem.content();
-    $log.append( "<div>" + description + "</div>" );
+    $log.writeln( description );
 });
 
 }

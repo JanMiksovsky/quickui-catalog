@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" type="text/css" href="/release/quickui.css" />
 <link rel="stylesheet" type="text/css" href="/release/quickui.catalog.css" />
-<link rel="stylesheet" type="text/css" href="/demo.css" />
+<link rel="stylesheet" type="text/css" href="/demos.css" />
 <link rel="stylesheet" type="text/css" href="/controls/controls.css" />
 <link rel="stylesheet" type="text/css" href="/catalog/demos.css" />
 
@@ -20,8 +20,78 @@
 
 <title>PanelWithOverflow Demo</title>
 
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.toolbar {
+    background: whitesmoke;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px;
+}
+
+/*
+TODO: Fix QuickUI rehydrate() so it preserves CSS class attributes.
+Then set a class='toolbarButton' on each of the divs that turn into buttons.
+*/
+.PanelWithOverflow_content .BasicButton {
+    margin-right: 10px;
+    padding: 5px;
+}
+.PanelWithOverflow_content .BasicButton:last-child {
+    margin-right: 0;
+}
+
+.Popup .BasicButton {
+    background: none;
+    border-color: transparent;
+    margin-right: 0;
+    margin-bottom: 5px;
+}
+.Popup .BasicButton:last-child {
+    margin-bottom: 0;
+}
+</style>
+
+<script>
+$( function() {
+
+    var $toolbar = $( ".toolbar" ).control();
+
+
+    // Remove extra white space nodes so inline controls touch.
+    var content = $toolbar.content();
+    var stripped = $.grep( content, function( item ) {
+        return typeof item !== "string";
+    });
+    $toolbar.content( stripped );
+
+});
+</script>
+
 </head>
 
-<body data-create-controls="true" data-control="PanelWithOverflowDemo"/>
+<body data-create-controls="true">
+    <div data-control="PanelWithOverflow" class="toolbar">
+        <div data-control="BasicButton" class="toolbarButton">One</div>
+        <div data-control="BasicButton" class="toolbarButton">Two</div>
+        <div data-control="BasicButton" class="toolbarButton">Three</div>
+        <div data-control="BasicButton" class="toolbarButton">Four</div>
+        <div data-control="BasicButton" class="toolbarButton">Five</div>
+        <div data-control="BasicButton" class="toolbarButton">Six</div>
+        <div data-control="BasicButton" class="toolbarButton">Seven</div>
+        <div data-control="BasicButton" class="toolbarButton">Eight</div>
+        <div data-control="BasicButton" class="toolbarButton">Nine</div>
+        <div data-control="BasicButton" class="toolbarButton">Ten</div>
+        <div data-control="BasicButton" class="toolbarButton">Eleven</div>
+        <div data-control="BasicButton" class="toolbarButton">Twelve</div>
+    </div>
+    <p style="margin: 1em;">
+        Resize this window to be narrower or wider, and the toolbar buttons
+        will overflow as necessary to remain available.
+    </p>
+</body>
 
 </html>
