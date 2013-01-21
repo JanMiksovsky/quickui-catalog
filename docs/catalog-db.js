@@ -227,7 +227,6 @@ var controlRecords = [
     },
     {
         name: "MultiListInlay",
-        demoFunction: null,
         description: "List that can have multiple items expanded to show more detail."
     },
     {

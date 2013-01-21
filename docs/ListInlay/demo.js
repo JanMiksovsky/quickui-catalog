@@ -3,8 +3,7 @@ function demoListInlay() {
 // Create array of items with description and content.
 var items = $.map(
     [
-        "One", "Two", "Three", "Four", "Five",
-        "Six", "Seven", "Eight", "Nine", "Ten"
+        "One", "Two", "Three", "Four", "Five"
     ],
     function( description ) {
         return {
@@ -25,10 +24,6 @@ var items = $.map(
 
 // Show the items in a ListInlay.
 $demo
-    .css({
-        height: "400px",
-        "overflow-y": "auto"
-     })
     .append(
         ListInlay.create()
             .items( items )
