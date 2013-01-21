@@ -5,9 +5,11 @@ $demo.append(
     CheckBox.create()
         .content( "Boots" )
         .checked( true ),
+    " ",
     CheckBox.create()
         .content( "Skis" )
         .checked( true ),
+    " ",
     CheckBox.create()
         .content( "Poles" )
         .checked( true )
