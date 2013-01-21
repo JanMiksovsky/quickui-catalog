@@ -1,7 +1,7 @@
 function demoAutoSizeTextBox() {
 
 $demo.append(
-    "<p>Type as much text as you want:</p>",
+    "Type as much text as you want:",
     AutoSizeTextBox.create({
         minimumLines: 2
     })
