@@ -161,6 +161,10 @@ var controlRecords = [
         description: "Shows content with previous and next arrows on either side."
     },
     {
+        name: "Link",
+        description: "Base class for hyperlinks."
+    },
+    {
         name: "List",
         description: "Renders each element of a JavaScript array as a QuickUI control."
     },
@@ -340,6 +344,10 @@ var controlRecords = [
     {
         name: "TextCondenser",
         description: "Switches to a condensed font when necessary to squeeze in more text."
+    },
+    {
+        name: "ToggleButton",
+        description: "Button that can track a selected state."
     },
     {
         name: "TransientMessage",
