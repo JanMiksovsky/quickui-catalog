@@ -330,6 +330,10 @@ var controlRecords = [
         description: "Formats its content as an XML tag."
     },
     {
+        name: "TextBox",
+        description: "Base class for text input controls."
+    },
+    {
         name: "TextBoxWithButton",
         description: "A control with a content area (usually some form of text box) and an associated \"Go\" button."
     },

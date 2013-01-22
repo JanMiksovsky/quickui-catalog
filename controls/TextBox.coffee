@@ -17,6 +17,7 @@ class window.TextBox extends Control
 
   # True if the text box is disabled. 
   disabled: Control.chain "prop/disabled"
+  
   initialize: ->
     if @type() is "text"
       # Explicitly stamp type="text" on the control if a type hasn't been set.
