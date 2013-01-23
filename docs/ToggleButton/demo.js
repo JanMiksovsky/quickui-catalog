@@ -7,8 +7,10 @@ var $buttonBold = ToggleButton.create({
 });
 var $buttonItalic = ToggleButton.create({
     content: "I",
-    css: { "font-style": "italic" },
-    width: "1.8em"
+    css: {
+        "font-style": "italic",
+        width: "1.8em"
+    }
 });
 var $buttonUnderline = ToggleButton.create({
     content: "U",
