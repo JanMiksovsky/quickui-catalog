@@ -1,14 +1,14 @@
+@import "mixins";
+
 .SimpleFlexBox {
 
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  .box-sizing( border-box );
   /* display: -moz-box; */
   display: -webkit-box;
   display: box;
 
   & > * {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    .box-sizing( border-box );
     position: relative; /* So elements contained by panels can fill panels. */
   }
 

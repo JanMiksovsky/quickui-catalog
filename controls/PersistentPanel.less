@@ -1,11 +1,11 @@
+@import "mixins";
+
 .PersistentPanel {
 
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  .box-sizing( border-box );
 
   .PersistentPanel_content {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    .box-sizing( border-box );
   }
 
   &.docked .PersistentPanel_content {

@@ -1,3 +1,5 @@
+@import "mixins";
+
 .SlidingPanelsWithDots {
 
   display: inline-block; /* Size to content */ 
@@ -23,8 +25,7 @@
       background: white;
       border: 1px solid #888;
       border-radius: 5px;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
+      .box-sizing( border-box );
       height: 10px;
       margin: 2px;
       padding: 5px;

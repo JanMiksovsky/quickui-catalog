@@ -1,3 +1,5 @@
+@import "mixins";
+
 .ComboBox {
 
   display: inline-block;
@@ -17,8 +19,7 @@
   .ComboBox_content[type='text'],
   .ComboBox_content input[type='text'] {
     border: none;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    .box-sizing( border-box );
     outline: none;
     padding: 2px;
   }
@@ -37,8 +38,7 @@
   &.generic {
 
     border: 1px solid lightgray;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    .box-sizing( border-box );
 
     .dropdownButton {
       border: none;
