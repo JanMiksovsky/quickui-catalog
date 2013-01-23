@@ -1,9 +1,7 @@
 .MenuBar {
 
   position: relative; /* Necessary to get overlay behind the whole menu bar */
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  user-select: none;
+  .user-select( none );
 
   /* Subclasses can extend this style */
   &.opened {}
