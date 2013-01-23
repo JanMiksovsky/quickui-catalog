@@ -326,7 +326,6 @@ var controlRecords = [
     },
     {
         name: "Tabs",
-        demoFunction: "demoTileTabs",
         description: "A set of pages which can be navigated by a set of tab buttons across the top."
     },
     {
