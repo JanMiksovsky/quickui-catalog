@@ -43,11 +43,8 @@ class window.SlidingPanels extends Sequence
       # HACK for IE8, in which jQuery 1.7.2 will throw an exception if we try to
       # get the css("transition") property.
       return false
-    for transitionProperty in [ "-webkit-transition", "transition" ]
-      value = $element.css transitionProperty
-      if value isnt undefined and value != ""
-        return true
-    false
+    value = $element.css "transition-duration"
+    return value? and value != ""
 
   initialize: ->
     @inDocument -> @_adjustWidths()
