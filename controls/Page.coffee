@@ -37,11 +37,11 @@ class window.Page extends Control
   @trackClassFromUrl: ( defaultPageClass, target ) ->
     # Watch for changes in the URL after the hash.
     $control = Control( target ? "body" )
-    $( window ).hashchange ->
+    $( window ).on "hashchange", ->
       pageClass = Page.urlParameters().page ? defaultPageClass
       $control.transmute pageClass
     # Trigger a page class load now.
-    $( window ).hashchange()
+    $( window ).trigger "hashchange"
 
   # The URL parameters for the current page. Read-only.
   urlParameters: ->
