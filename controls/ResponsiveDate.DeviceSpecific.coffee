@@ -12,3 +12,6 @@ class window.ResponsiveDate extends DeviceSpecific
 
   # The date shown in the text box.
   date: Control.chain "$placeholder", "date"
+
+  # Hint for documentation tools
+  _requiredClasses: [ "DateComboBox", "MobileDateTextBox" ]

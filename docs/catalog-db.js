@@ -208,6 +208,10 @@ var controlRecords = [
         description: "A line separating commands in a menu."
     },
     {
+        name: "MobileDateTextBox",
+        description: "A date input which leverages a device's native date picker."
+    },
+    {
         name: "ModalOverlay",
         demoFunction: null,
         description: "A layer behind a modal Popup, such as a Dialog, which absorbs mouse clicks."
@@ -278,6 +282,10 @@ var controlRecords = [
     {
         name: "Repeater",
         description: "Creates a certain number of instances of another control class."
+    },
+    {
+        name: "ResponsiveDate",
+        description: "A date control whose form is optimized for the current device."
     },
     {
         name: "RotatingPanelsWithDots",
