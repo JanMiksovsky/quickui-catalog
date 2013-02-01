@@ -5,10 +5,6 @@ This leverages the device's native date picker UI.
 
 class window.MobileDateTextBox extends TextBox
 
-  inherited:
-    prop:
-      type: "date"
-
   # The date shown in the text box.
   date: Control.iterator ( date ) ->
     if date is undefined
@@ -19,6 +15,11 @@ class window.MobileDateTextBox extends TextBox
         null
     else
       @content @_convertJavaScriptDateToRfc3339 date
+
+  initialize: ->
+    # IE <= 10 chokes on input type='date'.
+    if not Control.browser.msie
+      @prop "type", "date"
 
   # Convert a JavaScript date object to the format required by the HTML date
   # input element.
