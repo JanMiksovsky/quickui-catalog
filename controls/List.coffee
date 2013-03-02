@@ -8,7 +8,7 @@ class window.List extends Control
   # Read-only. This is always returned as an instance of itemClass.
   controls: ->
     itemClass = @itemClass()
-    itemClass( this ).children()
+    ( new itemClass( this )).children()
 
   # True if the control should mark itself dirty when it gets a change event.
   # The default is false.

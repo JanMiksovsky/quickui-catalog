@@ -39,7 +39,7 @@ $(function() {
     }
 
     // Get all the classes mentioned in link text.
-    var $body = Control( "body" );
+    var $body = new Control( "body" );
     var classNames = getLinkText( $body.find( "a" ) );
     
     // Get records for all the classes which were named. 
