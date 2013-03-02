@@ -16,6 +16,8 @@ module.exports = ->
       controls:
         files:
           "controls/controls.js": sortDependencies.sortFiles "controls/*.coffee"
+        options:
+          bare: true
       test:
         files:
           "test/unittests.js": "test/*.coffee"
