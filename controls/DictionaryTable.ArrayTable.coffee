@@ -8,4 +8,4 @@ class window.DictionaryTable extends ArrayTable
   # Each item will be a row with two columns for its key and value.
   content: Control.property ( dictionary ) ->
     array = ( [  key, value  ] for key, value of dictionary )
-    ArrayTable( this ).content array
+    ( new ArrayTable( this )).content array

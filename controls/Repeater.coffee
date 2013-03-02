@@ -34,10 +34,10 @@ class window.Repeater extends Control
     repeatClass = @repeatClass()
     count = @count()
     if repeatClass? and count > 0
-      controls = Control ( repeatClass.create() for i in [ 0 .. count - 1 ] )
+      controls = new Control ( repeatClass.create() for i in [ 0 .. count - 1 ] )
       @_refreshContent controls
       # Use base .content() property since we've overridden it.
-      Control( this ).content controls
+      ( new Control( this )).content controls
 
   _refreshContent: ( controls ) ->
     controls = controls ? @controls()

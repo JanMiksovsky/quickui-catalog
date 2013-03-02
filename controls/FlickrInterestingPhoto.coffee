@@ -30,7 +30,7 @@ class window.FlickrInterestingPhoto extends Control
       # This allows anyone listening for the layout event to get the correct
       # dimensions of the photo, instead of the dimensions of the image
       # placeholder icon.
-      control = Control this
+      control = new Control this
       if Control.browser.msie and parseInt( control.width() ) == 28
         control.css "width", "auto"
       control.checkForSizeChange()

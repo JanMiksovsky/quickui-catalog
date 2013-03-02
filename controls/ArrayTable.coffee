@@ -11,8 +11,8 @@ class window.ArrayTable extends Control
   content: Control.property ( array ) ->
     rows = ( for innerArray in array
       cells = ( for item in innerArray
-        Control( "<div/>" ).content item
+        ( new Control( "<div/>" )).content item
       )
-      Control( "<div/>" ).content cells
+      (new Control( "<div/>" )).content cells
     )
-    Control( this ).content rows
+    ( new Control( this )).content rows
