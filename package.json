@@ -2,7 +2,7 @@
     "name": "quickui-catalog",
     "title": "QuickUI Catalog",
     "description": "Ready-to-use QuickUI controls, including base classes and samples",
-    "version": "0.9.2",
+    "version": "0.9.3.2",
     "homepage": "http://quickui.org/catalog",
     "repository": {
         "type": "git",
@@ -15,10 +15,10 @@
         }
     ],
     "devDependencies": {
-        "grunt": "~0.4.0",
-        "grunt-contrib-coffee": "~0.5.0",
-        "grunt-contrib-concat": "~0.1",
-        "grunt-contrib-less": "~0.5.0",
-        "sort-dependencies": "~0.1"
+        "grunt": "~0.4",
+        "grunt-contrib-coffee": "~0.6",
+        "grunt-contrib-concat": "~0.3",
+        "grunt-contrib-less": "~0.5",
+        "sort-dependencies": "*"
     }
 }
