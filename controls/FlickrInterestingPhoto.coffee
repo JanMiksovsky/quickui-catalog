@@ -93,7 +93,7 @@ class window.FlickrInterestingPhoto extends Control
     @
     
   # The location of the current photo image.
-  photo: Control.chain "attr/src"
+  photo: Control.chain "prop/src"
 
   # The size of photo to show.
   # 
