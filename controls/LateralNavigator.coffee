@@ -57,13 +57,18 @@ class window.LateralNavigator extends Control
     @$LateralNavigator_nextButton().click => @_nextClick()
     @on
       keydown: ( event ) =>
+        handled = false
         switch event.which
           when 37 # Left
             if !@$LateralNavigator_previousButton().disabled()
               @_previousClick()
+              handled = true
           when 39 # Right
             if !@$LateralNavigator_nextButton().disabled()
               @_nextClick()
+              handled = true
+        if handled
+          return false
       sizeChanged: =>
         # HACK: Shouldn't need to directly reference HorizontalPanel elements.
         this.$panels().$SimpleFlexBox_panel1().checkForSizeChange();
