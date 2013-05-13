@@ -2,7 +2,7 @@
     "name": "quickui-catalog",
     "title": "QuickUI Catalog",
     "description": "Ready-to-use QuickUI controls, including base classes and samples",
-    "version": "0.9.3.2",
+    "version": "0.9.4.0",
     "homepage": "http://quickui.org/catalog",
     "repository": {
         "type": "git",

@@ -1,6 +1,6 @@
 /*
  * QuickUI Catalog
- * Version 0.9.3.2
+ * Version 0.9.4.0
  * Modular web control framework
  * http://quickui.org
  *
