@@ -6,6 +6,7 @@ module.exports = ->
   @loadNpmTasks "grunt-contrib-coffee"
   @loadNpmTasks "grunt-contrib-concat"
   @loadNpmTasks "grunt-contrib-less"
+  @loadNpmTasks "grunt-contrib-uglify"
   @loadTasks "grunt"
   sortDependencies = require "sort-dependencies"
   
@@ -55,10 +56,10 @@ module.exports = ->
         src: [ "controls" ]
         dest: "docs/controlDocumentation.js"
 
-    min:
+    uglify:
       dist:
-        src: [ "quickui.catalog.js" ]
-        dest: "quickui.catalog.min.js"
+        files:
+          "quickui.catalog.min.js": "quickui.catalog.js"
   
   @registerTask "default", [ "coffee", "less", "concat" ]
-  @registerTask "all", [ "coffee:tools", "default", "quidoc" ]
+  @registerTask "all", [ "coffee:tools", "default", "quidoc", "uglify" ]

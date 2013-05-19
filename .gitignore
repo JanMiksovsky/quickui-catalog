@@ -11,6 +11,7 @@ docs/demos.js
 node_modules
 quickui.catalog.js
 quickui.catalog.css
+quickui.catalog.min.js
 quidoc.js
 test/unittests.js
 test/common/common.*
